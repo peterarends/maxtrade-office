@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="bg-blue-300">
+<div class="mx-auto h-full flex justify-center items-center bg-gray-300">
+    <div class="w-96 bg-blue-900 rounded-lg shadow-xl p-6">
+        <h1 class="full-width text-white text-4xl">Maxtrade Office</h1>
+        <h2 class="text-white text-3xl pt-6">{{ __('Welcome Back') }}</h2>
+        <h3 class="text-blue-300">{{ __('Enter your credentials below') }}</h3>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
