@@ -4,7 +4,7 @@
 <div class="mx-auto h-full flex justify-center items-center bg-gray-300">
     <div class="w-96 bg-blue-900 rounded-lg shadow-xl p-6">
         <h1 class="full-width text-white text-4xl"><a href="{{ route('index') }}">{{ __('Maxtrade Office') }}</a></h1>
-        <h2 class="text-white text-3xl pt-6">{{ __('Welcome Back') }}</h2>
+        <h2 class="text-white text-2xl pt-6">{{ __('Welcome Back') }}</h2>
         <h3 class="text-blue-300">{{ __('Enter your credentials below') }}</h3>
         <form method="POST" action="{{ route('login') }}" class="pt-6">
             @csrf
