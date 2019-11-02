@@ -3242,6 +3242,10 @@ video {
   border-width: 8px;
 }
 
+.border-14{
+  border-width: 14px;
+}
+
 .border{
   border-width: 1px;
 }
@@ -3308,6 +3312,22 @@ video {
 
 .border-l-8{
   border-left-width: 8px;
+}
+
+.border-t-14{
+  border-top-width: 14px;
+}
+
+.border-r-14{
+  border-right-width: 14px;
+}
+
+.border-b-14{
+  border-bottom-width: 14px;
+}
+
+.border-l-14{
+  border-left-width: 14px;
 }
 
 .border-t{
@@ -14021,6 +14041,10 @@ video {
     border-width: 8px;
   }
 
+  .sm\:border-14{
+    border-width: 14px;
+  }
+
   .sm\:border{
     border-width: 1px;
   }
@@ -14087,6 +14111,22 @@ video {
 
   .sm\:border-l-8{
     border-left-width: 8px;
+  }
+
+  .sm\:border-t-14{
+    border-top-width: 14px;
+  }
+
+  .sm\:border-r-14{
+    border-right-width: 14px;
+  }
+
+  .sm\:border-b-14{
+    border-bottom-width: 14px;
+  }
+
+  .sm\:border-l-14{
+    border-left-width: 14px;
   }
 
   .sm\:border-t{
@@ -24801,6 +24841,10 @@ video {
     border-width: 8px;
   }
 
+  .md\:border-14{
+    border-width: 14px;
+  }
+
   .md\:border{
     border-width: 1px;
   }
@@ -24867,6 +24911,22 @@ video {
 
   .md\:border-l-8{
     border-left-width: 8px;
+  }
+
+  .md\:border-t-14{
+    border-top-width: 14px;
+  }
+
+  .md\:border-r-14{
+    border-right-width: 14px;
+  }
+
+  .md\:border-b-14{
+    border-bottom-width: 14px;
+  }
+
+  .md\:border-l-14{
+    border-left-width: 14px;
   }
 
   .md\:border-t{
@@ -35581,6 +35641,10 @@ video {
     border-width: 8px;
   }
 
+  .lg\:border-14{
+    border-width: 14px;
+  }
+
   .lg\:border{
     border-width: 1px;
   }
@@ -35647,6 +35711,22 @@ video {
 
   .lg\:border-l-8{
     border-left-width: 8px;
+  }
+
+  .lg\:border-t-14{
+    border-top-width: 14px;
+  }
+
+  .lg\:border-r-14{
+    border-right-width: 14px;
+  }
+
+  .lg\:border-b-14{
+    border-bottom-width: 14px;
+  }
+
+  .lg\:border-l-14{
+    border-left-width: 14px;
   }
 
   .lg\:border-t{
@@ -46361,6 +46441,10 @@ video {
     border-width: 8px;
   }
 
+  .xl\:border-14{
+    border-width: 14px;
+  }
+
   .xl\:border{
     border-width: 1px;
   }
@@ -46427,6 +46511,22 @@ video {
 
   .xl\:border-l-8{
     border-left-width: 8px;
+  }
+
+  .xl\:border-t-14{
+    border-top-width: 14px;
+  }
+
+  .xl\:border-r-14{
+    border-right-width: 14px;
+  }
+
+  .xl\:border-b-14{
+    border-bottom-width: 14px;
+  }
+
+  .xl\:border-l-14{
+    border-left-width: 14px;
   }
 
   .xl\:border-t{
