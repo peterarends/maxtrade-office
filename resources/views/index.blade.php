@@ -49,11 +49,6 @@
                 {{ __('Register') }}
             </a>
         </div>
-        <div class="container mx-auto flex flex-col sm:flex-row pt-6 sm:pt-0 pb-6 sm:pb-0 justify-between">
-                <a href="{{ route('index') }}">
-
-                </a>
-            </div>
     </div>
     <footer class="bg-blue-700 text-white">
         <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between py-4">
