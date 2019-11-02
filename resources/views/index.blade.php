@@ -27,7 +27,7 @@
             <div class="w-full sm:w-3/5 text-center sm:text-left">
                 <div class="text-4xl font-bold text-strong">{{ __('MaxtradeOffice') }}</div>
                 <div class="text-2xl font-bold text-strong">{{ __('Simple Projects & Tasks Manager') }}</div>
-                <div class="text-xl text-soft">
+                <div class="text-xl text-soft border-t border-blue border-dotted">
                     {{ __('It is online platform created as open source software distributed free of charge under the
                     terms of the GNU General Public License. Support is available only on E-Mail. For using MaxtradeOffice
                     , no restrictions apply. This online platform is distributed in the hope that it will be useful,
@@ -40,12 +40,12 @@
             </div>
         </div>
         <div class="container mx-auto flex flex-col sm:flex-row pt-6 sm:pt-0 pb-6 sm:pb-0 justify-between">
-            <a href="{{ route('login') }}" class="w-auto sm:w-2/5 m-4 sm:m-0 py-2 px-3 text-3xl text-center bg-yellow uppercase rounded font-bold
-            text-indigo">
+            <a href="{{ route('login') }}" class="w-auto sm:w-2/5 m-4 sm:m-0 py-2 px-3 text-3xl text-center bg-yellow
+            uppercase rounded font-bold text-indigo">
                 {{ __('Login') }}
             </a>
-            <a href="{{ route('register') }}" class="w-auto sm:w-2/5 m-4 sm:m-0 py-2 px-3 text-3xl text-center bg-yellow uppercase rounded font-bold
-            text-indigo">
+            <a href="{{ route('register') }}" class="w-auto sm:w-2/5 m-4 sm:m-0 py-2 px-3 text-3xl text-center bg-yellow
+            uppercase rounded font-bold text-indigo">
                 {{ __('Register') }}
             </a>
         </div>
