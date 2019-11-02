@@ -17,7 +17,7 @@ class ProjectsController extends Controller
     public function index()
     {
         /** Get Projects */
-        $projects = Project::paginate(15);
+        $projects = Project::orderBy('created_at', 'desc')->paginate(5);
 
         /** Return collection of Projects as resource */
         return ProjectResorce::collection($projects);
