@@ -10,7 +10,7 @@
             <i class="mdi mdi-contacts text-3xl"></i>
         </a>
         <div class="left-menu-title">Maxtrade Office</div>
-        <a title="Show Tools Menu">
+        <a title="Show Tools Menu" class="pb-4">
             <i class="mdi mdi-tools text-3xl"></i>
         </a>
     </div>
@@ -30,6 +30,7 @@ export default {
     align-content: center;
     width: 48px;
     background: #2D3748;
+    border-bottom: 1px solid #1A202C;
 }
 .body-left-menu a{
     padding-top: 16px;

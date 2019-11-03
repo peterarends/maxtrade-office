@@ -1,8 +1,8 @@
 <template>
-    <div class="footer">
+    <div class="flex items-center text-gray-300 h-8 bg-gray-800">
         <div class="footer-icon">
             <!--Header icon-->
-            <div><img src="assets/images/connected.png" width="20" height="20"></div>
+            <div><i class="mdi mdi-server-network text-xl"></i></div>
             <div class="separator-vertical"></div>
             <div>MaxtradeOffice ver: <span id="app-version"></span></div>
             <div class="separator-vertical"></div>
@@ -22,20 +22,11 @@ export default {
 
 <style scoped>
 /* Foother panel */
-.footer{
-    display: flex;
-    align-items: center;
-    color: gray;
-    font-weight: normal;
-    height: 30px;
-    background: #333333;
-    color: '#868686';
-}
 .footer-icon{
     display: flex;
     align-items: center;
     align-content: center;
-    padding-left: 6px;
+    padding-left: 10px;
     padding-right: 2px;
 }
 .footer-icon div:first-child{

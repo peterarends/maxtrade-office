@@ -2296,7 +2296,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Foother panel */\n.footer[data-v-16363ad6]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  color: gray;\n  font-weight: normal;\n  height: 30px;\n  background: #333333;\n  color: '#868686';\n}\n.footer-icon[data-v-16363ad6]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 6px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-16363ad6]:first-child{\n  width: 32px;\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "/* Foother panel */\n.footer-icon[data-v-16363ad6]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-16363ad6]:first-child{\n  width: 32px;\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -2353,7 +2353,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".body-panel[data-v-1b427de0]{\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n", ""]);
+exports.push([module.i, ".body-panel[data-v-1b427de0]{\n  -webkit-box-flex: 1;\n          flex: 1;\n  background: #1A202C;\n}\n", ""]);
 
 // exports
 
@@ -2372,7 +2372,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".body-left-menu[data-v-7bf753d0]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n  background: #2D3748;\n}\n.body-left-menu a[data-v-7bf753d0]{\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  color: #A0AEC0;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu a[data-v-7bf753d0]:hover{\n  color: #F7FAFC;\n}\n.left-menu-title[data-v-7bf753d0]{\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n  opacity: 0.3;\n  color: #4299E1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0]{\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu a.active[data-v-7bf753d0]{\n  color: #F7FAFC;\n}\n", ""]);
+exports.push([module.i, ".body-left-menu[data-v-7bf753d0]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n  background: #2D3748;\n  border-bottom: 1px solid #1A202C;\n}\n.body-left-menu a[data-v-7bf753d0]{\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  color: #A0AEC0;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu a[data-v-7bf753d0]:hover{\n  color: #F7FAFC;\n}\n.left-menu-title[data-v-7bf753d0]{\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n  opacity: 0.3;\n  color: #4299E1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0]{\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu a.active[data-v-7bf753d0]{\n  color: #F7FAFC;\n}\n", ""]);
 
 // exports
 
@@ -2391,7 +2391,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".body-projects-panel[data-v-c4c8aaa8]{\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  border-right: 1px solid #1e1e1e;\n  background: #252526;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.projects-panel-title[data-v-c4c8aaa8]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  width: 295px;\n  height: 30px;\n  margin: 0px 0px 0px 5px;\n  box-sizing: border-box;\n  background: #252526;\n}\n.projects-panel-title-name[data-v-c4c8aaa8]{\n  font-weight: 500;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n", ""]);
+exports.push([module.i, ".body-projects-panel[data-v-c4c8aaa8]{\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  border-right: 1px solid black;\n  background: #1A202C;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.projects-panel-title[data-v-c4c8aaa8]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  width: 295px;\n  height: 30px;\n  margin: 0px 0px 0px 5px;\n  box-sizing: border-box;\n  background: #1A202C;\n}\n.projects-panel-title-name[data-v-c4c8aaa8]{\n  font-weight: 500;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n", ""]);
 
 // exports
 
@@ -2410,7 +2410,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".body-tasks-panel[data-v-6750e0cc]{\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  background: #252526;\n  height: calc(100vh - 94px);\n  border-right: 1px solid #1e1e1e;\n}\n.task-panel-title[data-v-6750e0cc]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  width: 295px;\n  height: 30px;\n  margin: 0px 0px 0px 5px;\n  box-sizing: border-box;\n  background: #252526;\n}\n.task-panel-title-dot[data-v-6750e0cc]{\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.task-panel-title-name[data-v-6750e0cc]{\n  font-weight: 500;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.task-panel-title-search[data-v-6750e0cc]{\n  -webkit-box-flex: 1;\n          flex: 1;\n  display: none;\n}\n.tasks-select[data-v-6750e0cc]{\n  background: #333333;\n  color: #ADADAD;\n}\n.task-panel-title-action[data-v-6750e0cc]{\n  width: 30px;\n  cursor: pointer;\n}\n.task-panel-title-action[data-v-6750e0cc]:hover{\n  color: #ff8c00;\n}\n", ""]);
+exports.push([module.i, ".body-tasks-panel[data-v-6750e0cc]{\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  background: #1A202C;\n  height: calc(100vh - 94px);\n  border-right: 1px solid black;\n}\n.task-panel-title[data-v-6750e0cc]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  width: 295px;\n  height: 30px;\n  margin: 0px 0px 0px 5px;\n  box-sizing: border-box;\n  background: #1A202C;\n  border-right: 1px solid black;\n}\n.task-panel-title-dot[data-v-6750e0cc]{\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.task-panel-title-name[data-v-6750e0cc]{\n  font-weight: 500;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.task-panel-title-search[data-v-6750e0cc]{\n  -webkit-box-flex: 1;\n          flex: 1;\n  display: none;\n}\n.tasks-select[data-v-6750e0cc]{\n  background: #333333;\n  color: #ADADAD;\n}\n.task-panel-title-action[data-v-6750e0cc]{\n  width: 30px;\n  cursor: pointer;\n}\n.task-panel-title-action[data-v-6750e0cc]:hover{\n  color: #ff8c00;\n}\n", ""]);
 
 // exports
 
@@ -20910,52 +20910,50 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer" }, [
-      _c("div", { staticClass: "footer-icon" }, [
-        _c("div", [
-          _c("img", {
-            attrs: {
-              src: "assets/images/connected.png",
-              width: "20",
-              height: "20"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "separator-vertical" }),
-        _vm._v(" "),
-        _c("div", [
-          _vm._v("MaxtradeOffice ver: "),
-          _c("span", { attrs: { id: "app-version" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "separator-vertical" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "projects-panel-title-dot" }, [
-          _c("i", { staticClass: "fas fa-circle" })
-        ]),
-        _c("div", [
-          _vm._v("Projects: "),
-          _c("span", { attrs: { id: "projects_number" } }),
-          _vm._v(" "),
-          _c("span", { attrs: { id: "projects_name" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "separator-vertical" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "tasks-panel-title-dot" }, [
-          _c("i", { staticClass: "fas fa-circle" })
-        ]),
-        _c("div", [
-          _vm._v("Tasks: "),
-          _c("span", { attrs: { id: "tasks_number" } }),
-          _vm._v(" "),
-          _c("span", { attrs: { id: "tasks_name" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "separator-vertical" })
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "flex items-center text-gray-300 h-8 bg-gray-800" },
+      [
+        _c("div", { staticClass: "footer-icon" }, [
+          _c("div", [
+            _c("i", { staticClass: "mdi mdi-server-network text-xl" })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "separator-vertical" }),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("MaxtradeOffice ver: "),
+            _c("span", { attrs: { id: "app-version" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "separator-vertical" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "projects-panel-title-dot" }, [
+            _c("i", { staticClass: "fas fa-circle" })
+          ]),
+          _c("div", [
+            _vm._v("Projects: "),
+            _c("span", { attrs: { id: "projects_number" } }),
+            _vm._v(" "),
+            _c("span", { attrs: { id: "projects_name" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "separator-vertical" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "tasks-panel-title-dot" }, [
+            _c("i", { staticClass: "fas fa-circle" })
+          ]),
+          _c("div", [
+            _vm._v("Tasks: "),
+            _c("span", { attrs: { id: "tasks_number" } }),
+            _vm._v(" "),
+            _c("span", { attrs: { id: "tasks_name" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "separator-vertical" })
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -21485,7 +21483,7 @@ var staticRenderFns = [
         _vm._v("Maxtrade Office")
       ]),
       _vm._v(" "),
-      _c("a", { attrs: { title: "Show Tools Menu" } }, [
+      _c("a", { staticClass: "pb-4", attrs: { title: "Show Tools Menu" } }, [
         _c("i", { staticClass: "mdi mdi-tools text-3xl" })
       ])
     ])

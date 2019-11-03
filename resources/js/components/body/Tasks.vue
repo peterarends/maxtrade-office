@@ -36,9 +36,9 @@ export default {
     display: flex;
     width: 300px;
     flex-direction: column;
-    background: #252526;
+    background: #1A202C;
     height: calc(100vh - 94px);
-    border-right: 1px solid #1e1e1e;
+    border-right: 1px solid black;
 }
 .task-panel-title{
     display: flex;
@@ -47,7 +47,8 @@ export default {
     height: 30px;
     margin: 0px 0px 0px 5px;
     box-sizing: border-box;
-    background: #252526;
+    background: #1A202C;
+    border-right: 1px solid black;
 }
 .task-panel-title-dot{
     color: #ff8c00;

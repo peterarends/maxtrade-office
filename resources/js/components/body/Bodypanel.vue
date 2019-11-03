@@ -17,5 +17,6 @@ export default {
 <style scoped>
 .body-panel{
     flex: 1;
+    background: #1A202C;
 }
 </style>

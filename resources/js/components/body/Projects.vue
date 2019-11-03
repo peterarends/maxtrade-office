@@ -48,8 +48,8 @@ export default {
     width: 300px;
     height: calc(100vh - 94px);
     flex-direction: column;
-    border-right: 1px solid #1e1e1e;
-    background: #252526;
+    border-right: 1px solid black;
+    background: #1A202C;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -60,7 +60,7 @@ export default {
     height: 30px;
     margin: 0px 0px 0px 5px;
     box-sizing: border-box;
-    background: #252526;
+    background: #1A202C;
 }
 .projects-panel-title-name{
     font-weight: 500;
