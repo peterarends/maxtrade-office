@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
+use Auth;
 
 class UserController extends Authenticatable implements MustVerifyEmail
 {
@@ -27,4 +29,10 @@ class UserController extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function logoutUser(Request $request){
+        Auth::logout();
+        $request->session()->flush();
+        return redirect('/');
+    }
 }

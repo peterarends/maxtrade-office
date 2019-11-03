@@ -1,0 +1,72 @@
+<template>
+    <div class="body-projects-panel">
+        <div class="projects-panel-title">
+            <div class="projects-panel-title-dot"><i class="fas fa-circle"></i></div>
+            <div class="projects-panel-title-name" id="project_panel_title_name">All Projects</div>
+        </div>
+        <div id="projectsListView"></div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: "Projects",
+
+    data() {
+        return {
+            projects: [],
+            project: {
+                id: "",
+                title: "",
+                body: ""
+            },
+            article_id: "",
+            pagination: {},
+            edit: false
+        };
+    },
+
+    created() {
+        this.fetchProjects();
+    },
+
+    methods: {
+        fetchProjects() {
+        fetch("api/projects")
+            .then(res => res.json())
+            .then(res => {
+                this.projects = res.data;
+            });
+        }
+    }
+};
+</script>
+
+<style scoped>
+.body-projects-panel{
+    display: flex;
+    width: 300px;
+    height: calc(100vh - 94px);
+    flex-direction: column;
+    border-right: 1px solid #1e1e1e;
+    background: #252526;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.projects-panel-title{
+    display: flex;
+    align-items: center;
+    width: 295px;
+    height: 30px;
+    margin: 0px 0px 0px 5px;
+    box-sizing: border-box;
+    background: #252526;
+}
+.projects-panel-title-name{
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    flex: 1;
+}
+</style>
