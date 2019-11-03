@@ -2157,6 +2157,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Leftmenu"
 });
@@ -2307,7 +2315,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Button bar */\n.button-bar[data-v-5c6cb28c]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n  background: #333333;\n  border-top: 1px solid #212121;\n  box-shadow: 0 2px 0 #161616;\n  border-bottom: 1px solid #4c4c4c;\n}\n.button-bar a[data-v-5c6cb28c] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  color: #868686;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  border-right: 1px solid #1e1e1e;\n  background: #2d2d2d;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar a[data-v-5c6cb28c]:hover {\n  background-color: #1e1e1e;\n  color: #CBCBCB;\n}\n\n/* Main menu */\n#cssmenu[data-v-5c6cb28c] {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul[data-v-5c6cb28c],\n#cssmenu li[data-v-5c6cb28c] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul[data-v-5c6cb28c] {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li[data-v-5c6cb28c] {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover[data-v-5c6cb28c],\n#cssmenu ul li[data-v-5c6cb28c]:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  float: none;\n}\n#cssmenu ul ul ul[data-v-5c6cb28c] {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul[data-v-5c6cb28c] {\n  visibility: visible;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  margin-top: 0;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  font-weight: normal;\n}\n#cssmenu a[data-v-5c6cb28c] {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul[data-v-5c6cb28c] {\n  display: inline-block;\n}\n#cssmenu[data-v-5c6cb28c]:after,\n#cssmenu ul[data-v-5c6cb28c]:after {\n  content: '';\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu ul ul a[data-v-5c6cb28c] {\n  background: #4A5568;\n  color: #EDF2F7;\n  border: 1px solid #2D3748;\n  border-top: 0px none #2D3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul[data-v-5c6cb28c] {\n  border-top: 0 none;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  position: relative;\n}\n#cssmenu ul ul li:hover > a[data-v-5c6cb28c] {\n  background: #2B6CB0;\n}\n#cssmenu ul ul li:first-child > a[data-v-5c6cb28c] {\n  border: 1px solid #2D3748;\n}\n#cssmenu ul ul li:last-child > a[data-v-5c6cb28c] {\n  box-shadow: 0 3px 0 #1A202C;\n}\n#cssmenu ul ul li.has-sub > a[data-v-5c6cb28c]:after {\n  content: '+';\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a[data-v-5c6cb28c],\n#cssmenu ul li.active > a[data-v-5c6cb28c] {\n  background: #2B6CB0;\n  color: #F7FAFC;\n}\n#cssmenu ul li.last ul[data-v-5c6cb28c] {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul[data-v-5c6cb28c] {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a[data-v-5c6cb28c] {\n  background: #4A5568;\n  color: #EDF2F7;\n  padding: 3px 10px;\n}\n#cssmenu > ul > li > a[data-v-5c6cb28c] {\n  line-height: 30px;\n}\n.mnu-flex[data-v-5c6cb28c]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n", ""]);
+exports.push([module.i, "/* Button bar */\n.button-bar[data-v-5c6cb28c]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n  background: #2D3748;\n  border-top: 1px solid #1A202C;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4A5568;\n}\n.button-bar a[data-v-5c6cb28c] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  color: #EDF2F7;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  border-right: 1px solid #1A202C;\n  background: #2D3748;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar a[data-v-5c6cb28c]:hover {\n  background-color: #2B6CB0;\n  color: #F7FAFC;\n}\n\n/* Main menu */\n#cssmenu[data-v-5c6cb28c] {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul[data-v-5c6cb28c],\n#cssmenu li[data-v-5c6cb28c] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul[data-v-5c6cb28c] {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li[data-v-5c6cb28c] {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover[data-v-5c6cb28c],\n#cssmenu ul li[data-v-5c6cb28c]:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  float: none;\n}\n#cssmenu ul ul ul[data-v-5c6cb28c] {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul[data-v-5c6cb28c] {\n  visibility: visible;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  margin-top: 0;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  font-weight: normal;\n}\n#cssmenu a[data-v-5c6cb28c] {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul[data-v-5c6cb28c] {\n  display: inline-block;\n}\n#cssmenu[data-v-5c6cb28c]:after,\n#cssmenu ul[data-v-5c6cb28c]:after {\n  content: '';\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu ul ul a[data-v-5c6cb28c] {\n  background: #4A5568;\n  color: #EDF2F7;\n  border: 1px solid #2D3748;\n  border-top: 0px none #2D3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul[data-v-5c6cb28c] {\n  border-top: 0 none;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  position: relative;\n}\n#cssmenu ul ul li:hover > a[data-v-5c6cb28c] {\n  background: #2B6CB0;\n}\n#cssmenu ul ul li:first-child > a[data-v-5c6cb28c] {\n  border: 1px solid #2D3748;\n}\n#cssmenu ul ul li:last-child > a[data-v-5c6cb28c] {\n  box-shadow: 0 3px 0 #1A202C;\n}\n#cssmenu ul ul li.has-sub > a[data-v-5c6cb28c]:after {\n  content: '+';\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a[data-v-5c6cb28c],\n#cssmenu ul li.active > a[data-v-5c6cb28c] {\n  background: #2B6CB0;\n  color: #F7FAFC;\n}\n#cssmenu ul li.last ul[data-v-5c6cb28c] {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul[data-v-5c6cb28c] {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a[data-v-5c6cb28c] {\n  background: #4A5568;\n  color: #EDF2F7;\n  padding: 3px 10px;\n}\n#cssmenu > ul > li > a[data-v-5c6cb28c] {\n  line-height: 30px;\n}\n.mnu-flex[data-v-5c6cb28c]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n", ""]);
 
 // exports
 
@@ -2364,7 +2372,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".body-left-menu[data-v-7bf753d0]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 44px;\n  background: #333333;\n}\n.body-left-menu a[data-v-7bf753d0]{\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  color: #868686;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu a[data-v-7bf753d0]:hover{\n  color: #CBCBCB;\n}\n.left-menu-title[data-v-7bf753d0]{\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n  opacity: 0.3;\n  color: #4682b4;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0]{\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu a.active[data-v-7bf753d0]{\n  color: #CBCBCB;\n}\n", ""]);
+exports.push([module.i, ".body-left-menu[data-v-7bf753d0]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n  background: #2D3748;\n}\n.body-left-menu a[data-v-7bf753d0]{\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  color: #A0AEC0;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu a[data-v-7bf753d0]:hover{\n  color: #F7FAFC;\n}\n.left-menu-title[data-v-7bf753d0]{\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n  opacity: 0.3;\n  color: #4299E1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0]{\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu a.active[data-v-7bf753d0]{\n  color: #F7FAFC;\n}\n", ""]);
 
 // exports
 
@@ -21000,12 +21008,9 @@ var render = function() {
                           "div",
                           { staticClass: "mnu-flex", on: { click: _vm.exit } },
                           [
-                            _c("img", {
-                              attrs: {
-                                src: "/images/close-app.png",
-                                width: "20",
-                                height: "20"
-                              }
+                            _c("i", {
+                              staticClass:
+                                "mdi mdi-location-exit text-2xl text-red-600"
                             }),
                             _vm._v(" "),
                             _c("span", [_vm._v("Exit")])
@@ -21084,8 +21089,9 @@ var staticRenderFns = [
         _c("li", [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("img", {
-                attrs: { src: "/images/add.png", width: "20", height: "20" }
+              _c("i", {
+                staticClass:
+                  "mdi mdi-plus-circle-outline text-2xl text-blue-600"
               }),
               _vm._v(" "),
               _c("span", [
@@ -21100,9 +21106,7 @@ var staticRenderFns = [
         _c("li", [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("img", {
-                attrs: { src: "/images/edit.png", width: "20", height: "20" }
-              }),
+              _c("i", { staticClass: "mdi mdi-pencil text-2xl text-blue-600" }),
               _vm._v(" "),
               _c("span", [
                 _vm._v(
@@ -21116,9 +21120,7 @@ var staticRenderFns = [
         _c("li", [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("img", {
-                attrs: { src: "/images/delete.png", width: "20", height: "20" }
-              }),
+              _c("i", { staticClass: "mdi mdi-delete text-2xl text-blue-600" }),
               _vm._v(" "),
               _c("span", [
                 _vm._v(
@@ -21132,8 +21134,9 @@ var staticRenderFns = [
         _c("li", [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("img", {
-                attrs: { src: "/images/addtask.png", width: "20", height: "20" }
+              _c("i", {
+                staticClass:
+                  "mdi mdi-plus-circle-outline text-2xl text-orange-600"
               }),
               _vm._v(" "),
               _c("span", [
@@ -21156,8 +21159,9 @@ var staticRenderFns = [
         _c("li", { attrs: { id: "mnuAddTask" } }, [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("img", {
-                attrs: { src: "/images/addtask.png", width: "20", height: "20" }
+              _c("i", {
+                staticClass:
+                  "mdi mdi-plus-circle-outline text-2xl text-orange-600"
               }),
               _vm._v(" "),
               _c("span", [
@@ -21170,12 +21174,8 @@ var staticRenderFns = [
         _c("li", { attrs: { id: "mnuEditTask" } }, [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("img", {
-                attrs: {
-                  src: "/images/edittask.png",
-                  width: "20",
-                  height: "20"
-                }
+              _c("i", {
+                staticClass: "mdi mdi-pencil text-2xl text-orange-600"
               }),
               _vm._v(" "),
               _c("span", [
@@ -21188,12 +21188,8 @@ var staticRenderFns = [
         _c("li", { attrs: { id: "mnuDeleteTask" } }, [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("img", {
-                attrs: {
-                  src: "/images/deletetask.png",
-                  width: "20",
-                  height: "20"
-                }
+              _c("i", {
+                staticClass: "mdi mdi-delete text-2xl text-orange-600"
               }),
               _vm._v(" "),
               _c("span", [
@@ -21256,9 +21252,7 @@ var staticRenderFns = [
         _c("li", { attrs: { id: "mnuOptions" } }, [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("img", {
-                attrs: { src: "/images/options.png", width: "20", height: "20" }
-              }),
+              _c("i", { staticClass: "mdi mdi-tools text-2xl" }),
               _vm._v(" "),
               _c("span", [_vm._v("Options")])
             ])
@@ -21278,9 +21272,7 @@ var staticRenderFns = [
         _c("li", { attrs: { id: "mnuAbout" } }, [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("img", {
-                attrs: { src: "/images/about.png", width: "20", height: "20" }
-              }),
+              _c("i", { staticClass: "mdi mdi-information-variant text-2xl" }),
               _vm._v(" "),
               _c("span", [_vm._v("About")])
             ])
@@ -21330,55 +21322,41 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "button-bar" }, [
-      _c("a", { attrs: { href: "/logout.html" } }, [
-        _c("img", {
-          attrs: { src: "/images/close-app.png", width: "20px", height: "20px" }
-        })
+      _c("a", { attrs: { href: "/logout.html", title: "Exit this program" } }, [
+        _c("i", { staticClass: "mdi mdi-location-exit text-2xl text-red-600" })
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnAddProject" } }, [
-        _c("img", {
-          attrs: { src: "/images/add.png", width: "20px", height: "20px" }
+        _c("i", {
+          staticClass: "mdi mdi-plus-circle-outline text-2xl text-blue-600"
         }),
         _vm._v(" Add Project")
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnEditProject" } }, [
-        _c("img", {
-          attrs: { src: "/images/edit.png", width: "20px", height: "20px" }
-        }),
+        _c("i", { staticClass: "mdi mdi-pencil text-2xl text-blue-600" }),
         _vm._v(" Edit Project")
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnDeleteProject" } }, [
-        _c("img", {
-          attrs: { src: "/images/delete.png", width: "20px", height: "20px" }
-        }),
+        _c("i", { staticClass: "mdi mdi-delete text-2xl text-blue-600" }),
         _vm._v(" Delete Project")
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnAddTask" } }, [
-        _c("img", {
-          attrs: { src: "/images/addtask.png", width: "20px", height: "20px" }
+        _c("i", {
+          staticClass: "mdi mdi-plus-circle-outline text-2xl text-orange-600"
         }),
         _vm._v(" Add Task")
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnEditTask" } }, [
-        _c("img", {
-          attrs: { src: "/images/edittask.png", width: "20px", height: "20px" }
-        }),
+        _c("i", { staticClass: "mdi mdi-pencil text-2xl text-orange-600" }),
         _vm._v(" Edit Task")
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnDeleteTask" } }, [
-        _c("img", {
-          attrs: {
-            src: "/images/deletetask.png",
-            width: "20px",
-            height: "20px"
-          }
-        }),
+        _c("i", { staticClass: "mdi mdi-delete text-2xl text-orange-600" }),
         _vm._v(" Delete Task")
       ])
     ])
@@ -21491,56 +21469,25 @@ var staticRenderFns = [
     return _c("div", { staticClass: "body-left-menu" }, [
       _c(
         "a",
-        {
-          staticClass: "active",
-          attrs: {
-            id: "btnProjectsMenu",
-            "data-tooltip": "Show Projects Panel",
-            "data-tooltip-position": "right"
-          }
-        },
-        [_c("i", { staticClass: "far fa-copy" })]
+        { staticClass: "active", attrs: { title: "Show Projects Panel" } },
+        [_c("i", { staticClass: "mdi mdi-finance text-3xl" })]
       ),
       _vm._v(" "),
-      _c(
-        "a",
-        {
-          attrs: {
-            id: "btnMailsMenu",
-            "data-tooltip": "Show Mails Panel",
-            "data-tooltip-position": "right"
-          }
-        },
-        [_c("i", { staticClass: "far fa-envelope-open" })]
-      ),
+      _c("a", { attrs: { title: "Show Mails Panel" } }, [
+        _c("i", { staticClass: "mdi mdi-email-check text-3xl" })
+      ]),
       _vm._v(" "),
-      _c(
-        "a",
-        {
-          attrs: {
-            id: "btnContactsMenu",
-            "data-tooltip": "Show Contacts Panel",
-            "data-tooltip-position": "right"
-          }
-        },
-        [_c("i", { staticClass: "far fa-address-book" })]
-      ),
+      _c("a", { attrs: { title: "Show Contacts Panel" } }, [
+        _c("i", { staticClass: "mdi mdi-contacts text-3xl" })
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "left-menu-title" }, [
         _vm._v("Maxtrade Office")
       ]),
       _vm._v(" "),
-      _c(
-        "a",
-        {
-          attrs: {
-            id: "btnToolsMenu",
-            "data-tooltip": "Show Tools Menu",
-            "data-tooltip-position": "right"
-          }
-        },
-        [_c("i", { staticClass: "fas fa-tools" })]
-      )
+      _c("a", { attrs: { title: "Show Tools Menu" } }, [
+        _c("i", { staticClass: "mdi mdi-tools text-3xl" })
+      ])
     ])
   }
 ]

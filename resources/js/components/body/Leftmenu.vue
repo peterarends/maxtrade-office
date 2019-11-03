@@ -1,10 +1,18 @@
 <template>
     <div class="body-left-menu">
-        <a id="btnProjectsMenu" class="active" data-tooltip="Show Projects Panel" data-tooltip-position="right"><i class="far fa-copy"></i></a>
-        <a id="btnMailsMenu" data-tooltip="Show Mails Panel" data-tooltip-position="right"><i class="far fa-envelope-open"></i></a>
-        <a id="btnContactsMenu" data-tooltip="Show Contacts Panel" data-tooltip-position="right"><i class="far fa-address-book"></i></a>
+        <a class="active" title="Show Projects Panel">
+            <i class="mdi mdi-finance text-3xl"></i>
+        </a>
+        <a title="Show Mails Panel">
+            <i class="mdi mdi-email-check text-3xl"></i>
+        </a>
+        <a title="Show Contacts Panel">
+            <i class="mdi mdi-contacts text-3xl"></i>
+        </a>
         <div class="left-menu-title">Maxtrade Office</div>
-        <a id="btnToolsMenu" data-tooltip="Show Tools Menu" data-tooltip-position="right"><i class="fas fa-tools"></i></a>
+        <a title="Show Tools Menu">
+            <i class="mdi mdi-tools text-3xl"></i>
+        </a>
     </div>
 </template>
 
@@ -20,18 +28,18 @@ export default {
     flex-direction: column;
     align-items: center;
     align-content: center;
-    width: 44px;
-    background: #333333;
+    width: 48px;
+    background: #2D3748;
 }
 .body-left-menu a{
     padding-top: 16px;
     transition: all 0.3s ease;
-    color: #868686;
+    color: #A0AEC0;
     font-size: 26px;
     cursor: pointer;
 }
 .body-left-menu a:hover{
-    color: #CBCBCB;
+    color: #F7FAFC;
 }
 .left-menu-title{
     flex: 1;
@@ -39,12 +47,12 @@ export default {
     text-align: center;
     font-size: 32px;
     opacity: 0.3;
-    color: #4682b4;
+    color: #4299E1;
 }
 .body-left-menu #btnToolsMenu{
     flex: 0;
 }
 .body-left-menu a.active{
-    color: #CBCBCB;
+    color: #F7FAFC;
 }
 </style>

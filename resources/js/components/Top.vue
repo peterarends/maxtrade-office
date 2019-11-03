@@ -15,7 +15,7 @@
                                 <li>
                                     <a>
                                         <div class="mnu-flex" v-on:click="exit">
-                                            <img src="/images/close-app.png" width="20" height="20">&nbsp;<span>Exit</span>
+                                            <i class="mdi mdi-location-exit text-2xl text-red-600"></i>&nbsp;<span>Exit</span>
                                         </div>
                                     </a>
                                 </li>
@@ -26,7 +26,7 @@
                                 <li>
                                     <a>
                                         <div class="mnu-flex">
-                                            <img src="/images/add.png" width="20" height="20">&nbsp;<span>Add
+                                            <i class="mdi mdi-plus-circle-outline text-2xl text-blue-600"></i>&nbsp;<span>Add
                                                 Project</span>
                                         </div>
                                     </a>
@@ -34,7 +34,7 @@
                                 <li>
                                     <a>
                                         <div class="mnu-flex">
-                                            <img src="/images/edit.png" width="20" height="20">&nbsp;<span>Edit
+                                            <i class="mdi mdi-pencil text-2xl text-blue-600"></i>&nbsp;<span>Edit
                                                 Project</span>
                                         </div>
                                     </a>
@@ -42,7 +42,7 @@
                                 <li>
                                     <a>
                                         <div class="mnu-flex">
-                                            <img src="/images/delete.png" width="20" height="20">&nbsp;<span>Delete
+                                            <i class="mdi mdi-delete text-2xl text-blue-600"></i>&nbsp;<span>Delete
                                                 Project</span>
                                         </div>
                                     </a>
@@ -50,7 +50,7 @@
                                 <li>
                                     <a>
                                         <div class="mnu-flex">
-                                            <img src="/images/addtask.png" width="20" height="20">&nbsp;<span>Add
+                                            <i class="mdi mdi-plus-circle-outline text-2xl text-orange-600"></i>&nbsp;<span>Add
                                                 Task</span>
                                         </div>
                                     </a>
@@ -62,7 +62,7 @@
                                 <li id="mnuAddTask">
                                     <a>
                                         <div class="mnu-flex">
-                                            <img src="/images/addtask.png" width="20" height="20">&nbsp;<span>Add
+                                            <i class="mdi mdi-plus-circle-outline text-2xl text-orange-600"></i>&nbsp;<span>Add
                                                 Task</span>
                                         </div>
                                     </a>
@@ -70,7 +70,7 @@
                                 <li id="mnuEditTask">
                                     <a>
                                         <div class="mnu-flex">
-                                            <img src="/images/edittask.png" width="20" height="20">&nbsp;<span>Edit
+                                            <i class="mdi mdi-pencil text-2xl text-orange-600"></i>&nbsp;<span>Edit
                                                 Task</span>
                                         </div>
                                     </a>
@@ -78,7 +78,7 @@
                                 <li id="mnuDeleteTask">
                                     <a>
                                         <div class="mnu-flex">
-                                            <img src="/images/deletetask.png" width="20" height="20">&nbsp;<span>Delete
+                                            <i class="mdi mdi-delete text-2xl text-orange-600"></i>&nbsp;<span>Delete
                                                 Task</span>
                                         </div>
                                     </a>
@@ -110,7 +110,7 @@
                                 <li id="mnuOptions">
                                     <a>
                                         <div class="mnu-flex">
-                                            <img src="/images/options.png" width="20" height="20">&nbsp;<span>Options</span>
+                                            <i class="mdi mdi-tools text-2xl"></i>&nbsp;<span>Options</span>
                                         </div>
                                     </a>
                                 </li>
@@ -121,7 +121,7 @@
                                 <li id="mnuAbout">
                                     <a>
                                         <div class="mnu-flex">
-                                            <img src="/images/about.png" width="20" height="20">&nbsp;<span>About</span>
+                                            <i class="mdi mdi-information-variant text-2xl"></i>&nbsp;<span>About</span>
                                         </div>
                                     </a>
                                 </li>
@@ -148,13 +148,13 @@
             </div>
         </div>
         <div class="button-bar">
-            <a href="/logout.html"><img src="/images/close-app.png" width="20px" height="20px"></a>
-            <a id="btnAddProject"><img src="/images/add.png" width="20px" height="20px">&nbsp;Add Project</a>
-            <a id="btnEditProject"><img src="/images/edit.png" width="20px" height="20px">&nbsp;Edit Project</a>
-            <a id="btnDeleteProject"><img src="/images/delete.png" width="20px" height="20px">&nbsp;Delete Project</a>
-            <a id="btnAddTask"><img src="/images/addtask.png" width="20px" height="20px">&nbsp;Add Task</a>
-            <a id="btnEditTask"><img src="/images/edittask.png" width="20px" height="20px">&nbsp;Edit Task</a>
-            <a id="btnDeleteTask"><img src="/images/deletetask.png" width="20px" height="20px">&nbsp;Delete Task</a>
+            <a href="/logout.html" title="Exit this program"><i class="mdi mdi-location-exit text-2xl text-red-600"></i></a>
+            <a id="btnAddProject"><i class="mdi mdi-plus-circle-outline text-2xl text-blue-600"></i>&nbsp;Add Project</a>
+            <a id="btnEditProject"><i class="mdi mdi-pencil text-2xl text-blue-600"></i>&nbsp;Edit Project</a>
+            <a id="btnDeleteProject"><i class="mdi mdi-delete text-2xl text-blue-600"></i>&nbsp;Delete Project</a>
+            <a id="btnAddTask"><i class="mdi mdi-plus-circle-outline text-2xl text-orange-600"></i>&nbsp;Add Task</a>
+            <a id="btnEditTask"><i class="mdi mdi-pencil text-2xl text-orange-600"></i>&nbsp;Edit Task</a>
+            <a id="btnDeleteTask"><i class="mdi mdi-delete text-2xl text-orange-600"></i>&nbsp;Delete Task</a>
         </div>
     </div>
 </template>
@@ -177,10 +177,10 @@ export default {
     display: flex;
     align-items: center;
     height: 30px;
-    background: #333333;
-    border-top: 1px solid #212121;
-    box-shadow: 0 2px 0 #161616;
-    border-bottom: 1px solid #4c4c4c;
+    background: #2D3748;
+    border-top: 1px solid #1A202C;
+    box-shadow: 0 2px 0 black;
+    border-bottom: 1px solid #4A5568;
 }
 .button-bar a {
     display: flex;
@@ -188,16 +188,16 @@ export default {
     align-content: center;
     padding-left: 12px;
     padding-right: 12px;
-    color: #868686;
+    color: #EDF2F7;
     transition: all 0.3s ease;
-    border-right: 1px solid #1e1e1e;
-    background: #2d2d2d;
+    border-right: 1px solid #1A202C;
+    background: #2D3748;
     height: 30px;
     cursor: pointer;
 }
 .button-bar a:hover {
-    background-color: #1e1e1e;
-    color: #CBCBCB;
+    background-color: #2B6CB0;
+    color: #F7FAFC;
 }
 /* Main menu */
 #cssmenu {
