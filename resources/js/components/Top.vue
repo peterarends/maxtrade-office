@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div class="header">
+        <div class="flex items-center h-8 bg-gray-700 border-b border-gray-600">
             <!--Header, icon, menu, title ...-->
-            <div class="header-icon">
+            <div class="flex items-center justify-content-center px-3">
                 <!--Header icon-->
-                <img src="/images/maxtradeoffice.png" width="20" height="20">
+                <img src="/images/maxtradeoffice.png" class="w-6 h-6 mx-auto">
             </div>
-            <div class="header-menu">
+            <div class="flex items-center justify-content-center pr-2 text-gray-300">
                 <!--Main menu-->
                 <div id='cssmenu'>
                     <ul>
@@ -130,19 +130,19 @@
                     </ul>
                 </div>
             </div>
-            <div class="header-title">
+            <div class="text-center flex-grow text-xl pl-2 pr-2 text-gray-300">
                 <!--Window title-->
                 <span>MaxtradeOffice</span>
             </div>
-            <div class="header-actions">
+            <div class="flex items-center justify-content-center">
                 <!--Window title icons-->
-                <div class="action-minimize-maximize" id="btnTitleMinimize">
+                <div class="flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-gray-600">
                     <img src="/images/minimize.png">
                 </div>
-                <div class="action-minimize-maximize" id="btnTitleMaximize">
+                <div class="flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-gray-600">
                     <img src="/images/maximize.png">
                 </div>
-                <div class="action-cloze" v-on:click="exit">
+                <div class="flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600" v-on:click="exit">
                     <img src="/images/close.png">
                 </div>
             </div>
@@ -172,67 +172,32 @@ export default {
 </script>
 
 <style scoped>
-/* Header */
-.header{
+/* Button bar */
+.button-bar{
     display: flex;
     align-items: center;
     height: 30px;
     background: #333333;
-    color: #868686;
+    border-top: 1px solid #212121;
+    box-shadow: 0 2px 0 #161616;
     border-bottom: 1px solid #4c4c4c;
 }
-.header-icon{
+.button-bar a {
     display: flex;
     align-items: center;
     align-content: center;
-    padding-left: 6px;
-    padding-right: 2px;
-    -webkit-app-region: no-drag;
-}
-.header-menu{
-    display: flex;
-    align-items: center;
-    align-content: center;
-    padding-left: 10px;
-    padding-right: 2px;
+    padding-left: 12px;
+    padding-right: 12px;
     color: #868686;
-    -webkit-app-region: no-drag;
-}
-.header-title{
-    text-align: center;
-    flex-grow: 1;
-    padding-left: 2px;
-    padding-right: 2px;
-    color: #868686;
-    font-size: 13px;
-    -webkit-user-select: none;
-    -webkit-app-region: drag;
-}
-.header-actions{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-app-region: no-drag;
-}
-.action-minimize-maximize{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
+    transition: all 0.3s ease;
+    border-right: 1px solid #1e1e1e;
+    background: #2d2d2d;
     height: 30px;
+    cursor: pointer;
 }
-.action-minimize-maximize:hover{
-    background: #4f4f4f;
-}
-.action-cloze{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-}
-.action-cloze:hover{
-    background: #d71525;
+.button-bar a:hover {
+    background-color: #1e1e1e;
+    color: #CBCBCB;
 }
 /* Main menu */
 #cssmenu {
@@ -296,9 +261,6 @@ export default {
     line-height: 1em;
     text-decoration: none;
 }
-#cssmenu {
-    background: #333333;
-}
 #cssmenu > ul {
     *display: inline-block;
 }
@@ -313,10 +275,10 @@ export default {
     min-width: 190px;
 }
 #cssmenu ul ul a {
-    background: #252526;
-    color: #868686;
-    border: 1px solid #37373d;
-    border-top: 0px none #37373d;
+    background: #4A5568;
+    color: #EDF2F7;
+    border: 1px solid #2D3748;
+    border-top: 0px none #2D3748;
     line-height: 110%;
     padding: 6px 10px;
 }
@@ -327,13 +289,13 @@ export default {
     position: relative;
 }
 #cssmenu ul ul li:hover > a {
-    background: #094771;
+    background: #2B6CB0;
 }
 #cssmenu ul ul li:first-child > a {
-    border: 1px solid #37373d;
+    border: 1px solid #2D3748;
 }
 #cssmenu ul ul li:last-child > a {
-    box-shadow: 0 3px 0 #101011;
+    box-shadow: 0 3px 0 #1A202C;
 }
 #cssmenu ul ul li.has-sub > a:after {
     content: '+';
@@ -344,8 +306,8 @@ export default {
 }
 #cssmenu ul li:hover > a,
 #cssmenu ul li.active > a {
-    background: #4f4f4f;
-    color: #CBCBCB;
+    background: #2B6CB0;
+    color: #F7FAFC;
 }
 #cssmenu ul li.last ul {
     left: auto;
@@ -356,9 +318,9 @@ export default {
     right: 99.5%;
 }
 #cssmenu a {
-    background: #333333;
-    color: #868686;
-    padding: 0 10px;
+    background: #4A5568;
+    color: #EDF2F7;
+    padding: 3px 10px;
 }
 #cssmenu > ul > li > a {
     line-height: 30px;
@@ -366,32 +328,5 @@ export default {
 .mnu-flex{
     display: flex;
     align-items: center;
-}
-/* Button bar */
-.button-bar{
-    display: flex;
-    align-items: center;
-    height: 30px;
-    background: #333333;
-    border-top: 1px solid #212121;
-    box-shadow: 0 2px 0 #161616;
-    border-bottom: 1px solid #4c4c4c;
-}
-.button-bar a {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    padding-left: 12px;
-    padding-right: 12px;
-    color: #868686;
-    transition: all 0.3s ease;
-    border-right: 1px solid #1e1e1e;
-    background: #2d2d2d;
-    height: 30px;
-    cursor: pointer;
-}
-.button-bar a:hover {
-    background-color: #1e1e1e;
-    color: #CBCBCB;
 }
 </style>
