@@ -9,7 +9,7 @@
 
 <script>
 import Leftmenu from './Leftmenu';
-import Projects from './Projects';
+import Projects from './projects/Projects';
 import Tasks from './Tasks';
 import Bodypanel from './Bodypanel';
 

@@ -23,11 +23,6 @@ export default {
 
 <style>
 /* Projects and Tasks List View */
-#projectsListView{
-    width: 100%;
-    box-sizing: border-box;
-    user-select: none;
-}
 #tasksListView{
     width: 100%;
     box-sizing: border-box;
@@ -35,16 +30,6 @@ export default {
     overflow-x: hidden;
     overflow-y: auto;
     flex: 1;
-}
-#projectsListView div.projectItem{
-    display: flex;
-    flex-direction: column;
-    background: #cbcbcb;
-    padding: 10px 20px;
-    color: #333333;
-    margin: 5px 5px;
-    transition: 0.5s;
-    cursor: pointer;
 }
 #tasksListView div.taskItem{
     display: flex;
@@ -139,5 +124,18 @@ export default {
     color: #ff8c00;
     font-size: 12px;
     padding-right: 5px;
+}
+/* scroll bar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+::-webkit-scrollbar-thumb {
+    background: #333333;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #6b6b6b;
 }
 </style>
