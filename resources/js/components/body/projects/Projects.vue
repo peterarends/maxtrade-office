@@ -6,16 +6,34 @@
         </div>
         <div id="projectsListView">
             <div class="project_item" v-for="project in projects" v-bind:key="project.id">
-                <div class="flex justify-end text-xs">{{project.created_at}}</div>
-                <div>{{project.id}}{{project.title}}</div>
+                <div class="flex justify-end text-xs text-gray-500">{{project.created_at | formatDate}}</div>
+                <div class="flex">
+                    <div class="bg-gray-600 rounded-full h-6 w-6 text-gray-900 text-xs flex items-center
+                    justify-center">
+                        {{project.id}}
+                    </div>
+                    <div class="pl-2 pt-1">
+                        {{project.title}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
     name: "Projects",
+
+    filters: {
+        formatDate: function(value) {
+            if (value) {
+                return moment(String(value)).format('DD.MM.YYYY hh:mm')
+            }
+        }
+    },
 
     data() {
         return {
@@ -37,13 +55,13 @@ export default {
 
     methods: {
         fetchProjects() {
-        fetch("api/projects")
-            .then(res => res.json())
-            .then(res => {
-                this.projects = res.data;
+            fetch("api/projects")
+                .then(res => res.json())
+                .then(res => {
+                    this.projects = res.data;
             });
         }
-    }
+    },
 };
 </script>
 
@@ -85,14 +103,14 @@ export default {
     display: flex;
     flex-direction: column;
     background: #4A5568;
-    padding: 10px 20px;
+    padding: 5px 20px 5px 5px;
     color: #CBD5E0;
     margin: 5px 5px;
     transition: 0.3s;
     cursor: pointer;
 }
 .project_item:first-child{
-    padding: 10px 20px;
+    padding: 5px 20px 5px 5px;
     margin: 0px 5px 5px 5px;
 }
 .project_item:hover{
