@@ -2247,6 +2247,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Projects",
@@ -2263,7 +2272,8 @@ __webpack_require__.r(__webpack_exports__);
       project: {
         id: "",
         title: "",
-        body: ""
+        body: "",
+        status: status
       },
       article_id: "",
       pagination: {},
@@ -39257,16 +39267,32 @@ var render = function() {
       { attrs: { id: "projectsListView" } },
       _vm._l(_vm.projects, function(project) {
         return _c("div", { key: project.id, staticClass: "project_item" }, [
-          _c("div", { staticClass: "flex justify-end text-xs text-gray-500" }, [
-            _vm._v(_vm._s(_vm._f("formatDate")(project.created_at)))
-          ]),
+          _c(
+            "div",
+            {
+              staticClass: "flex justify-end text-xs text-gray-500",
+              class: [
+                project.status == 0 ? "text-gray-500" : "",
+                "text-gray-300",
+                project.status == 0 ? "line-through" : "",
+                ""
+              ]
+            },
+            [_vm._v(_vm._s(_vm._f("formatDate")(project.created_at)))]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "flex" }, [
             _c(
               "div",
               {
                 staticClass:
-                  "bg-gray-600 rounded-full h-6 w-6 text-gray-900 text-xs flex items-center\n                justify-center"
+                  "rounded-full h-6 w-6 text-xs flex items-center\n                justify-center",
+                class: [
+                  project.status == 0 ? "" : "bg-gray-600",
+                  "",
+                  project.status == 0 ? "text-gray-600" : "text-gray-900",
+                  ""
+                ]
               },
               [
                 _vm._v(
@@ -39277,13 +39303,25 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "pl-2 pt-1" }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(project.title) +
-                  "\n                "
-              )
-            ])
+            _c(
+              "div",
+              {
+                staticClass: "pl-2 pt-1",
+                class: [
+                  project.status == 0 ? "text-gray-500" : "",
+                  "text-gray-300",
+                  project.status == 0 ? "line-through" : "",
+                  ""
+                ]
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(project.title) +
+                    "\n                "
+                )
+              ]
+            )
           ])
         ])
       }),

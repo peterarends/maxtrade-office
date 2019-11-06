@@ -19,7 +19,8 @@ class Project extends JsonResource
             'id'    => $this->id,
             'title' => $this->title,
             'body'  => $this->body,
-            'created_at' => $this->created_at
+            'created_at' => $this->created_at,
+            'status'    => $this->status
         ];
     }
 

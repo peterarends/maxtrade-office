@@ -17,6 +17,7 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('body');
+            $table->smallInteger('status')->default(0);
             $table->timestamps();
         });
     }

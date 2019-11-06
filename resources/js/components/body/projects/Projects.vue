@@ -6,13 +6,22 @@
         </div>
         <div id="projectsListView">
             <div class="project_item" v-for="project in projects" v-bind:key="project.id">
-                <div class="flex justify-end text-xs text-gray-500">{{project.created_at | formatDate}}</div>
+                <div class="flex justify-end text-xs text-gray-500" v-bind:class="[
+                    project.status == 0 ? 'text-gray-500' : '', 'text-gray-300',
+                    project.status == 0 ? 'line-through' : '', ''
+                    ]">{{project.created_at | formatDate}}</div>
                 <div class="flex">
-                    <div class="bg-gray-600 rounded-full h-6 w-6 text-gray-900 text-xs flex items-center
-                    justify-center">
+                    <div class="rounded-full h-6 w-6 text-xs flex items-center
+                    justify-center" v-bind:class="[
+                    project.status == 0 ? '' : 'bg-gray-600', '',
+                    project.status == 0 ? 'text-gray-600' : 'text-gray-900', ''
+                    ]">
                         {{project.id}}
                     </div>
-                    <div class="pl-2 pt-1">
+                    <div class="pl-2 pt-1" v-bind:class="[
+                    project.status == 0 ? 'text-gray-500' : '', 'text-gray-300',
+                    project.status == 0 ? 'line-through' : '', ''
+                    ]">
                         {{project.title}}
                     </div>
                 </div>
@@ -41,7 +50,8 @@ export default {
             project: {
                 id: "",
                 title: "",
-                body: ""
+                body: "",
+                status
             },
             article_id: "",
             pagination: {},
