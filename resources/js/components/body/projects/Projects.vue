@@ -1,14 +1,15 @@
 <template>
     <div class="body-projects-panel">
-        <div class="projects-panel-title">
-            <div class="projects-panel-title-dot"><i class="fas fa-circle"></i></div>
+        <div class="flex items-center p-1 bg-gray-900">
+            <input type="text" class="bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300
+            placeholder-gray-700" placeholder="projects search ...">
+            <div class="projects-panel-title-dot"></div>
             <div class="projects-panel-title-name" id="project_panel_title_name">All Projects</div>
         </div>
         <div id="projectsListView">
             <div class="project_item" v-for="project in projects" v-bind:key="project.id">
                 <div class="flex justify-end text-xs text-gray-500" v-bind:class="[
-                    project.status == 0 ? 'text-gray-500' : '', 'text-gray-300',
-                    project.status == 0 ? 'line-through' : '', ''
+                    project.status == 0 ? 'text-gray-500 line-through' : '', 'text-gray-300'
                     ]">{{project.created_at | formatDate}}</div>
                 <div class="flex">
                     <div class="rounded-full h-6 w-6 text-xs flex items-center
@@ -86,15 +87,6 @@ export default {
     overflow-x: hidden;
     overflow-y: hidden;
 }
-.projects-panel-title{
-    display: flex;
-    align-items: center;
-    width: 295px;
-    height: 60px;
-    margin: 0px 0px 0px 5px;
-    box-sizing: border-box;
-    background: #1A202C;
-}
 .projects-panel-title-name{
     font-weight: 500;
     text-overflow: ellipsis;
@@ -112,8 +104,8 @@ export default {
 .project_item{
     display: flex;
     flex-direction: column;
-    background: #4A5568;
     padding: 5px 20px 5px 5px;
+    background: #4A5568;
     color: #CBD5E0;
     margin: 5px 5px;
     transition: 0.3s;

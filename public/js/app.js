@@ -2256,6 +2256,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Projects",
@@ -2443,7 +2444,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".body-projects-panel[data-v-3242126d]{\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  border-right: 1px solid black;\n  background: #1A202C;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.projects-panel-title[data-v-3242126d]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  width: 295px;\n  height: 60px;\n  margin: 0px 0px 0px 5px;\n  box-sizing: border-box;\n  background: #1A202C;\n}\n.projects-panel-title-name[data-v-3242126d]{\n  font-weight: 500;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#projectsListView[data-v-3242126d]{\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.project_item[data-v-3242126d]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  background: #4A5568;\n  padding: 5px 20px 5px 5px;\n  color: #CBD5E0;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item[data-v-3242126d]:first-child{\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item[data-v-3242126d]:hover{\n  background: #2D3748;\n  color: #CBD5E0;\n}\n", ""]);
+exports.push([module.i, ".body-projects-panel[data-v-3242126d]{\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  border-right: 1px solid black;\n  background: #1A202C;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.projects-panel-title-name[data-v-3242126d]{\n  font-weight: 500;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#projectsListView[data-v-3242126d]{\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.project_item[data-v-3242126d]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  background: #4A5568;\n  color: #CBD5E0;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item[data-v-3242126d]:first-child{\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item[data-v-3242126d]:hover{\n  background: #2D3748;\n  color: #CBD5E0;\n}\n", ""]);
 
 // exports
 
@@ -39272,10 +39273,8 @@ var render = function() {
             {
               staticClass: "flex justify-end text-xs text-gray-500",
               class: [
-                project.status == 0 ? "text-gray-500" : "",
-                "text-gray-300",
-                project.status == 0 ? "line-through" : "",
-                ""
+                project.status == 0 ? "text-gray-500 line-through" : "",
+                "text-gray-300"
               ]
             },
             [_vm._v(_vm._s(_vm._f("formatDate")(project.created_at)))]
@@ -39334,10 +39333,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "projects-panel-title" }, [
-      _c("div", { staticClass: "projects-panel-title-dot" }, [
-        _c("i", { staticClass: "fas fa-circle" })
-      ]),
+    return _c("div", { staticClass: "flex items-center p-1 bg-gray-900" }, [
+      _c("input", {
+        staticClass:
+          "bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300\n        placeholder-gray-700",
+        attrs: { type: "text", placeholder: "projects search ..." }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "projects-panel-title-dot" }),
       _vm._v(" "),
       _c(
         "div",
@@ -55197,8 +55200,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\maxtrade-office\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\maxtrade-office\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/wiley/projects/maxtrade-office/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/wiley/projects/maxtrade-office/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
