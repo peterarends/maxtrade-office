@@ -2,9 +2,10 @@
     <div class="body-projects-panel">
         <div class="flex items-center p-1 bg-gray-900">
             <input type="text" class="bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300
-            placeholder-gray-700" placeholder="projects search ...">
-            <div class="projects-panel-title-dot"></div>
-            <div class="projects-panel-title-name" id="project_panel_title_name">All Projects</div>
+            placeholder-gray-700 mr-1" placeholder="projects search ...">
+            <div class="flex items-center justify-center border-l border-gray-700 border-dotted pl-1">
+                <i class="mdi mdi-filter text-xl text-gray-500 hover:text-gray-100"></i>
+            </div>
         </div>
         <div id="projectsListView">
             <div class="project_item" v-for="project in projects" v-bind:key="project.id">
@@ -86,13 +87,6 @@ export default {
     background: #1A202C;
     overflow-x: hidden;
     overflow-y: hidden;
-}
-.projects-panel-title-name{
-    font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    flex: 1;
 }
 #projectsListView{
     width: 100%;
