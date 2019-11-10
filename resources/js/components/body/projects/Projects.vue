@@ -4,7 +4,12 @@
             <input type="text" class="bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300
             placeholder-gray-700 mr-1" placeholder="projects search ...">
             <div class="flex items-center justify-center border-l border-gray-700 border-dotted pl-1">
-                <i class="mdi mdi-filter text-xl text-gray-500 hover:text-gray-100"></i>
+                <i class="mdi mdi-filter text-2xl text-gray-500 hover:text-gray-100"></i>
+                <div>
+                    <i class="mdi mdi-airplane text-2xl text-gray-500 hover:text-gray-100"></i>
+                    <i class="mdi mdi-sort-alphabetical text-2xl text-gray-500 hover:text-gray-100"></i>
+                    <i class="mdi mdi-sort-numeric text-2xl text-gray-500 hover:text-gray-100"></i>
+                </div>
             </div>
         </div>
         <div id="projectsListView">
@@ -57,12 +62,19 @@ export default {
             },
             article_id: "",
             pagination: {},
-            edit: false
+            edit: false,
+            options: []
         };
     },
 
     created() {
         this.fetchProjects();
+    },
+
+    mounted() {
+        if (localStorage.options){
+            this.options = localStorage.options;
+        }
     },
 
     methods: {

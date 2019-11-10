@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import Leftmenu from './Leftmenu';
-import Projects from './projects/Projects';
-import Tasks from './Tasks';
-import Bodypanel from './Bodypanel';
+import Leftmenu from './body/Leftmenu';
+import Projects from './body/projects/Projects';
+import Tasks from './body/Tasks';
+import Bodypanel from './body/Bodypanel';
 
 export default {
     name: "Bodycontent",

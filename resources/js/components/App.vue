@@ -8,7 +8,7 @@
 
 <script>
 import Top from './Top';
-import Bodycontent from './body/Bodycontent';
+import Bodycontent from './Bodycontent';
 import Bottom from './Bottom';
 
 export default {
