@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-index')
 
 @section('content')
 <div class="mx-auto h-full flex justify-center items-center bg-gray-300">
