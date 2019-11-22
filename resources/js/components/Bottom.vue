@@ -1,8 +1,8 @@
 <template>
-    <div class="flex items-center text-gray-300 h-8 bg-gray-800">
+    <div class="footerMainDiv">
         <div class="footer-icon">
             <!--Header icon-->
-            <div><i class="mdi mdi-server-network text-xl"></i></div>
+            <div><i class="mdi mdi-server-network serverIcon"></i></div>
             <div class="separator-vertical"></div>
             <div>MaxtradeOffice ver: <span id="app-version"></span></div>
             <div class="separator-vertical"></div>
@@ -21,6 +21,25 @@ export default {
 </script>
 
 <style scoped>
+
+/** Footer main div */
+.footerMainDiv{
+    /* flex items-center text-gray-300 h-8 bg-gray-800 */
+    display: flex;
+    align-items: center;
+    color: #e2e8f0;
+    height: 2rem;
+    background-color: #2d3748;
+}
+/** Footer main div */
+.serverIcon{
+    /* text-xl */
+    font-size: 1.25rem;
+}
+/** Footer server icon */
+
+/** Footer server icon */
+
 /* Foother panel */
 .footer-icon{
     display: flex;

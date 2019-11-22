@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-1 bg-gray-900">
+    <div class="mainDiv">
         <tabs>
             <tab name="Project" :selected="true">
                 <h1>Component project</h1>
@@ -43,4 +43,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+/** Main div style */
+.mainDiv{
+    /* flex-1 bg-gray-900 */
+    flex: 1 1 0%;
+    background-color: #1a202c;
+}
+</style>

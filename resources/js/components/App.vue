@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col h-full bg-black">
+    <div class="mainDiv">
         <top></top>
         <bodycontent></bodycontent>
         <bottom></bottom>
@@ -8,8 +8,8 @@
 
 <script>
 import Top from "./Top";
-import Bodycontent from './Bodycontent';
-import Bottom from './Bottom';
+import Bodycontent from "./Bodycontent";
+import Bottom from "./Bottom";
 
 export default {
     name: "App",
@@ -23,6 +23,14 @@ export default {
 
 <style>
 /* Projects and Tasks List View */
+
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #000;
+}
+
 #tasksListView {
     width: 100%;
     box-sizing: border-box;

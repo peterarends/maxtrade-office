@@ -1,17 +1,17 @@
 <template>
     <div class="body-left-menu">
         <a class="active" title="Show Projects Panel">
-            <i class="mdi mdi-finance text-3xl"></i>
+            <i class="mdi mdi-finance mdiIcon"></i>
         </a>
         <a title="Show Mails Panel">
-            <i class="mdi mdi-email-check text-3xl"></i>
+            <i class="mdi mdi-email-check mdiIcon"></i>
         </a>
         <a title="Show Contacts Panel">
-            <i class="mdi mdi-contacts text-3xl"></i>
+            <i class="mdi mdi-contacts mdiIcon"></i>
         </a>
         <div class="left-menu-title">Maxtrade Office</div>
-        <a title="Show Tools Menu" class="pb-4">
-            <i class="mdi mdi-tools text-3xl"></i>
+        <a title="Show Tools Menu" class="settingsMenuLink">
+            <i class="mdi mdi-tools mdiIcon"></i>
         </a>
     </div>
 </template>
@@ -23,6 +23,16 @@ export default {
 </script>
 
 <style scoped>
+
+/** General icon size */
+.mdiIcon{
+    font-size: 1.875rem;
+}
+/** Setting menu a */
+.settingsMenuLink{
+    padding-bottom: 1rem;
+}
+
 .body-left-menu{
     display: flex;
     flex-direction: column;
