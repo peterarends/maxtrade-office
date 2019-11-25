@@ -6,11 +6,9 @@
                 <!--Header icon-->
                 <img src="/images/maxtradeoffice.png" class="iconImg" />
             </div>
-            <div
-                class="contentDiv"
-            >
+            <div class="contentDiv" v-bind:class="theme">
                 <!--Main menu-->
-                <div id="cssmenu">
+                <div id="cssmenu" v-bind:class="theme">
                     <ul>
                         <li class="has-sub">
                             <a><span>File</span></a>
@@ -20,6 +18,7 @@
                                         <div class="mnu-flex" v-on:click="exit">
                                             <i
                                                 class="mdi mdi-location-exit mdiExitIcon"
+                                                v-bind:class="theme"
                                             ></i
                                             >&nbsp;<span>Exit</span>
                                         </div>
@@ -35,6 +34,7 @@
                                         <div class="mnu-flex">
                                             <i
                                                 class="mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
+                                                v-bind:class="theme"
                                             ></i
                                             >&nbsp;<span>Add Project</span>
                                         </div>
@@ -45,6 +45,7 @@
                                         <div class="mnu-flex">
                                             <i
                                                 class="mdi mdi-pencil mdiAddEditDeleteProjectIcon"
+                                                v-bind:class="theme"
                                             ></i
                                             >&nbsp;<span>Edit Project</span>
                                         </div>
@@ -55,6 +56,7 @@
                                         <div class="mnu-flex">
                                             <i
                                                 class="mdi mdi-delete mdiAddEditDeleteProjectIcon"
+                                                v-bind:class="theme"
                                             ></i
                                             >&nbsp;<span>Delete Project</span>
                                         </div>
@@ -65,6 +67,7 @@
                                         <div class="mnu-flex">
                                             <i
                                                 class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
+                                                v-bind:class="theme"
                                             ></i
                                             >&nbsp;<span>Add Task</span>
                                         </div>
@@ -80,6 +83,7 @@
                                         <div class="mnu-flex">
                                             <i
                                                 class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
+                                                v-bind:class="theme"
                                             ></i
                                             >&nbsp;<span>Add Task</span>
                                         </div>
@@ -90,6 +94,7 @@
                                         <div class="mnu-flex">
                                             <i
                                                 class="mdi mdi-pencil mdiAddEditDeleteTaskIcon"
+                                                v-bind:class="theme"
                                             ></i
                                             >&nbsp;<span>Edit Task</span>
                                         </div>
@@ -100,6 +105,7 @@
                                         <div class="mnu-flex">
                                             <i
                                                 class="mdi mdi-delete mdiAddEditDeleteTaskIcon"
+                                                v-bind:class="theme"
                                             ></i
                                             >&nbsp;<span>Delete Task</span>
                                         </div>
@@ -161,6 +167,7 @@
                                         <div class="mnu-flex">
                                             <i
                                                 class="mdi mdi-tools standardSizeIcon"
+                                                v-bind:class="theme"
                                             ></i
                                             >&nbsp;<span>Options</span>
                                         </div>
@@ -176,6 +183,7 @@
                                         <div class="mnu-flex">
                                             <i
                                                 class="mdi mdi-information-variant standardSizeIcon"
+                                                v-bind:class="theme"
                                             ></i
                                             >&nbsp;<span>About</span>
                                         </div>
@@ -186,60 +194,74 @@
                     </ul>
                 </div>
             </div>
-            <div class="topTitleDiv">
+            <div class="topTitleDiv" v-bind:class="theme">
                 <!--Window title-->
                 <span>MaxtradeOffice</span>
             </div>
             <div class="topRightIcons">
                 <!--Window title icons-->
-                <div
-                    class="minMaxIcons"
-                >
+                <div class="minMaxIcons" v-bind:class="theme">
                     <img src="/images/minimize.png" />
                 </div>
-                <div
-                    class="minMaxIcons"
-                >
+                <div class="minMaxIcons" v-bind:class="theme">
                     <img src="/images/maximize.png" />
                 </div>
                 <div
                     class="rightExitIcon"
+                    v-bind:class="theme"
                     v-on:click="exit"
                 >
                     <img src="/images/close.png" />
                 </div>
             </div>
         </div>
-        <div class="button-bar">
+        <div class="button-bar" v-bind:class="theme">
             <a href="/logout.html" title="Exit this program"
-                ><i class="mdi mdi-location-exit mdiExitIcon"></i
+                ><i
+                    class="mdi mdi-location-exit mdiExitIcon"
+                    v-bind:class="theme"
+                ></i
             ></a>
             <a id="btnAddProject"
                 ><i
                     class="mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
+                    v-bind:class="theme"
                 ></i
                 >&nbsp;Add Project</a
             >
             <a id="btnEditProject"
-                ><i class="mdi mdi-pencil mdiAddEditDeleteProjectIcon"></i>&nbsp;Edit
-                Project</a
+                ><i
+                    class="mdi mdi-pencil mdiAddEditDeleteProjectIcon"
+                    v-bind:class="theme"
+                ></i
+                >&nbsp;Edit Project</a
             >
             <a id="btnDeleteProject"
-                ><i class="mdi mdi-delete mdiAddEditDeleteProjectIcon"></i
+                ><i
+                    class="mdi mdi-delete mdiAddEditDeleteProjectIcon"
+                    v-bind:class="theme"
+                ></i
                 >&nbsp;Delete Project</a
             >
             <a id="btnAddTask"
                 ><i
                     class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
+                    v-bind:class="theme"
                 ></i
                 >&nbsp;Add Task</a
             >
             <a id="btnEditTask"
-                ><i class="mdi mdi-pencil mdiAddEditDeleteTaskIcon"></i
+                ><i
+                    class="mdi mdi-pencil mdiAddEditDeleteTaskIcon"
+                    v-bind:class="theme"
+                ></i
                 >&nbsp;Edit Task</a
             >
             <a id="btnDeleteTask"
-                ><i class="mdi mdi-delete mdiAddEditDeleteTaskIcon"></i
+                ><i
+                    class="mdi mdi-delete mdiAddEditDeleteTaskIcon"
+                    v-bind:class="theme"
+                ></i
                 >&nbsp;Delete Task</a
             >
         </div>
@@ -256,11 +278,7 @@ export default {
         }
     },
 
-    data() {
-        return {
-            theme: "light"
-        }
-    }
+    props: ["theme"]
 };
 </script>
 
@@ -273,8 +291,8 @@ export default {
     border-bottom-width: 1px;
 }
 .generalStyleDiv.light {
-    background-color: #E2E8F0;
-    border-color: #CBD5E0;
+    background-color: #e2e8f0;
+    border-color: #cbd5e0;
 }
 .generalStyleDiv.dark {
     background-color: #4a5568;
@@ -303,48 +321,68 @@ export default {
 /** Top bar icon image */
 
 /** Top bar content div */
-.contentDiv{
+.contentDiv {
     /* flex items-center justify-content-center pr-2 text-gray-300 */
     display: flex;
     align-items: center;
     justify-content: center;
     padding-right: 0.5rem;
+}
+.contentDiv.light {
+    color: #4a5568;
+}
+.contentDiv.dark {
     color: #e2e8f0;
 }
 /** Top bar content div */
 
 /** Exit mdi icon */
-.mdiExitIcon{
+.mdiExitIcon {
     /* text-2xl text-red-600 */
     font-size: 1.5rem;
+}
+.mdiExitIcon.light {
+    color: #fc8181;
+}
+.mdiExitIcon.dark {
     color: #e53e3e;
 }
 /** Exit mdi icon */
 
 /** Add Project, Edit, Delete icons */
-.mdiAddEditDeleteProjectIcon{
+.mdiAddEditDeleteProjectIcon {
     /* text-2xl text-blue-600 */
     font-size: 1.5rem;
+}
+.mdiAddEditDeleteProjectIcon.light {
+    color: #63b3ed;
+}
+.mdiAddEditDeleteProjectIcon.dark {
     color: #3182ce;
 }
 /** Add Project, Edit, Delete icons */
 
 /** Add, Edit, Delete task icons */
-.mdiAddEditDeleteTaskIcon{
+.mdiAddEditDeleteTaskIcon {
     /* text-2xl text-orange-600 */
     font-size: 1.5rem;
+}
+.mdiAddEditDeleteTaskIcon.light {
+    color: #f6ad55;
+}
+.mdiAddEditDeleteTaskIcon.dark {
     color: #dd6b20;
 }
 /** Add, Edit, Delete task icons */
 
 /** Standard mdi icon size */
-.standardSizeIcon{
+.standardSizeIcon {
     font-size: 1.5rem;
 }
 /** Standard mdi icon size */
 
 /** Style of the top title div */
-.topTitleDiv{
+.topTitleDiv {
     /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */
     text-align: center;
     flex-grow: 1;
@@ -353,21 +391,27 @@ export default {
     padding-right: 0.5rem;
     color: #e2e8f0;
 }
+.topTitleDiv.light {
+    color: #4a5568;
+}
+.topTitleDiv.dark {
+    color: #e2e8f0;
+}
 /** Style of the top title div */
 
 /** Minimize, Maximize, Exit General*/
-.topRightIcons{
+.topRightIcons {
     /* flex items-center justify-content-center */
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 /** Minimize, Maximize, Exit General*/
 
 /** Minimize, Maximize icons*/
-.minMaxIcons{
+.minMaxIcons {
     /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-gray-600 */
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 1.5rem;
@@ -375,15 +419,18 @@ export default {
     padding-right: 0.25rem;
     padding-left: 0.25rem;
     padding-top: 0.25rem;
-    padding-bottom: 0.25rem;  
+    padding-bottom: 0.25rem;
 }
-.minMaxIcons:hover{
+.minMaxIcons.light:hover {
+    background-color: #cbd5e0;
+}
+.minMaxIcons.dark:hover {
     background-color: #718096;
 }
 /** Minimize, Maximize icons*/
 
 /** Top right exit icon */
-.rightExitIcon{
+.rightExitIcon {
     /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */
     display: flex;
     align-items: center;
@@ -395,7 +442,10 @@ export default {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
 }
-.rightExitIcon:hover{
+.rightExitIcon:hover.light {
+    background-color: #fc8181;
+}
+.rightExitIcon:hover.dark {
     background-color: #e53e3e;
 }
 /** Top right exit icon */
@@ -405,6 +455,14 @@ export default {
     display: flex;
     align-items: center;
     height: 30px;
+}
+.button-bar.light {
+    background: #edf2f7;
+    border-top: 1px solid #f7fafc;
+    box-shadow: 0 2px 0 white;
+    border-bottom: 1px solid #e2e8f0;
+}
+.button-bar.dark {
     background: #2d3748;
     border-top: 1px solid #1a202c;
     box-shadow: 0 2px 0 black;
@@ -416,16 +474,27 @@ export default {
     align-content: center;
     padding-left: 12px;
     padding-right: 12px;
-    color: #edf2f7;
     transition: all 0.3s ease;
-    border-right: 1px solid #1a202c;
-    background: #2d3748;
     height: 30px;
     cursor: pointer;
 }
-.button-bar a:hover {
+.button-bar.light a {
+    color: #2d3748;
+    border-right: 1px solid #f7fafc;
+    background: #edf2f7;
+}
+.button-bar.dark a {
+    color: #edf2f7;
+    border-right: 1px solid #1a202c;
+    background: #2d3748;
+}
+.button-bar.dark a:hover {
     background-color: #2b6cb0;
     color: #f7fafc;
+}
+.button-bar.light a:hover {
+    background-color: #90cdf4;
+    color: #1a202c;
 }
 /* Main menu */
 #cssmenu {
@@ -502,11 +571,19 @@ export default {
     text-transform: none;
     min-width: 190px;
 }
-#cssmenu ul ul a {
+#cssmenu.dark ul ul a {
     background: #4a5568;
     color: #edf2f7;
     border: 1px solid #2d3748;
     border-top: 0px none #2d3748;
+    line-height: 110%;
+    padding: 6px 10px;
+}
+#cssmenu.light ul ul a {
+    background: #e2e8f0;
+    color: #2d3748;
+    border: 1px solid #edf2f7;
+    border-top: 0px none #edf2f7;
     line-height: 110%;
     padding: 6px 10px;
 }
@@ -516,13 +593,22 @@ export default {
 #cssmenu ul ul li {
     position: relative;
 }
-#cssmenu ul ul li:hover > a {
+#cssmenu.dark ul ul li:hover > a {
     background: #2b6cb0;
 }
-#cssmenu ul ul li:first-child > a {
+#cssmenu.light ul ul li:hover > a {
+    background: #90cdf4;
+}
+#cssmenu.dark ul ul li:first-child > a {
     border: 1px solid #2d3748;
 }
-#cssmenu ul ul li:last-child > a {
+#cssmenu.light ul ul li:first-child > a {
+    border: 1px solid #edf2f7;
+}
+#cssmenu.dark ul ul li:last-child > a {
+    box-shadow: 0 3px 0 #f7fafc;
+}
+#cssmenu.light ul ul li:last-child > a {
     box-shadow: 0 3px 0 #1a202c;
 }
 #cssmenu ul ul li.has-sub > a:after {
@@ -533,9 +619,14 @@ export default {
     margin-top: -8px;
 }
 #cssmenu ul li:hover > a,
-#cssmenu ul li.active > a {
+#cssmenu.dark ul li.active > a {
     background: #2b6cb0;
     color: #f7fafc;
+}
+#cssmenu ul li:hover > a,
+#cssmenu.light ul li.active > a {
+    background: #90cdf4;
+    color: #1a202c;
 }
 #cssmenu ul li.last ul {
     left: auto;
@@ -546,9 +637,15 @@ export default {
     right: 99.5%;
 }
 #cssmenu a {
+    padding: 3px 10px;
+}
+#cssmenu.dark a {
     background: #4a5568;
     color: #edf2f7;
-    padding: 3px 10px;
+}
+#cssmenu.light a {
+    background: #e2e8f0;
+    color: #2d3748;
 }
 #cssmenu > ul > li > a {
     line-height: 30px;

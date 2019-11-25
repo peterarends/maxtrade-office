@@ -1,8 +1,8 @@
 <template>
     <div class="mainDiv">
-        <top></top>
+        <top v-bind:theme="theme"></top>
         <bodycontent></bodycontent>
-        <bottom></bottom>
+        <bottom v-bind:theme="theme"></bottom>
     </div>
 </template>
 
@@ -17,6 +17,12 @@ export default {
         Top,
         Bodycontent,
         Bottom
+    },
+
+    data() {
+        return {
+            theme: "light"
+        };
     }
 };
 </script>
