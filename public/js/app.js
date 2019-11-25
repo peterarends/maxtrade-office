@@ -2102,12 +2102,104 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Top",
   methods: {
     exit: function exit(event) {
-      window.location = '/logout.html';
+      window.location = "/logout.html";
     }
+  },
+  data: function data() {
+    return {
+      theme: "light"
+    };
   }
 });
 
@@ -2259,8 +2351,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
 //
 //
 //
@@ -2483,7 +2573,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Projects and Tasks List View */\n#tasksListView {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  background: #cbcbcb;\n  padding: 10px 20px;\n  color: #333333;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#projectsListView div.projectItem:hover {\n  background: #e4e4e4;\n}\n#tasksListView div.taskItem:hover {\n  background: #e4e4e4;\n}\n#projectsListView div.projectItem.active {\n  background: #f5f5f5;\n}\n#tasksListView div.taskItem.active {\n  background: #f5f5f5;\n}\n#tasksListView div.taskItem.ended {\n  color: #585858;\n  text-decoration: line-through;\n}\n#projectsListView div.projectItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n#tasksListView div.taskItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  border-left: 1px solid #4c4c4c;\n  border-right: 1px solid #212121;\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1e1e1e;\n}\n::-webkit-scrollbar-thumb {\n  background: #333333;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #6b6b6b;\n}\r\n", ""]);
+exports.push([module.i, "/* Projects and Tasks List View */\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n  background-color: #000;\n}\n#tasksListView {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  background: #cbcbcb;\n  padding: 10px 20px;\n  color: #333333;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#projectsListView div.projectItem:hover {\n  background: #e4e4e4;\n}\n#tasksListView div.taskItem:hover {\n  background: #e4e4e4;\n}\n#projectsListView div.projectItem.active {\n  background: #f5f5f5;\n}\n#tasksListView div.taskItem.active {\n  background: #f5f5f5;\n}\n#tasksListView div.taskItem.ended {\n  color: #585858;\n  text-decoration: line-through;\n}\n#projectsListView div.projectItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n#tasksListView div.taskItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  border-left: 1px solid #4c4c4c;\n  border-right: 1px solid #212121;\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1e1e1e;\n}\n::-webkit-scrollbar-thumb {\n  background: #333333;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #6b6b6b;\n}\r\n", ""]);
 
 // exports
 
@@ -2521,7 +2611,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Foother panel */\n.footer-icon[data-v-16363ad6]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-16363ad6]:first-child{\n  width: 32px;\n  text-align: center;\n}\r\n", ""]);
+exports.push([module.i, "/** Footer main div */\n.footerMainDiv[data-v-16363ad6]{\n  /* flex items-center text-gray-300 h-8 bg-gray-800 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  color: #e2e8f0;\n  height: 2rem;\n  background-color: #2d3748;\n}\n\n/** Footer main div */\n.serverIcon[data-v-16363ad6]{\n  /* text-xl */\n  font-size: 1.25rem;\n}\n\n/** Footer server icon */\n\n/** Footer server icon */\n\n/* Foother panel */\n.footer-icon[data-v-16363ad6]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-16363ad6]:first-child{\n  width: 32px;\n  text-align: center;\n}\r\n", ""]);
 
 // exports
 
@@ -2540,7 +2630,26 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Button bar */\n.button-bar[data-v-5c6cb28c]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n  background: #2D3748;\n  border-top: 1px solid #1A202C;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4A5568;\n}\n.button-bar a[data-v-5c6cb28c] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  color: #EDF2F7;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  border-right: 1px solid #1A202C;\n  background: #2D3748;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar a[data-v-5c6cb28c]:hover {\n  background-color: #2B6CB0;\n  color: #F7FAFC;\n}\n\n/* Main menu */\n#cssmenu[data-v-5c6cb28c] {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul[data-v-5c6cb28c],\r\n#cssmenu li[data-v-5c6cb28c] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul[data-v-5c6cb28c] {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li[data-v-5c6cb28c] {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover[data-v-5c6cb28c],\r\n#cssmenu ul li[data-v-5c6cb28c]:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  float: none;\n}\n#cssmenu ul ul ul[data-v-5c6cb28c] {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul[data-v-5c6cb28c] {\n  visibility: visible;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  margin-top: 0;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  font-weight: normal;\n}\n#cssmenu a[data-v-5c6cb28c] {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul[data-v-5c6cb28c] {\n  display: inline-block;\n}\n#cssmenu[data-v-5c6cb28c]:after,\r\n#cssmenu ul[data-v-5c6cb28c]:after {\n  content: '';\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu ul ul a[data-v-5c6cb28c] {\n  background: #4A5568;\n  color: #EDF2F7;\n  border: 1px solid #2D3748;\n  border-top: 0px none #2D3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul[data-v-5c6cb28c] {\n  border-top: 0 none;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  position: relative;\n}\n#cssmenu ul ul li:hover > a[data-v-5c6cb28c] {\n  background: #2B6CB0;\n}\n#cssmenu ul ul li:first-child > a[data-v-5c6cb28c] {\n  border: 1px solid #2D3748;\n}\n#cssmenu ul ul li:last-child > a[data-v-5c6cb28c] {\n  box-shadow: 0 3px 0 #1A202C;\n}\n#cssmenu ul ul li.has-sub > a[data-v-5c6cb28c]:after {\n  content: '+';\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a[data-v-5c6cb28c],\r\n#cssmenu ul li.active > a[data-v-5c6cb28c] {\n  background: #2B6CB0;\n  color: #F7FAFC;\n}\n#cssmenu ul li.last ul[data-v-5c6cb28c] {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul[data-v-5c6cb28c] {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a[data-v-5c6cb28c] {\n  background: #4A5568;\n  color: #EDF2F7;\n  padding: 3px 10px;\n}\n#cssmenu > ul > li > a[data-v-5c6cb28c] {\n  line-height: 30px;\n}\n.mnu-flex[data-v-5c6cb28c]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\r\n", ""]);
+exports.push([module.i, "/** General style of the top bar */\n.generalStyleDiv[data-v-5c6cb28c] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light[data-v-5c6cb28c] {\n  background-color: #E2E8F0;\n  border-color: #CBD5E0;\n}\n.generalStyleDiv.dark[data-v-5c6cb28c] {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n\n/** General style of the top bar */\n\n/** Top bar icon div */\n.iconDiv[data-v-5c6cb28c] {\n  /* flex items-center justify-content-center px-3 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n\n/** Top bar icon div */\n\n/** Top bar icon image */\n.iconImg[data-v-5c6cb28c] {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n\n/** Top bar icon image */\n\n/** Top bar content div */\n.contentDiv[data-v-5c6cb28c]{\n  /* flex items-center justify-content-center pr-2 text-gray-300 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n\n/** Top bar content div */\n\n/** Exit mdi icon */\n.mdiExitIcon[data-v-5c6cb28c]{\n  /* text-2xl text-red-600 */\n  font-size: 1.5rem;\n  color: #e53e3e;\n}\n\n/** Exit mdi icon */\n\n/** Add Project, Edit, Delete icons */\n.mdiAddEditDeleteProjectIcon[data-v-5c6cb28c]{\n  /* text-2xl text-blue-600 */\n  font-size: 1.5rem;\n  color: #3182ce;\n}\n\n/** Add Project, Edit, Delete icons */\n\n/** Add, Edit, Delete task icons */\n.mdiAddEditDeleteTaskIcon[data-v-5c6cb28c]{\n  /* text-2xl text-orange-600 */\n  font-size: 1.5rem;\n  color: #dd6b20;\n}\n\n/** Add, Edit, Delete task icons */\n\n/** Standard mdi icon size */\n.standardSizeIcon[data-v-5c6cb28c]{\n  font-size: 1.5rem;\n}\n\n/** Standard mdi icon size */\n\n/** Style of the top title div */\n.topTitleDiv[data-v-5c6cb28c]{\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n\n/** Style of the top title div */\n\n/** Minimize, Maximize, Exit General*/\n.topRightIcons[data-v-5c6cb28c]{\n  /* flex items-center justify-content-center */\n  display:-webkit-box;\n  display:flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n\n/** Minimize, Maximize, Exit General*/\n\n/** Minimize, Maximize icons*/\n.minMaxIcons[data-v-5c6cb28c]{\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-gray-600 */\n  display:-webkit-box;\n  display:flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons[data-v-5c6cb28c]:hover{\n  background-color: #718096;\n}\n\n/** Minimize, Maximize icons*/\n\n/** Top right exit icon */\n.rightExitIcon[data-v-5c6cb28c]{\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon[data-v-5c6cb28c]:hover{\n  background-color: #e53e3e;\n}\n\n/** Top right exit icon */\n\n/* Button bar */\n.button-bar[data-v-5c6cb28c] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar a[data-v-5c6cb28c] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  color: #edf2f7;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar a[data-v-5c6cb28c]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n\n/* Main menu */\n#cssmenu[data-v-5c6cb28c] {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul[data-v-5c6cb28c],\r\n#cssmenu li[data-v-5c6cb28c] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul[data-v-5c6cb28c] {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li[data-v-5c6cb28c] {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover[data-v-5c6cb28c],\r\n#cssmenu ul li[data-v-5c6cb28c]:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  float: none;\n}\n#cssmenu ul ul ul[data-v-5c6cb28c] {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul[data-v-5c6cb28c] {\n  visibility: visible;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  margin-top: 0;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  font-weight: normal;\n}\n#cssmenu a[data-v-5c6cb28c] {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul[data-v-5c6cb28c] {\n  display: inline-block;\n}\n#cssmenu[data-v-5c6cb28c]:after,\r\n#cssmenu ul[data-v-5c6cb28c]:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul[data-v-5c6cb28c] {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu ul ul a[data-v-5c6cb28c] {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul[data-v-5c6cb28c] {\n  border-top: 0 none;\n}\n#cssmenu ul ul li[data-v-5c6cb28c] {\n  position: relative;\n}\n#cssmenu ul ul li:hover > a[data-v-5c6cb28c] {\n  background: #2b6cb0;\n}\n#cssmenu ul ul li:first-child > a[data-v-5c6cb28c] {\n  border: 1px solid #2d3748;\n}\n#cssmenu ul ul li:last-child > a[data-v-5c6cb28c] {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a[data-v-5c6cb28c]:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a[data-v-5c6cb28c],\r\n#cssmenu ul li.active > a[data-v-5c6cb28c] {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li.last ul[data-v-5c6cb28c] {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul[data-v-5c6cb28c] {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a[data-v-5c6cb28c] {\n  background: #4a5568;\n  color: #edf2f7;\n  padding: 3px 10px;\n}\n#cssmenu > ul > li > a[data-v-5c6cb28c] {\n  line-height: 30px;\n}\n.mnu-flex[data-v-5c6cb28c] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/** Main div style */\n.mainDiv[data-v-1b427de0]{\n  /* flex-1 bg-gray-900 */\n  -webkit-box-flex: 1;\n          flex: 1 1 0%;\n  background-color: #1a202c;\n}\r\n", ""]);
 
 // exports
 
@@ -2559,7 +2668,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".body-left-menu[data-v-7bf753d0]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n  background: #2D3748;\n  border-bottom: 1px solid #1A202C;\n}\n.body-left-menu a[data-v-7bf753d0]{\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  color: #A0AEC0;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu a[data-v-7bf753d0]:hover{\n  color: #F7FAFC;\n}\n.left-menu-title[data-v-7bf753d0]{\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n  opacity: 0.3;\n  color: #4299E1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0]{\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu a.active[data-v-7bf753d0]{\n  color: #F7FAFC;\n}\r\n", ""]);
+exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0]{\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0]{\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n  background: #2D3748;\n  border-bottom: 1px solid #1A202C;\n}\n.body-left-menu a[data-v-7bf753d0]{\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  color: #A0AEC0;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu a[data-v-7bf753d0]:hover{\n  color: #F7FAFC;\n}\n.left-menu-title[data-v-7bf753d0]{\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n  opacity: 0.3;\n  color: #4299E1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0]{\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu a.active[data-v-7bf753d0]{\n  color: #F7FAFC;\n}\r\n", ""]);
 
 // exports
 
@@ -2597,7 +2706,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".body-projects-panel[data-v-3242126d] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  border-right: 1px solid black;\n  background: #1a202c;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n#projectsListView[data-v-3242126d] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.project_item[data-v-3242126d] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  background: #4a5568;\n  color: #cbd5e0;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item[data-v-3242126d]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item[data-v-3242126d]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\r\n", ""]);
+exports.push([module.i, "/** Top part of projects */\n.topProjectsDiv[data-v-3242126d]{\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-3242126d]{\n  /* bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300\r\n            placeholder-gray-700 mr-1 */\n  background-color: #1a202c;\n  border: 1px solid  #2d3748;\n  border-radius: .25rem;\n  width: 50%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  color: #e2e8f0;\n  margin-right: 0.25rem;\n}\n.searchInput[data-v-3242126d]::-webkit-input-placeholder{\n  color: #4a5568;\n}\n.searchInput[data-v-3242126d]::-moz-placeholder{\n  color: #4a5568;\n}\n.searchInput[data-v-3242126d]:-ms-input-placeholder{\n  color: #4a5568;\n}\n.searchInput[data-v-3242126d]::-ms-input-placeholder{\n  color: #4a5568;\n}\n.searchInput[data-v-3242126d]::placeholder{\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-3242126d]{\n  /* flex items-center justify-center border-l border-gray-700 border-dotted pl-1 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  border-left: 1px dotted #4a5568;\n  padding-left: 0.25rem;\n}\n\n/** Search by element icons */\n.searchIcons[data-v-3242126d]{\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1.5rem;\n  color: #a0aec0;\n}\n.searchIcons[data-v-3242126d]:hover{\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-3242126d]{\n  /* flex justify-end text-xs */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: .75rem;\n}\n.dateWithLine[data-v-3242126d]{\n  /* text-gray-500 line-through */\n  color: #a0aec0;\n  text-decoration: line-through;\n}\n.dateWithoutLine[data-v-3242126d]{\n  /* text-gray-400 */\n  color: #cbd5e0;\n}\n\n/** Style for each project block */\n.singleProjectDiv[data-v-3242126d]{\n  display:-webkit-box;\n  display:flex;\n}\n.singleProjectId[data-v-3242126d]{\n  /* rounded-full h-6 w-6 text-xs flex items-center justify-center */\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: .75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.idBackground[data-v-3242126d]{\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.idTextUnfinished[data-v-3242126d]{\n  /* text-gray-600 */\n  color: #718096;\n}\n.idTextFinished[data-v-3242126d]{\n  color: #1a202c;\n}\n.titleTextUnfinished[data-v-3242126d]{\n  color: #e2e8f0;\n}\n.titleTextFinished[data-v-3242126d]{\n  color: #a0aec0;\n}\n.titleTextLine[data-v-3242126d]{\n  text-decoration: line-through;\n}\n.body-projects-panel[data-v-3242126d] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  border-right: 1px solid black;\n  background: #1a202c;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n#projectsListView[data-v-3242126d] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.project_item[data-v-3242126d] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  background: #4a5568;\n  color: #cbd5e0;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item[data-v-3242126d]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item[data-v-3242126d]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\r\n", ""]);
 
 // exports
 
@@ -37947,6 +38056,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Leftmenu.vue?vue&type=style&index=0&id=7bf753d0&scoped=true&lang=css&":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/Leftmenu.vue?vue&type=style&index=0&id=7bf753d0&scoped=true&lang=css& ***!
@@ -38638,7 +38777,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex flex-col h-full bg-black" },
+    { staticClass: "mainDiv" },
     [_c("top"), _vm._v(" "), _c("bodycontent"), _vm._v(" "), _c("bottom")],
     1
   )
@@ -38709,50 +38848,46 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex items-center text-gray-300 h-8 bg-gray-800" },
-      [
-        _c("div", { staticClass: "footer-icon" }, [
-          _c("div", [
-            _c("i", { staticClass: "mdi mdi-server-network text-xl" })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "separator-vertical" }),
-          _vm._v(" "),
-          _c("div", [
-            _vm._v("MaxtradeOffice ver: "),
-            _c("span", { attrs: { id: "app-version" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "separator-vertical" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "projects-panel-title-dot" }, [
-            _c("i", { staticClass: "fas fa-circle" })
-          ]),
-          _c("div", [
-            _vm._v("Projects: "),
-            _c("span", { attrs: { id: "projects_number" } }),
-            _vm._v(" "),
-            _c("span", { attrs: { id: "projects_name" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "separator-vertical" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "tasks-panel-title-dot" }, [
-            _c("i", { staticClass: "fas fa-circle" })
-          ]),
-          _c("div", [
-            _vm._v("Tasks: "),
-            _c("span", { attrs: { id: "tasks_number" } }),
-            _vm._v(" "),
-            _c("span", { attrs: { id: "tasks_name" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "separator-vertical" })
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "footerMainDiv" }, [
+      _c("div", { staticClass: "footer-icon" }, [
+        _c("div", [
+          _c("i", { staticClass: "mdi mdi-server-network serverIcon" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "separator-vertical" }),
+        _vm._v(" "),
+        _c("div", [
+          _vm._v("MaxtradeOffice ver: "),
+          _c("span", { attrs: { id: "app-version" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "separator-vertical" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "projects-panel-title-dot" }, [
+          _c("i", { staticClass: "fas fa-circle" })
+        ]),
+        _c("div", [
+          _vm._v("Projects: "),
+          _c("span", { attrs: { id: "projects_number" } }),
+          _vm._v(" "),
+          _c("span", { attrs: { id: "projects_name" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "separator-vertical" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "tasks-panel-title-dot" }, [
+          _c("i", { staticClass: "fas fa-circle" })
+        ]),
+        _c("div", [
+          _vm._v("Tasks: "),
+          _c("span", { attrs: { id: "tasks_number" } }),
+          _vm._v(" "),
+          _c("span", { attrs: { id: "tasks_name" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "separator-vertical" })
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -38777,78 +38912,57 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass:
-          "flex items-center h-8 bg-gray-700 border-b border-gray-600"
-      },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "flex items-center justify-content-center pr-2 text-gray-300"
-          },
-          [
-            _c("div", { attrs: { id: "cssmenu" } }, [
+    _c("div", { staticClass: "generalStyleDiv", class: _vm.theme }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "contentDiv" }, [
+        _c("div", { attrs: { id: "cssmenu" } }, [
+          _c("ul", [
+            _c("li", { staticClass: "has-sub" }, [
+              _vm._m(1),
+              _vm._v(" "),
               _c("ul", [
-                _c("li", { staticClass: "has-sub" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("ul", [
-                    _c("li", [
-                      _c("a", [
-                        _c(
-                          "div",
-                          { staticClass: "mnu-flex", on: { click: _vm.exit } },
-                          [
-                            _c("i", {
-                              staticClass:
-                                "mdi mdi-location-exit text-2xl text-red-600"
-                            }),
-                            _vm._v(" "),
-                            _c("span", [_vm._v("Exit")])
-                          ]
-                        )
-                      ])
-                    ])
+                _c("li", [
+                  _c("a", [
+                    _c(
+                      "div",
+                      { staticClass: "mnu-flex", on: { click: _vm.exit } },
+                      [
+                        _c("i", {
+                          staticClass: "mdi mdi-location-exit mdiExitIcon"
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Exit")])
+                      ]
+                    )
                   ])
-                ]),
-                _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
-                _vm._m(3),
-                _vm._v(" "),
-                _vm._m(4),
-                _vm._v(" "),
-                _vm._m(5)
+                ])
               ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _vm._m(6),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex items-center justify-content-center" }, [
-          _vm._m(7),
-          _vm._v(" "),
-          _vm._m(8),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600",
-              on: { click: _vm.exit }
-            },
-            [_c("img", { attrs: { src: "/images/close.png" } })]
-          )
+            ]),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _vm._m(5)
+          ])
         ])
-      ]
-    ),
+      ]),
+      _vm._v(" "),
+      _vm._m(6),
+      _vm._v(" "),
+      _c("div", { staticClass: "topRightIcons" }, [
+        _vm._m(7),
+        _vm._v(" "),
+        _vm._m(8),
+        _vm._v(" "),
+        _c("div", { staticClass: "rightExitIcon", on: { click: _vm.exit } }, [
+          _c("img", { attrs: { src: "/images/close.png" } })
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _vm._m(9)
   ])
@@ -38858,16 +38972,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex items-center justify-content-center px-3" },
-      [
-        _c("img", {
-          staticClass: "w-6 h-6 mx-auto",
-          attrs: { src: "/images/maxtradeoffice.png" }
-        })
-      ]
-    )
+    return _c("div", { staticClass: "iconDiv" }, [
+      _c("img", {
+        staticClass: "iconImg",
+        attrs: { src: "/images/maxtradeoffice.png" }
+      })
+    ])
   },
   function() {
     var _vm = this
@@ -38888,14 +38998,10 @@ var staticRenderFns = [
             _c("div", { staticClass: "mnu-flex" }, [
               _c("i", {
                 staticClass:
-                  "mdi mdi-plus-circle-outline text-2xl text-blue-600"
+                  "mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
               }),
               _vm._v(" "),
-              _c("span", [
-                _vm._v(
-                  "Add\n                                            Project"
-                )
-              ])
+              _c("span", [_vm._v("Add Project")])
             ])
           ])
         ]),
@@ -38903,13 +39009,11 @@ var staticRenderFns = [
         _c("li", [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("i", { staticClass: "mdi mdi-pencil text-2xl text-blue-600" }),
+              _c("i", {
+                staticClass: "mdi mdi-pencil mdiAddEditDeleteProjectIcon"
+              }),
               _vm._v(" "),
-              _c("span", [
-                _vm._v(
-                  "Edit\n                                            Project"
-                )
-              ])
+              _c("span", [_vm._v("Edit Project")])
             ])
           ])
         ]),
@@ -38917,13 +39021,11 @@ var staticRenderFns = [
         _c("li", [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("i", { staticClass: "mdi mdi-delete text-2xl text-blue-600" }),
+              _c("i", {
+                staticClass: "mdi mdi-delete mdiAddEditDeleteProjectIcon"
+              }),
               _vm._v(" "),
-              _c("span", [
-                _vm._v(
-                  "Delete\n                                            Project"
-                )
-              ])
+              _c("span", [_vm._v("Delete Project")])
             ])
           ])
         ]),
@@ -38933,12 +39035,10 @@ var staticRenderFns = [
             _c("div", { staticClass: "mnu-flex" }, [
               _c("i", {
                 staticClass:
-                  "mdi mdi-plus-circle-outline text-2xl text-orange-600"
+                  "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
               }),
               _vm._v(" "),
-              _c("span", [
-                _vm._v("Add\n                                            Task")
-              ])
+              _c("span", [_vm._v("Add Task")])
             ])
           ])
         ])
@@ -38958,12 +39058,10 @@ var staticRenderFns = [
             _c("div", { staticClass: "mnu-flex" }, [
               _c("i", {
                 staticClass:
-                  "mdi mdi-plus-circle-outline text-2xl text-orange-600"
+                  "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
               }),
               _vm._v(" "),
-              _c("span", [
-                _vm._v("Add\n                                            Task")
-              ])
+              _c("span", [_vm._v("Add Task")])
             ])
           ])
         ]),
@@ -38972,12 +39070,10 @@ var staticRenderFns = [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
               _c("i", {
-                staticClass: "mdi mdi-pencil text-2xl text-orange-600"
+                staticClass: "mdi mdi-pencil mdiAddEditDeleteTaskIcon"
               }),
               _vm._v(" "),
-              _c("span", [
-                _vm._v("Edit\n                                            Task")
-              ])
+              _c("span", [_vm._v("Edit Task")])
             ])
           ])
         ]),
@@ -38986,14 +39082,10 @@ var staticRenderFns = [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
               _c("i", {
-                staticClass: "mdi mdi-delete text-2xl text-orange-600"
+                staticClass: "mdi mdi-delete mdiAddEditDeleteTaskIcon"
               }),
               _vm._v(" "),
-              _c("span", [
-                _vm._v(
-                  "Delete\n                                            Task"
-                )
-              ])
+              _c("span", [_vm._v("Delete Task")])
             ])
           ])
         ]),
@@ -39049,7 +39141,7 @@ var staticRenderFns = [
         _c("li", { attrs: { id: "mnuOptions" } }, [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("i", { staticClass: "mdi mdi-tools text-2xl" }),
+              _c("i", { staticClass: "mdi mdi-tools standardSizeIcon" }),
               _vm._v(" "),
               _c("span", [_vm._v("Options")])
             ])
@@ -39069,7 +39161,9 @@ var staticRenderFns = [
         _c("li", { attrs: { id: "mnuAbout" } }, [
           _c("a", [
             _c("div", { staticClass: "mnu-flex" }, [
-              _c("i", { staticClass: "mdi mdi-information-variant text-2xl" }),
+              _c("i", {
+                staticClass: "mdi mdi-information-variant standardSizeIcon"
+              }),
               _vm._v(" "),
               _c("span", [_vm._v("About")])
             ])
@@ -39082,37 +39176,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "text-center flex-grow text-xl pl-2 pr-2 text-gray-300" },
-      [_c("span", [_vm._v("MaxtradeOffice")])]
-    )
+    return _c("div", { staticClass: "topTitleDiv" }, [
+      _c("span", [_vm._v("MaxtradeOffice")])
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-gray-600"
-      },
-      [_c("img", { attrs: { src: "/images/minimize.png" } })]
-    )
+    return _c("div", { staticClass: "minMaxIcons" }, [
+      _c("img", { attrs: { src: "/images/minimize.png" } })
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-gray-600"
-      },
-      [_c("img", { attrs: { src: "/images/maximize.png" } })]
-    )
+    return _c("div", { staticClass: "minMaxIcons" }, [
+      _c("img", { attrs: { src: "/images/maximize.png" } })
+    ])
   },
   function() {
     var _vm = this
@@ -39120,40 +39202,40 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "button-bar" }, [
       _c("a", { attrs: { href: "/logout.html", title: "Exit this program" } }, [
-        _c("i", { staticClass: "mdi mdi-location-exit text-2xl text-red-600" })
+        _c("i", { staticClass: "mdi mdi-location-exit mdiExitIcon" })
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnAddProject" } }, [
         _c("i", {
-          staticClass: "mdi mdi-plus-circle-outline text-2xl text-blue-600"
+          staticClass: "mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
         }),
         _vm._v(" Add Project")
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnEditProject" } }, [
-        _c("i", { staticClass: "mdi mdi-pencil text-2xl text-blue-600" }),
-        _vm._v(" Edit Project")
+        _c("i", { staticClass: "mdi mdi-pencil mdiAddEditDeleteProjectIcon" }),
+        _vm._v(" Edit\n            Project")
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnDeleteProject" } }, [
-        _c("i", { staticClass: "mdi mdi-delete text-2xl text-blue-600" }),
+        _c("i", { staticClass: "mdi mdi-delete mdiAddEditDeleteProjectIcon" }),
         _vm._v(" Delete Project")
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnAddTask" } }, [
         _c("i", {
-          staticClass: "mdi mdi-plus-circle-outline text-2xl text-orange-600"
+          staticClass: "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
         }),
         _vm._v(" Add Task")
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnEditTask" } }, [
-        _c("i", { staticClass: "mdi mdi-pencil text-2xl text-orange-600" }),
+        _c("i", { staticClass: "mdi mdi-pencil mdiAddEditDeleteTaskIcon" }),
         _vm._v(" Edit Task")
       ]),
       _vm._v(" "),
       _c("a", { attrs: { id: "btnDeleteTask" } }, [
-        _c("i", { staticClass: "mdi mdi-delete text-2xl text-orange-600" }),
+        _c("i", { staticClass: "mdi mdi-delete mdiAddEditDeleteTaskIcon" }),
         _vm._v(" Delete Task")
       ])
     ])
@@ -39182,7 +39264,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex-1 bg-gray-900" },
+    { staticClass: "mainDiv" },
     [
       _c(
         "tabs",
@@ -39238,24 +39320,29 @@ var staticRenderFns = [
       _c(
         "a",
         { staticClass: "active", attrs: { title: "Show Projects Panel" } },
-        [_c("i", { staticClass: "mdi mdi-finance text-3xl" })]
+        [_c("i", { staticClass: "mdi mdi-finance mdiIcon" })]
       ),
       _vm._v(" "),
       _c("a", { attrs: { title: "Show Mails Panel" } }, [
-        _c("i", { staticClass: "mdi mdi-email-check text-3xl" })
+        _c("i", { staticClass: "mdi mdi-email-check mdiIcon" })
       ]),
       _vm._v(" "),
       _c("a", { attrs: { title: "Show Contacts Panel" } }, [
-        _c("i", { staticClass: "mdi mdi-contacts text-3xl" })
+        _c("i", { staticClass: "mdi mdi-contacts mdiIcon" })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "left-menu-title" }, [
         _vm._v("Maxtrade Office")
       ]),
       _vm._v(" "),
-      _c("a", { staticClass: "pb-4", attrs: { title: "Show Tools Menu" } }, [
-        _c("i", { staticClass: "mdi mdi-tools text-3xl" })
-      ])
+      _c(
+        "a",
+        {
+          staticClass: "settingsMenuLink",
+          attrs: { title: "Show Tools Menu" }
+        },
+        [_c("i", { staticClass: "mdi mdi-tools mdiIcon" })]
+      )
     ])
   }
 ]
@@ -39402,10 +39489,10 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "flex justify-end text-xs",
+              staticClass: "dateText",
               class: [
-                project.status == 0 ? "text-gray-500 line-through" : "",
-                "text-gray-400"
+                project.status == 0 ? "dateWithLine" : "",
+                "dateWithoutLine"
               ]
             },
             [
@@ -39417,16 +39504,15 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "flex" }, [
+          _c("div", { staticClass: "singleProjectDiv" }, [
             _c(
               "div",
               {
-                staticClass:
-                  "rounded-full h-6 w-6 text-xs flex items-center\n                justify-center",
+                staticClass: "singleProjectId",
                 class: [
-                  project.status == 0 ? "" : "bg-gray-600",
+                  project.status == 0 ? "" : "idBackground",
                   "",
-                  project.status == 0 ? "text-gray-600" : "text-gray-900",
+                  project.status == 0 ? "idTextUnfinished" : "idTextFinished",
                   ""
                 ]
               },
@@ -39444,9 +39530,9 @@ var render = function() {
               {
                 staticClass: "pl-2 pt-1",
                 class: [
-                  project.status == 0 ? "text-gray-500" : "",
-                  "text-gray-300",
-                  project.status == 0 ? "line-through" : "",
+                  project.status == 0 ? "titleTextFinished" : "",
+                  "titleTextUninished",
+                  project.status == 0 ? "titleTextLine" : "",
                   ""
                 ]
               },
@@ -39470,43 +39556,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex items-center p-1 bg-gray-900" }, [
+    return _c("div", { staticClass: "topProjectsDiv" }, [
       _c("input", {
-        staticClass:
-          "bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300\n        placeholder-gray-700 mr-1",
+        staticClass: "searchInput",
         attrs: { type: "text", placeholder: "projects search ..." }
       }),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "flex items-center justify-center border-l border-gray-700 border-dotted pl-1"
-        },
-        [
-          _c("i", {
-            staticClass:
-              "mdi mdi-filter text-2xl text-gray-500 hover:text-gray-100"
-          }),
+      _c("div", { staticClass: "searchElementsDiv" }, [
+        _c("i", { staticClass: "mdi mdi-filter searchIcons" }),
+        _vm._v(" "),
+        _c("div", [
+          _c("i", { staticClass: "mdi mdi-airplane searchIcons" }),
           _vm._v(" "),
-          _c("div", [
-            _c("i", {
-              staticClass:
-                "mdi mdi-airplane text-2xl text-gray-500 hover:text-gray-100"
-            }),
-            _vm._v(" "),
-            _c("i", {
-              staticClass:
-                "mdi mdi-sort-alphabetical text-2xl text-gray-500 hover:text-gray-100"
-            }),
-            _vm._v(" "),
-            _c("i", {
-              staticClass:
-                "mdi mdi-sort-numeric text-2xl text-gray-500 hover:text-gray-100"
-            })
-          ])
-        ]
-      )
+          _c("i", { staticClass: "mdi mdi-sort-alphabetical searchIcons" }),
+          _vm._v(" "),
+          _c("i", { staticClass: "mdi mdi-sort-numeric searchIcons" })
+        ])
+      ])
     ])
   }
 ]
@@ -52173,7 +52239,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Bodypanel_vue_vue_type_template_id_1b427de0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Bodypanel.vue?vue&type=template&id=1b427de0&scoped=true& */ "./resources/js/components/body/Bodypanel.vue?vue&type=template&id=1b427de0&scoped=true&");
 /* harmony import */ var _Bodypanel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Bodypanel.vue?vue&type=script&lang=js& */ "./resources/js/components/body/Bodypanel.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _Bodypanel_vue_vue_type_style_index_0_id_1b427de0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css& */ "./resources/js/components/body/Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -52181,7 +52249,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _Bodypanel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Bodypanel_vue_vue_type_template_id_1b427de0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Bodypanel_vue_vue_type_template_id_1b427de0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -52210,6 +52278,22 @@ component.options.__file = "resources/js/components/body/Bodypanel.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Bodypanel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Bodypanel.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Bodypanel.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Bodypanel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/body/Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/body/Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css& ***!
+  \*************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Bodypanel_vue_vue_type_style_index_0_id_1b427de0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Bodypanel.vue?vue&type=style&index=0&id=1b427de0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Bodypanel_vue_vue_type_style_index_0_id_1b427de0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Bodypanel_vue_vue_type_style_index_0_id_1b427de0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Bodypanel_vue_vue_type_style_index_0_id_1b427de0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Bodypanel_vue_vue_type_style_index_0_id_1b427de0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Bodypanel_vue_vue_type_style_index_0_id_1b427de0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

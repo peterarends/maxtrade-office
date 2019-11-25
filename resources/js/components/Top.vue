@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="generalStyleDiv">
+        <div class="generalStyleDiv" v-bind:class="theme">
             <!--Header, icon, menu, title ...-->
             <div class="iconDiv">
                 <!--Header icon-->
@@ -254,6 +254,12 @@ export default {
         exit: function(event) {
             window.location = "/logout.html";
         }
+    },
+
+    data() {
+        return {
+            theme: "light"
+        }
     }
 };
 </script>
@@ -264,8 +270,14 @@ export default {
     display: flex;
     align-items: center;
     height: 2rem;
-    background-color: #4a5568;
     border-bottom-width: 1px;
+}
+.generalStyleDiv.light {
+    background-color: #E2E8F0;
+    border-color: #CBD5E0;
+}
+.generalStyleDiv.dark {
+    background-color: #4a5568;
     border-color: #718096;
 }
 /** General style of the top bar */
