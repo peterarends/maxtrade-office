@@ -1,9 +1,9 @@
 <template>
-    <div class="body">
-        <leftmenu></leftmenu>
-        <projects></projects>
-        <tasks></tasks>
-        <bodypanel></bodypanel>
+    <div class="body" v-bind:class="theme">
+        <leftmenu v-bind:theme="theme"></leftmenu>
+        <projects v-bind:theme="theme"></projects>
+        <tasks v-bind:theme="theme"></tasks>
+        <bodypanel v-bind:theme="theme"></bodypanel>
     </div>
 </template>
 
@@ -21,7 +21,9 @@ export default {
         Projects,
         Tasks,
         Bodypanel
-    }
+    }, 
+
+    props: ["theme"]
 }
 </script>
 
@@ -30,7 +32,13 @@ export default {
 .body{
     display: flex;
     flex: 1;
-    color: #868686;
-    border-top: 1px solid #212121;
+}
+.body.light{
+    color: #718096;
+    border-top: 1px solid #F7FAFC ;
+}
+.body.dark{
+    color: #CBD5E0;
+    border-top: 1px solid #1A202C;
 }
 </style>

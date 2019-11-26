@@ -1,7 +1,7 @@
 <template>
-    <div class="mainDiv">
+    <div class="mainDiv" v-bind:class="theme">
         <top v-bind:theme="theme"></top>
-        <bodycontent></bodycontent>
+        <bodycontent v-bind:theme="theme"></bodycontent>
         <bottom v-bind:theme="theme"></bottom>
     </div>
 </template>
@@ -23,7 +23,18 @@ export default {
         return {
             theme: "light"
         };
-    }
+    },
+
+    // created() {
+    //     this.changeTheme();
+    // },
+
+    // methods: {
+    //     changeTheme() {
+    //         var menu = document.querySelector('.menu') // Using a class instead, see note below.
+    //         menu.classList.toggle('hidden-phone');
+    //     }
+    // },
 };
 </script>
 
@@ -34,6 +45,11 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
+}
+.mainDiv.light {
+    background-color: #FFF;
+}
+.mainDiv.dark {
     background-color: #000;
 }
 
@@ -48,27 +64,49 @@ export default {
 #tasksListView div.taskItem {
     display: flex;
     flex-direction: column;
-    background: #cbcbcb;
     padding: 10px 20px;
-    color: #333333;
     margin: 5px 5px;
     transition: 0.5s;
     cursor: pointer;
 }
-#projectsListView div.projectItem:hover {
-    background: #e4e4e4;
+#tasksListView div.taskItem.light {
+    background: #718096;
+    color: #EDF2F7;
 }
-#tasksListView div.taskItem:hover {
-    background: #e4e4e4;
+#tasksListView div.taskItem.dark {
+    background: #CBD5E0;
+    color: #2D3748;
 }
-#projectsListView div.projectItem.active {
-    background: #f5f5f5;
+#projectsListView div.projectItem.light:hover {
+    background: #2D3748;
 }
-#tasksListView div.taskItem.active {
-    background: #f5f5f5;
+#projectsListView div.projectItem.dark:hover {
+    background: #EDF2F7;
 }
-#tasksListView div.taskItem.ended {
-    color: #585858;
+#tasksListView div.taskItem.light:hover {
+    background: #2D3748;
+}
+#tasksListView div.taskItem.dark:hover {
+    background: #EDF2F7;
+}
+#projectsListView div.projectItem.light.active {
+    background: #2D3748;
+}
+#projectsListView div.projectItem.dark.active {
+    background: #EDF2F7;
+}
+#tasksListView div.taskItem.light.active {
+    background: #2D3748;
+}
+#tasksListView div.taskItem.dark.active {
+    background: #EDF2F7;
+}
+#tasksListView div.taskItem.light.ended {
+    color: #CBD5E0;
+    text-decoration: line-through;
+}
+#tasksListView div.taskItem.dark.ended {
+    color: #718096;
     text-decoration: line-through;
 }
 #projectsListView div.projectItem div {
@@ -124,10 +162,16 @@ export default {
 }
 /* tools */
 .separator-vertical {
-    border-left: 1px solid #4c4c4c;
-    border-right: 1px solid #212121;
     margin: 0px 5px 0px 5px;
     height: 26px;
+}
+.separator-vertical.light {
+    border-left: 1px solid #E2E8F0;
+    border-right: 1px solid #F7FAFC;
+}
+.separator-vertical.dark {
+    border-left: 1px solid #4A5568;
+    border-right: 1px solid #1A202C;
 }
 .projects-panel-title-dot {
     color: #4682b4;
@@ -144,7 +188,10 @@ export default {
     width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #1e1e1e;
+    background: red;
+}
+::-webkit-scrollbar-track {
+    background: blue;
 }
 ::-webkit-scrollbar-thumb {
     background: #333333;

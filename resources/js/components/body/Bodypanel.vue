@@ -1,5 +1,5 @@
 <template>
-    <div class="mainDiv">
+    <div class="mainDivBodypanel" v-bind:class="theme">
         <tabs>
             <tab name="Project" :selected="true">
                 <h1>Component project</h1>
@@ -39,15 +39,22 @@ export default {
         setActive(tabItem) {
             this.activeItem = tabItem;
         }
-    }
+    },
+
+    props: ["theme"]
 };
 </script>
 
 <style scoped>
 /** Main div style */
-.mainDiv{
+.mainDivBodypanel{
     /* flex-1 bg-gray-900 */
     flex: 1 1 0%;
+}
+.mainDivBodypanel.light{
+    background-color: #F7FAFC;
+}
+.mainDivBodypanel.dark{
     background-color: #1a202c;
 }
 </style>
