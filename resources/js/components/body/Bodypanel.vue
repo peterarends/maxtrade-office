@@ -1,7 +1,7 @@
 <template>
     <div class="mainDivBodypanel" v-bind:class="theme">
         <tabs>
-            <tab name="Project" :selected="true">
+            <tab name="Project" v-bind:selected="true">
                 <h1>Component project</h1>
             </tab>
             <tab name="Task">
@@ -47,14 +47,14 @@ export default {
 
 <style scoped>
 /** Main div style */
-.mainDivBodypanel{
+.mainDivBodypanel {
     /* flex-1 bg-gray-900 */
     flex: 1 1 0%;
 }
-.mainDivBodypanel.light{
-    background-color: #F7FAFC;
+.mainDivBodypanel.light {
+    background-color: #f7fafc;
 }
-.mainDivBodypanel.dark{
+.mainDivBodypanel.dark {
     background-color: #1a202c;
 }
 </style>
