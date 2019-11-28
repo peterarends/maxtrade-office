@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div>
+    <div class="mainbody">
+        <div class="top">
             <ul class="tabs">
                 <li class="tab" v-for="tab in tabs" v-bind:key="tab.href" v-bind:class="{ 'active': tab.isActive }">
                     <i class="mdi mdiIcon tab-icon" 
@@ -15,7 +15,7 @@
                 </li>
             </ul>
         </div>
-        <div class="tabs-details">
+        <div class="body">
             <slot></slot>
         </div>
     </div>
@@ -50,6 +50,14 @@ export default {
 </script>
 
 <style scoped>
+    .mainbody{
+        display: flex;
+        flex: 1;
+        flex-direction: column; 
+    }
+    .top{
+        display: flex;
+    }
     .tabs {
         display: flex;
         flex-direction: row;
@@ -70,5 +78,11 @@ export default {
     }
     .btnClose {
         padding-left: 15px;
+    }
+    .body{
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        flex: 1;
     }
 </style>

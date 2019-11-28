@@ -32,3 +32,5 @@ Route::delete('project/{id}', 'ProjectsController@destroy');
 Route::get('properties', 'PropertiesController@index');
 /** Update a Property */
 Route::put('property', 'PropertiesController@store');
+/** List Categories */
+Route::get('properties_categories', 'PropertiesController@categories');

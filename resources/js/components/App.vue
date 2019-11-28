@@ -40,7 +40,21 @@ export default {
 
 <style>
 /* Projects and Tasks List View */
-
+h1{
+    font-size: 28px;
+}
+h2{
+    font-size: 24px;
+}
+h3{
+    font-size: 20px;
+}
+h4{
+    font-size: 18px;
+}
+h5{
+    font-size: 16px;
+}
 .mainDiv {
     display: flex;
     flex-direction: column;

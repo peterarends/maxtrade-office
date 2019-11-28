@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Property;
 use Illuminate\Http\Request;
 use App\Http\Resources\Property as PropertyResorce;
+use App\Http\Resources\PropertyCategory;
 
 class PropertiesController extends Controller
 {
@@ -29,4 +30,14 @@ class PropertiesController extends Controller
             }    
         }
     }
+
+    public function categories()
+    {
+        /** Get Categories */
+        $categories = Property::groupBy('category')->select('category')->get();
+
+        /** Return collection of Categories as resource */
+        return PropertyCategory::collection($categories);
+    }
+
 }

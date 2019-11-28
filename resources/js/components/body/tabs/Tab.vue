@@ -1,5 +1,5 @@
 <template>
-    <div v-show="isActive">
+    <div class="body" v-show="isActive">
         <slot></slot>
     </div>
 </template>
@@ -31,4 +31,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+    .body{
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        flex: 1;
+    }
+</style>

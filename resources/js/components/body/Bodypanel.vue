@@ -50,8 +50,8 @@ export default {
 <style scoped>
 /** Main div style */
 .mainDivBodypanel {
-    /* flex-1 bg-gray-900 */
-    flex: 1 1 0%;
+    display: flex;
+    flex: 1;
 }
 .mainDivBodypanel.light {
     background-color: #f7fafc;

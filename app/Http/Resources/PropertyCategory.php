@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Property extends JsonResource
+class PropertyCategory extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,6 @@ class Property extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'id'    => $this->id,
-            'name' => $this->name,
-            'value'  => $this->value,
             'category'  => $this->category
         ];
     }
