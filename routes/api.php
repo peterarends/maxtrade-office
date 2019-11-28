@@ -19,15 +19,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 /** List Projects */
 Route::get('projects', 'ProjectsController@index');
-
 /** List single Project */
 Route::get('project/{id}', 'ProjectsController@show');
-
 /** Create new Project */
 Route::post('project', 'ProjectsController@store');
-
 /** Update a Project */
 Route::put('project', 'ProjectsController@store');
-
 /** Delete a Project */
 Route::delete('project/{id}', 'ProjectsController@destroy');
+
+/** List Properties */
+Route::get('properties', 'PropertiesController@index');
+/** Update a Property */
+Route::put('property', 'PropertiesController@store');
