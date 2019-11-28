@@ -8,7 +8,7 @@
                 <h1>Component task</h1>
             </tab>
             <tab name="Properties">
-                <h1>Component properties</h1>
+                <properties></properties>
             </tab>
         </tabs>
     </div>
@@ -17,13 +17,15 @@
 <script>
 import Tabs from "./tabs/Tabs";
 import Tab from "./tabs/Tab";
+import Properties from "./properties/Properties";
 
 export default {
     name: "Bodypanel",
 
     components: {
         Tabs,
-        Tab
+        Tab,
+        Properties
     },
 
     data() {
