@@ -10,9 +10,22 @@
             <i class="mdi mdi-contacts mdiIcon"></i>
         </a>
         <div class="left-menu-title" v-bind:class="theme">Maxtrade Office</div>
-        <div class="contextMenu" v-el:contextMenu>
+        <div
+            class="contextMenu"
+            v-show="isVisible"
+            v-closable="{
+                exclude: ['settingsButton'],
+                handler: 'closeSettings'
+            }"
+        >
             <ul class="contextMenu-options">
-                <li class="contextMenu-option">Back</li>
+                <li class="contextMenu-option">
+                    Тема
+                    <ul class="submenu">
+                        <li>Светла</li>
+                        <li>Тъмна</li>
+                    </ul>
+                </li>
                 <li class="contextMenu-option">Reload</li>
                 <li class="contextMenu-option">Save</li>
                 <li class="contextMenu-option">Save As</li>
@@ -22,7 +35,8 @@
         <a
             title="Show Tools Menu"
             class="settingsMenuLink"
-            v-on:click="showContextMenu()"
+            v-on:click.prevent="isVisible = !isVisible"
+            ref="settingsButton"
         >
             <i class="mdi mdi-tools mdiIcon"></i>
         </a>
@@ -37,17 +51,13 @@ export default {
 
     data() {
         return {
-            contextMenu: []
-        }
+            isVisible: false
+        };
     },
 
     methods: {
-        showContextMenu() {
-            if (this.$els.contextMenu.style.display === "none") {
-                this.$els.contextMenu.style.display = "block";
-            } else {
-                this.$els.contextMenu.style.display = "none";
-            }
+        closeSettings() {
+            this.isVisible = false;
         }
     }
 };
@@ -126,7 +136,6 @@ export default {
     position: absolute;
     bottom: 100px;
     left: 80px;
-    /* display: none; */
 }
 .contextMenu-options {
     list-style: none;
@@ -141,5 +150,26 @@ export default {
 }
 .contextMenu-option:hover {
     background: rgba(0, 0, 0, 0.2);
+}
+.contextMenu ul.submenu {
+    width: 150px;
+    box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
+    background-color: #a0aec0;
+    position: absolute;
+    left: 152px;
+    z-index: 99;
+    display: none;
+}
+
+.contextMenu ul.submenu li {
+    font-weight: 500;
+    font-size: 14px;
+    padding: 10px 40px 10px 20px;
+    cursor: pointer;
+    color: #1a202c;
+}
+
+.contextMenu li:hover ul.submenu {
+    display: block;
 }
 </style>

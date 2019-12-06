@@ -10,6 +10,57 @@
 import Top from "./Top";
 import Bodycontent from "./Bodycontent";
 import Bottom from "./Bottom";
+import Vue from "vue";
+
+// This variable will hold the reference to
+// document's click handler
+let handleOutsideClick;
+
+Vue.directive("closable", {
+    bind(el, binding, vnode) {
+        // Here's the click/touchstart handler
+        // (it is registered below)
+        handleOutsideClick = e => {
+            e.stopPropagation();
+            // Get the handler method name and the exclude array
+            // from the object used in v-closable
+            const { handler, exclude } = binding.value;
+
+            // This variable indicates if the clicked element is excluded
+            let clickedOnExcludedEl = false;
+            exclude.forEach(refName => {
+                // We only run this code if we haven't detected
+                // any excluded element yet
+                if (!clickedOnExcludedEl) {
+                    // Get the element using the reference name
+                    const excludedEl = vnode.context.$refs[refName];
+                    // See if this excluded element
+                    // is the same element the user just clicked on
+                    clickedOnExcludedEl = excludedEl.contains(e.target);
+                }
+            });
+
+            // We check to see if the clicked element is not
+            // the dialog element and not excluded
+            if (!el.contains(e.target) && !clickedOnExcludedEl) {
+                // If the clicked element is outside the dialog
+                // and not the button, then call the outside-click handler
+                // from the same component this directive is used in
+                vnode.context[handler]();
+            }
+        };
+        // Register click/touchstart event listeners on the whole page
+        document.addEventListener("click", handleOutsideClick);
+        document.addEventListener("touchstart", handleOutsideClick);
+    },
+
+    unbind() {
+        // If the element that has v-closable is removed, then
+        // unbind click/touchstart listeners from the whole page
+        document.removeEventListener("click", handleOutsideClick);
+        document.removeEventListener("touchstart", handleOutsideClick);
+    }
+});
 
 export default {
     name: "App",
@@ -23,7 +74,7 @@ export default {
         return {
             theme: "light"
         };
-    },
+    }
 
     // created() {
     //     this.changeTheme();
@@ -40,19 +91,19 @@ export default {
 
 <style>
 /* Projects and Tasks List View */
-h1{
+h1 {
     font-size: 28px;
 }
-h2{
+h2 {
     font-size: 24px;
 }
-h3{
+h3 {
     font-size: 20px;
 }
-h4{
+h4 {
     font-size: 18px;
 }
-h5{
+h5 {
     font-size: 16px;
 }
 .mainDiv {
@@ -61,7 +112,7 @@ h5{
     height: 100%;
 }
 .mainDiv.light {
-    background-color: #FFF;
+    background-color: #fff;
 }
 .mainDiv.dark {
     background-color: #000;
@@ -85,38 +136,38 @@ h5{
 }
 #tasksListView div.taskItem.light {
     background: #718096;
-    color: #EDF2F7;
+    color: #edf2f7;
 }
 #tasksListView div.taskItem.dark {
-    background: #CBD5E0;
-    color: #2D3748;
+    background: #cbd5e0;
+    color: #2d3748;
 }
 #projectsListView div.projectItem.light:hover {
-    background: #2D3748;
+    background: #2d3748;
 }
 #projectsListView div.projectItem.dark:hover {
-    background: #EDF2F7;
+    background: #edf2f7;
 }
 #tasksListView div.taskItem.light:hover {
-    background: #2D3748;
+    background: #2d3748;
 }
 #tasksListView div.taskItem.dark:hover {
-    background: #EDF2F7;
+    background: #edf2f7;
 }
 #projectsListView div.projectItem.light.active {
-    background: #2D3748;
+    background: #2d3748;
 }
 #projectsListView div.projectItem.dark.active {
-    background: #EDF2F7;
+    background: #edf2f7;
 }
 #tasksListView div.taskItem.light.active {
-    background: #2D3748;
+    background: #2d3748;
 }
 #tasksListView div.taskItem.dark.active {
-    background: #EDF2F7;
+    background: #edf2f7;
 }
 #tasksListView div.taskItem.light.ended {
-    color: #CBD5E0;
+    color: #cbd5e0;
     text-decoration: line-through;
 }
 #tasksListView div.taskItem.dark.ended {
@@ -180,12 +231,12 @@ h5{
     height: 26px;
 }
 .separator-vertical.light {
-    border-left: 1px solid #E2E8F0;
-    border-right: 1px solid #F7FAFC;
+    border-left: 1px solid #e2e8f0;
+    border-right: 1px solid #f7fafc;
 }
 .separator-vertical.dark {
-    border-left: 1px solid #4A5568;
-    border-right: 1px solid #1A202C;
+    border-left: 1px solid #4a5568;
+    border-right: 1px solid #1a202c;
 }
 .projects-panel-title-dot {
     color: #4682b4;
