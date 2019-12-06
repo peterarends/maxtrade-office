@@ -2336,9 +2336,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Leftmenu",
-  props: ["theme"]
+  props: ["theme"],
+  data: function data() {
+    return {
+      contextMenu: []
+    };
+  },
+  methods: {
+    showContextMenu: function showContextMenu() {
+      if (this.$els.contextMenu.style.display === "none") {
+        this.$els.contextMenu.style.display = "block";
+      } else {
+        this.$els.contextMenu.style.display = "none";
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -2707,7 +2734,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Projects and Tasks List View */\nh1{\n  font-size: 28px;\n}\nh2{\n  font-size: 24px;\n}\nh3{\n  font-size: 20px;\n}\nh4{\n  font-size: 18px;\n}\nh5{\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #FFF;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n#tasksListView {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light {\n  background: #718096;\n  color: #EDF2F7;\n}\n#tasksListView div.taskItem.dark {\n  background: #CBD5E0;\n  color: #2D3748;\n}\n#projectsListView div.projectItem.light:hover {\n  background: #2D3748;\n}\n#projectsListView div.projectItem.dark:hover {\n  background: #EDF2F7;\n}\n#tasksListView div.taskItem.light:hover {\n  background: #2D3748;\n}\n#tasksListView div.taskItem.dark:hover {\n  background: #EDF2F7;\n}\n#projectsListView div.projectItem.light.active {\n  background: #2D3748;\n}\n#projectsListView div.projectItem.dark.active {\n  background: #EDF2F7;\n}\n#tasksListView div.taskItem.light.active {\n  background: #2D3748;\n}\n#tasksListView div.taskItem.dark.active {\n  background: #EDF2F7;\n}\n#tasksListView div.taskItem.light.ended {\n  color: #CBD5E0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended {\n  color: #718096;\n  text-decoration: line-through;\n}\n#projectsListView div.projectItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n#tasksListView div.taskItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #E2E8F0;\n  border-right: 1px solid #F7FAFC;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4A5568;\n  border-right: 1px solid #1A202C;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: red;\n}\n::-webkit-scrollbar-track {\n  background: blue;\n}\n::-webkit-scrollbar-thumb {\n  background: #333333;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #6b6b6b;\n}\r\n", ""]);
+exports.push([module.i, "/* Projects and Tasks List View */\nh1{\n  font-size: 28px;\n}\nh2{\n  font-size: 24px;\n}\nh3{\n  font-size: 20px;\n}\nh4{\n  font-size: 18px;\n}\nh5{\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #FFF;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n#tasksListView {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light {\n  background: #718096;\n  color: #EDF2F7;\n}\n#tasksListView div.taskItem.dark {\n  background: #CBD5E0;\n  color: #2D3748;\n}\n#projectsListView div.projectItem.light:hover {\n  background: #2D3748;\n}\n#projectsListView div.projectItem.dark:hover {\n  background: #EDF2F7;\n}\n#tasksListView div.taskItem.light:hover {\n  background: #2D3748;\n}\n#tasksListView div.taskItem.dark:hover {\n  background: #EDF2F7;\n}\n#projectsListView div.projectItem.light.active {\n  background: #2D3748;\n}\n#projectsListView div.projectItem.dark.active {\n  background: #EDF2F7;\n}\n#tasksListView div.taskItem.light.active {\n  background: #2D3748;\n}\n#tasksListView div.taskItem.dark.active {\n  background: #EDF2F7;\n}\n#tasksListView div.taskItem.light.ended {\n  color: #CBD5E0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended {\n  color: #718096;\n  text-decoration: line-through;\n}\n#projectsListView div.projectItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n#tasksListView div.taskItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #E2E8F0;\n  border-right: 1px solid #F7FAFC;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4A5568;\n  border-right: 1px solid #1A202C;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #6b6b6b;\n}\n::-webkit-scrollbar-thumb {\n  background: #333333;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #6b6b6b;\n}\r\n", ""]);
 
 // exports
 
@@ -2802,7 +2829,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0]{\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0]{\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n}\n.body-left-menu.light[data-v-7bf753d0]{\n  background: #EDF2F7;\n  border-bottom: 1px solid #F7FAFC;\n}\n.body-left-menu.dark[data-v-7bf753d0]{\n  background: #2D3748;\n  border-bottom: 1px solid #1A202C;\n}\n.body-left-menu a[data-v-7bf753d0]{\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu.light a[data-v-7bf753d0]{\n  color: #A0AEC0;\n}\n.body-left-menu.dark a[data-v-7bf753d0]{\n  color: #A0AEC0;\n}\n.body-left-menu.light a[data-v-7bf753d0]:hover{\n  color: #1A202C;\n}\n.body-left-menu.dark a[data-v-7bf753d0]:hover{\n  color: #F7FAFC;\n}\n.left-menu-title[data-v-7bf753d0]{\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n}\n.left-menu-title.light[data-v-7bf753d0]{\n  opacity: 0.5;\n  color: #4299E1;\n}\n.left-menu-title.dark[data-v-7bf753d0]{\n  opacity: 0.3;\n  color: #4299E1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0]{\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu.light a.active[data-v-7bf753d0]{\n  color: #1A202C;\n}\n.body-left-menu.dark a.active[data-v-7bf753d0]{\n  color: #F7FAFC;\n}\r\n", ""]);
+exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0] {\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0] {\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n}\n.body-left-menu.light[data-v-7bf753d0] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n}\n.body-left-menu.dark[data-v-7bf753d0] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n}\n.body-left-menu a[data-v-7bf753d0] {\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu.light a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.dark a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.light a[data-v-7bf753d0]:hover {\n  color: #1a202c;\n}\n.body-left-menu.dark a[data-v-7bf753d0]:hover {\n  color: #f7fafc;\n}\n.left-menu-title[data-v-7bf753d0] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n}\n.left-menu-title.light[data-v-7bf753d0] {\n  opacity: 0.5;\n  color: #4299e1;\n}\n.left-menu-title.dark[data-v-7bf753d0] {\n  opacity: 0.3;\n  color: #4299e1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0] {\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu.light a.active[data-v-7bf753d0] {\n  color: #1a202c;\n}\n.body-left-menu.dark a.active[data-v-7bf753d0] {\n  color: #f7fafc;\n}\n.contextMenu[data-v-7bf753d0] {\n  width: 150px;\n  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);\n  background-color: #a0aec0;\n  position: absolute;\n  bottom: 100px;\n  left: 80px;\n  /* display: none; */\n}\n.contextMenu-options[data-v-7bf753d0] {\n  list-style: none;\n  padding: 10px 0;\n}\n.contextMenu-option[data-v-7bf753d0] {\n  font-weight: 500;\n  font-size: 14px;\n  padding: 10px 40px 10px 20px;\n  cursor: pointer;\n  color: #1a202c;\n}\n.contextMenu-option[data-v-7bf753d0]:hover {\n  background: rgba(0, 0, 0, 0.2);\n}\r\n", ""]);
 
 // exports
 
@@ -39646,7 +39673,30 @@ var render = function() {
       _vm._v("Maxtrade Office")
     ]),
     _vm._v(" "),
-    _vm._m(3)
+    _c(
+      "div",
+      {
+        directives: [
+          { name: "el", rawName: "v-el:contextMenu", arg: "contextMenu" }
+        ],
+        staticClass: "contextMenu"
+      },
+      [_vm._m(3)]
+    ),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass: "settingsMenuLink",
+        attrs: { title: "Show Tools Menu" },
+        on: {
+          click: function($event) {
+            return _vm.showContextMenu()
+          }
+        }
+      },
+      [_c("i", { staticClass: "mdi mdi-tools mdiIcon" })]
+    )
   ])
 }
 var staticRenderFns = [
@@ -39680,11 +39730,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "settingsMenuLink", attrs: { title: "Show Tools Menu" } },
-      [_c("i", { staticClass: "mdi mdi-tools mdiIcon" })]
-    )
+    return _c("ul", { staticClass: "contextMenu-options" }, [
+      _c("li", { staticClass: "contextMenu-option" }, [_vm._v("Back")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "contextMenu-option" }, [_vm._v("Reload")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "contextMenu-option" }, [_vm._v("Save")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "contextMenu-option" }, [_vm._v("Save As")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "contextMenu-option" }, [_vm._v("Inspect")])
+    ])
   }
 ]
 render._withStripped = true
@@ -53298,8 +53354,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\maxtrade-office\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\maxtrade-office\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\laravelapi\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\laravelapi\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -202,10 +202,7 @@ h5{
     width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: red;
-}
-::-webkit-scrollbar-track {
-    background: blue;
+    background: #6b6b6b;
 }
 ::-webkit-scrollbar-thumb {
     background: #333333;

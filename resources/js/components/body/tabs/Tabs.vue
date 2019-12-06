@@ -8,7 +8,7 @@
                         tab.href == '#project' ? 'mdi-finance' : '',
                         tab.href == '#task' ? 'mdi-calendar-check' : '', 
                         tab.href == '#properties' ? 'mdi-settings-outline' : '',                        
-                         ]">
+                        ]">
                     </i>
                     <a v-bind:href="tab.href" @click="selectTab(tab)">{{tab.name}}</a>
                     <button class="btnClose"><i class="mdi mdi-close-outline mdiIcon"></i></button>
