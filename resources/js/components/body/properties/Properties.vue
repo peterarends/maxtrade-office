@@ -1,21 +1,35 @@
 <template>
     <div class="properties-body">
-        <hr />
         <div class="top">
-            <input type="text" class="search_input" placeholder="Search settings ...">
+            <input
+                type="text"
+                class="search_input"
+                placeholder="Search settings ..."
+            />
         </div>
         <div class="body">
-            <div class="left">
-                <h3>Categories:</h3>
-                <ul>
-                    <li v-for="category in categories" v-bind:key="category.category" class="category">
-                        {{category.category}}
-                    </li>
-                </ul>
-            </div>
-            <div class="right">
-                body panel
-            </div>
+            <h2 class="property_title">Properties:</h2>
+            <ul>
+                <li
+                    v-for="category in property_categories"
+                    v-bind:key="category.category"
+                >
+                    <h4 class="property_section">
+                        {{ category.category }} properties
+                    </h4>
+                    <ul>
+                        <li
+                            v-for="property in properties.filter(
+                                prop => prop.category === category.category
+                            )"
+                            v-bind:key="property.id"
+                            class="category"
+                        >
+                            {{ property.name }}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -26,7 +40,6 @@ export default {
 
     data() {
         return {
-            properties: [],
             property: {
                 id: "",
                 name: "",
@@ -34,36 +47,27 @@ export default {
                 category: ""
             },
             property_id: "",
-            edit: false,
-            categories: [],
-            category: {
-                category: ""
-            }
+            property_categories: [],
+            edit: false
         };
     },
 
     created() {
-        this.fetchCategories();
-        this.fetchProperties();
+        this.fetchProperyCategories();
     },
 
     methods: {
-        fetchProperties() {
-            fetch("api/properties")
-                .then(res => res.json())
-                .then(res => {
-                    this.properties = res.data;
-                });
-        },
-
-        fetchCategories() {
+        // Get Property categories
+        fetchProperyCategories() {
             fetch("api/properties_categories")
                 .then(res => res.json())
                 .then(res => {
-                    this.categories = res.data;
+                    this.property_categories = res.data;
                 });
         }
-    }
+    },
+
+    props: ["theme", "properties"]
 };
 </script>
 
@@ -74,32 +78,28 @@ export default {
     flex-direction: column;
 }
 .top {
-    padding: 10px 10px 10px 0px;
+    padding: 10px;
 }
-.search_input{
+.search_input {
+    border-radius: 0.25rem;
+    background-color: #1a202c;
+    border: 1px solid #2d3748;
+    color: #e2e8f0;
     padding: 2px 5px;
-    background: #EDF2F7;
     width: 100%;
 }
-.search_input:focus{
-    outline: 1px solid #CBD5E0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+.search_input::placeholder {
+    color: #4a5568;
 }
 .body {
-    display: flex;
     flex: 1;
+    padding: 10px;
 }
-.left{
-    flex: 1;
-    padding: 5px;
+.property_title {
+    padding: 0px 0px 10px 10px;
 }
-.category{
-    padding: 2px 2px 2px 10px;
-    font-size: 16px;
-}
-.right{
-    flex: 4;
+.property_section {
+    padding-bottom: 7px;
+    text-decoration: underline;
 }
 </style>

@@ -3,15 +3,18 @@
         <leftmenu v-bind:theme="theme"></leftmenu>
         <projects v-bind:theme="theme"></projects>
         <tasks v-bind:theme="theme"></tasks>
-        <bodypanel v-bind:theme="theme"></bodypanel>
+        <bodypanel
+            v-bind:theme="theme"
+            v-bind:properties="properties"
+        ></bodypanel>
     </div>
 </template>
 
 <script>
-import Leftmenu from './body/Leftmenu';
-import Projects from './body/projects/Projects';
-import Tasks from './body/Tasks';
-import Bodypanel from './body/Bodypanel';
+import Leftmenu from "./body/Leftmenu";
+import Projects from "./body/projects/Projects";
+import Tasks from "./body/Tasks";
+import Bodypanel from "./body/Bodypanel";
 
 export default {
     name: "Bodycontent",
@@ -21,24 +24,24 @@ export default {
         Projects,
         Tasks,
         Bodypanel
-    }, 
+    },
 
-    props: ["theme"]
-}
+    props: ["theme", "properties"]
+};
 </script>
 
 <style scoped>
 /* Body panel */
-.body{
+.body {
     display: flex;
     flex: 1;
 }
-.body.light{
+.body.light {
     color: #718096;
-    border-top: 1px solid #F7FAFC ;
+    border-top: 1px solid #f7fafc;
 }
-.body.dark{
-    color: #CBD5E0;
-    border-top: 1px solid #1A202C;
+.body.dark {
+    color: #cbd5e0;
+    border-top: 1px solid #1a202c;
 }
 </style>

@@ -1,7 +1,10 @@
 <template>
     <div class="mainDiv" v-bind:class="theme">
         <top v-bind:theme="theme"></top>
-        <bodycontent v-bind:theme="theme"></bodycontent>
+        <bodycontent
+            v-bind:theme="theme"
+            v-bind:properties="properties"
+        ></bodycontent>
         <bottom v-bind:theme="theme"></bottom>
     </div>
 </template>
@@ -79,21 +82,19 @@ export default {
 
     created() {
         this.fetchProperties();
-        console.log(this.properties);
-        this.bindTheme();
     },
 
     methods: {
+        // Get Properties and set Theme
         fetchProperties() {
             fetch("api/properties")
                 .then(res => res.json())
                 .then(res => {
                     this.properties = res.data;
-                    console.log(this.properties);
+                    this.theme = res.data.find(
+                        prop => prop.name === "theme"
+                    ).value;
                 });
-        },
-        bindTheme() {
-            //this.theme = this.properties.theme;
         }
     }
 };

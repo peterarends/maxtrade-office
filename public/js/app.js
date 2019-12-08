@@ -1851,6 +1851,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -1918,10 +1921,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.directive("closable", {
   },
   created: function created() {
     this.fetchProperties();
-    console.log(this.properties);
-    this.bindTheme();
   },
   methods: {
+    // Get Properties and set Theme
     fetchProperties: function fetchProperties() {
       var _this = this;
 
@@ -1929,10 +1931,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.directive("closable", {
         return res.json();
       }).then(function (res) {
         _this.properties = res.data;
-        console.log(_this.properties);
+        _this.theme = res.data.find(function (prop) {
+          return prop.name === "theme";
+        }).value;
       });
-    },
-    bindTheme: function bindTheme() {//this.theme = this.properties.theme;
     }
   }
 });
@@ -1961,6 +1963,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -1973,7 +1978,7 @@ __webpack_require__.r(__webpack_exports__);
     Tasks: _body_Tasks__WEBPACK_IMPORTED_MODULE_2__["default"],
     Bodypanel: _body_Bodypanel__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  props: ["theme"]
+  props: ["theme", "properties"]
 });
 
 /***/ }),
@@ -2343,6 +2348,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2366,7 +2374,7 @@ __webpack_require__.r(__webpack_exports__);
       this.activeItem = tabItem;
     }
   },
-  props: ["theme"]
+  props: ["theme", "properties"]
 });
 
 /***/ }),
@@ -2647,11 +2655,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Properties",
   data: function data() {
     return {
-      properties: [],
       property: {
         id: "",
         name: "",
@@ -2659,37 +2680,26 @@ __webpack_require__.r(__webpack_exports__);
         category: ""
       },
       property_id: "",
-      edit: false,
-      categories: [],
-      category: {
-        category: ""
-      }
+      property_categories: [],
+      edit: false
     };
   },
   created: function created() {
-    this.fetchCategories();
-    this.fetchProperties();
+    this.fetchProperyCategories();
   },
   methods: {
-    fetchProperties: function fetchProperties() {
+    // Get Property categories
+    fetchProperyCategories: function fetchProperyCategories() {
       var _this = this;
-
-      fetch("api/properties").then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this.properties = res.data;
-      });
-    },
-    fetchCategories: function fetchCategories() {
-      var _this2 = this;
 
       fetch("api/properties_categories").then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this2.categories = res.data;
+        _this.property_categories = res.data;
       });
     }
-  }
+  },
+  props: ["theme", "properties"]
 });
 
 /***/ }),
@@ -2769,6 +2779,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Tabs",
@@ -2825,7 +2848,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Body panel */\n.body[data-v-128fd008]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light[data-v-128fd008]{\n  color: #718096;\n  border-top: 1px solid #F7FAFC ;\n}\n.body.dark[data-v-128fd008]{\n  color: #CBD5E0;\n  border-top: 1px solid #1A202C;\n}\r\n", ""]);
+exports.push([module.i, "/* Body panel */\n.body[data-v-128fd008] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light[data-v-128fd008] {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark[data-v-128fd008] {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n", ""]);
 
 // exports
 
@@ -2882,7 +2905,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** Main div style */\n.mainDivBodypanel[data-v-1b427de0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light[data-v-1b427de0] {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark[data-v-1b427de0] {\n  background-color: #1a202c;\n}\r\n", ""]);
+exports.push([module.i, "/** Main div style */\n.mainDivBodypanel[data-v-1b427de0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light[data-v-1b427de0] {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark[data-v-1b427de0] {\n  background-color: #1a202c;\n}\n", ""]);
 
 // exports
 
@@ -2958,7 +2981,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".properties-body[data-v-56d5808d] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.top[data-v-56d5808d] {\n  padding: 10px 10px 10px 0px;\n}\n.search_input[data-v-56d5808d]{\n  padding: 2px 5px;\n  background: #EDF2F7;\n  width: 100%;\n}\n.search_input[data-v-56d5808d]:focus{\n  outline: 1px solid #CBD5E0;\n  box-sizing: border-box;\n}\n.body[data-v-56d5808d] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.left[data-v-56d5808d]{\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 5px;\n}\n.category[data-v-56d5808d]{\n  padding: 2px 2px 2px 10px;\n  font-size: 16px;\n}\n.right[data-v-56d5808d]{\n  -webkit-box-flex: 4;\n          flex: 4;\n}\r\n", ""]);
+exports.push([module.i, ".properties-body[data-v-56d5808d] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.top[data-v-56d5808d] {\n  padding: 10px;\n}\n.search_input[data-v-56d5808d] {\n  border-radius: 0.25rem;\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n  padding: 2px 5px;\n  width: 100%;\n}\n.search_input[data-v-56d5808d]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]::-moz-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]::placeholder {\n  color: #4a5568;\n}\n.body[data-v-56d5808d] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n}\n.property_title[data-v-56d5808d] {\n  padding: 0px 0px 10px 10px;\n}\n.property_section[data-v-56d5808d] {\n  padding-bottom: 7px;\n  text-decoration: underline;\n}\n", ""]);
 
 // exports
 
@@ -2996,7 +3019,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".mainbody[data-v-7d376526]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.top[data-v-7d376526]{\n  display: -webkit-box;\n  display: flex;\n}\n.tabs[data-v-7d376526] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n}\n.tab[data-v-7d376526] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  background: #E2E8F0;\n  padding: 5px 20px 7px 10px;\n  border-right: 1px solid #F7FAFC;\n}\n.tab.active[data-v-7d376526] {\n  background: #F7FAFC;\n}\n.tab-icon[data-v-7d376526] {\n  font-size: 20px;\n  padding-right: 3px;\n}\n.btnClose[data-v-7d376526] {\n  padding-left: 15px;\n}\n.body[data-v-7d376526]{\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  -webkit-box-align: stretch;\n          align-items: stretch;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n", ""]);
+exports.push([module.i, ".mainbody[data-v-7d376526] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.top[data-v-7d376526] {\n  display: -webkit-box;\n  display: flex;\n}\n.tabs[data-v-7d376526] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n}\n.tab[data-v-7d376526] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  background: #4a5568;\n  padding: 5px 20px 7px 10px;\n  border-right: 1px solid #1a202c;\n}\n.tab.active[data-v-7d376526] {\n  background: #2d3748;\n}\n.tab-icon[data-v-7d376526] {\n  font-size: 20px;\n  padding-right: 3px;\n}\n.btnClose[data-v-7d376526] {\n  padding-left: 15px;\n}\n.body[data-v-7d376526] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  -webkit-box-align: stretch;\n          align-items: stretch;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n", ""]);
 
 // exports
 
@@ -39161,7 +39184,9 @@ var render = function() {
     [
       _c("top", { attrs: { theme: _vm.theme } }),
       _vm._v(" "),
-      _c("bodycontent", { attrs: { theme: _vm.theme } }),
+      _c("bodycontent", {
+        attrs: { theme: _vm.theme, properties: _vm.properties }
+      }),
       _vm._v(" "),
       _c("bottom", { attrs: { theme: _vm.theme } })
     ],
@@ -39200,7 +39225,9 @@ var render = function() {
       _vm._v(" "),
       _c("tasks", { attrs: { theme: _vm.theme } }),
       _vm._v(" "),
-      _c("bodypanel", { attrs: { theme: _vm.theme } })
+      _c("bodypanel", {
+        attrs: { theme: _vm.theme, properties: _vm.properties }
+      })
     ],
     1
   )
@@ -39704,7 +39731,16 @@ var render = function() {
             _c("h1", [_vm._v("Component task")])
           ]),
           _vm._v(" "),
-          _c("tab", { attrs: { name: "Properties" } }, [_c("properties")], 1)
+          _c(
+            "tab",
+            { attrs: { name: "Properties" } },
+            [
+              _c("properties", {
+                attrs: { theme: _vm.theme, properties: _vm.properties }
+              })
+            ],
+            1
+          )
         ],
         1
       )
@@ -40099,36 +40135,49 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "properties-body" }, [
-    _c("hr"),
-    _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "body" }, [
-      _c("div", { staticClass: "left" }, [
-        _c("h3", [_vm._v("Categories:")]),
-        _vm._v(" "),
-        _c(
-          "ul",
-          _vm._l(_vm.categories, function(category) {
-            return _c(
-              "li",
-              { key: category.category, staticClass: "category" },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(category.category) +
-                    "\n                "
-                )
-              ]
-            )
-          }),
-          0
-        )
-      ]),
+      _c("h2", { staticClass: "property_title" }, [_vm._v("Properties:")]),
       _vm._v(" "),
-      _c("div", { staticClass: "right" }, [
-        _vm._v("\n            body panel\n        ")
-      ])
+      _c(
+        "ul",
+        _vm._l(_vm.property_categories, function(category) {
+          return _c("li", { key: category.category }, [
+            _c("h4", { staticClass: "property_section" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(category.category) +
+                  " properties\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "ul",
+              _vm._l(
+                _vm.properties.filter(function(prop) {
+                  return prop.category === category.category
+                }),
+                function(property) {
+                  return _c(
+                    "li",
+                    { key: property.id, staticClass: "category" },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(property.name) +
+                          "\n                    "
+                      )
+                    ]
+                  )
+                }
+              ),
+              0
+            )
+          ])
+        }),
+        0
+      )
     ])
   ])
 }

@@ -8,7 +8,10 @@
                 <h1>Component task</h1>
             </tab>
             <tab name="Properties">
-                <properties></properties>
+                <properties
+                    v-bind:theme="theme"
+                    v-bind:properties="properties"
+                ></properties>
             </tab>
         </tabs>
     </div>
@@ -43,7 +46,7 @@ export default {
         }
     },
 
-    props: ["theme"]
+    props: ["theme", "properties"]
 };
 </script>
 
