@@ -1912,18 +1912,29 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.directive("closable", {
   },
   data: function data() {
     return {
-      theme: "light"
+      theme: "dark",
+      properties: []
     };
-  } // created() {
-  //     this.changeTheme();
-  // },
-  // methods: {
-  //     changeTheme() {
-  //         var menu = document.querySelector('.menu') // Using a class instead, see note below.
-  //         menu.classList.toggle('hidden-phone');
-  //     }
-  // },
+  },
+  created: function created() {
+    this.fetchProperties();
+    console.log(this.properties);
+    this.bindTheme();
+  },
+  methods: {
+    fetchProperties: function fetchProperties() {
+      var _this = this;
 
+      fetch("api/properties").then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this.properties = res.data;
+        console.log(_this.properties);
+      });
+    },
+    bindTheme: function bindTheme() {//this.theme = this.properties.theme;
+    }
+  }
 });
 
 /***/ }),
@@ -2795,7 +2806,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n#tasksListView {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light {\n  background: #718096;\n  color: #edf2f7;\n}\n#tasksListView div.taskItem.dark {\n  background: #cbd5e0;\n  color: #2d3748;\n}\n#projectsListView div.projectItem.light:hover {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark:hover {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light:hover {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark:hover {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem.light.active {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark.active {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.active {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark.active {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.ended {\n  color: #cbd5e0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended {\n  color: #718096;\n  text-decoration: line-through;\n}\n#projectsListView div.projectItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n#tasksListView div.taskItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #6b6b6b;\n}\n::-webkit-scrollbar-thumb {\n  background: #333333;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #6b6b6b;\n}\r\n", ""]);
+exports.push([module.i, "/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n#tasksListView {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light {\n  background: #718096;\n  color: #edf2f7;\n}\n#tasksListView div.taskItem.dark {\n  background: #cbd5e0;\n  color: #2d3748;\n}\n#projectsListView div.projectItem.light:hover {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark:hover {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light:hover {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark:hover {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem.light.active {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark.active {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.active {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark.active {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.ended {\n  color: #cbd5e0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended {\n  color: #718096;\n  text-decoration: line-through;\n}\n#projectsListView div.projectItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n#tasksListView div.taskItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n", ""]);
 
 // exports
 

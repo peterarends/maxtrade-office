@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Property;
 use Illuminate\Http\Request;
-use App\Http\Resources\Property as PropertyResorce;
+use App\Http\Resources\Property as PropertyResource;
 use App\Http\Resources\PropertyCategory;
 
 class PropertiesController extends Controller
@@ -15,19 +15,19 @@ class PropertiesController extends Controller
         $properties = Property::orderBy('category', 'asc')->get();
 
         /** Return collection of Properties as resource */
-        return PropertyResorce::collection($properties);
+        return PropertyResource::collection($properties);
     }
 
     public function store(Request $request)
     {
         $property = $request->isMethod('put') ? Property::findOrFail($request->property_id) : null;
 
-        if (!empty($property)){
+        if (!empty($property)) {
             $property->value = $request->input('value');
-    
-            if ($property->save()){
-                return new PropertyResorce($property);
-            }    
+
+            if ($property->save()) {
+                return new PropertyResource($property);
+            }
         }
     }
 
@@ -39,5 +39,4 @@ class PropertiesController extends Controller
         /** Return collection of Categories as resource */
         return PropertyCategory::collection($categories);
     }
-
 }

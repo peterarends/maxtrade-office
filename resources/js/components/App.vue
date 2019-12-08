@@ -72,20 +72,30 @@ export default {
 
     data() {
         return {
-            theme: "light"
+            theme: "dark",
+            properties: []
         };
+    },
+
+    created() {
+        this.fetchProperties();
+        console.log(this.properties);
+        this.bindTheme();
+    },
+
+    methods: {
+        fetchProperties() {
+            fetch("api/properties")
+                .then(res => res.json())
+                .then(res => {
+                    this.properties = res.data;
+                    console.log(this.properties);
+                });
+        },
+        bindTheme() {
+            //this.theme = this.properties.theme;
+        }
     }
-
-    // created() {
-    //     this.changeTheme();
-    // },
-
-    // methods: {
-    //     changeTheme() {
-    //         var menu = document.querySelector('.menu') // Using a class instead, see note below.
-    //         menu.classList.toggle('hidden-phone');
-    //     }
-    // },
 };
 </script>
 
@@ -253,12 +263,12 @@ h5 {
     width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #6b6b6b;
+    background: #1a202c;
 }
 ::-webkit-scrollbar-thumb {
-    background: #333333;
+    background: #2d3748;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #6b6b6b;
+    background: #4a5568;
 }
 </style>
