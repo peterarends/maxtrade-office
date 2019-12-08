@@ -6,6 +6,7 @@
         <bodypanel
             v-bind:theme="theme"
             v-bind:properties="properties"
+            @changetheme="changeTheme"
         ></bodypanel>
     </div>
 </template>
@@ -24,6 +25,12 @@ export default {
         Projects,
         Tasks,
         Bodypanel
+    },
+
+    methods: {
+        changeTheme(changed_theme) {
+            this.$emit("changetheme", changed_theme);
+        }
     },
 
     props: ["theme", "properties"]

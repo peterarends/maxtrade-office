@@ -4,6 +4,7 @@
         <bodycontent
             v-bind:theme="theme"
             v-bind:properties="properties"
+            @changetheme="changeTheme"
         ></bodycontent>
         <bottom v-bind:theme="theme"></bottom>
     </div>
@@ -95,6 +96,11 @@ export default {
                         prop => prop.name === "theme"
                     ).value;
                 });
+        },
+
+        changeTheme(changed_theme) {
+            this.theme = changed_theme;
+            /** Save changed theme to data base properties */
         }
     }
 };

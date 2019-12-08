@@ -11,6 +11,7 @@
                 <properties
                     v-bind:theme="theme"
                     v-bind:properties="properties"
+                    @changetheme="changeTheme"
                 ></properties>
             </tab>
         </tabs>
@@ -43,6 +44,9 @@ export default {
         },
         setActive(tabItem) {
             this.activeItem = tabItem;
+        },
+        changeTheme(changed_theme) {
+            this.$emit("changetheme", changed_theme);
         }
     },
 

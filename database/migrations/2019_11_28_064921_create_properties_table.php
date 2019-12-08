@@ -17,6 +17,8 @@ class CreatePropertiesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('value', 512);
+            $table->string('description', 64);
+            $table->string('help', 512);
             $table->enum('category', ['visual', 'other']);
             $table->timestamps();
         });

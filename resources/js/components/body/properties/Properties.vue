@@ -19,13 +19,32 @@
                     </h4>
                     <ul>
                         <li
+                            class="property_row"
                             v-for="property in properties.filter(
                                 prop => prop.category === category.category
                             )"
                             v-bind:key="property.id"
-                            class="category"
                         >
-                            {{ property.name }}
+                            <div>
+                                {{ property.id }}.&nbsp;{{
+                                    category.category
+                                }}:&nbsp;<strong>{{
+                                    property.description
+                                }}</strong>
+                            </div>
+                            <div>
+                                {{ property.help }}
+                            </div>
+                            <div>
+                                <select
+                                    class="controll"
+                                    v-model="property.value"
+                                    @change="changeTheme($event)"
+                                >
+                                    <option value="dark">Dark theme</option>
+                                    <option value="light">Light theme</option>
+                                </select>
+                            </div>
                         </li>
                     </ul>
                 </li>
@@ -44,6 +63,8 @@ export default {
                 id: "",
                 name: "",
                 value: "",
+                description: "",
+                help: "",
                 category: ""
             },
             property_id: "",
@@ -64,6 +85,9 @@ export default {
                 .then(res => {
                     this.property_categories = res.data;
                 });
+        },
+        changeTheme(event) {
+            this.$emit("changetheme", event.target.value);
         }
     },
 
@@ -96,10 +120,22 @@ export default {
     padding: 10px;
 }
 .property_title {
-    padding: 0px 0px 10px 10px;
+    padding: 0px 0px 20px 10px;
 }
 .property_section {
-    padding-bottom: 7px;
+    padding: 0px 0px 10px 20px;
     text-decoration: underline;
+}
+.property_row {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 10px 30px;
+    padding-left: 5px;
+    border-left: 1px dotted #4a5568;
+}
+.controll {
+    background: #4a5568;
+    padding: 1px 3px;
+    border: 1px dotted #718096;
 }
 </style>

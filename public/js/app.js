@@ -1854,6 +1854,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -1935,6 +1936,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.directive("closable", {
           return prop.name === "theme";
         }).value;
       });
+    },
+    changeTheme: function changeTheme(changed_theme) {
+      this.theme = changed_theme;
+      /** Save changed theme to data base properties */
     }
   }
 });
@@ -1966,6 +1971,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -1977,6 +1983,11 @@ __webpack_require__.r(__webpack_exports__);
     Projects: _body_projects_Projects__WEBPACK_IMPORTED_MODULE_1__["default"],
     Tasks: _body_Tasks__WEBPACK_IMPORTED_MODULE_2__["default"],
     Bodypanel: _body_Bodypanel__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  methods: {
+    changeTheme: function changeTheme(changed_theme) {
+      this.$emit("changetheme", changed_theme);
+    }
   },
   props: ["theme", "properties"]
 });
@@ -2351,6 +2362,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2372,6 +2384,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     setActive: function setActive(tabItem) {
       this.activeItem = tabItem;
+    },
+    changeTheme: function changeTheme(changed_theme) {
+      this.$emit("changetheme", changed_theme);
     }
   },
   props: ["theme", "properties"]
@@ -2669,6 +2684,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Properties",
   data: function data() {
@@ -2677,6 +2711,8 @@ __webpack_require__.r(__webpack_exports__);
         id: "",
         name: "",
         value: "",
+        description: "",
+        help: "",
         category: ""
       },
       property_id: "",
@@ -2697,6 +2733,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         _this.property_categories = res.data;
       });
+    },
+    changeTheme: function changeTheme(event) {
+      this.$emit("changetheme", event.target.value);
     }
   },
   props: ["theme", "properties"]
@@ -2981,7 +3020,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".properties-body[data-v-56d5808d] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.top[data-v-56d5808d] {\n  padding: 10px;\n}\n.search_input[data-v-56d5808d] {\n  border-radius: 0.25rem;\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n  padding: 2px 5px;\n  width: 100%;\n}\n.search_input[data-v-56d5808d]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]::-moz-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]::placeholder {\n  color: #4a5568;\n}\n.body[data-v-56d5808d] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n}\n.property_title[data-v-56d5808d] {\n  padding: 0px 0px 10px 10px;\n}\n.property_section[data-v-56d5808d] {\n  padding-bottom: 7px;\n  text-decoration: underline;\n}\n", ""]);
+exports.push([module.i, ".properties-body[data-v-56d5808d] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.top[data-v-56d5808d] {\n  padding: 10px;\n}\n.search_input[data-v-56d5808d] {\n  border-radius: 0.25rem;\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n  padding: 2px 5px;\n  width: 100%;\n}\n.search_input[data-v-56d5808d]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]::-moz-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-56d5808d]::placeholder {\n  color: #4a5568;\n}\n.body[data-v-56d5808d] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n}\n.property_title[data-v-56d5808d] {\n  padding: 0px 0px 20px 10px;\n}\n.property_section[data-v-56d5808d] {\n  padding: 0px 0px 10px 20px;\n  text-decoration: underline;\n}\n.property_row[data-v-56d5808d] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  margin: 0px 0px 10px 30px;\n  padding-left: 5px;\n  border-left: 1px dotted #4a5568;\n}\n.controll[data-v-56d5808d] {\n  background: #4a5568;\n  padding: 1px 3px;\n  border: 1px dotted #718096;\n}\n", ""]);
 
 // exports
 
@@ -39185,7 +39224,8 @@ var render = function() {
       _c("top", { attrs: { theme: _vm.theme } }),
       _vm._v(" "),
       _c("bodycontent", {
-        attrs: { theme: _vm.theme, properties: _vm.properties }
+        attrs: { theme: _vm.theme, properties: _vm.properties },
+        on: { changetheme: _vm.changeTheme }
       }),
       _vm._v(" "),
       _c("bottom", { attrs: { theme: _vm.theme } })
@@ -39226,7 +39266,8 @@ var render = function() {
       _c("tasks", { attrs: { theme: _vm.theme } }),
       _vm._v(" "),
       _c("bodypanel", {
-        attrs: { theme: _vm.theme, properties: _vm.properties }
+        attrs: { theme: _vm.theme, properties: _vm.properties },
+        on: { changetheme: _vm.changeTheme }
       })
     ],
     1
@@ -39736,7 +39777,8 @@ var render = function() {
             { attrs: { name: "Properties" } },
             [
               _c("properties", {
-                attrs: { theme: _vm.theme, properties: _vm.properties }
+                attrs: { theme: _vm.theme, properties: _vm.properties },
+                on: { changetheme: _vm.changeTheme }
               })
             ],
             1
@@ -40161,13 +40203,77 @@ var render = function() {
                 function(property) {
                   return _c(
                     "li",
-                    { key: property.id, staticClass: "category" },
+                    { key: property.id, staticClass: "property_row" },
                     [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(property.name) +
-                          "\n                    "
-                      )
+                      _c("div", [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(property.id) +
+                            ". " +
+                            _vm._s(category.category) +
+                            ": "
+                        ),
+                        _c("strong", [_vm._v(_vm._s(property.description))])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(property.help) +
+                            "\n                        "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: property.value,
+                                expression: "property.value"
+                              }
+                            ],
+                            staticClass: "controll",
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    property,
+                                    "value",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                },
+                                function($event) {
+                                  return _vm.changeTheme($event)
+                                }
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "dark" } }, [
+                              _vm._v("Dark theme")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "light" } }, [
+                              _vm._v("Light theme")
+                            ])
+                          ]
+                        )
+                      ])
                     ]
                   )
                 }
