@@ -1,10 +1,12 @@
 <template>
     <div class="mainDiv" v-bind:class="theme">
-        <top v-bind:theme="theme"></top>
+        <top v-bind:theme="theme" @showproperties="showProperties"></top>
         <bodycontent
             v-bind:theme="theme"
             v-bind:properties="properties"
+            v-bind:panel="panel"
             @changetheme="changeTheme"
+            @closepanel="closePanel"
         ></bodycontent>
         <bottom v-bind:theme="theme"></bottom>
     </div>
@@ -77,7 +79,8 @@ export default {
     data() {
         return {
             theme: "dark",
-            properties: []
+            properties: [],
+            panel: ""
         };
     },
 
@@ -97,10 +100,15 @@ export default {
                     ).value;
                 });
         },
-
         changeTheme(changed_theme) {
             this.theme = changed_theme;
             /** Save changed theme to data base properties */
+        },
+        showProperties() {
+            this.panel = "properties";
+        },
+        closePanel() {
+            this.panel = "";
         }
     }
 };

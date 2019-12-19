@@ -164,7 +164,7 @@
                             <ul>
                                 <li id="mnuOptions">
                                     <a>
-                                        <div class="mnu-flex">
+                                        <div class="mnu-flex" @click="showProperties($event)">
                                             <i
                                                 class="mdi mdi-tools standardSizeIcon"
                                                 v-bind:class="theme"
@@ -275,6 +275,9 @@ export default {
     methods: {
         exit: function(event) {
             window.location = "/logout.html";
+        },
+        showProperties() {
+            this.$emit("showproperties");
         }
     },
 

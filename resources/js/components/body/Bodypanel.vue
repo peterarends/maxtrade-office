@@ -1,56 +1,41 @@
 <template>
     <div class="mainDivBodypanel" v-bind:class="theme">
-        <tabs>
-            <tab name="Project" v-bind:selected="true">
-                <h1>Component project</h1>
-            </tab>
-            <tab name="Task">
-                <h1>Component task</h1>
-            </tab>
-            <tab name="Properties">
-                <properties
-                    v-bind:theme="theme"
-                    v-bind:properties="properties"
-                    @changetheme="changeTheme"
-                ></properties>
-            </tab>
-        </tabs>
+        <properties
+            v-show="panel == 'properties'"
+            v-bind:theme="theme"
+            v-bind:properties="properties"
+            @changetheme="changeTheme"
+            @closepanel="closePanel"
+        ></properties>
     </div>
 </template>
 
 <script>
-import Tabs from "./tabs/Tabs";
-import Tab from "./tabs/Tab";
-import Properties from "./properties/Properties";
+import Properties from "./Properties";
 
 export default {
     name: "Bodypanel",
 
     components: {
-        Tabs,
-        Tab,
         Properties
     },
 
     data() {
         return {
-            activeItem: "home"
+            activeItem: "properties"
         };
     },
 
     methods: {
-        isActive(tabItem) {
-            return this.activeItem === tabItem;
-        },
-        setActive(tabItem) {
-            this.activeItem = tabItem;
-        },
         changeTheme(changed_theme) {
             this.$emit("changetheme", changed_theme);
+        },
+        closePanel() {
+            this.$emit("closepanel");
         }
     },
 
-    props: ["theme", "properties"]
+    props: ["theme", "properties", "panel"]
 };
 </script>
 

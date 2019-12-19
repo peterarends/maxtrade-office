@@ -1,20 +1,22 @@
 <template>
     <div class="body" v-bind:class="theme">
         <leftmenu v-bind:theme="theme"></leftmenu>
-        <projects v-bind:theme="theme"></projects>
-        <tasks v-bind:theme="theme"></tasks>
+        <projects-panel v-bind:theme="theme"></projects-panel>
+        <tasks-panel v-bind:theme="theme"></tasks-panel>
         <bodypanel
             v-bind:theme="theme"
             v-bind:properties="properties"
+            v-bind:panel="panel"
             @changetheme="changeTheme"
+            @closepanel="closePanel"
         ></bodypanel>
     </div>
 </template>
 
 <script>
 import Leftmenu from "./body/Leftmenu";
-import Projects from "./body/projects/Projects";
-import Tasks from "./body/Tasks";
+import ProjectsPanel from "./body/ProjectsPanel";
+import TasksPanel from "./body/TasksPanel";
 import Bodypanel from "./body/Bodypanel";
 
 export default {
@@ -22,18 +24,21 @@ export default {
 
     components: {
         Leftmenu,
-        Projects,
-        Tasks,
+        ProjectsPanel,
+        TasksPanel,
         Bodypanel
     },
 
     methods: {
         changeTheme(changed_theme) {
             this.$emit("changetheme", changed_theme);
+        },
+        closePanel() {
+            this.$emit("closepanel");
         }
     },
 
-    props: ["theme", "properties"]
+    props: ["theme", "properties", "panel"]
 };
 </script>
 

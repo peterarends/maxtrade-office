@@ -65,7 +65,7 @@
 import moment from "moment";
 
 export default {
-    name: "Projects",
+    name: "ProjectsPanel",
 
     filters: {
         formatDate: function(value) {
