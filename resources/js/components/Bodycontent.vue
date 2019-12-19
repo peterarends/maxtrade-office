@@ -1,19 +1,26 @@
 <template>
     <div class="body" v-bind:class="theme">
         <leftmenu v-bind:theme="theme"></leftmenu>
-        <projects-panel 
+        <projects-panel
             v-bind:theme="theme"
             @changeproject="changeProject"
         ></projects-panel>
         <tasks-panel v-bind:theme="theme"></tasks-panel>
-        <bodypanel
-            v-bind:theme="theme"
-            v-bind:properties="properties"
-            v-bind:panel="panel"
-            v-bind:project="project"
-            @changetheme="changeTheme"
-            @closepanel="closePanel"
-        ></bodypanel>
+        <div class="mainDivBodypanel" v-bind:class="theme">
+            <properties
+                v-show="panel == 'properties'"
+                v-bind:theme="theme"
+                v-bind:properties="properties"
+                @changetheme="changeTheme"
+                @closepanel="closePanel"
+            ></properties>
+            <projects 
+                v-show="panel == 'projects'"
+                v-bind:project="project"
+                v-bind:theme="theme"
+                @closepanel="closePanel"
+            ></projects>
+        </div>
     </div>
 </template>
 
@@ -21,7 +28,8 @@
 import Leftmenu from "./body/Leftmenu";
 import ProjectsPanel from "./body/ProjectsPanel";
 import TasksPanel from "./body/TasksPanel";
-import Bodypanel from "./body/Bodypanel";
+import Properties from "./body/Properties";
+import Projects from './body/Projects';
 
 export default {
     name: "Bodycontent",
@@ -30,10 +38,11 @@ export default {
         Leftmenu,
         ProjectsPanel,
         TasksPanel,
-        Bodypanel
+        Properties,
+        Projects
     },
 
-    data(){
+    data() {
         return {
             project: {
                 id: "",
@@ -51,8 +60,9 @@ export default {
         closePanel() {
             this.$emit("closepanel");
         },
-        changeProject(project){
+        changeProject(project) {
             this.project = project;
+            this.$emit("showprojects");
         }
     },
 
@@ -73,5 +83,15 @@ export default {
 .body.dark {
     color: #cbd5e0;
     border-top: 1px solid #1a202c;
+}
+.mainDivBodypanel {
+    display: flex;
+    flex: 1;
+}
+.mainDivBodypanel.light {
+    background-color: #f7fafc;
+}
+.mainDivBodypanel.dark {
+    background-color: #1a202c;
 }
 </style>

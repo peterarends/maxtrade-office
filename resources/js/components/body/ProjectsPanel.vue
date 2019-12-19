@@ -29,7 +29,7 @@
             <div class="project_item" 
                 v-for="project in projects" 
                 v-bind:key="project.id" 
-                v-bind:class="theme"
+                v-bind:class="[ project.id == current_id ? 'active' : '', theme ]"
                 v-on:click="showProject(project)"
             >
                 <div
@@ -86,7 +86,8 @@ export default {
             project_id: "",
             pagination: {},
             edit: false,
-            options: []
+            options: [],
+            current_id: 0
         };
     },
 
@@ -109,6 +110,7 @@ export default {
                 });
         },
         showProject(project){
+            this.current_id = project.id;
             this.$emit("changeproject", project);
         }
     },
@@ -321,6 +323,14 @@ export default {
     color: #718096;
 }
 .project_item.dark:hover {
+    background: #2d3748;
+    color: #cbd5e0;
+}
+.project_item.light.active {
+    background: #EDF2F7;
+    color: #718096;
+}
+.project_item.dark.active {
     background: #2d3748;
     color: #cbd5e0;
 }

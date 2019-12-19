@@ -7,6 +7,7 @@
             v-bind:panel="panel"
             @changetheme="changeTheme"
             @closepanel="closePanel"
+            @showprojects="showProjects"
         ></bodycontent>
         <bottom v-bind:theme="theme"></bottom>
     </div>
@@ -106,6 +107,9 @@ export default {
         },
         showProperties() {
             this.panel = "properties";
+        },
+        showProjects() {
+            this.panel = "projects";
         },
         closePanel() {
             this.panel = "";

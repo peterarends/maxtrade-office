@@ -1,6 +1,24 @@
 <template>
-    <div>
-        {{project.title}}
+    <div class="projects-body">
+        <div class="button-bar" v-bind:class="theme">
+            <div class="topTitleDiv" v-bind:class="theme">
+                <!--Window title-->
+                <span>Project: {{project.id}}</span>
+            </div>
+            <div class="topRightIcons">
+                <!--Window title icons-->
+                <div
+                    class="rightExitIcon"
+                    v-bind:class="theme"
+                    v-on:click="close"
+                >
+                    <img src="/images/close.png" />
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            {{project.title}}
+        </div>
     </div>
 </template>
 
@@ -8,7 +26,13 @@
 export default {
     name: "Projects",
 
-    props: ["project"]
+    props: ["theme", "project"],
+
+    methods: {
+        close: function(event) {
+            this.$emit("closepanel");
+        }
+    }
 }
 </script>
 
