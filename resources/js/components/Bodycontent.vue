@@ -1,12 +1,16 @@
 <template>
     <div class="body" v-bind:class="theme">
         <leftmenu v-bind:theme="theme"></leftmenu>
-        <projects-panel v-bind:theme="theme"></projects-panel>
+        <projects-panel 
+            v-bind:theme="theme"
+            @changeproject="changeProject"
+        ></projects-panel>
         <tasks-panel v-bind:theme="theme"></tasks-panel>
         <bodypanel
             v-bind:theme="theme"
             v-bind:properties="properties"
             v-bind:panel="panel"
+            v-bind:project="project"
             @changetheme="changeTheme"
             @closepanel="closePanel"
         ></bodypanel>
@@ -29,12 +33,26 @@ export default {
         Bodypanel
     },
 
+    data(){
+        return {
+            project: {
+                id: "",
+                title: "",
+                body: "",
+                status
+            }
+        };
+    },
+
     methods: {
         changeTheme(changed_theme) {
             this.$emit("changetheme", changed_theme);
         },
         closePanel() {
             this.$emit("closepanel");
+        },
+        changeProject(project){
+            this.project = project;
         }
     },
 

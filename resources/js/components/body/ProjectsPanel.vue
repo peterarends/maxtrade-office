@@ -26,7 +26,12 @@
             </div>
         </div>
         <div id="projectsListView">
-            <div class="project_item" v-for="project in projects" v-bind:key="project.id" v-bind:class="theme">
+            <div class="project_item" 
+                v-for="project in projects" 
+                v-bind:key="project.id" 
+                v-bind:class="theme"
+                v-on:click="showProject(project)"
+            >
                 <div
                     class="dateText"
                     v-bind:class="[ project.status == 0 ? 'dateWithLine' : 'dateWithoutLine', theme ]"
@@ -78,12 +83,6 @@ export default {
     data() {
         return {
             projects: [],
-            project: {
-                id: "",
-                title: "",
-                body: "",
-                status
-            },
             project_id: "",
             pagination: {},
             edit: false,
@@ -108,6 +107,9 @@ export default {
                 .then(res => {
                     this.projects = res.data;
                 });
+        },
+        showProject(project){
+            this.$emit("changeproject", project);
         }
     },
 

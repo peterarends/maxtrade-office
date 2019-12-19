@@ -7,17 +7,20 @@
             @changetheme="changeTheme"
             @closepanel="closePanel"
         ></properties>
+        <projects v-bind:project="project"></projects>
     </div>
 </template>
 
 <script>
 import Properties from "./Properties";
+import Projects from './Projects';
 
 export default {
     name: "Bodypanel",
 
     components: {
-        Properties
+        Properties,
+        Projects
     },
 
     data() {
@@ -35,7 +38,7 @@ export default {
         }
     },
 
-    props: ["theme", "properties", "panel"]
+    props: ["theme", "properties", "panel", "project"]
 };
 </script>
 
