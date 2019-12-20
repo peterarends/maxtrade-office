@@ -19,17 +19,9 @@
             }"
         >
             <ul class="contextMenu-options">
-                <li class="contextMenu-option">
-                    Тема
-                    <ul class="submenu">
-                        <li>Светла</li>
-                        <li>Тъмна</li>
-                    </ul>
-                </li>
-                <li class="contextMenu-option">Reload</li>
-                <li class="contextMenu-option">Save</li>
-                <li class="contextMenu-option">Save As</li>
-                <li class="contextMenu-option">Inspect</li>
+                <li class="contextMenu-option"><span>Light theme</span><span v-show="theme == 'light'" class="right-text">✔</span></li>
+                <li class="contextMenu-option"><span>Dark theme</span><span v-show="theme == 'dark'" class="right-text" >✔</span></li>
+                <li class="contextMenu-option"><span>Options</span></li>
             </ul>
         </div>
         <a
@@ -130,12 +122,12 @@ export default {
     color: #f7fafc;
 }
 .contextMenu {
-    width: 150px;
+    width: 300px;
     box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
-    background-color: #a0aec0;
+    background-color: #1a202c;
     position: absolute;
-    bottom: 100px;
-    left: 80px;
+    bottom: 87px;
+    left: 25px;
 }
 .contextMenu-options {
     list-style: none;
@@ -146,30 +138,12 @@ export default {
     font-size: 14px;
     padding: 10px 40px 10px 20px;
     cursor: pointer;
-    color: #1a202c;
+    color: #a0aec0;
 }
 .contextMenu-option:hover {
     background: rgba(0, 0, 0, 0.2);
 }
-.contextMenu ul.submenu {
-    width: 150px;
-    box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
-    background-color: #a0aec0;
-    position: absolute;
-    left: 152px;
-    z-index: 99;
-    display: none;
-}
-
-.contextMenu ul.submenu li {
-    font-weight: 500;
-    font-size: 14px;
-    padding: 10px 40px 10px 20px;
-    cursor: pointer;
-    color: #1a202c;
-}
-
-.contextMenu li:hover ul.submenu {
-    display: block;
+.right-text{
+    float: right;
 }
 </style>
