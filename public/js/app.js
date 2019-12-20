@@ -2015,12 +2015,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      project: {
-        id: "",
-        title: "",
-        body: "",
-        status: status
-      }
+      project: []
     };
   },
   methods: {
@@ -2460,6 +2455,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2484,9 +2481,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Projects",
   props: ["theme", "project"],
+  filters: {
+    formatDate: function formatDate(value) {
+      if (value) {
+        return moment__WEBPACK_IMPORTED_MODULE_0___default()(String(value)).format("DD.MM.YYYY hh:mm");
+      }
+    }
+  },
   methods: {
     close: function close(event) {
       this.$emit("closepanel");
@@ -2904,7 +2924,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".projects-body[data-v-c4c8aaa8] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar a[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light a[data-v-c4c8aaa8] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark a[data-v-c4c8aaa8] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark a[data-v-c4c8aaa8]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light a[data-v-c4c8aaa8]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.topTitleDiv[data-v-c4c8aaa8] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-c4c8aaa8] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-c4c8aaa8] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-c4c8aaa8] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-c4c8aaa8] {\n  background-color: #e53e3e;\n}\n.body[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n}\r\n", ""]);
+exports.push([module.i, ".projects-body[data-v-c4c8aaa8] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-c4c8aaa8] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-c4c8aaa8] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-c4c8aaa8] {\n  background-color: #e53e3e;\n}\n.body[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-c4c8aaa8] {\n  text-decoration: line-through;\n}\n.date[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-c4c8aaa8]{\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-c4c8aaa8]{\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-c4c8aaa8] {\n  color: green;\n}\r\n", ""]);
 
 // exports
 
@@ -39781,7 +39801,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "projects-body" }, [
     _c("div", { staticClass: "button-bar", class: _vm.theme }, [
-      _c("div", { staticClass: "topTitleDiv", class: _vm.theme }, [
+      _c("div", { staticClass: "topTitleDiv" }, [
         _c("span", [_vm._v("Project: " + _vm._s(_vm.project.id))])
       ]),
       _vm._v(" "),
@@ -39798,9 +39818,105 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "body" }, [
-      _vm._v("\n        " + _vm._s(_vm.project.title) + "\n    ")
-    ])
+    _c(
+      "div",
+      { staticClass: "body", class: [_vm.project.status == 0 ? "ended" : ""] },
+      [
+        _c("div", { staticClass: "date" }, [
+          _c("h3", [
+            _vm._v(
+              "Date start: " +
+                _vm._s(_vm._f("formatDate")(_vm.project.created_at))
+            )
+          ]),
+          _vm._v(" "),
+          _c("h3", [
+            _vm._v("\n                Date end:\n                "),
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.project.status == 1,
+                    expression: "project.status == 1"
+                  }
+                ],
+                staticClass: "continues"
+              },
+              [_vm._v("Continues\n                ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.project.status == 0,
+                    expression: "project.status == 0"
+                  }
+                ]
+              },
+              [
+                _vm._v(
+                  _vm._s(_vm._f("formatDate")(_vm.project.updated_at)) +
+                    "\n                "
+                )
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.project.title,
+              expression: "project.title"
+            }
+          ],
+          staticClass: "title",
+          attrs: { type: "text" },
+          domProps: { value: _vm.project.title },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.project, "title", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.project.body,
+              expression: "project.body"
+            }
+          ],
+          staticClass: "text_body",
+          attrs: { rows: "10" },
+          domProps: { value: _vm.project.body },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.project, "body", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticStyle: { flex: "1" } })
+      ]
+    )
   ])
 }
 var staticRenderFns = []

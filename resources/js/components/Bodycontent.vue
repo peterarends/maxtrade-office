@@ -44,12 +44,7 @@ export default {
 
     data() {
         return {
-            project: {
-                id: "",
-                title: "",
-                body: "",
-                status
-            }
+            project: []
         };
     },
 
