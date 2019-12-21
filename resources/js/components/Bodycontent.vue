@@ -2,6 +2,7 @@
     <div class="body" v-bind:class="theme">
         <leftmenu v-bind:theme="theme"></leftmenu>
         <projects-panel
+            v-bind:projects="projects"
             v-bind:theme="theme"
             v-bind:current_id="current_project_id"
             @changeproject="changeProject"
@@ -15,11 +16,12 @@
                 @changetheme="changeTheme"
                 @closepanel="closePanel"
             ></properties>
-            <projects 
+            <projects
                 v-show="panel == 'projects'"
                 v-bind:project="project"
                 v-bind:theme="theme"
                 @closepanel="closePanel"
+                @saveproject="saveProject"
             ></projects>
         </div>
     </div>
@@ -30,7 +32,7 @@ import Leftmenu from "./body/Leftmenu";
 import ProjectsPanel from "./body/ProjectsPanel";
 import TasksPanel from "./body/TasksPanel";
 import Properties from "./body/Properties";
-import Projects from './body/Projects';
+import Projects from "./body/Projects";
 
 export default {
     name: "Bodycontent",
@@ -43,14 +45,27 @@ export default {
         Projects
     },
 
+    created() {
+        this.fetchProjects();
+    },
+
     data() {
         return {
+            projects: [],
             project: [],
             current_project_id: 0
         };
     },
 
     methods: {
+        fetchProjects() {
+            fetch("api/projects")
+                .then(res => res.json())
+                .then(res => {
+                    this.projects = res.data;
+                })
+                .catch(err => console.log(err));
+        },
         changeTheme(changed_theme) {
             this.$emit("changetheme", changed_theme);
         },
@@ -62,6 +77,26 @@ export default {
             this.project = project;
             this.current_project_id = project.id;
             this.$emit("showprojects");
+        },
+        saveProject() {
+            fetch("api/project", {
+                method: "PUT",
+                body: JSON.stringify({
+                    project_id: this.project.id,
+                    title: this.project.title,
+                    body: this.project.body,
+                    status: this.project.status
+                }),
+                headers: { "Content-Type": "application/json; charset=utf-8" }
+            })
+                .then(res => res.json())
+                .then(res => {
+                    alert(
+                        "Успешно записахте промените в Проекта: " +
+                            res.data.title
+                    );
+                })
+                .catch(err => console.log(err));
         }
     },
 

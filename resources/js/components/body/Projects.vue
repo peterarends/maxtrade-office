@@ -35,10 +35,19 @@
                 rows="10"
                 v-model="project.body"
             ></textarea>
-            <div style="flex:1;"></div>
+            <form>
+                <div>
+                    <input type="checkbox" id="check" name="check" value="" />
+                    <label for="check">
+                        <span
+                            ><!-- This span is needed to create the "checkbox" element --></span
+                        >Checkbox
+                    </label>
+                </div>
+            </form>
         </div>
         <div class="bottom" v-bind:class="theme">
-            <a id="btnSaveProject"
+            <a id="btnSaveProject" v-on:click.prevent="save"
                 ><i
                     class="mdi mdi-content-save-outline mdiProjectIcon"
                     v-bind:class="theme"
@@ -75,6 +84,9 @@ export default {
     methods: {
         close: function(event) {
             this.$emit("closepanel");
+        },
+        save: function(event) {
+            this.$emit("saveproject");
         }
     }
 };
@@ -215,5 +227,90 @@ export default {
 }
 .mdiProjectIcon.dark {
     color: #3182ce;
+}
+label {
+    display: inline-block;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+}
+label span {
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+    transform-origin: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    vertical-align: -6px;
+    margin-right: 10px;
+    transition: background-color 150ms 200ms,
+        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+}
+label span:before {
+    content: "";
+    width: 0px;
+    height: 2px;
+    border-radius: 2px;
+    background: #fff;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 13px;
+    left: 9px;
+    transition: width 50ms ease 50ms;
+    transform-origin: 0% 0%;
+}
+label span:after {
+    content: "";
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: #fff;
+    position: absolute;
+    transform: rotate(305deg);
+    top: 16px;
+    left: 10px;
+    transition: width 50ms ease;
+    transform-origin: 0% 0%;
+}
+label:hover span:before {
+    width: 5px;
+    transition: width 100ms ease;
+}
+label:hover span:after {
+    width: 10px;
+    transition: width 150ms ease 100ms;
+}
+input[type="checkbox"] {
+    display: none;
+}
+input[type="checkbox"]:checked + label span {
+    background-color: #fff;
+    transform: scale(1.25);
+}
+input[type="checkbox"]:checked + label span:after {
+    width: 10px;
+    background: #1790b5;
+    transition: width 150ms ease 100ms;
+}
+input[type="checkbox"]:checked + label span:before {
+    width: 5px;
+    background: #1790b5;
+    transition: width 150ms ease 100ms;
+}
+input[type="checkbox"]:checked + label:hover span {
+    background-color: #fff;
+    transform: scale(1.25);
+}
+input[type="checkbox"]:checked + label:hover span:after {
+    width: 10px;
+    background: #1790b5;
+    transition: width 150ms ease 100ms;
+}
+input[type="checkbox"]:checked + label:hover span:before {
+    width: 5px;
+    background: #1790b5;
+    transition: width 150ms ease 100ms;
 }
 </style>

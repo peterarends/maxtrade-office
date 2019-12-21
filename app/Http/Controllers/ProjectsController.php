@@ -36,8 +36,9 @@ class ProjectsController extends Controller
         $project->id = $request->input('project_id');
         $project->title = $request->input('title');
         $project->body = $request->input('body');
+        $project->status = $request->input('status');
 
-        if ($project->save()){
+        if ($project->save()) {
             return new ProjectResorce($project);
         }
     }
@@ -68,7 +69,7 @@ class ProjectsController extends Controller
         /** Get a Project */
         $project = Project::findOrFail($id);
 
-        if ($project->delete()){
+        if ($project->delete()) {
             return new ProjectResorce($project);
         }
     }

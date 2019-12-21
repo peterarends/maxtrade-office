@@ -3,38 +3,44 @@
         <div class="topProjectsDiv" v-bind:class="theme">
             <input
                 type="text"
-                class="searchInput" v-bind:class="theme"
+                class="searchInput"
+                v-bind:class="theme"
                 placeholder="projects search ..."
             />
-            <div
-                class="searchElementsDiv" v-bind:class="theme"
-            >
-                <i
-                    class="mdi mdi-filter searchIcons" v-bind:class="theme"
-                ></i>
+            <div class="searchElementsDiv" v-bind:class="theme">
+                <i class="mdi mdi-filter searchIcons" v-bind:class="theme"></i>
                 <div>
                     <i
-                        class="mdi mdi-airplane searchIcons" v-bind:class="theme" 
+                        class="mdi mdi-airplane searchIcons"
+                        v-bind:class="theme"
                     ></i>
                     <i
-                        class="mdi mdi-sort-alphabetical searchIcons" v-bind:class="theme"
+                        class="mdi mdi-sort-alphabetical searchIcons"
+                        v-bind:class="theme"
                     ></i>
                     <i
-                        class="mdi mdi-sort-numeric searchIcons" v-bind:class="theme"
+                        class="mdi mdi-sort-numeric searchIcons"
+                        v-bind:class="theme"
                     ></i>
                 </div>
             </div>
         </div>
         <div id="projectsListView">
-            <div class="project_item" 
-                v-for="project in projects" 
-                v-bind:key="project.id" 
-                v-bind:class="[ project.id == current_id ? 'active' : '', theme ]"
+            <div
+                class="project_item"
+                v-for="project in projects"
+                v-bind:key="project.id"
+                v-bind:class="[project.id == current_id ? 'active' : '', theme]"
                 v-on:click="showProject(project)"
             >
                 <div
                     class="dateText"
-                    v-bind:class="[ project.status == 0 ? 'dateWithLine' : 'dateWithoutLine', theme ]"
+                    v-bind:class="[
+                        project.status == 0
+                            ? 'dateWithLine'
+                            : 'dateWithoutLine',
+                        theme
+                    ]"
                 >
                     {{ project.created_at | formatDate }}
                 </div>
@@ -43,7 +49,9 @@
                         class="singleProjectId"
                         v-bind:class="[
                             project.status == 0 ? '' : 'idBackground',
-                            project.status == 0 ? 'idTextFinished' : 'idTextUnfinished ',
+                            project.status == 0
+                                ? 'idTextFinished'
+                                : 'idTextUnfinished ',
                             theme
                         ]"
                     >
@@ -52,10 +60,11 @@
                     <div
                         class="singleProjectText"
                         v-bind:class="[
-                            project.status == 0 ? 'titleTextFinished' : 'titleTextUnfinished',
+                            project.status == 0
+                                ? 'titleTextFinished'
+                                : 'titleTextUnfinished',
                             project.status == 0 ? 'titleTextLine' : '',
                             theme
-                            
                         ]"
                     >
                         {{ project.title }}
@@ -82,16 +91,10 @@ export default {
 
     data() {
         return {
-            projects: [],
-            project_id: "",
             pagination: {},
             edit: false,
             options: []
         };
-    },
-
-    created() {
-        this.fetchProjects();
     },
 
     mounted() {
@@ -101,176 +104,167 @@ export default {
     },
 
     methods: {
-        fetchProjects() {
-            fetch("api/projects")
-                .then(res => res.json())
-                .then(res => {
-                    this.projects = res.data;
-                });
-        },
-        showProject(project){
-            this.current_id = project.id;
+        showProject(project) {
             this.$emit("changeproject", project);
         }
     },
 
-    props: ["theme", "current_id"]
+    props: ["projects", "theme", "current_id"]
 };
 </script>
 
 <style scoped>
-
 /** Top part of projects */
-.topProjectsDiv{
+.topProjectsDiv {
     /* flex items-center p-1 bg-gray-900 */
     display: flex;
     align-items: center;
     padding: 0.25rem;
 }
-.topProjectsDiv.light{
-    background-color: #F7FAFC;
+.topProjectsDiv.light {
+    background-color: #f7fafc;
 }
-.topProjectsDiv.dark{
+.topProjectsDiv.dark {
     background-color: #1a202c;
 }
 
 /** Search style */
-.searchInput{
+.searchInput {
     /* bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300
             placeholder-gray-700 mr-1 */
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     width: 50%;
     padding-left: 0.25rem;
     padding-bottom: 0.25rem;
     margin-right: 0.25rem;
 }
-.searchInput.light{
-    background-color: #F7FAFC;
-    border: 1px solid  #EDF2F7;
-    color: #4A5568;
+.searchInput.light {
+    background-color: #f7fafc;
+    border: 1px solid #edf2f7;
+    color: #4a5568;
 }
-.searchInput.dark{
+.searchInput.dark {
     background-color: #1a202c;
-    border: 1px solid  #2d3748;
+    border: 1px solid #2d3748;
     color: #e2e8f0;
 }
-.searchInput.light::placeholder{
-    color: #E2E8F0;
+.searchInput.light::placeholder {
+    color: #e2e8f0;
 }
-.searchInput.dark::placeholder{
+.searchInput.dark::placeholder {
     color: #4a5568;
 }
 /** Search by element */
-.searchElementsDiv{
+.searchElementsDiv {
     /* flex items-center justify-center border-l border-gray-700 border-dotted pl-1 */
     display: flex;
     justify-content: center;
     padding-left: 0.25rem;
 }
-.searchElementsDiv.light{
-    border-left: 1px dotted #E2E8F0;
+.searchElementsDiv.light {
+    border-left: 1px dotted #e2e8f0;
 }
-.searchElementsDiv.dark{
+.searchElementsDiv.dark {
     border-left: 1px dotted #4a5568;
 }
 
 /** Search by element icons */
-.searchIcons{
+.searchIcons {
     /* text-2xl text-gray-500 hover:text-gray-100 */
     font-size: 1.5rem;
 }
-.searchIcons.light{
+.searchIcons.light {
     color: #a0aec0;
 }
-.searchIcons.dark{
+.searchIcons.dark {
     color: #a0aec0;
 }
-.searchIcons.light:hover{
-    color: #1A202C;
+.searchIcons.light:hover {
+    color: #1a202c;
 }
-.searchIcons.dark:hover{
+.searchIcons.dark:hover {
     color: #f7fafc;
 }
 /** Date style */
-.dateText{
+.dateText {
     /* flex justify-end text-xs */
     display: flex;
     justify-content: flex-end;
-    font-size: .75rem;
+    font-size: 0.75rem;
 }
-.dateText.dateWithLine{
+.dateText.dateWithLine {
     text-decoration: line-through;
 }
-.dateText.dateWithLine.light{
+.dateText.dateWithLine.light {
     /* text-gray-500 line-through */
     color: #718096;
 }
-.dateText.dateWithLine.dark{
+.dateText.dateWithLine.dark {
     /* text-gray-500 line-through */
     color: #cbd5e0;
 }
-.dateText.dateWithoutLine.light{
+.dateText.dateWithoutLine.light {
     /* text-gray-400 */
     color: #a0aec0;
 }
-.dateText.dateWithoutLine.dark{
+.dateText.dateWithoutLine.dark {
     color: #a0aec0;
 }
 
 /** Style for each project block */
-.singleProjectDiv{
-    display:flex;
+.singleProjectDiv {
+    display: flex;
 }
-.singleProjectId{
+.singleProjectId {
     /* rounded-full h-6 w-6 text-xs flex items-center justify-center */
     border-radius: 9999px;
     height: 1.5rem;
     width: 1.5rem;
-    font-size: .75rem;
+    font-size: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.singleProjectId.idBackground.light{
+.singleProjectId.idBackground.light {
     /* bg-gray-600 */
-    background-color: #CBD5E0;
+    background-color: #cbd5e0;
 }
-.singleProjectId.idBackground.dark{
+.singleProjectId.idBackground.dark {
     /* bg-gray-600 */
     background-color: #718096;
 }
-.singleProjectId.idTextUnfinished.light{
+.singleProjectId.idTextUnfinished.light {
     /* text-gray-600 */
     color: #718096;
 }
-.singleProjectId.idTextUnfinished.dark{
+.singleProjectId.idTextUnfinished.dark {
     /* text-gray-600 */
-    color: #CBD5E0;
+    color: #cbd5e0;
 }
-.singleProjectId.idTextFinished.light{
-    color: #F7FAFC;
+.singleProjectId.idTextFinished.light {
+    color: #f7fafc;
 }
-.singleProjectId.idTextFinished.dark{
+.singleProjectId.idTextFinished.dark {
     color: #1a202c;
 }
-.singleProjectText{
+.singleProjectText {
     /* pl-2 pt-1 */
     padding-left: 0.5rem;
     padding-top: 0.25rem;
 }
-.singleProjectText.titleTextUnfinished.light{
-    color: #4A5568;
+.singleProjectText.titleTextUnfinished.light {
+    color: #4a5568;
 }
-.singleProjectText.titleTextUnfinished.dark{
+.singleProjectText.titleTextUnfinished.dark {
     color: #e2e8f0;
 }
-.singleProjectText.titleTextFinished.light{
+.singleProjectText.titleTextFinished.light {
     color: #a0aec0;
 }
-.singleProjectText.titleTextFinished.dark{
+.singleProjectText.titleTextFinished.dark {
     color: #a0aec0;
 }
-.titleTextLine{
+.titleTextLine {
     text-decoration: line-through;
 }
 
@@ -284,7 +278,7 @@ export default {
 }
 .body-projects-panel.light {
     border-right: 1px solid white;
-    background: #F7FAFC;
+    background: #f7fafc;
 }
 .body-projects-panel.dark {
     border-right: 1px solid black;
@@ -306,7 +300,7 @@ export default {
     cursor: pointer;
 }
 .project_item.light {
-    background: #E2E8F0;
+    background: #e2e8f0;
     color: #718096;
 }
 .project_item.dark {
@@ -318,7 +312,7 @@ export default {
     margin: 0px 5px 5px 5px;
 }
 .project_item.light:hover {
-    background: #EDF2F7;
+    background: #edf2f7;
     color: #718096;
 }
 .project_item.dark:hover {
@@ -326,7 +320,7 @@ export default {
     color: #cbd5e0;
 }
 .project_item.light.active {
-    background: #EDF2F7;
+    background: #edf2f7;
     color: #718096;
 }
 .project_item.dark.active {

@@ -44,17 +44,6 @@
                                     <a>
                                         <div class="mnu-flex">
                                             <i
-                                                class="mdi mdi-pencil mdiAddEditDeleteProjectIcon"
-                                                v-bind:class="theme"
-                                            ></i
-                                            >&nbsp;<span>Edit Project</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <div class="mnu-flex">
-                                            <i
                                                 class="mdi mdi-delete mdiAddEditDeleteProjectIcon"
                                                 v-bind:class="theme"
                                             ></i
@@ -86,17 +75,6 @@
                                                 v-bind:class="theme"
                                             ></i
                                             >&nbsp;<span>Add Task</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li id="mnuEditTask">
-                                    <a>
-                                        <div class="mnu-flex">
-                                            <i
-                                                class="mdi mdi-pencil mdiAddEditDeleteTaskIcon"
-                                                v-bind:class="theme"
-                                            ></i
-                                            >&nbsp;<span>Edit Task</span>
                                         </div>
                                     </a>
                                 </li>
@@ -164,7 +142,10 @@
                             <ul>
                                 <li id="mnuOptions">
                                     <a>
-                                        <div class="mnu-flex" @click="showProperties($event)">
+                                        <div
+                                            class="mnu-flex"
+                                            @click="showProperties($event)"
+                                        >
                                             <i
                                                 class="mdi mdi-tools standardSizeIcon"
                                                 v-bind:class="theme"
@@ -229,13 +210,6 @@
                 ></i
                 >&nbsp;Add Project</a
             >
-            <a id="btnEditProject"
-                ><i
-                    class="mdi mdi-pencil mdiAddEditDeleteProjectIcon"
-                    v-bind:class="theme"
-                ></i
-                >&nbsp;Edit Project</a
-            >
             <a id="btnDeleteProject"
                 ><i
                     class="mdi mdi-delete mdiAddEditDeleteProjectIcon"
@@ -249,13 +223,6 @@
                     v-bind:class="theme"
                 ></i
                 >&nbsp;Add Task</a
-            >
-            <a id="btnEditTask"
-                ><i
-                    class="mdi mdi-pencil mdiAddEditDeleteTaskIcon"
-                    v-bind:class="theme"
-                ></i
-                >&nbsp;Edit Task</a
             >
             <a id="btnDeleteTask"
                 ><i
