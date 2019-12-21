@@ -29,10 +29,29 @@
                     </span>
                 </h3>
             </div>
-            <input class="title" type="text" v-model="project.title">
-            <textarea class="text_body" rows="10" v-model="project.body"></textarea>
-            <div style="flex:1;">
-            </div>
+            <input class="title" type="text" v-model="project.title" />
+            <textarea
+                class="text_body"
+                rows="10"
+                v-model="project.body"
+            ></textarea>
+            <div style="flex:1;"></div>
+        </div>
+        <div class="bottom" v-bind:class="theme">
+            <a id="btnSaveProject"
+                ><i
+                    class="mdi mdi-content-save-outline mdiProjectIcon"
+                    v-bind:class="theme"
+                ></i
+                >&nbsp;Save Project</a
+            >
+            <a id="btnCloseProject" v-on:click.prevent="close"
+                ><i
+                    class="mdi mdi-close-outline mdiProjectIcon"
+                    v-bind:class="theme"
+                ></i
+                >&nbsp;Close Project</a
+            >
         </div>
     </div>
 </template>
@@ -129,20 +148,72 @@ export default {
 .date {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 20px; 
+    padding-bottom: 20px;
 }
-.title{
+.title {
     background: transparent;
     text-align: center;
     padding: 4px;
     font-size: 32px;
 }
-.text_body{
+.text_body {
     background: transparent;
     padding: 4px;
     font-size: 18px;
 }
 .continues {
     color: green;
+}
+.bottom {
+    display: flex;
+    padding: 2px;
+    height: 30px;
+}
+.bottom.light {
+    background: #edf2f7;
+    border-bottom: 1px solid #f7fafc;
+    border-top: 1px solid #e2e8f0;
+}
+.bottom.dark {
+    background: #2d3748;
+    border-bottom: 1px solid #1a202c;
+    border-top: 1px solid #4a5568;
+}
+.bottom a {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    transition: all 0.3s ease;
+    height: 24px;
+    cursor: pointer;
+}
+.bottom.light a {
+    color: #2d3748;
+    border-right: 1px solid #f7fafc;
+    background: #edf2f7;
+}
+.bottom.dark a {
+    color: #edf2f7;
+    border-right: 1px solid #1a202c;
+    background: #2d3748;
+}
+.bottom.dark a:hover {
+    background-color: #2b6cb0;
+    color: #f7fafc;
+}
+.bottom.light a:hover {
+    background-color: #90cdf4;
+    color: #1a202c;
+}
+.mdiProjectIcon {
+    font-size: 1.3rem;
+}
+.mdiProjectIcon.light {
+    color: #63b3ed;
+}
+.mdiProjectIcon.dark {
+    color: #3182ce;
 }
 </style>

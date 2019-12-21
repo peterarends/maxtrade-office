@@ -86,8 +86,7 @@ export default {
             project_id: "",
             pagination: {},
             edit: false,
-            options: [],
-            current_id: 0
+            options: []
         };
     },
 
@@ -115,7 +114,7 @@ export default {
         }
     },
 
-    props: ["theme"]
+    props: ["theme", "current_id"]
 };
 </script>
 

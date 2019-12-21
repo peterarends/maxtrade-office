@@ -1999,6 +1999,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2015,7 +2016,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      project: []
+      project: [],
+      current_project_id: 0
     };
   },
   methods: {
@@ -2023,10 +2025,12 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit("changetheme", changed_theme);
     },
     closePanel: function closePanel() {
+      this.current_project_id = 0;
       this.$emit("closepanel");
     },
     changeProject: function changeProject(project) {
       this.project = project;
+      this.current_project_id = project.id;
       this.$emit("showprojects");
     }
   },
@@ -2488,6 +2492,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Projects",
@@ -2603,8 +2626,7 @@ __webpack_require__.r(__webpack_exports__);
       project_id: "",
       pagination: {},
       edit: false,
-      options: [],
-      current_id: 0
+      options: []
     };
   },
   created: function created() {
@@ -2630,7 +2652,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit("changeproject", project);
     }
   },
-  props: ["theme"]
+  props: ["theme", "current_id"]
 });
 
 /***/ }),
@@ -2916,7 +2938,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".projects-body[data-v-c4c8aaa8] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-c4c8aaa8] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-c4c8aaa8] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-c4c8aaa8] {\n  background-color: #e53e3e;\n}\n.body[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-c4c8aaa8] {\n  text-decoration: line-through;\n}\n.date[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-c4c8aaa8]{\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-c4c8aaa8]{\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-c4c8aaa8] {\n  color: green;\n}\r\n", ""]);
+exports.push([module.i, ".projects-body[data-v-c4c8aaa8] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-c4c8aaa8] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-c4c8aaa8] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-c4c8aaa8] {\n  background-color: #e53e3e;\n}\n.body[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-c4c8aaa8] {\n  text-decoration: line-through;\n}\n.date[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-c4c8aaa8] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-c4c8aaa8] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-c4c8aaa8] {\n  color: green;\n}\n.bottom[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-c4c8aaa8] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-c4c8aaa8] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-c4c8aaa8]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-c4c8aaa8]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.mdiProjectIcon[data-v-c4c8aaa8] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-c4c8aaa8] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-c4c8aaa8] {\n  color: #3182ce;\n}\r\n", ""]);
 
 // exports
 
@@ -39128,7 +39150,7 @@ var render = function() {
       _c("leftmenu", { attrs: { theme: _vm.theme } }),
       _vm._v(" "),
       _c("projects-panel", {
-        attrs: { theme: _vm.theme },
+        attrs: { theme: _vm.theme, current_id: _vm.current_project_id },
         on: { changeproject: _vm.changeProject }
       }),
       _vm._v(" "),
@@ -39935,7 +39957,37 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticStyle: { flex: "1" } })
       ]
-    )
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "bottom", class: _vm.theme }, [
+      _c("a", { attrs: { id: "btnSaveProject" } }, [
+        _c("i", {
+          staticClass: "mdi mdi-content-save-outline mdiProjectIcon",
+          class: _vm.theme
+        }),
+        _vm._v(" Save Project")
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          attrs: { id: "btnCloseProject" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.close($event)
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-close-outline mdiProjectIcon",
+            class: _vm.theme
+          }),
+          _vm._v(" Close Project")
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -53363,8 +53415,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\laravelapi\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\laravelapi\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\maxtrade-office\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\maxtrade-office\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

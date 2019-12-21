@@ -3,6 +3,7 @@
         <leftmenu v-bind:theme="theme"></leftmenu>
         <projects-panel
             v-bind:theme="theme"
+            v-bind:current_id="current_project_id"
             @changeproject="changeProject"
         ></projects-panel>
         <tasks-panel v-bind:theme="theme"></tasks-panel>
@@ -44,7 +45,8 @@ export default {
 
     data() {
         return {
-            project: []
+            project: [],
+            current_project_id: 0
         };
     },
 
@@ -53,10 +55,12 @@ export default {
             this.$emit("changetheme", changed_theme);
         },
         closePanel() {
+            this.current_project_id = 0;
             this.$emit("closepanel");
         },
         changeProject(project) {
             this.project = project;
+            this.current_project_id = project.id;
             this.$emit("showprojects");
         }
     },
