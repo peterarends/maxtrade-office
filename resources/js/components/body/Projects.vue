@@ -35,16 +35,13 @@
                 rows="10"
                 v-model="project.body"
             ></textarea>
-            <form>
-                <div>
-                    <input type="checkbox" id="check" name="check" value="" />
-                    <label for="check">
-                        <span
-                            ><!-- This span is needed to create the "checkbox" element --></span
-                        >Checkbox
-                    </label>
-                </div>
-            </form>
+            <div>
+                <input type="checkbox" id="status" v-model="project.status" />
+                <label for="status"
+                    ><span></span>Status of the project:
+                    {{ project.status | statusFilter }}</label
+                >
+            </div>
         </div>
         <div class="bottom" v-bind:class="theme">
             <a id="btnSaveProject" v-on:click.prevent="save"
@@ -77,6 +74,13 @@ export default {
         formatDate: function(value) {
             if (value) {
                 return moment(String(value)).format("DD.MM.YYYY hh:mm");
+            }
+        },
+        statusFilter: function(value) {
+            if (value == 1) {
+                return "Active";
+            } else {
+                return "Completed";
             }
         }
     },
@@ -230,7 +234,6 @@ export default {
 }
 label {
     display: inline-block;
-    color: #fff;
     cursor: pointer;
     position: relative;
 }
@@ -241,7 +244,7 @@ label span {
     width: 25px;
     height: 25px;
     transform-origin: center;
-    border: 2px solid #fff;
+    border: 2px solid #718096;
     border-radius: 50%;
     vertical-align: -6px;
     margin-right: 10px;
@@ -253,11 +256,11 @@ label span:before {
     width: 0px;
     height: 2px;
     border-radius: 2px;
-    background: #fff;
+    background: #cbd5e0;
     position: absolute;
     transform: rotate(45deg);
-    top: 13px;
-    left: 9px;
+    top: 10px;
+    left: 8px;
     transition: width 50ms ease 50ms;
     transform-origin: 0% 0%;
 }
@@ -266,11 +269,11 @@ label span:after {
     width: 0;
     height: 2px;
     border-radius: 2px;
-    background: #fff;
+    background: #cbd5e0;
     position: absolute;
     transform: rotate(305deg);
-    top: 16px;
-    left: 10px;
+    top: 13px;
+    left: 9px;
     transition: width 50ms ease;
     transform-origin: 0% 0%;
 }
@@ -286,7 +289,7 @@ input[type="checkbox"] {
     display: none;
 }
 input[type="checkbox"]:checked + label span {
-    background-color: #fff;
+    background-color: #cbd5e0;
     transform: scale(1.25);
 }
 input[type="checkbox"]:checked + label span:after {
@@ -300,7 +303,7 @@ input[type="checkbox"]:checked + label span:before {
     transition: width 150ms ease 100ms;
 }
 input[type="checkbox"]:checked + label:hover span {
-    background-color: #fff;
+    background-color: #cbd5e0;
     transform: scale(1.25);
 }
 input[type="checkbox"]:checked + label:hover span:after {
