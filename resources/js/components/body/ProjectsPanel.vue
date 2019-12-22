@@ -89,20 +89,6 @@ export default {
         }
     },
 
-    data() {
-        return {
-            pagination: {},
-            edit: false,
-            options: []
-        };
-    },
-
-    mounted() {
-        if (localStorage.options) {
-            this.options = localStorage.options;
-        }
-    },
-
     methods: {
         showProject(project) {
             this.$emit("changeproject", project);
@@ -289,6 +275,22 @@ export default {
     user-select: none;
     overflow-x: hidden;
     overflow-y: auto;
+}
+#projectsListView div.projectItem.light:hover {
+    background: #2d3748;
+}
+#projectsListView div.projectItem.dark:hover {
+    background: #edf2f7;
+}
+#projectsListView div.projectItem.light.active {
+    background: #2d3748;
+}
+#projectsListView div.projectItem.dark.active {
+    background: #edf2f7;
+}
+#projectsListView div.projectItem div {
+    display: flex;
+    align-items: center;
 }
 .project_item {
     display: flex;

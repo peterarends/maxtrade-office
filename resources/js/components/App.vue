@@ -277,7 +277,11 @@
                 v-bind:current_id="current_project_id"
                 @changeproject="changeProject"
             ></projects-panel>
-            <tasks-panel v-bind:theme="theme"></tasks-panel>
+            <tasks-panel
+                v-bind:tasks="tasks"
+                v-bind:theme="theme"
+                v-bind:current_id="current_task_id"
+            ></tasks-panel>
             <div class="mainDivBodypanel" v-bind:class="theme">
                 <properties
                     v-show="panel == 'properties'"
@@ -408,7 +412,9 @@ export default {
             projects: [],
             project: [],
             current_project_id: 0,
-            new_project: false
+            new_project: false,
+            tasks: [],
+            current_task_id: 0
         };
     },
 
@@ -468,6 +474,7 @@ export default {
             this.current_project_id = project.id;
             this.new_project = false;
             this.panel = "projects";
+            this.fetchTasks(this.current_project_id);
         },
         // Save project changes back to DB
         saveProject(isMessage) {
@@ -551,6 +558,17 @@ export default {
             this.saveProject(false);
         },
 
+        // Tasks actions
+        // Fetch all tasks from DB and set to TasksPanel
+        fetchTasks(_project_id) {
+            fetch("api/tasks/" + _project_id)
+                .then(res => res.json())
+                .then(res => {
+                    this.tasks = res.data;
+                })
+                .catch(err => console.log(err));
+        },
+
         // Other system staff
         // Close all panels and unset current projects
         closePanel() {
@@ -592,71 +610,6 @@ h5 {
 }
 .mainDiv.dark {
     background-color: #000;
-}
-
-#tasksListView {
-    width: 100%;
-    box-sizing: border-box;
-    user-select: none;
-    overflow-x: hidden;
-    overflow-y: auto;
-    flex: 1;
-}
-#tasksListView div.taskItem {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 20px;
-    margin: 5px 5px;
-    transition: 0.5s;
-    cursor: pointer;
-}
-#tasksListView div.taskItem.light {
-    background: #718096;
-    color: #edf2f7;
-}
-#tasksListView div.taskItem.dark {
-    background: #cbd5e0;
-    color: #2d3748;
-}
-#projectsListView div.projectItem.light:hover {
-    background: #2d3748;
-}
-#projectsListView div.projectItem.dark:hover {
-    background: #edf2f7;
-}
-#tasksListView div.taskItem.light:hover {
-    background: #2d3748;
-}
-#tasksListView div.taskItem.dark:hover {
-    background: #edf2f7;
-}
-#projectsListView div.projectItem.light.active {
-    background: #2d3748;
-}
-#projectsListView div.projectItem.dark.active {
-    background: #edf2f7;
-}
-#tasksListView div.taskItem.light.active {
-    background: #2d3748;
-}
-#tasksListView div.taskItem.dark.active {
-    background: #edf2f7;
-}
-#tasksListView div.taskItem.light.ended {
-    color: #cbd5e0;
-    text-decoration: line-through;
-}
-#tasksListView div.taskItem.dark.ended {
-    color: #718096;
-    text-decoration: line-through;
-}
-#projectsListView div.projectItem div {
-    display: flex;
-    align-items: center;
-}
-#tasksListView div.taskItem div {
-    display: flex;
-    align-items: center;
 }
 .list-dot {
     color: #4682b4;

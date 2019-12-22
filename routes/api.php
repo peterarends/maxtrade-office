@@ -29,6 +29,17 @@ Route::put('project', 'ProjectsController@store');
 /** Delete a Project */
 Route::delete('project/{id}', 'ProjectsController@destroy');
 
+/** List tasks */
+Route::get('tasks/{id}', 'TasksController@index');
+/** List single Task */
+Route::get('task/{id}', 'TasksController@show');
+/** Create new Task */
+Route::post('task', 'TasksController@store');
+/** Update a Task */
+Route::put('task', 'TasksController@store');
+/** Delete a Task */
+Route::delete('task/{id}', 'TasksController@destroy');
+
 /** List Properties */
 Route::get('properties', 'PropertiesController@index');
 /** Update a Property */
