@@ -1840,11 +1840,13 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _body_Leftmenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./body/Leftmenu */ "./resources/js/components/body/Leftmenu.vue");
-/* harmony import */ var _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./body/ProjectsPanel */ "./resources/js/components/body/ProjectsPanel.vue");
-/* harmony import */ var _body_TasksPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./body/TasksPanel */ "./resources/js/components/body/TasksPanel.vue");
-/* harmony import */ var _body_Properties__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./body/Properties */ "./resources/js/components/body/Properties.vue");
-/* harmony import */ var _body_Projects__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./body/Projects */ "./resources/js/components/body/Projects.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _body_Leftmenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./body/Leftmenu */ "./resources/js/components/body/Leftmenu.vue");
+/* harmony import */ var _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./body/ProjectsPanel */ "./resources/js/components/body/ProjectsPanel.vue");
+/* harmony import */ var _body_TasksPanel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./body/TasksPanel */ "./resources/js/components/body/TasksPanel.vue");
+/* harmony import */ var _body_Properties__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./body/Properties */ "./resources/js/components/body/Properties.vue");
+/* harmony import */ var _body_Projects__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./body/Projects */ "./resources/js/components/body/Projects.vue");
 //
 //
 //
@@ -2172,6 +2174,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
@@ -2229,11 +2237,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   components: {
-    Leftmenu: _body_Leftmenu__WEBPACK_IMPORTED_MODULE_1__["default"],
-    ProjectsPanel: _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_2__["default"],
-    TasksPanel: _body_TasksPanel__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Properties: _body_Properties__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Projects: _body_Projects__WEBPACK_IMPORTED_MODULE_5__["default"]
+    Leftmenu: _body_Leftmenu__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ProjectsPanel: _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_3__["default"],
+    TasksPanel: _body_TasksPanel__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Properties: _body_Properties__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Projects: _body_Projects__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   data: function data() {
     return {
@@ -2242,7 +2250,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       panel: "",
       projects: [],
       project: [],
-      current_project_id: 0
+      current_project_id: 0,
+      new_project: false
     };
   },
   created: function created() {
@@ -2250,7 +2259,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     this.fetchProjects();
   },
   methods: {
-    // Get Properties and set Theme
+    // Properties actions
+    // Fetch properties from DB and set the theme
     fetchProperties: function fetchProperties() {
       var _this = this;
 
@@ -2265,17 +2275,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
         return console.log(err);
       });
     },
-    fetchProjects: function fetchProjects() {
-      var _this2 = this;
-
-      fetch("api/projects").then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this2.projects = res.data;
-      })["catch"](function (err) {
-        return console.log(err);
-      });
+    // Open Properties panel
+    showProperties: function showProperties() {
+      this.panel = "properties";
     },
+    // Change the current theme and save back to DB
     changeTheme: function changeTheme(changed_theme) {
       this.theme = changed_theme;
       fetch("api/property", {
@@ -2295,20 +2299,34 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
         return console.log(err);
       });
     },
-    closePanel: function closePanel() {
-      this.current_project_id = 0;
-      this.panel = "";
+    // Projects actions
+    // Fetch all projects from DB and set to ProjectsPanel
+    fetchProjects: function fetchProjects() {
+      var _this2 = this;
+
+      fetch("api/projects").then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this2.projects = res.data;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
     },
+    // Open project in Project panel
     changeProject: function changeProject(project) {
       this.project = project;
       this.current_project_id = project.id;
+      this.new_project = false;
       this.panel = "projects";
     },
-    saveProject: function saveProject() {
+    // Save project changes back to DB
+    saveProject: function saveProject(isMessage) {
+      var _this3 = this;
+
       fetch("api/project", {
-        method: "PUT",
+        method: this.new_project ? "POST" : "PUT",
         body: JSON.stringify({
-          project_id: this.project.id,
+          project_id: this.new_project ? 0 : this.project.id,
           title: this.project.title,
           body: this.project.body,
           status: this.project.status
@@ -2319,16 +2337,77 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
-        alert("You have successfully saved the changes to the Project: " + res.data.title);
+        _this3.project.id = res.data.id;
+        _this3.project.title = res.data.title;
+        _this3.project.body = res.data.body;
+        _this3.project.created_at = res.data.created_at;
+        _this3.project.updated_at = res.data.updated_at;
+        _this3.project.status = res.data.status;
+        _this3.new_project = false;
+        _this3.current_project_id = res.data.id;
+
+        if (isMessage) {
+          alert("You have successfully saved the changes to the Project: " + res.data.title);
+        }
       })["catch"](function (err) {
         return console.log(err);
       });
     },
+    // Delete current project
+    deleteProject: function deleteProject() {
+      var _this4 = this;
+
+      if (confirm("Are You sure?")) {
+        fetch("api/project/" + this.project.id, {
+          method: "DELETE",
+          body: JSON.stringify({
+            project_id: this.project.id
+          }),
+          headers: {
+            "Content-Type": "application/json; charset=utf-8"
+          }
+        }).then(function (res) {
+          return res.json();
+        }).then(function (res) {
+          alert("You have successfully delete the Project: " + res.data.title);
+          _this4.projects = _this4.projects.filter(function (p) {
+            return p.id !== res.data.id;
+          });
+          _this4.current_project_id = 0;
+          _this4.panel = "";
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      }
+    },
+    // Add new project
+    addProject: function addProject() {
+      var newProject = {
+        id: Math.max.apply(Math, this.projects.map(function (o) {
+          return o.id;
+        })) + 1,
+        title: "Name of new Project",
+        body: "Description of new Project",
+        created_at: moment__WEBPACK_IMPORTED_MODULE_1___default()().format(),
+        updated_at: "",
+        status: 1
+      };
+      this.projects.unshift(newProject);
+      this.project = newProject;
+      this.current_project_id = newProject.id;
+      this.new_project = true;
+      this.panel = "projects";
+      this.saveProject(false);
+    },
+    // Other system staff
+    // Close all panels and unset current projects
+    closePanel: function closePanel() {
+      this.current_project_id = 0;
+      this.panel = "";
+    },
+    // Exit the program
     exit: function exit(event) {
       window.location = "/logout.html";
-    },
-    showProperties: function showProperties() {
-      this.panel = "properties";
     }
   }
 });
@@ -2473,10 +2552,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Projects",
-  props: ["theme", "project"],
+  props: ["theme", "project", "new_project"],
   filters: {
     formatDate: function formatDate(value) {
       if (value) {
@@ -2489,14 +2581,24 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return "Completed";
       }
+    },
+    formatProjectId: function formatProjectId(value, _new_project) {
+      if (_new_project) {
+        return "New Project";
+      } else {
+        return value;
+      }
     }
   },
   methods: {
-    close: function close(event) {
+    closeProject: function closeProject(event) {
       this.$emit("closepanel");
     },
-    save: function save(event) {
+    saveProject: function saveProject(event) {
       this.$emit("saveproject");
+    },
+    deleteProject: function deleteProject(event) {
+      this.$emit("deleteproject");
     }
   }
 });
@@ -2809,7 +2911,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n#tasksListView {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light {\n  background: #718096;\n  color: #edf2f7;\n}\n#tasksListView div.taskItem.dark {\n  background: #cbd5e0;\n  color: #2d3748;\n}\n#projectsListView div.projectItem.light:hover {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark:hover {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light:hover {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark:hover {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem.light.active {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark.active {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.active {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark.active {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.ended {\n  color: #cbd5e0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended {\n  color: #718096;\n  text-decoration: line-through;\n}\n#projectsListView div.projectItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n#tasksListView div.taskItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n\n/* Start Top panel */\n.generalStyleDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light {\n  color: #4a5568;\n}\n.contentDiv.dark {\n  color: #e2e8f0;\n}\n.mdiExitIcon {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light {\n  color: #fc8181;\n}\n.mdiExitIcon.dark {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark {\n  color: #dd6b20;\n}\n.standardSizeIcon {\n  font-size: 1.5rem;\n}\n.topTitleDiv {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light {\n  color: #4a5568;\n}\n.topTitleDiv.dark {\n  color: #e2e8f0;\n}\n.topRightIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark:hover {\n  background-color: #718096;\n}\n.rightExitIcon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark {\n  background-color: #e53e3e;\n}\n.button-bar {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar a {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light a {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark a {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark a:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light a:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul,\n#cssmenu li {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover,\n#cssmenu ul li:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li {\n  float: none;\n}\n#cssmenu ul ul ul {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul {\n  visibility: visible;\n}\n#cssmenu ul ul {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul {\n  margin-top: 0;\n}\n#cssmenu ul ul li {\n  font-weight: normal;\n}\n#cssmenu a {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul {\n  display: inline-block;\n}\n#cssmenu:after,\n#cssmenu ul:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul {\n  border-top: 0 none;\n}\n#cssmenu ul ul li {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a,\n#cssmenu.dark ul li.active > a {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a,\n#cssmenu.light ul li.active > a {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a {\n  padding: 3px 10px;\n}\n#cssmenu.dark a {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a {\n  line-height: 30px;\n}\n.mnu-flex {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/** Start Footer panel */\n.footerMainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon {\n  font-size: 1.25rem;\n}\n.footer-icon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div:first-child {\n  width: 32px;\n  text-align: center;\n}\n\n/* End Footer panel */\n", ""]);
+exports.push([module.i, "/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n#tasksListView {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light {\n  background: #718096;\n  color: #edf2f7;\n}\n#tasksListView div.taskItem.dark {\n  background: #cbd5e0;\n  color: #2d3748;\n}\n#projectsListView div.projectItem.light:hover {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark:hover {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light:hover {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark:hover {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem.light.active {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark.active {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.active {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark.active {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.ended {\n  color: #cbd5e0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended {\n  color: #718096;\n  text-decoration: line-through;\n}\n#projectsListView div.projectItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n#tasksListView div.taskItem div {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n\n/* Start Top panel */\n.generalStyleDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light {\n  color: #4a5568;\n}\n.contentDiv.dark {\n  color: #e2e8f0;\n}\n.mdiExitIcon {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light {\n  color: #fc8181;\n}\n.mdiExitIcon.dark {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark {\n  color: #dd6b20;\n}\n.standardSizeIcon {\n  font-size: 1.5rem;\n}\n.topTitleDiv {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light {\n  color: #4a5568;\n}\n.topTitleDiv.dark {\n  color: #e2e8f0;\n}\n.topRightIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark:hover {\n  background-color: #718096;\n}\n.rightExitIcon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark {\n  background-color: #e53e3e;\n}\n.button-bar {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar button {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light button {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark button {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark button:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light button:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul,\n#cssmenu li {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover,\n#cssmenu ul li:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li {\n  float: none;\n}\n#cssmenu ul ul ul {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul {\n  visibility: visible;\n}\n#cssmenu ul ul {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul {\n  margin-top: 0;\n}\n#cssmenu ul ul li {\n  font-weight: normal;\n}\n#cssmenu a {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul {\n  display: inline-block;\n}\n#cssmenu:after,\n#cssmenu ul:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul {\n  border-top: 0 none;\n}\n#cssmenu ul ul li {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a,\n#cssmenu.dark ul li.active > a {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a,\n#cssmenu.light ul li.active > a {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a {\n  padding: 3px 10px;\n}\n#cssmenu.dark a {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a {\n  line-height: 30px;\n}\n.mnu-flex {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/** Start Footer panel */\n.footerMainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon {\n  font-size: 1.25rem;\n}\n.footer-icon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div:first-child {\n  width: 32px;\n  text-align: center;\n}\n\n/* End Footer panel */\n", ""]);
 
 // exports
 
@@ -2847,7 +2949,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".projects-body[data-v-c4c8aaa8] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-c4c8aaa8] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-c4c8aaa8] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-c4c8aaa8] {\n  background-color: #e53e3e;\n}\n.body[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-c4c8aaa8] {\n  text-decoration: line-through;\n}\n.date[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-c4c8aaa8] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-c4c8aaa8] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-c4c8aaa8] {\n  color: green;\n}\n.bottom[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-c4c8aaa8] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-c4c8aaa8] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-c4c8aaa8]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-c4c8aaa8]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.mdiProjectIcon[data-v-c4c8aaa8] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-c4c8aaa8] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-c4c8aaa8] {\n  color: #3182ce;\n}\nlabel[data-v-c4c8aaa8] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-c4c8aaa8] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-c4c8aaa8]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-c4c8aaa8]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-c4c8aaa8] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n", ""]);
+exports.push([module.i, ".projects-body[data-v-c4c8aaa8] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-c4c8aaa8] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-c4c8aaa8] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-c4c8aaa8] {\n  background-color: #e53e3e;\n}\n.body[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-c4c8aaa8] {\n  text-decoration: line-through;\n}\n.date[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-c4c8aaa8] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-c4c8aaa8] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-c4c8aaa8] {\n  color: green;\n}\n.bottom[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-c4c8aaa8] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-c4c8aaa8] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-c4c8aaa8]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-c4c8aaa8]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-c4c8aaa8] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-c4c8aaa8] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-c4c8aaa8] {\n  color: #3182ce;\n}\nlabel[data-v-c4c8aaa8] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-c4c8aaa8] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-c4c8aaa8]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-c4c8aaa8]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-c4c8aaa8] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n", ""]);
 
 // exports
 
@@ -2866,7 +2968,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** Top part of projects */\n.topProjectsDiv[data-v-b009a230] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-b009a230] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-b009a230] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-b009a230] {\n  /* bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300\n            placeholder-gray-700 mr-1 */\n  border-radius: 0.25rem;\n  width: 50%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-b009a230] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-b009a230]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-b009a230] {\n  /* flex items-center justify-center border-l border-gray-700 border-dotted pl-1 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-b009a230] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-b009a230] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIcons[data-v-b009a230] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1.5rem;\n}\n.searchIcons.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-b009a230]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-b009a230]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-b009a230] {\n  /* flex justify-end text-xs */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #cbd5e0;\n}\n.dateText.dateWithoutLine.light[data-v-b009a230] {\n  /* text-gray-400 */\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleProjectDiv[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleProjectId[data-v-b009a230] {\n  /* rounded-full h-6 w-6 text-xs flex items-center justify-center */\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleProjectId.idBackground.light[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleProjectId.idBackground.dark[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleProjectId.idTextUnfinished.light[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleProjectId.idTextUnfinished.dark[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleProjectId.idTextFinished.light[data-v-b009a230] {\n  color: #f7fafc;\n}\n.singleProjectId.idTextFinished.dark[data-v-b009a230] {\n  color: #1a202c;\n}\n.singleProjectText[data-v-b009a230] {\n  /* pl-2 pt-1 */\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleProjectText.titleTextUnfinished.light[data-v-b009a230] {\n  color: #4a5568;\n}\n.singleProjectText.titleTextUnfinished.dark[data-v-b009a230] {\n  color: #e2e8f0;\n}\n.singleProjectText.titleTextFinished.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.singleProjectText.titleTextFinished.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.body-projects-panel[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-projects-panel.light[data-v-b009a230] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-projects-panel.dark[data-v-b009a230] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#projectsListView[data-v-b009a230] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.project_item[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item.light[data-v-b009a230] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.project_item[data-v-b009a230]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item.light[data-v-b009a230]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.project_item.light.active[data-v-b009a230] {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark.active[data-v-b009a230] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n", ""]);
+exports.push([module.i, "/** Top part of projects */\n.topProjectsDiv[data-v-b009a230] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-b009a230] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-b009a230] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-b009a230] {\n  /* bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300\n            placeholder-gray-700 mr-1 */\n  border-radius: 0.25rem;\n  width: 50%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-b009a230] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-b009a230]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-b009a230] {\n  /* flex items-center justify-center border-l border-gray-700 border-dotted pl-1 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-b009a230] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-b009a230] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIcons[data-v-b009a230] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1.5rem;\n}\n.searchIcons.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-b009a230]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-b009a230]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-b009a230] {\n  /* flex justify-end text-xs */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #cbd5e0;\n}\n.dateText.dateWithoutLine.light[data-v-b009a230] {\n  /* text-gray-400 */\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleProjectDiv[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleProjectId[data-v-b009a230] {\n  /* rounded-full h-6 w-6 text-xs flex items-center justify-center */\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleProjectId.idBackground.light[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleProjectId.idBackground.dark[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleProjectId.idTextUnfinished.light[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleProjectId.idTextUnfinished.dark[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleProjectId.idTextFinished.light[data-v-b009a230] {\n  color: #f7fafc;\n}\n.singleProjectId.idTextFinished.dark[data-v-b009a230] {\n  color: #1a202c;\n}\n.singleProjectText[data-v-b009a230] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleProjectText.titleTextUnfinished.light[data-v-b009a230] {\n  color: #4a5568;\n}\n.singleProjectText.titleTextUnfinished.dark[data-v-b009a230] {\n  color: #e2e8f0;\n}\n.singleProjectText.titleTextFinished.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.singleProjectText.titleTextFinished.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.body-projects-panel[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-projects-panel.light[data-v-b009a230] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-projects-panel.dark[data-v-b009a230] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#projectsListView[data-v-b009a230] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.project_item[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item.light[data-v-b009a230] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.project_item[data-v-b009a230]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item.light[data-v-b009a230]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.project_item.light.active[data-v-b009a230] {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark.active[data-v-b009a230] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n", ""]);
 
 // exports
 
@@ -38949,31 +39051,53 @@ var render = function() {
                 _vm._v(" "),
                 _c("ul", [
                   _c("li", [
-                    _c("a", [
-                      _c("div", { staticClass: "mnu-flex" }, [
-                        _c("i", {
-                          staticClass:
-                            "mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon",
-                          class: _vm.theme
-                        }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Add Project")])
-                      ])
-                    ])
+                    _c(
+                      "a",
+                      {
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.addProject($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "mnu-flex" }, [
+                          _c("i", {
+                            staticClass:
+                              "mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon",
+                            class: _vm.theme
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Add Project")])
+                        ])
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("li", [
-                    _c("a", [
-                      _c("div", { staticClass: "mnu-flex" }, [
-                        _c("i", {
-                          staticClass:
-                            "mdi mdi-delete mdiAddEditDeleteProjectIcon",
-                          class: _vm.theme
-                        }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Delete Project")])
-                      ])
-                    ])
+                    _c(
+                      "a",
+                      {
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.deleteProject($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "mnu-flex" }, [
+                          _c("i", {
+                            staticClass:
+                              "mdi mdi-delete mdiAddEditDeleteProjectIcon",
+                            class: _vm.theme
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Delete Project")])
+                        ])
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("li", [
@@ -39114,8 +39238,8 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "button-bar", class: _vm.theme }, [
         _c(
-          "a",
-          { attrs: { href: "/logout.html", title: "Exit this program" } },
+          "button",
+          { attrs: { title: "Exit this program" }, on: { click: _vm.exit } },
           [
             _c("i", {
               staticClass: "mdi mdi-location-exit mdiExitIcon",
@@ -39124,37 +39248,44 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c("a", { attrs: { id: "btnAddProject" } }, [
+        _c("button", { on: { click: _vm.addProject } }, [
           _c("i", {
             staticClass:
               "mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon",
             class: _vm.theme
           }),
-          _vm._v(" Add Project")
+          _vm._v(" Add Project\n            ")
         ]),
         _vm._v(" "),
-        _c("a", { attrs: { id: "btnDeleteProject" } }, [
-          _c("i", {
-            staticClass: "mdi mdi-delete mdiAddEditDeleteProjectIcon",
-            class: _vm.theme
-          }),
-          _vm._v(" Delete Project")
-        ]),
+        _c(
+          "button",
+          {
+            attrs: { disabled: _vm.current_project_id == 0 },
+            on: { click: _vm.deleteProject }
+          },
+          [
+            _c("i", {
+              staticClass: "mdi mdi-delete mdiAddEditDeleteProjectIcon",
+              class: _vm.theme
+            }),
+            _vm._v(" Delete Project\n            ")
+          ]
+        ),
         _vm._v(" "),
-        _c("a", { attrs: { id: "btnAddTask" } }, [
+        _c("button", { attrs: { id: "btnAddTask" } }, [
           _c("i", {
             staticClass: "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
             class: _vm.theme
           }),
-          _vm._v(" Add Task")
+          _vm._v(" Add Task\n            ")
         ]),
         _vm._v(" "),
-        _c("a", { attrs: { id: "btnDeleteTask" } }, [
+        _c("button", { attrs: { id: "btnDeleteTask" } }, [
           _c("i", {
             staticClass: "mdi mdi-delete mdiAddEditDeleteTaskIcon",
             class: _vm.theme
           }),
-          _vm._v(" Delete Task")
+          _vm._v(" Delete Task\n            ")
         ])
       ])
     ]),
@@ -39202,8 +39333,18 @@ var render = function() {
                   expression: "panel == 'projects'"
                 }
               ],
-              attrs: { project: _vm.project, theme: _vm.theme },
-              on: { closepanel: _vm.closePanel, saveproject: _vm.saveProject }
+              attrs: {
+                project: _vm.project,
+                theme: _vm.theme,
+                new_project: _vm.new_project
+              },
+              on: {
+                closepanel: _vm.closePanel,
+                saveproject: function($event) {
+                  return _vm.saveProject(true)
+                },
+                deleteproject: _vm.deleteProject
+              }
             })
           ],
           1
@@ -39534,7 +39675,12 @@ var render = function() {
   return _c("div", { staticClass: "projects-body" }, [
     _c("div", { staticClass: "button-bar", class: _vm.theme }, [
       _c("div", { staticClass: "topTitleDiv" }, [
-        _c("span", [_vm._v("Project: " + _vm._s(_vm.project.id))])
+        _c("span", [
+          _vm._v(
+            "Project:\n                " +
+              _vm._s(_vm._f("formatProjectId")(_vm.project.id, _vm.new_project))
+          )
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "topRightIcons" }, [
@@ -39543,7 +39689,7 @@ var render = function() {
           {
             staticClass: "rightExitIcon",
             class: _vm.theme,
-            on: { click: _vm.close }
+            on: { click: _vm.closeProject }
           },
           [_c("img", { attrs: { src: "/images/close.png" } })]
         )
@@ -39703,11 +39849,10 @@ var render = function() {
       _c(
         "a",
         {
-          attrs: { id: "btnSaveProject" },
           on: {
             click: function($event) {
               $event.preventDefault()
-              return _vm.save($event)
+              return _vm.saveProject($event)
             }
           }
         },
@@ -39723,11 +39868,29 @@ var render = function() {
       _c(
         "a",
         {
-          attrs: { id: "btnCloseProject" },
           on: {
             click: function($event) {
               $event.preventDefault()
-              return _vm.close($event)
+              return _vm.deleteProject($event)
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-delete-outline mdiProjectIcon",
+            class: _vm.theme
+          }),
+          _vm._v(" Delete Project")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.closeProject($event)
             }
           }
         },
@@ -39738,7 +39901,15 @@ var render = function() {
           }),
           _vm._v(" Close Project")
         ]
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "status_panel" }, [
+        _vm._v(
+          "\n            Last change: " +
+            _vm._s(_vm._f("formatDate")(_vm.project.updated_at)) +
+            "\n        "
+        )
+      ])
     ])
   ])
 }

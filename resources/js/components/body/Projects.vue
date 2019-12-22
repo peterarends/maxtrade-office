@@ -3,14 +3,17 @@
         <div class="button-bar" v-bind:class="theme">
             <div class="topTitleDiv">
                 <!--Window title-->
-                <span>Project: {{ project.id }}</span>
+                <span
+                    >Project:
+                    {{ project.id | formatProjectId(new_project) }}</span
+                >
             </div>
             <div class="topRightIcons">
                 <!--Window title icons-->
                 <div
                     class="rightExitIcon"
                     v-bind:class="theme"
-                    v-on:click="close"
+                    v-on:click="closeProject"
                 >
                     <img src="/images/close.png" />
                 </div>
@@ -44,20 +47,30 @@
             </div>
         </div>
         <div class="bottom" v-bind:class="theme">
-            <a id="btnSaveProject" v-on:click.prevent="save"
+            <a v-on:click.prevent="saveProject"
                 ><i
                     class="mdi mdi-content-save-outline mdiProjectIcon"
                     v-bind:class="theme"
                 ></i
                 >&nbsp;Save Project</a
             >
-            <a id="btnCloseProject" v-on:click.prevent="close"
+            <a v-on:click.prevent="deleteProject"
+                ><i
+                    class="mdi mdi-delete-outline mdiProjectIcon"
+                    v-bind:class="theme"
+                ></i
+                >&nbsp;Delete Project</a
+            >
+            <a v-on:click.prevent="closeProject"
                 ><i
                     class="mdi mdi-close-outline mdiProjectIcon"
                     v-bind:class="theme"
                 ></i
                 >&nbsp;Close Project</a
             >
+            <div class="status_panel">
+                Last change: {{ project.updated_at | formatDate }}
+            </div>
         </div>
     </div>
 </template>
@@ -68,7 +81,7 @@ import moment from "moment";
 export default {
     name: "Projects",
 
-    props: ["theme", "project"],
+    props: ["theme", "project", "new_project"],
 
     filters: {
         formatDate: function(value) {
@@ -82,15 +95,25 @@ export default {
             } else {
                 return "Completed";
             }
+        },
+        formatProjectId: function(value, _new_project) {
+            if (_new_project) {
+                return "New Project";
+            } else {
+                return value;
+            }
         }
     },
 
     methods: {
-        close: function(event) {
+        closeProject: function(event) {
             this.$emit("closepanel");
         },
-        save: function(event) {
+        saveProject: function(event) {
             this.$emit("saveproject");
+        },
+        deleteProject: function(event) {
+            this.$emit("deleteproject");
         }
     }
 };
@@ -222,6 +245,10 @@ export default {
 .bottom.light a:hover {
     background-color: #90cdf4;
     color: #1a202c;
+}
+.status_panel {
+    flex: 1;
+    text-align: right;
 }
 .mdiProjectIcon {
     font-size: 1.3rem;

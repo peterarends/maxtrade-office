@@ -35,7 +35,7 @@
                                 <a><span>Projects</span></a>
                                 <ul>
                                     <li>
-                                        <a>
+                                        <a v-on:click.prevent="addProject">
                                             <div class="mnu-flex">
                                                 <i
                                                     class="mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
@@ -46,7 +46,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a>
+                                        <a v-on:click.prevent="deleteProject">
                                             <div class="mnu-flex">
                                                 <i
                                                     class="mdi mdi-delete mdiAddEditDeleteProjectIcon"
@@ -228,40 +228,43 @@
                 </div>
             </div>
             <div class="button-bar" v-bind:class="theme">
-                <a href="/logout.html" title="Exit this program"
-                    ><i
+                <button v-on:click="exit" title="Exit this program">
+                    <i
                         class="mdi mdi-location-exit mdiExitIcon"
                         v-bind:class="theme"
-                    ></i
-                ></a>
-                <a id="btnAddProject"
-                    ><i
+                    ></i>
+                </button>
+                <button v-on:click="addProject">
+                    <i
                         class="mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
                         v-bind:class="theme"
                     ></i
-                    >&nbsp;Add Project</a
+                    >&nbsp;Add Project
+                </button>
+                <button
+                    :disabled="current_project_id == 0"
+                    v-on:click="deleteProject"
                 >
-                <a id="btnDeleteProject"
-                    ><i
+                    <i
                         class="mdi mdi-delete mdiAddEditDeleteProjectIcon"
                         v-bind:class="theme"
                     ></i
-                    >&nbsp;Delete Project</a
-                >
-                <a id="btnAddTask"
-                    ><i
+                    >&nbsp;Delete Project
+                </button>
+                <button id="btnAddTask">
+                    <i
                         class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
                         v-bind:class="theme"
                     ></i
-                    >&nbsp;Add Task</a
-                >
-                <a id="btnDeleteTask"
-                    ><i
+                    >&nbsp;Add Task
+                </button>
+                <button id="btnDeleteTask">
+                    <i
                         class="mdi mdi-delete mdiAddEditDeleteTaskIcon"
                         v-bind:class="theme"
                     ></i
-                    >&nbsp;Delete Task</a
-                >
+                    >&nbsp;Delete Task
+                </button>
             </div>
         </div>
         <!-- End Top panel -->
@@ -287,8 +290,10 @@
                     v-show="panel == 'projects'"
                     v-bind:project="project"
                     v-bind:theme="theme"
+                    v-bind:new_project="new_project"
                     @closepanel="closePanel"
-                    @saveproject="saveProject"
+                    @saveproject="saveProject(true)"
+                    @deleteproject="deleteProject"
                 ></projects>
             </div>
         </div>
@@ -327,6 +332,7 @@
 
 <script>
 import Vue from "vue";
+import moment from "moment";
 import Leftmenu from "./body/Leftmenu";
 import ProjectsPanel from "./body/ProjectsPanel";
 import TasksPanel from "./body/TasksPanel";
@@ -401,7 +407,8 @@ export default {
             panel: "",
             projects: [],
             project: [],
-            current_project_id: 0
+            current_project_id: 0,
+            new_project: false
         };
     },
 
@@ -411,7 +418,8 @@ export default {
     },
 
     methods: {
-        // Get Properties and set Theme
+        // Properties actions
+        // Fetch properties from DB and set the theme
         fetchProperties() {
             fetch("api/properties")
                 .then(res => res.json())
@@ -423,14 +431,11 @@ export default {
                 })
                 .catch(err => console.log(err));
         },
-        fetchProjects() {
-            fetch("api/projects")
-                .then(res => res.json())
-                .then(res => {
-                    this.projects = res.data;
-                })
-                .catch(err => console.log(err));
+        // Open Properties panel
+        showProperties() {
+            this.panel = "properties";
         },
+        // Change the current theme and save back to DB
         changeTheme(changed_theme) {
             this.theme = changed_theme;
             fetch("api/property", {
@@ -446,20 +451,30 @@ export default {
                 .then(res => res.json())
                 .catch(err => console.log(err));
         },
-        closePanel() {
-            this.current_project_id = 0;
-            this.panel = "";
+
+        // Projects actions
+        // Fetch all projects from DB and set to ProjectsPanel
+        fetchProjects() {
+            fetch("api/projects")
+                .then(res => res.json())
+                .then(res => {
+                    this.projects = res.data;
+                })
+                .catch(err => console.log(err));
         },
+        // Open project in Project panel
         changeProject(project) {
             this.project = project;
             this.current_project_id = project.id;
+            this.new_project = false;
             this.panel = "projects";
         },
-        saveProject() {
+        // Save project changes back to DB
+        saveProject(isMessage) {
             fetch("api/project", {
-                method: "PUT",
+                method: this.new_project ? "POST" : "PUT",
                 body: JSON.stringify({
-                    project_id: this.project.id,
+                    project_id: this.new_project ? 0 : this.project.id,
                     title: this.project.title,
                     body: this.project.body,
                     status: this.project.status
@@ -468,18 +483,83 @@ export default {
             })
                 .then(res => res.json())
                 .then(res => {
-                    alert(
-                        "You have successfully saved the changes to the Project: " +
-                            res.data.title
-                    );
+                    this.project.id = res.data.id;
+                    this.project.title = res.data.title;
+                    this.project.body = res.data.body;
+                    this.project.created_at = res.data.created_at;
+                    this.project.updated_at = res.data.updated_at;
+                    this.project.status = res.data.status;
+                    this.new_project = false;
+                    this.current_project_id = res.data.id;
+                    if (isMessage) {
+                        alert(
+                            "You have successfully saved the changes to the Project: " +
+                                res.data.title
+                        );
+                    }
                 })
                 .catch(err => console.log(err));
         },
+        // Delete current project
+        deleteProject() {
+            if (confirm("Are You sure?")) {
+                fetch("api/project/" + this.project.id, {
+                    method: "DELETE",
+                    body: JSON.stringify({
+                        project_id: this.project.id
+                    }),
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    }
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        alert(
+                            "You have successfully delete the Project: " +
+                                res.data.title
+                        );
+                        this.projects = this.projects.filter(
+                            p => p.id !== res.data.id
+                        );
+                        this.current_project_id = 0;
+                        this.panel = "";
+                    })
+                    .catch(err => console.log(err));
+            }
+        },
+        // Add new project
+        addProject() {
+            const newProject = {
+                id:
+                    Math.max.apply(
+                        Math,
+                        this.projects.map(function(o) {
+                            return o.id;
+                        })
+                    ) + 1,
+                title: "Name of new Project",
+                body: "Description of new Project",
+                created_at: moment().format(),
+                updated_at: "",
+                status: 1
+            };
+            this.projects.unshift(newProject);
+            this.project = newProject;
+            this.current_project_id = newProject.id;
+            this.new_project = true;
+            this.panel = "projects";
+            this.saveProject(false);
+        },
+
+        // Other system staff
+        // Close all panels and unset current projects
+        closePanel() {
+            this.current_project_id = 0;
+            this.panel = "";
+        },
+        // Exit the program
         exit: function(event) {
             window.location = "/logout.html";
-        },
-        showProperties() {
-            this.panel = "properties";
         }
     }
 };
@@ -797,7 +877,7 @@ h5 {
     box-shadow: 0 2px 0 black;
     border-bottom: 1px solid #4a5568;
 }
-.button-bar a {
+.button-bar button {
     display: flex;
     align-items: center;
     align-content: center;
@@ -807,21 +887,21 @@ h5 {
     height: 30px;
     cursor: pointer;
 }
-.button-bar.light a {
+.button-bar.light button {
     color: #2d3748;
     border-right: 1px solid #f7fafc;
     background: #edf2f7;
 }
-.button-bar.dark a {
+.button-bar.dark button {
     color: #edf2f7;
     border-right: 1px solid #1a202c;
     background: #2d3748;
 }
-.button-bar.dark a:hover {
+.button-bar.dark button:hover {
     background-color: #2b6cb0;
     color: #f7fafc;
 }
-.button-bar.light a:hover {
+.button-bar.light button:hover {
     background-color: #90cdf4;
     color: #1a202c;
 }

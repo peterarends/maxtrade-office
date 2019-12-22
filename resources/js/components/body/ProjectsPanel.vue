@@ -248,7 +248,7 @@ export default {
     color: #1a202c;
 }
 .singleProjectText {
-    /* pl-2 pt-1 */
+    flex: 1;
     padding-left: 0.5rem;
     padding-top: 0.25rem;
 }
@@ -267,7 +267,6 @@ export default {
 .titleTextLine {
     text-decoration: line-through;
 }
-
 .body-projects-panel {
     display: flex;
     width: 300px;

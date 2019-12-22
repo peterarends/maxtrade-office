@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
-use App\Http\Resources\Project as ProjectResorce;
+use App\Http\Resources\Project as ProjectResource;
 use App\Http\Requests;
 
 class ProjectsController extends Controller
@@ -20,7 +20,7 @@ class ProjectsController extends Controller
         $projects = Project::orderBy('created_at', 'desc')->get();
 
         /** Return collection of Projects as resource */
-        return ProjectResorce::collection($projects);
+        return ProjectResource::collection($projects);
     }
 
     /**
@@ -33,13 +33,12 @@ class ProjectsController extends Controller
     {
         $project = $request->isMethod('put') ? Project::findOrFail($request->project_id) : new Project;
 
-        $project->id = $request->input('project_id');
         $project->title = $request->input('title');
         $project->body = $request->input('body');
         $project->status = $request->input('status');
 
         if ($project->save()) {
-            return new ProjectResorce($project);
+            return new ProjectResource($project);
         }
     }
 
@@ -55,7 +54,7 @@ class ProjectsController extends Controller
         $project = Project::findOrFail($id);
 
         /** Return a single project as resource */
-        return new ProjectResorce($project);
+        return new ProjectResource($project);
     }
 
     /**
@@ -70,7 +69,7 @@ class ProjectsController extends Controller
         $project = Project::findOrFail($id);
 
         if ($project->delete()) {
-            return new ProjectResorce($project);
+            return new ProjectResource($project);
         }
     }
 }
