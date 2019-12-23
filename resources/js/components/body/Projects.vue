@@ -39,8 +39,8 @@
                 v-model="project.body"
             ></textarea>
             <div>
-                <input type="checkbox" id="status" v-model="project.status" />
-                <label for="status"
+                <input type="checkbox" id="project_status" v-model="project.status" />
+                <label for="project_status"
                     ><span></span>Status of the project:
                     {{ project.status | statusFilter }}</label
                 >

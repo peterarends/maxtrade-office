@@ -36,7 +36,7 @@
                 <div
                     class="dateText"
                     v-bind:class="[
-                        tasks.status == 0 ? 'dateWithLine' : 'dateWithoutLine',
+                        task.status == 0 ? 'dateWithLine' : 'dateWithoutLine',
                         theme
                     ]"
                 >

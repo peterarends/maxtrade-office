@@ -281,6 +281,7 @@
                 v-bind:tasks="tasks"
                 v-bind:theme="theme"
                 v-bind:current_id="current_task_id"
+                @changetask="changeTask"
             ></tasks-panel>
             <div class="mainDivBodypanel" v-bind:class="theme">
                 <properties
@@ -299,6 +300,15 @@
                     @saveproject="saveProject(true)"
                     @deleteproject="deleteProject"
                 ></projects>
+                <tasks
+                    v-show="panel == 'tasks'"
+                    v-bind:task="task"
+                    v-bind:theme="theme"
+                    v-bind:new_task="new_task"
+                    @closepanel="closePanel"
+                    @savetask="saveTask(true)"
+                    @deletetask="deleteTask"
+                ></tasks>
             </div>
         </div>
         <!-- End body panel -->
@@ -342,6 +352,7 @@ import ProjectsPanel from "./body/ProjectsPanel";
 import TasksPanel from "./body/TasksPanel";
 import Properties from "./body/Properties";
 import Projects from "./body/Projects";
+import Tasks from "./body/Tasks";
 
 // This variable will hold the reference to
 // document's click handler
@@ -401,7 +412,8 @@ export default {
         ProjectsPanel,
         TasksPanel,
         Properties,
-        Projects
+        Projects,
+        Tasks
     },
 
     data() {
@@ -414,7 +426,9 @@ export default {
             current_project_id: 0,
             new_project: false,
             tasks: [],
-            current_task_id: 0
+            task: [],
+            current_task_id: 0,
+            new_task: false
         };
     },
 
@@ -474,6 +488,7 @@ export default {
             this.current_project_id = project.id;
             this.new_project = false;
             this.panel = "projects";
+            this.current_task_id = 0;
             this.fetchTasks(this.current_project_id);
         },
         // Save project changes back to DB
@@ -568,10 +583,78 @@ export default {
                 })
                 .catch(err => console.log(err));
         },
+        // Open task in Task panel
+        changeTask(task) {
+            this.task = task;
+            this.current_task_id = task.id;
+            this.new_task = false;
+            this.panel = "tasks";
+        },
+        // Save task changes back to DB
+        saveTask(isMessage) {
+            fetch("api/task", {
+                method: this.new_task ? "POST" : "PUT",
+                body: JSON.stringify({
+                    task_id: this.new_task ? 0 : this.task.id,
+                    project_id: this.current_project_id,
+                    title: this.task.title,
+                    body: this.task.body,
+                    status: this.task.status
+                }),
+                headers: { "Content-Type": "application/json; charset=utf-8" }
+            })
+                .then(res => res.json())
+                .then(res => {
+                    this.task.id = res.data.id;
+                    this.task.title = res.data.title;
+                    this.task.body = res.data.body;
+                    this.task.created_at = res.data.created_at;
+                    this.task.updated_at = res.data.updated_at;
+                    this.task.status = res.data.status;
+                    this.new_task = false;
+                    this.current_task_id = res.data.id;
+                    if (isMessage) {
+                        alert(
+                            "You have successfully saved the changes to the Task: " +
+                                res.data.title
+                        );
+                    }
+                })
+                .catch(err => console.log(err));
+        },
+        // Delete current task
+        deleteTask() {
+            if (confirm("Are You sure?")) {
+                fetch("api/task/" + this.task.id, {
+                    method: "DELETE",
+                    body: JSON.stringify({
+                        task_id: this.task.id
+                    }),
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    }
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        alert(
+                            "You have successfully delete the Task: " +
+                                res.data.title
+                        );
+                        this.tasks = this.tasks.filter(
+                            t => t.id !== res.data.id
+                        );
+                        this.current_task_id = 0;
+                        this.panel = "";
+                    })
+                    .catch(err => console.log(err));
+            }
+        },
 
         // Other system staff
         // Close all panels and unset current projects
         closePanel() {
+            this.current_task_id = 0;
+            this.tasks = [];
             this.current_project_id = 0;
             this.panel = "";
         },
