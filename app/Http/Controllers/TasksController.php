@@ -57,6 +57,12 @@ class TasksController extends Controller
         return new TaskResource($task);
     }
 
+    public function complete($id)
+    {
+        /** Complete all Tasks by Project */
+        $tasks = Task::where(['project_id' => $id])->update(array('status' => 0));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

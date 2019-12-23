@@ -33,6 +33,8 @@ Route::delete('project/{id}', 'ProjectsController@destroy');
 Route::get('tasks/{id}', 'TasksController@index');
 /** List single Task */
 Route::get('task/{id}', 'TasksController@show');
+/** Complete all Task by Project */
+Route::get('task/complete/{id}', 'TasksController@complete');
 /** Create new Task */
 Route::post('task', 'TasksController@store');
 /** Update a Task */

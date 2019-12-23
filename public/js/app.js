@@ -2194,6 +2194,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2371,6 +2379,19 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
 
         if (isMessage) {
           alert("You have successfully saved the changes to the Project: " + res.data.title);
+        } // change all task status by project
+
+
+        if (_this3.project.status == 0) {
+          fetch("api/task/complete/" + _this3.project.id, {
+            method: "GET"
+          })["catch"](function (err) {
+            return console.log(err);
+          });
+
+          _this3.tasks.forEach(function (part, index) {
+            part.status = 0;
+          });
         }
       })["catch"](function (err) {
         return console.log(err);
@@ -2380,27 +2401,30 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     deleteProject: function deleteProject() {
       var _this4 = this;
 
-      if (confirm("Are You sure?")) {
-        fetch("api/project/" + this.project.id, {
-          method: "DELETE",
-          body: JSON.stringify({
-            project_id: this.project.id
-          }),
-          headers: {
-            "Content-Type": "application/json; charset=utf-8"
-          }
-        }).then(function (res) {
-          return res.json();
-        }).then(function (res) {
-          alert("You have successfully delete the Project: " + res.data.title);
-          _this4.projects = _this4.projects.filter(function (p) {
-            return p.id !== res.data.id;
+      if (this.current_project_id != 0) {
+        if (confirm("Are You sure?")) {
+          fetch("api/project/" + this.project.id, {
+            method: "DELETE",
+            body: JSON.stringify({
+              project_id: this.project.id
+            }),
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            }
+          }).then(function (res) {
+            return res.json();
+          }).then(function (res) {
+            _this4.projects = _this4.projects.filter(function (p) {
+              return p.id !== res.data.id;
+            });
+            _this4.current_project_id = 0;
+            _this4.current_task_id = 0;
+            _this4.tasks = [];
+            _this4.panel = "";
+          })["catch"](function (err) {
+            return console.log(err);
           });
-          _this4.current_project_id = 0;
-          _this4.panel = "";
-        })["catch"](function (err) {
-          return console.log(err);
-        });
+        }
       }
     },
     // Add new project
@@ -2420,6 +2444,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       this.current_project_id = newProject.id;
       this.new_project = true;
       this.panel = "projects";
+      this.saveProject(false);
+    },
+    completeProject: function completeProject() {
+      this.project.status = 0;
       this.saveProject(false);
     },
     // Tasks actions
@@ -2481,27 +2509,51 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     deleteTask: function deleteTask() {
       var _this7 = this;
 
-      if (confirm("Are You sure?")) {
-        fetch("api/task/" + this.task.id, {
-          method: "DELETE",
-          body: JSON.stringify({
-            task_id: this.task.id
-          }),
-          headers: {
-            "Content-Type": "application/json; charset=utf-8"
-          }
-        }).then(function (res) {
-          return res.json();
-        }).then(function (res) {
-          alert("You have successfully delete the Task: " + res.data.title);
-          _this7.tasks = _this7.tasks.filter(function (t) {
-            return t.id !== res.data.id;
+      if (this.current_task_id != 0) {
+        if (confirm("Are You sure?")) {
+          fetch("api/task/" + this.task.id, {
+            method: "DELETE",
+            body: JSON.stringify({
+              task_id: this.task.id
+            }),
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            }
+          }).then(function (res) {
+            return res.json();
+          }).then(function (res) {
+            alert("You have successfully delete the Task: " + res.data.title);
+            _this7.tasks = _this7.tasks.filter(function (t) {
+              return t.id !== res.data.id;
+            });
+            _this7.current_task_id = 0;
+            _this7.panel = "";
+          })["catch"](function (err) {
+            return console.log(err);
           });
-          _this7.current_task_id = 0;
-          _this7.panel = "";
-        })["catch"](function (err) {
-          return console.log(err);
-        });
+        }
+      }
+    },
+    // Add new task
+    addTask: function addTask() {
+      if (this.current_project_id != 0) {
+        var newTask = {
+          id: Math.max.apply(Math, this.tasks.map(function (o) {
+            return o.id;
+          })) + 1,
+          project_id: this.current_project_id,
+          title: "Name of new Task",
+          body: "Description of new Task",
+          created_at: moment__WEBPACK_IMPORTED_MODULE_1___default()().format(),
+          updated_at: "",
+          status: 1
+        };
+        this.tasks.unshift(newTask);
+        this.task = newTask;
+        this.current_task_id = newTask.id;
+        this.new_task = true;
+        this.panel = "tasks";
+        this.saveTask(false);
       }
     },
     // Other system staff
@@ -2723,6 +2775,20 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-context */ "./node_modules/vue-context/src/js/index.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2801,8 +2867,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProjectsPanel",
+  components: {
+    VueContext: vue_context__WEBPACK_IMPORTED_MODULE_1__["VueContext"]
+  },
   filters: {
     formatDate: function formatDate(value) {
       if (value) {
@@ -2813,6 +2883,18 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     showProject: function showProject(project) {
       this.$emit("changeproject", project);
+    },
+    onClickContextMenu: function onClickContextMenu(action) {
+      if (action == "delete") {
+        this.$emit("deleteproject");
+      }
+
+      if (action == "complete") {
+        this.$emit("completeproject");
+      }
+    },
+    onOpenContextMenu: function onOpenContextMenu(event, data) {
+      this.showProject(data);
     }
   },
   props: ["projects", "theme", "current_id"]
@@ -3189,7 +3271,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n\n/* Start Top panel */\n.generalStyleDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light {\n  color: #4a5568;\n}\n.contentDiv.dark {\n  color: #e2e8f0;\n}\n.mdiExitIcon {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light {\n  color: #fc8181;\n}\n.mdiExitIcon.dark {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark {\n  color: #dd6b20;\n}\n.standardSizeIcon {\n  font-size: 1.5rem;\n}\n.topTitleDiv {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light {\n  color: #4a5568;\n}\n.topTitleDiv.dark {\n  color: #e2e8f0;\n}\n.topRightIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark:hover {\n  background-color: #718096;\n}\n.rightExitIcon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark {\n  background-color: #e53e3e;\n}\n.button-bar {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar button {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light button {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark button {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark button:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light button:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul,\r\n#cssmenu li {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover,\r\n#cssmenu ul li:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li {\n  float: none;\n}\n#cssmenu ul ul ul {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul {\n  visibility: visible;\n}\n#cssmenu ul ul {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul {\n  margin-top: 0;\n}\n#cssmenu ul ul li {\n  font-weight: normal;\n}\n#cssmenu a {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul {\n  display: inline-block;\n}\n#cssmenu:after,\r\n#cssmenu ul:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul {\n  border-top: 0 none;\n}\n#cssmenu ul ul li {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a,\r\n#cssmenu.dark ul li.active > a {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a,\r\n#cssmenu.light ul li.active > a {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a {\n  padding: 3px 10px;\n}\n#cssmenu.dark a {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a {\n  line-height: 30px;\n}\n.mnu-flex {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/** Start Footer panel */\n.footerMainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon {\n  font-size: 1.25rem;\n}\n.footer-icon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div:first-child {\n  width: 32px;\n  text-align: center;\n}\n\n/* End Footer panel */\r\n", ""]);
+exports.push([module.i, "/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n\n/* Start Top panel */\n.generalStyleDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light {\n  color: #4a5568;\n}\n.contentDiv.dark {\n  color: #e2e8f0;\n}\n.mdiExitIcon {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light {\n  color: #fc8181;\n}\n.mdiExitIcon.dark {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark {\n  color: #dd6b20;\n}\n.standardSizeIcon {\n  font-size: 1.5rem;\n}\n.topTitleDiv {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light {\n  color: #4a5568;\n}\n.topTitleDiv.dark {\n  color: #e2e8f0;\n}\n.topRightIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark:hover {\n  background-color: #718096;\n}\n.rightExitIcon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark {\n  background-color: #e53e3e;\n}\n.button-bar {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar button {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light button {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark button {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark button:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light button:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul,\n#cssmenu li {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover,\n#cssmenu ul li:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li {\n  float: none;\n}\n#cssmenu ul ul ul {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul {\n  visibility: visible;\n}\n#cssmenu ul ul {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul {\n  margin-top: 0;\n}\n#cssmenu ul ul li {\n  font-weight: normal;\n}\n#cssmenu a {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul {\n  display: inline-block;\n}\n#cssmenu:after,\n#cssmenu ul:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul {\n  border-top: 0 none;\n}\n#cssmenu ul ul li {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a,\n#cssmenu.dark ul li.active > a {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a,\n#cssmenu.light ul li.active > a {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a {\n  padding: 3px 10px;\n}\n#cssmenu.dark a {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a {\n  line-height: 30px;\n}\n.mnu-flex {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/** Start Footer panel */\n.footerMainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon {\n  font-size: 1.25rem;\n}\n.footer-icon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div:first-child {\n  width: 32px;\n  text-align: center;\n}\n\n/* End Footer panel */\n", ""]);
 
 // exports
 
@@ -3208,7 +3290,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0] {\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0] {\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n}\n.body-left-menu.light[data-v-7bf753d0] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n}\n.body-left-menu.dark[data-v-7bf753d0] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n}\n.body-left-menu a[data-v-7bf753d0] {\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu.light a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.dark a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.light a[data-v-7bf753d0]:hover {\n  color: #1a202c;\n}\n.body-left-menu.dark a[data-v-7bf753d0]:hover {\n  color: #f7fafc;\n}\n.left-menu-title[data-v-7bf753d0] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n}\n.left-menu-title.light[data-v-7bf753d0] {\n  opacity: 0.5;\n  color: #4299e1;\n}\n.left-menu-title.dark[data-v-7bf753d0] {\n  opacity: 0.3;\n  color: #4299e1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0] {\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu.light a.active[data-v-7bf753d0] {\n  color: #1a202c;\n}\n.body-left-menu.dark a.active[data-v-7bf753d0] {\n  color: #f7fafc;\n}\n.contextMenu[data-v-7bf753d0] {\n  width: 300px;\n  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);\n  background-color: #1a202c;\n  position: absolute;\n  bottom: 87px;\n  left: 25px;\n}\n.contextMenu-options[data-v-7bf753d0] {\n  list-style: none;\n  padding: 10px 0;\n}\n.contextMenu-option[data-v-7bf753d0] {\n  font-weight: 500;\n  font-size: 14px;\n  padding: 10px 40px 10px 20px;\n  cursor: pointer;\n  color: #a0aec0;\n}\n.contextMenu-option[data-v-7bf753d0]:hover {\n  background: rgba(0, 0, 0, 0.2);\n}\n.right-text[data-v-7bf753d0]{\n  float: right;\n}\r\n", ""]);
+exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0] {\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0] {\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n}\n.body-left-menu.light[data-v-7bf753d0] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n}\n.body-left-menu.dark[data-v-7bf753d0] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n}\n.body-left-menu a[data-v-7bf753d0] {\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu.light a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.dark a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.light a[data-v-7bf753d0]:hover {\n  color: #1a202c;\n}\n.body-left-menu.dark a[data-v-7bf753d0]:hover {\n  color: #f7fafc;\n}\n.left-menu-title[data-v-7bf753d0] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n}\n.left-menu-title.light[data-v-7bf753d0] {\n  opacity: 0.5;\n  color: #4299e1;\n}\n.left-menu-title.dark[data-v-7bf753d0] {\n  opacity: 0.3;\n  color: #4299e1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0] {\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu.light a.active[data-v-7bf753d0] {\n  color: #1a202c;\n}\n.body-left-menu.dark a.active[data-v-7bf753d0] {\n  color: #f7fafc;\n}\n.contextMenu[data-v-7bf753d0] {\n  width: 300px;\n  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);\n  background-color: #1a202c;\n  position: absolute;\n  bottom: 87px;\n  left: 25px;\n}\n.contextMenu-options[data-v-7bf753d0] {\n  list-style: none;\n  padding: 10px 0;\n}\n.contextMenu-option[data-v-7bf753d0] {\n  font-weight: 500;\n  font-size: 14px;\n  padding: 10px 40px 10px 20px;\n  cursor: pointer;\n  color: #a0aec0;\n}\n.contextMenu-option[data-v-7bf753d0]:hover {\n  background: rgba(0, 0, 0, 0.2);\n}\n.right-text[data-v-7bf753d0]{\n  float: right;\n}\n", ""]);
 
 // exports
 
@@ -3227,7 +3309,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".projects-body[data-v-c4c8aaa8] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-c4c8aaa8] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-c4c8aaa8] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-c4c8aaa8] {\n  background-color: #e53e3e;\n}\n.body[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-c4c8aaa8] {\n  text-decoration: line-through;\n}\n.date[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-c4c8aaa8] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-c4c8aaa8] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-c4c8aaa8] {\n  color: green;\n}\n.bottom[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-c4c8aaa8] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-c4c8aaa8] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-c4c8aaa8]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-c4c8aaa8]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-c4c8aaa8] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-c4c8aaa8] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-c4c8aaa8] {\n  color: #3182ce;\n}\nlabel[data-v-c4c8aaa8] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-c4c8aaa8] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-c4c8aaa8]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-c4c8aaa8]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-c4c8aaa8] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\r\n", ""]);
+exports.push([module.i, ".projects-body[data-v-c4c8aaa8] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-c4c8aaa8] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-c4c8aaa8] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-c4c8aaa8] {\n  background-color: #e53e3e;\n}\n.body[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-c4c8aaa8] {\n  text-decoration: line-through;\n}\n.date[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-c4c8aaa8] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-c4c8aaa8] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-c4c8aaa8] {\n  color: green;\n}\n.bottom[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-c4c8aaa8] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-c4c8aaa8] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-c4c8aaa8]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-c4c8aaa8]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-c4c8aaa8] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-c4c8aaa8] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-c4c8aaa8] {\n  color: #3182ce;\n}\nlabel[data-v-c4c8aaa8] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-c4c8aaa8] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-c4c8aaa8]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-c4c8aaa8]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-c4c8aaa8] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n", ""]);
 
 // exports
 
@@ -3246,7 +3328,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** Top part of projects */\n.topProjectsDiv[data-v-b009a230] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-b009a230] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-b009a230] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-b009a230] {\n  /* bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300\r\n            placeholder-gray-700 mr-1 */\n  border-radius: 0.25rem;\n  width: 50%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-b009a230] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-b009a230]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-b009a230] {\n  /* flex items-center justify-center border-l border-gray-700 border-dotted pl-1 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-b009a230] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-b009a230] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIcons[data-v-b009a230] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1.5rem;\n}\n.searchIcons.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-b009a230]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-b009a230]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-b009a230] {\n  /* flex justify-end text-xs */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #cbd5e0;\n}\n.dateText.dateWithoutLine.light[data-v-b009a230] {\n  /* text-gray-400 */\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleProjectDiv[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleProjectId[data-v-b009a230] {\n  /* rounded-full h-6 w-6 text-xs flex items-center justify-center */\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleProjectId.idBackground.light[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleProjectId.idBackground.dark[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleProjectId.idTextUnfinished.light[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleProjectId.idTextUnfinished.dark[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleProjectId.idTextFinished.light[data-v-b009a230] {\n  color: #f7fafc;\n}\n.singleProjectId.idTextFinished.dark[data-v-b009a230] {\n  color: #1a202c;\n}\n.singleProjectText[data-v-b009a230] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleProjectText.titleTextUnfinished.light[data-v-b009a230] {\n  color: #4a5568;\n}\n.singleProjectText.titleTextUnfinished.dark[data-v-b009a230] {\n  color: #e2e8f0;\n}\n.singleProjectText.titleTextFinished.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.singleProjectText.titleTextFinished.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.body-projects-panel[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-projects-panel.light[data-v-b009a230] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-projects-panel.dark[data-v-b009a230] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#projectsListView[data-v-b009a230] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n#projectsListView div.projectItem.light[data-v-b009a230]:hover {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark[data-v-b009a230]:hover {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem.light.active[data-v-b009a230] {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark.active[data-v-b009a230] {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem div[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.project_item[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item.light[data-v-b009a230] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.project_item[data-v-b009a230]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item.light[data-v-b009a230]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.project_item.light.active[data-v-b009a230] {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark.active[data-v-b009a230] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\r\n", ""]);
+exports.push([module.i, ".v-context[data-v-b009a230],\n.v-context ul[data-v-b009a230] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-b009a230],\n.v-context ul > li[data-v-b009a230] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-b009a230],\n.v-context ul > li > a[data-v-b009a230] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-b009a230]:focus,\n.v-context > li > a[data-v-b009a230]:hover,\n.v-context ul > li > a[data-v-b009a230]:focus,\n.v-context ul > li > a[data-v-b009a230]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-b009a230]:focus,\n.v-context > li > a[data-v-b009a230]:focus,\n.v-context ul[data-v-b009a230]:focus,\n.v-context ul > li > a[data-v-b009a230]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-b009a230]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-b009a230] {\n  display: none;\n}\n\n/** Top part of projects */\n.topProjectsDiv[data-v-b009a230] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-b009a230] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-b009a230] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-b009a230] {\n  /* bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300\n            placeholder-gray-700 mr-1 */\n  border-radius: 0.25rem;\n  width: 50%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-b009a230] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-b009a230]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-b009a230] {\n  /* flex items-center justify-center border-l border-gray-700 border-dotted pl-1 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-b009a230] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-b009a230] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIcons[data-v-b009a230] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1.5rem;\n}\n.searchIcons.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-b009a230]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-b009a230]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-b009a230] {\n  /* flex justify-end text-xs */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #cbd5e0;\n}\n.dateText.dateWithoutLine.light[data-v-b009a230] {\n  /* text-gray-400 */\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleProjectDiv[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleProjectId[data-v-b009a230] {\n  /* rounded-full h-6 w-6 text-xs flex items-center justify-center */\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleProjectId.idBackground.light[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleProjectId.idBackground.dark[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleProjectId.idTextUnfinished.light[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleProjectId.idTextUnfinished.dark[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleProjectId.idTextFinished.light[data-v-b009a230] {\n  color: #f7fafc;\n}\n.singleProjectId.idTextFinished.dark[data-v-b009a230] {\n  color: #1a202c;\n}\n.singleProjectText[data-v-b009a230] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleProjectText.titleTextUnfinished.light[data-v-b009a230] {\n  color: #4a5568;\n}\n.singleProjectText.titleTextUnfinished.dark[data-v-b009a230] {\n  color: #e2e8f0;\n}\n.singleProjectText.titleTextFinished.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.singleProjectText.titleTextFinished.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.body-projects-panel[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-projects-panel.light[data-v-b009a230] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-projects-panel.dark[data-v-b009a230] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#projectsListView[data-v-b009a230] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n#projectsListView div.projectItem.light[data-v-b009a230]:hover {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark[data-v-b009a230]:hover {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem.light.active[data-v-b009a230] {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark.active[data-v-b009a230] {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem div[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.project_item[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item.light[data-v-b009a230] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.project_item[data-v-b009a230]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item.light[data-v-b009a230]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.project_item.light.active[data-v-b009a230] {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark.active[data-v-b009a230] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n", ""]);
 
 // exports
 
@@ -3265,7 +3347,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".properties-body[data-v-1f4c5c65] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.top[data-v-1f4c5c65] {\n  padding: 10px;\n}\n.search_input[data-v-1f4c5c65] {\n  border-radius: 0.25rem;\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n  padding: 2px 5px;\n  width: 100%;\n}\n.search_input[data-v-1f4c5c65]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::-moz-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::placeholder {\n  color: #4a5568;\n}\n.body[data-v-1f4c5c65] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n}\n.property_title[data-v-1f4c5c65] {\n  padding: 0px 0px 20px 10px;\n}\n.property_section[data-v-1f4c5c65] {\n  padding: 0px 0px 10px 20px;\n  text-decoration: underline;\n}\n.property_row[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  margin: 0px 0px 10px 30px;\n  padding-left: 5px;\n  border-left: 1px dotted #4a5568;\n}\n.controll[data-v-1f4c5c65] {\n  background: #4a5568;\n  padding: 1px 3px;\n  border: 1px dotted #718096;\n}\n.button-bar[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-1f4c5c65] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-1f4c5c65] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar a[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light a[data-v-1f4c5c65] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark a[data-v-1f4c5c65] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark a[data-v-1f4c5c65]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light a[data-v-1f4c5c65]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.topTitleDiv[data-v-1f4c5c65] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-1f4c5c65] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-1f4c5c65] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-1f4c5c65] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-1f4c5c65] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-1f4c5c65] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-1f4c5c65] {\n  background-color: #e53e3e;\n}\r\n", ""]);
+exports.push([module.i, ".properties-body[data-v-1f4c5c65] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.top[data-v-1f4c5c65] {\n  padding: 10px;\n}\n.search_input[data-v-1f4c5c65] {\n  border-radius: 0.25rem;\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n  padding: 2px 5px;\n  width: 100%;\n}\n.search_input[data-v-1f4c5c65]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::-moz-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::placeholder {\n  color: #4a5568;\n}\n.body[data-v-1f4c5c65] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n}\n.property_title[data-v-1f4c5c65] {\n  padding: 0px 0px 20px 10px;\n}\n.property_section[data-v-1f4c5c65] {\n  padding: 0px 0px 10px 20px;\n  text-decoration: underline;\n}\n.property_row[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  margin: 0px 0px 10px 30px;\n  padding-left: 5px;\n  border-left: 1px dotted #4a5568;\n}\n.controll[data-v-1f4c5c65] {\n  background: #4a5568;\n  padding: 1px 3px;\n  border: 1px dotted #718096;\n}\n.button-bar[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-1f4c5c65] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-1f4c5c65] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar a[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light a[data-v-1f4c5c65] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark a[data-v-1f4c5c65] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark a[data-v-1f4c5c65]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light a[data-v-1f4c5c65]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.topTitleDiv[data-v-1f4c5c65] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-1f4c5c65] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-1f4c5c65] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-1f4c5c65] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-1f4c5c65] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-1f4c5c65] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-1f4c5c65] {\n  background-color: #e53e3e;\n}\n", ""]);
 
 // exports
 
@@ -3284,7 +3366,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".tasks-body[data-v-6750e0cc] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-6750e0cc] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #DD6B20;\n}\n.topRightIcons[data-v-6750e0cc] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-6750e0cc] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-6750e0cc] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-6750e0cc] {\n  background-color: #e53e3e;\n}\n.body[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-6750e0cc] {\n  text-decoration: line-through;\n}\n.date[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-6750e0cc] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-6750e0cc] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-6750e0cc] {\n  color: green;\n}\n.bottom[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-6750e0cc] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-6750e0cc] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-6750e0cc]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-6750e0cc]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiTaskIcon[data-v-6750e0cc] {\n  font-size: 1.3rem;\n}\n.mdiTaskIcon.light[data-v-6750e0cc] {\n  color: #63b3ed;\n}\n.mdiTaskIcon.dark[data-v-6750e0cc] {\n  color: #3182ce;\n}\nlabel[data-v-6750e0cc] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-6750e0cc] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-6750e0cc]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-6750e0cc]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-6750e0cc] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\r\n", ""]);
+exports.push([module.i, ".tasks-body[data-v-6750e0cc] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-6750e0cc] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #DD6B20;\n}\n.topRightIcons[data-v-6750e0cc] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-6750e0cc] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-6750e0cc] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-6750e0cc] {\n  background-color: #e53e3e;\n}\n.body[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-6750e0cc] {\n  text-decoration: line-through;\n}\n.date[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-6750e0cc] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-6750e0cc] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-6750e0cc] {\n  color: green;\n}\n.bottom[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-6750e0cc] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-6750e0cc] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-6750e0cc]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-6750e0cc]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiTaskIcon[data-v-6750e0cc] {\n  font-size: 1.3rem;\n}\n.mdiTaskIcon.light[data-v-6750e0cc] {\n  color: #63b3ed;\n}\n.mdiTaskIcon.dark[data-v-6750e0cc] {\n  color: #3182ce;\n}\nlabel[data-v-6750e0cc] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-6750e0cc] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-6750e0cc]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-6750e0cc]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-6750e0cc] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n", ""]);
 
 // exports
 
@@ -3303,7 +3385,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** Top part of tasks */\n.topTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topTaskDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topTaskDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-03b2ccc8] {\n  border-radius: 0.25rem;\n  width: 50%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-03b2ccc8] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-03b2ccc8] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIcons[data-v-03b2ccc8] {\n  font-size: 1.5rem;\n}\n.searchIcons.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-03b2ccc8] {\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-03b2ccc8] {\n  color: #cbd5e0;\n}\n.dateText.dateWithoutLine.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleTaskId[data-v-03b2ccc8] {\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleTaskId.idBackground.light[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleTaskId.idBackground.dark[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleTaskId.idTextUnfinished.light[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleTaskId.idTextUnfinished.dark[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleTaskId.idTextFinished.light[data-v-03b2ccc8] {\n  color: #f7fafc;\n}\n.singleTaskId.idTextFinished.dark[data-v-03b2ccc8] {\n  color: #1a202c;\n}\n.singleTaskText[data-v-03b2ccc8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleTaskText.titleTextUnfinished.light[data-v-03b2ccc8] {\n  color: #4a5568;\n}\n.singleTaskText.titleTextUnfinished.dark[data-v-03b2ccc8] {\n  color: #e2e8f0;\n}\n.singleTaskText.titleTextFinished.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.singleTaskText.titleTextFinished.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.body-tasks-panel[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-tasks-panel.light[data-v-03b2ccc8] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-tasks-panel.dark[data-v-03b2ccc8] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#tasksListView[data-v-03b2ccc8] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8] {\n  background: #718096;\n  color: #edf2f7;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8] {\n  background: #cbd5e0;\n  color: #2d3748;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.active[data-v-03b2ccc8] {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.ended[data-v-03b2ccc8] {\n  color: #cbd5e0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended[data-v-03b2ccc8] {\n  color: #718096;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem div[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.task_item[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.task_item.light[data-v-03b2ccc8] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.task_item[data-v-03b2ccc8]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.task_item.light[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.task_item.light.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark.active[data-v-03b2ccc8] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\r\n", ""]);
+exports.push([module.i, "/** Top part of tasks */\n.topTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topTaskDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topTaskDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-03b2ccc8] {\n  border-radius: 0.25rem;\n  width: 50%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-03b2ccc8] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-03b2ccc8] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIcons[data-v-03b2ccc8] {\n  font-size: 1.5rem;\n}\n.searchIcons.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-03b2ccc8] {\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-03b2ccc8] {\n  color: #cbd5e0;\n}\n.dateText.dateWithoutLine.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleTaskId[data-v-03b2ccc8] {\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleTaskId.idBackground.light[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleTaskId.idBackground.dark[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleTaskId.idTextUnfinished.light[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleTaskId.idTextUnfinished.dark[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleTaskId.idTextFinished.light[data-v-03b2ccc8] {\n  color: #f7fafc;\n}\n.singleTaskId.idTextFinished.dark[data-v-03b2ccc8] {\n  color: #1a202c;\n}\n.singleTaskText[data-v-03b2ccc8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleTaskText.titleTextUnfinished.light[data-v-03b2ccc8] {\n  color: #4a5568;\n}\n.singleTaskText.titleTextUnfinished.dark[data-v-03b2ccc8] {\n  color: #e2e8f0;\n}\n.singleTaskText.titleTextFinished.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.singleTaskText.titleTextFinished.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.body-tasks-panel[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-tasks-panel.light[data-v-03b2ccc8] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-tasks-panel.dark[data-v-03b2ccc8] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#tasksListView[data-v-03b2ccc8] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8] {\n  background: #718096;\n  color: #edf2f7;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8] {\n  background: #cbd5e0;\n  color: #2d3748;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.active[data-v-03b2ccc8] {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.ended[data-v-03b2ccc8] {\n  color: #cbd5e0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended[data-v-03b2ccc8] {\n  color: #718096;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem div[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.task_item[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.task_item.light[data-v-03b2ccc8] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.task_item[data-v-03b2ccc8]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.task_item.light[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.task_item.light.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark.active[data-v-03b2ccc8] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n", ""]);
 
 // exports
 
@@ -39327,6 +39409,652 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-clickaway/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/vue-clickaway/index.js ***!
+  \*********************************************/
+/*! exports provided: version, directive, mixin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "version", function() { return version; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "directive", function() { return directive; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mixin", function() { return mixin; });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var version = '2.2.2';
+
+var compatible = (/^2\./).test(vue__WEBPACK_IMPORTED_MODULE_0___default.a.version);
+if (!compatible) {
+  vue__WEBPACK_IMPORTED_MODULE_0___default.a.util.warn('VueClickaway ' + version + ' only supports Vue 2.x, and does not support Vue ' + vue__WEBPACK_IMPORTED_MODULE_0___default.a.version);
+}
+
+
+
+// @SECTION: implementation
+
+var HANDLER = '_vue_clickaway_handler';
+
+function bind(el, binding, vnode) {
+  unbind(el);
+
+  var vm = vnode.context;
+
+  var callback = binding.value;
+  if (typeof callback !== 'function') {
+    if (true) {
+      vue__WEBPACK_IMPORTED_MODULE_0___default.a.util.warn(
+        'v-' + binding.name + '="' +
+        binding.expression + '" expects a function value, ' +
+        'got ' + callback
+      );
+    }
+    return;
+  }
+
+  // @NOTE: Vue binds directives in microtasks, while UI events are dispatched
+  //        in macrotasks. This causes the listener to be set up before
+  //        the "origin" click event (the event that lead to the binding of
+  //        the directive) arrives at the document root. To work around that,
+  //        we ignore events until the end of the "initial" macrotask.
+  // @REFERENCE: https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+  // @REFERENCE: https://github.com/simplesmiler/vue-clickaway/issues/8
+  var initialMacrotaskEnded = false;
+  setTimeout(function() {
+    initialMacrotaskEnded = true;
+  }, 0);
+
+  el[HANDLER] = function(ev) {
+    // @NOTE: this test used to be just `el.containts`, but working with path is better,
+    //        because it tests whether the element was there at the time of
+    //        the click, not whether it is there now, that the event has arrived
+    //        to the top.
+    // @NOTE: `.path` is non-standard, the standard way is `.composedPath()`
+    var path = ev.path || (ev.composedPath ? ev.composedPath() : undefined);
+    if (initialMacrotaskEnded && (path ? path.indexOf(el) < 0 : !el.contains(ev.target))) {
+      return callback.call(vm, ev);
+    }
+  };
+
+  document.documentElement.addEventListener('click', el[HANDLER], false);
+}
+
+function unbind(el) {
+  document.documentElement.removeEventListener('click', el[HANDLER], false);
+  delete el[HANDLER];
+}
+
+var directive = {
+  bind: bind,
+  update: function(el, binding) {
+    if (binding.value === binding.oldValue) return;
+    bind(el, binding);
+  },
+  unbind: unbind,
+};
+
+var mixin = {
+  directives: { onClickaway: directive },
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-context/src/js/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/vue-context/src/js/index.js ***!
+  \**************************************************/
+/*! exports provided: default, VueContext */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_context__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vue-context */ "./node_modules/vue-context/src/js/vue-context.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _vue_context__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VueContext", function() { return _vue_context__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-context/src/js/normalize-slot.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/vue-context/src/js/normalize-slot.js ***!
+  \***********************************************************/
+/*! exports provided: normalizeSlot */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "normalizeSlot", function() { return normalizeSlot; });
+const normalizeSlot = (name, scope = {}, $scopedSlots = {}, $slots = {}) => {
+    // Note: in Vue 2.6.x, all named slots are also scoped slots
+    const slot = $scopedSlots[name] || $slots[name];
+
+    return typeof slot === 'function' ? slot(scope) : slot;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-context/src/js/utils.js":
+/*!**************************************************!*\
+  !*** ./node_modules/vue-context/src/js/utils.js ***!
+  \**************************************************/
+/*! exports provided: isArray, keyCodes, eventOn, eventOff, filterVisible, getBCR, selectAll, setAttr, parentElementByClassName */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isArray", function() { return isArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "keyCodes", function() { return keyCodes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eventOn", function() { return eventOn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eventOff", function() { return eventOff; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterVisible", function() { return filterVisible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBCR", function() { return getBCR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectAll", function() { return selectAll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setAttr", function() { return setAttr; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parentElementByClassName", function() { return parentElementByClassName; });
+if (! Array.from) {
+    Array.from = object => {
+        'use strict';
+
+        return [].slice.call(object);
+    };
+}
+
+if (! Array.isArray) {
+    Array.isArray = arg => Object.prototype.toString.call(arg) === '[object Array]';
+}
+
+// --- Constants ---
+const arrayFrom = Array.from;
+
+const isArray = Array.isArray;
+
+const keyCodes = {
+    ESC: 27,
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40
+};
+
+// --- Dom Utils ---
+
+// Returns true if the parent element contains the child element
+const contains = (parent, child) => {
+    if (! parent || typeof parent.contains !== 'function') {
+        return false;
+    }
+
+    return parent.contains(child);
+};
+
+// Attach an event listener to an element
+const eventOn = (el, eventName, handler) => {
+    if (el && el.addEventListener) {
+        el.addEventListener(eventName, handler);
+    }
+};
+
+// Remove an event listener from an element
+const eventOff = (el, eventName, handler) => {
+    if (el && el.removeEventListener) {
+        el.removeEventListener(eventName, handler);
+    }
+};
+
+// Filter visible elements
+const filterVisible = elements => (elements || []).filter(isVisible);
+
+// Return the Bounding Client Rect of an element
+// Returns `null` if not an element
+const getBCR = el => (isElement(el) ? el.getBoundingClientRect() : null);
+
+// Determine if an element is an HTML element
+const isElement = el => Boolean(el && el.nodeType === Node.ELEMENT_NODE);
+
+// Determine if an HTML element is visible - Faster than CSS check
+const isVisible = el => {
+    if (! isElement(el) || ! contains(document.body, el)) {
+        return false;
+    }
+
+    if (el.style.display === 'none') {
+        return false;
+    }
+
+    const bcr = getBCR(el);
+
+    return Boolean(bcr && bcr.height > 0 && bcr.width > 0);
+};
+
+// Select all elements matching a selector. Returns `[]` if none found
+const selectAll = (selector, root) =>
+    arrayFrom((isElement(root) ? root : document).querySelectorAll(selector));
+
+// Set an attribute on an element
+const setAttr = (el, attr, value) => {
+    if (attr && isElement(el)) {
+        el.setAttribute(attr, value);
+    }
+};
+
+const parentElementByClassName = (element, className) => {
+    let parentElement = element.parentElement;
+
+    while (parentElement !== null && !parentElement.classList.contains(className)) {
+        parentElement = parentElement.parentElement;
+    }
+
+    return parentElement;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-context/src/js/vue-context.js":
+/*!********************************************************!*\
+  !*** ./node_modules/vue-context/src/js/vue-context.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_clickaway_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-clickaway/index */ "./node_modules/vue-clickaway/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/vue-context/src/js/utils.js");
+/* harmony import */ var _normalize_slot__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./normalize-slot */ "./node_modules/vue-context/src/js/normalize-slot.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    directives: {
+        onClickaway: vue_clickaway_index__WEBPACK_IMPORTED_MODULE_0__["directive"]
+    },
+
+    props: {
+        closeOnClick: {
+            type: Boolean,
+            default: true
+        },
+        closeOnScroll: {
+            type: Boolean,
+            default: true
+        },
+        lazy: {
+            type: Boolean,
+            default: false
+        },
+        itemSelector: {
+            type: [String, Array],
+            default: () => ['.v-context-item', '.v-context > li > a']
+        },
+        role: {
+            type: String,
+            default: 'menu'
+        },
+        tag: {
+            type: String,
+            default: 'ul'
+        }
+    },
+
+    computed: {
+        style() {
+            return this.show
+                ? { top: `${this.top}px`, left: `${this.left}px` }
+                : null;
+        }
+    },
+
+    data() {
+        return {
+            top: null,
+            left: null,
+            show: false,
+            data: null,
+            localItemSelector: '',
+            activeSubMenu: null
+        };
+    },
+
+    created() {
+        this.localItemSelector = this.mapItemSelector(this.itemSelector);
+    },
+
+    beforeDestroy() {
+        if (this.closeOnScroll) {
+            this.removeScrollEventListener();
+        }
+    },
+
+    methods: {
+        addScrollEventListener() {
+            Object(_utils__WEBPACK_IMPORTED_MODULE_1__["eventOn"])(window, 'scroll', this.close);
+        },
+
+        addHoverEventListener(element) {
+            element.querySelectorAll('.v-context__sub').forEach(
+                subMenuNode => {
+                    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["eventOn"])(subMenuNode, 'mouseenter', this.openSubMenu);
+                    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["eventOn"])(subMenuNode, 'mouseleave', this.closeSubMenu);
+                }
+            );
+        },
+
+        close() {
+            if (! this.show) {
+                return;
+            }
+
+            // make sure all sub menus are closed
+            while (this.activeSubMenu !== null) {
+                Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(this.activeSubMenu, 'v-context__sub').dispatchEvent(new Event('mouseleave'));
+            }
+
+            this.resetData();
+            this.removeHoverEventListener(this.$el);
+
+            if (this.closeOnScroll) {
+                this.removeScrollEventListener();
+            }
+
+            this.$emit('close');
+        },
+
+        focusItem(index, items) {
+            const el = items.find((el, idx) => idx === index);
+            if (el && el.focus) {
+                el.focus();
+            }
+        },
+
+        focusNext(event, up) {
+            if (! this.show) {
+                return;
+            }
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            this.$nextTick(() => {
+                const items = this.getItems();
+                if (items.length < 1) {
+                    return;
+                }
+
+                let index = items.indexOf(event.target);
+                if (up && index > 0) {
+                    index--;
+                } else if (! up && index < items.length - 1) {
+                    index++;
+                }
+
+                if (index < 0) {
+                    index = 0;
+                }
+
+                this.focusItem(index, items);
+            });
+        },
+
+        getItems() {
+            // if a sub menu is active only return the elements of the sub menu to keep the scope
+            return Object(_utils__WEBPACK_IMPORTED_MODULE_1__["filterVisible"])(Object(_utils__WEBPACK_IMPORTED_MODULE_1__["selectAll"])(this.localItemSelector, this.activeSubMenu || this.$el));
+        },
+
+        mapItemSelector(itemSelector) {
+            if (Object(_utils__WEBPACK_IMPORTED_MODULE_1__["isArray"])(itemSelector)) {
+                itemSelector = itemSelector
+                    .map(selector => `${selector}:not(.disabled):not([disabled])`)
+                    .join(', ');
+            }
+
+            return itemSelector;
+        },
+
+        onClick() {
+            this.close();
+        },
+
+        onKeydown(event) {
+            const key = event.keyCode;
+
+            if (key === _utils__WEBPACK_IMPORTED_MODULE_1__["keyCodes"].ESC) {
+                // Close on esc
+                this.close();
+            } else if (key === _utils__WEBPACK_IMPORTED_MODULE_1__["keyCodes"].DOWN) {
+                // Down arrow
+                this.focusNext(event, false);
+            } else if (key === _utils__WEBPACK_IMPORTED_MODULE_1__["keyCodes"].UP) {
+                // Up arrow
+                this.focusNext(event, true);
+            } else if (key === _utils__WEBPACK_IMPORTED_MODULE_1__["keyCodes"].RIGHT) {
+                // check if a parent element which is associated with a sub menu can be found.
+                const menuContainer = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(event.target, 'v-context__sub');
+
+                // try to open a sub menu if the sub menu isn't the current sub menu
+                if (menuContainer && menuContainer.getElementsByClassName('v-context')[0] !== this.activeSubMenu) {
+                    menuContainer.dispatchEvent(new Event('mouseenter'));
+                    this.focusNext(event, false);
+                }
+            } else if (key === _utils__WEBPACK_IMPORTED_MODULE_1__["keyCodes"].LEFT) {
+                if (!this.activeSubMenu) {
+                    return;
+                }
+
+                const parentMenu = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(this.activeSubMenu, 'v-context__sub');
+                parentMenu.dispatchEvent(new Event('mouseleave'));
+
+                const items = this.getItems(),
+                      index = items.indexOf(parentMenu.getElementsByTagName('a')[0]);
+
+                this.focusItem(index, items);
+            }
+        },
+
+        open(event, data) {
+            this.data = data;
+            this.show = true;
+
+            this.$nextTick(() => {
+                [this.top, this.left] = this.positionMenu(event.clientY, event.clientX, this.$el);
+
+                this.$el.focus();
+                this.setItemRoles();
+                this.addHoverEventListener(this.$el);
+
+                if (this.closeOnScroll) {
+                    this.addScrollEventListener();
+                }
+
+                this.$emit('open', event, this.data, this.top, this.left);
+            });
+        },
+
+        openSubMenu(event) {
+            const subMenuElement = this.getSubMenuElementByEvent(event),
+                  parentMenu = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(subMenuElement.parentElement, 'v-context'),
+                  bcr = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getBCR"])(event.target);
+
+            // check if another sub menu is open. In this case make sure no other as well as no nested sub menu is open
+            if (this.activeSubMenu !== parentMenu) {
+                while (this.activeSubMenu !== null
+                    && this.activeSubMenu !== parentMenu
+                    && this.activeSubMenu !== subMenuElement
+                ) {
+                    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(this.activeSubMenu, 'v-context__sub')
+                        .dispatchEvent(new Event('mouseleave'));
+                }
+            }
+
+            // first set the display and afterwards execute position calculation for correct element offsets
+            subMenuElement.style.display = 'block';
+
+            let [elementTop, elementLeft] = this.positionMenu(bcr.top, bcr.right - 10, subMenuElement);
+
+            subMenuElement.style.left = `${elementLeft}px`;
+            subMenuElement.style.top = `${elementTop}px`;
+
+            this.activeSubMenu = subMenuElement;
+        },
+
+        closeSubMenu(event) {
+            const subMenuElement = this.getSubMenuElementByEvent(event),
+                  parentMenu = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(subMenuElement, 'v-context');
+
+            // if a sub menu is closed and it's not the currently active sub menu (eg. a lowe layered sub menu closed
+            // by a mouseleave event) close all nested sub menus
+            if (this.activeSubMenu !== subMenuElement) {
+                while (this.activeSubMenu !== null && this.activeSubMenu !== subMenuElement) {
+                    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(this.activeSubMenu, 'v-context__sub')
+                        .dispatchEvent(new Event('mouseleave'));
+                }
+            }
+
+            subMenuElement.style.display = 'none';
+
+            // check if a parent menu exists and the parent menu is a sub menu to keep track of the correct sub menu
+            this.activeSubMenu = parentMenu && Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(parentMenu, 'v-context__sub')
+                ? parentMenu
+                : null;
+        },
+
+        getSubMenuElementByEvent (event) {
+            return event.target.getElementsByTagName('ul')[0];
+        },
+
+        positionMenu(top, left, element) {
+            const largestHeight = window.innerHeight - element.offsetHeight - 25;
+            const largestWidth = window.innerWidth - element.offsetWidth - 25;
+
+            if (top > largestHeight) {
+                top = largestHeight;
+            }
+
+            if (left > largestWidth) {
+                left = largestWidth;
+            }
+
+            return [top, left];
+        },
+
+        removeScrollEventListener() {
+            Object(_utils__WEBPACK_IMPORTED_MODULE_1__["eventOff"])(window, 'scroll', this.close);
+        },
+
+        removeHoverEventListener(element) {
+            element.querySelectorAll('.v-context__sub').forEach(
+                (subMenuNode) => {
+                    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["eventOff"])(subMenuNode, 'mouseenter', this.openSubMenu);
+                    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["eventOff"])(subMenuNode, 'mouseleave', this.closeSubMenu);
+                }
+            );
+        },
+
+        resetData() {
+            this.top = null;
+            this.left = null;
+            this.data = null;
+            this.show = false;
+        },
+
+        setItemRoles() {
+            // Add role="menuitem" and tabindex="-1" to all items
+            Object(_utils__WEBPACK_IMPORTED_MODULE_1__["selectAll"])(this.localItemSelector, this.$el)
+                .forEach(el => {
+                    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["setAttr"])(el, 'role', 'menuitem');
+                    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["setAttr"])(el, 'tabindex', '-1');
+                });
+        }
+    },
+
+    watch: {
+        closeOnScroll(newValue, oldValue) {
+            if (newValue === oldValue) {
+                return;
+            }
+
+            if (newValue && this.show) {
+                this.addScrollEventListener();
+            } else {
+                this.removeScrollEventListener();
+            }
+        },
+
+        itemSelector(selector, oldValue) {
+            if (selector !== oldValue) {
+                this.localItemSelector = this.mapItemSelector(selector);
+            }
+        }
+    },
+
+    render(h) {
+        if (this.lazy && ! this.show) {
+            return h(false);
+        }
+
+        // Only register the events we need
+        const on = {
+            // `!` modifier for capture
+            '!contextmenu': e => {
+                e.preventDefault();
+            },
+            keydown: this.onKeydown // up, down, esc
+        };
+
+        if (this.closeOnClick) {
+            on.click = this.onClick;
+        }
+
+        // Only register the directives we need
+        const directives = [
+            {
+                name: 'on-clickaway',
+                value: this.close,
+                rawName: 'v-on-clickaway'
+            }
+        ];
+
+        if (! this.lazy) {
+            directives.push({
+                name: 'show',
+                value: this.show,
+                rawName: 'v-show',
+                expression: 'show'
+            });
+        }
+
+        return h(
+            this.tag,
+            {
+                staticClass: 'v-context',
+                style: this.style,
+                attrs: {
+                    tabindex: '-1',
+                    role: this.role,
+                    'aria-hidden': this.lazy ? null : String(! this.show)
+                },
+                on,
+                directives
+            },
+            [Object(_normalize_slot__WEBPACK_IMPORTED_MODULE_2__["normalizeSlot"])('default', { data: this.data }, this.$scopedSlots, this.$slots)]
+        );
+    }
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/App.vue?vue&type=template&id=332fccf4&":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/App.vue?vue&type=template&id=332fccf4& ***!
@@ -39428,17 +40156,28 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("li", [
-                    _c("a", [
-                      _c("div", { staticClass: "mnu-flex" }, [
-                        _c("i", {
-                          staticClass:
-                            "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
-                          class: _vm.theme
-                        }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Add Task")])
-                      ])
-                    ])
+                    _c(
+                      "a",
+                      {
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.addTask($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "mnu-flex" }, [
+                          _c("i", {
+                            staticClass:
+                              "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
+                            class: _vm.theme
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Add Task")])
+                        ])
+                      ]
+                    )
                   ])
                 ])
               ]),
@@ -39447,32 +40186,54 @@ var render = function() {
                 _vm._m(3),
                 _vm._v(" "),
                 _c("ul", [
-                  _c("li", { attrs: { id: "mnuAddTask" } }, [
-                    _c("a", [
-                      _c("div", { staticClass: "mnu-flex" }, [
-                        _c("i", {
-                          staticClass:
-                            "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
-                          class: _vm.theme
-                        }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Add Task")])
-                      ])
-                    ])
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.addTask($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "mnu-flex" }, [
+                          _c("i", {
+                            staticClass:
+                              "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
+                            class: _vm.theme
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Add Task")])
+                        ])
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
-                  _c("li", { attrs: { id: "mnuDeleteTask" } }, [
-                    _c("a", [
-                      _c("div", { staticClass: "mnu-flex" }, [
-                        _c("i", {
-                          staticClass:
-                            "mdi mdi-delete mdiAddEditDeleteTaskIcon",
-                          class: _vm.theme
-                        }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Delete Task")])
-                      ])
-                    ])
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.deleteTask($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "mnu-flex" }, [
+                          _c("i", {
+                            staticClass:
+                              "mdi mdi-delete mdiAddEditDeleteTaskIcon",
+                            class: _vm.theme
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Delete Task")])
+                        ])
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _vm._m(4),
@@ -39519,7 +40280,7 @@ var render = function() {
                 _vm._m(9),
                 _vm._v(" "),
                 _c("ul", [
-                  _c("li", { attrs: { id: "mnuAbout" } }, [
+                  _c("li", [
                     _c("a", [
                       _c("div", { staticClass: "mnu-flex" }, [
                         _c("i", {
@@ -39599,21 +40360,36 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c("button", { attrs: { id: "btnAddTask" } }, [
-          _c("i", {
-            staticClass: "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
-            class: _vm.theme
-          }),
-          _vm._v(" Add Task\n            ")
-        ]),
+        _c(
+          "button",
+          {
+            attrs: { disabled: _vm.current_project_id == 0 },
+            on: { click: _vm.addTask }
+          },
+          [
+            _c("i", {
+              staticClass:
+                "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
+              class: _vm.theme
+            }),
+            _vm._v(" Add Task\n            ")
+          ]
+        ),
         _vm._v(" "),
-        _c("button", { attrs: { id: "btnDeleteTask" } }, [
-          _c("i", {
-            staticClass: "mdi mdi-delete mdiAddEditDeleteTaskIcon",
-            class: _vm.theme
-          }),
-          _vm._v(" Delete Task\n            ")
-        ])
+        _c(
+          "button",
+          {
+            attrs: { disabled: _vm.current_task_id == 0 },
+            on: { click: _vm.deleteTask }
+          },
+          [
+            _c("i", {
+              staticClass: "mdi mdi-delete mdiAddEditDeleteTaskIcon",
+              class: _vm.theme
+            }),
+            _vm._v(" Delete Task\n            ")
+          ]
+        )
       ])
     ]),
     _vm._v(" "),
@@ -39629,7 +40405,11 @@ var render = function() {
             theme: _vm.theme,
             current_id: _vm.current_project_id
           },
-          on: { changeproject: _vm.changeProject }
+          on: {
+            changeproject: _vm.changeProject,
+            deleteproject: _vm.deleteProject,
+            completeproject: _vm.completeProject
+          }
         }),
         _vm._v(" "),
         _c("tasks-panel", {
@@ -40292,123 +41072,164 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "body-projects-panel", class: _vm.theme }, [
-    _c("div", { staticClass: "topProjectsDiv", class: _vm.theme }, [
-      _c("input", {
-        staticClass: "searchInput",
-        class: _vm.theme,
-        attrs: { type: "text", placeholder: "projects search ..." }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "searchElementsDiv", class: _vm.theme }, [
-        _c("i", {
-          staticClass: "mdi mdi-filter searchIcons",
-          class: _vm.theme
+  return _c(
+    "div",
+    { staticClass: "body-projects-panel", class: _vm.theme },
+    [
+      _c("div", { staticClass: "topProjectsDiv", class: _vm.theme }, [
+        _c("input", {
+          staticClass: "searchInput",
+          class: _vm.theme,
+          attrs: { type: "text", placeholder: "projects search ..." }
         }),
         _vm._v(" "),
-        _c("div", [
+        _c("div", { staticClass: "searchElementsDiv", class: _vm.theme }, [
           _c("i", {
-            staticClass: "mdi mdi-airplane searchIcons",
+            staticClass: "mdi mdi-filter searchIcons",
             class: _vm.theme
           }),
           _vm._v(" "),
-          _c("i", {
-            staticClass: "mdi mdi-sort-alphabetical searchIcons",
-            class: _vm.theme
-          }),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "mdi mdi-sort-numeric searchIcons",
-            class: _vm.theme
-          })
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { attrs: { id: "projectsListView" } },
-      _vm._l(_vm.projects, function(project) {
-        return _c(
-          "div",
-          {
-            key: project.id,
-            staticClass: "project_item",
-            class: [project.id == _vm.current_id ? "active" : "", _vm.theme],
-            on: {
-              click: function($event) {
-                return _vm.showProject(project)
-              }
-            }
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "dateText",
-                class: [
-                  project.status == 0 ? "dateWithLine" : "dateWithoutLine",
-                  _vm.theme
-                ]
-              },
-              [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm._f("formatDate")(project.created_at)) +
-                    "\n            "
-                )
-              ]
-            ),
+          _c("div", [
+            _c("i", {
+              staticClass: "mdi mdi-airplane searchIcons",
+              class: _vm.theme
+            }),
             _vm._v(" "),
-            _c("div", { staticClass: "singleProjectDiv" }, [
+            _c("i", {
+              staticClass: "mdi mdi-sort-alphabetical searchIcons",
+              class: _vm.theme
+            }),
+            _vm._v(" "),
+            _c("i", {
+              staticClass: "mdi mdi-sort-numeric searchIcons",
+              class: _vm.theme
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { attrs: { id: "projectsListView" } },
+        _vm._l(_vm.projects, function(project) {
+          return _c(
+            "div",
+            {
+              key: project.id,
+              staticClass: "project_item",
+              class: [project.id == _vm.current_id ? "active" : "", _vm.theme],
+              on: {
+                click: function($event) {
+                  return _vm.showProject(project)
+                },
+                contextmenu: function($event) {
+                  $event.preventDefault()
+                  return _vm.$refs.menu.open($event, project)
+                }
+              }
+            },
+            [
               _c(
                 "div",
                 {
-                  staticClass: "singleProjectId",
+                  staticClass: "dateText",
                   class: [
-                    project.status == 0 ? "" : "idBackground",
-                    project.status == 0
-                      ? "idTextFinished"
-                      : "idTextUnfinished ",
+                    project.status == 0 ? "dateWithLine" : "dateWithoutLine",
                     _vm.theme
                   ]
                 },
                 [
                   _vm._v(
-                    "\n                    " +
-                      _vm._s(project.id) +
-                      "\n                "
+                    "\n                " +
+                      _vm._s(_vm._f("formatDate")(project.created_at)) +
+                      "\n            "
                   )
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "singleProjectText",
-                  class: [
-                    project.status == 0
-                      ? "titleTextFinished"
-                      : "titleTextUnfinished",
-                    project.status == 0 ? "titleTextLine" : "",
-                    _vm.theme
+              _c("div", { staticClass: "singleProjectDiv" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "singleProjectId",
+                    class: [
+                      project.status == 0 ? "" : "idBackground",
+                      project.status == 0
+                        ? "idTextFinished"
+                        : "idTextUnfinished ",
+                      _vm.theme
+                    ]
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(project.id) +
+                        "\n                "
+                    )
                   ]
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(project.title) +
-                      "\n                "
-                  )
-                ]
-              )
-            ])
-          ]
-        )
-      }),
-      0
-    )
-  ])
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "singleProjectText",
+                    class: [
+                      project.status == 0
+                        ? "titleTextFinished"
+                        : "titleTextUnfinished",
+                      project.status == 0 ? "titleTextLine" : "",
+                      _vm.theme
+                    ]
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(project.title) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ])
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("vue-context", { ref: "menu", on: { open: _vm.onOpenContextMenu } }, [
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.onClickContextMenu("delete")
+                }
+              }
+            },
+            [_vm._v("Delete Project")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.onClickContextMenu("complete")
+                }
+              }
+            },
+            [_vm._v("Complete Project")]
+          )
+        ])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41095,7 +41916,7 @@ function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.10
+ * Vue.js v2.6.11
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
@@ -43061,7 +43882,7 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
   isUsingMicroTask = true;
 } else if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
   // Fallback to setImmediate.
-  // Techinically it leverages the (macro) task queue,
+  // Technically it leverages the (macro) task queue,
   // but it is still a better choice than setTimeout.
   timerFunc = function () {
     setImmediate(flushCallbacks);
@@ -43150,7 +43971,7 @@ var initProxy;
     warn(
       "Property \"" + key + "\" must be accessed with \"$data." + key + "\" because " +
       'properties starting with "$" or "_" are not proxied in the Vue instance to ' +
-      'prevent conflicts with Vue internals' +
+      'prevent conflicts with Vue internals. ' +
       'See: https://vuejs.org/v2/api/#data',
       target
     );
@@ -44010,7 +44831,7 @@ function bindDynamicKeys (baseObj, values) {
     if (typeof key === 'string' && key) {
       baseObj[values[i]] = values[i + 1];
     } else if (key !== '' && key !== null) {
-      // null is a speical value for explicitly removing a binding
+      // null is a special value for explicitly removing a binding
       warn(
         ("Invalid value for dynamic directive argument (expected string or null): " + key),
         this
@@ -44505,6 +45326,12 @@ function _createElement (
     ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
     if (config.isReservedTag(tag)) {
       // platform built-in elements
+      if (isDef(data) && isDef(data.nativeOn)) {
+        warn(
+          ("The .native modifier for v-on is only valid on components but it was used on <" + tag + ">."),
+          context
+        );
+      }
       vnode = new VNode(
         config.parsePlatformTagName(tag), data, children,
         undefined, undefined, context
@@ -44630,7 +45457,7 @@ function renderMixin (Vue) {
     // render self
     var vnode;
     try {
-      // There's no need to maintain a stack becaues all render fns are called
+      // There's no need to maintain a stack because all render fns are called
       // separately from one another. Nested component's render fns are called
       // when parent component is patched.
       currentRenderingInstance = vm;
@@ -46529,7 +47356,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.10';
+Vue.version = '2.6.11';
 
 /*  */
 
@@ -47202,7 +48029,7 @@ function createPatchFunction (backend) {
     }
   }
 
-  function removeVnodes (parentElm, vnodes, startIdx, endIdx) {
+  function removeVnodes (vnodes, startIdx, endIdx) {
     for (; startIdx <= endIdx; ++startIdx) {
       var ch = vnodes[startIdx];
       if (isDef(ch)) {
@@ -47313,7 +48140,7 @@ function createPatchFunction (backend) {
       refElm = isUndef(newCh[newEndIdx + 1]) ? null : newCh[newEndIdx + 1].elm;
       addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);
     } else if (newStartIdx > newEndIdx) {
-      removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
+      removeVnodes(oldCh, oldStartIdx, oldEndIdx);
     }
   }
 
@@ -47405,7 +48232,7 @@ function createPatchFunction (backend) {
         if (isDef(oldVnode.text)) { nodeOps.setTextContent(elm, ''); }
         addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue);
       } else if (isDef(oldCh)) {
-        removeVnodes(elm, oldCh, 0, oldCh.length - 1);
+        removeVnodes(oldCh, 0, oldCh.length - 1);
       } else if (isDef(oldVnode.text)) {
         nodeOps.setTextContent(elm, '');
       }
@@ -47634,7 +48461,7 @@ function createPatchFunction (backend) {
 
         // destroy old node
         if (isDef(parentElm)) {
-          removeVnodes(parentElm, [oldVnode], 0, 0);
+          removeVnodes([oldVnode], 0, 0);
         } else if (isDef(oldVnode.tag)) {
           invokeDestroyHook(oldVnode);
         }
@@ -50340,7 +51167,7 @@ var startTagOpen = new RegExp(("^<" + qnameCapture));
 var startTagClose = /^\s*(\/?)>/;
 var endTag = new RegExp(("^<\\/" + qnameCapture + "[^>]*>"));
 var doctype = /^<!DOCTYPE [^>]+>/i;
-// #7298: escape - to avoid being pased as HTML comment when inlined in page
+// #7298: escape - to avoid being passed as HTML comment when inlined in page
 var comment = /^<!\--/;
 var conditionalComment = /^<!\[/;
 
@@ -50625,7 +51452,7 @@ function parseHTML (html, options) {
 /*  */
 
 var onRE = /^@|^v-on:/;
-var dirRE = /^v-|^@|^:/;
+var dirRE = /^v-|^@|^:|^#/;
 var forAliasRE = /([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/;
 var forIteratorRE = /,([^,\}\]]*)(?:,([^,\}\]]*))?$/;
 var stripParensRE = /^\(|\)$/g;
@@ -51249,7 +52076,7 @@ function processSlotContent (el) {
           if (el.parent && !maybeComponent(el.parent)) {
             warn$2(
               "<template v-slot> can only appear at the root level inside " +
-              "the receiving the component",
+              "the receiving component",
               el
             );
           }
@@ -51812,7 +52639,7 @@ function isDirectChildOfTemplateFor (node) {
 
 /*  */
 
-var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*(?:[\w$]+)?\s*\(/;
+var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function(?:\s+[\w$]+)?\s*\(/;
 var fnInvokeRE = /\([^)]*?\);*$/;
 var simplePathRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['[^']*?']|\["[^"]*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*$/;
 
@@ -52581,6 +53408,8 @@ function checkNode (node, warn) {
           var range = node.rawAttrsMap[name];
           if (name === 'v-for') {
             checkFor(node, ("v-for=\"" + value + "\""), warn, range);
+          } else if (name === 'v-slot' || name[0] === '#') {
+            checkFunctionParameterExpression(value, (name + "=\"" + value + "\""), warn, range);
           } else if (onRE.test(name)) {
             checkEvent(value, (name + "=\"" + value + "\""), warn, range);
           } else {
@@ -52600,9 +53429,9 @@ function checkNode (node, warn) {
 }
 
 function checkEvent (exp, text, warn, range) {
-  var stipped = exp.replace(stripStringRE, '');
-  var keywordMatch = stipped.match(unaryOperatorsRE);
-  if (keywordMatch && stipped.charAt(keywordMatch.index - 1) !== '$') {
+  var stripped = exp.replace(stripStringRE, '');
+  var keywordMatch = stripped.match(unaryOperatorsRE);
+  if (keywordMatch && stripped.charAt(keywordMatch.index - 1) !== '$') {
     warn(
       "avoid using JavaScript unary operator as property name: " +
       "\"" + (keywordMatch[0]) + "\" in expression " + (text.trim()),
@@ -52654,6 +53483,19 @@ function checkExpression (exp, text, warn, range) {
         range
       );
     }
+  }
+}
+
+function checkFunctionParameterExpression (exp, text, warn, range) {
+  try {
+    new Function(exp, '');
+  } catch (e) {
+    warn(
+      "invalid function parameter expression: " + (e.message) + " in\n\n" +
+      "    " + exp + "\n\n" +
+      "  Raw expression: " + (text.trim()) + "\n",
+      range
+    );
   }
 }
 
@@ -53813,8 +54655,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\maxtrade-office\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\maxtrade-office\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/wiley/projects/maxtrade-office/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/wiley/projects/maxtrade-office/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

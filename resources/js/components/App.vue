@@ -59,7 +59,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a>
+                                        <a v-on:click.prevent="addTask">
                                             <div class="mnu-flex">
                                                 <i
                                                     class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
@@ -74,8 +74,8 @@
                             <li class="has-sub">
                                 <a><span>Tasks</span></a>
                                 <ul>
-                                    <li id="mnuAddTask">
-                                        <a>
+                                    <li>
+                                        <a v-on:click.prevent="addTask">
                                             <div class="mnu-flex">
                                                 <i
                                                     class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
@@ -85,8 +85,8 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li id="mnuDeleteTask">
-                                        <a>
+                                    <li>
+                                        <a v-on:click.prevent="deleteTask">
                                             <div class="mnu-flex">
                                                 <i
                                                     class="mdi mdi-delete mdiAddEditDeleteTaskIcon"
@@ -190,7 +190,7 @@
                             <li class="has-sub">
                                 <a><span>Help</span></a>
                                 <ul>
-                                    <li id="mnuAbout">
+                                    <li>
                                         <a>
                                             <div class="mnu-flex">
                                                 <i
@@ -251,14 +251,20 @@
                     ></i
                     >&nbsp;Delete Project
                 </button>
-                <button id="btnAddTask">
+                <button
+                    v-on:click="addTask"
+                    :disabled="current_project_id == 0"
+                >
                     <i
                         class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
                         v-bind:class="theme"
                     ></i
                     >&nbsp;Add Task
                 </button>
-                <button id="btnDeleteTask">
+                <button
+                    :disabled="current_task_id == 0"
+                    v-on:click="deleteTask"
+                >
                     <i
                         class="mdi mdi-delete mdiAddEditDeleteTaskIcon"
                         v-bind:class="theme"
@@ -276,6 +282,8 @@
                 v-bind:theme="theme"
                 v-bind:current_id="current_project_id"
                 @changeproject="changeProject"
+                @deleteproject="deleteProject"
+                @completeproject="completeProject"
             ></projects-panel>
             <tasks-panel
                 v-bind:tasks="tasks"
@@ -519,34 +527,43 @@ export default {
                                 res.data.title
                         );
                     }
+                    // change all task status by project
+                    if (this.project.status == 0) {
+                        fetch("api/task/complete/" + this.project.id, {
+                            method: "GET"
+                        }).catch(err => console.log(err));
+                        this.tasks.forEach(function(part, index) {
+                            part.status = 0;
+                        });
+                    }
                 })
                 .catch(err => console.log(err));
         },
         // Delete current project
         deleteProject() {
-            if (confirm("Are You sure?")) {
-                fetch("api/project/" + this.project.id, {
-                    method: "DELETE",
-                    body: JSON.stringify({
-                        project_id: this.project.id
-                    }),
-                    headers: {
-                        "Content-Type": "application/json; charset=utf-8"
-                    }
-                })
-                    .then(res => res.json())
-                    .then(res => {
-                        alert(
-                            "You have successfully delete the Project: " +
-                                res.data.title
-                        );
-                        this.projects = this.projects.filter(
-                            p => p.id !== res.data.id
-                        );
-                        this.current_project_id = 0;
-                        this.panel = "";
+            if (this.current_project_id != 0) {
+                if (confirm("Are You sure?")) {
+                    fetch("api/project/" + this.project.id, {
+                        method: "DELETE",
+                        body: JSON.stringify({
+                            project_id: this.project.id
+                        }),
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8"
+                        }
                     })
-                    .catch(err => console.log(err));
+                        .then(res => res.json())
+                        .then(res => {
+                            this.projects = this.projects.filter(
+                                p => p.id !== res.data.id
+                            );
+                            this.current_project_id = 0;
+                            this.current_task_id = 0;
+                            this.tasks = [];
+                            this.panel = "";
+                        })
+                        .catch(err => console.log(err));
+                }
             }
         },
         // Add new project
@@ -570,6 +587,10 @@ export default {
             this.current_project_id = newProject.id;
             this.new_project = true;
             this.panel = "projects";
+            this.saveProject(false);
+        },
+        completeProject() {
+            this.project.status = 0;
             this.saveProject(false);
         },
 
@@ -624,29 +645,57 @@ export default {
         },
         // Delete current task
         deleteTask() {
-            if (confirm("Are You sure?")) {
-                fetch("api/task/" + this.task.id, {
-                    method: "DELETE",
-                    body: JSON.stringify({
-                        task_id: this.task.id
-                    }),
-                    headers: {
-                        "Content-Type": "application/json; charset=utf-8"
-                    }
-                })
-                    .then(res => res.json())
-                    .then(res => {
-                        alert(
-                            "You have successfully delete the Task: " +
-                                res.data.title
-                        );
-                        this.tasks = this.tasks.filter(
-                            t => t.id !== res.data.id
-                        );
-                        this.current_task_id = 0;
-                        this.panel = "";
+            if (this.current_task_id != 0) {
+                if (confirm("Are You sure?")) {
+                    fetch("api/task/" + this.task.id, {
+                        method: "DELETE",
+                        body: JSON.stringify({
+                            task_id: this.task.id
+                        }),
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8"
+                        }
                     })
-                    .catch(err => console.log(err));
+                        .then(res => res.json())
+                        .then(res => {
+                            alert(
+                                "You have successfully delete the Task: " +
+                                    res.data.title
+                            );
+                            this.tasks = this.tasks.filter(
+                                t => t.id !== res.data.id
+                            );
+                            this.current_task_id = 0;
+                            this.panel = "";
+                        })
+                        .catch(err => console.log(err));
+                }
+            }
+        },
+        // Add new task
+        addTask() {
+            if (this.current_project_id != 0) {
+                const newTask = {
+                    id:
+                        Math.max.apply(
+                            Math,
+                            this.tasks.map(function(o) {
+                                return o.id;
+                            })
+                        ) + 1,
+                    project_id: this.current_project_id,
+                    title: "Name of new Task",
+                    body: "Description of new Task",
+                    created_at: moment().format(),
+                    updated_at: "",
+                    status: 1
+                };
+                this.tasks.unshift(newTask);
+                this.task = newTask;
+                this.current_task_id = newTask.id;
+                this.new_task = true;
+                this.panel = "tasks";
+                this.saveTask(false);
             }
         },
 
