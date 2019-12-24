@@ -2206,6 +2206,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2288,13 +2291,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       project_filter: {
         filter09: false,
         filteraz: false,
-        filterstatus: false
+        filterstatus: "all"
       }
     };
   },
   created: function created() {
     this.fetchProperties();
-    this.fetchProjects();
+    this.fetchProjects("all");
   },
   methods: {
     // Properties actions
@@ -2339,13 +2342,33 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     },
     // Projects actions
     // Fetch all projects from DB and set to ProjectsPanel
-    fetchProjects: function fetchProjects() {
+    fetchProjects: function fetchProjects(_status) {
       var _this2 = this;
 
-      fetch("api/projects").then(function (res) {
+      fetch("api/projects/" + _status).then(function (res) {
         return res.json();
       }).then(function (res) {
         _this2.projects = res.data;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    // Fetch all projects from DB width search
+    fetchProjectsSearch: function fetchProjectsSearch(_text) {
+      var _this3 = this;
+
+      fetch("api/projects/search", {
+        method: "POST",
+        body: JSON.stringify({
+          search: _text
+        }),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      }).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this3.projects = res.data;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -2361,7 +2384,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     },
     // Save project changes back to DB
     saveProject: function saveProject(isMessage) {
-      var _this3 = this;
+      var _this4 = this;
 
       fetch("api/project", {
         method: this.new_project ? "POST" : "PUT",
@@ -2377,28 +2400,28 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this3.project.id = res.data.id;
-        _this3.project.title = res.data.title;
-        _this3.project.body = res.data.body;
-        _this3.project.created_at = res.data.created_at;
-        _this3.project.updated_at = res.data.updated_at;
-        _this3.project.status = res.data.status;
-        _this3.new_project = false;
-        _this3.current_project_id = res.data.id;
+        _this4.project.id = res.data.id;
+        _this4.project.title = res.data.title;
+        _this4.project.body = res.data.body;
+        _this4.project.created_at = res.data.created_at;
+        _this4.project.updated_at = res.data.updated_at;
+        _this4.project.status = res.data.status;
+        _this4.new_project = false;
+        _this4.current_project_id = res.data.id;
 
         if (isMessage) {
           alert("You have successfully saved the changes to the Project: " + res.data.title);
         } // change all task status by project
 
 
-        if (_this3.project.status == 0) {
-          fetch("api/task/complete/" + _this3.project.id, {
+        if (_this4.project.status == 0) {
+          fetch("api/task/complete/" + _this4.project.id, {
             method: "GET"
           })["catch"](function (err) {
             return console.log(err);
           });
 
-          _this3.tasks.forEach(function (part, index) {
+          _this4.tasks.forEach(function (part, index) {
             part.status = 0;
           });
         }
@@ -2408,7 +2431,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     },
     // Delete current project
     deleteProject: function deleteProject() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.current_project_id != 0) {
         if (confirm("Are You sure?")) {
@@ -2423,13 +2446,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
           }).then(function (res) {
             return res.json();
           }).then(function (res) {
-            _this4.projects = _this4.projects.filter(function (p) {
+            _this5.projects = _this5.projects.filter(function (p) {
               return p.id !== res.data.id;
             });
-            _this4.current_project_id = 0;
-            _this4.current_task_id = 0;
-            _this4.tasks = [];
-            _this4.panel = "";
+            _this5.current_project_id = 0;
+            _this5.current_task_id = 0;
+            _this5.tasks = [];
+            _this5.panel = "";
           })["catch"](function (err) {
             return console.log(err);
           });
@@ -2489,15 +2512,31 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
         });
       }
     },
+    toggleProjectStatusFilter: function toggleProjectStatusFilter() {
+      if (this.project_filter.filterstatus == "all") {
+        this.project_filter.filterstatus = "act";
+        this.fetchProjects("act");
+      } else {
+        if (this.project_filter.filterstatus == "act") {
+          this.project_filter.filterstatus = "end";
+          this.fetchProjects("end");
+        } else {
+          if (this.project_filter.filterstatus == "end") {
+            this.project_filter.filterstatus = "all";
+            this.fetchProjects("all");
+          }
+        }
+      }
+    },
     // Tasks actions
     // Fetch all tasks from DB and set to TasksPanel
     fetchTasks: function fetchTasks(_project_id) {
-      var _this5 = this;
+      var _this6 = this;
 
       fetch("api/tasks/" + _project_id).then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this5.tasks = res.data;
+        _this6.tasks = res.data;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -2511,7 +2550,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     },
     // Save task changes back to DB
     saveTask: function saveTask(isMessage) {
-      var _this6 = this;
+      var _this7 = this;
 
       fetch("api/task", {
         method: this.new_task ? "POST" : "PUT",
@@ -2528,14 +2567,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this6.task.id = res.data.id;
-        _this6.task.title = res.data.title;
-        _this6.task.body = res.data.body;
-        _this6.task.created_at = res.data.created_at;
-        _this6.task.updated_at = res.data.updated_at;
-        _this6.task.status = res.data.status;
-        _this6.new_task = false;
-        _this6.current_task_id = res.data.id;
+        _this7.task.id = res.data.id;
+        _this7.task.title = res.data.title;
+        _this7.task.body = res.data.body;
+        _this7.task.created_at = res.data.created_at;
+        _this7.task.updated_at = res.data.updated_at;
+        _this7.task.status = res.data.status;
+        _this7.new_task = false;
+        _this7.current_task_id = res.data.id;
 
         if (isMessage) {
           alert("You have successfully saved the changes to the Task: " + res.data.title);
@@ -2546,7 +2585,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     },
     // Delete current task
     deleteTask: function deleteTask() {
-      var _this7 = this;
+      var _this8 = this;
 
       if (this.current_task_id != 0) {
         if (confirm("Are You sure?")) {
@@ -2562,11 +2601,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
             return res.json();
           }).then(function (res) {
             alert("You have successfully delete the Task: " + res.data.title);
-            _this7.tasks = _this7.tasks.filter(function (t) {
+            _this8.tasks = _this8.tasks.filter(function (t) {
               return t.id !== res.data.id;
             });
-            _this7.current_task_id = 0;
-            _this7.panel = "";
+            _this8.current_task_id = 0;
+            _this8.panel = "";
           })["catch"](function (err) {
             return console.log(err);
           });
@@ -2908,6 +2947,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2943,9 +2985,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     toggleNameFilter: function toggleNameFilter() {
       this.$emit("projecttogglenamefilter");
+    },
+    toggleStatusFilter: function toggleStatusFilter() {
+      this.$emit("projecttogglestatusfilter");
+    },
+    projectSearch: function projectSearch(event) {
+      this.$emit("projectsearch", event.target.value);
     }
   },
-  props: ["projects", "theme", "current_id"]
+  props: ["projects", "theme", "current_id", "project_filter"]
 });
 
 /***/ }),
@@ -3404,7 +3452,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".v-context[data-v-b009a230],\n.v-context ul[data-v-b009a230] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-b009a230],\n.v-context ul > li[data-v-b009a230] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-b009a230],\n.v-context ul > li > a[data-v-b009a230] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-b009a230]:focus,\n.v-context > li > a[data-v-b009a230]:hover,\n.v-context ul > li > a[data-v-b009a230]:focus,\n.v-context ul > li > a[data-v-b009a230]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-b009a230]:focus,\n.v-context > li > a[data-v-b009a230]:focus,\n.v-context ul[data-v-b009a230]:focus,\n.v-context ul > li > a[data-v-b009a230]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-b009a230]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-b009a230] {\n  display: none;\n}\n\n/** Top part of projects */\n.topProjectsDiv[data-v-b009a230] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-b009a230] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-b009a230] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-b009a230] {\n  /* bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300\n            placeholder-gray-700 mr-1 */\n  border-radius: 0.25rem;\n  width: 70%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-b009a230] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-b009a230]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-b009a230] {\n  /* flex items-center justify-center border-l border-gray-700 border-dotted pl-1 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-b009a230] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-b009a230] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIcons[data-v-b009a230] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1.5rem;\n  cursor: pointer;\n}\n.searchIcons.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-b009a230]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-b009a230]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-b009a230] {\n  /* flex justify-end text-xs */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #cbd5e0;\n}\n.dateText.dateWithoutLine.light[data-v-b009a230] {\n  /* text-gray-400 */\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleProjectDiv[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleProjectId[data-v-b009a230] {\n  /* rounded-full h-6 w-6 text-xs flex items-center justify-center */\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleProjectId.idBackground.light[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleProjectId.idBackground.dark[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleProjectId.idTextUnfinished.light[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleProjectId.idTextUnfinished.dark[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleProjectId.idTextFinished.light[data-v-b009a230] {\n  color: #f7fafc;\n}\n.singleProjectId.idTextFinished.dark[data-v-b009a230] {\n  color: #1a202c;\n}\n.singleProjectText[data-v-b009a230] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleProjectText.titleTextUnfinished.light[data-v-b009a230] {\n  color: #4a5568;\n}\n.singleProjectText.titleTextUnfinished.dark[data-v-b009a230] {\n  color: #e2e8f0;\n}\n.singleProjectText.titleTextFinished.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.singleProjectText.titleTextFinished.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.body-projects-panel[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-projects-panel.light[data-v-b009a230] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-projects-panel.dark[data-v-b009a230] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#projectsListView[data-v-b009a230] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n#projectsListView div.projectItem.light[data-v-b009a230]:hover {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark[data-v-b009a230]:hover {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem.light.active[data-v-b009a230] {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark.active[data-v-b009a230] {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem div[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.project_item[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item.light[data-v-b009a230] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.project_item[data-v-b009a230]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item.light[data-v-b009a230]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.project_item.light.active[data-v-b009a230] {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark.active[data-v-b009a230] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n", ""]);
+exports.push([module.i, ".v-context[data-v-b009a230],\n.v-context ul[data-v-b009a230] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-b009a230],\n.v-context ul > li[data-v-b009a230] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-b009a230],\n.v-context ul > li > a[data-v-b009a230] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-b009a230]:focus,\n.v-context > li > a[data-v-b009a230]:hover,\n.v-context ul > li > a[data-v-b009a230]:focus,\n.v-context ul > li > a[data-v-b009a230]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-b009a230]:focus,\n.v-context > li > a[data-v-b009a230]:focus,\n.v-context ul[data-v-b009a230]:focus,\n.v-context ul > li > a[data-v-b009a230]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-b009a230]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-b009a230] {\n  display: none;\n}\n\n/** Top part of projects */\n.topProjectsDiv[data-v-b009a230] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-b009a230] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-b009a230] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-b009a230] {\n  /* bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300\n            placeholder-gray-700 mr-1 */\n  border-radius: 0.25rem;\n  width: 70%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-b009a230] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-b009a230]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-b009a230] {\n  /* flex items-center justify-center border-l border-gray-700 border-dotted pl-1 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-b009a230] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-b009a230] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIconsText[data-v-b009a230] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIconsText.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIconsText.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIconsText.light[data-v-b009a230]:hover {\n  color: #1a202c;\n}\n.searchIconsText.dark[data-v-b009a230]:hover {\n  color: #f7fafc;\n}\n.searchIcons[data-v-b009a230] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1.5rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIcons.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-b009a230]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-b009a230]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-b009a230] {\n  /* flex justify-end text-xs */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #cbd5e0;\n}\n.dateText.dateWithoutLine.light[data-v-b009a230] {\n  /* text-gray-400 */\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleProjectDiv[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleProjectId[data-v-b009a230] {\n  /* rounded-full h-6 w-6 text-xs flex items-center justify-center */\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleProjectId.idBackground.light[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleProjectId.idBackground.dark[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleProjectId.idTextUnfinished.light[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleProjectId.idTextUnfinished.dark[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleProjectId.idTextFinished.light[data-v-b009a230] {\n  color: #f7fafc;\n}\n.singleProjectId.idTextFinished.dark[data-v-b009a230] {\n  color: #1a202c;\n}\n.singleProjectText[data-v-b009a230] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleProjectText.titleTextUnfinished.light[data-v-b009a230] {\n  color: #4a5568;\n}\n.singleProjectText.titleTextUnfinished.dark[data-v-b009a230] {\n  color: #e2e8f0;\n}\n.singleProjectText.titleTextFinished.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.singleProjectText.titleTextFinished.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.body-projects-panel[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-projects-panel.light[data-v-b009a230] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-projects-panel.dark[data-v-b009a230] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#projectsListView[data-v-b009a230] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n#projectsListView div.projectItem.light[data-v-b009a230]:hover {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark[data-v-b009a230]:hover {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem.light.active[data-v-b009a230] {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark.active[data-v-b009a230] {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem div[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.project_item[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item.light[data-v-b009a230] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.project_item[data-v-b009a230]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item.light[data-v-b009a230]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.project_item.light.active[data-v-b009a230] {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark.active[data-v-b009a230] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n", ""]);
 
 // exports
 
@@ -40479,14 +40527,17 @@ var render = function() {
           attrs: {
             projects: _vm.projects,
             theme: _vm.theme,
-            current_id: _vm.current_project_id
+            current_id: _vm.current_project_id,
+            project_filter: _vm.project_filter
           },
           on: {
             changeproject: _vm.changeProject,
             deleteproject: _vm.deleteProject,
             completeproject: _vm.completeProject,
             projecttoggleidfilter: _vm.toggleProjectIdFilter,
-            projecttogglenamefilter: _vm.toggleProjectNameFilter
+            projecttogglenamefilter: _vm.toggleProjectNameFilter,
+            projecttogglestatusfilter: _vm.toggleProjectStatusFilter,
+            projectsearch: _vm.fetchProjectsSearch
           }
         }),
         _vm._v(" "),
@@ -41162,14 +41213,24 @@ var render = function() {
         _c("input", {
           staticClass: "searchInput",
           class: _vm.theme,
-          attrs: { type: "text", placeholder: "projects search ..." }
+          attrs: { type: "text", placeholder: "projects search ..." },
+          on: {
+            input: function($event) {
+              return _vm.projectSearch($event)
+            }
+          }
         }),
         _vm._v(" "),
         _c("div", { staticClass: "searchElementsDiv", class: _vm.theme }, [
-          _c("i", {
-            staticClass: "mdi mdi-airplane searchIcons",
-            class: _vm.theme
-          }),
+          _c(
+            "span",
+            {
+              staticClass: "searchIconsText",
+              class: _vm.theme,
+              on: { click: _vm.toggleStatusFilter }
+            },
+            [_vm._v(_vm._s(_vm.project_filter.filterstatus.toUpperCase()))]
+          ),
           _vm._v(" "),
           _c("i", {
             staticClass: "mdi mdi-sort-alphabetical searchIcons",

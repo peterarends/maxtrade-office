@@ -6,12 +6,15 @@
                 class="searchInput"
                 v-bind:class="theme"
                 placeholder="projects search ..."
+                v-on:input="projectSearch($event)"
             />
             <div class="searchElementsDiv" v-bind:class="theme">
-                <i
-                    class="mdi mdi-airplane searchIcons"
+                <span
+                    class="searchIconsText"
                     v-bind:class="theme"
-                ></i>
+                    v-on:click="toggleStatusFilter"
+                    >{{ project_filter.filterstatus.toUpperCase() }}</span
+                >
                 <i
                     class="mdi mdi-sort-alphabetical searchIcons"
                     v-bind:class="theme"
@@ -126,10 +129,16 @@ export default {
         },
         toggleNameFilter() {
             this.$emit("projecttogglenamefilter");
+        },
+        toggleStatusFilter() {
+            this.$emit("projecttogglestatusfilter");
+        },
+        projectSearch(event) {
+            this.$emit("projectsearch", event.target.value);
         }
     },
 
-    props: ["projects", "theme", "current_id"]
+    props: ["projects", "theme", "current_id", "project_filter"]
 };
 </script>
 
@@ -247,9 +256,30 @@ export default {
 }
 
 /** Search by element icons */
+.searchIconsText {
+    /* text-2xl text-gray-500 hover:text-gray-100 */
+    font-size: 1rem;
+    padding: 0px 2px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.searchIconsText.light {
+    color: #a0aec0;
+}
+.searchIconsText.dark {
+    color: #a0aec0;
+}
+.searchIconsText.light:hover {
+    color: #1a202c;
+}
+.searchIconsText.dark:hover {
+    color: #f7fafc;
+}
 .searchIcons {
     /* text-2xl text-gray-500 hover:text-gray-100 */
     font-size: 1.5rem;
+    padding: 0px 2px;
+    font-weight: bold;
     cursor: pointer;
 }
 .searchIcons.light {

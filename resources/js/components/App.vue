@@ -281,11 +281,14 @@
                 v-bind:projects="projects"
                 v-bind:theme="theme"
                 v-bind:current_id="current_project_id"
+                v-bind:project_filter="project_filter"
                 @changeproject="changeProject"
                 @deleteproject="deleteProject"
                 @completeproject="completeProject"
                 @projecttoggleidfilter="toggleProjectIdFilter"
                 @projecttogglenamefilter="toggleProjectNameFilter"
+                @projecttogglestatusfilter="toggleProjectStatusFilter"
+                @projectsearch="fetchProjectsSearch"
             ></projects-panel>
             <tasks-panel
                 v-bind:tasks="tasks"
@@ -444,14 +447,14 @@ export default {
             project_filter: {
                 filter09: false,
                 filteraz: false,
-                filterstatus: false
+                filterstatus: "all"
             }
         };
     },
 
     created() {
         this.fetchProperties();
-        this.fetchProjects();
+        this.fetchProjects("all");
     },
 
     methods: {
@@ -491,8 +494,23 @@ export default {
 
         // Projects actions
         // Fetch all projects from DB and set to ProjectsPanel
-        fetchProjects() {
-            fetch("api/projects")
+        fetchProjects(_status) {
+            fetch("api/projects/" + _status)
+                .then(res => res.json())
+                .then(res => {
+                    this.projects = res.data;
+                })
+                .catch(err => console.log(err));
+        },
+        // Fetch all projects from DB width search
+        fetchProjectsSearch(_text) {
+            fetch("api/projects/search", {
+                method: "POST",
+                body: JSON.stringify({
+                    search: _text
+                }),
+                headers: { "Content-Type": "application/json; charset=utf-8" }
+            })
                 .then(res => res.json())
                 .then(res => {
                     this.projects = res.data;
@@ -628,6 +646,22 @@ export default {
                     if (a.title > b.title) return -1;
                     if (a.title < b.title) return 1;
                 });
+            }
+        },
+        toggleProjectStatusFilter() {
+            if (this.project_filter.filterstatus == "all") {
+                this.project_filter.filterstatus = "act";
+                this.fetchProjects("act");
+            } else {
+                if (this.project_filter.filterstatus == "act") {
+                    this.project_filter.filterstatus = "end";
+                    this.fetchProjects("end");
+                } else {
+                    if (this.project_filter.filterstatus == "end") {
+                        this.project_filter.filterstatus = "all";
+                        this.fetchProjects("all");
+                    }
+                }
             }
         },
 

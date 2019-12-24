@@ -18,8 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/** List Projects */
-Route::get('projects', 'ProjectsController@index');
+/** List All Projects */
+Route::get('projects/all', 'ProjectsController@index');
+/** Search Projects */
+Route::post('projects/search', 'ProjectsController@search');
+/** List only active Projects */
+Route::get('projects/act', 'ProjectsController@indexActive');
+/** List only ended Projects */
+Route::get('projects/end', 'ProjectsController@indexEnded');
 /** List single Project */
 Route::get('project/{id}', 'ProjectsController@show');
 /** Create new Project */

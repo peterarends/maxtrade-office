@@ -23,6 +23,38 @@ class ProjectsController extends Controller
         return ProjectResource::collection($projects);
     }
 
+    public function search(Request $request)
+    {
+        /** Get Projects */
+        if (!empty($request->search)) {
+            $projects = Project::where('title', 'LIKE', '%' . $request->search . '%')
+                ->orWhere('body', 'LIKE', '%' . $request->search . '%')
+                ->orderBy('created_at', 'desc')->get();
+        } else {
+            $projects = Project::orderBy('created_at', 'desc')->get();
+        }
+        /** Return collection of Projects as resource */
+        return ProjectResource::collection($projects);
+    }
+
+    public function indexActive()
+    {
+        /** Get only active Projects */
+        $projects = Project::where(['status' => 1])->orderBy('created_at', 'desc')->get();
+
+        /** Return collection of Projects as resource */
+        return ProjectResource::collection($projects);
+    }
+
+    public function indexEnded()
+    {
+        /** Get only active Projects */
+        $projects = Project::where(['status' => 0])->orderBy('created_at', 'desc')->get();
+
+        /** Return collection of Projects as resource */
+        return ProjectResource::collection($projects);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
