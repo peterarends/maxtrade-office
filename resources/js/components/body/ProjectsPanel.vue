@@ -86,6 +86,9 @@
                     >Complete Project</a
                 >
             </li>
+            <li>
+                <a @click.prevent="onClickContextMenu('addtask')">New Task</a>
+            </li>
         </vue-context>
     </div>
 </template>
@@ -116,9 +119,14 @@ export default {
         onClickContextMenu(action) {
             if (action == "delete") {
                 this.$emit("deleteproject");
-            }
-            if (action == "complete") {
-                this.$emit("completeproject");
+            } else {
+                if (action == "complete") {
+                    this.$emit("completeproject");
+                } else {
+                    if (action == "addtask") {
+                        this.$emit("addtask");
+                    }
+                }
             }
         },
         onOpenContextMenu(event, data) {

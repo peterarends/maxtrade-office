@@ -2209,6 +2209,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2950,6 +2951,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2971,10 +2975,14 @@ __webpack_require__.r(__webpack_exports__);
     onClickContextMenu: function onClickContextMenu(action) {
       if (action == "delete") {
         this.$emit("deleteproject");
-      }
-
-      if (action == "complete") {
-        this.$emit("completeproject");
+      } else {
+        if (action == "complete") {
+          this.$emit("completeproject");
+        } else {
+          if (action == "addtask") {
+            this.$emit("addtask");
+          }
+        }
       }
     },
     onOpenContextMenu: function onOpenContextMenu(event, data) {
@@ -40537,7 +40545,8 @@ var render = function() {
             projecttoggleidfilter: _vm.toggleProjectIdFilter,
             projecttogglenamefilter: _vm.toggleProjectNameFilter,
             projecttogglestatusfilter: _vm.toggleProjectStatusFilter,
-            projectsearch: _vm.fetchProjectsSearch
+            projectsearch: _vm.fetchProjectsSearch,
+            addtask: _vm.addTask
           }
         }),
         _vm._v(" "),
@@ -41362,6 +41371,21 @@ var render = function() {
               }
             },
             [_vm._v("Complete Project")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.onClickContextMenu("addtask")
+                }
+              }
+            },
+            [_vm._v("New Task")]
           )
         ])
       ])

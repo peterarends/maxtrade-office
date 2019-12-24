@@ -289,6 +289,7 @@
                 @projecttogglenamefilter="toggleProjectNameFilter"
                 @projecttogglestatusfilter="toggleProjectStatusFilter"
                 @projectsearch="fetchProjectsSearch"
+                @addtask="addTask"
             ></projects-panel>
             <tasks-panel
                 v-bind:tasks="tasks"
