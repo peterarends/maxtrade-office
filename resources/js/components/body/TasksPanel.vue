@@ -32,6 +32,7 @@
                 v-bind:key="task.id"
                 v-bind:class="[task.id == current_id ? 'active' : '', theme]"
                 v-on:click="showTask(task)"
+                @contextmenu.prevent="$refs.menu.open($event, task)"
             >
                 <div
                     class="dateText"
@@ -70,14 +71,29 @@
                 </div>
             </div>
         </div>
+        <vue-context ref="menu" @open="onOpenContextMenu">
+            <li>
+                <a @click.prevent="onClickContextMenu('delete')">Delete Task</a>
+            </li>
+            <li>
+                <a @click.prevent="onClickContextMenu('complete')"
+                    >Complete Task</a
+                >
+            </li>
+        </vue-context>
     </div>
 </template>
 
 <script>
 import moment from "moment";
+import { VueContext } from "vue-context";
 
 export default {
     name: "TasksPanel",
+
+    components: {
+        VueContext
+    },
 
     filters: {
         formatDate: function(value) {
@@ -90,6 +106,17 @@ export default {
     methods: {
         showTask(task) {
             this.$emit("changetask", task);
+        },
+        onClickContextMenu(action) {
+            if (action == "delete") {
+                this.$emit("deletetask");
+            }
+            if (action == "complete") {
+                this.$emit("completetask");
+            }
+        },
+        onOpenContextMenu(event, data) {
+            this.showTask(data);
         }
     },
 
@@ -98,6 +125,78 @@ export default {
 </script>
 
 <style scoped>
+.v-context,
+.v-context ul {
+    background-color: #1a202c;
+    background-clip: padding-box;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    display: block;
+    margin: 0;
+    padding: 0px;
+    min-width: 10rem;
+    z-index: 1500;
+    position: fixed;
+    list-style: none;
+    box-sizing: border-box;
+    max-height: calc(100% - 50px);
+    overflow-y: auto;
+}
+.v-context > li,
+.v-context ul > li {
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+}
+.v-context > li > a,
+.v-context ul > li > a {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    font-weight: 400;
+    color: #cbd5e0;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+.v-context > li > a:focus,
+.v-context > li > a:hover,
+.v-context ul > li > a:focus,
+.v-context ul > li > a:hover {
+    text-decoration: none;
+    color: #212529;
+    background-color: #a0aec0;
+}
+.v-context:focus,
+.v-context > li > a:focus,
+.v-context ul:focus,
+.v-context ul > li > a:focus {
+    outline: 0;
+}
+.v-context__sub > a:after {
+    content: "\2BC8";
+    float: right;
+    padding-left: 1rem;
+}
+.v-context__sub > ul {
+    display: none;
+}
+/** Top part of projects */
+.topProjectsDiv {
+    /* flex items-center p-1 bg-gray-900 */
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+}
+.topProjectsDiv.light {
+    background-color: #f7fafc;
+}
+.topProjectsDiv.dark {
+    background-color: #1a202c;
+}
+
 /** Top part of tasks */
 .topTaskDiv {
     display: flex;

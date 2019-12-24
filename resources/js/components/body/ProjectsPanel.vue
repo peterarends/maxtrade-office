@@ -8,21 +8,20 @@
                 placeholder="projects search ..."
             />
             <div class="searchElementsDiv" v-bind:class="theme">
-                <i class="mdi mdi-filter searchIcons" v-bind:class="theme"></i>
-                <div>
-                    <i
-                        class="mdi mdi-airplane searchIcons"
-                        v-bind:class="theme"
-                    ></i>
-                    <i
-                        class="mdi mdi-sort-alphabetical searchIcons"
-                        v-bind:class="theme"
-                    ></i>
-                    <i
-                        class="mdi mdi-sort-numeric searchIcons"
-                        v-bind:class="theme"
-                    ></i>
-                </div>
+                <i
+                    class="mdi mdi-airplane searchIcons"
+                    v-bind:class="theme"
+                ></i>
+                <i
+                    class="mdi mdi-sort-alphabetical searchIcons"
+                    v-bind:class="theme"
+                    v-on:click="toggleNameFilter"
+                ></i>
+                <i
+                    class="mdi mdi-sort-numeric searchIcons"
+                    v-bind:class="theme"
+                    v-on:click="toggleIdFilter"
+                ></i>
             </div>
         </div>
         <div id="projectsListView">
@@ -121,6 +120,12 @@ export default {
         },
         onOpenContextMenu(event, data) {
             this.showProject(data);
+        },
+        toggleIdFilter() {
+            this.$emit("projecttoggleidfilter");
+        },
+        toggleNameFilter() {
+            this.$emit("projecttogglenamefilter");
         }
     },
 
@@ -206,7 +211,7 @@ export default {
     /* bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300
             placeholder-gray-700 mr-1 */
     border-radius: 0.25rem;
-    width: 50%;
+    width: 70%;
     padding-left: 0.25rem;
     padding-bottom: 0.25rem;
     margin-right: 0.25rem;
@@ -245,6 +250,7 @@ export default {
 .searchIcons {
     /* text-2xl text-gray-500 hover:text-gray-100 */
     font-size: 1.5rem;
+    cursor: pointer;
 }
 .searchIcons.light {
     color: #a0aec0;

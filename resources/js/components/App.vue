@@ -284,12 +284,16 @@
                 @changeproject="changeProject"
                 @deleteproject="deleteProject"
                 @completeproject="completeProject"
+                @projecttoggleidfilter="toggleProjectIdFilter"
+                @projecttogglenamefilter="toggleProjectNameFilter"
             ></projects-panel>
             <tasks-panel
                 v-bind:tasks="tasks"
                 v-bind:theme="theme"
                 v-bind:current_id="current_task_id"
                 @changetask="changeTask"
+                @deletetask="deleteTask"
+                @completetask="completeTask"
             ></tasks-panel>
             <div class="mainDivBodypanel" v-bind:class="theme">
                 <properties
@@ -436,7 +440,12 @@ export default {
             tasks: [],
             task: [],
             current_task_id: 0,
-            new_task: false
+            new_task: false,
+            project_filter: {
+                filter09: false,
+                filteraz: false,
+                filterstatus: false
+            }
         };
     },
 
@@ -593,6 +602,34 @@ export default {
             this.project.status = 0;
             this.saveProject(false);
         },
+        toggleProjectIdFilter() {
+            this.project_filter.filter09 = !this.project_filter.filter09;
+            if (this.project_filter.filter09) {
+                this.projects.sort(function(a, b) {
+                    if (a.id > b.id) return 1;
+                    if (a.id < b.id) return -1;
+                });
+            } else {
+                this.projects.sort(function(a, b) {
+                    if (a.id > b.id) return -1;
+                    if (a.id < b.id) return 1;
+                });
+            }
+        },
+        toggleProjectNameFilter() {
+            this.project_filter.filteraz = !this.project_filter.filteraz;
+            if (this.project_filter.filteraz) {
+                this.projects.sort(function(a, b) {
+                    if (a.title > b.title) return 1;
+                    if (a.title < b.title) return -1;
+                });
+            } else {
+                this.projects.sort(function(a, b) {
+                    if (a.title > b.title) return -1;
+                    if (a.title < b.title) return 1;
+                });
+            }
+        },
 
         // Tasks actions
         // Fetch all tasks from DB and set to TasksPanel
@@ -697,6 +734,10 @@ export default {
                 this.panel = "tasks";
                 this.saveTask(false);
             }
+        },
+        completeTask() {
+            this.task.status = 0;
+            this.saveTask(false);
         },
 
         // Other system staff
