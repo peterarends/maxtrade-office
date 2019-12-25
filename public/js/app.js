@@ -2213,6 +2213,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2389,7 +2391,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       this.new_project = false;
       this.panel = "projects";
       this.current_task_id = 0;
-      this.fetchTasks(this.current_project_id);
+      this.fetchTasks("all", this.current_project_id);
     },
     // Save project changes back to DB
     saveProject: function saveProject(isMessage) {
@@ -2539,10 +2541,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     },
     // Tasks actions
     // Fetch all tasks from DB and set to TasksPanel
-    fetchTasks: function fetchTasks(_project_id) {
+    fetchTasks: function fetchTasks(_status, _project_id) {
       var _this6 = this;
 
-      fetch("api/tasks/" + _project_id).then(function (res) {
+      fetch("api/tasks/" + _status + "/" + _project_id).then(function (res) {
         return res.json();
       }).then(function (res) {
         _this6.tasks = res.data;
@@ -2676,6 +2678,42 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
           if (a.title < b.title) return 1;
         });
       }
+    },
+    toggleTaskStatusFilter: function toggleTaskStatusFilter() {
+      if (this.task_filter.filterstatus == "all") {
+        this.task_filter.filterstatus = "act";
+        this.fetchTasks("act", this.current_project_id);
+      } else {
+        if (this.task_filter.filterstatus == "act") {
+          this.task_filter.filterstatus = "end";
+          this.fetchTasks("end", this.current_project_id);
+        } else {
+          if (this.task_filter.filterstatus == "end") {
+            this.task_filter.filterstatus = "all";
+            this.fetchTasks("all", this.current_project_id);
+          }
+        }
+      }
+    },
+    // Fetch all tasks from DB width search
+    fetchTasksSearch: function fetchTasksSearch(_text) {
+      var _this9 = this;
+
+      fetch("api/tasks/search/" + this.current_project_id, {
+        method: "POST",
+        body: JSON.stringify({
+          search: _text
+        }),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      }).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this9.tasks = res.data;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
     },
     // Other system staff
     // Close all panels and unset current projects
@@ -3391,6 +3429,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3426,6 +3468,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     toggleNameFilter: function toggleNameFilter() {
       this.$emit("tasktogglenamefilter");
+    },
+    toggleStatusFilter: function toggleStatusFilter() {
+      this.$emit("tasktogglestatusfilter");
+    },
+    taskSearch: function taskSearch(event) {
+      this.$emit("tasksearch", event.target.value);
     }
   },
   props: ["tasks", "theme", "current_id", "task_filter"]
@@ -40604,7 +40652,9 @@ var render = function() {
             deletetask: _vm.deleteTask,
             completetask: _vm.completeTask,
             tasktoggleidfilter: _vm.toggleTaskIdFilter,
-            tasktogglenamefilter: _vm.toggleTaskNameFilter
+            tasktogglenamefilter: _vm.toggleTaskNameFilter,
+            tasktogglestatusfilter: _vm.toggleTaskStatusFilter,
+            tasksearch: _vm.fetchTasksSearch
           }
         }),
         _vm._v(" "),
@@ -41892,13 +41942,24 @@ var render = function() {
         _c("input", {
           staticClass: "searchInput",
           class: _vm.theme,
-          attrs: { type: "text", placeholder: "tasks search ..." }
+          attrs: { type: "text", placeholder: "tasks search ..." },
+          on: {
+            input: function($event) {
+              return _vm.taskSearch($event)
+            }
+          }
         }),
         _vm._v(" "),
         _c("div", { staticClass: "searchElementsDiv", class: _vm.theme }, [
-          _c("span", { staticClass: "searchIconsText", class: _vm.theme }, [
-            _vm._v(_vm._s(_vm.task_filter.filterstatus.toUpperCase()))
-          ]),
+          _c(
+            "span",
+            {
+              staticClass: "searchIconsText",
+              class: _vm.theme,
+              on: { click: _vm.toggleStatusFilter }
+            },
+            [_vm._v(_vm._s(_vm.task_filter.filterstatus.toUpperCase()))]
+          ),
           _vm._v(" "),
           _c("i", {
             staticClass: "mdi mdi-sort-alphabetical searchIcons",

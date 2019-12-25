@@ -301,6 +301,8 @@
                 @completetask="completeTask"
                 @tasktoggleidfilter="toggleTaskIdFilter"
                 @tasktogglenamefilter="toggleTaskNameFilter"
+                @tasktogglestatusfilter="toggleTaskStatusFilter"
+                @tasksearch="fetchTasksSearch"
             ></tasks-panel>
             <div class="mainDivBodypanel" v-bind:class="theme">
                 <properties
@@ -533,7 +535,7 @@ export default {
             this.new_project = false;
             this.panel = "projects";
             this.current_task_id = 0;
-            this.fetchTasks(this.current_project_id);
+            this.fetchTasks("all", this.current_project_id);
         },
         // Save project changes back to DB
         saveProject(isMessage) {
@@ -676,8 +678,8 @@ export default {
 
         // Tasks actions
         // Fetch all tasks from DB and set to TasksPanel
-        fetchTasks(_project_id) {
-            fetch("api/tasks/" + _project_id)
+        fetchTasks(_status, _project_id) {
+            fetch("api/tasks/" + _status + "/" + _project_id)
                 .then(res => res.json())
                 .then(res => {
                     this.tasks = res.data;
@@ -809,6 +811,37 @@ export default {
                     if (a.title < b.title) return 1;
                 });
             }
+        },
+        toggleTaskStatusFilter() {
+            if (this.task_filter.filterstatus == "all") {
+                this.task_filter.filterstatus = "act";
+                this.fetchTasks("act", this.current_project_id);
+            } else {
+                if (this.task_filter.filterstatus == "act") {
+                    this.task_filter.filterstatus = "end";
+                    this.fetchTasks("end", this.current_project_id);
+                } else {
+                    if (this.task_filter.filterstatus == "end") {
+                        this.task_filter.filterstatus = "all";
+                        this.fetchTasks("all", this.current_project_id);
+                    }
+                }
+            }
+        },
+        // Fetch all tasks from DB width search
+        fetchTasksSearch(_text) {
+            fetch("api/tasks/search/" + this.current_project_id, {
+                method: "POST",
+                body: JSON.stringify({
+                    search: _text
+                }),
+                headers: { "Content-Type": "application/json; charset=utf-8" }
+            })
+                .then(res => res.json())
+                .then(res => {
+                    this.tasks = res.data;
+                })
+                .catch(err => console.log(err));
         },
 
         // Other system staff

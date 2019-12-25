@@ -48,7 +48,7 @@ class ProjectsController extends Controller
 
     public function indexEnded()
     {
-        /** Get only active Projects */
+        /** Get only ended Projects */
         $projects = Project::where(['status' => 0])->orderBy('created_at', 'desc')->get();
 
         /** Return collection of Projects as resource */

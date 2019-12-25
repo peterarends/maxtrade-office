@@ -6,11 +6,15 @@
                 class="searchInput"
                 v-bind:class="theme"
                 placeholder="tasks search ..."
+                v-on:input="taskSearch($event)"
             />
             <div class="searchElementsDiv" v-bind:class="theme">
-                <span class="searchIconsText" v-bind:class="theme">{{
-                    task_filter.filterstatus.toUpperCase()
-                }}</span>
+                <span
+                    class="searchIconsText"
+                    v-bind:class="theme"
+                    v-on:click="toggleStatusFilter"
+                    >{{ task_filter.filterstatus.toUpperCase() }}</span
+                >
                 <i
                     class="mdi mdi-sort-alphabetical searchIcons"
                     v-bind:class="theme"
@@ -121,6 +125,12 @@ export default {
         },
         toggleNameFilter() {
             this.$emit("tasktogglenamefilter");
+        },
+        toggleStatusFilter() {
+            this.$emit("tasktogglestatusfilter");
+        },
+        taskSearch(event) {
+            this.$emit("tasksearch", event.target.value);
         }
     },
 

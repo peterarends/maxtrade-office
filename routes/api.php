@@ -36,7 +36,13 @@ Route::put('project', 'ProjectsController@store');
 Route::delete('project/{id}', 'ProjectsController@destroy');
 
 /** List tasks */
-Route::get('tasks/{id}', 'TasksController@index');
+Route::get('tasks/all/{id}', 'TasksController@index');
+/** Search Tasks */
+Route::post('tasks/search/{id}', 'TasksController@search');
+/** List only active Tasks */
+Route::get('tasks/act/{id}', 'TasksController@indexActive');
+/** List only ended Tasks */
+Route::get('tasks/end/{id}', 'TasksController@indexEnded');
 /** List single Task */
 Route::get('task/{id}', 'TasksController@show');
 /** Complete all Task by Project */
