@@ -295,9 +295,12 @@
                 v-bind:tasks="tasks"
                 v-bind:theme="theme"
                 v-bind:current_id="current_task_id"
+                v-bind:task_filter="task_filter"
                 @changetask="changeTask"
                 @deletetask="deleteTask"
                 @completetask="completeTask"
+                @tasktoggleidfilter="toggleTaskIdFilter"
+                @tasktogglenamefilter="toggleTaskNameFilter"
             ></tasks-panel>
             <div class="mainDivBodypanel" v-bind:class="theme">
                 <properties
@@ -446,6 +449,11 @@ export default {
             current_task_id: 0,
             new_task: false,
             project_filter: {
+                filter09: false,
+                filteraz: false,
+                filterstatus: "all"
+            },
+            task_filter: {
                 filter09: false,
                 filteraz: false,
                 filterstatus: "all"
@@ -773,6 +781,34 @@ export default {
         completeTask() {
             this.task.status = 0;
             this.saveTask(false);
+        },
+        toggleTaskIdFilter() {
+            this.task_filter.filter09 = !this.task_filter.filter09;
+            if (this.task_filter.filter09) {
+                this.tasks.sort(function(a, b) {
+                    if (a.id > b.id) return 1;
+                    if (a.id < b.id) return -1;
+                });
+            } else {
+                this.tasks.sort(function(a, b) {
+                    if (a.id > b.id) return -1;
+                    if (a.id < b.id) return 1;
+                });
+            }
+        },
+        toggleTaskNameFilter() {
+            this.task_filter.filteraz = !this.task_filter.filteraz;
+            if (this.task_filter.filteraz) {
+                this.tasks.sort(function(a, b) {
+                    if (a.title > b.title) return 1;
+                    if (a.title < b.title) return -1;
+                });
+            } else {
+                this.tasks.sort(function(a, b) {
+                    if (a.title > b.title) return -1;
+                    if (a.title < b.title) return 1;
+                });
+            }
         },
 
         // Other system staff

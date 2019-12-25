@@ -8,21 +8,19 @@
                 placeholder="tasks search ..."
             />
             <div class="searchElementsDiv" v-bind:class="theme">
-                <i class="mdi mdi-filter searchIcons" v-bind:class="theme"></i>
-                <div>
-                    <i
-                        class="mdi mdi-airplane searchIcons"
-                        v-bind:class="theme"
-                    ></i>
-                    <i
-                        class="mdi mdi-sort-alphabetical searchIcons"
-                        v-bind:class="theme"
-                    ></i>
-                    <i
-                        class="mdi mdi-sort-numeric searchIcons"
-                        v-bind:class="theme"
-                    ></i>
-                </div>
+                <span class="searchIconsText" v-bind:class="theme">{{
+                    task_filter.filterstatus.toUpperCase()
+                }}</span>
+                <i
+                    class="mdi mdi-sort-alphabetical searchIcons"
+                    v-bind:class="theme"
+                    v-on:click="toggleNameFilter"
+                ></i>
+                <i
+                    class="mdi mdi-sort-numeric searchIcons"
+                    v-bind:class="theme"
+                    v-on:click="toggleIdFilter"
+                ></i>
             </div>
         </div>
         <div id="tasksListView">
@@ -117,10 +115,16 @@ export default {
         },
         onOpenContextMenu(event, data) {
             this.showTask(data);
+        },
+        toggleIdFilter() {
+            this.$emit("tasktoggleidfilter");
+        },
+        toggleNameFilter() {
+            this.$emit("tasktogglenamefilter");
         }
     },
 
-    props: ["tasks", "theme", "current_id"]
+    props: ["tasks", "theme", "current_id", "task_filter"]
 };
 </script>
 
@@ -213,7 +217,7 @@ export default {
 /** Search style */
 .searchInput {
     border-radius: 0.25rem;
-    width: 50%;
+    width: 70%;
     padding-left: 0.25rem;
     padding-bottom: 0.25rem;
     margin-right: 0.25rem;
@@ -247,6 +251,25 @@ export default {
     border-left: 1px dotted #4a5568;
 }
 /** Search by element icons */
+.searchIconsText {
+    /* text-2xl text-gray-500 hover:text-gray-100 */
+    font-size: 1rem;
+    padding: 0px 2px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.searchIconsText.light {
+    color: #a0aec0;
+}
+.searchIconsText.dark {
+    color: #a0aec0;
+}
+.searchIconsText.light:hover {
+    color: #1a202c;
+}
+.searchIconsText.dark:hover {
+    color: #f7fafc;
+}
 .searchIcons {
     font-size: 1.5rem;
 }
