@@ -409,7 +409,7 @@
                 <!--Header icon-->
                 <div><i class="mdi mdi-server-network serverIcon"></i></div>
                 <div class="separator-vertical"></div>
-                <div>MaxtradeOffice ver: <span id="app-version"></span></div>
+                <div>MaxtradeOffice ver: <span></span></div>
                 <div class="separator-vertical"></div>
                 <div class="projects-panel-title-dot">
                     <i class="fas fa-circle"></i>

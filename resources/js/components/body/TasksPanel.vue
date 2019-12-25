@@ -308,7 +308,7 @@ export default {
     color: #718096;
 }
 .dateText.dateWithLine.dark {
-    color: #cbd5e0;
+    color: #a0aec0;
 }
 .dateText.dateWithoutLine.light {
     color: #a0aec0;
