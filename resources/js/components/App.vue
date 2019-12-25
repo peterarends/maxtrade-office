@@ -69,6 +69,85 @@
                                             </div>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a v-on:click="completeProject"
+                                            ><span>Complete Project</span></a
+                                        >
+                                    </li>
+                                    <li class="has-sub">
+                                        <a><span>Projects Filter</span></a>
+                                        <ul>
+                                            <li>
+                                                <a v-on:click="showAllProjects"
+                                                    ><span
+                                                        >All Projects</span
+                                                    ></a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    v-on:click="
+                                                        showCompletedProjects
+                                                    "
+                                                    ><span
+                                                        >Completed
+                                                        Projects</span
+                                                    ></a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    v-on:click="
+                                                        showActivedProjects
+                                                    "
+                                                    ><span
+                                                        >Actived Projects</span
+                                                    ></a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-sub">
+                                        <a><span>Projects Sort</span></a>
+                                        <ul>
+                                            <li>
+                                                <a
+                                                    v-on:click="
+                                                        sortProjectsIdAcc
+                                                    "
+                                                    ><span
+                                                        >Id Ascending</span
+                                                    ></a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    v-on:click="
+                                                        sortProjectsIdDec
+                                                    "
+                                                    ><span
+                                                        >Id Descending</span
+                                                    ></a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    v-on:click="
+                                                        sortProjectsNameAcc
+                                                    "
+                                                    ><span>Name A-Z</span></a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    v-on:click="
+                                                        sortProjectsNameDec
+                                                    "
+                                                    ><span>Name Z-A</span></a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="has-sub">
@@ -96,24 +175,31 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li id="mnuTaskStatus">
-                                        <a><span>Task Status</span></a>
+                                    <li>
+                                        <a v-on:click="completeTask"
+                                            ><span>Complete Task</span></a
+                                        >
                                     </li>
                                     <li class="has-sub">
                                         <a><span>Tasks Filter</span></a>
                                         <ul>
                                             <li>
-                                                <a><span>All Tasks</span></a>
+                                                <a v-on:click="showAllTasks"
+                                                    ><span>All Tasks</span></a
+                                                >
                                             </li>
                                             <li>
                                                 <a
+                                                    v-on:click="
+                                                        showCompletedTasks
+                                                    "
                                                     ><span
                                                         >Completed Tasks</span
                                                     ></a
                                                 >
                                             </li>
                                             <li>
-                                                <a
+                                                <a v-on:click="showActivedTasks"
                                                     ><span
                                                         >Actived Tasks</span
                                                     ></a
@@ -125,46 +211,30 @@
                                         <a><span>Tasks Sort</span></a>
                                         <ul>
                                             <li>
-                                                <a><span>Sort By</span></a>
-                                            </li>
-                                            <li>
-                                                <a
+                                                <a v-on:click="sortTasksIdAcc"
                                                     ><span
-                                                        >Date Ascending</span
+                                                        >Id Ascending</span
                                                     ></a
                                                 >
                                             </li>
                                             <li>
-                                                <a
+                                                <a v-on:click="sortTasksIdDec"
                                                     ><span
-                                                        >Date Descending</span
+                                                        >Id Descending</span
                                                     ></a
                                                 >
                                             </li>
                                             <li>
-                                                <a
-                                                    ><span
-                                                        >Status Completed</span
-                                                    ></a
+                                                <a v-on:click="sortTasksNameAcc"
+                                                    ><span>Name A-Z</span></a
                                                 >
                                             </li>
                                             <li>
-                                                <a
-                                                    ><span
-                                                        >Status Active</span
-                                                    ></a
+                                                <a v-on:click="sortTasksNameDec"
+                                                    ><span>Name Z-A</span></a
                                                 >
-                                            </li>
-                                            <li>
-                                                <a><span>Name A-Z</span></a>
-                                            </li>
-                                            <li>
-                                                <a><span>Name Z-A</span></a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <a><span>Refresh Filters</span></a>
                                     </li>
                                 </ul>
                             </li>
@@ -628,8 +698,10 @@ export default {
             this.saveProject(false);
         },
         completeProject() {
-            this.project.status = 0;
-            this.saveProject(false);
+            if (this.current_project_id != 0) {
+                this.project.status = 0;
+                this.saveProject(false);
+            }
         },
         toggleProjectIdFilter() {
             this.project_filter.filter09 = !this.project_filter.filter09;
@@ -645,6 +717,20 @@ export default {
                 });
             }
         },
+        sortProjectsIdAcc() {
+            this.project_filter.filter09 = true;
+            this.projects.sort(function(a, b) {
+                if (a.id > b.id) return 1;
+                if (a.id < b.id) return -1;
+            });
+        },
+        sortProjectsIdDec() {
+            this.project_filter.filter09 = false;
+            this.projects.sort(function(a, b) {
+                if (a.id > b.id) return -1;
+                if (a.id < b.id) return 1;
+            });
+        },
         toggleProjectNameFilter() {
             this.project_filter.filteraz = !this.project_filter.filteraz;
             if (this.project_filter.filteraz) {
@@ -658,6 +744,20 @@ export default {
                     if (a.title < b.title) return 1;
                 });
             }
+        },
+        sortProjectsNameAcc() {
+            this.project_filter.filteraz = true;
+            this.projects.sort(function(a, b) {
+                if (a.title > b.title) return 1;
+                if (a.title < b.title) return -1;
+            });
+        },
+        sortProjectsNameDec() {
+            this.project_filter.filteraz = false;
+            this.projects.sort(function(a, b) {
+                if (a.title > b.title) return -1;
+                if (a.title < b.title) return 1;
+            });
         },
         toggleProjectStatusFilter() {
             if (this.project_filter.filterstatus == "all") {
@@ -674,6 +774,18 @@ export default {
                     }
                 }
             }
+        },
+        showAllProjects() {
+            this.project_filter.filterstatus = "all";
+            this.fetchProjects("all");
+        },
+        showCompletedProjects() {
+            this.project_filter.filterstatus = "end";
+            this.fetchProjects("end");
+        },
+        showActivedProjects() {
+            this.project_filter.filterstatus = "act";
+            this.fetchProjects("act");
         },
 
         // Tasks actions
@@ -781,8 +893,10 @@ export default {
             }
         },
         completeTask() {
-            this.task.status = 0;
-            this.saveTask(false);
+            if (this.current_task_id != 0) {
+                this.task.status = 0;
+                this.saveTask(false);
+            }
         },
         toggleTaskIdFilter() {
             this.task_filter.filter09 = !this.task_filter.filter09;
@@ -798,6 +912,20 @@ export default {
                 });
             }
         },
+        sortTasksIdAcc() {
+            this.task_filter.filter09 = true;
+            this.tasks.sort(function(a, b) {
+                if (a.id > b.id) return -1;
+                if (a.id < b.id) return 1;
+            });
+        },
+        sortTasksIdDec() {
+            this.task_filter.filter09 = false;
+            this.tasks.sort(function(a, b) {
+                if (a.id > b.id) return 1;
+                if (a.id < b.id) return -1;
+            });
+        },
         toggleTaskNameFilter() {
             this.task_filter.filteraz = !this.task_filter.filteraz;
             if (this.task_filter.filteraz) {
@@ -811,6 +939,20 @@ export default {
                     if (a.title < b.title) return 1;
                 });
             }
+        },
+        sortTasksNameAcc() {
+            this.task_filter.filteraz = true;
+            this.tasks.sort(function(a, b) {
+                if (a.title > b.title) return 1;
+                if (a.title < b.title) return -1;
+            });
+        },
+        sortTasksNameDec() {
+            this.task_filter.filteraz = false;
+            this.tasks.sort(function(a, b) {
+                if (a.title > b.title) return -1;
+                if (a.title < b.title) return 1;
+            });
         },
         toggleTaskStatusFilter() {
             if (this.task_filter.filterstatus == "all") {
@@ -827,6 +969,18 @@ export default {
                     }
                 }
             }
+        },
+        showAllTasks() {
+            this.task_filter.filterstatus = "all";
+            this.fetchTasks("all", this.current_project_id);
+        },
+        showActivedTasks() {
+            this.task_filter.filterstatus = "act";
+            this.fetchTasks("act", this.current_project_id);
+        },
+        showCompletedTasks() {
+            this.task_filter.filterstatus = "end";
+            this.fetchTasks("end", this.current_project_id);
         },
         // Fetch all tasks from DB width search
         fetchTasksSearch(_text) {

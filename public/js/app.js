@@ -2215,6 +2215,76 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2490,8 +2560,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       this.saveProject(false);
     },
     completeProject: function completeProject() {
-      this.project.status = 0;
-      this.saveProject(false);
+      if (this.current_project_id != 0) {
+        this.project.status = 0;
+        this.saveProject(false);
+      }
     },
     toggleProjectIdFilter: function toggleProjectIdFilter() {
       this.project_filter.filter09 = !this.project_filter.filter09;
@@ -2508,6 +2580,20 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
         });
       }
     },
+    sortProjectsIdAcc: function sortProjectsIdAcc() {
+      this.project_filter.filter09 = true;
+      this.projects.sort(function (a, b) {
+        if (a.id > b.id) return 1;
+        if (a.id < b.id) return -1;
+      });
+    },
+    sortProjectsIdDec: function sortProjectsIdDec() {
+      this.project_filter.filter09 = false;
+      this.projects.sort(function (a, b) {
+        if (a.id > b.id) return -1;
+        if (a.id < b.id) return 1;
+      });
+    },
     toggleProjectNameFilter: function toggleProjectNameFilter() {
       this.project_filter.filteraz = !this.project_filter.filteraz;
 
@@ -2522,6 +2608,20 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
           if (a.title < b.title) return 1;
         });
       }
+    },
+    sortProjectsNameAcc: function sortProjectsNameAcc() {
+      this.project_filter.filteraz = true;
+      this.projects.sort(function (a, b) {
+        if (a.title > b.title) return 1;
+        if (a.title < b.title) return -1;
+      });
+    },
+    sortProjectsNameDec: function sortProjectsNameDec() {
+      this.project_filter.filteraz = false;
+      this.projects.sort(function (a, b) {
+        if (a.title > b.title) return -1;
+        if (a.title < b.title) return 1;
+      });
     },
     toggleProjectStatusFilter: function toggleProjectStatusFilter() {
       if (this.project_filter.filterstatus == "all") {
@@ -2538,6 +2638,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
           }
         }
       }
+    },
+    showAllProjects: function showAllProjects() {
+      this.project_filter.filterstatus = "all";
+      this.fetchProjects("all");
+    },
+    showCompletedProjects: function showCompletedProjects() {
+      this.project_filter.filterstatus = "end";
+      this.fetchProjects("end");
+    },
+    showActivedProjects: function showActivedProjects() {
+      this.project_filter.filterstatus = "act";
+      this.fetchProjects("act");
     },
     // Tasks actions
     // Fetch all tasks from DB and set to TasksPanel
@@ -2646,8 +2758,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       }
     },
     completeTask: function completeTask() {
-      this.task.status = 0;
-      this.saveTask(false);
+      if (this.current_task_id != 0) {
+        this.task.status = 0;
+        this.saveTask(false);
+      }
     },
     toggleTaskIdFilter: function toggleTaskIdFilter() {
       this.task_filter.filter09 = !this.task_filter.filter09;
@@ -2664,6 +2778,20 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
         });
       }
     },
+    sortTasksIdAcc: function sortTasksIdAcc() {
+      this.task_filter.filter09 = true;
+      this.tasks.sort(function (a, b) {
+        if (a.id > b.id) return -1;
+        if (a.id < b.id) return 1;
+      });
+    },
+    sortTasksIdDec: function sortTasksIdDec() {
+      this.task_filter.filter09 = false;
+      this.tasks.sort(function (a, b) {
+        if (a.id > b.id) return 1;
+        if (a.id < b.id) return -1;
+      });
+    },
     toggleTaskNameFilter: function toggleTaskNameFilter() {
       this.task_filter.filteraz = !this.task_filter.filteraz;
 
@@ -2678,6 +2806,20 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
           if (a.title < b.title) return 1;
         });
       }
+    },
+    sortTasksNameAcc: function sortTasksNameAcc() {
+      this.task_filter.filteraz = true;
+      this.tasks.sort(function (a, b) {
+        if (a.title > b.title) return 1;
+        if (a.title < b.title) return -1;
+      });
+    },
+    sortTasksNameDec: function sortTasksNameDec() {
+      this.task_filter.filteraz = false;
+      this.tasks.sort(function (a, b) {
+        if (a.title > b.title) return -1;
+        if (a.title < b.title) return 1;
+      });
     },
     toggleTaskStatusFilter: function toggleTaskStatusFilter() {
       if (this.task_filter.filterstatus == "all") {
@@ -2694,6 +2836,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
           }
         }
       }
+    },
+    showAllTasks: function showAllTasks() {
+      this.task_filter.filterstatus = "all";
+      this.fetchTasks("all", this.current_project_id);
+    },
+    showActivedTasks: function showActivedTasks() {
+      this.task_filter.filterstatus = "act";
+      this.fetchTasks("act", this.current_project_id);
+    },
+    showCompletedTasks: function showCompletedTasks() {
+      this.task_filter.filterstatus = "end";
+      this.fetchTasks("end", this.current_project_id);
     },
     // Fetch all tasks from DB width search
     fetchTasksSearch: function fetchTasksSearch(_text) {
@@ -40400,12 +40554,76 @@ var render = function() {
                         ])
                       ]
                     )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { on: { click: _vm.completeProject } }, [
+                      _c("span", [_vm._v("Complete Project")])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "has-sub" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("ul", [
+                      _c("li", [
+                        _c("a", { on: { click: _vm.showAllProjects } }, [
+                          _c("span", [_vm._v("All Projects")])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { on: { click: _vm.showCompletedProjects } }, [
+                          _c("span", [
+                            _vm._v(
+                              "Completed\n                                                    Projects"
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { on: { click: _vm.showActivedProjects } }, [
+                          _c("span", [_vm._v("Actived Projects")])
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "has-sub" }, [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("ul", [
+                      _c("li", [
+                        _c("a", { on: { click: _vm.sortProjectsIdAcc } }, [
+                          _c("span", [_vm._v("Id Ascending")])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { on: { click: _vm.sortProjectsIdDec } }, [
+                          _c("span", [_vm._v("Id Descending")])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { on: { click: _vm.sortProjectsNameAcc } }, [
+                          _c("span", [_vm._v("Name A-Z")])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { on: { click: _vm.sortProjectsNameDec } }, [
+                          _c("span", [_vm._v("Name Z-A")])
+                        ])
+                      ])
+                    ])
                   ])
                 ])
               ]),
               _vm._v(" "),
               _c("li", { staticClass: "has-sub" }, [
-                _vm._m(3),
+                _vm._m(5),
                 _vm._v(" "),
                 _c("ul", [
                   _c("li", [
@@ -40458,13 +40676,65 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(4),
+                  _c("li", [
+                    _c("a", { on: { click: _vm.completeTask } }, [
+                      _c("span", [_vm._v("Complete Task")])
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _vm._m(5),
+                  _c("li", { staticClass: "has-sub" }, [
+                    _vm._m(6),
+                    _vm._v(" "),
+                    _c("ul", [
+                      _c("li", [
+                        _c("a", { on: { click: _vm.showAllTasks } }, [
+                          _c("span", [_vm._v("All Tasks")])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { on: { click: _vm.showCompletedTasks } }, [
+                          _c("span", [_vm._v("Completed Tasks")])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { on: { click: _vm.showActivedTasks } }, [
+                          _c("span", [_vm._v("Actived Tasks")])
+                        ])
+                      ])
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _vm._m(6),
-                  _vm._v(" "),
-                  _vm._m(7)
+                  _c("li", { staticClass: "has-sub" }, [
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _c("ul", [
+                      _c("li", [
+                        _c("a", { on: { click: _vm.sortTasksIdAcc } }, [
+                          _c("span", [_vm._v("Id Ascending")])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { on: { click: _vm.sortTasksIdDec } }, [
+                          _c("span", [_vm._v("Id Descending")])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { on: { click: _vm.sortTasksNameAcc } }, [
+                          _c("span", [_vm._v("Name A-Z")])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { on: { click: _vm.sortTasksNameDec } }, [
+                          _c("span", [_vm._v("Name Z-A")])
+                        ])
+                      ])
+                    ])
+                  ])
                 ])
               ]),
               _vm._v(" "),
@@ -40758,61 +41028,31 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("Projects Filter")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("Projects Sort")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("a", [_c("span", [_vm._v("Tasks")])])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { attrs: { id: "mnuTaskStatus" } }, [
-      _c("a", [_c("span", [_vm._v("Task Status")])])
-    ])
+    return _c("a", [_c("span", [_vm._v("Tasks Filter")])])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "has-sub" }, [
-      _c("a", [_c("span", [_vm._v("Tasks Filter")])]),
-      _vm._v(" "),
-      _c("ul", [
-        _c("li", [_c("a", [_c("span", [_vm._v("All Tasks")])])]),
-        _vm._v(" "),
-        _c("li", [_c("a", [_c("span", [_vm._v("Completed Tasks")])])]),
-        _vm._v(" "),
-        _c("li", [_c("a", [_c("span", [_vm._v("Actived Tasks")])])])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "has-sub" }, [
-      _c("a", [_c("span", [_vm._v("Tasks Sort")])]),
-      _vm._v(" "),
-      _c("ul", [
-        _c("li", [_c("a", [_c("span", [_vm._v("Sort By")])])]),
-        _vm._v(" "),
-        _c("li", [_c("a", [_c("span", [_vm._v("Date Ascending")])])]),
-        _vm._v(" "),
-        _c("li", [_c("a", [_c("span", [_vm._v("Date Descending")])])]),
-        _vm._v(" "),
-        _c("li", [_c("a", [_c("span", [_vm._v("Status Completed")])])]),
-        _vm._v(" "),
-        _c("li", [_c("a", [_c("span", [_vm._v("Status Active")])])]),
-        _vm._v(" "),
-        _c("li", [_c("a", [_c("span", [_vm._v("Name A-Z")])])]),
-        _vm._v(" "),
-        _c("li", [_c("a", [_c("span", [_vm._v("Name Z-A")])])])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [_c("a", [_c("span", [_vm._v("Refresh Filters")])])])
+    return _c("a", [_c("span", [_vm._v("Tasks Sort")])])
   },
   function() {
     var _vm = this
