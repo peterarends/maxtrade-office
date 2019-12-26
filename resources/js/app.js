@@ -1,10 +1,10 @@
-import Vue from 'vue';
-import App from './components/App';
+import Vue from "vue";
+import App from "./components/App";
 
-require('./bootstrap');
+require("./bootstrap");
 
 const app = new Vue({
-    el: 'app',
+    el: "app",
     components: {
         App
     }

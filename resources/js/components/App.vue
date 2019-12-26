@@ -408,27 +408,25 @@
             <div class="footer-icon">
                 <!--Header icon-->
                 <div><i class="mdi mdi-server-network serverIcon"></i></div>
-                <div class="separator-vertical"></div>
-                <div>MaxtradeOffice ver: <span></span></div>
-                <div class="separator-vertical"></div>
+                <div class="separator-vertical" v-bind:class="theme"></div>
+                <div>
+                    MaxtradeOffice ver: <span>{{ version }}</span>
+                </div>
+                <div class="separator-vertical" v-bind:class="theme"></div>
                 <div class="projects-panel-title-dot">
                     <i class="fas fa-circle"></i>
                 </div>
                 <div>
-                    Projects: <span id="projects_number"></span>&nbsp;<span
-                        id="projects_name"
-                    ></span>
+                    Projects: <span>{{ projects.length }}</span>
                 </div>
-                <div class="separator-vertical"></div>
+                <div class="separator-vertical" v-bind:class="theme"></div>
                 <div class="tasks-panel-title-dot">
                     <i class="fas fa-circle"></i>
                 </div>
                 <div>
-                    Tasks: <span id="tasks_number"></span>&nbsp;<span
-                        id="tasks_name"
-                    ></span>
+                    Tasks: <span>{{ tasks.length }}</span>
                 </div>
-                <div class="separator-vertical"></div>
+                <div class="separator-vertical" v-bind:class="theme"></div>
             </div>
         </div>
         <!-- End Footer panel -->
@@ -509,6 +507,7 @@ export default {
 
     data() {
         return {
+            version: "1.0.1",
             theme: "dark",
             properties: [],
             panel: "",

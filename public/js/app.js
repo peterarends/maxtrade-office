@@ -2283,8 +2283,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -2353,6 +2351,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
   },
   data: function data() {
     return {
+      version: "1.0.1",
       theme: "dark",
       properties: [],
       panel: "",
@@ -40997,7 +40996,38 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "footerMainDiv", class: _vm.theme }, [_vm._m(10)])
+    _c("div", { staticClass: "footerMainDiv", class: _vm.theme }, [
+      _c("div", { staticClass: "footer-icon" }, [
+        _vm._m(10),
+        _vm._v(" "),
+        _c("div", { staticClass: "separator-vertical", class: _vm.theme }),
+        _vm._v(" "),
+        _c("div", [
+          _vm._v("\n                MaxtradeOffice ver: "),
+          _c("span", [_vm._v(_vm._s(_vm.version))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "separator-vertical", class: _vm.theme }),
+        _vm._v(" "),
+        _vm._m(11),
+        _vm._v(" "),
+        _c("div", [
+          _vm._v("\n                Projects: "),
+          _c("span", [_vm._v(_vm._s(_vm.projects.length))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "separator-vertical", class: _vm.theme }),
+        _vm._v(" "),
+        _vm._m(12),
+        _vm._v(" "),
+        _c("div", [
+          _vm._v("\n                Tasks: "),
+          _c("span", [_vm._v(_vm._s(_vm.tasks.length))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "separator-vertical", class: _vm.theme })
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -41070,42 +41100,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer-icon" }, [
-      _c("div", [
-        _c("i", { staticClass: "mdi mdi-server-network serverIcon" })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "separator-vertical" }),
-      _vm._v(" "),
-      _c("div", [_vm._v("MaxtradeOffice ver: "), _c("span")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "separator-vertical" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "projects-panel-title-dot" }, [
-        _c("i", { staticClass: "fas fa-circle" })
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _vm._v("\n                Projects: "),
-        _c("span", { attrs: { id: "projects_number" } }),
-        _vm._v(" "),
-        _c("span", { attrs: { id: "projects_name" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "separator-vertical" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "tasks-panel-title-dot" }, [
-        _c("i", { staticClass: "fas fa-circle" })
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _vm._v("\n                Tasks: "),
-        _c("span", { attrs: { id: "tasks_number" } }),
-        _vm._v(" "),
-        _c("span", { attrs: { id: "tasks_name" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "separator-vertical" })
+    return _c("div", [
+      _c("i", { staticClass: "mdi mdi-server-network serverIcon" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "projects-panel-title-dot" }, [
+      _c("i", { staticClass: "fas fa-circle" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tasks-panel-title-dot" }, [
+      _c("i", { staticClass: "fas fa-circle" })
     ])
   }
 ]
@@ -54515,7 +54527,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: 'app',
+  el: "app",
   components: {
     App: _components_App__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
