@@ -38,12 +38,27 @@
                 rows="10"
                 v-model="project.body"
             ></textarea>
-            <div>
-                <input type="checkbox" id="project_status" v-model="project.status" />
+            <div class="projectStatus">
+                <input
+                    type="checkbox"
+                    id="project_status"
+                    v-model="project.status"
+                />
                 <label for="project_status"
                     ><span></span>Status of the project:
-                    {{ project.status | statusFilter }}</label
+                    <strong>{{ project.status | statusFilter }}</strong></label
                 >
+            </div>
+            <div class="taskStauses">
+                <div class="taskAll">
+                    All tasks: <strong>{{ alltasks }}</strong>
+                </div>
+                <div class="taskActive">
+                    Active tasks: <strong>{{ activetasks }}</strong>
+                </div>
+                <div class="taskEnded">
+                    Ended tasks: <strong>{{ endedtasks }}</strong>
+                </div>
             </div>
         </div>
         <div class="bottom" v-bind:class="theme">
@@ -81,7 +96,14 @@ import moment from "moment";
 export default {
     name: "Projects",
 
-    props: ["theme", "project", "new_project"],
+    props: [
+        "theme",
+        "project",
+        "new_project",
+        "alltasks",
+        "activetasks",
+        "endedtasks"
+    ],
 
     filters: {
         formatDate: function(value) {
@@ -342,5 +364,30 @@ input[type="checkbox"]:checked + label:hover span:before {
     width: 5px;
     background: #1790b5;
     transition: width 150ms ease 100ms;
+}
+.projectStatus {
+    padding-top: 10px;
+    font-size: 18px;
+}
+.taskStauses {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    display: flex;
+    font-size: 18px;
+}
+.taskAll {
+    flex: 1/3;
+    padding: 3px 6px;
+    border-right: 1px solid #718096;
+}
+.taskActive {
+    flex: 1/3;
+    padding: 3px 6px;
+    border-right: 1px solid #718096;
+}
+.taskEnded {
+    flex: 1/3;
+    padding: 3px 6px;
 }
 </style>

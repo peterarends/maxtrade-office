@@ -385,6 +385,9 @@
                 <projects
                     v-show="panel == 'projects'"
                     v-bind:project="project"
+                    v-bind:alltasks="tasks.length"
+                    v-bind:activetasks="tasks.filter(t => t.status === 1).length"
+                    v-bind:endedtasks="tasks.filter(t => t.status === 0).length"
                     v-bind:theme="theme"
                     v-bind:new_project="new_project"
                     @closepanel="closePanel"

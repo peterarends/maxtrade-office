@@ -3,10 +3,7 @@
         <div class="button-bar" v-bind:class="theme">
             <div class="topTitleDiv">
                 <!--Window title-->
-                <span
-                    >Task:
-                    {{ task.id | formatTaskId(new_task) }}</span
-                >
+                <span>Task: {{ task.id | formatTaskId(new_task) }}</span>
             </div>
             <div class="topRightIcons">
                 <!--Window title icons-->
@@ -38,13 +35,17 @@
                 rows="10"
                 v-model="task.body"
             ></textarea>
-            <div>
+            <div class="taskStatus">
                 <input type="checkbox" id="task_status" v-model="task.status" />
                 <label for="task_status"
                     ><span></span>Status of the task:
-                    {{ task.status | statusFilter }}</label
+                    <strong>{{ task.status | statusFilter }}</strong></label
                 >
             </div>
+            <div class="documents">
+                &nbsp;
+            </div>
+            <div class="documentsButtons"></div>
         </div>
         <div class="bottom" v-bind:class="theme">
             <a v-on:click.prevent="saveTask"
@@ -149,7 +150,7 @@ export default {
     font-size: 1.25rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    color: #DD6B20;
+    color: #dd6b20;
 }
 .topRightIcons {
     /* flex items-center justify-content-center */
@@ -342,5 +343,16 @@ input[type="checkbox"]:checked + label:hover span:before {
     width: 5px;
     background: #1790b5;
     transition: width 150ms ease 100ms;
+}
+.taskStatus {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+.documents {
+    background: #2d3748;
+    height: 100px;
+    border: 1px solid #4a5568;
+    display: flex;
 }
 </style>
