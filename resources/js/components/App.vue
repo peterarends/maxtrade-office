@@ -346,7 +346,11 @@
         <!-- End Top panel -->
         <!-- Start Body panel -->
         <div class="body" v-bind:class="theme">
-            <leftmenu v-bind:theme="theme"></leftmenu>
+            <leftmenu 
+                v-bind:theme="theme" 
+                @changetheme="changeTheme" 
+                @showproperties="showProperties" 
+            ></leftmenu>
             <projects-panel
                 v-bind:projects="projects"
                 v-bind:theme="theme"

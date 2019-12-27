@@ -19,9 +19,9 @@
             }"
         >
             <ul class="contextMenu-options">
-                <li class="contextMenu-option"><span>Light theme</span><span v-show="theme == 'light'" class="right-text">✔</span></li>
-                <li class="contextMenu-option"><span>Dark theme</span><span v-show="theme == 'dark'" class="right-text" >✔</span></li>
-                <li class="contextMenu-option"><span>Options</span></li>
+                <li class="contextMenu-option" @click="changeTheme($event)" data-value="light"><span>Light theme</span><span v-show="theme == 'light'" class="right-text">✔</span></li>
+                <li class="contextMenu-option" @click="changeTheme($event)" data-value="dark"><span>Dark theme</span><span v-show="theme == 'dark'" class="right-text" >✔</span></li>
+                <li class="contextMenu-option" @click="showProperties()"><span>Options</span></li>
             </ul>
         </div>
         <a
@@ -50,6 +50,12 @@ export default {
     methods: {
         closeSettings() {
             this.isVisible = false;
+        },
+        changeTheme(event) {
+            this.$emit("changetheme", event.target.getAttribute('data-value'));
+        },
+        showProperties() {
+            this.$emit("showproperties");
         }
     }
 };
