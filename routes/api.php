@@ -53,6 +53,8 @@ Route::post('task', 'TasksController@store');
 Route::put('task', 'TasksController@store');
 /** Delete a Task */
 Route::delete('task/{id}', 'TasksController@destroy');
+/** Add file to Task */
+Route::post('task/file/{id}', 'TasksController@addFile');
 
 /** List Properties */
 Route::get('properties', 'PropertiesController@index');

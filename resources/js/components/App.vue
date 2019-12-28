@@ -346,10 +346,10 @@
         <!-- End Top panel -->
         <!-- Start Body panel -->
         <div class="body" v-bind:class="theme">
-            <leftmenu 
-                v-bind:theme="theme" 
-                @changetheme="changeTheme" 
-                @showproperties="showProperties" 
+            <leftmenu
+                v-bind:theme="theme"
+                @changetheme="changeTheme"
+                @showproperties="showProperties"
             ></leftmenu>
             <projects-panel
                 v-bind:projects="projects"
@@ -390,7 +390,9 @@
                     v-show="panel == 'projects'"
                     v-bind:project="project"
                     v-bind:alltasks="tasks.length"
-                    v-bind:activetasks="tasks.filter(t => t.status === 1).length"
+                    v-bind:activetasks="
+                        tasks.filter(t => t.status === 1).length
+                    "
                     v-bind:endedtasks="tasks.filter(t => t.status === 0).length"
                     v-bind:theme="theme"
                     v-bind:new_project="new_project"
@@ -449,6 +451,7 @@ import TasksPanel from "./body/TasksPanel";
 import Properties from "./body/Properties";
 import Projects from "./body/Projects";
 import Tasks from "./body/Tasks";
+import axios from "axios";
 
 // This variable will hold the reference to
 // document's click handler
@@ -1506,6 +1509,12 @@ h5 {
 .footer-icon div:first-child {
     width: 32px;
     text-align: center;
+}
+.button {
+    padding: 3px 8px;
+    background: #2d3748;
+    border: 1px solid #4a5568;
+    border-radius: 5px;
 }
 /* End Footer panel */
 </style>

@@ -112,4 +112,43 @@ class TasksController extends Controller
             return new TaskResource($task);
         }
     }
+
+    public function addFile($id)
+    {
+        $result = "unsucess";
+        if (!empty($id)) {
+            @mkdir('images/tasks/' . $id, 0755, true);
+            $uploaddir = 'images/tasks/' . $id . '/';
+            $check = (
+                (isset($_FILES['file'])) &&
+                (($_FILES['file']["type"] == "application/pdf") ||
+                    ($_FILES['file']["type"] == "application/msword") ||
+                    ($_FILES['file']["type"] == "application/vnd.ms-excel") ||
+                    ($_FILES['file']["type"] == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") ||
+                    ($_FILES['file']["type"] == "application/vnd.ms-powerpoint") ||
+                    ($_FILES['file']["type"] == "text/plain") ||
+                    ($_FILES['file']["type"] == "text/html") ||
+                    (getimagesize($_FILES['file']['tmp_name'])) ||
+                    ($_FILES['file']["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")) &&
+                ($_FILES['file']["size"] < 307200));
+            if ($check !== false) {
+                if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . $_FILES['file']['name'])) {
+                    $result = "success";
+                }
+            } else {
+                if (!isset($_FILES['file'])) {
+                    $result = "no file";
+                } else {
+                    if ($_FILES['file']["size"] >= 307200) {
+                        $result = "exceed file size";
+                    } else {
+                        $result = "wrong file type";
+                    }
+                }
+            }
+        }
+
+        /** Return a single task as resource */
+        return json_encode(["result" => $result]);
+    }
 }

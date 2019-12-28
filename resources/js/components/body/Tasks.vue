@@ -22,11 +22,11 @@
                 <h3>
                     Date end:
                     <span v-show="task.status == 1" class="continues"
-                        >Continues
-                    </span>
-                    <span v-show="task.status == 0"
-                        >{{ task.updated_at | formatDate }}
-                    </span>
+                        >Continues</span
+                    >
+                    <span v-show="task.status == 0">{{
+                        task.updated_at | formatDate
+                    }}</span>
                 </h3>
             </div>
             <input class="title" type="text" v-model="task.title" />
@@ -37,38 +37,51 @@
             ></textarea>
             <div class="taskStatus">
                 <input type="checkbox" id="task_status" v-model="task.status" />
-                <label for="task_status"
-                    ><span></span>Status of the task:
-                    <strong>{{ task.status | statusFilter }}</strong></label
+                <label for="task_status">
+                    <span></span>Status of the task:
+                    <strong>{{ task.status | statusFilter }}</strong>
+                </label>
+            </div>
+            <div class="documents">&nbsp;</div>
+            <div class="documentsButtons">
+                <input
+                    type="file"
+                    id="file"
+                    accept="image/jpeg, application/pdf"
+                    ref="file"
+                    v-on:change="handleFileUpload"
+                />
+                <button
+                    class="button"
+                    title="Add selected file."
+                    v-on:click="submitFile"
                 >
+                    <i class="mdi mdi-plus-circle-outline"></i>Add
+                </button>
             </div>
-            <div class="documents">
-                &nbsp;
-            </div>
-            <div class="documentsButtons"></div>
         </div>
         <div class="bottom" v-bind:class="theme">
-            <a v-on:click.prevent="saveTask"
-                ><i
+            <a v-on:click.prevent="saveTask">
+                <i
                     class="mdi mdi-content-save-outline mdiTaskIcon"
                     v-bind:class="theme"
                 ></i
-                >&nbsp;Save Task</a
-            >
-            <a v-on:click.prevent="deleteTask"
-                ><i
+                >&nbsp;Save Task
+            </a>
+            <a v-on:click.prevent="deleteTask">
+                <i
                     class="mdi mdi-delete-outline mdiTaskIcon"
                     v-bind:class="theme"
                 ></i
-                >&nbsp;Delete Task</a
-            >
-            <a v-on:click.prevent="closeTask"
-                ><i
+                >&nbsp;Delete Task
+            </a>
+            <a v-on:click.prevent="closeTask">
+                <i
                     class="mdi mdi-close-outline mdiTaskIcon"
                     v-bind:class="theme"
                 ></i
-                >&nbsp;Close Task</a
-            >
+                >&nbsp;Close Task
+            </a>
             <div class="status_panel">
                 Last change: {{ task.updated_at | formatDate }}
             </div>
@@ -83,6 +96,12 @@ export default {
     name: "Tasks",
 
     props: ["theme", "task", "new_task"],
+
+    data() {
+        return {
+            file: ""
+        };
+    },
 
     filters: {
         formatDate: function(value) {
@@ -115,6 +134,42 @@ export default {
         },
         deleteTask: function(event) {
             this.$emit("deletetask");
+        },
+        handleFileUpload() {
+            this.file = this.$refs.file.files[0];
+        },
+        submitFile() {
+            let formData = new FormData();
+            formData.append("file", this.file);
+            axios
+                .post("api/task/file/" + this.task.id, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
+                })
+                .then(res => {
+                    if (res.data.result == "success") {
+                        this.$refs.file.value = "";
+                        this.file = "";
+                    } else {
+                        if (res.data.result === "no file") {
+                            alert("You have not specified a file to upload!");
+                        }
+                        if (res.data.result === "exceed file size") {
+                            alert(
+                                "The file you are trying to upload exceeds the maximum allowed size!"
+                            );
+                        }
+                        if (res.data.result === "wrong file type") {
+                            alert(
+                                "This type of file is not allowed for upload!"
+                            );
+                        }
+                    }
+                })
+                .catch(function(e) {
+                    console.log(e.mesage);
+                });
         }
     }
 };
@@ -354,5 +409,8 @@ input[type="checkbox"]:checked + label:hover span:before {
     height: 100px;
     border: 1px solid #4a5568;
     display: flex;
+}
+.documentsButtons {
+    padding-top: 10px;
 }
 </style>
