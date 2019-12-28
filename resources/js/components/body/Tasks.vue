@@ -42,6 +42,8 @@
                     <strong>{{ task.status | statusFilter }}</strong>
                 </label>
             </div>
+            <hr class="line" />
+            <h4>Documents attached to this task:</h4>
             <div class="documents">&nbsp;</div>
             <div class="documentsButtons">
                 <input
@@ -412,5 +414,9 @@ input[type="checkbox"]:checked + label:hover span:before {
 }
 .documentsButtons {
     padding-top: 10px;
+}
+.line {
+    border-top: 1px dotted #4a5568;
+    padding: 10px 0px;
 }
 </style>
