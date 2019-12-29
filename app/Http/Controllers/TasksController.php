@@ -151,4 +151,17 @@ class TasksController extends Controller
         /** Return a single task as resource */
         return json_encode(["result" => $result]);
     }
+
+    public function getDocuments($id)
+    {
+        /** Get Task documents */
+        if (!empty($id)) {
+            $files = array_slice(scandir("images/tasks/" . $id), 2);
+        } else {
+            $files = [];
+        }
+
+        /** Return collection of Tasks as resource */
+        return json_encode(["result" => "success"]);
+    }
 }

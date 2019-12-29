@@ -2294,6 +2294,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2373,6 +2374,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       new_project: false,
       tasks: [],
       task: [],
+      documents: [],
       current_task_id: 0,
       new_task: false,
       project_filter: {
@@ -2679,7 +2681,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     changeTask: function changeTask(task) {
       this.task = task;
       this.current_task_id = task.id;
-      this.new_task = false;
+      this.new_task = false; // Get documents
+
+      fetch("task/documents/" + task.id).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
       this.panel = "tasks";
     },
     // Save task changes back to DB
@@ -3498,7 +3506,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Tasks",
-  props: ["theme", "task", "new_task"],
+  props: ["theme", "task", "new_task", "documents"],
   data: function data() {
     return {
       file: ""
@@ -41079,7 +41087,8 @@ var render = function() {
               attrs: {
                 task: _vm.task,
                 theme: _vm.theme,
-                new_task: _vm.new_task
+                new_task: _vm.new_task,
+                documents: _vm.documents
               },
               on: {
                 closepanel: _vm.closePanel,

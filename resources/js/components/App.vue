@@ -405,6 +405,7 @@
                     v-bind:task="task"
                     v-bind:theme="theme"
                     v-bind:new_task="new_task"
+                    v-bind:documents="documents"
                     @closepanel="closePanel"
                     @savetask="saveTask(true)"
                     @deletetask="deleteTask"
@@ -527,6 +528,7 @@ export default {
             new_project: false,
             tasks: [],
             task: [],
+            documents: [],
             current_task_id: 0,
             new_task: false,
             project_filter: {
@@ -812,6 +814,13 @@ export default {
             this.task = task;
             this.current_task_id = task.id;
             this.new_task = false;
+            // Get documents
+            fetch("task/documents/" + task.id)
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res.data);
+                })
+                .catch(err => console.log(err));
             this.panel = "tasks";
         },
         // Save task changes back to DB

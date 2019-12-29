@@ -97,7 +97,7 @@ import moment from "moment";
 export default {
     name: "Tasks",
 
-    props: ["theme", "task", "new_task"],
+    props: ["theme", "task", "new_task", "documents"],
 
     data() {
         return {
