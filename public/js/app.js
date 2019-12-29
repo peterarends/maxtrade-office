@@ -2679,12 +2679,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     },
     // Open task in Task panel
     changeTask: function changeTask(task) {
+      var _this7 = this;
+
       this.task = task;
       this.current_task_id = task.id;
       this.new_task = false; // Get documents
 
-      fetch("task/documents/" + task.id).then(function (res) {
-        console.log(res);
+      fetch("api/task/documents/" + task.id).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this7.documents = res;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -2692,7 +2696,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     },
     // Save task changes back to DB
     saveTask: function saveTask(isMessage) {
-      var _this7 = this;
+      var _this8 = this;
 
       fetch("api/task", {
         method: this.new_task ? "POST" : "PUT",
@@ -2709,14 +2713,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this7.task.id = res.data.id;
-        _this7.task.title = res.data.title;
-        _this7.task.body = res.data.body;
-        _this7.task.created_at = res.data.created_at;
-        _this7.task.updated_at = res.data.updated_at;
-        _this7.task.status = res.data.status;
-        _this7.new_task = false;
-        _this7.current_task_id = res.data.id;
+        _this8.task.id = res.data.id;
+        _this8.task.title = res.data.title;
+        _this8.task.body = res.data.body;
+        _this8.task.created_at = res.data.created_at;
+        _this8.task.updated_at = res.data.updated_at;
+        _this8.task.status = res.data.status;
+        _this8.new_task = false;
+        _this8.current_task_id = res.data.id;
 
         if (isMessage) {
           alert("You have successfully saved the changes to the Task: " + res.data.title);
@@ -2727,7 +2731,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     },
     // Delete current task
     deleteTask: function deleteTask() {
-      var _this8 = this;
+      var _this9 = this;
 
       if (this.current_task_id != 0) {
         if (confirm("Are You sure?")) {
@@ -2743,11 +2747,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
             return res.json();
           }).then(function (res) {
             alert("You have successfully delete the Task: " + res.data.title);
-            _this8.tasks = _this8.tasks.filter(function (t) {
+            _this9.tasks = _this9.tasks.filter(function (t) {
               return t.id !== res.data.id;
             });
-            _this8.current_task_id = 0;
-            _this8.panel = "";
+            _this9.current_task_id = 0;
+            _this9.panel = "";
           })["catch"](function (err) {
             return console.log(err);
           });
@@ -2870,7 +2874,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
     },
     // Fetch all tasks from DB width search
     fetchTasksSearch: function fetchTasksSearch(_text) {
-      var _this9 = this;
+      var _this10 = this;
 
       fetch("api/tasks/search/" + this.current_project_id, {
         method: "POST",
@@ -2883,7 +2887,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this9.tasks = res.data;
+        _this10.tasks = res.data;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -3410,6 +3414,28 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! path */ "./node_modules/path-browserify/index.js");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3504,6 +3530,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Tasks",
   props: ["theme", "task", "new_task", "documents"],
@@ -3530,6 +3557,42 @@ __webpack_require__.r(__webpack_exports__);
         return "New Task";
       } else {
         return value;
+      }
+    },
+    formatIcons: function formatIcons(value) {
+      var extension = path__WEBPACK_IMPORTED_MODULE_1___default.a.extname(value);
+
+      switch (extension) {
+        case ".pdf":
+          return "images/document_icons/pdf.png";
+          break;
+
+        case ".doc":
+        case ".docx":
+          return "images/document_icons/doc.png";
+          break;
+
+        case ".xls":
+        case ".xlsx":
+          return "images/document_icons/xls.png";
+          break;
+
+        case ".ppt":
+          return "images/document_icons/ppt.png";
+          break;
+
+        case ".txt":
+          return "images/document_icons/txt.png";
+          break;
+
+        case ".jpg":
+        case ".jpeg":
+        case ".png":
+          return "images/document_icons/pic.png";
+          break;
+
+        default:
+          return "images/document_icons/default.png";
       }
     }
   },
@@ -3836,7 +3899,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".tasks-body[data-v-6750e0cc] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-6750e0cc] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #dd6b20;\n}\n.topRightIcons[data-v-6750e0cc] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-6750e0cc] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-6750e0cc] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-6750e0cc] {\n  background-color: #e53e3e;\n}\n.body[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-6750e0cc] {\n  text-decoration: line-through;\n}\n.date[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-6750e0cc] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-6750e0cc] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-6750e0cc] {\n  color: green;\n}\n.bottom[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-6750e0cc] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-6750e0cc] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-6750e0cc]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-6750e0cc]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiTaskIcon[data-v-6750e0cc] {\n  font-size: 1.3rem;\n}\n.mdiTaskIcon.light[data-v-6750e0cc] {\n  color: #63b3ed;\n}\n.mdiTaskIcon.dark[data-v-6750e0cc] {\n  color: #3182ce;\n}\nlabel[data-v-6750e0cc] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-6750e0cc] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-6750e0cc]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-6750e0cc]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-6750e0cc] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n.taskStatus[data-v-6750e0cc] {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n}\n.documents[data-v-6750e0cc] {\n  background: #2d3748;\n  height: 100px;\n  border: 1px solid #4a5568;\n  display: -webkit-box;\n  display: flex;\n}\n.documentsButtons[data-v-6750e0cc] {\n  padding-top: 10px;\n}\n.line[data-v-6750e0cc] {\n  border-top: 1px dotted #4a5568;\n  padding: 10px 0px;\n}\n", ""]);
+exports.push([module.i, ".tasks-body[data-v-6750e0cc] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-6750e0cc] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #dd6b20;\n}\n.topRightIcons[data-v-6750e0cc] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-6750e0cc] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-6750e0cc] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-6750e0cc] {\n  background-color: #e53e3e;\n}\n.body[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-6750e0cc] {\n  text-decoration: line-through;\n}\n.date[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-6750e0cc] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-6750e0cc] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-6750e0cc] {\n  color: green;\n}\n.bottom[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-6750e0cc] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-6750e0cc] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-6750e0cc]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-6750e0cc]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiTaskIcon[data-v-6750e0cc] {\n  font-size: 1.3rem;\n}\n.mdiTaskIcon.light[data-v-6750e0cc] {\n  color: #63b3ed;\n}\n.mdiTaskIcon.dark[data-v-6750e0cc] {\n  color: #3182ce;\n}\nlabel[data-v-6750e0cc] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-6750e0cc] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-6750e0cc]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-6750e0cc]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-6750e0cc] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n.taskStatus[data-v-6750e0cc] {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n}\n.documents[data-v-6750e0cc] {\n  background: #2d3748;\n  height: 100px;\n  border: 1px solid #4a5568;\n  display: -webkit-box;\n  display: flex;\n}\n.document[data-v-6750e0cc] {\n  width: 100px;\n  padding: 2px;\n}\n.documentsButtons[data-v-6750e0cc] {\n  padding-top: 10px;\n}\n.line[data-v-6750e0cc] {\n  border-top: 1px dotted #4a5568;\n  padding: 10px 0px;\n}\n", ""]);
 
 // exports
 
@@ -38692,6 +38755,320 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
+/***/ "./node_modules/path-browserify/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/path-browserify/index.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
+// backported and transplited with Babel, with backwards-compat fixes
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  if (path.length === 0) return '.';
+  var code = path.charCodeAt(0);
+  var hasRoot = code === 47 /*/*/;
+  var end = -1;
+  var matchedSlash = true;
+  for (var i = path.length - 1; i >= 1; --i) {
+    code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        if (!matchedSlash) {
+          end = i;
+          break;
+        }
+      } else {
+      // We saw the first non-path separator
+      matchedSlash = false;
+    }
+  }
+
+  if (end === -1) return hasRoot ? '/' : '.';
+  if (hasRoot && end === 1) {
+    // return '//';
+    // Backwards-compat fix:
+    return '/';
+  }
+  return path.slice(0, end);
+};
+
+function basename(path) {
+  if (typeof path !== 'string') path = path + '';
+
+  var start = 0;
+  var end = -1;
+  var matchedSlash = true;
+  var i;
+
+  for (i = path.length - 1; i >= 0; --i) {
+    if (path.charCodeAt(i) === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          start = i + 1;
+          break;
+        }
+      } else if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // path component
+      matchedSlash = false;
+      end = i + 1;
+    }
+  }
+
+  if (end === -1) return '';
+  return path.slice(start, end);
+}
+
+// Uses a mixed approach for backwards-compatibility, as ext behavior changed
+// in new Node.js versions, so only basename() above is backported here
+exports.basename = function (path, ext) {
+  var f = basename(path);
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+exports.extname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  var startDot = -1;
+  var startPart = 0;
+  var end = -1;
+  var matchedSlash = true;
+  // Track the state of characters (if any) we see before our first dot and
+  // after any path separator we find
+  var preDotState = 0;
+  for (var i = path.length - 1; i >= 0; --i) {
+    var code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          startPart = i + 1;
+          break;
+        }
+        continue;
+      }
+    if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // extension
+      matchedSlash = false;
+      end = i + 1;
+    }
+    if (code === 46 /*.*/) {
+        // If this is our first dot, mark it as the start of our extension
+        if (startDot === -1)
+          startDot = i;
+        else if (preDotState !== 1)
+          preDotState = 1;
+    } else if (startDot !== -1) {
+      // We saw a non-dot and non-path separator before our dot, so we should
+      // have a good chance at having a non-empty extension
+      preDotState = -1;
+    }
+  }
+
+  if (startDot === -1 || end === -1 ||
+      // We saw a non-dot character immediately before the dot
+      preDotState === 0 ||
+      // The (right-most) trimmed path component is exactly '..'
+      preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
+    return '';
+  }
+  return path.slice(startDot, end);
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -42242,7 +42619,38 @@ var render = function() {
         _vm._v(" "),
         _c("h4", [_vm._v("Documents attached to this task:")]),
         _vm._v(" "),
-        _c("div", { staticClass: "documents" }, [_vm._v(" ")]),
+        _c(
+          "div",
+          { staticClass: "documents" },
+          _vm._l(_vm.documents, function(document) {
+            return _c("div", { key: document, staticClass: "document" }, [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    target: "_blank",
+                    href: "images/tasks/" + _vm.task.id + "/" + document
+                  }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: _vm._f("formatIcons")(
+                        "images/tasks/" + _vm.task.id + "/" + document
+                      ),
+                      alt: document
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "documenName" }, [
+                _vm._v(_vm._s(document))
+              ])
+            ])
+          }),
+          0
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "documentsButtons" }, [
           _c("input", {
@@ -42250,7 +42658,8 @@ var render = function() {
             attrs: {
               type: "file",
               id: "file",
-              accept: "image/jpeg, application/pdf"
+              accept:
+                "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             },
             on: { change: _vm.handleFileUpload }
           }),

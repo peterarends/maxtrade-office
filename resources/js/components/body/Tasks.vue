@@ -44,12 +44,32 @@
             </div>
             <hr class="line" />
             <h4>Documents attached to this task:</h4>
-            <div class="documents">&nbsp;</div>
+            <div class="documents">
+                <div
+                    class="document"
+                    v-for="document in documents"
+                    v-bind:key="document"
+                >
+                    <a
+                        target="_blank"
+                        v-bind:href="'images/tasks/' + task.id + '/' + document"
+                    >
+                        <img
+                            v-bind:src="
+                                ('images/tasks/' + task.id + '/' + document)
+                                    | formatIcons
+                            "
+                            v-bind:alt="document"
+                        />
+                    </a>
+                    <span class="documenName">{{ document }}</span>
+                </div>
+            </div>
             <div class="documentsButtons">
                 <input
                     type="file"
                     id="file"
-                    accept="image/jpeg, application/pdf"
+                    accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     ref="file"
                     v-on:change="handleFileUpload"
                 />
@@ -93,6 +113,7 @@
 
 <script>
 import moment from "moment";
+import path from "path";
 
 export default {
     name: "Tasks",
@@ -123,6 +144,35 @@ export default {
                 return "New Task";
             } else {
                 return value;
+            }
+        },
+        formatIcons(value) {
+            const extension = path.extname(value);
+            switch (extension) {
+                case ".pdf":
+                    return "images/document_icons/pdf.png";
+                    break;
+                case ".doc":
+                case ".docx":
+                    return "images/document_icons/doc.png";
+                    break;
+                case ".xls":
+                case ".xlsx":
+                    return "images/document_icons/xls.png";
+                    break;
+                case ".ppt":
+                    return "images/document_icons/ppt.png";
+                    break;
+                case ".txt":
+                    return "images/document_icons/txt.png";
+                    break;
+                case ".jpg":
+                case ".jpeg":
+                case ".png":
+                    return "images/document_icons/pic.png";
+                    break;
+                default:
+                    return "images/document_icons/default.png";
             }
         }
     },
@@ -411,6 +461,10 @@ input[type="checkbox"]:checked + label:hover span:before {
     height: 100px;
     border: 1px solid #4a5568;
     display: flex;
+}
+.document {
+    width: 100px;
+    padding: 2px;
 }
 .documentsButtons {
     padding-top: 10px;

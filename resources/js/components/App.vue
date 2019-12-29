@@ -815,10 +815,10 @@ export default {
             this.current_task_id = task.id;
             this.new_task = false;
             // Get documents
-            fetch("task/documents/" + task.id)
+            fetch("api/task/documents/" + task.id)
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res.data);
+                    this.documents = res;
                 })
                 .catch(err => console.log(err));
             this.panel = "tasks";

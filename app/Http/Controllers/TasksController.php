@@ -162,6 +162,6 @@ class TasksController extends Controller
         }
 
         /** Return collection of Tasks as resource */
-        return json_encode(["result" => "success"]);
+        return json_encode($files);
     }
 }
