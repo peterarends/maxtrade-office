@@ -69,7 +69,6 @@
                 <input
                     type="file"
                     id="file"
-                    accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     ref="file"
                     v-on:change="handleFileUpload"
                 />
@@ -217,6 +216,7 @@ export default {
                                 "This type of file is not allowed for upload!"
                             );
                         }
+                        console.log(res.data.result);
                     }
                 })
                 .catch(function(e) {
@@ -458,9 +458,10 @@ input[type="checkbox"]:checked + label:hover span:before {
 }
 .documents {
     background: #2d3748;
-    height: 100px;
+    height: 140px;
     border: 1px solid #4a5568;
     display: flex;
+    padding: 10px;
 }
 .document {
     width: 100px;

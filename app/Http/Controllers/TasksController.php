@@ -127,7 +127,6 @@ class TasksController extends Controller
                     ($_FILES['file']["type"] == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") ||
                     ($_FILES['file']["type"] == "application/vnd.ms-powerpoint") ||
                     ($_FILES['file']["type"] == "text/plain") ||
-                    ($_FILES['file']["type"] == "text/html") ||
                     (getimagesize($_FILES['file']['tmp_name'])) ||
                     ($_FILES['file']["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")) &&
                 ($_FILES['file']["size"] < 307200));
@@ -142,7 +141,7 @@ class TasksController extends Controller
                     if ($_FILES['file']["size"] >= 307200) {
                         $result = "exceed file size";
                     } else {
-                        $result = "wrong file type";
+                        $result = $_FILES['file']["type"];
                     }
                 }
             }
