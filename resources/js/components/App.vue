@@ -262,7 +262,7 @@
                                 <ul>
                                     <li>
                                         <a>
-                                            <div class="mnu-flex">
+                                            <div class="mnu-flex" @click="showAbout($event)">
                                                 <i
                                                     class="mdi mdi-information-variant standardSizeIcon"
                                                     v-bind:class="theme"
@@ -386,6 +386,11 @@
                     @changetheme="changeTheme"
                     @closepanel="closePanel"
                 ></properties>
+                <about
+                    v-show="panel == 'about'"
+                    v-bind:theme="theme"
+                    @closepanel="closePanel"
+                ></about>
                 <projects
                     v-show="panel == 'projects'"
                     v-bind:project="project"
@@ -454,6 +459,7 @@ import TasksPanel from "./body/TasksPanel";
 import Properties from "./body/Properties";
 import Projects from "./body/Projects";
 import Tasks from "./body/Tasks";
+import About from "./body/About";
 
 // This variable will hold the reference to
 // document's click handler
@@ -514,7 +520,8 @@ export default {
         TasksPanel,
         Properties,
         Projects,
-        Tasks
+        Tasks,
+        About
     },
 
     data() {
@@ -1016,7 +1023,7 @@ export default {
                 })
                 .catch(err => console.log(err));
         },
-        changeDocuments(){
+        changeDocuments() {
             fetch("api/task/documents/" + this.task.id)
                 .then(res => res.json())
                 .then(res => {
@@ -1024,19 +1031,30 @@ export default {
                 })
                 .catch(err => console.log(err));
         },
-        deleteDocument(current_document){
-            fetch("api/task/document/delete/" + this.task.id + "/" + current_document, {
-                method: 'DELETE'
-            })
+        deleteDocument(current_document) {
+            fetch(
+                "api/task/document/delete/" +
+                    this.task.id +
+                    "/" +
+                    current_document,
+                {
+                    method: "DELETE"
+                }
+            )
                 .then(res => res.json())
                 .then(res => {
-                    if (res.result === "success"){
+                    if (res.result === "success") {
                         this.changeDocuments();
-                    }else{
+                    } else {
                         alert("Document cannot be deleted!");
                     }
                 })
                 .catch(err => console.log(err));
+        },
+
+        // Show About panel
+        showAbout() {
+            this.panel = "about";
         },
 
         // Other system staff
