@@ -60,6 +60,7 @@
                                     | formatIcons
                             "
                             v-bind:alt="document"
+                            @contextmenu.prevent="$refs.menu.open($event, document)"
                         />
                     </a>
                     <span class="documenName">{{ document }}</span>
@@ -70,12 +71,13 @@
                     type="file"
                     id="file"
                     ref="file"
-                    v-on:change="handleFileUpload"
+                    @change="onFileSelected"
                 />
+                &nbsp;&nbsp;&nbsp;<span ref="uploadPurcent"></span>&nbsp;&nbsp;&nbsp;
                 <button
                     class="button"
                     title="Add selected file."
-                    v-on:click="submitFile"
+                    @click="onUpload"
                 >
                     <i class="mdi mdi-plus-circle-outline"></i>Add
                 </button>
@@ -107,12 +109,19 @@
                 Last change: {{ task.updated_at | formatDate }}
             </div>
         </div>
+        <vue-context ref="menu" @open="onOpenContextMenu">
+            <li>
+                <a @click.prevent="onClickContextMenu('delete')">Delete File</a>
+            </li>
+        </vue-context>
     </div>
 </template>
 
 <script>
 import moment from "moment";
 import path from "path";
+import axios from "axios";
+import { VueContext } from "vue-context";
 
 export default {
     name: "Tasks",
@@ -121,8 +130,13 @@ export default {
 
     data() {
         return {
-            file: ""
+            file: null,
+            current_file: null
         };
+    },
+
+    components: {
+        VueContext
     },
 
     filters: {
@@ -186,22 +200,24 @@ export default {
         deleteTask: function(event) {
             this.$emit("deletetask");
         },
-        handleFileUpload() {
-            this.file = this.$refs.file.files[0];
+        onFileSelected(event) {
+            this.file = event.target.files[0];
         },
-        submitFile() {
-            let formData = new FormData();
-            formData.append("file", this.file);
+        onUpload() {
+            const formData = new FormData();
+            formData.append("file", this.file, this.file.name);
             axios
                 .post("api/task/file/" + this.task.id, formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data"
+                    onUploadProgress: uploudEvent => {
+                        this.$refs.uploadPurcent.innerHTML = Math.round(uploudEvent.loaded / uploudEvent.total * 100) + "%";
                     }
                 })
                 .then(res => {
                     if (res.data.result == "success") {
                         this.$refs.file.value = "";
-                        this.file = "";
+                        this.$refs.uploadPurcent.innerHTML = "";
+                        this.file = null;
+                        this.$emit("changedocuments");
                     } else {
                         if (res.data.result === "no file") {
                             alert("You have not specified a file to upload!");
@@ -222,6 +238,14 @@ export default {
                 .catch(function(e) {
                     console.log(e.mesage);
                 });
+        },
+        onOpenContextMenu(event, data) {
+            this.current_file = data;
+        },
+        onClickContextMenu(action) {
+            if ((action === "delete") && this.current_file !== null) {
+                this.$emit("deletedocument", this.current_file);
+            }
         }
     }
 };
@@ -462,10 +486,14 @@ input[type="checkbox"]:checked + label:hover span:before {
     border: 1px solid #4a5568;
     display: flex;
     padding: 10px;
+    overflow: auto;
 }
 .document {
-    width: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 140px;
     padding: 2px;
+    align-items: center;
 }
 .documentsButtons {
     padding-top: 10px;
@@ -473,5 +501,63 @@ input[type="checkbox"]:checked + label:hover span:before {
 .line {
     border-top: 1px dotted #4a5568;
     padding: 10px 0px;
+}
+.v-context,
+.v-context ul {
+    background-color: #1a202c;
+    background-clip: padding-box;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    display: block;
+    margin: 0;
+    padding: 0px;
+    min-width: 10rem;
+    z-index: 1500;
+    position: fixed;
+    list-style: none;
+    box-sizing: border-box;
+    max-height: calc(100% - 50px);
+    overflow-y: auto;
+}
+.v-context > li,
+.v-context ul > li {
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+}
+.v-context > li > a,
+.v-context ul > li > a {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    font-weight: 400;
+    color: #cbd5e0;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+.v-context > li > a:focus,
+.v-context > li > a:hover,
+.v-context ul > li > a:focus,
+.v-context ul > li > a:hover {
+    text-decoration: none;
+    color: #212529;
+    background-color: #a0aec0;
+}
+.v-context:focus,
+.v-context > li > a:focus,
+.v-context ul:focus,
+.v-context ul > li > a:focus {
+    outline: 0;
+}
+.v-context__sub > a:after {
+    content: "\2BC8";
+    float: right;
+    padding-left: 1rem;
+}
+.v-context__sub > ul {
+    display: none;
 }
 </style>

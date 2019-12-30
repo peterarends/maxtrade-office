@@ -1848,8 +1848,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _body_Properties__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./body/Properties */ "./resources/js/components/body/Properties.vue");
 /* harmony import */ var _body_Projects__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./body/Projects */ "./resources/js/components/body/Projects.vue");
 /* harmony import */ var _body_Tasks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./body/Tasks */ "./resources/js/components/body/Tasks.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_8__);
 //
 //
 //
@@ -2295,7 +2293,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
 
 
 
@@ -2892,6 +2891,34 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
         return console.log(err);
       });
     },
+    changeDocuments: function changeDocuments() {
+      var _this11 = this;
+
+      fetch("api/task/documents/" + this.task.id).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this11.documents = res;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    deleteDocument: function deleteDocument(current_document) {
+      var _this12 = this;
+
+      fetch("api/task/document/delete/" + this.task.id + "/" + current_document, {
+        method: 'DELETE'
+      }).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        if (res.result === "success") {
+          _this12.changeDocuments();
+        } else {
+          alert("Document cannot be deleted!");
+        }
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
     // Other system staff
     // Close all panels and unset current projects
     closePanel: function closePanel() {
@@ -3416,6 +3443,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! path */ "./node_modules/path-browserify/index.js");
 /* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-context */ "./node_modules/vue-context/src/js/index.js");
 //
 //
 //
@@ -3528,6 +3558,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3535,8 +3574,12 @@ __webpack_require__.r(__webpack_exports__);
   props: ["theme", "task", "new_task", "documents"],
   data: function data() {
     return {
-      file: ""
+      file: null,
+      current_file: null
     };
+  },
+  components: {
+    VueContext: vue_context__WEBPACK_IMPORTED_MODULE_3__["VueContext"]
   },
   filters: {
     formatDate: function formatDate(value) {
@@ -3605,22 +3648,25 @@ __webpack_require__.r(__webpack_exports__);
     deleteTask: function deleteTask(event) {
       this.$emit("deletetask");
     },
-    handleFileUpload: function handleFileUpload() {
-      this.file = this.$refs.file.files[0];
+    onFileSelected: function onFileSelected(event) {
+      this.file = event.target.files[0];
     },
-    submitFile: function submitFile() {
+    onUpload: function onUpload() {
       var _this = this;
 
       var formData = new FormData();
-      formData.append("file", this.file);
-      axios.post("api/task/file/" + this.task.id, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
+      formData.append("file", this.file, this.file.name);
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("api/task/file/" + this.task.id, formData, {
+        onUploadProgress: function onUploadProgress(uploudEvent) {
+          _this.$refs.uploadPurcent.innerHTML = Math.round(uploudEvent.loaded / uploudEvent.total * 100) + "%";
         }
       }).then(function (res) {
         if (res.data.result == "success") {
           _this.$refs.file.value = "";
-          _this.file = "";
+          _this.$refs.uploadPurcent.innerHTML = "";
+          _this.file = null;
+
+          _this.$emit("changedocuments");
         } else {
           if (res.data.result === "no file") {
             alert("You have not specified a file to upload!");
@@ -3639,6 +3685,14 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         console.log(e.mesage);
       });
+    },
+    onOpenContextMenu: function onOpenContextMenu(event, data) {
+      this.current_file = data;
+    },
+    onClickContextMenu: function onClickContextMenu(action) {
+      if (action === "delete" && this.current_file !== null) {
+        this.$emit("deletedocument", this.current_file);
+      }
     }
   }
 });
@@ -3805,7 +3859,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n\n/* Start Top panel */\n.generalStyleDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light {\n  color: #4a5568;\n}\n.contentDiv.dark {\n  color: #e2e8f0;\n}\n.mdiExitIcon {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light {\n  color: #fc8181;\n}\n.mdiExitIcon.dark {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark {\n  color: #dd6b20;\n}\n.standardSizeIcon {\n  font-size: 1.5rem;\n}\n.topTitleDiv {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light {\n  color: #4a5568;\n}\n.topTitleDiv.dark {\n  color: #e2e8f0;\n}\n.topRightIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark:hover {\n  background-color: #718096;\n}\n.rightExitIcon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark {\n  background-color: #e53e3e;\n}\n.button-bar {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar button {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light button {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark button {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark button:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light button:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul,\n#cssmenu li {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover,\n#cssmenu ul li:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li {\n  float: none;\n}\n#cssmenu ul ul ul {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul {\n  visibility: visible;\n}\n#cssmenu ul ul {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul {\n  margin-top: 0;\n}\n#cssmenu ul ul li {\n  font-weight: normal;\n}\n#cssmenu a {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul {\n  display: inline-block;\n}\n#cssmenu:after,\n#cssmenu ul:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul {\n  border-top: 0 none;\n}\n#cssmenu ul ul li {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a,\n#cssmenu.dark ul li.active > a {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a,\n#cssmenu.light ul li.active > a {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a {\n  padding: 3px 10px;\n}\n#cssmenu.dark a {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a {\n  line-height: 30px;\n}\n.mnu-flex {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/** Start Footer panel */\n.footerMainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon {\n  font-size: 1.25rem;\n}\n.footer-icon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n\n/* End Footer panel */\n", ""]);
+exports.push([module.i, "/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n\n/* Start Top panel */\n.generalStyleDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light {\n  color: #4a5568;\n}\n.contentDiv.dark {\n  color: #e2e8f0;\n}\n.mdiExitIcon {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light {\n  color: #fc8181;\n}\n.mdiExitIcon.dark {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark {\n  color: #dd6b20;\n}\n.standardSizeIcon {\n  font-size: 1.5rem;\n}\n.topTitleDiv {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light {\n  color: #4a5568;\n}\n.topTitleDiv.dark {\n  color: #e2e8f0;\n}\n.topRightIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark:hover {\n  background-color: #718096;\n}\n.rightExitIcon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark {\n  background-color: #e53e3e;\n}\n.button-bar {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar button {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light button {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark button {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark button:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light button:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul,\r\n#cssmenu li {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover,\r\n#cssmenu ul li:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li {\n  float: none;\n}\n#cssmenu ul ul ul {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul {\n  visibility: visible;\n}\n#cssmenu ul ul {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul {\n  margin-top: 0;\n}\n#cssmenu ul ul li {\n  font-weight: normal;\n}\n#cssmenu a {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul {\n  display: inline-block;\n}\n#cssmenu:after,\r\n#cssmenu ul:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul {\n  border-top: 0 none;\n}\n#cssmenu ul ul li {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a,\r\n#cssmenu.dark ul li.active > a {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a,\r\n#cssmenu.light ul li.active > a {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a {\n  padding: 3px 10px;\n}\n#cssmenu.dark a {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a {\n  line-height: 30px;\n}\n.mnu-flex {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/** Start Footer panel */\n.footerMainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon {\n  font-size: 1.25rem;\n}\n.footer-icon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n\n/* End Footer panel */\r\n", ""]);
 
 // exports
 
@@ -3900,7 +3954,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".tasks-body[data-v-6750e0cc] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-6750e0cc] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #dd6b20;\n}\n.topRightIcons[data-v-6750e0cc] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-6750e0cc] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-6750e0cc] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-6750e0cc] {\n  background-color: #e53e3e;\n}\n.body[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-6750e0cc] {\n  text-decoration: line-through;\n}\n.date[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-6750e0cc] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-6750e0cc] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-6750e0cc] {\n  color: green;\n}\n.bottom[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-6750e0cc] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-6750e0cc] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-6750e0cc]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-6750e0cc]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiTaskIcon[data-v-6750e0cc] {\n  font-size: 1.3rem;\n}\n.mdiTaskIcon.light[data-v-6750e0cc] {\n  color: #63b3ed;\n}\n.mdiTaskIcon.dark[data-v-6750e0cc] {\n  color: #3182ce;\n}\nlabel[data-v-6750e0cc] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-6750e0cc] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-6750e0cc]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-6750e0cc]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-6750e0cc] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n.taskStatus[data-v-6750e0cc] {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n}\n.documents[data-v-6750e0cc] {\n  background: #2d3748;\n  height: 140px;\n  border: 1px solid #4a5568;\n  display: -webkit-box;\n  display: flex;\n  padding: 10px;\n}\n.document[data-v-6750e0cc] {\n  width: 100px;\n  padding: 2px;\n}\n.documentsButtons[data-v-6750e0cc] {\n  padding-top: 10px;\n}\n.line[data-v-6750e0cc] {\n  border-top: 1px dotted #4a5568;\n  padding: 10px 0px;\n}\n", ""]);
+exports.push([module.i, ".tasks-body[data-v-6750e0cc] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-6750e0cc] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #dd6b20;\n}\n.topRightIcons[data-v-6750e0cc] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-6750e0cc] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-6750e0cc] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-6750e0cc] {\n  background-color: #e53e3e;\n}\n.body[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-6750e0cc] {\n  text-decoration: line-through;\n}\n.date[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-6750e0cc] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-6750e0cc] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-6750e0cc] {\n  color: green;\n}\n.bottom[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-6750e0cc] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-6750e0cc] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-6750e0cc]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-6750e0cc]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiTaskIcon[data-v-6750e0cc] {\n  font-size: 1.3rem;\n}\n.mdiTaskIcon.light[data-v-6750e0cc] {\n  color: #63b3ed;\n}\n.mdiTaskIcon.dark[data-v-6750e0cc] {\n  color: #3182ce;\n}\nlabel[data-v-6750e0cc] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-6750e0cc] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-6750e0cc]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-6750e0cc]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-6750e0cc] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n.taskStatus[data-v-6750e0cc] {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n}\n.documents[data-v-6750e0cc] {\n  background: #2d3748;\n  height: 140px;\n  border: 1px solid #4a5568;\n  display: -webkit-box;\n  display: flex;\n  padding: 10px;\n  overflow: auto;\n}\n.document[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  width: 140px;\n  padding: 2px;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.documentsButtons[data-v-6750e0cc] {\n  padding-top: 10px;\n}\n.line[data-v-6750e0cc] {\n  border-top: 1px dotted #4a5568;\n  padding: 10px 0px;\n}\n.v-context[data-v-6750e0cc],\r\n.v-context ul[data-v-6750e0cc] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\r\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-6750e0cc],\r\n.v-context ul > li[data-v-6750e0cc] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-6750e0cc],\r\n.v-context ul > li > a[data-v-6750e0cc] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-6750e0cc]:focus,\r\n.v-context > li > a[data-v-6750e0cc]:hover,\r\n.v-context ul > li > a[data-v-6750e0cc]:focus,\r\n.v-context ul > li > a[data-v-6750e0cc]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-6750e0cc]:focus,\r\n.v-context > li > a[data-v-6750e0cc]:focus,\r\n.v-context ul[data-v-6750e0cc]:focus,\r\n.v-context ul > li > a[data-v-6750e0cc]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-6750e0cc]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-6750e0cc] {\n  display: none;\n}\r\n", ""]);
 
 // exports
 
@@ -41473,7 +41527,9 @@ var render = function() {
                 savetask: function($event) {
                   return _vm.saveTask(true)
                 },
-                deletetask: _vm.deleteTask
+                deletetask: _vm.deleteTask,
+                changedocuments: _vm.changeDocuments,
+                deletedocument: _vm.deleteDocument
               }
             })
           ],
@@ -42453,296 +42509,328 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "tasks-body" }, [
-    _c("div", { staticClass: "button-bar", class: _vm.theme }, [
-      _c("div", { staticClass: "topTitleDiv" }, [
-        _c("span", [
-          _vm._v(
-            "Task: " + _vm._s(_vm._f("formatTaskId")(_vm.task.id, _vm.new_task))
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "topRightIcons" }, [
-        _c(
-          "div",
-          {
-            staticClass: "rightExitIcon",
-            class: _vm.theme,
-            on: { click: _vm.closeTask }
-          },
-          [_c("img", { attrs: { src: "/images/close.png" } })]
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "body", class: [_vm.task.status == 0 ? "ended" : ""] },
-      [
-        _c("div", { staticClass: "date" }, [
-          _c("h3", [
+  return _c(
+    "div",
+    { staticClass: "tasks-body" },
+    [
+      _c("div", { staticClass: "button-bar", class: _vm.theme }, [
+        _c("div", { staticClass: "topTitleDiv" }, [
+          _c("span", [
             _vm._v(
-              "Date start: " + _vm._s(_vm._f("formatDate")(_vm.task.created_at))
-            )
-          ]),
-          _vm._v(" "),
-          _c("h3", [
-            _vm._v("\n                Date end:\n                "),
-            _c(
-              "span",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.task.status == 1,
-                    expression: "task.status == 1"
-                  }
-                ],
-                staticClass: "continues"
-              },
-              [_vm._v("Continues")]
-            ),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.task.status == 0,
-                    expression: "task.status == 0"
-                  }
-                ]
-              },
-              [_vm._v(_vm._s(_vm._f("formatDate")(_vm.task.updated_at)))]
+              "Task: " +
+                _vm._s(_vm._f("formatTaskId")(_vm.task.id, _vm.new_task))
             )
           ])
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
+        _c("div", { staticClass: "topRightIcons" }, [
+          _c(
+            "div",
             {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.task.title,
-              expression: "task.title"
-            }
-          ],
-          staticClass: "title",
-          attrs: { type: "text" },
-          domProps: { value: _vm.task.title },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.task, "title", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.task.body,
-              expression: "task.body"
-            }
-          ],
-          staticClass: "text_body",
-          attrs: { rows: "10" },
-          domProps: { value: _vm.task.body },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.task, "body", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "taskStatus" }, [
+              staticClass: "rightExitIcon",
+              class: _vm.theme,
+              on: { click: _vm.closeTask }
+            },
+            [_c("img", { attrs: { src: "/images/close.png" } })]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "body", class: [_vm.task.status == 0 ? "ended" : ""] },
+        [
+          _c("div", { staticClass: "date" }, [
+            _c("h3", [
+              _vm._v(
+                "Date start: " +
+                  _vm._s(_vm._f("formatDate")(_vm.task.created_at))
+              )
+            ]),
+            _vm._v(" "),
+            _c("h3", [
+              _vm._v("\n                Date end:\n                "),
+              _c(
+                "span",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.task.status == 1,
+                      expression: "task.status == 1"
+                    }
+                  ],
+                  staticClass: "continues"
+                },
+                [_vm._v("Continues")]
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.task.status == 0,
+                      expression: "task.status == 0"
+                    }
+                  ]
+                },
+                [_vm._v(_vm._s(_vm._f("formatDate")(_vm.task.updated_at)))]
+              )
+            ])
+          ]),
+          _vm._v(" "),
           _c("input", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.task.status,
-                expression: "task.status"
+                value: _vm.task.title,
+                expression: "task.title"
               }
             ],
-            attrs: { type: "checkbox", id: "task_status" },
-            domProps: {
-              checked: Array.isArray(_vm.task.status)
-                ? _vm._i(_vm.task.status, null) > -1
-                : _vm.task.status
-            },
+            staticClass: "title",
+            attrs: { type: "text" },
+            domProps: { value: _vm.task.title },
             on: {
-              change: function($event) {
-                var $$a = _vm.task.status,
-                  $$el = $event.target,
-                  $$c = $$el.checked ? true : false
-                if (Array.isArray($$a)) {
-                  var $$v = null,
-                    $$i = _vm._i($$a, $$v)
-                  if ($$el.checked) {
-                    $$i < 0 && _vm.$set(_vm.task, "status", $$a.concat([$$v]))
-                  } else {
-                    $$i > -1 &&
-                      _vm.$set(
-                        _vm.task,
-                        "status",
-                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                      )
-                  }
-                } else {
-                  _vm.$set(_vm.task, "status", $$c)
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
+                _vm.$set(_vm.task, "title", $event.target.value)
               }
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "task_status" } }, [
-            _c("span"),
-            _vm._v("Status of the task:\n                "),
-            _c("strong", [
-              _vm._v(_vm._s(_vm._f("statusFilter")(_vm.task.status)))
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("hr", { staticClass: "line" }),
-        _vm._v(" "),
-        _c("h4", [_vm._v("Documents attached to this task:")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "documents" },
-          _vm._l(_vm.documents, function(document) {
-            return _c("div", { key: document, staticClass: "document" }, [
-              _c(
-                "a",
-                {
-                  attrs: {
-                    target: "_blank",
-                    href: "images/tasks/" + _vm.task.id + "/" + document
-                  }
-                },
-                [
-                  _c("img", {
-                    attrs: {
-                      src: _vm._f("formatIcons")(
-                        "images/tasks/" + _vm.task.id + "/" + document
-                      ),
-                      alt: document
-                    }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c("span", { staticClass: "documenName" }, [
-                _vm._v(_vm._s(document))
-              ])
-            ])
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "documentsButtons" }, [
-          _c("input", {
-            ref: "file",
-            attrs: { type: "file", id: "file" },
-            on: { change: _vm.handleFileUpload }
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.task.body,
+                expression: "task.body"
+              }
+            ],
+            staticClass: "text_body",
+            attrs: { rows: "10" },
+            domProps: { value: _vm.task.body },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.task, "body", $event.target.value)
+              }
+            }
           }),
           _vm._v(" "),
+          _c("div", { staticClass: "taskStatus" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.task.status,
+                  expression: "task.status"
+                }
+              ],
+              attrs: { type: "checkbox", id: "task_status" },
+              domProps: {
+                checked: Array.isArray(_vm.task.status)
+                  ? _vm._i(_vm.task.status, null) > -1
+                  : _vm.task.status
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.task.status,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && _vm.$set(_vm.task, "status", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.task,
+                          "status",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.task, "status", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "task_status" } }, [
+              _c("span"),
+              _vm._v("Status of the task:\n                "),
+              _c("strong", [
+                _vm._v(_vm._s(_vm._f("statusFilter")(_vm.task.status)))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("hr", { staticClass: "line" }),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Documents attached to this task:")]),
+          _vm._v(" "),
           _c(
-            "button",
-            {
-              staticClass: "button",
-              attrs: { title: "Add selected file." },
-              on: { click: _vm.submitFile }
-            },
-            [
-              _c("i", { staticClass: "mdi mdi-plus-circle-outline" }),
-              _vm._v("Add\n            ")
-            ]
+            "div",
+            { staticClass: "documents" },
+            _vm._l(_vm.documents, function(document) {
+              return _c("div", { key: document, staticClass: "document" }, [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      target: "_blank",
+                      href: "images/tasks/" + _vm.task.id + "/" + document
+                    }
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src: _vm._f("formatIcons")(
+                          "images/tasks/" + _vm.task.id + "/" + document
+                        ),
+                        alt: document
+                      },
+                      on: {
+                        contextmenu: function($event) {
+                          $event.preventDefault()
+                          return _vm.$refs.menu.open($event, document)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("span", { staticClass: "documenName" }, [
+                  _vm._v(_vm._s(document))
+                ])
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "documentsButtons" }, [
+            _c("input", {
+              ref: "file",
+              attrs: { type: "file", id: "file" },
+              on: { change: _vm.onFileSelected }
+            }),
+            _vm._v("\n               "),
+            _c("span", { ref: "uploadPurcent" }),
+            _vm._v("   \n            "),
+            _c(
+              "button",
+              {
+                staticClass: "button",
+                attrs: { title: "Add selected file." },
+                on: { click: _vm.onUpload }
+              },
+              [
+                _c("i", { staticClass: "mdi mdi-plus-circle-outline" }),
+                _vm._v("Add\n            ")
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "bottom", class: _vm.theme }, [
+        _c(
+          "a",
+          {
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.saveTask($event)
+              }
+            }
+          },
+          [
+            _c("i", {
+              staticClass: "mdi mdi-content-save-outline mdiTaskIcon",
+              class: _vm.theme
+            }),
+            _vm._v(" Save Task\n        ")
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.deleteTask($event)
+              }
+            }
+          },
+          [
+            _c("i", {
+              staticClass: "mdi mdi-delete-outline mdiTaskIcon",
+              class: _vm.theme
+            }),
+            _vm._v(" Delete Task\n        ")
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.closeTask($event)
+              }
+            }
+          },
+          [
+            _c("i", {
+              staticClass: "mdi mdi-close-outline mdiTaskIcon",
+              class: _vm.theme
+            }),
+            _vm._v(" Close Task\n        ")
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "status_panel" }, [
+          _vm._v(
+            "\n            Last change: " +
+              _vm._s(_vm._f("formatDate")(_vm.task.updated_at)) +
+              "\n        "
           )
         ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "bottom", class: _vm.theme }, [
-      _c(
-        "a",
-        {
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.saveTask($event)
-            }
-          }
-        },
-        [
-          _c("i", {
-            staticClass: "mdi mdi-content-save-outline mdiTaskIcon",
-            class: _vm.theme
-          }),
-          _vm._v(" Save Task\n        ")
-        ]
-      ),
+      ]),
       _vm._v(" "),
-      _c(
-        "a",
-        {
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.deleteTask($event)
-            }
-          }
-        },
-        [
-          _c("i", {
-            staticClass: "mdi mdi-delete-outline mdiTaskIcon",
-            class: _vm.theme
-          }),
-          _vm._v(" Delete Task\n        ")
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.closeTask($event)
-            }
-          }
-        },
-        [
-          _c("i", {
-            staticClass: "mdi mdi-close-outline mdiTaskIcon",
-            class: _vm.theme
-          }),
-          _vm._v(" Close Task\n        ")
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "status_panel" }, [
-        _vm._v(
-          "\n            Last change: " +
-            _vm._s(_vm._f("formatDate")(_vm.task.updated_at)) +
-            "\n        "
-        )
+      _c("vue-context", { ref: "menu", on: { open: _vm.onOpenContextMenu } }, [
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.onClickContextMenu("delete")
+                }
+              }
+            },
+            [_vm._v("Delete File")]
+          )
+        ])
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -55581,14 +55669,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./resources/js/components/body/Tasks.vue ***!
   \************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Tasks_vue_vue_type_template_id_6750e0cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Tasks.vue?vue&type=template&id=6750e0cc&scoped=true& */ "./resources/js/components/body/Tasks.vue?vue&type=template&id=6750e0cc&scoped=true&");
 /* harmony import */ var _Tasks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tasks.vue?vue&type=script&lang=js& */ "./resources/js/components/body/Tasks.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _Tasks_vue_vue_type_style_index_0_id_6750e0cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Tasks.vue?vue&type=style&index=0&id=6750e0cc&scoped=true&lang=css& */ "./resources/js/components/body/Tasks.vue?vue&type=style&index=0&id=6750e0cc&scoped=true&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Tasks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Tasks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _Tasks_vue_vue_type_style_index_0_id_6750e0cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Tasks.vue?vue&type=style&index=0&id=6750e0cc&scoped=true&lang=css& */ "./resources/js/components/body/Tasks.vue?vue&type=style&index=0&id=6750e0cc&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -55620,7 +55709,7 @@ component.options.__file = "resources/js/components/body/Tasks.vue"
 /*!*************************************************************************!*\
   !*** ./resources/js/components/body/Tasks.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

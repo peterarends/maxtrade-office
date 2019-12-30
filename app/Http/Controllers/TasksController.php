@@ -141,7 +141,7 @@ class TasksController extends Controller
                     if ($_FILES['file']["size"] >= 307200) {
                         $result = "exceed file size";
                     } else {
-                        $result = $_FILES['file']["type"];
+                        $result = "wrong file type";
                     }
                 }
             }
@@ -155,12 +155,34 @@ class TasksController extends Controller
     {
         /** Get Task documents */
         if (!empty($id)) {
-            $files = array_slice(scandir("images/tasks/" . $id), 2);
+            if (file_exists("images/tasks/" . $id)){
+                $files = array_slice(scandir("images/tasks/" . $id), 2);
+            }else{
+                $files = [];
+            }
         } else {
             $files = [];
         }
 
         /** Return collection of Tasks as resource */
         return json_encode($files);
+    }
+
+    public function deleteDocument($id, $document)
+    {
+        /** Get Task documents */
+        if (!empty($id) && !empty($document)) {
+            if (file_exists("images/tasks/" . $id . "/" . $document)){
+                @unlink("images/tasks/" . $id . "/" . $document);
+                $result = "success";
+            }else{
+                $result = "unsuccess";
+            }
+        } else {
+            $result = "unsuccess";
+        }
+
+        /** Return collection of Tasks as resource */
+        return json_encode(["result" => $result]);
     }
 }

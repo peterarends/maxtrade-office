@@ -409,6 +409,8 @@
                     @closepanel="closePanel"
                     @savetask="saveTask(true)"
                     @deletetask="deleteTask"
+                    @changedocuments="changeDocuments"
+                    @deletedocument="deleteDocument"
                 ></tasks>
             </div>
         </div>
@@ -452,7 +454,6 @@ import TasksPanel from "./body/TasksPanel";
 import Properties from "./body/Properties";
 import Projects from "./body/Projects";
 import Tasks from "./body/Tasks";
-import axios from "axios";
 
 // This variable will hold the reference to
 // document's click handler
@@ -1012,6 +1013,28 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.tasks = res.data;
+                })
+                .catch(err => console.log(err));
+        },
+        changeDocuments(){
+            fetch("api/task/documents/" + this.task.id)
+                .then(res => res.json())
+                .then(res => {
+                    this.documents = res;
+                })
+                .catch(err => console.log(err));
+        },
+        deleteDocument(current_document){
+            fetch("api/task/document/delete/" + this.task.id + "/" + current_document, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.result === "success"){
+                        this.changeDocuments();
+                    }else{
+                        alert("Document cannot be deleted!");
+                    }
                 })
                 .catch(err => console.log(err));
         },
