@@ -2266,55 +2266,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
- // This variable will hold the reference to
-// document's click handler
 
-var handleOutsideClick;
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
-  bind: function bind(el, binding, vnode) {
-    // Here's the click/touchstart handler
-    // (it is registered below)
-    handleOutsideClick = function handleOutsideClick(e) {
-      e.stopPropagation(); // Get the handler method name and the exclude array
-      // from the object used in v-closable
-
-      var _binding$value = binding.value,
-          handler = _binding$value.handler,
-          exclude = _binding$value.exclude; // This variable indicates if the clicked element is excluded
-
-      var clickedOnExcludedEl = false;
-      exclude.forEach(function (refName) {
-        // We only run this code if we haven't detected
-        // any excluded element yet
-        if (!clickedOnExcludedEl) {
-          // Get the element using the reference name
-          var excludedEl = vnode.context.$refs[refName]; // See if this excluded element
-          // is the same element the user just clicked on
-
-          clickedOnExcludedEl = excludedEl.contains(e.target);
-        }
-      }); // We check to see if the clicked element is not
-      // the dialog element and not excluded
-
-      if (!el.contains(e.target) && !clickedOnExcludedEl) {
-        // If the clicked element is outside the dialog
-        // and not the button, then call the outside-click handler
-        // from the same component this directive is used in
-        vnode.context[handler]();
-      }
-    }; // Register click/touchstart event listeners on the whole page
-
-
-    document.addEventListener("click", handleOutsideClick);
-    document.addEventListener("touchstart", handleOutsideClick);
-  },
-  unbind: function unbind() {
-    // If the element that has v-closable is removed, then
-    // unbind click/touchstart listeners from the whole page
-    document.removeEventListener("click", handleOutsideClick);
-    document.removeEventListener("touchstart", handleOutsideClick);
-  }
-});
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   components: {
@@ -2443,65 +2395,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Leftmenu",
-  data: function data() {
-    return {
-      isVisible: false
-    };
-  },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme"]),
-  methods: {
-    closeSettings: function closeSettings() {
-      this.isVisible = false;
-    },
-    changeTheme: function changeTheme(event) {
-      this.$emit("changetheme", event.target.getAttribute("data-value"));
-    },
-    showProperties: function showProperties() {
-      this.$emit("showproperties");
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -42007,124 +41905,7 @@ var render = function() {
       _vm._v("\n        Maxtrade Office\n    ")
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.isVisible,
-            expression: "isVisible"
-          },
-          {
-            name: "closable",
-            rawName: "v-closable",
-            value: {
-              exclude: ["settingsButton"],
-              handler: "closeSettings"
-            },
-            expression:
-              "{\n            exclude: ['settingsButton'],\n            handler: 'closeSettings'\n        }"
-          }
-        ],
-        staticClass: "contextMenu"
-      },
-      [
-        _c("ul", { staticClass: "contextMenu-options" }, [
-          _c(
-            "li",
-            {
-              staticClass: "contextMenu-option",
-              attrs: { "data-value": "light" },
-              on: {
-                click: function($event) {
-                  return _vm.changeTheme($event)
-                }
-              }
-            },
-            [
-              _c("span", [_vm._v("Light theme")]),
-              _c(
-                "span",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.getTheme == "light",
-                      expression: "getTheme == 'light'"
-                    }
-                  ],
-                  staticClass: "right-text"
-                },
-                [_vm._v("✔")]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "contextMenu-option",
-              attrs: { "data-value": "dark" },
-              on: {
-                click: function($event) {
-                  return _vm.changeTheme($event)
-                }
-              }
-            },
-            [
-              _c("span", [_vm._v("Dark theme")]),
-              _c(
-                "span",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.getTheme == "dark",
-                      expression: "getTheme == 'dark'"
-                    }
-                  ],
-                  staticClass: "right-text"
-                },
-                [_vm._v("✔")]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "contextMenu-option",
-              on: {
-                click: function($event) {
-                  return _vm.showProperties()
-                }
-              }
-            },
-            [_c("span", [_vm._v("Options")])]
-          )
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "a",
-      {
-        ref: "settingsButton",
-        staticClass: "settingsMenuLink",
-        attrs: { title: "Show Tools Menu" },
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-            _vm.isVisible = !_vm.isVisible
-          }
-        }
-      },
-      [_c("i", { staticClass: "mdi mdi-tools mdiIcon" })]
-    )
+    _vm._m(3)
   ])
 }
 var staticRenderFns = [
@@ -42153,6 +41934,16 @@ var staticRenderFns = [
     return _c("a", { attrs: { title: "Show Contacts Panel" } }, [
       _c("i", { staticClass: "mdi mdi-contacts mdiIcon" })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "settingsMenuLink", attrs: { title: "Show Tools Menu" } },
+      [_c("i", { staticClass: "mdi mdi-tools mdiIcon" })]
+    )
   }
 ]
 render._withStripped = true

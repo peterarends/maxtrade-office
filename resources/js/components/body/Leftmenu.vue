@@ -1,5 +1,5 @@
 <template>
-    <div class="body-left-menu" v-bind:class="getTheme">
+    <div class="body-left-menu" :class="getTheme">
         <a class="active" title="Show Projects Panel">
             <i class="mdi mdi-finance mdiIcon"></i>
         </a>
@@ -9,49 +9,10 @@
         <a title="Show Contacts Panel">
             <i class="mdi mdi-contacts mdiIcon"></i>
         </a>
-        <div class="left-menu-title" v-bind:class="getTheme">
+        <div class="left-menu-title" :class="getTheme">
             Maxtrade Office
         </div>
-        <div
-            class="contextMenu"
-            v-show="isVisible"
-            v-closable="{
-                exclude: ['settingsButton'],
-                handler: 'closeSettings'
-            }"
-        >
-            <ul class="contextMenu-options">
-                <li
-                    class="contextMenu-option"
-                    @click="changeTheme($event)"
-                    data-value="light"
-                >
-                    <span>Light theme</span
-                    ><span v-show="getTheme == 'light'" class="right-text"
-                        >✔</span
-                    >
-                </li>
-                <li
-                    class="contextMenu-option"
-                    @click="changeTheme($event)"
-                    data-value="dark"
-                >
-                    <span>Dark theme</span
-                    ><span v-show="getTheme == 'dark'" class="right-text"
-                        >✔</span
-                    >
-                </li>
-                <li class="contextMenu-option" @click="showProperties()">
-                    <span>Options</span>
-                </li>
-            </ul>
-        </div>
-        <a
-            title="Show Tools Menu"
-            class="settingsMenuLink"
-            v-on:click.prevent="isVisible = !isVisible"
-            ref="settingsButton"
-        >
+        <a title="Show Tools Menu" class="settingsMenuLink">
             <i class="mdi mdi-tools mdiIcon"></i>
         </a>
     </div>
@@ -63,25 +24,9 @@ import { mapGetters } from "vuex";
 export default {
     name: "Leftmenu",
 
-    data() {
-        return {
-            isVisible: false
-        };
-    },
-
     computed: mapGetters(["getTheme"]),
 
-    methods: {
-        closeSettings() {
-            this.isVisible = false;
-        },
-        changeTheme(event) {
-            this.$emit("changetheme", event.target.getAttribute("data-value"));
-        },
-        showProperties() {
-            this.$emit("showproperties");
-        }
-    }
+    methods: {}
 };
 </script>
 
