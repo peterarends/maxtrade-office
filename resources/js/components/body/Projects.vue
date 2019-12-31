@@ -1,6 +1,6 @@
 <template>
     <div class="projects-body">
-        <div class="button-bar" v-bind:class="theme">
+        <div class="button-bar" v-bind:class="getTheme">
             <div class="topTitleDiv">
                 <!--Window title-->
                 <span
@@ -12,7 +12,7 @@
                 <!--Window title icons-->
                 <div
                     class="rightExitIcon"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                     v-on:click="closeProject"
                 >
                     <img src="/images/close.png" />
@@ -61,25 +61,25 @@
                 </div>
             </div>
         </div>
-        <div class="bottom" v-bind:class="theme">
+        <div class="bottom" v-bind:class="getTheme">
             <a v-on:click.prevent="saveProject"
                 ><i
                     class="mdi mdi-content-save-outline mdiProjectIcon"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                 ></i
                 >&nbsp;Save Project</a
             >
             <a v-on:click.prevent="deleteProject"
                 ><i
                     class="mdi mdi-delete-outline mdiProjectIcon"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                 ></i
                 >&nbsp;Delete Project</a
             >
             <a v-on:click.prevent="closeProject"
                 ><i
                     class="mdi mdi-close-outline mdiProjectIcon"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                 ></i
                 >&nbsp;Close Project</a
             >
@@ -92,18 +92,14 @@
 
 <script>
 import moment from "moment";
+import { mapGetters } from "vuex";
 
 export default {
     name: "Projects",
 
-    props: [
-        "theme",
-        "project",
-        "new_project",
-        "alltasks",
-        "activetasks",
-        "endedtasks"
-    ],
+    props: ["project", "new_project", "alltasks", "activetasks", "endedtasks"],
+
+    computed: mapGetters(["getTheme"]),
 
     filters: {
         formatDate: function(value) {

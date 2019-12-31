@@ -26,7 +26,7 @@ class PropertiesController extends Controller
             $property->value = $request->input('value');
 
             if ($property->save()) {
-                return new PropertyResource($property);
+                return json_encode(["result" => "success"]);
             }
         }
     }

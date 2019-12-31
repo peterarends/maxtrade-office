@@ -1,28 +1,28 @@
 <template>
-    <div class="body-tasks-panel" v-bind:class="theme">
-        <div class="topTaskDiv" v-bind:class="theme">
+    <div class="body-tasks-panel" v-bind:class="getTheme">
+        <div class="topTaskDiv" v-bind:class="getTheme">
             <input
                 type="text"
                 class="searchInput"
-                v-bind:class="theme"
+                v-bind:class="getTheme"
                 placeholder="tasks search ..."
                 v-on:input="taskSearch($event)"
             />
-            <div class="searchElementsDiv" v-bind:class="theme">
+            <div class="searchElementsDiv" v-bind:class="getTheme">
                 <span
                     class="searchIconsText"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                     v-on:click="toggleStatusFilter"
                     >{{ task_filter.filterstatus.toUpperCase() }}</span
                 >
                 <i
                     class="mdi mdi-sort-alphabetical searchIcons"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                     v-on:click="toggleNameFilter"
                 ></i>
                 <i
                     class="mdi mdi-sort-numeric searchIcons"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                     v-on:click="toggleIdFilter"
                 ></i>
             </div>
@@ -32,7 +32,7 @@
                 class="task_item"
                 v-for="task in tasks"
                 v-bind:key="task.id"
-                v-bind:class="[task.id == current_id ? 'active' : '', theme]"
+                v-bind:class="[task.id == current_id ? 'active' : '', getTheme]"
                 v-on:click="showTask(task)"
                 @contextmenu.prevent="$refs.menu.open($event, task)"
             >
@@ -40,7 +40,7 @@
                     class="dateText"
                     v-bind:class="[
                         task.status == 0 ? 'dateWithLine' : 'dateWithoutLine',
-                        theme
+                        getTheme
                     ]"
                 >
                     {{ task.created_at | formatDate }}
@@ -53,7 +53,7 @@
                             task.status == 0
                                 ? 'idTextFinished'
                                 : 'idTextUnfinished ',
-                            theme
+                            getTheme
                         ]"
                     >
                         {{ task.id }}
@@ -65,7 +65,7 @@
                                 ? 'titleTextFinished'
                                 : 'titleTextUnfinished',
                             task.status == 0 ? 'titleTextLine' : '',
-                            theme
+                            getTheme
                         ]"
                     >
                         {{ task.title }}
@@ -89,6 +89,7 @@
 <script>
 import moment from "moment";
 import { VueContext } from "vue-context";
+import { mapGetters } from "vuex";
 
 export default {
     name: "TasksPanel",
@@ -96,6 +97,8 @@ export default {
     components: {
         VueContext
     },
+
+    computed: mapGetters(["getTheme"]),
 
     filters: {
         formatDate: function(value) {
@@ -134,7 +137,7 @@ export default {
         }
     },
 
-    props: ["tasks", "theme", "current_id", "task_filter"]
+    props: ["tasks", "current_id", "task_filter"]
 };
 </script>
 

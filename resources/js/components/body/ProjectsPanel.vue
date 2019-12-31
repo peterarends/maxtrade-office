@@ -1,28 +1,28 @@
 <template>
-    <div class="body-projects-panel" v-bind:class="theme">
-        <div class="topProjectsDiv" v-bind:class="theme">
+    <div class="body-projects-panel" v-bind:class="getTheme">
+        <div class="topProjectsDiv" v-bind:class="getTheme">
             <input
                 type="text"
                 class="searchInput"
-                v-bind:class="theme"
+                v-bind:class="getTheme"
                 placeholder="projects search ..."
                 v-on:input="projectSearch($event)"
             />
-            <div class="searchElementsDiv" v-bind:class="theme">
+            <div class="searchElementsDiv" v-bind:class="getTheme">
                 <span
                     class="searchIconsText"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                     v-on:click="toggleStatusFilter"
                     >{{ project_filter.filterstatus.toUpperCase() }}</span
                 >
                 <i
                     class="mdi mdi-sort-alphabetical searchIcons"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                     v-on:click="toggleNameFilter"
                 ></i>
                 <i
                     class="mdi mdi-sort-numeric searchIcons"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                     v-on:click="toggleIdFilter"
                 ></i>
             </div>
@@ -32,7 +32,10 @@
                 class="project_item"
                 v-for="project in projects"
                 v-bind:key="project.id"
-                v-bind:class="[project.id == current_id ? 'active' : '', theme]"
+                v-bind:class="[
+                    project.id == current_id ? 'active' : '',
+                    getTheme
+                ]"
                 v-on:click="showProject(project)"
                 @contextmenu.prevent="$refs.menu.open($event, project)"
             >
@@ -42,7 +45,7 @@
                         project.status == 0
                             ? 'dateWithLine'
                             : 'dateWithoutLine',
-                        theme
+                        getTheme
                     ]"
                 >
                     {{ project.created_at | formatDate }}
@@ -55,7 +58,7 @@
                             project.status == 0
                                 ? 'idTextFinished'
                                 : 'idTextUnfinished ',
-                            theme
+                            getTheme
                         ]"
                     >
                         {{ project.id }}
@@ -67,7 +70,7 @@
                                 ? 'titleTextFinished'
                                 : 'titleTextUnfinished',
                             project.status == 0 ? 'titleTextLine' : '',
-                            theme
+                            getTheme
                         ]"
                     >
                         {{ project.title }}
@@ -96,6 +99,7 @@
 <script>
 import moment from "moment";
 import { VueContext } from "vue-context";
+import { mapGetters } from "vuex";
 
 export default {
     name: "ProjectsPanel",
@@ -103,6 +107,8 @@ export default {
     components: {
         VueContext
     },
+
+    computed: mapGetters(["getTheme"]),
 
     filters: {
         formatDate: function(value) {
@@ -146,7 +152,7 @@ export default {
         }
     },
 
-    props: ["projects", "theme", "current_id", "project_filter"]
+    props: ["projects", "current_id", "project_filter"]
 };
 </script>
 

@@ -1,16 +1,16 @@
 <template>
-    <div class="mainDiv" v-bind:class="theme">
+    <div class="mainDiv" v-bind:class="getTheme">
         <!-- Start Top panel -->
         <div>
-            <div class="generalStyleDiv" v-bind:class="theme">
+            <div class="generalStyleDiv" v-bind:class="getTheme">
                 <!--Header, icon, menu, title ...-->
                 <div class="iconDiv">
                     <!--Header icon-->
                     <img src="/images/maxtradeoffice.png" class="iconImg" />
                 </div>
-                <div class="contentDiv" v-bind:class="theme">
+                <div class="contentDiv" v-bind:class="getTheme">
                     <!--Main menu-->
-                    <div id="cssmenu" v-bind:class="theme">
+                    <div id="cssmenu" v-bind:class="getTheme">
                         <ul>
                             <li class="has-sub">
                                 <a><span>File</span></a>
@@ -19,11 +19,11 @@
                                         <a>
                                             <div
                                                 class="mnu-flex"
-                                                v-on:click="exit"
+                                                v-on:click="exitProgram"
                                             >
                                                 <i
                                                     class="mdi mdi-location-exit mdiExitIcon"
-                                                    v-bind:class="theme"
+                                                    v-bind:class="getTheme"
                                                 ></i
                                                 >&nbsp;<span>Exit</span>
                                             </div>
@@ -39,7 +39,7 @@
                                             <div class="mnu-flex">
                                                 <i
                                                     class="mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
-                                                    v-bind:class="theme"
+                                                    v-bind:class="getTheme"
                                                 ></i
                                                 >&nbsp;<span>Add Project</span>
                                             </div>
@@ -50,7 +50,7 @@
                                             <div class="mnu-flex">
                                                 <i
                                                     class="mdi mdi-delete mdiAddEditDeleteProjectIcon"
-                                                    v-bind:class="theme"
+                                                    v-bind:class="getTheme"
                                                 ></i
                                                 >&nbsp;<span
                                                     >Delete Project</span
@@ -63,7 +63,7 @@
                                             <div class="mnu-flex">
                                                 <i
                                                     class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
-                                                    v-bind:class="theme"
+                                                    v-bind:class="getTheme"
                                                 ></i
                                                 >&nbsp;<span>Add Task</span>
                                             </div>
@@ -158,7 +158,7 @@
                                             <div class="mnu-flex">
                                                 <i
                                                     class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
-                                                    v-bind:class="theme"
+                                                    v-bind:class="getTheme"
                                                 ></i
                                                 >&nbsp;<span>Add Task</span>
                                             </div>
@@ -169,7 +169,7 @@
                                             <div class="mnu-flex">
                                                 <i
                                                     class="mdi mdi-delete mdiAddEditDeleteTaskIcon"
-                                                    v-bind:class="theme"
+                                                    v-bind:class="getTheme"
                                                 ></i
                                                 >&nbsp;<span>Delete Task</span>
                                             </div>
@@ -249,7 +249,7 @@
                                             >
                                                 <i
                                                     class="mdi mdi-tools standardSizeIcon"
-                                                    v-bind:class="theme"
+                                                    v-bind:class="getTheme"
                                                 ></i
                                                 >&nbsp;<span>Options</span>
                                             </div>
@@ -262,10 +262,13 @@
                                 <ul>
                                     <li>
                                         <a>
-                                            <div class="mnu-flex" @click="showAbout($event)">
+                                            <div
+                                                class="mnu-flex"
+                                                @click="showAbout()"
+                                            >
                                                 <i
                                                     class="mdi mdi-information-variant standardSizeIcon"
-                                                    v-bind:class="theme"
+                                                    v-bind:class="getTheme"
                                                 ></i
                                                 >&nbsp;<span>About</span>
                                             </div>
@@ -276,68 +279,68 @@
                         </ul>
                     </div>
                 </div>
-                <div class="topTitleDiv" v-bind:class="theme">
+                <div class="topTitleDiv" v-bind:class="getTheme">
                     <!--Window title-->
                     <span>MaxtradeOffice</span>
                 </div>
                 <div class="topRightIcons">
                     <!--Window title icons-->
-                    <div class="minMaxIcons" v-bind:class="theme">
+                    <div class="minMaxIcons" v-bind:class="getTheme">
                         <img src="/images/minimize.png" />
                     </div>
-                    <div class="minMaxIcons" v-bind:class="theme">
+                    <div class="minMaxIcons" v-bind:class="getTheme">
                         <img src="/images/maximize.png" />
                     </div>
                     <div
                         class="rightExitIcon"
-                        v-bind:class="theme"
-                        v-on:click="exit"
+                        v-bind:class="getTheme"
+                        v-on:click="exitProgram"
                     >
                         <img src="/images/close.png" />
                     </div>
                 </div>
             </div>
-            <div class="button-bar" v-bind:class="theme">
-                <button v-on:click="exit" title="Exit this program">
+            <div class="button-bar" v-bind:class="getTheme">
+                <button v-on:click="exitProgram" title="Exit this program">
                     <i
                         class="mdi mdi-location-exit mdiExitIcon"
-                        v-bind:class="theme"
+                        v-bind:class="getTheme"
                     ></i>
                 </button>
                 <button v-on:click="addProject">
                     <i
                         class="mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
-                        v-bind:class="theme"
+                        v-bind:class="getTheme"
                     ></i
                     >&nbsp;Add Project
                 </button>
                 <button
-                    :disabled="current_project_id == 0"
+                    :disabled="getCurrentProjectId == 0"
                     v-on:click="deleteProject"
                 >
                     <i
                         class="mdi mdi-delete mdiAddEditDeleteProjectIcon"
-                        v-bind:class="theme"
+                        v-bind:class="getTheme"
                     ></i
                     >&nbsp;Delete Project
                 </button>
                 <button
                     v-on:click="addTask"
-                    :disabled="current_project_id == 0"
+                    :disabled="getCurrentProjectId == 0"
                 >
                     <i
                         class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
-                        v-bind:class="theme"
+                        v-bind:class="getTheme"
                     ></i
                     >&nbsp;Add Task
                 </button>
                 <button
-                    :disabled="current_task_id == 0"
+                    :disabled="getCurrentTaskId == 0"
                     v-on:click="deleteTask"
                 >
                     <i
                         class="mdi mdi-delete mdiAddEditDeleteTaskIcon"
-                        v-bind:class="theme"
+                        v-bind:class="getTheme"
                     ></i
                     >&nbsp;Delete Task
                 </button>
@@ -345,16 +348,10 @@
         </div>
         <!-- End Top panel -->
         <!-- Start Body panel -->
-        <div class="body" v-bind:class="theme">
-            <leftmenu
-                v-bind:theme="theme"
-                @changetheme="changeTheme"
-                @showproperties="showProperties"
-            ></leftmenu>
+        <div class="body" v-bind:class="getTheme">
+            <leftmenu></leftmenu>
             <projects-panel
                 v-bind:projects="projects"
-                v-bind:theme="theme"
-                v-bind:current_id="current_project_id"
                 v-bind:project_filter="project_filter"
                 @changeproject="changeProject"
                 @deleteproject="deleteProject"
@@ -366,9 +363,6 @@
                 @addtask="addTask"
             ></projects-panel>
             <tasks-panel
-                v-bind:tasks="tasks"
-                v-bind:theme="theme"
-                v-bind:current_id="current_task_id"
                 v-bind:task_filter="task_filter"
                 @changetask="changeTask"
                 @deletetask="deleteTask"
@@ -378,39 +372,24 @@
                 @tasktogglestatusfilter="toggleTaskStatusFilter"
                 @tasksearch="fetchTasksSearch"
             ></tasks-panel>
-            <div class="mainDivBodypanel" v-bind:class="theme">
+            <div class="mainDivBodypanel" v-bind:class="getTheme">
                 <properties
-                    v-show="panel == 'properties'"
-                    v-bind:theme="theme"
-                    v-bind:properties="properties"
+                    v-show="getPanel == 'properties'"
                     @changetheme="changeTheme"
-                    @closepanel="closePanel"
                 ></properties>
-                <about
-                    v-show="panel == 'about'"
-                    @closepanel="closePanel"
-                ></about>
+                <about v-show="getPanel == 'about'"></about>
                 <projects
-                    v-show="panel == 'projects'"
+                    v-show="getPanel == 'projects'"
                     v-bind:project="project"
-                    v-bind:alltasks="tasks.length"
-                    v-bind:activetasks="
-                        tasks.filter(t => t.status === 1).length
-                    "
-                    v-bind:endedtasks="tasks.filter(t => t.status === 0).length"
-                    v-bind:theme="theme"
                     v-bind:new_project="new_project"
-                    @closepanel="closePanel"
                     @saveproject="saveProject(true)"
                     @deleteproject="deleteProject"
                 ></projects>
                 <tasks
-                    v-show="panel == 'tasks'"
+                    v-show="getPanel == 'tasks'"
                     v-bind:task="task"
-                    v-bind:theme="theme"
                     v-bind:new_task="new_task"
                     v-bind:documents="documents"
-                    @closepanel="closePanel"
                     @savetask="saveTask(true)"
                     @deletetask="deleteTask"
                     @changedocuments="changeDocuments"
@@ -420,29 +399,29 @@
         </div>
         <!-- End body panel -->
         <!-- Start Footer panel -->
-        <div class="footerMainDiv" v-bind:class="theme">
+        <div class="footerMainDiv" v-bind:class="getTheme">
             <div class="footer-icon">
                 <!--Header icon-->
                 <div><i class="mdi mdi-server-network serverIcon"></i></div>
-                <div class="separator-vertical" v-bind:class="theme"></div>
+                <div class="separator-vertical" v-bind:class="getTheme"></div>
                 <div>
                     MaxtradeOffice ver: <span>{{ version }}</span>
                 </div>
-                <div class="separator-vertical" v-bind:class="theme"></div>
+                <div class="separator-vertical" v-bind:class="getTheme"></div>
                 <div class="projects-panel-title-dot">
                     <i class="fas fa-circle"></i>
                 </div>
                 <div>
                     Projects: <span>{{ projects.length }}</span>
                 </div>
-                <div class="separator-vertical" v-bind:class="theme"></div>
+                <div class="separator-vertical" v-bind:class="getTheme"></div>
                 <div class="tasks-panel-title-dot">
                     <i class="fas fa-circle"></i>
                 </div>
                 <div>
-                    Tasks: <span>{{ tasks.length }}</span>
+                    Tasks: <span>{{ getTasks.length }}</span>
                 </div>
-                <div class="separator-vertical" v-bind:class="theme"></div>
+                <div class="separator-vertical" v-bind:class="getTheme"></div>
             </div>
         </div>
         <!-- End Footer panel -->
@@ -459,6 +438,7 @@ import Properties from "./body/Properties";
 import Projects from "./body/Projects";
 import Tasks from "./body/Tasks";
 import About from "./body/About";
+import { mapGetters, mapActions } from "vuex";
 
 // This variable will hold the reference to
 // document's click handler
@@ -526,17 +506,11 @@ export default {
     data() {
         return {
             version: "1.0.1",
-            theme: "dark",
-            properties: [],
-            panel: "",
             projects: [],
             project: [],
-            current_project_id: 0,
             new_project: false,
-            tasks: [],
             task: [],
             documents: [],
-            current_task_id: 0,
             new_task: false,
             project_filter: {
                 filter09: false,
@@ -553,521 +527,552 @@ export default {
 
     created() {
         this.fetchProperties();
-        this.fetchProjects("all");
+        //this.fetchProjects("all");
     },
 
+    computed: mapGetters([
+        "getTheme",
+        "getCurrentProjectId",
+        "getCurrentTaskId",
+        "getPanel"
+    ]),
+
     methods: {
-        // Properties actions
-        // Fetch properties from DB and set the theme
-        fetchProperties() {
-            fetch("api/properties")
-                .then(res => res.json())
-                .then(res => {
-                    this.properties = res.data;
-                    this.theme = res.data.find(
-                        prop => prop.name === "theme"
-                    ).value;
-                })
-                .catch(err => console.log(err));
-        },
-        // Open Properties panel
-        showProperties() {
-            this.panel = "properties";
-        },
-        // Change the current theme and save back to DB
-        changeTheme(changed_theme) {
-            this.theme = changed_theme;
-            fetch("api/property", {
-                method: "PUT",
-                body: JSON.stringify({
-                    property_id: this.properties.find(
-                        prop => prop.name === "theme"
-                    ).id,
-                    value: this.theme
-                }),
-                headers: { "Content-Type": "application/json; charset=utf-8" }
-            })
-                .then(res => res.json())
-                .catch(err => console.log(err));
-        },
+        ...mapActions([
+            "fetchProperties",
+            "changeTheme",
+            "exitProgram",
+            "showProperties",
+            "showAbout",
+            "completeProject",
+            "showAllProjects",
+            "showCompletedProjects",
+            "showActivedProjects",
+            "sortProjectsIdAcc",
+            "sortProjectsIdDec",
+            "sortProjectsNameAcc",
+            "sortProjectsNameDec",
+            "completeTask",
+            "showAllTasks",
+            "showCompletedTasks",
+            "showActivedTasks",
+            "sortTasksIdAcc",
+            "sortTasksIdDec",
+            "sortTasksNameAcc",
+            "sortTasksNameDec",
+            "addProject",
+            "deleteProject",
+            "addTask",
+            "deleteTask",
+            "changeProject",
+            "toggleProjectIdFilter",
+            "toggleProjectNameFilter",
+            "toggleProjectStatusFilter",
+            "fetchProjectsSearch",
+            "changeTask",
+            "toggleTaskIdFilter",
+            "toggleTaskNameFilter",
+            "toggleTaskStatusFilter",
+            "fetchTasksSearch",
+            "changeDocuments",
+            "deleteDocument",
+            "getTasks"
+        ])
 
-        // Projects actions
-        // Fetch all projects from DB and set to ProjectsPanel
-        fetchProjects(_status) {
-            fetch("api/projects/" + _status)
-                .then(res => res.json())
-                .then(res => {
-                    this.projects = res.data;
-                })
-                .catch(err => console.log(err));
-        },
-        // Fetch all projects from DB width search
-        fetchProjectsSearch(_text) {
-            fetch("api/projects/search", {
-                method: "POST",
-                body: JSON.stringify({
-                    search: _text
-                }),
-                headers: { "Content-Type": "application/json; charset=utf-8" }
-            })
-                .then(res => res.json())
-                .then(res => {
-                    this.projects = res.data;
-                })
-                .catch(err => console.log(err));
-        },
-        // Open project in Project panel
-        changeProject(project) {
-            this.project = project;
-            this.current_project_id = project.id;
-            this.new_project = false;
-            this.panel = "projects";
-            this.current_task_id = 0;
-            this.fetchTasks("all", this.current_project_id);
-        },
-        // Save project changes back to DB
-        saveProject(isMessage) {
-            fetch("api/project", {
-                method: this.new_project ? "POST" : "PUT",
-                body: JSON.stringify({
-                    project_id: this.new_project ? 0 : this.project.id,
-                    title: this.project.title,
-                    body: this.project.body,
-                    status: this.project.status
-                }),
-                headers: { "Content-Type": "application/json; charset=utf-8" }
-            })
-                .then(res => res.json())
-                .then(res => {
-                    this.project.id = res.data.id;
-                    this.project.title = res.data.title;
-                    this.project.body = res.data.body;
-                    this.project.created_at = res.data.created_at;
-                    this.project.updated_at = res.data.updated_at;
-                    this.project.status = res.data.status;
-                    this.new_project = false;
-                    this.current_project_id = res.data.id;
-                    if (isMessage) {
-                        alert(
-                            "You have successfully saved the changes to the Project: " +
-                                res.data.title
-                        );
-                    }
-                    // change all task status by project
-                    if (this.project.status == 0) {
-                        fetch("api/task/complete/" + this.project.id, {
-                            method: "GET"
-                        }).catch(err => console.log(err));
-                        this.tasks.forEach(function(part, index) {
-                            part.status = 0;
-                        });
-                    }
-                })
-                .catch(err => console.log(err));
-        },
-        // Delete current project
-        deleteProject() {
-            if (this.current_project_id != 0) {
-                if (confirm("Are You sure?")) {
-                    fetch("api/project/" + this.project.id, {
-                        method: "DELETE",
-                        body: JSON.stringify({
-                            project_id: this.project.id
-                        }),
-                        headers: {
-                            "Content-Type": "application/json; charset=utf-8"
-                        }
-                    })
-                        .then(res => res.json())
-                        .then(res => {
-                            this.projects = this.projects.filter(
-                                p => p.id !== res.data.id
-                            );
-                            this.current_project_id = 0;
-                            this.current_task_id = 0;
-                            this.tasks = [];
-                            this.panel = "";
-                        })
-                        .catch(err => console.log(err));
-                }
-            }
-        },
-        // Add new project
-        addProject() {
-            const newProject = {
-                id:
-                    Math.max.apply(
-                        Math,
-                        this.projects.map(function(o) {
-                            return o.id;
-                        })
-                    ) + 1,
-                title: "Name of new Project",
-                body: "Description of new Project",
-                created_at: moment().format(),
-                updated_at: "",
-                status: 1
-            };
-            this.projects.unshift(newProject);
-            this.project = newProject;
-            this.current_project_id = newProject.id;
-            this.new_project = true;
-            this.panel = "projects";
-            this.saveProject(false);
-        },
-        completeProject() {
-            if (this.current_project_id != 0) {
-                this.project.status = 0;
-                this.saveProject(false);
-            }
-        },
-        toggleProjectIdFilter() {
-            this.project_filter.filter09 = !this.project_filter.filter09;
-            if (this.project_filter.filter09) {
-                this.projects.sort(function(a, b) {
-                    if (a.id > b.id) return 1;
-                    if (a.id < b.id) return -1;
-                });
-            } else {
-                this.projects.sort(function(a, b) {
-                    if (a.id > b.id) return -1;
-                    if (a.id < b.id) return 1;
-                });
-            }
-        },
-        sortProjectsIdAcc() {
-            this.project_filter.filter09 = true;
-            this.projects.sort(function(a, b) {
-                if (a.id > b.id) return 1;
-                if (a.id < b.id) return -1;
-            });
-        },
-        sortProjectsIdDec() {
-            this.project_filter.filter09 = false;
-            this.projects.sort(function(a, b) {
-                if (a.id > b.id) return -1;
-                if (a.id < b.id) return 1;
-            });
-        },
-        toggleProjectNameFilter() {
-            this.project_filter.filteraz = !this.project_filter.filteraz;
-            if (this.project_filter.filteraz) {
-                this.projects.sort(function(a, b) {
-                    if (a.title > b.title) return 1;
-                    if (a.title < b.title) return -1;
-                });
-            } else {
-                this.projects.sort(function(a, b) {
-                    if (a.title > b.title) return -1;
-                    if (a.title < b.title) return 1;
-                });
-            }
-        },
-        sortProjectsNameAcc() {
-            this.project_filter.filteraz = true;
-            this.projects.sort(function(a, b) {
-                if (a.title > b.title) return 1;
-                if (a.title < b.title) return -1;
-            });
-        },
-        sortProjectsNameDec() {
-            this.project_filter.filteraz = false;
-            this.projects.sort(function(a, b) {
-                if (a.title > b.title) return -1;
-                if (a.title < b.title) return 1;
-            });
-        },
-        toggleProjectStatusFilter() {
-            if (this.project_filter.filterstatus == "all") {
-                this.project_filter.filterstatus = "act";
-                this.fetchProjects("act");
-            } else {
-                if (this.project_filter.filterstatus == "act") {
-                    this.project_filter.filterstatus = "end";
-                    this.fetchProjects("end");
-                } else {
-                    if (this.project_filter.filterstatus == "end") {
-                        this.project_filter.filterstatus = "all";
-                        this.fetchProjects("all");
-                    }
-                }
-            }
-        },
-        showAllProjects() {
-            this.project_filter.filterstatus = "all";
-            this.fetchProjects("all");
-        },
-        showCompletedProjects() {
-            this.project_filter.filterstatus = "end";
-            this.fetchProjects("end");
-        },
-        showActivedProjects() {
-            this.project_filter.filterstatus = "act";
-            this.fetchProjects("act");
-        },
+        // // Change the current theme and save back to DB
+        // changeTheme(changed_theme) {
+        //     this.theme = changed_theme;
+        //     fetch("api/property", {
+        //         method: "PUT",
+        //         body: JSON.stringify({
+        //             property_id: this.properties.find(
+        //                 prop => prop.name === "theme"
+        //             ).id,
+        //             value: this.theme
+        //         }),
+        //         headers: { "Content-Type": "application/json; charset=utf-8" }
+        //     })
+        //         .then(res => res.json())
+        //         .catch(err => console.log(err));
+        // },
 
-        // Tasks actions
-        // Fetch all tasks from DB and set to TasksPanel
-        fetchTasks(_status, _project_id) {
-            fetch("api/tasks/" + _status + "/" + _project_id)
-                .then(res => res.json())
-                .then(res => {
-                    this.tasks = res.data;
-                })
-                .catch(err => console.log(err));
-        },
-        // Open task in Task panel
-        changeTask(task) {
-            this.task = task;
-            this.current_task_id = task.id;
-            this.new_task = false;
-            // Get documents
-            fetch("api/task/documents/" + task.id)
-                .then(res => res.json())
-                .then(res => {
-                    this.documents = res;
-                })
-                .catch(err => console.log(err));
-            this.panel = "tasks";
-        },
-        // Save task changes back to DB
-        saveTask(isMessage) {
-            fetch("api/task", {
-                method: this.new_task ? "POST" : "PUT",
-                body: JSON.stringify({
-                    task_id: this.new_task ? 0 : this.task.id,
-                    project_id: this.current_project_id,
-                    title: this.task.title,
-                    body: this.task.body,
-                    status: this.task.status
-                }),
-                headers: { "Content-Type": "application/json; charset=utf-8" }
-            })
-                .then(res => res.json())
-                .then(res => {
-                    this.task.id = res.data.id;
-                    this.task.title = res.data.title;
-                    this.task.body = res.data.body;
-                    this.task.created_at = res.data.created_at;
-                    this.task.updated_at = res.data.updated_at;
-                    this.task.status = res.data.status;
-                    this.new_task = false;
-                    this.current_task_id = res.data.id;
-                    if (isMessage) {
-                        alert(
-                            "You have successfully saved the changes to the Task: " +
-                                res.data.title
-                        );
-                    }
-                })
-                .catch(err => console.log(err));
-        },
-        // Delete current task
-        deleteTask() {
-            if (this.current_task_id != 0) {
-                if (confirm("Are You sure?")) {
-                    fetch("api/task/" + this.task.id, {
-                        method: "DELETE",
-                        body: JSON.stringify({
-                            task_id: this.task.id
-                        }),
-                        headers: {
-                            "Content-Type": "application/json; charset=utf-8"
-                        }
-                    })
-                        .then(res => res.json())
-                        .then(res => {
-                            alert(
-                                "You have successfully delete the Task: " +
-                                    res.data.title
-                            );
-                            this.tasks = this.tasks.filter(
-                                t => t.id !== res.data.id
-                            );
-                            this.current_task_id = 0;
-                            this.panel = "";
-                        })
-                        .catch(err => console.log(err));
-                }
-            }
-        },
-        // Add new task
-        addTask() {
-            if (this.current_project_id != 0) {
-                const newTask = {
-                    id:
-                        Math.max.apply(
-                            Math,
-                            this.tasks.map(function(o) {
-                                return o.id;
-                            })
-                        ) + 1,
-                    project_id: this.current_project_id,
-                    title: "Name of new Task",
-                    body: "Description of new Task",
-                    created_at: moment().format(),
-                    updated_at: "",
-                    status: 1
-                };
-                this.tasks.unshift(newTask);
-                this.task = newTask;
-                this.current_task_id = newTask.id;
-                this.new_task = true;
-                this.panel = "tasks";
-                this.saveTask(false);
-            }
-        },
-        completeTask() {
-            if (this.current_task_id != 0) {
-                this.task.status = 0;
-                this.saveTask(false);
-            }
-        },
-        toggleTaskIdFilter() {
-            this.task_filter.filter09 = !this.task_filter.filter09;
-            if (this.task_filter.filter09) {
-                this.tasks.sort(function(a, b) {
-                    if (a.id > b.id) return 1;
-                    if (a.id < b.id) return -1;
-                });
-            } else {
-                this.tasks.sort(function(a, b) {
-                    if (a.id > b.id) return -1;
-                    if (a.id < b.id) return 1;
-                });
-            }
-        },
-        sortTasksIdAcc() {
-            this.task_filter.filter09 = true;
-            this.tasks.sort(function(a, b) {
-                if (a.id > b.id) return -1;
-                if (a.id < b.id) return 1;
-            });
-        },
-        sortTasksIdDec() {
-            this.task_filter.filter09 = false;
-            this.tasks.sort(function(a, b) {
-                if (a.id > b.id) return 1;
-                if (a.id < b.id) return -1;
-            });
-        },
-        toggleTaskNameFilter() {
-            this.task_filter.filteraz = !this.task_filter.filteraz;
-            if (this.task_filter.filteraz) {
-                this.tasks.sort(function(a, b) {
-                    if (a.title > b.title) return 1;
-                    if (a.title < b.title) return -1;
-                });
-            } else {
-                this.tasks.sort(function(a, b) {
-                    if (a.title > b.title) return -1;
-                    if (a.title < b.title) return 1;
-                });
-            }
-        },
-        sortTasksNameAcc() {
-            this.task_filter.filteraz = true;
-            this.tasks.sort(function(a, b) {
-                if (a.title > b.title) return 1;
-                if (a.title < b.title) return -1;
-            });
-        },
-        sortTasksNameDec() {
-            this.task_filter.filteraz = false;
-            this.tasks.sort(function(a, b) {
-                if (a.title > b.title) return -1;
-                if (a.title < b.title) return 1;
-            });
-        },
-        toggleTaskStatusFilter() {
-            if (this.task_filter.filterstatus == "all") {
-                this.task_filter.filterstatus = "act";
-                this.fetchTasks("act", this.current_project_id);
-            } else {
-                if (this.task_filter.filterstatus == "act") {
-                    this.task_filter.filterstatus = "end";
-                    this.fetchTasks("end", this.current_project_id);
-                } else {
-                    if (this.task_filter.filterstatus == "end") {
-                        this.task_filter.filterstatus = "all";
-                        this.fetchTasks("all", this.current_project_id);
-                    }
-                }
-            }
-        },
-        showAllTasks() {
-            this.task_filter.filterstatus = "all";
-            this.fetchTasks("all", this.current_project_id);
-        },
-        showActivedTasks() {
-            this.task_filter.filterstatus = "act";
-            this.fetchTasks("act", this.current_project_id);
-        },
-        showCompletedTasks() {
-            this.task_filter.filterstatus = "end";
-            this.fetchTasks("end", this.current_project_id);
-        },
-        // Fetch all tasks from DB width search
-        fetchTasksSearch(_text) {
-            fetch("api/tasks/search/" + this.current_project_id, {
-                method: "POST",
-                body: JSON.stringify({
-                    search: _text
-                }),
-                headers: { "Content-Type": "application/json; charset=utf-8" }
-            })
-                .then(res => res.json())
-                .then(res => {
-                    this.tasks = res.data;
-                })
-                .catch(err => console.log(err));
-        },
-        changeDocuments() {
-            fetch("api/task/documents/" + this.task.id)
-                .then(res => res.json())
-                .then(res => {
-                    this.documents = res;
-                })
-                .catch(err => console.log(err));
-        },
-        deleteDocument(current_document) {
-            fetch(
-                "api/task/document/delete/" +
-                    this.task.id +
-                    "/" +
-                    current_document,
-                {
-                    method: "DELETE"
-                }
-            )
-                .then(res => res.json())
-                .then(res => {
-                    if (res.result === "success") {
-                        this.changeDocuments();
-                    } else {
-                        alert("Document cannot be deleted!");
-                    }
-                })
-                .catch(err => console.log(err));
-        },
+        // // Projects actions
+        // // Fetch all projects from DB and set to ProjectsPanel
+        // fetchProjects(_status) {
+        //     fetch("api/projects/" + _status)
+        //         .then(res => res.json())
+        //         .then(res => {
+        //             this.projects = res.data;
+        //         })
+        //         .catch(err => console.log(err));
+        // },
+        // // Fetch all projects from DB width search
+        // fetchProjectsSearch(_text) {
+        //     fetch("api/projects/search", {
+        //         method: "POST",
+        //         body: JSON.stringify({
+        //             search: _text
+        //         }),
+        //         headers: { "Content-Type": "application/json; charset=utf-8" }
+        //     })
+        //         .then(res => res.json())
+        //         .then(res => {
+        //             this.projects = res.data;
+        //         })
+        //         .catch(err => console.log(err));
+        // },
+        // // Open project in Project panel
+        // changeProject(project) {
+        //     this.project = project;
+        //     //this.current_project_id = project.id;
+        //     this.new_project = false;
+        //     this.panel = "projects";
+        //     //this.current_task_id = 0;
+        //     //this.fetchTasks("all", this.current_project_id);
+        // },
+        // // Save project changes back to DB
+        // saveProject(isMessage) {
+        //     fetch("api/project", {
+        //         method: this.new_project ? "POST" : "PUT",
+        //         body: JSON.stringify({
+        //             project_id: this.new_project ? 0 : this.project.id,
+        //             title: this.project.title,
+        //             body: this.project.body,
+        //             status: this.project.status
+        //         }),
+        //         headers: { "Content-Type": "application/json; charset=utf-8" }
+        //     })
+        //         .then(res => res.json())
+        //         .then(res => {
+        //             this.project.id = res.data.id;
+        //             this.project.title = res.data.title;
+        //             this.project.body = res.data.body;
+        //             this.project.created_at = res.data.created_at;
+        //             this.project.updated_at = res.data.updated_at;
+        //             this.project.status = res.data.status;
+        //             this.new_project = false;
+        //             //this.current_project_id = res.data.id;
+        //             if (isMessage) {
+        //                 alert(
+        //                     "You have successfully saved the changes to the Project: " +
+        //                         res.data.title
+        //                 );
+        //             }
+        //             // change all task status by project
+        //             if (this.project.status == 0) {
+        //                 fetch("api/task/complete/" + this.project.id, {
+        //                     method: "GET"
+        //                 }).catch(err => console.log(err));
+        //                 this.getTasks().forEach(function(part, index) {
+        //                     part.status = 0;
+        //                 });
+        //             }
+        //         })
+        //         .catch(err => console.log(err));
+        // },
+        // // Delete current project
+        // deleteProject() {
+        //     if (this.getCurrentProjectId() != 0) {
+        //         if (confirm("Are You sure?")) {
+        //             fetch("api/project/" + this.project.id, {
+        //                 method: "DELETE",
+        //                 body: JSON.stringify({
+        //                     project_id: this.project.id
+        //                 }),
+        //                 headers: {
+        //                     "Content-Type": "application/json; charset=utf-8"
+        //                 }
+        //             })
+        //                 .then(res => res.json())
+        //                 .then(res => {
+        //                     this.projects = this.projects.filter(
+        //                         p => p.id !== res.data.id
+        //                     );
+        //                     //this.current_project_id = 0;
+        //                     //this.current_task_id = 0;
+        //                     //this.tasks = [];
+        //                     //this.panel = "";
+        //                 })
+        //                 .catch(err => console.log(err));
+        //         }
+        //     }
+        // },
+        // // Add new project
+        // addProject() {
+        //     const newProject = {
+        //         id:
+        //             Math.max.apply(
+        //                 Math,
+        //                 this.projects.map(function(o) {
+        //                     return o.id;
+        //                 })
+        //             ) + 1,
+        //         title: "Name of new Project",
+        //         body: "Description of new Project",
+        //         created_at: moment().format(),
+        //         updated_at: "",
+        //         status: 1
+        //     };
+        //     this.projects.unshift(newProject);
+        //     this.project = newProject;
+        //     //this.current_project_id = newProject.id;
+        //     this.new_project = true;
+        //     this.panel = "projects";
+        //     this.saveProject(false);
+        // },
+        // completeProject() {
+        //     if (this.getCurrentProjectId() != 0) {
+        //         this.project.status = 0;
+        //         this.saveProject(false);
+        //     }
+        // },
+        // toggleProjectIdFilter() {
+        //     this.project_filter.filter09 = !this.project_filter.filter09;
+        //     if (this.project_filter.filter09) {
+        //         this.projects.sort(function(a, b) {
+        //             if (a.id > b.id) return 1;
+        //             if (a.id < b.id) return -1;
+        //         });
+        //     } else {
+        //         this.projects.sort(function(a, b) {
+        //             if (a.id > b.id) return -1;
+        //             if (a.id < b.id) return 1;
+        //         });
+        //     }
+        // },
+        // sortProjectsIdAcc() {
+        //     this.project_filter.filter09 = true;
+        //     this.projects.sort(function(a, b) {
+        //         if (a.id > b.id) return 1;
+        //         if (a.id < b.id) return -1;
+        //     });
+        // },
+        // sortProjectsIdDec() {
+        //     this.project_filter.filter09 = false;
+        //     this.projects.sort(function(a, b) {
+        //         if (a.id > b.id) return -1;
+        //         if (a.id < b.id) return 1;
+        //     });
+        // },
+        // toggleProjectNameFilter() {
+        //     this.project_filter.filteraz = !this.project_filter.filteraz;
+        //     if (this.project_filter.filteraz) {
+        //         this.projects.sort(function(a, b) {
+        //             if (a.title > b.title) return 1;
+        //             if (a.title < b.title) return -1;
+        //         });
+        //     } else {
+        //         this.projects.sort(function(a, b) {
+        //             if (a.title > b.title) return -1;
+        //             if (a.title < b.title) return 1;
+        //         });
+        //     }
+        // },
+        // sortProjectsNameAcc() {
+        //     this.project_filter.filteraz = true;
+        //     this.projects.sort(function(a, b) {
+        //         if (a.title > b.title) return 1;
+        //         if (a.title < b.title) return -1;
+        //     });
+        // },
+        // sortProjectsNameDec() {
+        //     this.project_filter.filteraz = false;
+        //     this.projects.sort(function(a, b) {
+        //         if (a.title > b.title) return -1;
+        //         if (a.title < b.title) return 1;
+        //     });
+        // },
+        // toggleProjectStatusFilter() {
+        //     if (this.project_filter.filterstatus == "all") {
+        //         this.project_filter.filterstatus = "act";
+        //         this.fetchProjects("act");
+        //     } else {
+        //         if (this.project_filter.filterstatus == "act") {
+        //             this.project_filter.filterstatus = "end";
+        //             this.fetchProjects("end");
+        //         } else {
+        //             if (this.project_filter.filterstatus == "end") {
+        //                 this.project_filter.filterstatus = "all";
+        //                 this.fetchProjects("all");
+        //             }
+        //         }
+        //     }
+        // },
+        // showAllProjects() {
+        //     this.project_filter.filterstatus = "all";
+        //     this.fetchProjects("all");
+        // },
+        // showCompletedProjects() {
+        //     this.project_filter.filterstatus = "end";
+        //     this.fetchProjects("end");
+        // },
+        // showActivedProjects() {
+        //     this.project_filter.filterstatus = "act";
+        //     this.fetchProjects("act");
+        // },
 
-        // Show About panel
-        showAbout() {
-            this.panel = "about";
-        },
+        // // Tasks actions
+        // // Fetch all tasks from DB and set to TasksPanel
+        // fetchTasks(_status, _project_id) {
+        //     fetch("api/tasks/" + _status + "/" + _project_id)
+        //         .then(res => res.json())
+        //         .then(res => {
+        //             //this.tasks = res.data;
+        //         })
+        //         .catch(err => console.log(err));
+        // },
+        // // Open task in Task panel
+        // changeTask(task) {
+        //     this.task = task;
+        //     //this.current_task_id = task.id;
+        //     this.new_task = false;
+        //     // Get documents
+        //     fetch("api/task/documents/" + task.id)
+        //         .then(res => res.json())
+        //         .then(res => {
+        //             this.documents = res;
+        //         })
+        //         .catch(err => console.log(err));
+        //     //this.panel = "tasks";
+        // },
+        // // Save task changes back to DB
+        // saveTask(isMessage) {
+        //     fetch("api/task", {
+        //         method: this.new_task ? "POST" : "PUT",
+        //         body: JSON.stringify({
+        //             task_id: this.new_task ? 0 : this.task.id,
+        //             project_id: this.getCurrentProjectId(),
+        //             title: this.task.title,
+        //             body: this.task.body,
+        //             status: this.task.status
+        //         }),
+        //         headers: { "Content-Type": "application/json; charset=utf-8" }
+        //     })
+        //         .then(res => res.json())
+        //         .then(res => {
+        //             this.task.id = res.data.id;
+        //             this.task.title = res.data.title;
+        //             this.task.body = res.data.body;
+        //             this.task.created_at = res.data.created_at;
+        //             this.task.updated_at = res.data.updated_at;
+        //             this.task.status = res.data.status;
+        //             this.new_task = false;
+        //             //this.current_task_id = res.data.id;
+        //             if (isMessage) {
+        //                 alert(
+        //                     "You have successfully saved the changes to the Task: " +
+        //                         res.data.title
+        //                 );
+        //             }
+        //         })
+        //         .catch(err => console.log(err));
+        // },
+        // // Delete current task
+        // deleteTask() {
+        //     if (this.getCurrentTaskId() != 0) {
+        //         if (confirm("Are You sure?")) {
+        //             fetch("api/task/" + this.task.id, {
+        //                 method: "DELETE",
+        //                 body: JSON.stringify({
+        //                     task_id: this.task.id
+        //                 }),
+        //                 headers: {
+        //                     "Content-Type": "application/json; charset=utf-8"
+        //                 }
+        //             })
+        //                 .then(res => res.json())
+        //                 .then(res => {
+        //                     alert(
+        //                         "You have successfully delete the Task: " +
+        //                             res.data.title
+        //                     );
+        //                     // this.tasks = this.tasks.filter(
+        //                     //     t => t.id !== res.data.id
+        //                     // );
+        //                     //this.current_task_id = 0;
+        //                     this.panel = "";
+        //                 })
+        //                 .catch(err => console.log(err));
+        //         }
+        //     }
+        // },
+        // // Add new task
+        // addTask() {
+        //     if (this.getCurrentProjectId() != 0) {
+        //         const newTask = {
+        //             id:
+        //                 Math.max.apply(
+        //                     Math,
+        //                     this.tasks.map(function(o) {
+        //                         return o.id;
+        //                     })
+        //                 ) + 1,
+        //             project_id: this.getCurrentProjectId(),
+        //             title: "Name of new Task",
+        //             body: "Description of new Task",
+        //             created_at: moment().format(),
+        //             updated_at: "",
+        //             status: 1
+        //         };
+        //         this.tasks.unshift(newTask);
+        //         this.task = newTask;
+        //         //this.current_task_id = newTask.id;
+        //         this.new_task = true;
+        //         this.panel = "tasks";
+        //         this.saveTask(false);
+        //     }
+        // },
+        // completeTask() {
+        //     if (this.getCurrentTaskId() != 0) {
+        //         this.task.status = 0;
+        //         this.saveTask(false);
+        //     }
+        // },
+        // toggleTaskIdFilter() {
+        //     this.task_filter.filter09 = !this.task_filter.filter09;
+        //     if (this.task_filter.filter09) {
+        //         this.tasks.sort(function(a, b) {
+        //             if (a.id > b.id) return 1;
+        //             if (a.id < b.id) return -1;
+        //         });
+        //     } else {
+        //         this.tasks.sort(function(a, b) {
+        //             if (a.id > b.id) return -1;
+        //             if (a.id < b.id) return 1;
+        //         });
+        //     }
+        // },
+        // sortTasksIdAcc() {
+        //     this.task_filter.filter09 = true;
+        //     this.tasks.sort(function(a, b) {
+        //         if (a.id > b.id) return -1;
+        //         if (a.id < b.id) return 1;
+        //     });
+        // },
+        // sortTasksIdDec() {
+        //     this.task_filter.filter09 = false;
+        //     this.tasks.sort(function(a, b) {
+        //         if (a.id > b.id) return 1;
+        //         if (a.id < b.id) return -1;
+        //     });
+        // },
+        // toggleTaskNameFilter() {
+        //     this.task_filter.filteraz = !this.task_filter.filteraz;
+        //     if (this.task_filter.filteraz) {
+        //         this.tasks.sort(function(a, b) {
+        //             if (a.title > b.title) return 1;
+        //             if (a.title < b.title) return -1;
+        //         });
+        //     } else {
+        //         this.tasks.sort(function(a, b) {
+        //             if (a.title > b.title) return -1;
+        //             if (a.title < b.title) return 1;
+        //         });
+        //     }
+        // },
+        // sortTasksNameAcc() {
+        //     this.task_filter.filteraz = true;
+        //     this.tasks.sort(function(a, b) {
+        //         if (a.title > b.title) return 1;
+        //         if (a.title < b.title) return -1;
+        //     });
+        // },
+        // sortTasksNameDec() {
+        //     this.task_filter.filteraz = false;
+        //     this.tasks.sort(function(a, b) {
+        //         if (a.title > b.title) return -1;
+        //         if (a.title < b.title) return 1;
+        //     });
+        // },
+        // toggleTaskStatusFilter() {
+        //     if (this.task_filter.filterstatus == "all") {
+        //         this.task_filter.filterstatus = "act";
+        //         this.fetchTasks("act", this.getCurrentProjectId());
+        //     } else {
+        //         if (this.task_filter.filterstatus == "act") {
+        //             this.task_filter.filterstatus = "end";
+        //             this.fetchTasks("end", this.getCurrentProjectId());
+        //         } else {
+        //             if (this.task_filter.filterstatus == "end") {
+        //                 this.task_filter.filterstatus = "all";
+        //                 this.fetchTasks("all", this.getCurrentProjectId());
+        //             }
+        //         }
+        //     }
+        // },
+        // showAllTasks() {
+        //     this.task_filter.filterstatus = "all";
+        //     this.fetchTasks("all", this.getCurrentProjectId());
+        // },
+        // showActivedTasks() {
+        //     this.task_filter.filterstatus = "act";
+        //     this.fetchTasks("act", this.getCurrentProjectId());
+        // },
+        // showCompletedTasks() {
+        //     this.task_filter.filterstatus = "end";
+        //     this.fetchTasks("end", this.getCurrentProjectId());
+        // },
+        // // Fetch all tasks from DB width search
+        // fetchTasksSearch(_text) {
+        //     fetch("api/tasks/search/" + this.getCurrentProjectId(), {
+        //         method: "POST",
+        //         body: JSON.stringify({
+        //             search: _text
+        //         }),
+        //         headers: { "Content-Type": "application/json; charset=utf-8" }
+        //     })
+        //         .then(res => res.json())
+        //         .then(res => {
+        //             this.tasks = res.data;
+        //         })
+        //         .catch(err => console.log(err));
+        // },
+        // changeDocuments() {
+        //     fetch("api/task/documents/" + this.task.id)
+        //         .then(res => res.json())
+        //         .then(res => {
+        //             this.documents = res;
+        //         })
+        //         .catch(err => console.log(err));
+        // },
+        // deleteDocument(current_document) {
+        //     fetch(
+        //         "api/task/document/delete/" +
+        //             this.task.id +
+        //             "/" +
+        //             current_document,
+        //         {
+        //             method: "DELETE"
+        //         }
+        //     )
+        //         .then(res => res.json())
+        //         .then(res => {
+        //             if (res.result === "success") {
+        //                 this.changeDocuments();
+        //             } else {
+        //                 alert("Document cannot be deleted!");
+        //             }
+        //         })
+        //         .catch(err => console.log(err));
+        // },
 
-        // Other system staff
-        // Close all panels and unset current projects
-        closePanel() {
-            this.current_task_id = 0;
-            this.tasks = [];
-            this.current_project_id = 0;
-            this.panel = "";
-        },
-        // Exit the program
-        exit: function(event) {
-            window.location = "/logout.html";
-        }
+        // // Show About panel
+        // showAbout() {
+        //     this.panel = "about";
+        // },
+
+        // // Other system staff
+        // // Close all panels and unset current projects
+        // closePanel() {
+        //     //this.current_task_id = 0;
+        //     this.tasks = [];
+        //     //this.current_project_id = 0;
+        //     this.panel = "";
+        // },
+        // // Exit the program
+        // exit: function(event) {
+        //     window.location = "/logout.html";
+        // }
     }
 };
 </script>

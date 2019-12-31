@@ -1,7 +1,7 @@
 <template>
     <div class="about-body">
-        <div class="button-bar" v-bind:class="getTheme">
-            <div class="topTitleDiv" v-bind:class="getTheme">
+        <div class="button-bar" :class="getTheme">
+            <div class="topTitleDiv" :class="getTheme">
                 <!--Window title-->
                 <span>About</span>
             </div>
@@ -9,8 +9,8 @@
                 <!--Window title icons-->
                 <div
                     class="rightExitIcon"
-                    v-bind:class="getTheme"
-                    v-on:click="close"
+                    :class="getTheme"
+                    @click="closePanel"
                 >
                     <img src="/images/close.png" />
                 </div>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     name: "About",
@@ -55,9 +55,7 @@ export default {
     computed: mapGetters(["getTheme"]),
 
     methods: {
-        close: function(event) {
-            this.$emit("closepanel");
-        }
+        ...mapActions(["closePanel"])
     }
 };
 </script>

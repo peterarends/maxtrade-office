@@ -1,5 +1,5 @@
 <template>
-    <div class="body-left-menu" v-bind:class="theme">
+    <div class="body-left-menu" v-bind:class="getTheme">
         <a class="active" title="Show Projects Panel">
             <i class="mdi mdi-finance mdiIcon"></i>
         </a>
@@ -9,7 +9,9 @@
         <a title="Show Contacts Panel">
             <i class="mdi mdi-contacts mdiIcon"></i>
         </a>
-        <div class="left-menu-title" v-bind:class="theme">Maxtrade Office</div>
+        <div class="left-menu-title" v-bind:class="getTheme">
+            Maxtrade Office
+        </div>
         <div
             class="contextMenu"
             v-show="isVisible"
@@ -19,9 +21,29 @@
             }"
         >
             <ul class="contextMenu-options">
-                <li class="contextMenu-option" @click="changeTheme($event)" data-value="light"><span>Light theme</span><span v-show="theme == 'light'" class="right-text">✔</span></li>
-                <li class="contextMenu-option" @click="changeTheme($event)" data-value="dark"><span>Dark theme</span><span v-show="theme == 'dark'" class="right-text" >✔</span></li>
-                <li class="contextMenu-option" @click="showProperties()"><span>Options</span></li>
+                <li
+                    class="contextMenu-option"
+                    @click="changeTheme($event)"
+                    data-value="light"
+                >
+                    <span>Light theme</span
+                    ><span v-show="getTheme == 'light'" class="right-text"
+                        >✔</span
+                    >
+                </li>
+                <li
+                    class="contextMenu-option"
+                    @click="changeTheme($event)"
+                    data-value="dark"
+                >
+                    <span>Dark theme</span
+                    ><span v-show="getTheme == 'dark'" class="right-text"
+                        >✔</span
+                    >
+                </li>
+                <li class="contextMenu-option" @click="showProperties()">
+                    <span>Options</span>
+                </li>
             </ul>
         </div>
         <a
@@ -36,10 +58,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
     name: "Leftmenu",
-
-    props: ["theme"],
 
     data() {
         return {
@@ -47,12 +69,14 @@ export default {
         };
     },
 
+    computed: mapGetters(["getTheme"]),
+
     methods: {
         closeSettings() {
             this.isVisible = false;
         },
         changeTheme(event) {
-            this.$emit("changetheme", event.target.getAttribute('data-value'));
+            this.$emit("changetheme", event.target.getAttribute("data-value"));
         },
         showProperties() {
             this.$emit("showproperties");
@@ -149,7 +173,7 @@ export default {
 .contextMenu-option:hover {
     background: rgba(0, 0, 0, 0.2);
 }
-.right-text{
+.right-text {
     float: right;
 }
 </style>

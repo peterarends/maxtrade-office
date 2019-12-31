@@ -1,6 +1,6 @@
 <template>
     <div class="tasks-body">
-        <div class="button-bar" v-bind:class="theme">
+        <div class="button-bar" v-bind:class="getTheme">
             <div class="topTitleDiv">
                 <!--Window title-->
                 <span>Task: {{ task.id | formatTaskId(new_task) }}</span>
@@ -9,7 +9,7 @@
                 <!--Window title icons-->
                 <div
                     class="rightExitIcon"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                     v-on:click="closeTask"
                 >
                     <img src="/images/close.png" />
@@ -60,7 +60,9 @@
                                     | formatIcons
                             "
                             v-bind:alt="document"
-                            @contextmenu.prevent="$refs.menu.open($event, document)"
+                            @contextmenu.prevent="
+                                $refs.menu.open($event, document)
+                            "
                         />
                     </a>
                     <span class="documenName">{{ document }}</span>
@@ -73,7 +75,8 @@
                     ref="file"
                     @change="onFileSelected"
                 />
-                &nbsp;&nbsp;&nbsp;<span ref="uploadPurcent"></span>&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;<span ref="uploadPurcent"></span
+                >&nbsp;&nbsp;&nbsp;
                 <button
                     class="button"
                     title="Add selected file."
@@ -83,25 +86,25 @@
                 </button>
             </div>
         </div>
-        <div class="bottom" v-bind:class="theme">
+        <div class="bottom" v-bind:class="getTheme">
             <a v-on:click.prevent="saveTask">
                 <i
                     class="mdi mdi-content-save-outline mdiTaskIcon"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                 ></i
                 >&nbsp;Save Task
             </a>
             <a v-on:click.prevent="deleteTask">
                 <i
                     class="mdi mdi-delete-outline mdiTaskIcon"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                 ></i
                 >&nbsp;Delete Task
             </a>
             <a v-on:click.prevent="closeTask">
                 <i
                     class="mdi mdi-close-outline mdiTaskIcon"
-                    v-bind:class="theme"
+                    v-bind:class="getTheme"
                 ></i
                 >&nbsp;Close Task
             </a>
@@ -122,11 +125,12 @@ import moment from "moment";
 import path from "path";
 import axios from "axios";
 import { VueContext } from "vue-context";
+import { mapGetters } from "vuex";
 
 export default {
     name: "Tasks",
 
-    props: ["theme", "task", "new_task", "documents"],
+    props: ["task", "new_task", "documents"],
 
     data() {
         return {
@@ -138,6 +142,8 @@ export default {
     components: {
         VueContext
     },
+
+    computed: mapGetters(["getTheme"]),
 
     filters: {
         formatDate: function(value) {
@@ -209,7 +215,10 @@ export default {
             axios
                 .post("api/task/file/" + this.task.id, formData, {
                     onUploadProgress: uploudEvent => {
-                        this.$refs.uploadPurcent.innerHTML = Math.round(uploudEvent.loaded / uploudEvent.total * 100) + "%";
+                        this.$refs.uploadPurcent.innerHTML =
+                            Math.round(
+                                (uploudEvent.loaded / uploudEvent.total) * 100
+                            ) + "%";
                     }
                 })
                 .then(res => {
@@ -243,7 +252,7 @@ export default {
             this.current_file = data;
         },
         onClickContextMenu(action) {
-            if ((action === "delete") && this.current_file !== null) {
+            if (action === "delete" && this.current_file !== null) {
                 this.$emit("deletedocument", this.current_file);
             }
         }

@@ -1,7 +1,7 @@
 <template>
     <div class="properties-body">
-        <div class="button-bar" v-bind:class="theme">
-            <div class="topTitleDiv" v-bind:class="theme">
+        <div class="button-bar" :class="getTheme">
+            <div class="topTitleDiv" :class="getTheme">
                 <!--Window title-->
                 <span>Properties</span>
             </div>
@@ -9,8 +9,8 @@
                 <!--Window title icons-->
                 <div
                     class="rightExitIcon"
-                    v-bind:class="theme"
-                    v-on:click="close"
+                    :class="getTheme"
+                    @click="closePanel"
                 >
                     <img src="/images/close.png" />
                 </div>
@@ -27,8 +27,8 @@
             <h2 class="property_title">Properties:</h2>
             <ul>
                 <li
-                    v-for="category in property_categories"
-                    v-bind:key="category.category"
+                    v-for="category in getPropertyCategories"
+                    :key="category.category"
                 >
                     <h4 class="property_section">
                         {{ category.category }} properties
@@ -36,10 +36,10 @@
                     <ul>
                         <li
                             class="property_row"
-                            v-for="property in properties.filter(
+                            v-for="property in getProperties.filter(
                                 prop => prop.category === category.category
                             )"
-                            v-bind:key="property.id"
+                            :key="property.id"
                         >
                             <div>
                                 {{ property.id }}.&nbsp;{{
@@ -55,7 +55,7 @@
                                 <select
                                     class="controll"
                                     v-model="property.value"
-                                    @change="changeTheme"
+                                    @change="changeTheme($event)"
                                 >
                                     <option value="dark">Dark theme</option>
                                     <option value="light">Light theme</option>
@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     name: "Properties",
@@ -84,37 +84,23 @@ export default {
                 description: "",
                 help: "",
                 category: ""
-            },
-            property_id: "",
-            property_categories: [],
-            edit: false
+            }
         };
     },
 
     created() {
-        this.fetchProperyCategories();
+        this.fetchPropertyCategories();
     },
+
+    computed: mapGetters([
+        "getTheme",
+        "getProperties",
+        "getPropertyCategories"
+    ]),
 
     methods: {
-        // Get Property categories
-        fetchProperyCategories() {
-            fetch("api/properties_categories")
-                .then(res => res.json())
-                .then(res => {
-                    this.property_categories = res.data;
-                });
-        },
-        changeTheme() {
-            this.fetchTheme();
-        },
-        close: function(event) {
-            this.$emit("closepanel");
-        },
-        // Change the current theme and save back to DB
-        ...mapActions(["fetchTheme"])
-    },
-
-    props: ["theme", "properties"]
+        ...mapActions(["fetchPropertyCategories", "changeTheme", "closePanel"])
+    }
 };
 </script>
 
