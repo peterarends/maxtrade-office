@@ -3,7 +3,7 @@
         <div class="button-bar" v-bind:class="getTheme">
             <div class="topTitleDiv">
                 <!--Window title-->
-                <span>Task: {{ task.id | formatTaskId(new_task) }}</span>
+                <span>Task: {{ getTask.id | formatTaskId(getNewTask) }}</span>
             </div>
             <div class="topRightIcons">
                 <!--Window title icons-->
@@ -16,30 +16,34 @@
                 </div>
             </div>
         </div>
-        <div class="body" v-bind:class="[task.status == 0 ? 'ended' : '']">
+        <div class="body" v-bind:class="[getTask.status == 0 ? 'ended' : '']">
             <div class="date">
-                <h3>Date start: {{ task.created_at | formatDate }}</h3>
+                <h3>Date start: {{ getTask.created_at | formatDate }}</h3>
                 <h3>
                     Date end:
-                    <span v-show="task.status == 1" class="continues"
+                    <span v-show="getTask.status == 1" class="continues"
                         >Continues</span
                     >
-                    <span v-show="task.status == 0">{{
-                        task.updated_at | formatDate
+                    <span v-show="getTask.status == 0">{{
+                        getTask.updated_at | formatDate
                     }}</span>
                 </h3>
             </div>
-            <input class="title" type="text" v-model="task.title" />
+            <input class="title" type="text" v-model="getTask.title" />
             <textarea
                 class="text_body"
                 rows="10"
-                v-model="task.body"
+                v-model="getTask.body"
             ></textarea>
             <div class="taskStatus">
-                <input type="checkbox" id="task_status" v-model="task.status" />
+                <input
+                    type="checkbox"
+                    id="task_status"
+                    v-model="getTask.status"
+                />
                 <label for="task_status">
                     <span></span>Status of the task:
-                    <strong>{{ task.status | statusFilter }}</strong>
+                    <strong>{{ getTask.status | statusFilter }}</strong>
                 </label>
             </div>
             <hr class="line" />
@@ -47,16 +51,18 @@
             <div class="documents">
                 <div
                     class="document"
-                    v-for="document in documents"
+                    v-for="document in getDocuments"
                     v-bind:key="document"
                 >
                     <a
                         target="_blank"
-                        v-bind:href="'images/tasks/' + task.id + '/' + document"
+                        v-bind:href="
+                            'images/tasks/' + getTask.id + '/' + document
+                        "
                     >
                         <img
                             v-bind:src="
-                                ('images/tasks/' + task.id + '/' + document)
+                                ('images/tasks/' + getTask.id + '/' + document)
                                     | formatIcons
                             "
                             v-bind:alt="document"
@@ -109,7 +115,7 @@
                 >&nbsp;Close Task
             </a>
             <div class="status_panel">
-                Last change: {{ task.updated_at | formatDate }}
+                Last change: {{ getTask.updated_at | formatDate }}
             </div>
         </div>
         <vue-context ref="menu" @open="onOpenContextMenu">
@@ -130,8 +136,6 @@ import { mapGetters } from "vuex";
 export default {
     name: "Tasks",
 
-    props: ["task", "new_task", "documents"],
-
     data() {
         return {
             file: null,
@@ -143,7 +147,7 @@ export default {
         VueContext
     },
 
-    computed: mapGetters(["getTheme"]),
+    computed: mapGetters(["getTheme", "getTask", "getNewTask", "getDocuments"]),
 
     filters: {
         formatDate: function(value) {

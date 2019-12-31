@@ -1,47 +1,47 @@
 <template>
-    <div class="body-projects-panel" v-bind:class="getTheme">
-        <div class="topProjectsDiv" v-bind:class="getTheme">
+    <div class="body-projects-panel" :class="getTheme">
+        <div class="topProjectsDiv" :class="getTheme">
             <input
                 type="text"
                 class="searchInput"
-                v-bind:class="getTheme"
+                :class="getTheme"
                 placeholder="projects search ..."
-                v-on:input="projectSearch($event)"
+                @input="projectSearch($event)"
             />
-            <div class="searchElementsDiv" v-bind:class="getTheme">
+            <div class="searchElementsDiv" :class="getTheme">
                 <span
                     class="searchIconsText"
-                    v-bind:class="getTheme"
-                    v-on:click="toggleStatusFilter"
-                    >{{ project_filter.filterstatus.toUpperCase() }}</span
+                    :class="getTheme"
+                    @click="toggleProjectStatusFilter"
+                    >{{ getProjectFilter.filterstatus.toUpperCase() }}</span
                 >
                 <i
                     class="mdi mdi-sort-alphabetical searchIcons"
-                    v-bind:class="getTheme"
-                    v-on:click="toggleNameFilter"
+                    :class="getTheme"
+                    @click="toggleProjectNameFilter"
                 ></i>
                 <i
                     class="mdi mdi-sort-numeric searchIcons"
-                    v-bind:class="getTheme"
-                    v-on:click="toggleIdFilter"
+                    :class="getTheme"
+                    @click="toggleProjectIdFilter"
                 ></i>
             </div>
         </div>
         <div id="projectsListView">
             <div
                 class="project_item"
-                v-for="project in projects"
-                v-bind:key="project.id"
-                v-bind:class="[
-                    project.id == current_id ? 'active' : '',
+                v-for="project in getProjects"
+                :key="project.id"
+                :class="[
+                    project.id == getCurrentProjectId ? 'active' : '',
                     getTheme
                 ]"
-                v-on:click="showProject(project)"
+                @click="showProject(project)"
                 @contextmenu.prevent="$refs.menu.open($event, project)"
             >
                 <div
                     class="dateText"
-                    v-bind:class="[
+                    :class="[
                         project.status == 0
                             ? 'dateWithLine'
                             : 'dateWithoutLine',
@@ -53,7 +53,7 @@
                 <div class="singleProjectDiv">
                     <div
                         class="singleProjectId"
-                        v-bind:class="[
+                        :class="[
                             project.status == 0 ? '' : 'idBackground',
                             project.status == 0
                                 ? 'idTextFinished'
@@ -65,7 +65,7 @@
                     </div>
                     <div
                         class="singleProjectText"
-                        v-bind:class="[
+                        :class="[
                             project.status == 0
                                 ? 'titleTextFinished'
                                 : 'titleTextUnfinished',
@@ -99,7 +99,7 @@
 <script>
 import moment from "moment";
 import { VueContext } from "vue-context";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     name: "ProjectsPanel",
@@ -108,7 +108,16 @@ export default {
         VueContext
     },
 
-    computed: mapGetters(["getTheme"]),
+    computed: mapGetters([
+        "getTheme",
+        "getProjects",
+        "getProjectFilter",
+        "getCurrentProjectId"
+    ]),
+
+    created() {
+        this.fetchProjects("all");
+    },
 
     filters: {
         formatDate: function(value) {
@@ -119,9 +128,15 @@ export default {
     },
 
     methods: {
-        showProject(project) {
-            this.$emit("changeproject", project);
-        },
+        ...mapActions([
+            "fetchProjects",
+            "showProject",
+            "projectSearch",
+            "toggleProjectStatusFilter",
+            "toggleProjectNameFilter",
+            "toggleProjectIdFilter"
+        ]),
+
         onClickContextMenu(action) {
             if (action == "delete") {
                 this.$emit("deleteproject");
@@ -137,22 +152,8 @@ export default {
         },
         onOpenContextMenu(event, data) {
             this.showProject(data);
-        },
-        toggleIdFilter() {
-            this.$emit("projecttoggleidfilter");
-        },
-        toggleNameFilter() {
-            this.$emit("projecttogglenamefilter");
-        },
-        toggleStatusFilter() {
-            this.$emit("projecttogglestatusfilter");
-        },
-        projectSearch(event) {
-            this.$emit("projectsearch", event.target.value);
         }
-    },
-
-    props: ["projects", "current_id", "project_filter"]
+    }
 };
 </script>
 

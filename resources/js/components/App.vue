@@ -350,51 +350,13 @@
         <!-- Start Body panel -->
         <div class="body" v-bind:class="getTheme">
             <leftmenu></leftmenu>
-            <projects-panel
-                v-bind:projects="projects"
-                v-bind:project_filter="project_filter"
-                @changeproject="changeProject"
-                @deleteproject="deleteProject"
-                @completeproject="completeProject"
-                @projecttoggleidfilter="toggleProjectIdFilter"
-                @projecttogglenamefilter="toggleProjectNameFilter"
-                @projecttogglestatusfilter="toggleProjectStatusFilter"
-                @projectsearch="fetchProjectsSearch"
-                @addtask="addTask"
-            ></projects-panel>
-            <tasks-panel
-                v-bind:task_filter="task_filter"
-                @changetask="changeTask"
-                @deletetask="deleteTask"
-                @completetask="completeTask"
-                @tasktoggleidfilter="toggleTaskIdFilter"
-                @tasktogglenamefilter="toggleTaskNameFilter"
-                @tasktogglestatusfilter="toggleTaskStatusFilter"
-                @tasksearch="fetchTasksSearch"
-            ></tasks-panel>
+            <projects-panel></projects-panel>
+            <tasks-panel></tasks-panel>
             <div class="mainDivBodypanel" v-bind:class="getTheme">
-                <properties
-                    v-show="getPanel == 'properties'"
-                    @changetheme="changeTheme"
-                ></properties>
+                <properties v-show="getPanel == 'properties'"></properties>
                 <about v-show="getPanel == 'about'"></about>
-                <projects
-                    v-show="getPanel == 'projects'"
-                    v-bind:project="project"
-                    v-bind:new_project="new_project"
-                    @saveproject="saveProject(true)"
-                    @deleteproject="deleteProject"
-                ></projects>
-                <tasks
-                    v-show="getPanel == 'tasks'"
-                    v-bind:task="task"
-                    v-bind:new_task="new_task"
-                    v-bind:documents="documents"
-                    @savetask="saveTask(true)"
-                    @deletetask="deleteTask"
-                    @changedocuments="changeDocuments"
-                    @deletedocument="deleteDocument"
-                ></tasks>
+                <projects v-show="getPanel == 'projects'"></projects>
+                <tasks v-show="getPanel == 'tasks'"></tasks>
             </div>
         </div>
         <!-- End body panel -->
@@ -412,7 +374,7 @@
                     <i class="fas fa-circle"></i>
                 </div>
                 <div>
-                    Projects: <span>{{ projects.length }}</span>
+                    <!-- Projects: <span>{{ projects.length }}</span> -->
                 </div>
                 <div class="separator-vertical" v-bind:class="getTheme"></div>
                 <div class="tasks-panel-title-dot">
@@ -505,29 +467,12 @@ export default {
 
     data() {
         return {
-            version: "1.0.1",
-            projects: [],
-            project: [],
-            new_project: false,
-            task: [],
-            documents: [],
-            new_task: false,
-            project_filter: {
-                filter09: false,
-                filteraz: false,
-                filterstatus: "all"
-            },
-            task_filter: {
-                filter09: false,
-                filteraz: false,
-                filterstatus: "all"
-            }
+            version: "1.0.1"
         };
     },
 
     created() {
         this.fetchProperties();
-        //this.fetchProjects("all");
     },
 
     computed: mapGetters([
@@ -540,10 +485,10 @@ export default {
     methods: {
         ...mapActions([
             "fetchProperties",
-            "changeTheme",
             "exitProgram",
             "showProperties",
             "showAbout",
+
             "completeProject",
             "showAllProjects",
             "showCompletedProjects",
@@ -579,57 +524,7 @@ export default {
             "getTasks"
         ])
 
-        // // Change the current theme and save back to DB
-        // changeTheme(changed_theme) {
-        //     this.theme = changed_theme;
-        //     fetch("api/property", {
-        //         method: "PUT",
-        //         body: JSON.stringify({
-        //             property_id: this.properties.find(
-        //                 prop => prop.name === "theme"
-        //             ).id,
-        //             value: this.theme
-        //         }),
-        //         headers: { "Content-Type": "application/json; charset=utf-8" }
-        //     })
-        //         .then(res => res.json())
-        //         .catch(err => console.log(err));
-        // },
-
         // // Projects actions
-        // // Fetch all projects from DB and set to ProjectsPanel
-        // fetchProjects(_status) {
-        //     fetch("api/projects/" + _status)
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             this.projects = res.data;
-        //         })
-        //         .catch(err => console.log(err));
-        // },
-        // // Fetch all projects from DB width search
-        // fetchProjectsSearch(_text) {
-        //     fetch("api/projects/search", {
-        //         method: "POST",
-        //         body: JSON.stringify({
-        //             search: _text
-        //         }),
-        //         headers: { "Content-Type": "application/json; charset=utf-8" }
-        //     })
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             this.projects = res.data;
-        //         })
-        //         .catch(err => console.log(err));
-        // },
-        // // Open project in Project panel
-        // changeProject(project) {
-        //     this.project = project;
-        //     //this.current_project_id = project.id;
-        //     this.new_project = false;
-        //     this.panel = "projects";
-        //     //this.current_task_id = 0;
-        //     //this.fetchTasks("all", this.current_project_id);
-        // },
         // // Save project changes back to DB
         // saveProject(isMessage) {
         //     fetch("api/project", {
@@ -726,20 +621,6 @@ export default {
         //         this.saveProject(false);
         //     }
         // },
-        // toggleProjectIdFilter() {
-        //     this.project_filter.filter09 = !this.project_filter.filter09;
-        //     if (this.project_filter.filter09) {
-        //         this.projects.sort(function(a, b) {
-        //             if (a.id > b.id) return 1;
-        //             if (a.id < b.id) return -1;
-        //         });
-        //     } else {
-        //         this.projects.sort(function(a, b) {
-        //             if (a.id > b.id) return -1;
-        //             if (a.id < b.id) return 1;
-        //         });
-        //     }
-        // },
         // sortProjectsIdAcc() {
         //     this.project_filter.filter09 = true;
         //     this.projects.sort(function(a, b) {
@@ -754,20 +635,6 @@ export default {
         //         if (a.id < b.id) return 1;
         //     });
         // },
-        // toggleProjectNameFilter() {
-        //     this.project_filter.filteraz = !this.project_filter.filteraz;
-        //     if (this.project_filter.filteraz) {
-        //         this.projects.sort(function(a, b) {
-        //             if (a.title > b.title) return 1;
-        //             if (a.title < b.title) return -1;
-        //         });
-        //     } else {
-        //         this.projects.sort(function(a, b) {
-        //             if (a.title > b.title) return -1;
-        //             if (a.title < b.title) return 1;
-        //         });
-        //     }
-        // },
         // sortProjectsNameAcc() {
         //     this.project_filter.filteraz = true;
         //     this.projects.sort(function(a, b) {
@@ -781,22 +648,6 @@ export default {
         //         if (a.title > b.title) return -1;
         //         if (a.title < b.title) return 1;
         //     });
-        // },
-        // toggleProjectStatusFilter() {
-        //     if (this.project_filter.filterstatus == "all") {
-        //         this.project_filter.filterstatus = "act";
-        //         this.fetchProjects("act");
-        //     } else {
-        //         if (this.project_filter.filterstatus == "act") {
-        //             this.project_filter.filterstatus = "end";
-        //             this.fetchProjects("end");
-        //         } else {
-        //             if (this.project_filter.filterstatus == "end") {
-        //                 this.project_filter.filterstatus = "all";
-        //                 this.fetchProjects("all");
-        //             }
-        //         }
-        //     }
         // },
         // showAllProjects() {
         //     this.project_filter.filterstatus = "all";

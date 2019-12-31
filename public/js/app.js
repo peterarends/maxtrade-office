@@ -2260,44 +2260,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2369,30 +2331,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
   },
   data: function data() {
     return {
-      version: "1.0.1",
-      projects: [],
-      project: [],
-      new_project: false,
-      task: [],
-      documents: [],
-      new_task: false,
-      project_filter: {
-        filter09: false,
-        filteraz: false,
-        filterstatus: "all"
-      },
-      task_filter: {
-        filter09: false,
-        filteraz: false,
-        filterstatus: "all"
-      }
+      version: "1.0.1"
     };
   },
   created: function created() {
-    this.fetchProperties(); //this.fetchProjects("all");
+    this.fetchProperties();
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_9__["mapGetters"])(["getTheme", "getCurrentProjectId", "getCurrentTaskId", "getPanel"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_9__["mapActions"])(["fetchProperties", "changeTheme", "exitProgram", "showProperties", "showAbout", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "addProject", "deleteProject", "addTask", "deleteTask", "changeProject", "toggleProjectIdFilter", "toggleProjectNameFilter", "toggleProjectStatusFilter", "fetchProjectsSearch", "changeTask", "toggleTaskIdFilter", "toggleTaskNameFilter", "toggleTaskStatusFilter", "fetchTasksSearch", "changeDocuments", "deleteDocument", "getTasks"]))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_9__["mapActions"])(["fetchProperties", "exitProgram", "showProperties", "showAbout", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "addProject", "deleteProject", "addTask", "deleteTask", "changeProject", "toggleProjectIdFilter", "toggleProjectNameFilter", "toggleProjectStatusFilter", "fetchProjectsSearch", "changeTask", "toggleTaskIdFilter", "toggleTaskNameFilter", "toggleTaskStatusFilter", "fetchTasksSearch", "changeDocuments", "deleteDocument", "getTasks"]))
 });
 
 /***/ }),
@@ -2667,12 +2613,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Projects",
-  props: ["project", "new_project", "alltasks", "activetasks", "endedtasks"],
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getProject", "getNewTask"]),
   filters: {
     formatDate: function formatDate(value) {
       if (value) {
@@ -2722,6 +2672,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-context */ "./node_modules/vue-context/src/js/index.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2828,7 +2784,10 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     VueContext: vue_context__WEBPACK_IMPORTED_MODULE_1__["VueContext"]
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getTheme"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getTheme", "getProjects", "getProjectFilter", "getCurrentProjectId"]),
+  created: function created() {
+    this.fetchProjects("all");
+  },
   filters: {
     formatDate: function formatDate(value) {
       if (value) {
@@ -2836,10 +2795,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: {
-    showProject: function showProject(project) {
-      this.$emit("changeproject", project);
-    },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(["fetchProjects", "showProject", "projectSearch", "toggleProjectStatusFilter", "toggleProjectNameFilter", "toggleProjectIdFilter"]), {
     onClickContextMenu: function onClickContextMenu(action) {
       if (action == "delete") {
         this.$emit("deleteproject");
@@ -2855,21 +2811,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     onOpenContextMenu: function onOpenContextMenu(event, data) {
       this.showProject(data);
-    },
-    toggleIdFilter: function toggleIdFilter() {
-      this.$emit("projecttoggleidfilter");
-    },
-    toggleNameFilter: function toggleNameFilter() {
-      this.$emit("projecttogglenamefilter");
-    },
-    toggleStatusFilter: function toggleStatusFilter() {
-      this.$emit("projecttogglestatusfilter");
-    },
-    projectSearch: function projectSearch(event) {
-      this.$emit("projectsearch", event.target.value);
     }
-  },
-  props: ["projects", "current_id", "project_filter"]
+  })
 });
 
 /***/ }),
@@ -3124,6 +3067,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3131,7 +3080,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Tasks",
-  props: ["task", "new_task", "documents"],
   data: function data() {
     return {
       file: null,
@@ -3141,7 +3089,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     VueContext: vue_context__WEBPACK_IMPORTED_MODULE_3__["VueContext"]
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getTheme"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getTheme", "getTask", "getNewTask", "getDocuments"]),
   filters: {
     formatDate: function formatDate(value) {
       if (value) {
@@ -3369,7 +3317,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     VueContext: vue_context__WEBPACK_IMPORTED_MODULE_1__["VueContext"]
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getTheme"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getTheme", "getTasks", "getTaskFilter", "getCurrentTaskId"]),
   filters: {
     formatDate: function formatDate(value) {
       if (value) {
@@ -3405,8 +3353,7 @@ __webpack_require__.r(__webpack_exports__);
     taskSearch: function taskSearch(event) {
       this.$emit("tasksearch", event.target.value);
     }
-  },
-  props: ["tasks", "current_id", "task_filter"]
+  }
 });
 
 /***/ }),
@@ -41784,32 +41731,9 @@ var render = function() {
       [
         _c("leftmenu"),
         _vm._v(" "),
-        _c("projects-panel", {
-          attrs: { projects: _vm.projects, project_filter: _vm.project_filter },
-          on: {
-            changeproject: _vm.changeProject,
-            deleteproject: _vm.deleteProject,
-            completeproject: _vm.completeProject,
-            projecttoggleidfilter: _vm.toggleProjectIdFilter,
-            projecttogglenamefilter: _vm.toggleProjectNameFilter,
-            projecttogglestatusfilter: _vm.toggleProjectStatusFilter,
-            projectsearch: _vm.fetchProjectsSearch,
-            addtask: _vm.addTask
-          }
-        }),
+        _c("projects-panel"),
         _vm._v(" "),
-        _c("tasks-panel", {
-          attrs: { task_filter: _vm.task_filter },
-          on: {
-            changetask: _vm.changeTask,
-            deletetask: _vm.deleteTask,
-            completetask: _vm.completeTask,
-            tasktoggleidfilter: _vm.toggleTaskIdFilter,
-            tasktogglenamefilter: _vm.toggleTaskNameFilter,
-            tasktogglestatusfilter: _vm.toggleTaskStatusFilter,
-            tasksearch: _vm.fetchTasksSearch
-          }
-        }),
+        _c("tasks-panel"),
         _vm._v(" "),
         _c(
           "div",
@@ -41823,8 +41747,7 @@ var render = function() {
                   value: _vm.getPanel == "properties",
                   expression: "getPanel == 'properties'"
                 }
-              ],
-              on: { changetheme: _vm.changeTheme }
+              ]
             }),
             _vm._v(" "),
             _c("about", {
@@ -41846,14 +41769,7 @@ var render = function() {
                   value: _vm.getPanel == "projects",
                   expression: "getPanel == 'projects'"
                 }
-              ],
-              attrs: { project: _vm.project, new_project: _vm.new_project },
-              on: {
-                saveproject: function($event) {
-                  return _vm.saveProject(true)
-                },
-                deleteproject: _vm.deleteProject
-              }
+              ]
             }),
             _vm._v(" "),
             _c("tasks", {
@@ -41864,20 +41780,7 @@ var render = function() {
                   value: _vm.getPanel == "tasks",
                   expression: "getPanel == 'tasks'"
                 }
-              ],
-              attrs: {
-                task: _vm.task,
-                new_task: _vm.new_task,
-                documents: _vm.documents
-              },
-              on: {
-                savetask: function($event) {
-                  return _vm.saveTask(true)
-                },
-                deletetask: _vm.deleteTask,
-                changedocuments: _vm.changeDocuments,
-                deletedocument: _vm.deleteDocument
-              }
+              ]
             })
           ],
           1
@@ -41901,10 +41804,7 @@ var render = function() {
         _vm._v(" "),
         _vm._m(11),
         _vm._v(" "),
-        _c("div", [
-          _vm._v("\n                Projects: "),
-          _c("span", [_vm._v(_vm._s(_vm.projects.length))])
-        ]),
+        _c("div"),
         _vm._v(" "),
         _c("div", { staticClass: "separator-vertical", class: _vm.getTheme }),
         _vm._v(" "),
@@ -42294,7 +42194,9 @@ var render = function() {
         _c("span", [
           _vm._v(
             "Project:\n                " +
-              _vm._s(_vm._f("formatProjectId")(_vm.project.id, _vm.new_project))
+              _vm._s(
+                _vm._f("formatProjectId")(_vm.getProject.id, _vm.getNewTask)
+              )
           )
         ])
       ]),
@@ -42314,13 +42216,16 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "body", class: [_vm.project.status == 0 ? "ended" : ""] },
+      {
+        staticClass: "body",
+        class: [_vm.getProject.status == 0 ? "ended" : ""]
+      },
       [
         _c("div", { staticClass: "date" }, [
           _c("h3", [
             _vm._v(
               "Date start: " +
-                _vm._s(_vm._f("formatDate")(_vm.project.created_at))
+                _vm._s(_vm._f("formatDate")(_vm.getProject.created_at))
             )
           ]),
           _vm._v(" "),
@@ -42333,8 +42238,8 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: _vm.project.status == 1,
-                    expression: "project.status == 1"
+                    value: _vm.getProject.status == 1,
+                    expression: "getProject.status == 1"
                   }
                 ],
                 staticClass: "continues"
@@ -42349,14 +42254,14 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: _vm.project.status == 0,
-                    expression: "project.status == 0"
+                    value: _vm.getProject.status == 0,
+                    expression: "getProject.status == 0"
                   }
                 ]
               },
               [
                 _vm._v(
-                  _vm._s(_vm._f("formatDate")(_vm.project.updated_at)) +
+                  _vm._s(_vm._f("formatDate")(_vm.getProject.updated_at)) +
                     "\n                "
                 )
               ]
@@ -42369,19 +42274,19 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.project.title,
-              expression: "project.title"
+              value: _vm.getProject.title,
+              expression: "getProject.title"
             }
           ],
           staticClass: "title",
           attrs: { type: "text" },
-          domProps: { value: _vm.project.title },
+          domProps: { value: _vm.getProject.title },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.project, "title", $event.target.value)
+              _vm.$set(_vm.getProject, "title", $event.target.value)
             }
           }
         }),
@@ -42391,19 +42296,19 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.project.body,
-              expression: "project.body"
+              value: _vm.getProject.body,
+              expression: "getProject.body"
             }
           ],
           staticClass: "text_body",
           attrs: { rows: "10" },
-          domProps: { value: _vm.project.body },
+          domProps: { value: _vm.getProject.body },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.project, "body", $event.target.value)
+              _vm.$set(_vm.getProject, "body", $event.target.value)
             }
           }
         }),
@@ -42414,19 +42319,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.project.status,
-                expression: "project.status"
+                value: _vm.getProject.status,
+                expression: "getProject.status"
               }
             ],
             attrs: { type: "checkbox", id: "project_status" },
             domProps: {
-              checked: Array.isArray(_vm.project.status)
-                ? _vm._i(_vm.project.status, null) > -1
-                : _vm.project.status
+              checked: Array.isArray(_vm.getProject.status)
+                ? _vm._i(_vm.getProject.status, null) > -1
+                : _vm.getProject.status
             },
             on: {
               change: function($event) {
-                var $$a = _vm.project.status,
+                var $$a = _vm.getProject.status,
                   $$el = $event.target,
                   $$c = $$el.checked ? true : false
                 if (Array.isArray($$a)) {
@@ -42434,17 +42339,17 @@ var render = function() {
                     $$i = _vm._i($$a, $$v)
                   if ($$el.checked) {
                     $$i < 0 &&
-                      _vm.$set(_vm.project, "status", $$a.concat([$$v]))
+                      _vm.$set(_vm.getProject, "status", $$a.concat([$$v]))
                   } else {
                     $$i > -1 &&
                       _vm.$set(
-                        _vm.project,
+                        _vm.getProject,
                         "status",
                         $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                       )
                   }
                 } else {
-                  _vm.$set(_vm.project, "status", $$c)
+                  _vm.$set(_vm.getProject, "status", $$c)
                 }
               }
             }
@@ -42454,27 +42359,12 @@ var render = function() {
             _c("span"),
             _vm._v("Status of the project:\n                "),
             _c("strong", [
-              _vm._v(_vm._s(_vm._f("statusFilter")(_vm.project.status)))
+              _vm._v(_vm._s(_vm._f("statusFilter")(_vm.getProject.status)))
             ])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "taskStauses" }, [
-          _c("div", { staticClass: "taskAll" }, [
-            _vm._v("\n                All tasks: "),
-            _c("strong", [_vm._v(_vm._s(_vm.alltasks))])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "taskActive" }, [
-            _vm._v("\n                Active tasks: "),
-            _c("strong", [_vm._v(_vm._s(_vm.activetasks))])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "taskEnded" }, [
-            _vm._v("\n                Ended tasks: "),
-            _c("strong", [_vm._v(_vm._s(_vm.endedtasks))])
-          ])
-        ])
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
@@ -42539,14 +42429,27 @@ var render = function() {
       _c("div", { staticClass: "status_panel" }, [
         _vm._v(
           "\n            Last change: " +
-            _vm._s(_vm._f("formatDate")(_vm.project.updated_at)) +
+            _vm._s(_vm._f("formatDate")(_vm.getProject.updated_at)) +
             "\n        "
         )
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "taskStauses" }, [
+      _c("div", { staticClass: "taskAll" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "taskActive" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "taskEnded" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -42590,21 +42493,21 @@ var render = function() {
             {
               staticClass: "searchIconsText",
               class: _vm.getTheme,
-              on: { click: _vm.toggleStatusFilter }
+              on: { click: _vm.toggleProjectStatusFilter }
             },
-            [_vm._v(_vm._s(_vm.project_filter.filterstatus.toUpperCase()))]
+            [_vm._v(_vm._s(_vm.getProjectFilter.filterstatus.toUpperCase()))]
           ),
           _vm._v(" "),
           _c("i", {
             staticClass: "mdi mdi-sort-alphabetical searchIcons",
             class: _vm.getTheme,
-            on: { click: _vm.toggleNameFilter }
+            on: { click: _vm.toggleProjectNameFilter }
           }),
           _vm._v(" "),
           _c("i", {
             staticClass: "mdi mdi-sort-numeric searchIcons",
             class: _vm.getTheme,
-            on: { click: _vm.toggleIdFilter }
+            on: { click: _vm.toggleProjectIdFilter }
           })
         ])
       ]),
@@ -42612,14 +42515,14 @@ var render = function() {
       _c(
         "div",
         { attrs: { id: "projectsListView" } },
-        _vm._l(_vm.projects, function(project) {
+        _vm._l(_vm.getProjects, function(project) {
           return _c(
             "div",
             {
               key: project.id,
               staticClass: "project_item",
               class: [
-                project.id == _vm.current_id ? "active" : "",
+                project.id == _vm.getCurrentProjectId ? "active" : "",
                 _vm.getTheme
               ],
               on: {
@@ -42944,7 +42847,7 @@ var render = function() {
           _c("span", [
             _vm._v(
               "Task: " +
-                _vm._s(_vm._f("formatTaskId")(_vm.task.id, _vm.new_task))
+                _vm._s(_vm._f("formatTaskId")(_vm.getTask.id, _vm.getNewTask))
             )
           ])
         ]),
@@ -42964,13 +42867,16 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "body", class: [_vm.task.status == 0 ? "ended" : ""] },
+        {
+          staticClass: "body",
+          class: [_vm.getTask.status == 0 ? "ended" : ""]
+        },
         [
           _c("div", { staticClass: "date" }, [
             _c("h3", [
               _vm._v(
                 "Date start: " +
-                  _vm._s(_vm._f("formatDate")(_vm.task.created_at))
+                  _vm._s(_vm._f("formatDate")(_vm.getTask.created_at))
               )
             ]),
             _vm._v(" "),
@@ -42983,8 +42889,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.task.status == 1,
-                      expression: "task.status == 1"
+                      value: _vm.getTask.status == 1,
+                      expression: "getTask.status == 1"
                     }
                   ],
                   staticClass: "continues"
@@ -42999,12 +42905,12 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.task.status == 0,
-                      expression: "task.status == 0"
+                      value: _vm.getTask.status == 0,
+                      expression: "getTask.status == 0"
                     }
                   ]
                 },
-                [_vm._v(_vm._s(_vm._f("formatDate")(_vm.task.updated_at)))]
+                [_vm._v(_vm._s(_vm._f("formatDate")(_vm.getTask.updated_at)))]
               )
             ])
           ]),
@@ -43014,19 +42920,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.task.title,
-                expression: "task.title"
+                value: _vm.getTask.title,
+                expression: "getTask.title"
               }
             ],
             staticClass: "title",
             attrs: { type: "text" },
-            domProps: { value: _vm.task.title },
+            domProps: { value: _vm.getTask.title },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.task, "title", $event.target.value)
+                _vm.$set(_vm.getTask, "title", $event.target.value)
               }
             }
           }),
@@ -43036,19 +42942,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.task.body,
-                expression: "task.body"
+                value: _vm.getTask.body,
+                expression: "getTask.body"
               }
             ],
             staticClass: "text_body",
             attrs: { rows: "10" },
-            domProps: { value: _vm.task.body },
+            domProps: { value: _vm.getTask.body },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.task, "body", $event.target.value)
+                _vm.$set(_vm.getTask, "body", $event.target.value)
               }
             }
           }),
@@ -43059,36 +42965,37 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.task.status,
-                  expression: "task.status"
+                  value: _vm.getTask.status,
+                  expression: "getTask.status"
                 }
               ],
               attrs: { type: "checkbox", id: "task_status" },
               domProps: {
-                checked: Array.isArray(_vm.task.status)
-                  ? _vm._i(_vm.task.status, null) > -1
-                  : _vm.task.status
+                checked: Array.isArray(_vm.getTask.status)
+                  ? _vm._i(_vm.getTask.status, null) > -1
+                  : _vm.getTask.status
               },
               on: {
                 change: function($event) {
-                  var $$a = _vm.task.status,
+                  var $$a = _vm.getTask.status,
                     $$el = $event.target,
                     $$c = $$el.checked ? true : false
                   if (Array.isArray($$a)) {
                     var $$v = null,
                       $$i = _vm._i($$a, $$v)
                     if ($$el.checked) {
-                      $$i < 0 && _vm.$set(_vm.task, "status", $$a.concat([$$v]))
+                      $$i < 0 &&
+                        _vm.$set(_vm.getTask, "status", $$a.concat([$$v]))
                     } else {
                       $$i > -1 &&
                         _vm.$set(
-                          _vm.task,
+                          _vm.getTask,
                           "status",
                           $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                         )
                     }
                   } else {
-                    _vm.$set(_vm.task, "status", $$c)
+                    _vm.$set(_vm.getTask, "status", $$c)
                   }
                 }
               }
@@ -43098,7 +43005,7 @@ var render = function() {
               _c("span"),
               _vm._v("Status of the task:\n                "),
               _c("strong", [
-                _vm._v(_vm._s(_vm._f("statusFilter")(_vm.task.status)))
+                _vm._v(_vm._s(_vm._f("statusFilter")(_vm.getTask.status)))
               ])
             ])
           ]),
@@ -43110,21 +43017,21 @@ var render = function() {
           _c(
             "div",
             { staticClass: "documents" },
-            _vm._l(_vm.documents, function(document) {
+            _vm._l(_vm.getDocuments, function(document) {
               return _c("div", { key: document, staticClass: "document" }, [
                 _c(
                   "a",
                   {
                     attrs: {
                       target: "_blank",
-                      href: "images/tasks/" + _vm.task.id + "/" + document
+                      href: "images/tasks/" + _vm.getTask.id + "/" + document
                     }
                   },
                   [
                     _c("img", {
                       attrs: {
                         src: _vm._f("formatIcons")(
-                          "images/tasks/" + _vm.task.id + "/" + document
+                          "images/tasks/" + _vm.getTask.id + "/" + document
                         ),
                         alt: document
                       },
@@ -43232,7 +43139,7 @@ var render = function() {
         _c("div", { staticClass: "status_panel" }, [
           _vm._v(
             "\n            Last change: " +
-              _vm._s(_vm._f("formatDate")(_vm.task.updated_at)) +
+              _vm._s(_vm._f("formatDate")(_vm.getTask.updated_at)) +
               "\n        "
           )
         ])
@@ -43304,7 +43211,7 @@ var render = function() {
               class: _vm.getTheme,
               on: { click: _vm.toggleStatusFilter }
             },
-            [_vm._v(_vm._s(_vm.task_filter.filterstatus.toUpperCase()))]
+            [_vm._v(_vm._s(_vm.getTaskFilter.filterstatus.toUpperCase()))]
           ),
           _vm._v(" "),
           _c("i", {
@@ -43324,13 +43231,16 @@ var render = function() {
       _c(
         "div",
         { attrs: { id: "tasksListView" } },
-        _vm._l(_vm.tasks, function(task) {
+        _vm._l(_vm.getTasks, function(task) {
           return _c(
             "div",
             {
               key: task.id,
               staticClass: "task_item",
-              class: [task.id == _vm.current_id ? "active" : "", _vm.getTheme],
+              class: [
+                task.id == _vm.getCurrentTaskId ? "active" : "",
+                _vm.getTheme
+              ],
               on: {
                 click: function($event) {
                   return _vm.showTask(task)
@@ -57479,7 +57389,23 @@ var state = {
   panel: "",
   current_project_id: 0,
   tasks: [],
-  current_task_id: 0
+  task: [],
+  new_task: false,
+  current_task_id: 0,
+  projects: [],
+  project: [],
+  new_project: false,
+  project_filter: {
+    filter09: false,
+    filteraz: false,
+    filterstatus: "all"
+  },
+  task_filter: {
+    filter09: false,
+    filteraz: false,
+    filterstatus: "all"
+  },
+  documents: []
 };
 var getters = {
   getTheme: function getTheme(state) {
@@ -57497,11 +57423,35 @@ var getters = {
   getTasks: function getTasks(state) {
     return state.tasks;
   },
+  getTask: function getTask(state) {
+    return state.task;
+  },
+  getNewTask: function getNewTask(state) {
+    return state.new_task;
+  },
   getCurrentTaskId: function getCurrentTaskId(state) {
     return state.current_task_id;
   },
   getPanel: function getPanel(state) {
     return state.panel;
+  },
+  getProjects: function getProjects(state) {
+    return state.projects;
+  },
+  getProject: function getProject(state) {
+    return state.project;
+  },
+  getNewProject: function getNewProject(state) {
+    return state.new_project;
+  },
+  getProjectFilter: function getProjectFilter(state) {
+    return state.project_filter;
+  },
+  getTaskFilter: function getTaskFilter(state) {
+    return state.task_filter;
+  },
+  getDocuments: function getDocuments(state) {
+    return state.documents;
   }
 };
 var actions = {
@@ -57630,6 +57580,168 @@ var actions = {
     var commit = _ref6.commit;
     commit("setPanel", "about");
   },
+  // Fetch all projects
+  fetchProjects: function () {
+    var _fetchProjects = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref7, status) {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref7.commit;
+              _context4.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/projects/" + status);
+
+            case 3:
+              response = _context4.sent;
+              commit("setProjects", response.data.data);
+
+            case 5:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    function fetchProjects(_x5, _x6) {
+      return _fetchProjects.apply(this, arguments);
+    }
+
+    return fetchProjects;
+  }(),
+  // Show clcicked project and populate tasks panel
+  showProject: function () {
+    var _showProject = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref8, project) {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              commit = _ref8.commit;
+              commit("setProject", project);
+              commit("setCurrentProjectId", project.id);
+              commit("setNewProject", false);
+              commit("setPanel", "projects");
+              commit("setCurrentTaskId", 0);
+              _context5.next = 8;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/all/" + project.id);
+
+            case 8:
+              response = _context5.sent;
+              commit("setTasks", response.data.data);
+
+            case 10:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }));
+
+    function showProject(_x7, _x8) {
+      return _showProject.apply(this, arguments);
+    }
+
+    return showProject;
+  }(),
+  // Search in projects panel
+  projectSearch: function () {
+    var _projectSearch = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref9, event) {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              commit = _ref9.commit;
+              _context6.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/projects/search", {
+                search: event.target.value
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 3:
+              response = _context6.sent;
+              commit("setProjects", response.data.data);
+
+            case 5:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6);
+    }));
+
+    function projectSearch(_x9, _x10) {
+      return _projectSearch.apply(this, arguments);
+    }
+
+    return projectSearch;
+  }(),
+  // Toggle project status filter
+  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref10) {
+    var commit = _ref10.commit,
+        state = _ref10.state,
+        dispatch = _ref10.dispatch;
+
+    if (state.project_filter.filterstatus == "all") {
+      commit("setProjectFilterStatus", "act");
+      dispatch("fetchProjects", "act");
+    } else {
+      if (state.project_filter.filterstatus == "act") {
+        commit("setProjectFilterStatus", "end");
+        dispatch("fetchProjects", "end");
+      } else {
+        if (state.project_filter.filterstatus == "end") {
+          commit("setProjectFilterStatus", "all");
+          dispatch("fetchProjects", "all");
+        }
+      }
+    }
+  },
+  // Toggle project name filter
+  toggleProjectNameFilter: function toggleProjectNameFilter(_ref11) {
+    var commit = _ref11.commit,
+        state = _ref11.state;
+    commit("setProjectFilterName", !state.project_filter.filteraz);
+
+    if (state.project_filter.filteraz) {
+      state.projects.sort(function (a, b) {
+        if (a.title > b.title) return 1;
+        if (a.title < b.title) return -1;
+      });
+    } else {
+      state.projects.sort(function (a, b) {
+        if (a.title > b.title) return -1;
+        if (a.title < b.title) return 1;
+      });
+    }
+  },
+  // Toggle project ID filter
+  toggleProjectIdFilter: function toggleProjectIdFilter(_ref12) {
+    var commit = _ref12.commit,
+        state = _ref12.state;
+    commit("setProjectFilterId", !state.project_filter.filter09);
+
+    if (state.project_filter.filter09) {
+      state.projects.sort(function (a, b) {
+        if (a.id > b.id) return 1;
+        if (a.id < b.id) return -1;
+      });
+    } else {
+      state.projects.sort(function (a, b) {
+        if (a.id > b.id) return -1;
+        if (a.id < b.id) return 1;
+      });
+    }
+  },
   completeProject: function completeProject() {},
   showAllProjects: function showAllProjects() {},
   showCompletedProjects: function showCompletedProjects() {},
@@ -57651,9 +57763,6 @@ var actions = {
   addTask: function addTask() {},
   deleteTask: function deleteTask() {},
   changeProject: function changeProject() {},
-  toggleProjectIdFilter: function toggleProjectIdFilter() {},
-  toggleProjectNameFilter: function toggleProjectNameFilter() {},
-  toggleProjectStatusFilter: function toggleProjectStatusFilter() {},
   fetchProjectsSearch: function fetchProjectsSearch() {},
   changeTask: function changeTask() {},
   toggleTaskIdFilter: function toggleTaskIdFilter() {},
@@ -57676,6 +57785,33 @@ var mutations = {
   },
   setPanel: function setPanel(state, panel) {
     return state.panel = panel;
+  },
+  setProjects: function setProjects(state, projects) {
+    return state.projects = projects;
+  },
+  setProject: function setProject(state, project) {
+    return state.project = project;
+  },
+  setCurrentProjectId: function setCurrentProjectId(state, current_project_id) {
+    return state.current_project_id = current_project_id;
+  },
+  setNewProject: function setNewProject(state, new_project) {
+    return state.new_project = new_project;
+  },
+  setCurrentTaskId: function setCurrentTaskId(state, current_task_id) {
+    return state.current_task_id = current_task_id;
+  },
+  setTasks: function setTasks(state, tasks) {
+    return state.tasks = tasks;
+  },
+  setProjectFilterStatus: function setProjectFilterStatus(state, status) {
+    return state.project_filter.filterstatus = status;
+  },
+  setProjectFilterName: function setProjectFilterName(state, filteraz) {
+    return state.project_filter.filteraz = filteraz;
+  },
+  setProjectFilterId: function setProjectFilterId(state, filter09) {
+    return state.project_filter.filter09 = filter09;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

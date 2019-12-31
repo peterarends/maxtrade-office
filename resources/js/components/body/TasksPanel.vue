@@ -1,39 +1,39 @@
 <template>
-    <div class="body-tasks-panel" v-bind:class="getTheme">
-        <div class="topTaskDiv" v-bind:class="getTheme">
+    <div class="body-tasks-panel" :class="getTheme">
+        <div class="topTaskDiv" :class="getTheme">
             <input
                 type="text"
                 class="searchInput"
-                v-bind:class="getTheme"
+                :class="getTheme"
                 placeholder="tasks search ..."
-                v-on:input="taskSearch($event)"
+                @input="taskSearch($event)"
             />
             <div class="searchElementsDiv" v-bind:class="getTheme">
                 <span
                     class="searchIconsText"
-                    v-bind:class="getTheme"
-                    v-on:click="toggleStatusFilter"
-                    >{{ task_filter.filterstatus.toUpperCase() }}</span
+                    :class="getTheme"
+                    @click="toggleStatusFilter"
+                    >{{ getTaskFilter.filterstatus.toUpperCase() }}</span
                 >
                 <i
                     class="mdi mdi-sort-alphabetical searchIcons"
-                    v-bind:class="getTheme"
-                    v-on:click="toggleNameFilter"
+                    :class="getTheme"
+                    @click="toggleNameFilter"
                 ></i>
                 <i
                     class="mdi mdi-sort-numeric searchIcons"
-                    v-bind:class="getTheme"
-                    v-on:click="toggleIdFilter"
+                    :class="getTheme"
+                    @click="toggleIdFilter"
                 ></i>
             </div>
         </div>
         <div id="tasksListView">
             <div
                 class="task_item"
-                v-for="task in tasks"
-                v-bind:key="task.id"
-                v-bind:class="[task.id == current_id ? 'active' : '', getTheme]"
-                v-on:click="showTask(task)"
+                v-for="task in getTasks"
+                :key="task.id"
+                :class="[task.id == getCurrentTaskId ? 'active' : '', getTheme]"
+                @click="showTask(task)"
                 @contextmenu.prevent="$refs.menu.open($event, task)"
             >
                 <div
@@ -89,7 +89,7 @@
 <script>
 import moment from "moment";
 import { VueContext } from "vue-context";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     name: "TasksPanel",
@@ -98,7 +98,12 @@ export default {
         VueContext
     },
 
-    computed: mapGetters(["getTheme"]),
+    computed: mapGetters([
+        "getTheme",
+        "getTasks",
+        "getTaskFilter",
+        "getCurrentTaskId"
+    ]),
 
     filters: {
         formatDate: function(value) {
@@ -135,9 +140,7 @@ export default {
         taskSearch(event) {
             this.$emit("tasksearch", event.target.value);
         }
-    },
-
-    props: ["tasks", "current_id", "task_filter"]
+    }
 };
 </script>
 

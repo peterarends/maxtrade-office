@@ -5,7 +5,7 @@
                 <!--Window title-->
                 <span
                     >Project:
-                    {{ project.id | formatProjectId(new_project) }}</span
+                    {{ getProject.id | formatProjectId(getNewTask) }}</span
                 >
             </div>
             <div class="topRightIcons">
@@ -19,45 +19,50 @@
                 </div>
             </div>
         </div>
-        <div class="body" v-bind:class="[project.status == 0 ? 'ended' : '']">
+        <div
+            class="body"
+            v-bind:class="[getProject.status == 0 ? 'ended' : '']"
+        >
             <div class="date">
-                <h3>Date start: {{ project.created_at | formatDate }}</h3>
+                <h3>Date start: {{ getProject.created_at | formatDate }}</h3>
                 <h3>
                     Date end:
-                    <span v-show="project.status == 1" class="continues"
+                    <span v-show="getProject.status == 1" class="continues"
                         >Continues
                     </span>
-                    <span v-show="project.status == 0"
-                        >{{ project.updated_at | formatDate }}
+                    <span v-show="getProject.status == 0"
+                        >{{ getProject.updated_at | formatDate }}
                     </span>
                 </h3>
             </div>
-            <input class="title" type="text" v-model="project.title" />
+            <input class="title" type="text" v-model="getProject.title" />
             <textarea
                 class="text_body"
                 rows="10"
-                v-model="project.body"
+                v-model="getProject.body"
             ></textarea>
             <div class="projectStatus">
                 <input
                     type="checkbox"
                     id="project_status"
-                    v-model="project.status"
+                    v-model="getProject.status"
                 />
                 <label for="project_status"
                     ><span></span>Status of the project:
-                    <strong>{{ project.status | statusFilter }}</strong></label
+                    <strong>{{
+                        getProject.status | statusFilter
+                    }}</strong></label
                 >
             </div>
             <div class="taskStauses">
                 <div class="taskAll">
-                    All tasks: <strong>{{ alltasks }}</strong>
+                    <!-- All tasks: <strong>{{ alltasks }}</strong> -->
                 </div>
                 <div class="taskActive">
-                    Active tasks: <strong>{{ activetasks }}</strong>
+                    <!-- Active tasks: <strong>{{ activetasks }}</strong> -->
                 </div>
                 <div class="taskEnded">
-                    Ended tasks: <strong>{{ endedtasks }}</strong>
+                    <!-- Ended tasks: <strong>{{ endedtasks }}</strong> -->
                 </div>
             </div>
         </div>
@@ -84,7 +89,7 @@
                 >&nbsp;Close Project</a
             >
             <div class="status_panel">
-                Last change: {{ project.updated_at | formatDate }}
+                Last change: {{ getProject.updated_at | formatDate }}
             </div>
         </div>
     </div>
@@ -97,9 +102,7 @@ import { mapGetters } from "vuex";
 export default {
     name: "Projects",
 
-    props: ["project", "new_project", "alltasks", "activetasks", "endedtasks"],
-
-    computed: mapGetters(["getTheme"]),
+    computed: mapGetters(["getTheme", "getProject", "getNewTask"]),
 
     filters: {
         formatDate: function(value) {
