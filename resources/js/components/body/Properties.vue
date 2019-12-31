@@ -55,7 +55,7 @@
                                 <select
                                     class="controll"
                                     v-model="property.value"
-                                    @change="changeTheme($event)"
+                                    @change="changeTheme"
                                 >
                                     <option value="dark">Dark theme</option>
                                     <option value="light">Light theme</option>
@@ -70,6 +70,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
     name: "Properties",
 
@@ -102,12 +104,14 @@ export default {
                     this.property_categories = res.data;
                 });
         },
-        changeTheme(event) {
-            this.$emit("changetheme", event.target.value);
+        changeTheme() {
+            this.fetchTheme();
         },
         close: function(event) {
             this.$emit("closepanel");
-        }
+        },
+        // Change the current theme and save back to DB
+        ...mapActions(["fetchTheme"])
     },
 
     props: ["theme", "properties"]

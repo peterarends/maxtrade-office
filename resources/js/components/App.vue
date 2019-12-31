@@ -388,7 +388,6 @@
                 ></properties>
                 <about
                     v-show="panel == 'about'"
-                    v-bind:theme="theme"
                     @closepanel="closePanel"
                 ></about>
                 <projects
