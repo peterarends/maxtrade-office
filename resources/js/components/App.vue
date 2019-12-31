@@ -525,73 +525,6 @@ export default {
         ])
 
         // // Projects actions
-        // // Save project changes back to DB
-        // saveProject(isMessage) {
-        //     fetch("api/project", {
-        //         method: this.new_project ? "POST" : "PUT",
-        //         body: JSON.stringify({
-        //             project_id: this.new_project ? 0 : this.project.id,
-        //             title: this.project.title,
-        //             body: this.project.body,
-        //             status: this.project.status
-        //         }),
-        //         headers: { "Content-Type": "application/json; charset=utf-8" }
-        //     })
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             this.project.id = res.data.id;
-        //             this.project.title = res.data.title;
-        //             this.project.body = res.data.body;
-        //             this.project.created_at = res.data.created_at;
-        //             this.project.updated_at = res.data.updated_at;
-        //             this.project.status = res.data.status;
-        //             this.new_project = false;
-        //             //this.current_project_id = res.data.id;
-        //             if (isMessage) {
-        //                 alert(
-        //                     "You have successfully saved the changes to the Project: " +
-        //                         res.data.title
-        //                 );
-        //             }
-        //             // change all task status by project
-        //             if (this.project.status == 0) {
-        //                 fetch("api/task/complete/" + this.project.id, {
-        //                     method: "GET"
-        //                 }).catch(err => console.log(err));
-        //                 this.getTasks().forEach(function(part, index) {
-        //                     part.status = 0;
-        //                 });
-        //             }
-        //         })
-        //         .catch(err => console.log(err));
-        // },
-        // // Delete current project
-        // deleteProject() {
-        //     if (this.getCurrentProjectId() != 0) {
-        //         if (confirm("Are You sure?")) {
-        //             fetch("api/project/" + this.project.id, {
-        //                 method: "DELETE",
-        //                 body: JSON.stringify({
-        //                     project_id: this.project.id
-        //                 }),
-        //                 headers: {
-        //                     "Content-Type": "application/json; charset=utf-8"
-        //                 }
-        //             })
-        //                 .then(res => res.json())
-        //                 .then(res => {
-        //                     this.projects = this.projects.filter(
-        //                         p => p.id !== res.data.id
-        //                     );
-        //                     //this.current_project_id = 0;
-        //                     //this.current_task_id = 0;
-        //                     //this.tasks = [];
-        //                     //this.panel = "";
-        //                 })
-        //                 .catch(err => console.log(err));
-        //         }
-        //     }
-        // },
         // // Add new project
         // addProject() {
         //     const newProject = {
@@ -614,12 +547,6 @@ export default {
         //     this.new_project = true;
         //     this.panel = "projects";
         //     this.saveProject(false);
-        // },
-        // completeProject() {
-        //     if (this.getCurrentProjectId() != 0) {
-        //         this.project.status = 0;
-        //         this.saveProject(false);
-        //     }
         // },
         // sortProjectsIdAcc() {
         //     this.project_filter.filter09 = true;

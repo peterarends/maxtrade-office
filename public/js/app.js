@@ -2795,13 +2795,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(["fetchProjects", "showProject", "projectSearch", "toggleProjectStatusFilter", "toggleProjectNameFilter", "toggleProjectIdFilter"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(["fetchProjects", "showProject", "projectSearch", "toggleProjectStatusFilter", "toggleProjectNameFilter", "toggleProjectIdFilter", "deleteProject", "completeProject"]), {
     onClickContextMenu: function onClickContextMenu(action) {
       if (action == "delete") {
-        this.$emit("deleteproject");
+        this.deleteProject();
       } else {
         if (action == "complete") {
-          this.$emit("completeproject");
+          this.completeProject();
         } else {
           if (action == "addtask") {
             this.$emit("addtask");
@@ -57742,7 +57742,153 @@ var actions = {
       });
     }
   },
-  completeProject: function completeProject() {},
+  // Delete current project
+  deleteProject: function () {
+    var _deleteProject = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref13) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              commit = _ref13.commit, state = _ref13.state;
+
+              if (!(state.current_project_id != 0)) {
+                _context7.next = 11;
+                break;
+              }
+
+              if (!confirm("Are You sure?")) {
+                _context7.next = 11;
+                break;
+              }
+
+              _context7.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/project/" + state.project.id, {
+                project_id: state.project.id
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 5:
+              response = _context7.sent;
+              commit("setProjects", state.projects.filter(function (p) {
+                return p.id !== response.data.data.id;
+              }));
+              commit("setCurrentProjectId", 0);
+              commit("setCurrentTaskId", 0);
+              commit("setTasks", []);
+              commit("setPanel", "");
+
+            case 11:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7);
+    }));
+
+    function deleteProject(_x11) {
+      return _deleteProject.apply(this, arguments);
+    }
+
+    return deleteProject;
+  }(),
+  // Complete a project and all tasks bind to this project
+  completeProject: function completeProject(_ref14) {
+    var commit = _ref14.commit,
+        state = _ref14.state,
+        dispatch = _ref14.dispatch;
+
+    if (state.current_project_id != 0) {
+      commit("setProjectStatus", 0);
+      dispatch("saveProject", false);
+    }
+  },
+  // Save current project
+  saveProject: function () {
+    var _saveProject = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref15, isMessage) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              commit = _ref15.commit, state = _ref15.state;
+              response = null;
+
+              if (!state.new_project) {
+                _context8.next = 8;
+                break;
+              }
+
+              _context8.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/project", {
+                project_id: 0,
+                title: state.project.title,
+                body: state.project.body,
+                status: state.project.status
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 5:
+              response = _context8.sent;
+              _context8.next = 11;
+              break;
+
+            case 8:
+              _context8.next = 10;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/project", {
+                project_id: state.project.id,
+                title: state.project.title,
+                body: state.project.body,
+                status: state.project.status
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 10:
+              response = _context8.sent;
+
+            case 11:
+              commit("setProject", response.data.data);
+              commit("setNewProject", false);
+
+              if (isMessage) {
+                alert("You have successfully saved the changes to the Project: " + response.data.data.title);
+              } // change all task status by project
+
+
+              if (!(state.project.status == 0)) {
+                _context8.next = 18;
+                break;
+              }
+
+              _context8.next = 17;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/complete/" + state.project.id);
+
+            case 17:
+              state.tasks.forEach(function (part, index) {
+                part.status = 0;
+              });
+
+            case 18:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8);
+    }));
+
+    function saveProject(_x12, _x13) {
+      return _saveProject.apply(this, arguments);
+    }
+
+    return saveProject;
+  }(),
   showAllProjects: function showAllProjects() {},
   showCompletedProjects: function showCompletedProjects() {},
   showActivedProjects: function showActivedProjects() {},
@@ -57759,7 +57905,6 @@ var actions = {
   sortTasksNameAcc: function sortTasksNameAcc() {},
   sortTasksNameDec: function sortTasksNameDec() {},
   addProject: function addProject() {},
-  deleteProject: function deleteProject() {},
   addTask: function addTask() {},
   deleteTask: function deleteTask() {},
   changeProject: function changeProject() {},
@@ -57812,6 +57957,9 @@ var mutations = {
   },
   setProjectFilterId: function setProjectFilterId(state, filter09) {
     return state.project_filter.filter09 = filter09;
+  },
+  setProjectStatus: function setProjectStatus(state, status) {
+    return state.project.status = status;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

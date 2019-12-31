@@ -162,8 +162,72 @@ const actions = {
             });
         }
     },
-    completeProject() {
-
+    // Delete current project
+    async deleteProject({ commit, state }) {
+        if (state.current_project_id != 0) {
+            if (confirm("Are You sure?")) {
+                const response = await axios.delete(
+                    "api/project/" + state.project.id,
+                    {
+                        project_id: state.project.id
+                    },
+                    { "Content-Type": "application/json; charset=utf-8" });
+                commit("setProjects", state.projects.filter(
+                    p => p.id !== response.data.data.id
+                ));
+                commit("setCurrentProjectId", 0);
+                commit("setCurrentTaskId", 0);
+                commit("setTasks", []);
+                commit("setPanel", "");
+            }
+        }
+    },
+    // Complete a project and all tasks bind to this project
+    completeProject({ commit, state, dispatch }) {
+        if (state.current_project_id != 0) {
+            commit("setProjectStatus", 0);
+            dispatch("saveProject", false);
+        }
+    },
+    // Save current project
+    async saveProject({ commit, state }, isMessage) {
+        let response = null;
+        if (state.new_project) {
+            response = await axios.post(
+                "api/project",
+                {
+                    project_id: 0,
+                    title: state.project.title,
+                    body: state.project.body,
+                    status: state.project.status
+                },
+                { "Content-Type": "application/json; charset=utf-8" });
+        } else {
+            response = await axios.put(
+                "api/project",
+                {
+                    project_id: state.project.id,
+                    title: state.project.title,
+                    body: state.project.body,
+                    status: state.project.status
+                },
+                { "Content-Type": "application/json; charset=utf-8" });
+        }
+        commit("setProject", response.data.data);
+        commit("setNewProject", false);
+        if (isMessage) {
+            alert(
+                "You have successfully saved the changes to the Project: " +
+                response.data.data.title
+            );
+        }
+        // change all task status by project
+        if (state.project.status == 0) {
+            await axios.get("api/task/complete/" + state.project.id);
+            state.tasks.forEach(function (part, index) {
+                part.status = 0;
+            });
+        }
     },
     showAllProjects() {
 
@@ -211,9 +275,6 @@ const actions = {
 
     },
     addProject() {
-
-    },
-    deleteProject() {
 
     },
     addTask() {
@@ -267,7 +328,8 @@ const mutations = {
     setTasks: (state, tasks) => (state.tasks = tasks),
     setProjectFilterStatus: (state, status) => (state.project_filter.filterstatus = status),
     setProjectFilterName: (state, filteraz) => (state.project_filter.filteraz = filteraz),
-    setProjectFilterId: (state, filter09) => (state.project_filter.filter09 = filter09)
+    setProjectFilterId: (state, filter09) => (state.project_filter.filter09 = filter09),
+    setProjectStatus: (state, status) => (state.project.status = status)
 };
 
 export default {

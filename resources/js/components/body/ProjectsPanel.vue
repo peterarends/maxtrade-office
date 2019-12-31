@@ -134,15 +134,17 @@ export default {
             "projectSearch",
             "toggleProjectStatusFilter",
             "toggleProjectNameFilter",
-            "toggleProjectIdFilter"
+            "toggleProjectIdFilter",
+            "deleteProject",
+            "completeProject"
         ]),
 
         onClickContextMenu(action) {
             if (action == "delete") {
-                this.$emit("deleteproject");
+                this.deleteProject();
             } else {
                 if (action == "complete") {
-                    this.$emit("completeproject");
+                    this.completeProject();
                 } else {
                     if (action == "addtask") {
                         this.$emit("addtask");
