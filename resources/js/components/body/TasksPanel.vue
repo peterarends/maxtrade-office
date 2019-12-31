@@ -6,24 +6,24 @@
                 class="searchInput"
                 :class="getTheme"
                 placeholder="tasks search ..."
-                @input="taskSearch($event)"
+                @input="fetchTasksSearch($event)"
             />
-            <div class="searchElementsDiv" v-bind:class="getTheme">
+            <div class="searchElementsDiv" :class="getTheme">
                 <span
                     class="searchIconsText"
                     :class="getTheme"
-                    @click="toggleStatusFilter"
+                    @click="toggleTaskStatusFilter"
                     >{{ getTaskFilter.filterstatus.toUpperCase() }}</span
                 >
                 <i
                     class="mdi mdi-sort-alphabetical searchIcons"
                     :class="getTheme"
-                    @click="toggleNameFilter"
+                    @click="toggleTaskNameFilter"
                 ></i>
                 <i
                     class="mdi mdi-sort-numeric searchIcons"
                     :class="getTheme"
-                    @click="toggleIdFilter"
+                    @click="toggleTaskIdFilter"
                 ></i>
             </div>
         </div>
@@ -38,7 +38,7 @@
             >
                 <div
                     class="dateText"
-                    v-bind:class="[
+                    :class="[
                         task.status == 0 ? 'dateWithLine' : 'dateWithoutLine',
                         getTheme
                     ]"
@@ -48,7 +48,7 @@
                 <div class="singleTaskDiv">
                     <div
                         class="singleTaskId"
-                        v-bind:class="[
+                        :class="[
                             task.status == 0 ? '' : 'idBackground',
                             task.status == 0
                                 ? 'idTextFinished'
@@ -60,7 +60,7 @@
                     </div>
                     <div
                         class="singleTaskText"
-                        v-bind:class="[
+                        :class="[
                             task.status == 0
                                 ? 'titleTextFinished'
                                 : 'titleTextUnfinished',
@@ -114,31 +114,25 @@ export default {
     },
 
     methods: {
-        showTask(task) {
-            this.$emit("changetask", task);
-        },
+        ...mapActions([
+            "fetchTasksSearch",
+            "toggleTaskStatusFilter",
+            "toggleTaskNameFilter",
+            "toggleTaskIdFilter",
+            "showTask",
+            "deleteTask",
+            "completeTask"
+        ]),
         onClickContextMenu(action) {
             if (action == "delete") {
-                this.$emit("deletetask");
+                this.deleteTask();
             }
             if (action == "complete") {
-                this.$emit("completetask");
+                this.completeTask();
             }
         },
         onOpenContextMenu(event, data) {
             this.showTask(data);
-        },
-        toggleIdFilter() {
-            this.$emit("tasktoggleidfilter");
-        },
-        toggleNameFilter() {
-            this.$emit("tasktogglenamefilter");
-        },
-        toggleStatusFilter() {
-            this.$emit("tasktogglestatusfilter");
-        },
-        taskSearch(event) {
-            this.$emit("tasksearch", event.target.value);
         }
     }
 };
@@ -288,6 +282,9 @@ export default {
 }
 .searchIcons {
     font-size: 1.5rem;
+    padding: 0px 2px;
+    font-weight: bold;
+    cursor: pointer;
 }
 .searchIcons.light {
     color: #a0aec0;

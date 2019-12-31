@@ -589,79 +589,6 @@ export default {
         // },
 
         // // Tasks actions
-        // // Fetch all tasks from DB and set to TasksPanel
-        // fetchTasks(_status, _project_id) {
-        //     fetch("api/tasks/" + _status + "/" + _project_id)
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             //this.tasks = res.data;
-        //         })
-        //         .catch(err => console.log(err));
-        // },
-        // // Open task in Task panel
-        // changeTask(task) {
-        //     this.task = task;
-        //     //this.current_task_id = task.id;
-        //     this.new_task = false;
-        //     // Get documents
-        //     fetch("api/task/documents/" + task.id)
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             this.documents = res;
-        //         })
-        //         .catch(err => console.log(err));
-        //     //this.panel = "tasks";
-        // },
-        // // Delete current task
-        // deleteTask() {
-        //     if (this.getCurrentTaskId() != 0) {
-        //         if (confirm("Are You sure?")) {
-        //             fetch("api/task/" + this.task.id, {
-        //                 method: "DELETE",
-        //                 body: JSON.stringify({
-        //                     task_id: this.task.id
-        //                 }),
-        //                 headers: {
-        //                     "Content-Type": "application/json; charset=utf-8"
-        //                 }
-        //             })
-        //                 .then(res => res.json())
-        //                 .then(res => {
-        //                     alert(
-        //                         "You have successfully delete the Task: " +
-        //                             res.data.title
-        //                     );
-        //                     // this.tasks = this.tasks.filter(
-        //                     //     t => t.id !== res.data.id
-        //                     // );
-        //                     //this.current_task_id = 0;
-        //                     this.panel = "";
-        //                 })
-        //                 .catch(err => console.log(err));
-        //         }
-        //     }
-        // },
-        // // Add new task
-        // completeTask() {
-        //     if (this.getCurrentTaskId() != 0) {
-        //         this.task.status = 0;
-        //         this.saveTask(false);
-        //     }
-        // },
-        // toggleTaskIdFilter() {
-        //     this.task_filter.filter09 = !this.task_filter.filter09;
-        //     if (this.task_filter.filter09) {
-        //         this.tasks.sort(function(a, b) {
-        //             if (a.id > b.id) return 1;
-        //             if (a.id < b.id) return -1;
-        //         });
-        //     } else {
-        //         this.tasks.sort(function(a, b) {
-        //             if (a.id > b.id) return -1;
-        //             if (a.id < b.id) return 1;
-        //         });
-        //     }
-        // },
         // sortTasksIdAcc() {
         //     this.task_filter.filter09 = true;
         //     this.tasks.sort(function(a, b) {
@@ -675,20 +602,6 @@ export default {
         //         if (a.id > b.id) return 1;
         //         if (a.id < b.id) return -1;
         //     });
-        // },
-        // toggleTaskNameFilter() {
-        //     this.task_filter.filteraz = !this.task_filter.filteraz;
-        //     if (this.task_filter.filteraz) {
-        //         this.tasks.sort(function(a, b) {
-        //             if (a.title > b.title) return 1;
-        //             if (a.title < b.title) return -1;
-        //         });
-        //     } else {
-        //         this.tasks.sort(function(a, b) {
-        //             if (a.title > b.title) return -1;
-        //             if (a.title < b.title) return 1;
-        //         });
-        //     }
         // },
         // sortTasksNameAcc() {
         //     this.task_filter.filteraz = true;
@@ -704,22 +617,6 @@ export default {
         //         if (a.title < b.title) return 1;
         //     });
         // },
-        // toggleTaskStatusFilter() {
-        //     if (this.task_filter.filterstatus == "all") {
-        //         this.task_filter.filterstatus = "act";
-        //         this.fetchTasks("act", this.getCurrentProjectId());
-        //     } else {
-        //         if (this.task_filter.filterstatus == "act") {
-        //             this.task_filter.filterstatus = "end";
-        //             this.fetchTasks("end", this.getCurrentProjectId());
-        //         } else {
-        //             if (this.task_filter.filterstatus == "end") {
-        //                 this.task_filter.filterstatus = "all";
-        //                 this.fetchTasks("all", this.getCurrentProjectId());
-        //             }
-        //         }
-        //     }
-        // },
         // showAllTasks() {
         //     this.task_filter.filterstatus = "all";
         //     this.fetchTasks("all", this.getCurrentProjectId());
@@ -731,21 +628,6 @@ export default {
         // showCompletedTasks() {
         //     this.task_filter.filterstatus = "end";
         //     this.fetchTasks("end", this.getCurrentProjectId());
-        // },
-        // // Fetch all tasks from DB width search
-        // fetchTasksSearch(_text) {
-        //     fetch("api/tasks/search/" + this.getCurrentProjectId(), {
-        //         method: "POST",
-        //         body: JSON.stringify({
-        //             search: _text
-        //         }),
-        //         headers: { "Content-Type": "application/json; charset=utf-8" }
-        //     })
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             this.tasks = res.data;
-        //         })
-        //         .catch(err => console.log(err));
         // },
         // changeDocuments() {
         //     fetch("api/task/documents/" + this.task.id)

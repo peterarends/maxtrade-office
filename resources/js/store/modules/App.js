@@ -291,6 +291,99 @@ const actions = {
             );
         }
     },
+    // Search task by text
+    async fetchTasksSearch({ commit, state }, event) {
+        const response = await axios.post(
+            "api/tasks/search/" + state.current_project_id,
+            {
+                search: event.target.value
+            },
+            { "Content-Type": "application/json; charset=utf-8" });
+        commit("setTasks", response.data.data);
+    },
+    // Fetch all tasks
+    async fetchTasks({ commit, state }, status) {
+        const response = await axios.get("api/tasks/" + status + "/" + state.current_project_id);
+        commit("setTasks", response.data.data);
+    },
+    // Toggle task status filter
+    toggleTaskStatusFilter({ commit, state, dispatch }) {
+        if (state.task_filter.filterstatus == "all") {
+            commit("setTaskFilterStatus", "act");
+            dispatch("fetchTasks", "act");
+        } else {
+            if (state.task_filter.filterstatus == "act") {
+                commit("setTaskFilterStatus", "end");
+                dispatch("fetchTasks", "end");
+            } else {
+                if (state.task_filter.filterstatus == "end") {
+                    commit("setTaskFilterStatus", "all");
+                    dispatch("fetchTasks", "all");
+                }
+            }
+        }
+    },
+    // Toggle task name filter
+    toggleTaskNameFilter({ commit, state }) {
+        commit("setTaskFilterName", !state.task_filter.filteraz);
+        if (state.task_filter.filteraz) {
+            state.tasks.sort(function (a, b) {
+                if (a.title > b.title) return 1;
+                if (a.title < b.title) return -1;
+            });
+        } else {
+            state.tasks.sort(function (a, b) {
+                if (a.title > b.title) return -1;
+                if (a.title < b.title) return 1;
+            });
+        }
+    },
+    // Toggle tasks ID filter
+    toggleTaskIdFilter({ commit, state }) {
+        commit("setTaskFilterId", !state.task_filter.filter09);
+        if (state.task_filter.filter09) {
+            state.tasks.sort(function (a, b) {
+                if (a.id > b.id) return 1;
+                if (a.id < b.id) return -1;
+            });
+        } else {
+            state.tasks.sort(function (a, b) {
+                if (a.id > b.id) return -1;
+                if (a.id < b.id) return 1;
+            });
+        }
+    },
+    async showTask({ commit, state }, task) {
+        commit("setTask", task);
+        commit("setCurrentTaskId", task.id);
+        commit("setNewTask", false);
+        const response = await axios.get("api/task/documents/" + task.id);
+        commit("setDocuments", response.data.data);
+        commit("setPanel", "tasks");
+    },
+    async deleteTask({ commit, state }) {
+        if (state.current_task_id != 0) {
+            if (confirm("Are You sure?")) {
+                const response = await axios.delete(
+                    "api/task/" + state.task.id,
+                    {
+                        task_id: state.task.id
+                    },
+                    { "Content-Type": "application/json; charset=utf-8" });
+                state.tasks = state.tasks.filter(
+                    t => t.id !== response.data.data.id
+                );
+                commit("setCurrentTaskId", 0);
+                commit("setPanel", "");
+            }
+        }
+    },
+    completeTask({ state, dispatch }) {
+        if (state.current_task_id != 0) {
+            state.task.status = 0;
+            dispatch("saveTask", false);
+        }
+    },
     showAllProjects() {
 
     },
@@ -310,9 +403,6 @@ const actions = {
 
     },
     sortProjectsNameDec() {
-
-    },
-    completeTask() {
 
     },
     showAllTasks() {
@@ -339,28 +429,10 @@ const actions = {
     addProject() {
 
     },
-    deleteTask() {
-
-    },
     changeProject() {
 
     },
     fetchProjectsSearch() {
-
-    },
-    changeTask() {
-
-    },
-    toggleTaskIdFilter() {
-
-    },
-    toggleTaskNameFilter() {
-
-    },
-    toggleTaskStatusFilter() {
-
-    },
-    fetchTasksSearch() {
 
     },
     changeDocuments() {
@@ -383,7 +455,6 @@ const mutations = {
     setProject: (state, project) => (state.project = project),
     setCurrentProjectId: (state, current_project_id) => (state.current_project_id = current_project_id),
     setNewProject: (state, new_project) => (state.new_project = new_project),
-    setCurrentTaskId: (state, current_task_id) => (state.current_task_id = current_task_id),
     setTasks: (state, tasks) => (state.tasks = tasks),
     setTask: (state, task) => (state.task = task),
     setCurrentTaskId: (state, current_task_id) => (state.current_task_id = current_task_id),
@@ -391,7 +462,11 @@ const mutations = {
     setProjectFilterStatus: (state, status) => (state.project_filter.filterstatus = status),
     setProjectFilterName: (state, filteraz) => (state.project_filter.filteraz = filteraz),
     setProjectFilterId: (state, filter09) => (state.project_filter.filter09 = filter09),
-    setProjectStatus: (state, status) => (state.project.status = status)
+    setProjectStatus: (state, status) => (state.project.status = status),
+    setTaskFilterStatus: (state, status) => (state.task_filter.filterstatus = status),
+    setTaskFilterName: (state, filteraz) => (state.task_filter.filteraz = filteraz),
+    setTaskFilterId: (state, filter09) => (state.task_filter.filter09 = filter09),
+    setDocuments: (state, documents) => (state.documents = documents)
 };
 
 export default {

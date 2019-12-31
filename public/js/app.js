@@ -3218,6 +3218,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-context */ "./node_modules/vue-context/src/js/index.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3322,35 +3328,20 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: {
-    showTask: function showTask(task) {
-      this.$emit("changetask", task);
-    },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(["fetchTasksSearch", "toggleTaskStatusFilter", "toggleTaskNameFilter", "toggleTaskIdFilter", "showTask", "deleteTask", "completeTask"]), {
     onClickContextMenu: function onClickContextMenu(action) {
       if (action == "delete") {
-        this.$emit("deletetask");
+        this.deleteTask();
       }
 
       if (action == "complete") {
-        this.$emit("completetask");
+        this.completeTask();
       }
     },
     onOpenContextMenu: function onOpenContextMenu(event, data) {
       this.showTask(data);
-    },
-    toggleIdFilter: function toggleIdFilter() {
-      this.$emit("tasktoggleidfilter");
-    },
-    toggleNameFilter: function toggleNameFilter() {
-      this.$emit("tasktogglenamefilter");
-    },
-    toggleStatusFilter: function toggleStatusFilter() {
-      this.$emit("tasktogglestatusfilter");
-    },
-    taskSearch: function taskSearch(event) {
-      this.$emit("tasksearch", event.target.value);
     }
-  }
+  })
 });
 
 /***/ }),
@@ -3500,7 +3491,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".v-context[data-v-03b2ccc8],\n.v-context ul[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-03b2ccc8],\n.v-context ul > li[data-v-03b2ccc8] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-03b2ccc8],\n.v-context ul > li > a[data-v-03b2ccc8] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-03b2ccc8]:focus,\n.v-context > li > a[data-v-03b2ccc8]:hover,\n.v-context ul > li > a[data-v-03b2ccc8]:focus,\n.v-context ul > li > a[data-v-03b2ccc8]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-03b2ccc8]:focus,\n.v-context > li > a[data-v-03b2ccc8]:focus,\n.v-context ul[data-v-03b2ccc8]:focus,\n.v-context ul > li > a[data-v-03b2ccc8]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-03b2ccc8]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-03b2ccc8] {\n  display: none;\n}\n\n/** Top part of projects */\n.topProjectsDiv[data-v-03b2ccc8] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Top part of tasks */\n.topTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topTaskDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topTaskDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-03b2ccc8] {\n  border-radius: 0.25rem;\n  width: 70%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-03b2ccc8] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-03b2ccc8] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIconsText[data-v-03b2ccc8] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIconsText.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIconsText.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIconsText.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIconsText.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n.searchIcons[data-v-03b2ccc8] {\n  font-size: 1.5rem;\n}\n.searchIcons.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-03b2ccc8] {\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleTaskId[data-v-03b2ccc8] {\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleTaskId.idBackground.light[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleTaskId.idBackground.dark[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleTaskId.idTextUnfinished.light[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleTaskId.idTextUnfinished.dark[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleTaskId.idTextFinished.light[data-v-03b2ccc8] {\n  color: #f7fafc;\n}\n.singleTaskId.idTextFinished.dark[data-v-03b2ccc8] {\n  color: #1a202c;\n}\n.singleTaskText[data-v-03b2ccc8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleTaskText.titleTextUnfinished.light[data-v-03b2ccc8] {\n  color: #4a5568;\n}\n.singleTaskText.titleTextUnfinished.dark[data-v-03b2ccc8] {\n  color: #e2e8f0;\n}\n.singleTaskText.titleTextFinished.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.singleTaskText.titleTextFinished.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.body-tasks-panel[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-tasks-panel.light[data-v-03b2ccc8] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-tasks-panel.dark[data-v-03b2ccc8] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#tasksListView[data-v-03b2ccc8] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8] {\n  background: #718096;\n  color: #edf2f7;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8] {\n  background: #cbd5e0;\n  color: #2d3748;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.active[data-v-03b2ccc8] {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.ended[data-v-03b2ccc8] {\n  color: #cbd5e0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended[data-v-03b2ccc8] {\n  color: #718096;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem div[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.task_item[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.task_item.light[data-v-03b2ccc8] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.task_item[data-v-03b2ccc8]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.task_item.light[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.task_item.light.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark.active[data-v-03b2ccc8] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n", ""]);
+exports.push([module.i, ".v-context[data-v-03b2ccc8],\n.v-context ul[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-03b2ccc8],\n.v-context ul > li[data-v-03b2ccc8] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-03b2ccc8],\n.v-context ul > li > a[data-v-03b2ccc8] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-03b2ccc8]:focus,\n.v-context > li > a[data-v-03b2ccc8]:hover,\n.v-context ul > li > a[data-v-03b2ccc8]:focus,\n.v-context ul > li > a[data-v-03b2ccc8]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-03b2ccc8]:focus,\n.v-context > li > a[data-v-03b2ccc8]:focus,\n.v-context ul[data-v-03b2ccc8]:focus,\n.v-context ul > li > a[data-v-03b2ccc8]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-03b2ccc8]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-03b2ccc8] {\n  display: none;\n}\n\n/** Top part of projects */\n.topProjectsDiv[data-v-03b2ccc8] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Top part of tasks */\n.topTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topTaskDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topTaskDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-03b2ccc8] {\n  border-radius: 0.25rem;\n  width: 70%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-03b2ccc8] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-03b2ccc8] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIconsText[data-v-03b2ccc8] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIconsText.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIconsText.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIconsText.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIconsText.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n.searchIcons[data-v-03b2ccc8] {\n  font-size: 1.5rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIcons.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-03b2ccc8] {\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleTaskId[data-v-03b2ccc8] {\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleTaskId.idBackground.light[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleTaskId.idBackground.dark[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleTaskId.idTextUnfinished.light[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleTaskId.idTextUnfinished.dark[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleTaskId.idTextFinished.light[data-v-03b2ccc8] {\n  color: #f7fafc;\n}\n.singleTaskId.idTextFinished.dark[data-v-03b2ccc8] {\n  color: #1a202c;\n}\n.singleTaskText[data-v-03b2ccc8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleTaskText.titleTextUnfinished.light[data-v-03b2ccc8] {\n  color: #4a5568;\n}\n.singleTaskText.titleTextUnfinished.dark[data-v-03b2ccc8] {\n  color: #e2e8f0;\n}\n.singleTaskText.titleTextFinished.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.singleTaskText.titleTextFinished.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.body-tasks-panel[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-tasks-panel.light[data-v-03b2ccc8] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-tasks-panel.dark[data-v-03b2ccc8] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#tasksListView[data-v-03b2ccc8] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8] {\n  background: #718096;\n  color: #edf2f7;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8] {\n  background: #cbd5e0;\n  color: #2d3748;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.active[data-v-03b2ccc8] {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.ended[data-v-03b2ccc8] {\n  color: #cbd5e0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended[data-v-03b2ccc8] {\n  color: #718096;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem div[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.task_item[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.task_item.light[data-v-03b2ccc8] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.task_item[data-v-03b2ccc8]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.task_item.light[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.task_item.light.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark.active[data-v-03b2ccc8] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n", ""]);
 
 // exports
 
@@ -43195,7 +43186,7 @@ var render = function() {
           attrs: { type: "text", placeholder: "tasks search ..." },
           on: {
             input: function($event) {
-              return _vm.taskSearch($event)
+              return _vm.fetchTasksSearch($event)
             }
           }
         }),
@@ -43206,7 +43197,7 @@ var render = function() {
             {
               staticClass: "searchIconsText",
               class: _vm.getTheme,
-              on: { click: _vm.toggleStatusFilter }
+              on: { click: _vm.toggleTaskStatusFilter }
             },
             [_vm._v(_vm._s(_vm.getTaskFilter.filterstatus.toUpperCase()))]
           ),
@@ -43214,13 +43205,13 @@ var render = function() {
           _c("i", {
             staticClass: "mdi mdi-sort-alphabetical searchIcons",
             class: _vm.getTheme,
-            on: { click: _vm.toggleNameFilter }
+            on: { click: _vm.toggleTaskNameFilter }
           }),
           _vm._v(" "),
           _c("i", {
             staticClass: "mdi mdi-sort-numeric searchIcons",
             class: _vm.getTheme,
-            on: { click: _vm.toggleIdFilter }
+            on: { click: _vm.toggleTaskIdFilter }
           })
         ])
       ]),
@@ -57376,10 +57367,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 
 
-var _mutations;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -57989,6 +57976,225 @@ var actions = {
 
     return saveTask;
   }(),
+  // Search task by text
+  fetchTasksSearch: function () {
+    var _fetchTasksSearch = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref18, event) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
+        while (1) {
+          switch (_context10.prev = _context10.next) {
+            case 0:
+              commit = _ref18.commit, state = _ref18.state;
+              _context10.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
+                search: event.target.value
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 3:
+              response = _context10.sent;
+              commit("setTasks", response.data.data);
+
+            case 5:
+            case "end":
+              return _context10.stop();
+          }
+        }
+      }, _callee10);
+    }));
+
+    function fetchTasksSearch(_x16, _x17) {
+      return _fetchTasksSearch.apply(this, arguments);
+    }
+
+    return fetchTasksSearch;
+  }(),
+  // Fetch all tasks
+  fetchTasks: function () {
+    var _fetchTasks = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref19, status) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
+        while (1) {
+          switch (_context11.prev = _context11.next) {
+            case 0:
+              commit = _ref19.commit, state = _ref19.state;
+              _context11.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
+
+            case 3:
+              response = _context11.sent;
+              commit("setTasks", response.data.data);
+
+            case 5:
+            case "end":
+              return _context11.stop();
+          }
+        }
+      }, _callee11);
+    }));
+
+    function fetchTasks(_x18, _x19) {
+      return _fetchTasks.apply(this, arguments);
+    }
+
+    return fetchTasks;
+  }(),
+  // Toggle task status filter
+  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref20) {
+    var commit = _ref20.commit,
+        state = _ref20.state,
+        dispatch = _ref20.dispatch;
+
+    if (state.task_filter.filterstatus == "all") {
+      commit("setTaskFilterStatus", "act");
+      dispatch("fetchTasks", "act");
+    } else {
+      if (state.task_filter.filterstatus == "act") {
+        commit("setTaskFilterStatus", "end");
+        dispatch("fetchTasks", "end");
+      } else {
+        if (state.task_filter.filterstatus == "end") {
+          commit("setTaskFilterStatus", "all");
+          dispatch("fetchTasks", "all");
+        }
+      }
+    }
+  },
+  // Toggle task name filter
+  toggleTaskNameFilter: function toggleTaskNameFilter(_ref21) {
+    var commit = _ref21.commit,
+        state = _ref21.state;
+    commit("setTaskFilterName", !state.task_filter.filteraz);
+
+    if (state.task_filter.filteraz) {
+      state.tasks.sort(function (a, b) {
+        if (a.title > b.title) return 1;
+        if (a.title < b.title) return -1;
+      });
+    } else {
+      state.tasks.sort(function (a, b) {
+        if (a.title > b.title) return -1;
+        if (a.title < b.title) return 1;
+      });
+    }
+  },
+  // Toggle tasks ID filter
+  toggleTaskIdFilter: function toggleTaskIdFilter(_ref22) {
+    var commit = _ref22.commit,
+        state = _ref22.state;
+    commit("setTaskFilterId", !state.task_filter.filter09);
+
+    if (state.task_filter.filter09) {
+      state.tasks.sort(function (a, b) {
+        if (a.id > b.id) return 1;
+        if (a.id < b.id) return -1;
+      });
+    } else {
+      state.tasks.sort(function (a, b) {
+        if (a.id > b.id) return -1;
+        if (a.id < b.id) return 1;
+      });
+    }
+  },
+  showTask: function () {
+    var _showTask = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref23, task) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
+        while (1) {
+          switch (_context12.prev = _context12.next) {
+            case 0:
+              commit = _ref23.commit, state = _ref23.state;
+              commit("setTask", task);
+              commit("setCurrentTaskId", task.id);
+              commit("setNewTask", false);
+              _context12.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + task.id);
+
+            case 6:
+              response = _context12.sent;
+              commit("setDocuments", response.data.data);
+              commit("setPanel", "tasks");
+
+            case 9:
+            case "end":
+              return _context12.stop();
+          }
+        }
+      }, _callee12);
+    }));
+
+    function showTask(_x20, _x21) {
+      return _showTask.apply(this, arguments);
+    }
+
+    return showTask;
+  }(),
+  deleteTask: function () {
+    var _deleteTask = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref24) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
+        while (1) {
+          switch (_context13.prev = _context13.next) {
+            case 0:
+              commit = _ref24.commit, state = _ref24.state;
+
+              if (!(state.current_task_id != 0)) {
+                _context13.next = 9;
+                break;
+              }
+
+              if (!confirm("Are You sure?")) {
+                _context13.next = 9;
+                break;
+              }
+
+              _context13.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/" + state.task.id, {
+                task_id: state.task.id
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 5:
+              response = _context13.sent;
+              state.tasks = state.tasks.filter(function (t) {
+                return t.id !== response.data.data.id;
+              });
+              commit("setCurrentTaskId", 0);
+              commit("setPanel", "");
+
+            case 9:
+            case "end":
+              return _context13.stop();
+          }
+        }
+      }, _callee13);
+    }));
+
+    function deleteTask(_x22) {
+      return _deleteTask.apply(this, arguments);
+    }
+
+    return deleteTask;
+  }(),
+  completeTask: function completeTask(_ref25) {
+    var state = _ref25.state,
+        dispatch = _ref25.dispatch;
+
+    if (state.current_task_id != 0) {
+      state.task.status = 0;
+      dispatch("saveTask", false);
+    }
+  },
   showAllProjects: function showAllProjects() {},
   showCompletedProjects: function showCompletedProjects() {},
   showActivedProjects: function showActivedProjects() {},
@@ -57996,7 +58202,6 @@ var actions = {
   sortProjectsIdDec: function sortProjectsIdDec() {},
   sortProjectsNameAcc: function sortProjectsNameAcc() {},
   sortProjectsNameDec: function sortProjectsNameDec() {},
-  completeTask: function completeTask() {},
   showAllTasks: function showAllTasks() {},
   showCompletedTasks: function showCompletedTasks() {},
   showActivedTasks: function showActivedTasks() {},
@@ -58005,19 +58210,13 @@ var actions = {
   sortTasksNameAcc: function sortTasksNameAcc() {},
   sortTasksNameDec: function sortTasksNameDec() {},
   addProject: function addProject() {},
-  deleteTask: function deleteTask() {},
   changeProject: function changeProject() {},
   fetchProjectsSearch: function fetchProjectsSearch() {},
-  changeTask: function changeTask() {},
-  toggleTaskIdFilter: function toggleTaskIdFilter() {},
-  toggleTaskNameFilter: function toggleTaskNameFilter() {},
-  toggleTaskStatusFilter: function toggleTaskStatusFilter() {},
-  fetchTasksSearch: function fetchTasksSearch() {},
   changeDocuments: function changeDocuments() {},
   deleteDocument: function deleteDocument() {},
   getTasks: function getTasks() {}
 };
-var mutations = (_mutations = {
+var mutations = {
   setTheme: function setTheme(state, theme) {
     return state.theme = theme;
   },
@@ -58042,28 +58241,43 @@ var mutations = (_mutations = {
   setNewProject: function setNewProject(state, new_project) {
     return state.new_project = new_project;
   },
-  setCurrentTaskId: function setCurrentTaskId(state, current_task_id) {
-    return state.current_task_id = current_task_id;
-  },
   setTasks: function setTasks(state, tasks) {
     return state.tasks = tasks;
   },
   setTask: function setTask(state, task) {
     return state.task = task;
+  },
+  setCurrentTaskId: function setCurrentTaskId(state, current_task_id) {
+    return state.current_task_id = current_task_id;
+  },
+  setNewTask: function setNewTask(state, new_task) {
+    return state.new_task = new_task;
+  },
+  setProjectFilterStatus: function setProjectFilterStatus(state, status) {
+    return state.project_filter.filterstatus = status;
+  },
+  setProjectFilterName: function setProjectFilterName(state, filteraz) {
+    return state.project_filter.filteraz = filteraz;
+  },
+  setProjectFilterId: function setProjectFilterId(state, filter09) {
+    return state.project_filter.filter09 = filter09;
+  },
+  setProjectStatus: function setProjectStatus(state, status) {
+    return state.project.status = status;
+  },
+  setTaskFilterStatus: function setTaskFilterStatus(state, status) {
+    return state.task_filter.filterstatus = status;
+  },
+  setTaskFilterName: function setTaskFilterName(state, filteraz) {
+    return state.task_filter.filteraz = filteraz;
+  },
+  setTaskFilterId: function setTaskFilterId(state, filter09) {
+    return state.task_filter.filter09 = filter09;
+  },
+  setDocuments: function setDocuments(state, documents) {
+    return state.documents = documents;
   }
-}, _defineProperty(_mutations, "setCurrentTaskId", function setCurrentTaskId(state, current_task_id) {
-  return state.current_task_id = current_task_id;
-}), _defineProperty(_mutations, "setNewTask", function setNewTask(state, new_task) {
-  return state.new_task = new_task;
-}), _defineProperty(_mutations, "setProjectFilterStatus", function setProjectFilterStatus(state, status) {
-  return state.project_filter.filterstatus = status;
-}), _defineProperty(_mutations, "setProjectFilterName", function setProjectFilterName(state, filteraz) {
-  return state.project_filter.filteraz = filteraz;
-}), _defineProperty(_mutations, "setProjectFilterId", function setProjectFilterId(state, filter09) {
-  return state.project_filter.filter09 = filter09;
-}), _defineProperty(_mutations, "setProjectStatus", function setProjectStatus(state, status) {
-  return state.project.status = status;
-}), _mutations);
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: state,
   getters: getters,
