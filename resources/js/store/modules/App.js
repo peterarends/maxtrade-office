@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 
 const state = {
     theme: "dark",
@@ -229,6 +230,67 @@ const actions = {
             });
         }
     },
+    // Add new Task
+    addTask({ state, dispatch }) {
+        if (state.current_project_id != 0) {
+            const newTask = {
+                id:
+                    Math.max.apply(
+                        Math,
+                        state.tasks.map(function (o) {
+                            return o.id;
+                        })
+                    ) + 1,
+                project_id: state.current_project_id,
+                title: "Name of new Task",
+                body: "Description of new Task",
+                created_at: moment().format(),
+                updated_at: "",
+                status: 1
+            };
+            state.tasks.unshift(newTask);
+            state.task = newTask;
+            state.current_task_id = newTask.id;
+            state.new_task = true;
+            state.panel = "tasks";
+            dispatch("saveTask", false);
+        }
+    },
+    // Save current task
+    async saveTask({ commit, state }, isMessage) {
+        let response = null;
+        if (state.new_task) {
+            response = await axios.post(
+                "api/task",
+                {
+                    task_id: 0,
+                    project_id: state.current_project_id,
+                    title: state.task.title,
+                    body: state.task.body,
+                    status: state.task.status
+                },
+                { "Content-Type": "application/json; charset=utf-8" });
+        } else {
+            response = await axios.put(
+                "api/task",
+                {
+                    task_id: state.task.id,
+                    project_id: state.current_project_id,
+                    title: state.task.title,
+                    body: state.task.body,
+                    status: state.task.status
+                },
+                { "Content-Type": "application/json; charset=utf-8" });
+        }
+        commit("setTask", response.data.data);
+        commit("setNewTask", false);
+        if (isMessage) {
+            alert(
+                "You have successfully saved the changes to the Task: " +
+                response.data.data.title
+            );
+        }
+    },
     showAllProjects() {
 
     },
@@ -277,9 +339,6 @@ const actions = {
     addProject() {
 
     },
-    addTask() {
-
-    },
     deleteTask() {
 
     },
@@ -326,6 +385,9 @@ const mutations = {
     setNewProject: (state, new_project) => (state.new_project = new_project),
     setCurrentTaskId: (state, current_task_id) => (state.current_task_id = current_task_id),
     setTasks: (state, tasks) => (state.tasks = tasks),
+    setTask: (state, task) => (state.task = task),
+    setCurrentTaskId: (state, current_task_id) => (state.current_task_id = current_task_id),
+    setNewTask: (state, new_task) => (state.new_task = new_task),
     setProjectFilterStatus: (state, status) => (state.project_filter.filterstatus = status),
     setProjectFilterName: (state, filteraz) => (state.project_filter.filteraz = filteraz),
     setProjectFilterId: (state, filter09) => (state.project_filter.filter09 = filter09),

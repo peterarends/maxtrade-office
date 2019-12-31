@@ -1852,16 +1852,14 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _body_Leftmenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./body/Leftmenu */ "./resources/js/components/body/Leftmenu.vue");
-/* harmony import */ var _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./body/ProjectsPanel */ "./resources/js/components/body/ProjectsPanel.vue");
-/* harmony import */ var _body_TasksPanel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./body/TasksPanel */ "./resources/js/components/body/TasksPanel.vue");
-/* harmony import */ var _body_Properties__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./body/Properties */ "./resources/js/components/body/Properties.vue");
-/* harmony import */ var _body_Projects__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./body/Projects */ "./resources/js/components/body/Projects.vue");
-/* harmony import */ var _body_Tasks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./body/Tasks */ "./resources/js/components/body/Tasks.vue");
-/* harmony import */ var _body_About__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./body/About */ "./resources/js/components/body/About.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _body_Leftmenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./body/Leftmenu */ "./resources/js/components/body/Leftmenu.vue");
+/* harmony import */ var _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./body/ProjectsPanel */ "./resources/js/components/body/ProjectsPanel.vue");
+/* harmony import */ var _body_TasksPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./body/TasksPanel */ "./resources/js/components/body/TasksPanel.vue");
+/* harmony import */ var _body_Properties__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./body/Properties */ "./resources/js/components/body/Properties.vue");
+/* harmony import */ var _body_Projects__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./body/Projects */ "./resources/js/components/body/Projects.vue");
+/* harmony import */ var _body_Tasks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./body/Tasks */ "./resources/js/components/body/Tasks.vue");
+/* harmony import */ var _body_About__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./body/About */ "./resources/js/components/body/About.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2268,7 +2266,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
  // This variable will hold the reference to
 // document's click handler
 
@@ -2321,13 +2318,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   components: {
-    Leftmenu: _body_Leftmenu__WEBPACK_IMPORTED_MODULE_2__["default"],
-    ProjectsPanel: _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_3__["default"],
-    TasksPanel: _body_TasksPanel__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Properties: _body_Properties__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Projects: _body_Projects__WEBPACK_IMPORTED_MODULE_6__["default"],
-    Tasks: _body_Tasks__WEBPACK_IMPORTED_MODULE_7__["default"],
-    About: _body_About__WEBPACK_IMPORTED_MODULE_8__["default"]
+    Leftmenu: _body_Leftmenu__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ProjectsPanel: _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_2__["default"],
+    TasksPanel: _body_TasksPanel__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Properties: _body_Properties__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Projects: _body_Projects__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Tasks: _body_Tasks__WEBPACK_IMPORTED_MODULE_6__["default"],
+    About: _body_About__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   data: function data() {
     return {
@@ -2337,8 +2334,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("closable", {
   created: function created() {
     this.fetchProperties();
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_9__["mapGetters"])(["getTheme", "getCurrentProjectId", "getCurrentTaskId", "getPanel"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_9__["mapActions"])(["fetchProperties", "exitProgram", "showProperties", "showAbout", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "addProject", "deleteProject", "addTask", "deleteTask", "changeProject", "toggleProjectIdFilter", "toggleProjectNameFilter", "toggleProjectStatusFilter", "fetchProjectsSearch", "changeTask", "toggleTaskIdFilter", "toggleTaskNameFilter", "toggleTaskStatusFilter", "fetchTasksSearch", "changeDocuments", "deleteDocument", "getTasks"]))
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapGetters"])(["getTheme", "getCurrentProjectId", "getCurrentTaskId", "getPanel"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapActions"])(["fetchProperties", "exitProgram", "showProperties", "showAbout", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "addProject", "deleteProject", "addTask", "deleteTask", "changeProject", "toggleProjectIdFilter", "toggleProjectNameFilter", "toggleProjectStatusFilter", "fetchProjectsSearch", "changeTask", "toggleTaskIdFilter", "toggleTaskNameFilter", "toggleTaskStatusFilter", "fetchTasksSearch", "changeDocuments", "deleteDocument", "getTasks"]))
 });
 
 /***/ }),
@@ -2795,7 +2792,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(["fetchProjects", "showProject", "projectSearch", "toggleProjectStatusFilter", "toggleProjectNameFilter", "toggleProjectIdFilter", "deleteProject", "completeProject"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(["fetchProjects", "showProject", "projectSearch", "toggleProjectStatusFilter", "toggleProjectNameFilter", "toggleProjectIdFilter", "deleteProject", "completeProject", "addTask"]), {
     onClickContextMenu: function onClickContextMenu(action) {
       if (action == "delete") {
         this.deleteProject();
@@ -2804,7 +2801,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.completeProject();
         } else {
           if (action == "addtask") {
-            this.$emit("addtask");
+            this.addTask();
           }
         }
       }
@@ -57375,11 +57372,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 
+
+var _mutations;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 var state = {
@@ -57889,6 +57893,102 @@ var actions = {
 
     return saveProject;
   }(),
+  // Add new Task
+  addTask: function addTask(_ref16) {
+    var state = _ref16.state,
+        dispatch = _ref16.dispatch;
+
+    if (state.current_project_id != 0) {
+      var newTask = {
+        id: Math.max.apply(Math, state.tasks.map(function (o) {
+          return o.id;
+        })) + 1,
+        project_id: state.current_project_id,
+        title: "Name of new Task",
+        body: "Description of new Task",
+        created_at: moment__WEBPACK_IMPORTED_MODULE_2___default()().format(),
+        updated_at: "",
+        status: 1
+      };
+      state.tasks.unshift(newTask);
+      state.task = newTask;
+      state.current_task_id = newTask.id;
+      state.new_task = true;
+      state.panel = "tasks";
+      dispatch("saveTask", false);
+    }
+  },
+  // Save current task
+  saveTask: function () {
+    var _saveTask = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref17, isMessage) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+        while (1) {
+          switch (_context9.prev = _context9.next) {
+            case 0:
+              commit = _ref17.commit, state = _ref17.state;
+              response = null;
+
+              if (!state.new_task) {
+                _context9.next = 8;
+                break;
+              }
+
+              _context9.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/task", {
+                task_id: 0,
+                project_id: state.current_project_id,
+                title: state.task.title,
+                body: state.task.body,
+                status: state.task.status
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 5:
+              response = _context9.sent;
+              _context9.next = 11;
+              break;
+
+            case 8:
+              _context9.next = 10;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/task", {
+                task_id: state.task.id,
+                project_id: state.current_project_id,
+                title: state.task.title,
+                body: state.task.body,
+                status: state.task.status
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 10:
+              response = _context9.sent;
+
+            case 11:
+              commit("setTask", response.data.data);
+              commit("setNewTask", false);
+
+              if (isMessage) {
+                alert("You have successfully saved the changes to the Task: " + response.data.data.title);
+              }
+
+            case 14:
+            case "end":
+              return _context9.stop();
+          }
+        }
+      }, _callee9);
+    }));
+
+    function saveTask(_x14, _x15) {
+      return _saveTask.apply(this, arguments);
+    }
+
+    return saveTask;
+  }(),
   showAllProjects: function showAllProjects() {},
   showCompletedProjects: function showCompletedProjects() {},
   showActivedProjects: function showActivedProjects() {},
@@ -57905,7 +58005,6 @@ var actions = {
   sortTasksNameAcc: function sortTasksNameAcc() {},
   sortTasksNameDec: function sortTasksNameDec() {},
   addProject: function addProject() {},
-  addTask: function addTask() {},
   deleteTask: function deleteTask() {},
   changeProject: function changeProject() {},
   fetchProjectsSearch: function fetchProjectsSearch() {},
@@ -57918,7 +58017,7 @@ var actions = {
   deleteDocument: function deleteDocument() {},
   getTasks: function getTasks() {}
 };
-var mutations = {
+var mutations = (_mutations = {
   setTheme: function setTheme(state, theme) {
     return state.theme = theme;
   },
@@ -57949,19 +58048,22 @@ var mutations = {
   setTasks: function setTasks(state, tasks) {
     return state.tasks = tasks;
   },
-  setProjectFilterStatus: function setProjectFilterStatus(state, status) {
-    return state.project_filter.filterstatus = status;
-  },
-  setProjectFilterName: function setProjectFilterName(state, filteraz) {
-    return state.project_filter.filteraz = filteraz;
-  },
-  setProjectFilterId: function setProjectFilterId(state, filter09) {
-    return state.project_filter.filter09 = filter09;
-  },
-  setProjectStatus: function setProjectStatus(state, status) {
-    return state.project.status = status;
+  setTask: function setTask(state, task) {
+    return state.task = task;
   }
-};
+}, _defineProperty(_mutations, "setCurrentTaskId", function setCurrentTaskId(state, current_task_id) {
+  return state.current_task_id = current_task_id;
+}), _defineProperty(_mutations, "setNewTask", function setNewTask(state, new_task) {
+  return state.new_task = new_task;
+}), _defineProperty(_mutations, "setProjectFilterStatus", function setProjectFilterStatus(state, status) {
+  return state.project_filter.filterstatus = status;
+}), _defineProperty(_mutations, "setProjectFilterName", function setProjectFilterName(state, filteraz) {
+  return state.project_filter.filteraz = filteraz;
+}), _defineProperty(_mutations, "setProjectFilterId", function setProjectFilterId(state, filter09) {
+  return state.project_filter.filter09 = filter09;
+}), _defineProperty(_mutations, "setProjectStatus", function setProjectStatus(state, status) {
+  return state.project.status = status;
+}), _mutations);
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: state,
   getters: getters,

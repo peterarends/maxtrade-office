@@ -392,7 +392,6 @@
 
 <script>
 import Vue from "vue";
-import moment from "moment";
 import Leftmenu from "./body/Leftmenu";
 import ProjectsPanel from "./body/ProjectsPanel";
 import TasksPanel from "./body/TasksPanel";
@@ -613,38 +612,6 @@ export default {
         //         .catch(err => console.log(err));
         //     //this.panel = "tasks";
         // },
-        // // Save task changes back to DB
-        // saveTask(isMessage) {
-        //     fetch("api/task", {
-        //         method: this.new_task ? "POST" : "PUT",
-        //         body: JSON.stringify({
-        //             task_id: this.new_task ? 0 : this.task.id,
-        //             project_id: this.getCurrentProjectId(),
-        //             title: this.task.title,
-        //             body: this.task.body,
-        //             status: this.task.status
-        //         }),
-        //         headers: { "Content-Type": "application/json; charset=utf-8" }
-        //     })
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             this.task.id = res.data.id;
-        //             this.task.title = res.data.title;
-        //             this.task.body = res.data.body;
-        //             this.task.created_at = res.data.created_at;
-        //             this.task.updated_at = res.data.updated_at;
-        //             this.task.status = res.data.status;
-        //             this.new_task = false;
-        //             //this.current_task_id = res.data.id;
-        //             if (isMessage) {
-        //                 alert(
-        //                     "You have successfully saved the changes to the Task: " +
-        //                         res.data.title
-        //                 );
-        //             }
-        //         })
-        //         .catch(err => console.log(err));
-        // },
         // // Delete current task
         // deleteTask() {
         //     if (this.getCurrentTaskId() != 0) {
@@ -675,31 +642,6 @@ export default {
         //     }
         // },
         // // Add new task
-        // addTask() {
-        //     if (this.getCurrentProjectId() != 0) {
-        //         const newTask = {
-        //             id:
-        //                 Math.max.apply(
-        //                     Math,
-        //                     this.tasks.map(function(o) {
-        //                         return o.id;
-        //                     })
-        //                 ) + 1,
-        //             project_id: this.getCurrentProjectId(),
-        //             title: "Name of new Task",
-        //             body: "Description of new Task",
-        //             created_at: moment().format(),
-        //             updated_at: "",
-        //             status: 1
-        //         };
-        //         this.tasks.unshift(newTask);
-        //         this.task = newTask;
-        //         //this.current_task_id = newTask.id;
-        //         this.new_task = true;
-        //         this.panel = "tasks";
-        //         this.saveTask(false);
-        //     }
-        // },
         // completeTask() {
         //     if (this.getCurrentTaskId() != 0) {
         //         this.task.status = 0;
