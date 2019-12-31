@@ -2416,9 +2416,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-//
-//
-//
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2517,7 +2520,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Projects",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getProject", "getNewTask"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getProject", "getNewTask", "countAllTasks", "countActiveTasks", "countEndedTasks"]),
   filters: {
     formatDate: function formatDate(value) {
       if (value) {
@@ -2539,17 +2542,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: {
-    closeProject: function closeProject(event) {
-      this.$emit("closepanel");
-    },
-    saveProject: function saveProject(event) {
-      this.$emit("saveproject");
-    },
-    deleteProject: function deleteProject(event) {
-      this.$emit("deleteproject");
-    }
-  }
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(["closePanel", "saveProject", "deleteProject"]))
 });
 
 /***/ }),
@@ -41986,7 +41979,7 @@ var render = function() {
           {
             staticClass: "rightExitIcon",
             class: _vm.getTheme,
-            on: { click: _vm.closeProject }
+            on: { click: _vm.closePanel }
           },
           [_c("img", { attrs: { src: "/images/close.png" } })]
         )
@@ -42143,7 +42136,22 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "taskStauses" }, [
+          _c("div", { staticClass: "taskAll" }, [
+            _vm._v("\n                All tasks: "),
+            _c("strong", [_vm._v(_vm._s(_vm.countAllTasks))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "taskActive" }, [
+            _vm._v("\n                Active tasks: "),
+            _c("strong", [_vm._v(_vm._s(_vm.countActiveTasks))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "taskEnded" }, [
+            _vm._v("\n                Ended tasks: "),
+            _c("strong", [_vm._v(_vm._s(_vm.countEndedTasks))])
+          ])
+        ])
       ]
     ),
     _vm._v(" "),
@@ -42154,7 +42162,7 @@ var render = function() {
           on: {
             click: function($event) {
               $event.preventDefault()
-              return _vm.saveProject($event)
+              return _vm.saveProject(true)
             }
           }
         },
@@ -42192,7 +42200,7 @@ var render = function() {
           on: {
             click: function($event) {
               $event.preventDefault()
-              return _vm.closeProject($event)
+              return _vm.closePanel($event)
             }
           }
         },
@@ -42215,20 +42223,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "taskStauses" }, [
-      _c("div", { staticClass: "taskAll" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "taskActive" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "taskEnded" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -57234,6 +57229,19 @@ var getters = {
   },
   getDocuments: function getDocuments(state) {
     return state.documents;
+  },
+  countAllTasks: function countAllTasks(state) {
+    return state.tasks.length;
+  },
+  countActiveTasks: function countActiveTasks(state) {
+    return state.tasks.filter(function (p) {
+      return p.status === 1;
+    }).length;
+  },
+  countEndedTasks: function countEndedTasks(state) {
+    return state.tasks.filter(function (p) {
+      return p.status === 0;
+    }).length;
   }
 };
 var actions = {

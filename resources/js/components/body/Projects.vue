@@ -1,6 +1,6 @@
 <template>
     <div class="projects-body">
-        <div class="button-bar" v-bind:class="getTheme">
+        <div class="button-bar" :class="getTheme">
             <div class="topTitleDiv">
                 <!--Window title-->
                 <span
@@ -12,17 +12,14 @@
                 <!--Window title icons-->
                 <div
                     class="rightExitIcon"
-                    v-bind:class="getTheme"
-                    v-on:click="closeProject"
+                    :class="getTheme"
+                    @click="closePanel"
                 >
                     <img src="/images/close.png" />
                 </div>
             </div>
         </div>
-        <div
-            class="body"
-            v-bind:class="[getProject.status == 0 ? 'ended' : '']"
-        >
+        <div class="body" :class="[getProject.status == 0 ? 'ended' : '']">
             <div class="date">
                 <h3>Date start: {{ getProject.created_at | formatDate }}</h3>
                 <h3>
@@ -56,35 +53,35 @@
             </div>
             <div class="taskStauses">
                 <div class="taskAll">
-                    <!-- All tasks: <strong>{{ alltasks }}</strong> -->
+                    All tasks: <strong>{{ countAllTasks }}</strong>
                 </div>
                 <div class="taskActive">
-                    <!-- Active tasks: <strong>{{ activetasks }}</strong> -->
+                    Active tasks: <strong>{{ countActiveTasks }}</strong>
                 </div>
                 <div class="taskEnded">
-                    <!-- Ended tasks: <strong>{{ endedtasks }}</strong> -->
+                    Ended tasks: <strong>{{ countEndedTasks }}</strong>
                 </div>
             </div>
         </div>
-        <div class="bottom" v-bind:class="getTheme">
-            <a v-on:click.prevent="saveProject"
+        <div class="bottom" :class="getTheme">
+            <a @click.prevent="saveProject(true)"
                 ><i
                     class="mdi mdi-content-save-outline mdiProjectIcon"
                     v-bind:class="getTheme"
                 ></i
                 >&nbsp;Save Project</a
             >
-            <a v-on:click.prevent="deleteProject"
+            <a @click.prevent="deleteProject"
                 ><i
                     class="mdi mdi-delete-outline mdiProjectIcon"
-                    v-bind:class="getTheme"
+                    :class="getTheme"
                 ></i
                 >&nbsp;Delete Project</a
             >
-            <a v-on:click.prevent="closeProject"
+            <a @click.prevent="closePanel"
                 ><i
                     class="mdi mdi-close-outline mdiProjectIcon"
-                    v-bind:class="getTheme"
+                    :class="getTheme"
                 ></i
                 >&nbsp;Close Project</a
             >
@@ -97,12 +94,19 @@
 
 <script>
 import moment from "moment";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     name: "Projects",
 
-    computed: mapGetters(["getTheme", "getProject", "getNewTask"]),
+    computed: mapGetters([
+        "getTheme",
+        "getProject",
+        "getNewTask",
+        "countAllTasks",
+        "countActiveTasks",
+        "countEndedTasks"
+    ]),
 
     filters: {
         formatDate: function(value) {
@@ -127,15 +131,7 @@ export default {
     },
 
     methods: {
-        closeProject: function(event) {
-            this.$emit("closepanel");
-        },
-        saveProject: function(event) {
-            this.$emit("saveproject");
-        },
-        deleteProject: function(event) {
-            this.$emit("deleteproject");
-        }
+        ...mapActions(["closePanel", "saveProject", "deleteProject"])
     }
 };
 </script>

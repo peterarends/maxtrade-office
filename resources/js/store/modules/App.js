@@ -42,7 +42,18 @@ const getters = {
     getNewProject: state => state.new_project,
     getProjectFilter: state => state.project_filter,
     getTaskFilter: state => state.task_filter,
-    getDocuments: state => state.documents
+    getDocuments: state => state.documents,
+    countAllTasks: state => state.tasks.length,
+    countActiveTasks: state => {
+        return state.tasks.filter(
+            p => p.status === 1
+        ).length;
+    },
+    countEndedTasks: state => {
+        return state.tasks.filter(
+            p => p.status === 0
+        ).length;
+    }
 };
 
 const actions = {
