@@ -41223,7 +41223,7 @@ __webpack_require__.r(__webpack_exports__);
         // Only register the events we need
         const on = {
             // `!` modifier for capture
-            '!click': e => {
+            '!contextmenu': e => {
                 e.preventDefault();
             },
             keydown: this.onKeydown // up, down, esc
