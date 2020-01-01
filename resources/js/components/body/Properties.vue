@@ -55,7 +55,7 @@
                                 <select
                                     class="controll"
                                     v-model="property.value"
-                                    @change="changeTheme($event)"
+                                    @change="changeTheme($event.target.value)"
                                 >
                                     <option value="dark">Dark theme</option>
                                     <option value="light">Light theme</option>

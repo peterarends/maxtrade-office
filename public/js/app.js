@@ -2050,6 +2050,34 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-context */ "./node_modules/vue-context/src/js/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2071,10 +2099,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Leftmenu",
+  components: {
+    VueContext: vue_context__WEBPACK_IMPORTED_MODULE_1__["VueContext"]
+  },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme"]),
-  methods: {}
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["showProperties", "changeTheme"]), {
+    onClickContextMenu: function onClickContextMenu(action) {
+      if (action == "properties") {
+        this.showProperties();
+      } else {
+        if (action == "dark") {
+          this.changeTheme("dark");
+        } else {
+          if (action == "light") {
+            this.changeTheme("light");
+          }
+        }
+      }
+    }
+  })
 });
 
 /***/ }),
@@ -3301,7 +3347,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0] {\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0] {\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n}\n.body-left-menu.light[data-v-7bf753d0] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n}\n.body-left-menu.dark[data-v-7bf753d0] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n}\n.body-left-menu a[data-v-7bf753d0] {\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu.light a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.dark a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.light a[data-v-7bf753d0]:hover {\n  color: #1a202c;\n}\n.body-left-menu.dark a[data-v-7bf753d0]:hover {\n  color: #f7fafc;\n}\n.left-menu-title[data-v-7bf753d0] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n}\n.left-menu-title.light[data-v-7bf753d0] {\n  opacity: 0.5;\n  color: #4299e1;\n}\n.left-menu-title.dark[data-v-7bf753d0] {\n  opacity: 0.3;\n  color: #4299e1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0] {\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu.light a.active[data-v-7bf753d0] {\n  color: #1a202c;\n}\n.body-left-menu.dark a.active[data-v-7bf753d0] {\n  color: #f7fafc;\n}\n.contextMenu[data-v-7bf753d0] {\n  width: 300px;\n  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);\n  background-color: #1a202c;\n  position: absolute;\n  bottom: 87px;\n  left: 25px;\n}\n.contextMenu-options[data-v-7bf753d0] {\n  list-style: none;\n  padding: 10px 0;\n}\n.contextMenu-option[data-v-7bf753d0] {\n  font-weight: 500;\n  font-size: 14px;\n  padding: 10px 40px 10px 20px;\n  cursor: pointer;\n  color: #a0aec0;\n}\n.contextMenu-option[data-v-7bf753d0]:hover {\n  background: rgba(0, 0, 0, 0.2);\n}\n.right-text[data-v-7bf753d0] {\n  float: right;\n}\n", ""]);
+exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0] {\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0] {\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n}\n.body-left-menu.light[data-v-7bf753d0] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n}\n.body-left-menu.dark[data-v-7bf753d0] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n}\n.body-left-menu a[data-v-7bf753d0] {\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu.light a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.dark a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.light a[data-v-7bf753d0]:hover {\n  color: #1a202c;\n}\n.body-left-menu.dark a[data-v-7bf753d0]:hover {\n  color: #f7fafc;\n}\n.left-menu-title[data-v-7bf753d0] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n}\n.left-menu-title.light[data-v-7bf753d0] {\n  opacity: 0.5;\n  color: #4299e1;\n}\n.left-menu-title.dark[data-v-7bf753d0] {\n  opacity: 0.3;\n  color: #4299e1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0] {\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu.light a.active[data-v-7bf753d0] {\n  color: #1a202c;\n}\n.body-left-menu.dark a.active[data-v-7bf753d0] {\n  color: #f7fafc;\n}\n.contextMenu[data-v-7bf753d0] {\n  width: 300px;\n  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);\n  background-color: #1a202c;\n  position: absolute;\n  bottom: 87px;\n  left: 25px;\n}\n.contextMenu-options[data-v-7bf753d0] {\n  list-style: none;\n  padding: 10px 0;\n}\n.contextMenu-option[data-v-7bf753d0] {\n  font-weight: 500;\n  font-size: 14px;\n  padding: 10px 40px 10px 20px;\n  cursor: pointer;\n  color: #a0aec0;\n}\n.contextMenu-option[data-v-7bf753d0]:hover {\n  background: rgba(0, 0, 0, 0.2);\n}\n.right-text[data-v-7bf753d0] {\n  float: right;\n}\n.v-context[data-v-7bf753d0],\n.v-context ul[data-v-7bf753d0] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-7bf753d0],\n.v-context ul > li[data-v-7bf753d0] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-7bf753d0],\n.v-context ul > li > a[data-v-7bf753d0] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n  font-size: 14px;\n}\n.v-context > li > a[data-v-7bf753d0]:focus,\n.v-context > li > a[data-v-7bf753d0]:hover,\n.v-context ul > li > a[data-v-7bf753d0]:focus,\n.v-context ul > li > a[data-v-7bf753d0]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-7bf753d0]:focus,\n.v-context > li > a[data-v-7bf753d0]:focus,\n.v-context ul[data-v-7bf753d0]:focus,\n.v-context ul > li > a[data-v-7bf753d0]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-7bf753d0]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-7bf753d0] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -40923,7 +40969,7 @@ __webpack_require__.r(__webpack_exports__);
         },
 
         close() {
-            if (! this.show) {
+            if (!this.show) {
                 return;
             }
 
@@ -40950,7 +40996,7 @@ __webpack_require__.r(__webpack_exports__);
         },
 
         focusNext(event, up) {
-            if (! this.show) {
+            if (!this.show) {
                 return;
             }
 
@@ -40966,7 +41012,7 @@ __webpack_require__.r(__webpack_exports__);
                 let index = items.indexOf(event.target);
                 if (up && index > 0) {
                     index--;
-                } else if (! up && index < items.length - 1) {
+                } else if (!up && index < items.length - 1) {
                     index++;
                 }
 
@@ -41027,7 +41073,7 @@ __webpack_require__.r(__webpack_exports__);
                 parentMenu.dispatchEvent(new Event('mouseleave'));
 
                 const items = this.getItems(),
-                      index = items.indexOf(parentMenu.getElementsByTagName('a')[0]);
+                    index = items.indexOf(parentMenu.getElementsByTagName('a')[0]);
 
                 this.focusItem(index, items);
             }
@@ -41054,8 +41100,8 @@ __webpack_require__.r(__webpack_exports__);
 
         openSubMenu(event) {
             const subMenuElement = this.getSubMenuElementByEvent(event),
-                  parentMenu = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(subMenuElement.parentElement, 'v-context'),
-                  bcr = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getBCR"])(event.target);
+                parentMenu = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(subMenuElement.parentElement, 'v-context'),
+                bcr = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getBCR"])(event.target);
 
             // check if another sub menu is open. In this case make sure no other as well as no nested sub menu is open
             if (this.activeSubMenu !== parentMenu) {
@@ -41081,7 +41127,7 @@ __webpack_require__.r(__webpack_exports__);
 
         closeSubMenu(event) {
             const subMenuElement = this.getSubMenuElementByEvent(event),
-                  parentMenu = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(subMenuElement, 'v-context');
+                parentMenu = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(subMenuElement, 'v-context');
 
             // if a sub menu is closed and it's not the currently active sub menu (eg. a lowe layered sub menu closed
             // by a mouseleave event) close all nested sub menus
@@ -41100,7 +41146,7 @@ __webpack_require__.r(__webpack_exports__);
                 : null;
         },
 
-        getSubMenuElementByEvent (event) {
+        getSubMenuElementByEvent(event) {
             return event.target.getElementsByTagName('ul')[0];
         },
 
@@ -41170,14 +41216,14 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     render(h) {
-        if (this.lazy && ! this.show) {
+        if (this.lazy && !this.show) {
             return h(false);
         }
 
         // Only register the events we need
         const on = {
             // `!` modifier for capture
-            '!contextmenu': e => {
+            '!click': e => {
                 e.preventDefault();
             },
             keydown: this.onKeydown // up, down, esc
@@ -41196,7 +41242,7 @@ __webpack_require__.r(__webpack_exports__);
             }
         ];
 
-        if (! this.lazy) {
+        if (!this.lazy) {
             directives.push({
                 name: 'show',
                 value: this.show,
@@ -41213,7 +41259,7 @@ __webpack_require__.r(__webpack_exports__);
                 attrs: {
                     tabindex: '-1',
                     role: this.role,
-                    'aria-hidden': this.lazy ? null : String(! this.show)
+                    'aria-hidden': this.lazy ? null : String(!this.show)
                 },
                 on,
                 directives
@@ -41494,19 +41540,116 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "body-left-menu", class: _vm.getTheme }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _vm._m(2),
-    _vm._v(" "),
-    _c("div", { staticClass: "left-menu-title", class: _vm.getTheme }, [
-      _vm._v("\n        Maxtrade Office\n    ")
-    ]),
-    _vm._v(" "),
-    _vm._m(3)
-  ])
+  return _c(
+    "div",
+    { staticClass: "body-left-menu", class: _vm.getTheme },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _c("div", { staticClass: "left-menu-title", class: _vm.getTheme }, [
+        _vm._v("\n        Maxtrade Office\n    ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "settingsMenuLink",
+          attrs: { title: "Show Tools Menu" },
+          on: {
+            contextmenu: function($event) {
+              $event.preventDefault()
+              return _vm.$refs.menu.open($event)
+            }
+          }
+        },
+        [_c("i", { staticClass: "mdi mdi-tools mdiIcon" })]
+      ),
+      _vm._v(" "),
+      _c("vue-context", { ref: "menu" }, [
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.onClickContextMenu("properties")
+                }
+              }
+            },
+            [_vm._v("Show Properties")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.onClickContextMenu("dark")
+                }
+              }
+            },
+            [
+              _vm._v("Dark Theme "),
+              _c(
+                "strong",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.getTheme === "dark",
+                      expression: "getTheme === 'dark'"
+                    }
+                  ]
+                },
+                [_vm._v("✓")]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.onClickContextMenu("light")
+                }
+              }
+            },
+            [
+              _vm._v("Light Theme "),
+              _c(
+                "strong",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.getTheme === "light",
+                      expression: "getTheme === 'light'"
+                    }
+                  ]
+                },
+                [_vm._v("✓")]
+              )
+            ]
+          )
+        ])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -41534,16 +41677,6 @@ var staticRenderFns = [
     return _c("a", { attrs: { title: "Show Contacts Panel" } }, [
       _c("i", { staticClass: "mdi mdi-contacts mdiIcon" })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "settingsMenuLink", attrs: { title: "Show Tools Menu" } },
-      [_c("i", { staticClass: "mdi mdi-tools mdiIcon" })]
-    )
   }
 ]
 render._withStripped = true
@@ -42156,7 +42289,7 @@ var render = function() {
                                   )
                                 },
                                 function($event) {
-                                  return _vm.changeTheme($event)
+                                  return _vm.changeTheme($event.target.value)
                                 }
                               ]
                             }
@@ -57642,14 +57775,14 @@ var actions = {
   changeTheme: function () {
     var _changeTheme = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, theme) {
       var commit, state;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               commit = _ref3.commit, state = _ref3.state;
-              commit("setTheme", event.target.value);
+              commit("setTheme", theme);
               _context3.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/property", {
                 property_id: state.properties.find(function (prop) {

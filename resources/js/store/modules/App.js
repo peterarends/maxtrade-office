@@ -76,8 +76,8 @@ const actions = {
         commit("setPropertyCategories", property_categories);
     },
     // Change theme
-    async changeTheme({ commit, state }, event) {
-        commit("setTheme", event.target.value);
+    async changeTheme({ commit, state }, theme) {
+        commit("setTheme", theme);
         await axios.put(
             "api/property",
             {
