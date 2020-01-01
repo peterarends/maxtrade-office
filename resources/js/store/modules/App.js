@@ -174,6 +174,29 @@ const actions = {
             });
         }
     },
+    // Add project
+    addProject({ commit, state, dispatch }) {
+        const newProject = {
+            id:
+                Math.max.apply(
+                    Math,
+                    state.projects.map(function (o) {
+                        return o.id;
+                    })
+                ) + 1,
+            title: "Name of new Project",
+            body: "Description of new Project",
+            created_at: moment().format(),
+            updated_at: "",
+            status: 1
+        };
+        state.projects.unshift(newProject);
+        state.project = newProject;
+        commit("setCurrentProjectId", newProject.id);
+        commit("setNewProject", true);
+        commit("setPanel", "projects");
+        dispatch("saveProject", false);
+    },
     // Delete current project
     async deleteProject({ commit, state }) {
         if (state.current_project_id != 0) {
@@ -225,7 +248,12 @@ const actions = {
                 },
                 { "Content-Type": "application/json; charset=utf-8" });
         }
-        commit("setProject", response.data.data);
+        state.project.id = response.data.data.id;
+        state.project.title = response.data.data.title;
+        state.project.body = response.data.data.body;
+        state.project.created_at = response.data.data.created_at;
+        state.project.updated_at = response.data.data.updated_at;
+        state.project.status = response.data.data.status;
         commit("setNewProject", false);
         if (isMessage) {
             alert(
@@ -293,7 +321,13 @@ const actions = {
                 },
                 { "Content-Type": "application/json; charset=utf-8" });
         }
-        commit("setTask", response.data.data);
+        state.task.id = response.data.data.id;
+        state.task.project_id = response.data.data.project_id;
+        state.task.title = response.data.data.title;
+        state.task.body = response.data.data.body;
+        state.task.created_at = response.data.data.created_at;
+        state.task.updated_at = response.data.data.updated_at;
+        state.task.status = response.data.data.status;
         commit("setNewTask", false);
         if (isMessage) {
             alert(
@@ -449,9 +483,6 @@ const actions = {
 
     },
     sortTasksNameDec() {
-
-    },
-    addProject() {
 
     },
     changeProject() {

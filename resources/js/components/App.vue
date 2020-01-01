@@ -35,11 +35,11 @@
                                 <a><span>Projects</span></a>
                                 <ul>
                                     <li>
-                                        <a v-on:click.prevent="addProject">
+                                        <a @click.prevent="addProject">
                                             <div class="mnu-flex">
                                                 <i
                                                     class="mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
-                                                    v-bind:class="getTheme"
+                                                    :class="getTheme"
                                                 ></i
                                                 >&nbsp;<span>Add Project</span>
                                             </div>
@@ -307,10 +307,10 @@
                         v-bind:class="getTheme"
                     ></i>
                 </button>
-                <button v-on:click="addProject">
+                <button @click="addProject">
                     <i
                         class="mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
-                        v-bind:class="getTheme"
+                        :class="getTheme"
                     ></i
                     >&nbsp;Add Project
                 </button>
@@ -437,6 +437,7 @@ export default {
             "exitProgram",
             "showProperties",
             "showAbout",
+            "addProject",
 
             "completeProject",
             "showAllProjects",
@@ -454,7 +455,6 @@ export default {
             "sortTasksIdDec",
             "sortTasksNameAcc",
             "sortTasksNameDec",
-            "addProject",
             "deleteProject",
             "addTask",
             "deleteTask",

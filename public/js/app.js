@@ -2287,7 +2287,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.fetchProperties();
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapGetters"])(["getTheme", "getCurrentProjectId", "getCurrentTaskId", "getPanel"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapActions"])(["fetchProperties", "exitProgram", "showProperties", "showAbout", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "addProject", "deleteProject", "addTask", "deleteTask", "changeProject", "toggleProjectIdFilter", "toggleProjectNameFilter", "toggleProjectStatusFilter", "fetchProjectsSearch", "changeTask", "toggleTaskIdFilter", "toggleTaskNameFilter", "toggleTaskStatusFilter", "fetchTasksSearch", "changeDocuments", "deleteDocument", "getTasks"]))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapActions"])(["fetchProperties", "exitProgram", "showProperties", "showAbout", "addProject", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "deleteProject", "addTask", "deleteTask", "changeProject", "toggleProjectIdFilter", "toggleProjectNameFilter", "toggleProjectStatusFilter", "fetchProjectsSearch", "changeTask", "toggleTaskIdFilter", "toggleTaskNameFilter", "toggleTaskStatusFilter", "fetchTasksSearch", "changeDocuments", "deleteDocument", "getTasks"]))
 });
 
 /***/ }),
@@ -57527,17 +57527,39 @@ var actions = {
       });
     }
   },
+  // Add project
+  addProject: function addProject(_ref13) {
+    var commit = _ref13.commit,
+        state = _ref13.state,
+        dispatch = _ref13.dispatch;
+    var newProject = {
+      id: Math.max.apply(Math, state.projects.map(function (o) {
+        return o.id;
+      })) + 1,
+      title: "Name of new Project",
+      body: "Description of new Project",
+      created_at: moment__WEBPACK_IMPORTED_MODULE_2___default()().format(),
+      updated_at: "",
+      status: 1
+    };
+    state.projects.unshift(newProject);
+    state.project = newProject;
+    commit("setCurrentProjectId", newProject.id);
+    commit("setNewProject", true);
+    commit("setPanel", "projects");
+    dispatch("saveProject", false);
+  },
   // Delete current project
   deleteProject: function () {
     var _deleteProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref13) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref14) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
         while (1) {
           switch (_context7.prev = _context7.next) {
             case 0:
-              commit = _ref13.commit, state = _ref13.state;
+              commit = _ref14.commit, state = _ref14.state;
 
               if (!(state.current_project_id != 0)) {
                 _context7.next = 11;
@@ -57581,10 +57603,10 @@ var actions = {
     return deleteProject;
   }(),
   // Complete a project and all tasks bind to this project
-  completeProject: function completeProject(_ref14) {
-    var commit = _ref14.commit,
-        state = _ref14.state,
-        dispatch = _ref14.dispatch;
+  completeProject: function completeProject(_ref15) {
+    var commit = _ref15.commit,
+        state = _ref15.state,
+        dispatch = _ref15.dispatch;
 
     if (state.current_project_id != 0) {
       commit("setProjectStatus", 0);
@@ -57595,13 +57617,13 @@ var actions = {
   saveProject: function () {
     var _saveProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref15, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref16, isMessage) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
         while (1) {
           switch (_context8.prev = _context8.next) {
             case 0:
-              commit = _ref15.commit, state = _ref15.state;
+              commit = _ref16.commit, state = _ref16.state;
               response = null;
 
               if (!state.new_project) {
@@ -57639,7 +57661,12 @@ var actions = {
               response = _context8.sent;
 
             case 11:
-              commit("setProject", response.data.data);
+              state.project.id = response.data.data.id;
+              state.project.title = response.data.data.title;
+              state.project.body = response.data.data.body;
+              state.project.created_at = response.data.data.created_at;
+              state.project.updated_at = response.data.data.updated_at;
+              state.project.status = response.data.data.status;
               commit("setNewProject", false);
 
               if (isMessage) {
@@ -57648,19 +57675,19 @@ var actions = {
 
 
               if (!(state.project.status == 0)) {
-                _context8.next = 18;
+                _context8.next = 23;
                 break;
               }
 
-              _context8.next = 17;
+              _context8.next = 22;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/complete/" + state.project.id);
 
-            case 17:
+            case 22:
               state.tasks.forEach(function (part, index) {
                 part.status = 0;
               });
 
-            case 18:
+            case 23:
             case "end":
               return _context8.stop();
           }
@@ -57675,9 +57702,9 @@ var actions = {
     return saveProject;
   }(),
   // Add new Task
-  addTask: function addTask(_ref16) {
-    var state = _ref16.state,
-        dispatch = _ref16.dispatch;
+  addTask: function addTask(_ref17) {
+    var state = _ref17.state,
+        dispatch = _ref17.dispatch;
 
     if (state.current_project_id != 0) {
       var newTask = {
@@ -57703,13 +57730,13 @@ var actions = {
   saveTask: function () {
     var _saveTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref17, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref18, isMessage) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
         while (1) {
           switch (_context9.prev = _context9.next) {
             case 0:
-              commit = _ref17.commit, state = _ref17.state;
+              commit = _ref18.commit, state = _ref18.state;
               response = null;
 
               if (!state.new_task) {
@@ -57749,14 +57776,20 @@ var actions = {
               response = _context9.sent;
 
             case 11:
-              commit("setTask", response.data.data);
+              state.task.id = response.data.data.id;
+              state.task.project_id = response.data.data.project_id;
+              state.task.title = response.data.data.title;
+              state.task.body = response.data.data.body;
+              state.task.created_at = response.data.data.created_at;
+              state.task.updated_at = response.data.data.updated_at;
+              state.task.status = response.data.data.status;
               commit("setNewTask", false);
 
               if (isMessage) {
                 alert("You have successfully saved the changes to the Task: " + response.data.data.title);
               }
 
-            case 14:
+            case 20:
             case "end":
               return _context9.stop();
           }
@@ -57774,13 +57807,13 @@ var actions = {
   fetchTasksSearch: function () {
     var _fetchTasksSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref18, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref19, event) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
         while (1) {
           switch (_context10.prev = _context10.next) {
             case 0:
-              commit = _ref18.commit, state = _ref18.state;
+              commit = _ref19.commit, state = _ref19.state;
               _context10.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
                 search: event.target.value
@@ -57810,13 +57843,13 @@ var actions = {
   fetchTasks: function () {
     var _fetchTasks = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref19, status) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref20, status) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
         while (1) {
           switch (_context11.prev = _context11.next) {
             case 0:
-              commit = _ref19.commit, state = _ref19.state;
+              commit = _ref20.commit, state = _ref20.state;
               _context11.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
 
@@ -57839,10 +57872,10 @@ var actions = {
     return fetchTasks;
   }(),
   // Toggle task status filter
-  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref20) {
-    var commit = _ref20.commit,
-        state = _ref20.state,
-        dispatch = _ref20.dispatch;
+  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref21) {
+    var commit = _ref21.commit,
+        state = _ref21.state,
+        dispatch = _ref21.dispatch;
 
     if (state.task_filter.filterstatus == "all") {
       commit("setTaskFilterStatus", "act");
@@ -57860,9 +57893,9 @@ var actions = {
     }
   },
   // Toggle task name filter
-  toggleTaskNameFilter: function toggleTaskNameFilter(_ref21) {
-    var commit = _ref21.commit,
-        state = _ref21.state;
+  toggleTaskNameFilter: function toggleTaskNameFilter(_ref22) {
+    var commit = _ref22.commit,
+        state = _ref22.state;
     commit("setTaskFilterName", !state.task_filter.filteraz);
 
     if (state.task_filter.filteraz) {
@@ -57878,9 +57911,9 @@ var actions = {
     }
   },
   // Toggle tasks ID filter
-  toggleTaskIdFilter: function toggleTaskIdFilter(_ref22) {
-    var commit = _ref22.commit,
-        state = _ref22.state;
+  toggleTaskIdFilter: function toggleTaskIdFilter(_ref23) {
+    var commit = _ref23.commit,
+        state = _ref23.state;
     commit("setTaskFilterId", !state.task_filter.filter09);
 
     if (state.task_filter.filter09) {
@@ -57898,13 +57931,13 @@ var actions = {
   showTask: function () {
     var _showTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref23, task) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref24, task) {
       var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
         while (1) {
           switch (_context12.prev = _context12.next) {
             case 0:
-              commit = _ref23.commit;
+              commit = _ref24.commit;
               commit("setTask", task);
               commit("setCurrentTaskId", task.id);
               commit("setNewTask", false);
@@ -57933,13 +57966,13 @@ var actions = {
   deleteTask: function () {
     var _deleteTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref24) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref25) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
         while (1) {
           switch (_context13.prev = _context13.next) {
             case 0:
-              commit = _ref24.commit, state = _ref24.state;
+              commit = _ref25.commit, state = _ref25.state;
 
               if (!(state.current_task_id != 0)) {
                 _context13.next = 9;
@@ -57981,9 +58014,9 @@ var actions = {
     return deleteTask;
   }(),
   // Change task status to complete
-  completeTask: function completeTask(_ref25) {
-    var state = _ref25.state,
-        dispatch = _ref25.dispatch;
+  completeTask: function completeTask(_ref26) {
+    var state = _ref26.state,
+        dispatch = _ref26.dispatch;
 
     if (state.current_task_id != 0) {
       state.task.status = 0;
@@ -57994,13 +58027,13 @@ var actions = {
   deleteDocument: function () {
     var _deleteDocument = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref26, current_document) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref27, current_document) {
       var state, dispatch, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
         while (1) {
           switch (_context14.prev = _context14.next) {
             case 0:
-              state = _ref26.state, dispatch = _ref26.dispatch;
+              state = _ref27.state, dispatch = _ref27.dispatch;
               _context14.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/document/delete/" + state.task.id + "/" + current_document);
 
@@ -58030,13 +58063,13 @@ var actions = {
   changeDocuments: function () {
     var _changeDocuments = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref27) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref28) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
         while (1) {
           switch (_context15.prev = _context15.next) {
             case 0:
-              commit = _ref27.commit, state = _ref27.state;
+              commit = _ref28.commit, state = _ref28.state;
               _context15.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + state.task.id);
 
@@ -58072,7 +58105,6 @@ var actions = {
   sortTasksIdDec: function sortTasksIdDec() {},
   sortTasksNameAcc: function sortTasksNameAcc() {},
   sortTasksNameDec: function sortTasksNameDec() {},
-  addProject: function addProject() {},
   changeProject: function changeProject() {},
   fetchProjectsSearch: function fetchProjectsSearch() {},
   getTasks: function getTasks() {}
