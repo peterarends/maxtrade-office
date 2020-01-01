@@ -364,12 +364,12 @@ const actions = {
             });
         }
     },
-    async showTask({ commit, state }, task) {
+    async showTask({ commit }, task) {
         commit("setTask", task);
         commit("setCurrentTaskId", task.id);
         commit("setNewTask", false);
         const response = await axios.get("api/task/documents/" + task.id);
-        commit("setDocuments", response.data.data);
+        commit("setDocuments", response.data);
         commit("setPanel", "tasks");
     },
     async deleteTask({ commit, state }) {
@@ -389,11 +389,25 @@ const actions = {
             }
         }
     },
+    // Change task status to complete
     completeTask({ state, dispatch }) {
         if (state.current_task_id != 0) {
             state.task.status = 0;
             dispatch("saveTask", false);
         }
+    },
+    // Delete selected document from task
+    async deleteDocument({ state, dispatch }, current_document) {
+        const response = await axios.delete("api/task/document/delete/" + state.task.id + "/" + current_document);
+        if (response.data.result === "success") {
+            dispatch("changeDocuments");
+        } else {
+            alert("Document cannot be deleted!");
+        }
+    },
+    async changeDocuments({ commit, state }) {
+        const response = await axios.get("api/task/documents/" + state.task.id);
+        commit("setDocuments", response.data);
     },
     showAllProjects() {
 
@@ -444,12 +458,6 @@ const actions = {
 
     },
     fetchProjectsSearch() {
-
-    },
-    changeDocuments() {
-
-    },
-    deleteDocument() {
 
     },
     getTasks() {

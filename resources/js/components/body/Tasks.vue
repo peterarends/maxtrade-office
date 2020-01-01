@@ -1,6 +1,6 @@
 <template>
     <div class="tasks-body">
-        <div class="button-bar" v-bind:class="getTheme">
+        <div class="button-bar" :class="getTheme">
             <div class="topTitleDiv">
                 <!--Window title-->
                 <span>Task: {{ getTask.id | formatTaskId(getNewTask) }}</span>
@@ -9,14 +9,14 @@
                 <!--Window title icons-->
                 <div
                     class="rightExitIcon"
-                    v-bind:class="getTheme"
-                    v-on:click="closeTask"
+                    :class="getTheme"
+                    @click="closePanel"
                 >
                     <img src="/images/close.png" />
                 </div>
             </div>
         </div>
-        <div class="body" v-bind:class="[getTask.status == 0 ? 'ended' : '']">
+        <div class="body" :class="[getTask.status == 0 ? 'ended' : '']">
             <div class="date">
                 <h3>Date start: {{ getTask.created_at | formatDate }}</h3>
                 <h3>
@@ -52,7 +52,7 @@
                 <div
                     class="document"
                     v-for="document in getDocuments"
-                    v-bind:key="document"
+                    :key="document"
                 >
                     <a
                         target="_blank"
@@ -61,11 +61,11 @@
                         "
                     >
                         <img
-                            v-bind:src="
+                            :src="
                                 ('images/tasks/' + getTask.id + '/' + document)
                                     | formatIcons
                             "
-                            v-bind:alt="document"
+                            :alt="document"
                             @contextmenu.prevent="
                                 $refs.menu.open($event, document)
                             "
@@ -92,25 +92,25 @@
                 </button>
             </div>
         </div>
-        <div class="bottom" v-bind:class="getTheme">
-            <a v-on:click.prevent="saveTask">
+        <div class="bottom" :class="getTheme">
+            <a @click.prevent="saveTask(true)">
                 <i
                     class="mdi mdi-content-save-outline mdiTaskIcon"
-                    v-bind:class="getTheme"
+                    :class="getTheme"
                 ></i
                 >&nbsp;Save Task
             </a>
-            <a v-on:click.prevent="deleteTask">
+            <a @click.prevent="deleteTask">
                 <i
                     class="mdi mdi-delete-outline mdiTaskIcon"
-                    v-bind:class="getTheme"
+                    :class="getTheme"
                 ></i
                 >&nbsp;Delete Task
             </a>
-            <a v-on:click.prevent="closeTask">
+            <a @click.prevent="closePanel">
                 <i
                     class="mdi mdi-close-outline mdiTaskIcon"
-                    v-bind:class="getTheme"
+                    :class="getTheme"
                 ></i
                 >&nbsp;Close Task
             </a>
@@ -131,7 +131,7 @@ import moment from "moment";
 import path from "path";
 import axios from "axios";
 import { VueContext } from "vue-context";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     name: "Tasks",
@@ -201,15 +201,13 @@ export default {
     },
 
     methods: {
-        closeTask: function(event) {
-            this.$emit("closepanel");
-        },
-        saveTask: function(event) {
-            this.$emit("savetask");
-        },
-        deleteTask: function(event) {
-            this.$emit("deletetask");
-        },
+        ...mapActions([
+            "closePanel",
+            "saveTask",
+            "deleteTask",
+            "deleteDocument",
+            "changeDocuments"
+        ]),
         onFileSelected(event) {
             this.file = event.target.files[0];
         },
@@ -217,7 +215,7 @@ export default {
             const formData = new FormData();
             formData.append("file", this.file, this.file.name);
             axios
-                .post("api/task/file/" + this.task.id, formData, {
+                .post("api/task/file/" + this.getTask.id, formData, {
                     onUploadProgress: uploudEvent => {
                         this.$refs.uploadPurcent.innerHTML =
                             Math.round(
@@ -230,7 +228,7 @@ export default {
                         this.$refs.file.value = "";
                         this.$refs.uploadPurcent.innerHTML = "";
                         this.file = null;
-                        this.$emit("changedocuments");
+                        this.changeDocuments();
                     } else {
                         if (res.data.result === "no file") {
                             alert("You have not specified a file to upload!");
@@ -245,7 +243,6 @@ export default {
                                 "This type of file is not allowed for upload!"
                             );
                         }
-                        console.log(res.data.result);
                     }
                 })
                 .catch(function(e) {
@@ -257,7 +254,7 @@ export default {
         },
         onClickContextMenu(action) {
             if (action === "delete" && this.current_file !== null) {
-                this.$emit("deletedocument", this.current_file);
+                this.deleteDocument(this.current_file);
             }
         }
     }

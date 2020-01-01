@@ -2833,6 +2833,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var vue_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-context */ "./node_modules/vue-context/src/js/index.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3035,16 +3041,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: {
-    closeTask: function closeTask(event) {
-      this.$emit("closepanel");
-    },
-    saveTask: function saveTask(event) {
-      this.$emit("savetask");
-    },
-    deleteTask: function deleteTask(event) {
-      this.$emit("deletetask");
-    },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapActions"])(["closePanel", "saveTask", "deleteTask", "deleteDocument", "changeDocuments"]), {
     onFileSelected: function onFileSelected(event) {
       this.file = event.target.files[0];
     },
@@ -3053,7 +3050,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var formData = new FormData();
       formData.append("file", this.file, this.file.name);
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("api/task/file/" + this.task.id, formData, {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("api/task/file/" + this.getTask.id, formData, {
         onUploadProgress: function onUploadProgress(uploudEvent) {
           _this.$refs.uploadPurcent.innerHTML = Math.round(uploudEvent.loaded / uploudEvent.total * 100) + "%";
         }
@@ -3063,7 +3060,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.$refs.uploadPurcent.innerHTML = "";
           _this.file = null;
 
-          _this.$emit("changedocuments");
+          _this.changeDocuments();
         } else {
           if (res.data.result === "no file") {
             alert("You have not specified a file to upload!");
@@ -3076,8 +3073,6 @@ __webpack_require__.r(__webpack_exports__);
           if (res.data.result === "wrong file type") {
             alert("This type of file is not allowed for upload!");
           }
-
-          console.log(res.data.result);
         }
       })["catch"](function (e) {
         console.log(e.mesage);
@@ -3088,10 +3083,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     onClickContextMenu: function onClickContextMenu(action) {
       if (action === "delete" && this.current_file !== null) {
-        this.$emit("deletedocument", this.current_file);
+        this.deleteDocument(this.current_file);
       }
     }
-  }
+  })
 });
 
 /***/ }),
@@ -42632,7 +42627,7 @@ var render = function() {
             {
               staticClass: "rightExitIcon",
               class: _vm.getTheme,
-              on: { click: _vm.closeTask }
+              on: { click: _vm.closePanel }
             },
             [_c("img", { attrs: { src: "/images/close.png" } })]
           )
@@ -42859,7 +42854,7 @@ var render = function() {
             on: {
               click: function($event) {
                 $event.preventDefault()
-                return _vm.saveTask($event)
+                return _vm.saveTask(true)
               }
             }
           },
@@ -42897,7 +42892,7 @@ var render = function() {
             on: {
               click: function($event) {
                 $event.preventDefault()
-                return _vm.closeTask($event)
+                return _vm.closePanel($event)
               }
             }
           },
@@ -57904,12 +57899,12 @@ var actions = {
     var _showTask = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref23, task) {
-      var commit, state, response;
+      var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
         while (1) {
           switch (_context12.prev = _context12.next) {
             case 0:
-              commit = _ref23.commit, state = _ref23.state;
+              commit = _ref23.commit;
               commit("setTask", task);
               commit("setCurrentTaskId", task.id);
               commit("setNewTask", false);
@@ -57918,7 +57913,7 @@ var actions = {
 
             case 6:
               response = _context12.sent;
-              commit("setDocuments", response.data.data);
+              commit("setDocuments", response.data);
               commit("setPanel", "tasks");
 
             case 9:
@@ -57985,6 +57980,7 @@ var actions = {
 
     return deleteTask;
   }(),
+  // Change task status to complete
   completeTask: function completeTask(_ref25) {
     var state = _ref25.state,
         dispatch = _ref25.dispatch;
@@ -57994,6 +57990,74 @@ var actions = {
       dispatch("saveTask", false);
     }
   },
+  // Delete selected document from task
+  deleteDocument: function () {
+    var _deleteDocument = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref26, current_document) {
+      var state, dispatch, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+        while (1) {
+          switch (_context14.prev = _context14.next) {
+            case 0:
+              state = _ref26.state, dispatch = _ref26.dispatch;
+              _context14.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/document/delete/" + state.task.id + "/" + current_document);
+
+            case 3:
+              response = _context14.sent;
+
+              if (response.data.result === "success") {
+                dispatch("changeDocuments");
+              } else {
+                alert("Document cannot be deleted!");
+              }
+
+            case 5:
+            case "end":
+              return _context14.stop();
+          }
+        }
+      }, _callee14);
+    }));
+
+    function deleteDocument(_x23, _x24) {
+      return _deleteDocument.apply(this, arguments);
+    }
+
+    return deleteDocument;
+  }(),
+  changeDocuments: function () {
+    var _changeDocuments = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref27) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
+        while (1) {
+          switch (_context15.prev = _context15.next) {
+            case 0:
+              commit = _ref27.commit, state = _ref27.state;
+              _context15.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + state.task.id);
+
+            case 3:
+              response = _context15.sent;
+              commit("setDocuments", response.data);
+
+            case 5:
+            case "end":
+              return _context15.stop();
+          }
+        }
+      }, _callee15);
+    }));
+
+    function changeDocuments(_x25) {
+      return _changeDocuments.apply(this, arguments);
+    }
+
+    return changeDocuments;
+  }(),
   showAllProjects: function showAllProjects() {},
   showCompletedProjects: function showCompletedProjects() {},
   showActivedProjects: function showActivedProjects() {},
@@ -58011,8 +58075,6 @@ var actions = {
   addProject: function addProject() {},
   changeProject: function changeProject() {},
   fetchProjectsSearch: function fetchProjectsSearch() {},
-  changeDocuments: function changeDocuments() {},
-  deleteDocument: function deleteDocument() {},
   getTasks: function getTasks() {}
 };
 var mutations = {

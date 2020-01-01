@@ -579,34 +579,6 @@ export default {
         //     this.task_filter.filterstatus = "end";
         //     this.fetchTasks("end", this.getCurrentProjectId());
         // },
-        // changeDocuments() {
-        //     fetch("api/task/documents/" + this.task.id)
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             this.documents = res;
-        //         })
-        //         .catch(err => console.log(err));
-        // },
-        // deleteDocument(current_document) {
-        //     fetch(
-        //         "api/task/document/delete/" +
-        //             this.task.id +
-        //             "/" +
-        //             current_document,
-        //         {
-        //             method: "DELETE"
-        //         }
-        //     )
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             if (res.result === "success") {
-        //                 this.changeDocuments();
-        //             } else {
-        //                 alert("Document cannot be deleted!");
-        //             }
-        //         })
-        //         .catch(err => console.log(err));
-        // },
 
         // // Show About panel
         // showAbout() {
