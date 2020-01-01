@@ -1,16 +1,16 @@
 <template>
-    <div class="mainDiv" v-bind:class="getTheme">
+    <div class="mainDiv" :class="getTheme">
         <top-bar></top-bar>
         <!-- Start Body panel -->
-        <div class="body" v-bind:class="getTheme">
+        <div class="body" :class="getTheme">
             <leftmenu></leftmenu>
             <projects-panel></projects-panel>
             <tasks-panel></tasks-panel>
-            <div class="mainDivBodypanel" v-bind:class="getTheme">
+            <div class="mainDivBodypanel" :class="getTheme">
                 <properties v-show="getPanel == 'properties'"></properties>
-                <about v-show="getPanel == 'about'"></about>
                 <projects v-show="getPanel == 'projects'"></projects>
                 <tasks v-show="getPanel == 'tasks'"></tasks>
+                <about v-show="getPanel == 'about'"></about>
             </div>
         </div>
         <!-- End body panel -->
@@ -50,102 +50,50 @@ export default {
         this.fetchProperties();
     },
 
-    computed: mapGetters([
-        "getTheme",
-        "getCurrentProjectId",
-        "getCurrentTaskId",
-        "getPanel"
-    ]),
+    computed: mapGetters(["getTheme", "getPanel"]),
 
     methods: {
-        ...mapActions([
-            "fetchProperties",
-            "exitProgram",
-            "showProperties",
-            "showAbout",
-            "addProject",
-
-            "completeProject",
-            "showAllProjects",
-            "showCompletedProjects",
-            "showActivedProjects",
-            "sortProjectsIdAcc",
-            "sortProjectsIdDec",
-            "sortProjectsNameAcc",
-            "sortProjectsNameDec",
-            "completeTask",
-            "showAllTasks",
-            "showCompletedTasks",
-            "showActivedTasks",
-            "sortTasksIdAcc",
-            "sortTasksIdDec",
-            "sortTasksNameAcc",
-            "sortTasksNameDec",
-            "deleteProject",
-            "addTask",
-            "deleteTask",
-            "changeProject",
-            "toggleProjectIdFilter",
-            "toggleProjectNameFilter",
-            "toggleProjectStatusFilter",
-            "fetchProjectsSearch",
-            "changeTask",
-            "toggleTaskIdFilter",
-            "toggleTaskNameFilter",
-            "toggleTaskStatusFilter",
-            "fetchTasksSearch",
-            "changeDocuments",
-            "deleteDocument",
-            "getTasks"
-        ])
-
-        // // Projects actions
-        // // Add new project
-        // addProject() {
-        //     const newProject = {
-        //         id:
-        //             Math.max.apply(
-        //                 Math,
-        //                 this.projects.map(function(o) {
-        //                     return o.id;
-        //                 })
-        //             ) + 1,
-        //         title: "Name of new Project",
-        //         body: "Description of new Project",
-        //         created_at: moment().format(),
-        //         updated_at: "",
-        //         status: 1
-        //     };
-        //     this.projects.unshift(newProject);
-        //     this.project = newProject;
-        //     //this.current_project_id = newProject.id;
-        //     this.new_project = true;
-        //     this.panel = "projects";
-        //     this.saveProject(false);
-        // },
-
-        // // Show About panel
-        // showAbout() {
-        //     this.panel = "about";
-        // },
-
-        // // Other system staff
-        // // Close all panels and unset current projects
-        // closePanel() {
-        //     //this.current_task_id = 0;
-        //     this.tasks = [];
-        //     //this.current_project_id = 0;
-        //     this.panel = "";
-        // },
-        // // Exit the program
-        // exit: function(event) {
-        //     window.location = "/logout.html";
-        // }
+        ...mapActions(["fetchProperties"])
     }
 };
 </script>
 
 <style>
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.mainDiv.light {
+    background-color: #fff;
+}
+.mainDiv.dark {
+    background-color: #000;
+}
+/* Start Body panel */
+.body {
+    display: flex;
+    flex: 1;
+}
+.body.light {
+    color: #718096;
+    border-top: 1px solid #f7fafc;
+}
+.body.dark {
+    color: #cbd5e0;
+    border-top: 1px solid #1a202c;
+}
+.mainDivBodypanel {
+    display: flex;
+    flex: 1;
+}
+.mainDivBodypanel.light {
+    background-color: #f7fafc;
+}
+.mainDivBodypanel.dark {
+    background-color: #1a202c;
+}
+/* End Body panel */
 /* Projects and Tasks List View */
 h1 {
     font-size: 28px;
@@ -161,17 +109,6 @@ h4 {
 }
 h5 {
     font-size: 16px;
-}
-.mainDiv {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-.mainDiv.light {
-    background-color: #fff;
-}
-.mainDiv.dark {
-    background-color: #000;
 }
 .list-dot {
     color: #4682b4;
@@ -252,28 +189,4 @@ h5 {
 ::-webkit-scrollbar-thumb:hover {
     background: #4a5568;
 }
-/* Start Body panel */
-.body {
-    display: flex;
-    flex: 1;
-}
-.body.light {
-    color: #718096;
-    border-top: 1px solid #f7fafc;
-}
-.body.dark {
-    color: #cbd5e0;
-    border-top: 1px solid #1a202c;
-}
-.mainDivBodypanel {
-    display: flex;
-    flex: 1;
-}
-.mainDivBodypanel.light {
-    background-color: #f7fafc;
-}
-.mainDivBodypanel.dark {
-    background-color: #1a202c;
-}
-/* End Body panel */
 </style>

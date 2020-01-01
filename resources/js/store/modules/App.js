@@ -539,15 +539,6 @@ const actions = {
             if (a.title > b.title) return -1;
             if (a.title < b.title) return 1;
         });
-    },
-    changeProject() {
-
-    },
-    fetchProjectsSearch() {
-
-    },
-    getTasks() {
-
     }
 };
 

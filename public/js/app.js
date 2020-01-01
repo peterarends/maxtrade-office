@@ -1915,8 +1915,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.fetchProperties();
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapGetters"])(["getTheme", "getCurrentProjectId", "getCurrentTaskId", "getPanel"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapActions"])(["fetchProperties", "exitProgram", "showProperties", "showAbout", "addProject", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "deleteProject", "addTask", "deleteTask", "changeProject", "toggleProjectIdFilter", "toggleProjectNameFilter", "toggleProjectStatusFilter", "fetchProjectsSearch", "changeTask", "toggleTaskIdFilter", "toggleTaskNameFilter", "toggleTaskStatusFilter", "fetchTasksSearch", "changeDocuments", "deleteDocument", "getTasks"]))
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapGetters"])(["getTheme", "getPanel"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapActions"])(["fetchProperties"]))
 });
 
 /***/ }),
@@ -3244,7 +3244,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n", ""]);
+exports.push([module.i, ".mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n", ""]);
 
 // exports
 
@@ -41272,17 +41272,6 @@ var render = function() {
                 ]
               }),
               _vm._v(" "),
-              _c("about", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.getPanel == "about",
-                    expression: "getPanel == 'about'"
-                  }
-                ]
-              }),
-              _vm._v(" "),
               _c("projects", {
                 directives: [
                   {
@@ -41301,6 +41290,17 @@ var render = function() {
                     rawName: "v-show",
                     value: _vm.getPanel == "tasks",
                     expression: "getPanel == 'tasks'"
+                  }
+                ]
+              }),
+              _vm._v(" "),
+              _c("about", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.getPanel == "about",
+                    expression: "getPanel == 'about'"
                   }
                 ]
               })
@@ -58532,10 +58532,7 @@ var actions = {
       if (a.title > b.title) return -1;
       if (a.title < b.title) return 1;
     });
-  },
-  changeProject: function changeProject() {},
-  fetchProjectsSearch: function fetchProjectsSearch() {},
-  getTasks: function getTasks() {}
+  }
 };
 var mutations = {
   setTheme: function setTheme(state, theme) {
