@@ -1,8 +1,6 @@
 <template>
     <div class="mainDiv" v-bind:class="getTheme">
-        <!-- Start Top panel -->
         <top-bar></top-bar>
-        <!-- End Top panel -->
         <!-- Start Body panel -->
         <div class="body" v-bind:class="getTheme">
             <leftmenu></leftmenu>
@@ -16,33 +14,7 @@
             </div>
         </div>
         <!-- End body panel -->
-        <!-- Start Footer panel -->
-        <div class="footerMainDiv" v-bind:class="getTheme">
-            <div class="footer-icon">
-                <!--Header icon-->
-                <div><i class="mdi mdi-server-network serverIcon"></i></div>
-                <div class="separator-vertical" v-bind:class="getTheme"></div>
-                <div>
-                    MaxtradeOffice ver: <span>{{ version }}</span>
-                </div>
-                <div class="separator-vertical" v-bind:class="getTheme"></div>
-                <div class="projects-panel-title-dot">
-                    <i class="fas fa-circle"></i>
-                </div>
-                <div>
-                    <!-- Projects: <span>{{ projects.length }}</span> -->
-                </div>
-                <div class="separator-vertical" v-bind:class="getTheme"></div>
-                <div class="tasks-panel-title-dot">
-                    <i class="fas fa-circle"></i>
-                </div>
-                <div>
-                    Tasks: <span>{{ getTasks.length }}</span>
-                </div>
-                <div class="separator-vertical" v-bind:class="getTheme"></div>
-            </div>
-        </div>
-        <!-- End Footer panel -->
+        <footer-bar></footer-bar>
     </div>
 </template>
 
@@ -56,6 +28,7 @@ import Properties from "./body/Properties";
 import Projects from "./body/Projects";
 import Tasks from "./body/Tasks";
 import About from "./body/About";
+import FooterBar from "./body/FooterBar";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -69,13 +42,8 @@ export default {
         Properties,
         Projects,
         Tasks,
-        About
-    },
-
-    data() {
-        return {
-            version: "1.0.1"
-        };
+        About,
+        FooterBar
     },
 
     created() {
@@ -308,40 +276,4 @@ h5 {
     background-color: #1a202c;
 }
 /* End Body panel */
-
-/** Start Footer panel */
-.footerMainDiv {
-    display: flex;
-    align-items: center;
-    height: 2rem;
-}
-.footerMainDiv.dark {
-    color: #e2e8f0;
-    background-color: #2d3748;
-}
-.footerMainDiv.light {
-    color: #4a5568;
-    background-color: #edf2f7;
-}
-.serverIcon {
-    font-size: 1.25rem;
-}
-.footer-icon {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    padding-left: 10px;
-    padding-right: 2px;
-}
-.footer-icon div:first-child {
-    width: 32px;
-    text-align: center;
-}
-.button {
-    padding: 3px 8px;
-    background: #2d3748;
-    border: 1px solid #4a5568;
-    border-radius: 5px;
-}
-/* End Footer panel */
 </style>

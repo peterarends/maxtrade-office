@@ -2,6 +2,7 @@ import axios from "axios";
 import moment from "moment";
 
 const state = {
+    version: "1.0.1",
     theme: "dark",
     properties: [],
     property_categories: [],
@@ -53,7 +54,8 @@ const getters = {
         return state.tasks.filter(
             p => p.status === 0
         ).length;
-    }
+    },
+    getVersion: state => state.version
 };
 
 const actions = {
