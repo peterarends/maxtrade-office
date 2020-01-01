@@ -439,51 +439,104 @@ const actions = {
             alert("Document cannot be deleted!");
         }
     },
+    // Change documents after commit
     async changeDocuments({ commit, state }) {
         const response = await axios.get("api/task/documents/" + state.task.id);
         commit("setDocuments", response.data);
     },
-    showAllProjects() {
-
+    // Filter show all projects
+    showAllProjects({ state, dispatch }) {
+        state.project_filter.filterstatus = "all";
+        dispatch("fetchProjects", "all");
     },
-    showCompletedProjects() {
-
+    // Filter show completed projects
+    showCompletedProjects({ state, dispatch }) {
+        state.project_filter.filterstatus = "end";
+        dispatch("fetchProjects", "end");
     },
-    showActivedProjects() {
-
+    // Filter show actived projects
+    showActivedProjects({ state, dispatch }) {
+        state.project_filter.filterstatus = "act";
+        dispatch("fetchProjects", "act");
     },
-    sortProjectsIdAcc() {
-
+    // Sort projects by ID ACC
+    sortProjectsIdAcc({ state }) {
+        state.project_filter.filter09 = true;
+        state.projects.sort(function (a, b) {
+            if (a.id > b.id) return 1;
+            if (a.id < b.id) return -1;
+        });
     },
-    sortProjectsIdDec() {
-
+    // Sort projects by ID DEC
+    sortProjectsIdDec({ state }) {
+        state.project_filter.filter09 = false;
+        state.projects.sort(function (a, b) {
+            if (a.id > b.id) return -1;
+            if (a.id < b.id) return 1;
+        });
     },
-    sortProjectsNameAcc() {
-
+    // Sort projects by Name ACC
+    sortProjectsNameAcc({ state }) {
+        state.project_filter.filteraz = true;
+        state.projects.sort(function (a, b) {
+            if (a.title > b.title) return 1;
+            if (a.title < b.title) return -1;
+        });
     },
-    sortProjectsNameDec() {
-
+    // Sort projects by Name DEC
+    sortProjectsNameDec({ state }) {
+        state.project_filter.filteraz = false;
+        state.projects.sort(function (a, b) {
+            if (a.title > b.title) return -1;
+            if (a.title < b.title) return 1;
+        });
     },
-    showAllTasks() {
-
+    // Filter show all tasks
+    showAllTasks({ state, dispatch }) {
+        state.task_filter.filterstatus = "all";
+        dispatch("fetchTasks", "all", state.current_project_id);
     },
-    showCompletedTasks() {
-
+    // Filter show completed tasks
+    showCompletedTasks({ state, dispatch }) {
+        state.task_filter.filterstatus = "end";
+        dispatch("fetchTasks", "end", state.current_project_id);
     },
-    showActivedTasks() {
-
+    // Filter show actived tasks
+    showActivedTasks({ state, dispatch }) {
+        state.task_filter.filterstatus = "act";
+        dispatch("fetchTasks", "act", state.current_project_id);
     },
-    sortTasksIdAcc() {
-
+    // Sort tasks by ID ACC
+    sortTasksIdAcc({ state }) {
+        state.task_filter.filter09 = true;
+        state.tasks.sort(function (a, b) {
+            if (a.id > b.id) return 1;
+            if (a.id < b.id) return -1;
+        });
     },
-    sortTasksIdDec() {
-
+    // Sort tasks by ID DEC
+    sortTasksIdDec({ state }) {
+        state.task_filter.filter09 = false;
+        state.tasks.sort(function (a, b) {
+            if (a.id > b.id) return -1;
+            if (a.id < b.id) return 1;
+        });
     },
-    sortTasksNameAcc() {
-
+    // Sort tasks by Name ACC
+    sortTasksNameAcc({ state }) {
+        state.task_filter.filteraz = true;
+        state.tasks.sort(function (a, b) {
+            if (a.title > b.title) return 1;
+            if (a.title < b.title) return -1;
+        });
     },
+    // Sort tasks by Name DEC
     sortTasksNameDec() {
-
+        state.task_filter.filteraz = false;
+        state.tasks.sort(function (a, b) {
+            if (a.title > b.title) return -1;
+            if (a.title < b.title) return 1;
+        });
     },
     changeProject() {
 

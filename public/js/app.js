@@ -1852,14 +1852,15 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _body_Leftmenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./body/Leftmenu */ "./resources/js/components/body/Leftmenu.vue");
-/* harmony import */ var _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./body/ProjectsPanel */ "./resources/js/components/body/ProjectsPanel.vue");
-/* harmony import */ var _body_TasksPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./body/TasksPanel */ "./resources/js/components/body/TasksPanel.vue");
-/* harmony import */ var _body_Properties__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./body/Properties */ "./resources/js/components/body/Properties.vue");
-/* harmony import */ var _body_Projects__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./body/Projects */ "./resources/js/components/body/Projects.vue");
-/* harmony import */ var _body_Tasks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./body/Tasks */ "./resources/js/components/body/Tasks.vue");
-/* harmony import */ var _body_About__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./body/About */ "./resources/js/components/body/About.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _body_TopBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./body/TopBar */ "./resources/js/components/body/TopBar.vue");
+/* harmony import */ var _body_Leftmenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./body/Leftmenu */ "./resources/js/components/body/Leftmenu.vue");
+/* harmony import */ var _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./body/ProjectsPanel */ "./resources/js/components/body/ProjectsPanel.vue");
+/* harmony import */ var _body_TasksPanel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./body/TasksPanel */ "./resources/js/components/body/TasksPanel.vue");
+/* harmony import */ var _body_Properties__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./body/Properties */ "./resources/js/components/body/Properties.vue");
+/* harmony import */ var _body_Projects__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./body/Projects */ "./resources/js/components/body/Projects.vue");
+/* harmony import */ var _body_Tasks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./body/Tasks */ "./resources/js/components/body/Tasks.vue");
+/* harmony import */ var _body_About__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./body/About */ "./resources/js/components/body/About.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1914,350 +1915,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -2270,13 +1928,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   components: {
-    Leftmenu: _body_Leftmenu__WEBPACK_IMPORTED_MODULE_1__["default"],
-    ProjectsPanel: _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_2__["default"],
-    TasksPanel: _body_TasksPanel__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Properties: _body_Properties__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Projects: _body_Projects__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Tasks: _body_Tasks__WEBPACK_IMPORTED_MODULE_6__["default"],
-    About: _body_About__WEBPACK_IMPORTED_MODULE_7__["default"]
+    TopBar: _body_TopBar__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Leftmenu: _body_Leftmenu__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ProjectsPanel: _body_ProjectsPanel__WEBPACK_IMPORTED_MODULE_3__["default"],
+    TasksPanel: _body_TasksPanel__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Properties: _body_Properties__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Projects: _body_Projects__WEBPACK_IMPORTED_MODULE_6__["default"],
+    Tasks: _body_Tasks__WEBPACK_IMPORTED_MODULE_7__["default"],
+    About: _body_About__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   data: function data() {
     return {
@@ -2286,8 +1945,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.fetchProperties();
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapGetters"])(["getTheme", "getCurrentProjectId", "getCurrentTaskId", "getPanel"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapActions"])(["fetchProperties", "exitProgram", "showProperties", "showAbout", "addProject", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "deleteProject", "addTask", "deleteTask", "changeProject", "toggleProjectIdFilter", "toggleProjectNameFilter", "toggleProjectStatusFilter", "fetchProjectsSearch", "changeTask", "toggleTaskIdFilter", "toggleTaskNameFilter", "toggleTaskStatusFilter", "fetchTasksSearch", "changeDocuments", "deleteDocument", "getTasks"]))
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_9__["mapGetters"])(["getTheme", "getCurrentProjectId", "getCurrentTaskId", "getPanel"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_9__["mapActions"])(["fetchProperties", "exitProgram", "showProperties", "showAbout", "addProject", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "deleteProject", "addTask", "deleteTask", "changeProject", "toggleProjectIdFilter", "toggleProjectNameFilter", "toggleProjectStatusFilter", "fetchProjectsSearch", "changeTask", "toggleTaskIdFilter", "toggleTaskNameFilter", "toggleTaskStatusFilter", "fetchTasksSearch", "changeDocuments", "deleteDocument", "getTasks"]))
 });
 
 /***/ }),
@@ -3232,6 +2891,331 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/TopBar.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/TopBar.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Header",
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["exitProgram", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "addProject", "getCurrentProjectId", "deleteProject", "addTask", "getCurrentTaskId", "deleteTask", "showProperties", "showAbout"]))
+});
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/App.vue?vue&type=style&index=0&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/App.vue?vue&type=style&index=0&lang=css& ***!
@@ -3244,7 +3228,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n\n/* Start Top panel */\n.generalStyleDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light {\n  color: #4a5568;\n}\n.contentDiv.dark {\n  color: #e2e8f0;\n}\n.mdiExitIcon {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light {\n  color: #fc8181;\n}\n.mdiExitIcon.dark {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark {\n  color: #dd6b20;\n}\n.standardSizeIcon {\n  font-size: 1.5rem;\n}\n.topTitleDiv {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light {\n  color: #4a5568;\n}\n.topTitleDiv.dark {\n  color: #e2e8f0;\n}\n.topRightIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark:hover {\n  background-color: #718096;\n}\n.rightExitIcon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark {\n  background-color: #e53e3e;\n}\n.button-bar {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar button {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light button {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark button {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark button:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light button:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul,\n#cssmenu li {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover,\n#cssmenu ul li:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li {\n  float: none;\n}\n#cssmenu ul ul ul {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul {\n  visibility: visible;\n}\n#cssmenu ul ul {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul {\n  margin-top: 0;\n}\n#cssmenu ul ul li {\n  font-weight: normal;\n}\n#cssmenu a {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul {\n  display: inline-block;\n}\n#cssmenu:after,\n#cssmenu ul:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul {\n  border-top: 0 none;\n}\n#cssmenu ul ul li {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a,\n#cssmenu.dark ul li.active > a {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a,\n#cssmenu.light ul li.active > a {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a {\n  padding: 3px 10px;\n}\n#cssmenu.dark a {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a {\n  line-height: 30px;\n}\n.mnu-flex {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/** Start Footer panel */\n.footerMainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon {\n  font-size: 1.25rem;\n}\n.footer-icon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n\n/* End Footer panel */\n", ""]);
+exports.push([module.i, "/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/** Start Footer panel */\n.footerMainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon {\n  font-size: 1.25rem;\n}\n.footer-icon {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n\n/* End Footer panel */\n", ""]);
 
 // exports
 
@@ -3378,6 +3362,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, ".v-context[data-v-03b2ccc8],\n.v-context ul[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-03b2ccc8],\n.v-context ul > li[data-v-03b2ccc8] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-03b2ccc8],\n.v-context ul > li > a[data-v-03b2ccc8] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-03b2ccc8]:focus,\n.v-context > li > a[data-v-03b2ccc8]:hover,\n.v-context ul > li > a[data-v-03b2ccc8]:focus,\n.v-context ul > li > a[data-v-03b2ccc8]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-03b2ccc8]:focus,\n.v-context > li > a[data-v-03b2ccc8]:focus,\n.v-context ul[data-v-03b2ccc8]:focus,\n.v-context ul > li > a[data-v-03b2ccc8]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-03b2ccc8]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-03b2ccc8] {\n  display: none;\n}\n\n/** Top part of projects */\n.topProjectsDiv[data-v-03b2ccc8] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Top part of tasks */\n.topTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topTaskDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topTaskDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-03b2ccc8] {\n  border-radius: 0.25rem;\n  width: 70%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-03b2ccc8] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-03b2ccc8] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIconsText[data-v-03b2ccc8] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIconsText.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIconsText.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIconsText.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIconsText.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n.searchIcons[data-v-03b2ccc8] {\n  font-size: 1.5rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIcons.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-03b2ccc8] {\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleTaskId[data-v-03b2ccc8] {\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleTaskId.idBackground.light[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleTaskId.idBackground.dark[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleTaskId.idTextUnfinished.light[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleTaskId.idTextUnfinished.dark[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleTaskId.idTextFinished.light[data-v-03b2ccc8] {\n  color: #f7fafc;\n}\n.singleTaskId.idTextFinished.dark[data-v-03b2ccc8] {\n  color: #1a202c;\n}\n.singleTaskText[data-v-03b2ccc8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleTaskText.titleTextUnfinished.light[data-v-03b2ccc8] {\n  color: #4a5568;\n}\n.singleTaskText.titleTextUnfinished.dark[data-v-03b2ccc8] {\n  color: #e2e8f0;\n}\n.singleTaskText.titleTextFinished.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.singleTaskText.titleTextFinished.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.body-tasks-panel[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-tasks-panel.light[data-v-03b2ccc8] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-tasks-panel.dark[data-v-03b2ccc8] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#tasksListView[data-v-03b2ccc8] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8] {\n  background: #718096;\n  color: #edf2f7;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8] {\n  background: #cbd5e0;\n  color: #2d3748;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.active[data-v-03b2ccc8] {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.ended[data-v-03b2ccc8] {\n  color: #cbd5e0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended[data-v-03b2ccc8] {\n  color: #718096;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem div[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.task_item[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.task_item.light[data-v-03b2ccc8] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.task_item[data-v-03b2ccc8]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.task_item.light[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.task_item.light.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark.active[data-v-03b2ccc8] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* Start Top panel */\n.generalStyleDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light[data-v-5a26d5a0] {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark[data-v-5a26d5a0] {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg[data-v-5a26d5a0] {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light[data-v-5a26d5a0] {\n  color: #4a5568;\n}\n.contentDiv.dark[data-v-5a26d5a0] {\n  color: #e2e8f0;\n}\n.mdiExitIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light[data-v-5a26d5a0] {\n  color: #fc8181;\n}\n.mdiExitIcon.dark[data-v-5a26d5a0] {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light[data-v-5a26d5a0] {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark[data-v-5a26d5a0] {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light[data-v-5a26d5a0] {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark[data-v-5a26d5a0] {\n  color: #dd6b20;\n}\n.standardSizeIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.topTitleDiv[data-v-5a26d5a0] {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-5a26d5a0] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-5a26d5a0] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light[data-v-5a26d5a0]:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark[data-v-5a26d5a0]:hover {\n  background-color: #718096;\n}\n.rightExitIcon[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-5a26d5a0] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-5a26d5a0] {\n  background-color: #e53e3e;\n}\n.button-bar[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-5a26d5a0] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-5a26d5a0] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar button[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light button[data-v-5a26d5a0] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark button[data-v-5a26d5a0] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark button[data-v-5a26d5a0]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light button[data-v-5a26d5a0]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu[data-v-5a26d5a0] {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul[data-v-5a26d5a0],\n#cssmenu li[data-v-5a26d5a0] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul[data-v-5a26d5a0] {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li[data-v-5a26d5a0] {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover[data-v-5a26d5a0],\n#cssmenu ul li[data-v-5a26d5a0]:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  float: none;\n}\n#cssmenu ul ul ul[data-v-5a26d5a0] {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul[data-v-5a26d5a0] {\n  visibility: visible;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  margin-top: 0;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  font-weight: normal;\n}\n#cssmenu a[data-v-5a26d5a0] {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul[data-v-5a26d5a0] {\n  display: inline-block;\n}\n#cssmenu[data-v-5a26d5a0]:after,\n#cssmenu ul[data-v-5a26d5a0]:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a[data-v-5a26d5a0] {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a[data-v-5a26d5a0] {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul[data-v-5a26d5a0] {\n  border-top: 0 none;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a[data-v-5a26d5a0] {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a[data-v-5a26d5a0] {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a[data-v-5a26d5a0] {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a[data-v-5a26d5a0] {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a[data-v-5a26d5a0] {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a[data-v-5a26d5a0] {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a[data-v-5a26d5a0]:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a[data-v-5a26d5a0],\n#cssmenu.dark ul li.active > a[data-v-5a26d5a0] {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a[data-v-5a26d5a0],\n#cssmenu.light ul li.active > a[data-v-5a26d5a0] {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul[data-v-5a26d5a0] {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul[data-v-5a26d5a0] {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a[data-v-5a26d5a0] {\n  padding: 3px 10px;\n}\n#cssmenu.dark a[data-v-5a26d5a0] {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a[data-v-5a26d5a0] {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a[data-v-5a26d5a0] {\n  line-height: 30px;\n}\n.mnu-flex[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\n", ""]);
 
 // exports
 
@@ -39898,6 +39901,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -41143,623 +41176,110 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mainDiv", class: _vm.getTheme }, [
-    _c("div", [
-      _c("div", { staticClass: "generalStyleDiv", class: _vm.getTheme }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "contentDiv", class: _vm.getTheme }, [
-          _c("div", { class: _vm.getTheme, attrs: { id: "cssmenu" } }, [
-            _c("ul", [
-              _c("li", { staticClass: "has-sub" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("ul", [
-                  _c("li", [
-                    _c("a", [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "mnu-flex",
-                          on: { click: _vm.exitProgram }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "mdi mdi-location-exit mdiExitIcon",
-                            class: _vm.getTheme
-                          }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Exit")])
-                        ]
-                      )
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "has-sub" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("ul", [
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.addProject($event)
-                          }
-                        }
-                      },
-                      [
-                        _c("div", { staticClass: "mnu-flex" }, [
-                          _c("i", {
-                            staticClass:
-                              "mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon",
-                            class: _vm.getTheme
-                          }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Add Project")])
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.deleteProject($event)
-                          }
-                        }
-                      },
-                      [
-                        _c("div", { staticClass: "mnu-flex" }, [
-                          _c("i", {
-                            staticClass:
-                              "mdi mdi-delete mdiAddEditDeleteProjectIcon",
-                            class: _vm.getTheme
-                          }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Delete Project")])
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.addTask($event)
-                          }
-                        }
-                      },
-                      [
-                        _c("div", { staticClass: "mnu-flex" }, [
-                          _c("i", {
-                            staticClass:
-                              "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
-                            class: _vm.getTheme
-                          }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Add Task")])
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { on: { click: _vm.completeProject } }, [
-                      _c("span", [_vm._v("Complete Project")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "has-sub" }, [
-                    _vm._m(3),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c("li", [
-                        _c("a", { on: { click: _vm.showAllProjects } }, [
-                          _c("span", [_vm._v("All Projects")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { on: { click: _vm.showCompletedProjects } }, [
-                          _c("span", [
-                            _vm._v(
-                              "Completed\n                                                    Projects"
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { on: { click: _vm.showActivedProjects } }, [
-                          _c("span", [_vm._v("Actived Projects")])
-                        ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "has-sub" }, [
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c("li", [
-                        _c("a", { on: { click: _vm.sortProjectsIdAcc } }, [
-                          _c("span", [_vm._v("Id Ascending")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { on: { click: _vm.sortProjectsIdDec } }, [
-                          _c("span", [_vm._v("Id Descending")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { on: { click: _vm.sortProjectsNameAcc } }, [
-                          _c("span", [_vm._v("Name A-Z")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { on: { click: _vm.sortProjectsNameDec } }, [
-                          _c("span", [_vm._v("Name Z-A")])
-                        ])
-                      ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "has-sub" }, [
-                _vm._m(5),
-                _vm._v(" "),
-                _c("ul", [
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.addTask($event)
-                          }
-                        }
-                      },
-                      [
-                        _c("div", { staticClass: "mnu-flex" }, [
-                          _c("i", {
-                            staticClass:
-                              "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
-                            class: _vm.getTheme
-                          }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Add Task")])
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.deleteTask($event)
-                          }
-                        }
-                      },
-                      [
-                        _c("div", { staticClass: "mnu-flex" }, [
-                          _c("i", {
-                            staticClass:
-                              "mdi mdi-delete mdiAddEditDeleteTaskIcon",
-                            class: _vm.getTheme
-                          }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Delete Task")])
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { on: { click: _vm.completeTask } }, [
-                      _c("span", [_vm._v("Complete Task")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "has-sub" }, [
-                    _vm._m(6),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c("li", [
-                        _c("a", { on: { click: _vm.showAllTasks } }, [
-                          _c("span", [_vm._v("All Tasks")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { on: { click: _vm.showCompletedTasks } }, [
-                          _c("span", [_vm._v("Completed Tasks")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { on: { click: _vm.showActivedTasks } }, [
-                          _c("span", [_vm._v("Actived Tasks")])
-                        ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "has-sub" }, [
-                    _vm._m(7),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c("li", [
-                        _c("a", { on: { click: _vm.sortTasksIdAcc } }, [
-                          _c("span", [_vm._v("Id Ascending")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { on: { click: _vm.sortTasksIdDec } }, [
-                          _c("span", [_vm._v("Id Descending")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { on: { click: _vm.sortTasksNameAcc } }, [
-                          _c("span", [_vm._v("Name A-Z")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { on: { click: _vm.sortTasksNameDec } }, [
-                          _c("span", [_vm._v("Name Z-A")])
-                        ])
-                      ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "has-sub" }, [
-                _vm._m(8),
-                _vm._v(" "),
-                _c("ul", [
-                  _c("li", { attrs: { id: "mnuOptions" } }, [
-                    _c("a", [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "mnu-flex",
-                          on: {
-                            click: function($event) {
-                              return _vm.showProperties($event)
-                            }
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "mdi mdi-tools standardSizeIcon",
-                            class: _vm.getTheme
-                          }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Options")])
-                        ]
-                      )
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "has-sub" }, [
-                _vm._m(9),
-                _vm._v(" "),
-                _c("ul", [
-                  _c("li", [
-                    _c("a", [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "mnu-flex",
-                          on: {
-                            click: function($event) {
-                              return _vm.showAbout()
-                            }
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass:
-                              "mdi mdi-information-variant standardSizeIcon",
-                            class: _vm.getTheme
-                          }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("About")])
-                        ]
-                      )
-                    ])
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "topTitleDiv", class: _vm.getTheme }, [
-          _c("span", [_vm._v("MaxtradeOffice")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "topRightIcons" }, [
-          _c("div", { staticClass: "minMaxIcons", class: _vm.getTheme }, [
-            _c("img", { attrs: { src: "/images/minimize.png" } })
-          ]),
+  return _c(
+    "div",
+    { staticClass: "mainDiv", class: _vm.getTheme },
+    [
+      _c("top-bar"),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "body", class: _vm.getTheme },
+        [
+          _c("leftmenu"),
           _vm._v(" "),
-          _c("div", { staticClass: "minMaxIcons", class: _vm.getTheme }, [
-            _c("img", { attrs: { src: "/images/maximize.png" } })
-          ]),
+          _c("projects-panel"),
+          _vm._v(" "),
+          _c("tasks-panel"),
           _vm._v(" "),
           _c(
             "div",
-            {
-              staticClass: "rightExitIcon",
-              class: _vm.getTheme,
-              on: { click: _vm.exitProgram }
-            },
-            [_c("img", { attrs: { src: "/images/close.png" } })]
+            { staticClass: "mainDivBodypanel", class: _vm.getTheme },
+            [
+              _c("properties", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.getPanel == "properties",
+                    expression: "getPanel == 'properties'"
+                  }
+                ]
+              }),
+              _vm._v(" "),
+              _c("about", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.getPanel == "about",
+                    expression: "getPanel == 'about'"
+                  }
+                ]
+              }),
+              _vm._v(" "),
+              _c("projects", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.getPanel == "projects",
+                    expression: "getPanel == 'projects'"
+                  }
+                ]
+              }),
+              _vm._v(" "),
+              _c("tasks", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.getPanel == "tasks",
+                    expression: "getPanel == 'tasks'"
+                  }
+                ]
+              })
+            ],
+            1
           )
-        ])
-      ]),
+        ],
+        1
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "button-bar", class: _vm.getTheme }, [
-        _c(
-          "button",
-          {
-            attrs: { title: "Exit this program" },
-            on: { click: _vm.exitProgram }
-          },
-          [
-            _c("i", {
-              staticClass: "mdi mdi-location-exit mdiExitIcon",
-              class: _vm.getTheme
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c("button", { on: { click: _vm.addProject } }, [
-          _c("i", {
-            staticClass:
-              "mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon",
-            class: _vm.getTheme
-          }),
-          _vm._v(" Add Project\n            ")
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            attrs: { disabled: _vm.getCurrentProjectId == 0 },
-            on: { click: _vm.deleteProject }
-          },
-          [
-            _c("i", {
-              staticClass: "mdi mdi-delete mdiAddEditDeleteProjectIcon",
-              class: _vm.getTheme
-            }),
-            _vm._v(" Delete Project\n            ")
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            attrs: { disabled: _vm.getCurrentProjectId == 0 },
-            on: { click: _vm.addTask }
-          },
-          [
-            _c("i", {
-              staticClass:
-                "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
-              class: _vm.getTheme
-            }),
-            _vm._v(" Add Task\n            ")
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            attrs: { disabled: _vm.getCurrentTaskId == 0 },
-            on: { click: _vm.deleteTask }
-          },
-          [
-            _c("i", {
-              staticClass: "mdi mdi-delete mdiAddEditDeleteTaskIcon",
-              class: _vm.getTheme
-            }),
-            _vm._v(" Delete Task\n            ")
-          ]
-        )
+      _c("div", { staticClass: "footerMainDiv", class: _vm.getTheme }, [
+        _c("div", { staticClass: "footer-icon" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "separator-vertical", class: _vm.getTheme }),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("\n                MaxtradeOffice ver: "),
+            _c("span", [_vm._v(_vm._s(_vm.version))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "separator-vertical", class: _vm.getTheme }),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div"),
+          _vm._v(" "),
+          _c("div", { staticClass: "separator-vertical", class: _vm.getTheme }),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("\n                Tasks: "),
+            _c("span", [_vm._v(_vm._s(_vm.getTasks.length))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "separator-vertical", class: _vm.getTheme })
+        ])
       ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "body", class: _vm.getTheme },
-      [
-        _c("leftmenu"),
-        _vm._v(" "),
-        _c("projects-panel"),
-        _vm._v(" "),
-        _c("tasks-panel"),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "mainDivBodypanel", class: _vm.getTheme },
-          [
-            _c("properties", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.getPanel == "properties",
-                  expression: "getPanel == 'properties'"
-                }
-              ]
-            }),
-            _vm._v(" "),
-            _c("about", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.getPanel == "about",
-                  expression: "getPanel == 'about'"
-                }
-              ]
-            }),
-            _vm._v(" "),
-            _c("projects", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.getPanel == "projects",
-                  expression: "getPanel == 'projects'"
-                }
-              ]
-            }),
-            _vm._v(" "),
-            _c("tasks", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.getPanel == "tasks",
-                  expression: "getPanel == 'tasks'"
-                }
-              ]
-            })
-          ],
-          1
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "footerMainDiv", class: _vm.getTheme }, [
-      _c("div", { staticClass: "footer-icon" }, [
-        _vm._m(10),
-        _vm._v(" "),
-        _c("div", { staticClass: "separator-vertical", class: _vm.getTheme }),
-        _vm._v(" "),
-        _c("div", [
-          _vm._v("\n                MaxtradeOffice ver: "),
-          _c("span", [_vm._v(_vm._s(_vm.version))])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "separator-vertical", class: _vm.getTheme }),
-        _vm._v(" "),
-        _vm._m(11),
-        _vm._v(" "),
-        _c("div"),
-        _vm._v(" "),
-        _c("div", { staticClass: "separator-vertical", class: _vm.getTheme }),
-        _vm._v(" "),
-        _vm._m(12),
-        _vm._v(" "),
-        _c("div", [
-          _vm._v("\n                Tasks: "),
-          _c("span", [_vm._v(_vm._s(_vm.getTasks.length))])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "separator-vertical", class: _vm.getTheme })
-      ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "iconDiv" }, [
-      _c("img", {
-        staticClass: "iconImg",
-        attrs: { src: "/images/maxtradeoffice.png" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", [_c("span", [_vm._v("File")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", [_c("span", [_vm._v("Projects")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", [_c("span", [_vm._v("Projects Filter")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", [_c("span", [_vm._v("Projects Sort")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", [_c("span", [_vm._v("Tasks")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", [_c("span", [_vm._v("Tasks Filter")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", [_c("span", [_vm._v("Tasks Sort")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", [_c("span", [_vm._v("Tools")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", [_c("span", [_vm._v("Help")])])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -43122,6 +42642,544 @@ var render = function() {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/TopBar.vue?vue&type=template&id=5a26d5a0&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/TopBar.vue?vue&type=template&id=5a26d5a0&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "generalStyleDiv", class: _vm.getTheme }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "contentDiv", class: _vm.getTheme }, [
+        _c("div", { class: _vm.getTheme, attrs: { id: "cssmenu" } }, [
+          _c("ul", [
+            _c("li", { staticClass: "has-sub" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _c("a", [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "mnu-flex",
+                        on: { click: _vm.exitProgram }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "mdi mdi-location-exit mdiExitIcon",
+                          class: _vm.getTheme
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Exit")])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "has-sub" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.addProject($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "mnu-flex" }, [
+                        _c("i", {
+                          staticClass:
+                            "mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon",
+                          class: _vm.getTheme
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Add Project")])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.deleteProject($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "mnu-flex" }, [
+                        _c("i", {
+                          staticClass:
+                            "mdi mdi-delete mdiAddEditDeleteProjectIcon",
+                          class: _vm.getTheme
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Delete Project")])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.addTask($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "mnu-flex" }, [
+                        _c("i", {
+                          staticClass:
+                            "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
+                          class: _vm.getTheme
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Add Task")])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { on: { click: _vm.completeProject } }, [
+                    _c("span", [_vm._v("Complete Project")])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "has-sub" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("ul", [
+                    _c("li", [
+                      _c("a", { on: { click: _vm.showAllProjects } }, [
+                        _c("span", [_vm._v("All Projects")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { on: { click: _vm.showCompletedProjects } }, [
+                        _c("span", [_vm._v("Completed Projects")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { on: { click: _vm.showActivedProjects } }, [
+                        _c("span", [_vm._v("Actived Projects")])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "has-sub" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("ul", [
+                    _c("li", [
+                      _c("a", { on: { click: _vm.sortProjectsIdAcc } }, [
+                        _c("span", [_vm._v("Id Ascending")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { on: { click: _vm.sortProjectsIdDec } }, [
+                        _c("span", [_vm._v("Id Descending")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { on: { click: _vm.sortProjectsNameAcc } }, [
+                        _c("span", [_vm._v("Name A-Z")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { on: { click: _vm.sortProjectsNameDec } }, [
+                        _c("span", [_vm._v("Name Z-A")])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "has-sub" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.addTask($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "mnu-flex" }, [
+                        _c("i", {
+                          staticClass:
+                            "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
+                          class: _vm.getTheme
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Add Task")])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.deleteTask($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "mnu-flex" }, [
+                        _c("i", {
+                          staticClass:
+                            "mdi mdi-delete mdiAddEditDeleteTaskIcon",
+                          class: _vm.getTheme
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Delete Task")])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { on: { click: _vm.completeTask } }, [
+                    _c("span", [_vm._v("Complete Task")])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "has-sub" }, [
+                  _vm._m(6),
+                  _vm._v(" "),
+                  _c("ul", [
+                    _c("li", [
+                      _c("a", { on: { click: _vm.showAllTasks } }, [
+                        _c("span", [_vm._v("All Tasks")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { on: { click: _vm.showCompletedTasks } }, [
+                        _c("span", [_vm._v("Completed Tasks")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { on: { click: _vm.showActivedTasks } }, [
+                        _c("span", [_vm._v("Actived Tasks")])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "has-sub" }, [
+                  _vm._m(7),
+                  _vm._v(" "),
+                  _c("ul", [
+                    _c("li", [
+                      _c("a", { on: { click: _vm.sortTasksIdAcc } }, [
+                        _c("span", [_vm._v("Id Ascending")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { on: { click: _vm.sortTasksIdDec } }, [
+                        _c("span", [_vm._v("Id Descending")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { on: { click: _vm.sortTasksNameAcc } }, [
+                        _c("span", [_vm._v("Name A-Z")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { on: { click: _vm.sortTasksNameDec } }, [
+                        _c("span", [_vm._v("Name Z-A")])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "has-sub" }, [
+              _vm._m(8),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", { attrs: { id: "mnuOptions" } }, [
+                  _c("a", [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "mnu-flex",
+                        on: {
+                          click: function($event) {
+                            return _vm.showProperties($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "mdi mdi-tools standardSizeIcon",
+                          class: _vm.getTheme
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Options")])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "has-sub" }, [
+              _vm._m(9),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _c("a", [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "mnu-flex",
+                        on: {
+                          click: function($event) {
+                            return _vm.showAbout()
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass:
+                            "mdi mdi-information-variant standardSizeIcon",
+                          class: _vm.getTheme
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("About")])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "topTitleDiv", class: _vm.getTheme }, [
+        _c("span", [_vm._v("MaxtradeOffice")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "topRightIcons" }, [
+        _c("div", { staticClass: "minMaxIcons", class: _vm.getTheme }, [
+          _c("img", { attrs: { src: "/images/minimize.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "minMaxIcons", class: _vm.getTheme }, [
+          _c("img", { attrs: { src: "/images/maximize.png" } })
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "rightExitIcon",
+            class: _vm.getTheme,
+            on: { click: _vm.exitProgram }
+          },
+          [_c("img", { attrs: { src: "/images/close.png" } })]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "button-bar", class: _vm.getTheme }, [
+      _c(
+        "button",
+        {
+          attrs: { title: "Exit this program" },
+          on: { click: _vm.exitProgram }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-location-exit mdiExitIcon",
+            class: _vm.getTheme
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.addProject } }, [
+        _c("i", {
+          staticClass:
+            "mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon",
+          class: _vm.getTheme
+        }),
+        _vm._v(" Add Project\n        ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          attrs: { disabled: _vm.getCurrentProjectId == 0 },
+          on: { click: _vm.deleteProject }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-delete mdiAddEditDeleteProjectIcon",
+            class: _vm.getTheme
+          }),
+          _vm._v(" Delete Project\n        ")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          attrs: { disabled: _vm.getCurrentProjectId == 0 },
+          on: { click: _vm.addTask }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon",
+            class: _vm.getTheme
+          }),
+          _vm._v(" Add Task\n        ")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          attrs: { disabled: _vm.getCurrentTaskId == 0 },
+          on: { click: _vm.deleteTask }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-delete mdiAddEditDeleteTaskIcon",
+            class: _vm.getTheme
+          }),
+          _vm._v(" Delete Task\n        ")
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "iconDiv" }, [
+      _c("img", {
+        staticClass: "iconImg",
+        attrs: { src: "/images/maxtradeoffice.png" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("File")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("Projects")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("Projects Filter")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("Projects Sort")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("Tasks")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("Tasks Filter")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("Tasks Sort")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("Tools")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("Help")])])
+  }
+]
 render._withStripped = true
 
 
@@ -57104,6 +57162,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/body/TopBar.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/body/TopBar.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TopBar_vue_vue_type_template_id_5a26d5a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TopBar.vue?vue&type=template&id=5a26d5a0&scoped=true& */ "./resources/js/components/body/TopBar.vue?vue&type=template&id=5a26d5a0&scoped=true&");
+/* harmony import */ var _TopBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TopBar.vue?vue&type=script&lang=js& */ "./resources/js/components/body/TopBar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _TopBar_vue_vue_type_style_index_0_id_5a26d5a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css& */ "./resources/js/components/body/TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _TopBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TopBar_vue_vue_type_template_id_5a26d5a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TopBar_vue_vue_type_template_id_5a26d5a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "5a26d5a0",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/body/TopBar.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/body/TopBar.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/body/TopBar.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TopBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./TopBar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/TopBar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TopBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/body/TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/body/TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css& ***!
+  \**********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TopBar_vue_vue_type_style_index_0_id_5a26d5a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/TopBar.vue?vue&type=style&index=0&id=5a26d5a0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TopBar_vue_vue_type_style_index_0_id_5a26d5a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TopBar_vue_vue_type_style_index_0_id_5a26d5a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TopBar_vue_vue_type_style_index_0_id_5a26d5a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TopBar_vue_vue_type_style_index_0_id_5a26d5a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TopBar_vue_vue_type_style_index_0_id_5a26d5a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/body/TopBar.vue?vue&type=template&id=5a26d5a0&scoped=true&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/body/TopBar.vue?vue&type=template&id=5a26d5a0&scoped=true& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TopBar_vue_vue_type_template_id_5a26d5a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./TopBar.vue?vue&type=template&id=5a26d5a0&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/TopBar.vue?vue&type=template&id=5a26d5a0&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TopBar_vue_vue_type_template_id_5a26d5a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TopBar_vue_vue_type_template_id_5a26d5a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/store/index.js":
 /*!*************************************!*\
   !*** ./resources/js/store/index.js ***!
@@ -58060,6 +58205,7 @@ var actions = {
 
     return deleteDocument;
   }(),
+  // Change documents after commit
   changeDocuments: function () {
     var _changeDocuments = _asyncToGenerator(
     /*#__PURE__*/
@@ -58091,20 +58237,119 @@ var actions = {
 
     return changeDocuments;
   }(),
-  showAllProjects: function showAllProjects() {},
-  showCompletedProjects: function showCompletedProjects() {},
-  showActivedProjects: function showActivedProjects() {},
-  sortProjectsIdAcc: function sortProjectsIdAcc() {},
-  sortProjectsIdDec: function sortProjectsIdDec() {},
-  sortProjectsNameAcc: function sortProjectsNameAcc() {},
-  sortProjectsNameDec: function sortProjectsNameDec() {},
-  showAllTasks: function showAllTasks() {},
-  showCompletedTasks: function showCompletedTasks() {},
-  showActivedTasks: function showActivedTasks() {},
-  sortTasksIdAcc: function sortTasksIdAcc() {},
-  sortTasksIdDec: function sortTasksIdDec() {},
-  sortTasksNameAcc: function sortTasksNameAcc() {},
-  sortTasksNameDec: function sortTasksNameDec() {},
+  // Filter show all projects
+  showAllProjects: function showAllProjects(_ref29) {
+    var state = _ref29.state,
+        dispatch = _ref29.dispatch;
+    state.project_filter.filterstatus = "all";
+    dispatch("fetchProjects", "all");
+  },
+  // Filter show completed projects
+  showCompletedProjects: function showCompletedProjects(_ref30) {
+    var state = _ref30.state,
+        dispatch = _ref30.dispatch;
+    state.project_filter.filterstatus = "end";
+    dispatch("fetchProjects", "end");
+  },
+  // Filter show actived projects
+  showActivedProjects: function showActivedProjects(_ref31) {
+    var state = _ref31.state,
+        dispatch = _ref31.dispatch;
+    state.project_filter.filterstatus = "act";
+    dispatch("fetchProjects", "act");
+  },
+  // Sort projects by ID ACC
+  sortProjectsIdAcc: function sortProjectsIdAcc(_ref32) {
+    var state = _ref32.state;
+    state.project_filter.filter09 = true;
+    state.projects.sort(function (a, b) {
+      if (a.id > b.id) return 1;
+      if (a.id < b.id) return -1;
+    });
+  },
+  // Sort projects by ID DEC
+  sortProjectsIdDec: function sortProjectsIdDec(_ref33) {
+    var state = _ref33.state;
+    state.project_filter.filter09 = false;
+    state.projects.sort(function (a, b) {
+      if (a.id > b.id) return -1;
+      if (a.id < b.id) return 1;
+    });
+  },
+  // Sort projects by Name ACC
+  sortProjectsNameAcc: function sortProjectsNameAcc(_ref34) {
+    var state = _ref34.state;
+    state.project_filter.filteraz = true;
+    state.projects.sort(function (a, b) {
+      if (a.title > b.title) return 1;
+      if (a.title < b.title) return -1;
+    });
+  },
+  // Sort projects by Name DEC
+  sortProjectsNameDec: function sortProjectsNameDec(_ref35) {
+    var state = _ref35.state;
+    state.project_filter.filteraz = false;
+    state.projects.sort(function (a, b) {
+      if (a.title > b.title) return -1;
+      if (a.title < b.title) return 1;
+    });
+  },
+  // Filter show all tasks
+  showAllTasks: function showAllTasks(_ref36) {
+    var state = _ref36.state,
+        dispatch = _ref36.dispatch;
+    state.task_filter.filterstatus = "all";
+    dispatch("fetchTasks", "all", state.current_project_id);
+  },
+  // Filter show completed tasks
+  showCompletedTasks: function showCompletedTasks(_ref37) {
+    var state = _ref37.state,
+        dispatch = _ref37.dispatch;
+    state.task_filter.filterstatus = "end";
+    dispatch("fetchTasks", "end", state.current_project_id);
+  },
+  // Filter show actived tasks
+  showActivedTasks: function showActivedTasks(_ref38) {
+    var state = _ref38.state,
+        dispatch = _ref38.dispatch;
+    state.task_filter.filterstatus = "act";
+    dispatch("fetchTasks", "act", state.current_project_id);
+  },
+  // Sort tasks by ID ACC
+  sortTasksIdAcc: function sortTasksIdAcc(_ref39) {
+    var state = _ref39.state;
+    state.task_filter.filter09 = true;
+    state.tasks.sort(function (a, b) {
+      if (a.id > b.id) return 1;
+      if (a.id < b.id) return -1;
+    });
+  },
+  // Sort tasks by ID DEC
+  sortTasksIdDec: function sortTasksIdDec(_ref40) {
+    var state = _ref40.state;
+    state.task_filter.filter09 = false;
+    state.tasks.sort(function (a, b) {
+      if (a.id > b.id) return -1;
+      if (a.id < b.id) return 1;
+    });
+  },
+  // Sort tasks by Name ACC
+  sortTasksNameAcc: function sortTasksNameAcc(_ref41) {
+    var state = _ref41.state;
+    state.task_filter.filteraz = true;
+    state.tasks.sort(function (a, b) {
+      if (a.title > b.title) return 1;
+      if (a.title < b.title) return -1;
+    });
+  },
+  // Sort tasks by Name DEC
+  sortTasksNameDec: function sortTasksNameDec() {
+    state.task_filter.filteraz = false;
+    state.tasks.sort(function (a, b) {
+      if (a.title > b.title) return -1;
+      if (a.title < b.title) return 1;
+    });
+  },
   changeProject: function changeProject() {},
   fetchProjectsSearch: function fetchProjectsSearch() {},
   getTasks: function getTasks() {}
