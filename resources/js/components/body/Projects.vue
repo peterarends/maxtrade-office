@@ -62,6 +62,12 @@
                     Ended tasks: <strong>{{ countEndedTasks }}</strong>
                 </div>
             </div>
+            <div class="chart">
+                <pie-chart
+                    :data="chartData"
+                    :options="chartOptions"
+                ></pie-chart>
+            </div>
         </div>
         <div class="bottom" :class="getTheme">
             <a @click.prevent="saveProject(true)"
@@ -95,18 +101,52 @@
 <script>
 import moment from "moment";
 import { mapGetters, mapActions } from "vuex";
+import PieChart from "./PieChart.js";
 
 export default {
     name: "Projects",
 
-    computed: mapGetters([
-        "getTheme",
-        "getProject",
-        "getNewTask",
-        "countAllTasks",
-        "countActiveTasks",
-        "countEndedTasks"
-    ]),
+    components: {
+        PieChart
+    },
+
+    data() {
+        return {
+            chartOptions: {
+                hoverBorderWidth: 20
+            },
+            chartData: {
+                hoverBackgroundColor: "red",
+                hoverBorderWidth: 10,
+                labels: ["All", "Active", "Ended"],
+                datasets: []
+            }
+        };
+    },
+
+    computed: {
+        ...mapGetters([
+            "getTheme",
+            "getProject",
+            "getNewTask",
+            "countAllTasks",
+            "countActiveTasks",
+            "countEndedTasks"
+        ])
+    },
+
+    created() {
+        //this.$store.dispatch("FETCH_DEVICE_INFO");
+        if (this.$state.tasks.length) {
+            this.chartData.datasets = [
+                {
+                    label: "Data One",
+                    backgroundColor: ["#00D8FF", "#E46651", "#41B883"],
+                    data: [this.$state.tasks.length, 2, 3]
+                }
+            ];
+        }
+    },
 
     filters: {
         formatDate: function(value) {
@@ -384,5 +424,9 @@ input[type="checkbox"]:checked + label:hover span:before {
 .taskEnded {
     flex: 1/3;
     padding: 3px 6px;
+}
+.chart {
+    width: 360px;
+    height: 360px;
 }
 </style>

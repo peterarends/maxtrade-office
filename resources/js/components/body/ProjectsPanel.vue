@@ -48,7 +48,12 @@
                         getTheme
                     ]"
                 >
-                    {{ project.created_at | formatDate }}
+                    {{ project.created_at | formatDate }}&nbsp;|&nbsp;<span
+                        v-if="project.id == getCurrentProjectId"
+                        >{{ countAllTasks }}/{{ countActiveTasks }}/{{
+                            countEndedTasks
+                        }}</span
+                    >
                 </div>
                 <div class="singleProjectDiv">
                     <div
@@ -112,7 +117,10 @@ export default {
         "getTheme",
         "getProjects",
         "getProjectFilter",
-        "getCurrentProjectId"
+        "getCurrentProjectId",
+        "countAllTasks",
+        "countActiveTasks",
+        "countEndedTasks"
     ]),
 
     created() {
