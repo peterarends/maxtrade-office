@@ -48,13 +48,12 @@ export default {
 
     created() {
         this.fetchProperties();
-        this.fetchUser();
     },
 
     computed: mapGetters(["getTheme", "getPanel"]),
 
     methods: {
-        ...mapActions(["fetchProperties", "fetchUser"])
+        ...mapActions(["fetchProperties"])
     }
 };
 </script>

@@ -1,7 +1,7 @@
 <?php
 Route::get('/', 'HomeController@index')->name('index');
 Route::group(
-    ['middleware' => ['auth','verified']],
+    ['middleware' => ['auth', 'verified']],
     function () {
         Route::get('/logout.html', 'UserController@logoutUser');
     }

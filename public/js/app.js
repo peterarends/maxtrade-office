@@ -1914,10 +1914,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   created: function created() {
     this.fetchProperties();
-    this.fetchUser();
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapGetters"])(["getTheme", "getPanel"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapActions"])(["fetchProperties", "fetchUser"]))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapActions"])(["fetchProperties"]))
 });
 
 /***/ }),
@@ -2037,7 +2036,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FooterBar",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getVersion", "getTasks", "getProjects", "getUser"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getVersion", "getTasks", "getProjects", "getUserName"])
 });
 
 /***/ }),
@@ -3324,7 +3323,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getUser"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getUserName"]),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["exitProgram", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "addProject", "getCurrentProjectId", "deleteProject", "addTask", "getCurrentTaskId", "deleteTask", "showProperties", "showAbout"]))
 });
 
@@ -19503,7 +19502,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n.vp20 {\n  padding: 20px 0px;\n}\r\n", ""]);
+exports.push([module.i, ".mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n.vp20 {\n  padding: 20px 0px;\n}\n", ""]);
 
 // exports
 
@@ -19522,7 +19521,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".about-body[data-v-0ba3714b] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.body[data-v-0ba3714b] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.button-bar[data-v-0ba3714b] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-0ba3714b] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-0ba3714b] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar a[data-v-0ba3714b] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light a[data-v-0ba3714b] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark a[data-v-0ba3714b] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark a[data-v-0ba3714b]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light a[data-v-0ba3714b]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.topTitleDiv[data-v-0ba3714b] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-0ba3714b] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-0ba3714b] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-0ba3714b] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-0ba3714b] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-0ba3714b] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-0ba3714b] {\n  background-color: #e53e3e;\n}\n.title[data-v-0ba3714b] {\n  font-size: 36px;\n  padding-bottom: 20px;\n}\n.subtitle[data-v-0ba3714b] {\n  font-size: 24px;\n  font-weight: bold;\n  color: #2b6cb0;\n  padding-bottom: 10px;\n}\n.body_text[data-v-0ba3714b] {\n  font-size: 18px;\n  border-top: 1px dotted #718096;\n  text-align: center;\n  padding-bottom: 20px;\n}\n.abaout_img[data-v-0ba3714b] {\n  max-width: 480px;\n  align-self: auto;\n}\n.bottom[data-v-0ba3714b] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  font-size: 24px;\n  color: #63b3ed;\n  -webkit-box-align: center;\n          align-items: center;\n  padding-top: 30px;\n}\r\n", ""]);
+exports.push([module.i, ".about-body[data-v-0ba3714b] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.body[data-v-0ba3714b] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.button-bar[data-v-0ba3714b] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-0ba3714b] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-0ba3714b] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar a[data-v-0ba3714b] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light a[data-v-0ba3714b] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark a[data-v-0ba3714b] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark a[data-v-0ba3714b]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light a[data-v-0ba3714b]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.topTitleDiv[data-v-0ba3714b] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-0ba3714b] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-0ba3714b] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-0ba3714b] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-0ba3714b] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-0ba3714b] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-0ba3714b] {\n  background-color: #e53e3e;\n}\n.title[data-v-0ba3714b] {\n  font-size: 36px;\n  padding-bottom: 20px;\n}\n.subtitle[data-v-0ba3714b] {\n  font-size: 24px;\n  font-weight: bold;\n  color: #2b6cb0;\n  padding-bottom: 10px;\n}\n.body_text[data-v-0ba3714b] {\n  font-size: 18px;\n  border-top: 1px dotted #718096;\n  text-align: center;\n  padding-bottom: 20px;\n}\n.abaout_img[data-v-0ba3714b] {\n  max-width: 480px;\n  align-self: auto;\n}\n.bottom[data-v-0ba3714b] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  font-size: 24px;\n  color: #63b3ed;\n  -webkit-box-align: center;\n          align-items: center;\n  padding-top: 30px;\n}\n", ""]);
 
 // exports
 
@@ -19541,7 +19540,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** Start Footer panel */\n.footerMainDiv[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark[data-v-42b57c94] {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light[data-v-42b57c94] {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon[data-v-42b57c94] {\n  font-size: 1.25rem;\n}\n.footer-icon[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-42b57c94]:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button[data-v-42b57c94] {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n\n/* End Footer panel */\r\n", ""]);
+exports.push([module.i, "/** Start Footer panel */\n.footerMainDiv[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark[data-v-42b57c94] {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light[data-v-42b57c94] {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon[data-v-42b57c94] {\n  font-size: 1.25rem;\n}\n.footer-icon[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-42b57c94]:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button[data-v-42b57c94] {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n\n/* End Footer panel */\n", ""]);
 
 // exports
 
@@ -19560,7 +19559,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0] {\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0] {\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n}\n.body-left-menu.light[data-v-7bf753d0] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n}\n.body-left-menu.dark[data-v-7bf753d0] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n}\n.body-left-menu a[data-v-7bf753d0] {\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu.light a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.dark a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.light a[data-v-7bf753d0]:hover {\n  color: #1a202c;\n}\n.body-left-menu.dark a[data-v-7bf753d0]:hover {\n  color: #f7fafc;\n}\n.left-menu-title[data-v-7bf753d0] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n}\n.left-menu-title.light[data-v-7bf753d0] {\n  opacity: 0.5;\n  color: #4299e1;\n}\n.left-menu-title.dark[data-v-7bf753d0] {\n  opacity: 0.3;\n  color: #4299e1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0] {\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu.light a.active[data-v-7bf753d0] {\n  color: #1a202c;\n}\n.body-left-menu.dark a.active[data-v-7bf753d0] {\n  color: #f7fafc;\n}\n.contextMenu[data-v-7bf753d0] {\n  width: 300px;\n  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);\n  background-color: #1a202c;\n  position: absolute;\n  bottom: 87px;\n  left: 25px;\n}\n.contextMenu-options[data-v-7bf753d0] {\n  list-style: none;\n  padding: 10px 0;\n}\n.contextMenu-option[data-v-7bf753d0] {\n  font-weight: 500;\n  font-size: 14px;\n  padding: 10px 40px 10px 20px;\n  cursor: pointer;\n  color: #a0aec0;\n}\n.contextMenu-option[data-v-7bf753d0]:hover {\n  background: rgba(0, 0, 0, 0.2);\n}\n.right-text[data-v-7bf753d0] {\n  float: right;\n}\n.v-context[data-v-7bf753d0],\r\n.v-context ul[data-v-7bf753d0] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\r\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-7bf753d0],\r\n.v-context ul > li[data-v-7bf753d0] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-7bf753d0],\r\n.v-context ul > li > a[data-v-7bf753d0] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n  font-size: 14px;\n}\n.v-context > li > a[data-v-7bf753d0]:focus,\r\n.v-context > li > a[data-v-7bf753d0]:hover,\r\n.v-context ul > li > a[data-v-7bf753d0]:focus,\r\n.v-context ul > li > a[data-v-7bf753d0]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-7bf753d0]:focus,\r\n.v-context > li > a[data-v-7bf753d0]:focus,\r\n.v-context ul[data-v-7bf753d0]:focus,\r\n.v-context ul > li > a[data-v-7bf753d0]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-7bf753d0]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-7bf753d0] {\n  display: none;\n}\r\n", ""]);
+exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0] {\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0] {\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n}\n.body-left-menu.light[data-v-7bf753d0] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n}\n.body-left-menu.dark[data-v-7bf753d0] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n}\n.body-left-menu a[data-v-7bf753d0] {\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu.light a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.dark a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.light a[data-v-7bf753d0]:hover {\n  color: #1a202c;\n}\n.body-left-menu.dark a[data-v-7bf753d0]:hover {\n  color: #f7fafc;\n}\n.left-menu-title[data-v-7bf753d0] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n}\n.left-menu-title.light[data-v-7bf753d0] {\n  opacity: 0.5;\n  color: #4299e1;\n}\n.left-menu-title.dark[data-v-7bf753d0] {\n  opacity: 0.3;\n  color: #4299e1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0] {\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu.light a.active[data-v-7bf753d0] {\n  color: #1a202c;\n}\n.body-left-menu.dark a.active[data-v-7bf753d0] {\n  color: #f7fafc;\n}\n.contextMenu[data-v-7bf753d0] {\n  width: 300px;\n  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);\n  background-color: #1a202c;\n  position: absolute;\n  bottom: 87px;\n  left: 25px;\n}\n.contextMenu-options[data-v-7bf753d0] {\n  list-style: none;\n  padding: 10px 0;\n}\n.contextMenu-option[data-v-7bf753d0] {\n  font-weight: 500;\n  font-size: 14px;\n  padding: 10px 40px 10px 20px;\n  cursor: pointer;\n  color: #a0aec0;\n}\n.contextMenu-option[data-v-7bf753d0]:hover {\n  background: rgba(0, 0, 0, 0.2);\n}\n.right-text[data-v-7bf753d0] {\n  float: right;\n}\n.v-context[data-v-7bf753d0],\n.v-context ul[data-v-7bf753d0] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-7bf753d0],\n.v-context ul > li[data-v-7bf753d0] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-7bf753d0],\n.v-context ul > li > a[data-v-7bf753d0] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n  font-size: 14px;\n}\n.v-context > li > a[data-v-7bf753d0]:focus,\n.v-context > li > a[data-v-7bf753d0]:hover,\n.v-context ul > li > a[data-v-7bf753d0]:focus,\n.v-context ul > li > a[data-v-7bf753d0]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-7bf753d0]:focus,\n.v-context > li > a[data-v-7bf753d0]:focus,\n.v-context ul[data-v-7bf753d0]:focus,\n.v-context ul > li > a[data-v-7bf753d0]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-7bf753d0]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-7bf753d0] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -19598,7 +19597,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".v-context[data-v-b009a230],\r\n.v-context ul[data-v-b009a230] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\r\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-b009a230],\r\n.v-context ul > li[data-v-b009a230] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-b009a230],\r\n.v-context ul > li > a[data-v-b009a230] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-b009a230]:focus,\r\n.v-context > li > a[data-v-b009a230]:hover,\r\n.v-context ul > li > a[data-v-b009a230]:focus,\r\n.v-context ul > li > a[data-v-b009a230]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-b009a230]:focus,\r\n.v-context > li > a[data-v-b009a230]:focus,\r\n.v-context ul[data-v-b009a230]:focus,\r\n.v-context ul > li > a[data-v-b009a230]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-b009a230]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-b009a230] {\n  display: none;\n}\n\n/** Top part of projects */\n.topProjectsDiv[data-v-b009a230] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-b009a230] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-b009a230] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-b009a230] {\n  /* bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300\r\n            placeholder-gray-700 mr-1 */\n  border-radius: 0.25rem;\n  width: 70%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-b009a230] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-b009a230]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-b009a230] {\n  /* flex items-center justify-center border-l border-gray-700 border-dotted pl-1 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-b009a230] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-b009a230] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIconsText[data-v-b009a230] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIconsText.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIconsText.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIconsText.light[data-v-b009a230]:hover {\n  color: #1a202c;\n}\n.searchIconsText.dark[data-v-b009a230]:hover {\n  color: #f7fafc;\n}\n.searchIcons[data-v-b009a230] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1.5rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIcons.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-b009a230]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-b009a230]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-b009a230] {\n  /* flex justify-end text-xs */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #cbd5e0;\n}\n.dateText.dateWithoutLine.light[data-v-b009a230] {\n  /* text-gray-400 */\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleProjectDiv[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleProjectId[data-v-b009a230] {\n  /* rounded-full h-6 w-6 text-xs flex items-center justify-center */\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleProjectId.idBackground.light[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleProjectId.idBackground.dark[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleProjectId.idTextUnfinished.light[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleProjectId.idTextUnfinished.dark[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleProjectId.idTextFinished.light[data-v-b009a230] {\n  color: #f7fafc;\n}\n.singleProjectId.idTextFinished.dark[data-v-b009a230] {\n  color: #1a202c;\n}\n.singleProjectText[data-v-b009a230] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleProjectText.titleTextUnfinished.light[data-v-b009a230] {\n  color: #4a5568;\n}\n.singleProjectText.titleTextUnfinished.dark[data-v-b009a230] {\n  color: #e2e8f0;\n}\n.singleProjectText.titleTextFinished.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.singleProjectText.titleTextFinished.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.body-projects-panel[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-projects-panel.light[data-v-b009a230] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-projects-panel.dark[data-v-b009a230] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#projectsListView[data-v-b009a230] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n#projectsListView div.projectItem.light[data-v-b009a230]:hover {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark[data-v-b009a230]:hover {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem.light.active[data-v-b009a230] {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark.active[data-v-b009a230] {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem div[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.project_item[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item.light[data-v-b009a230] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.project_item[data-v-b009a230]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item.light[data-v-b009a230]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.project_item.light.active[data-v-b009a230] {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark.active[data-v-b009a230] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\r\n", ""]);
+exports.push([module.i, ".v-context[data-v-b009a230],\n.v-context ul[data-v-b009a230] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-b009a230],\n.v-context ul > li[data-v-b009a230] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-b009a230],\n.v-context ul > li > a[data-v-b009a230] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-b009a230]:focus,\n.v-context > li > a[data-v-b009a230]:hover,\n.v-context ul > li > a[data-v-b009a230]:focus,\n.v-context ul > li > a[data-v-b009a230]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-b009a230]:focus,\n.v-context > li > a[data-v-b009a230]:focus,\n.v-context ul[data-v-b009a230]:focus,\n.v-context ul > li > a[data-v-b009a230]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-b009a230]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-b009a230] {\n  display: none;\n}\n\n/** Top part of projects */\n.topProjectsDiv[data-v-b009a230] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-b009a230] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-b009a230] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-b009a230] {\n  /* bg-gray-900 border-gray-800 border rounded w-1/2 pl-1 pb-1 text-gray-300\n            placeholder-gray-700 mr-1 */\n  border-radius: 0.25rem;\n  width: 70%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-b009a230] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-b009a230]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-b009a230]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-b009a230]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-b009a230] {\n  /* flex items-center justify-center border-l border-gray-700 border-dotted pl-1 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-b009a230] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-b009a230] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIconsText[data-v-b009a230] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIconsText.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIconsText.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIconsText.light[data-v-b009a230]:hover {\n  color: #1a202c;\n}\n.searchIconsText.dark[data-v-b009a230]:hover {\n  color: #f7fafc;\n}\n.searchIcons[data-v-b009a230] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1.5rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIcons.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-b009a230]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-b009a230]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-b009a230] {\n  /* flex justify-end text-xs */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-b009a230] {\n  /* text-gray-500 line-through */\n  color: #cbd5e0;\n}\n.dateText.dateWithoutLine.light[data-v-b009a230] {\n  /* text-gray-400 */\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleProjectDiv[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleProjectId[data-v-b009a230] {\n  /* rounded-full h-6 w-6 text-xs flex items-center justify-center */\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleProjectId.idBackground.light[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleProjectId.idBackground.dark[data-v-b009a230] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleProjectId.idTextUnfinished.light[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleProjectId.idTextUnfinished.dark[data-v-b009a230] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleProjectId.idTextFinished.light[data-v-b009a230] {\n  color: #f7fafc;\n}\n.singleProjectId.idTextFinished.dark[data-v-b009a230] {\n  color: #1a202c;\n}\n.singleProjectText[data-v-b009a230] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleProjectText.titleTextUnfinished.light[data-v-b009a230] {\n  color: #4a5568;\n}\n.singleProjectText.titleTextUnfinished.dark[data-v-b009a230] {\n  color: #e2e8f0;\n}\n.singleProjectText.titleTextFinished.light[data-v-b009a230] {\n  color: #a0aec0;\n}\n.singleProjectText.titleTextFinished.dark[data-v-b009a230] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-b009a230] {\n  text-decoration: line-through;\n}\n.body-projects-panel[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-projects-panel.light[data-v-b009a230] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-projects-panel.dark[data-v-b009a230] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#projectsListView[data-v-b009a230] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n#projectsListView div.projectItem.light[data-v-b009a230]:hover {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark[data-v-b009a230]:hover {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem.light.active[data-v-b009a230] {\n  background: #2d3748;\n}\n#projectsListView div.projectItem.dark.active[data-v-b009a230] {\n  background: #edf2f7;\n}\n#projectsListView div.projectItem div[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.project_item[data-v-b009a230] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.project_item.light[data-v-b009a230] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.project_item[data-v-b009a230]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.project_item.light[data-v-b009a230]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark[data-v-b009a230]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.project_item.light.active[data-v-b009a230] {\n  background: #edf2f7;\n  color: #718096;\n}\n.project_item.dark.active[data-v-b009a230] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n", ""]);
 
 // exports
 
@@ -19617,7 +19616,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".properties-body[data-v-1f4c5c65] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.top[data-v-1f4c5c65] {\n  padding: 10px;\n}\n.search_input[data-v-1f4c5c65] {\n  border-radius: 0.25rem;\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n  padding: 2px 5px;\n  width: 100%;\n}\n.search_input[data-v-1f4c5c65]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::-moz-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::placeholder {\n  color: #4a5568;\n}\n.body[data-v-1f4c5c65] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n}\n.property_title[data-v-1f4c5c65] {\n  padding: 0px 0px 20px 10px;\n}\n.property_section[data-v-1f4c5c65] {\n  padding: 0px 0px 10px 20px;\n  text-decoration: underline;\n}\n.property_row[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  margin: 0px 0px 10px 30px;\n  padding-left: 5px;\n  border-left: 1px dotted #4a5568;\n}\n.controll[data-v-1f4c5c65] {\n  background: #4a5568;\n  padding: 1px 3px;\n  border: 1px dotted #718096;\n}\n.button-bar[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-1f4c5c65] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-1f4c5c65] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar a[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light a[data-v-1f4c5c65] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark a[data-v-1f4c5c65] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark a[data-v-1f4c5c65]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light a[data-v-1f4c5c65]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.topTitleDiv[data-v-1f4c5c65] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-1f4c5c65] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-1f4c5c65] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-1f4c5c65] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-1f4c5c65] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-1f4c5c65] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-1f4c5c65] {\n  background-color: #e53e3e;\n}\r\n", ""]);
+exports.push([module.i, ".properties-body[data-v-1f4c5c65] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.top[data-v-1f4c5c65] {\n  padding: 10px;\n}\n.search_input[data-v-1f4c5c65] {\n  border-radius: 0.25rem;\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n  padding: 2px 5px;\n  width: 100%;\n}\n.search_input[data-v-1f4c5c65]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::-moz-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.search_input[data-v-1f4c5c65]::placeholder {\n  color: #4a5568;\n}\n.body[data-v-1f4c5c65] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n}\n.property_title[data-v-1f4c5c65] {\n  padding: 0px 0px 20px 10px;\n}\n.property_section[data-v-1f4c5c65] {\n  padding: 0px 0px 10px 20px;\n  text-decoration: underline;\n}\n.property_row[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  margin: 0px 0px 10px 30px;\n  padding-left: 5px;\n  border-left: 1px dotted #4a5568;\n}\n.controll[data-v-1f4c5c65] {\n  background: #4a5568;\n  padding: 1px 3px;\n  border: 1px dotted #718096;\n}\n.button-bar[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-1f4c5c65] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-1f4c5c65] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar a[data-v-1f4c5c65] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light a[data-v-1f4c5c65] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark a[data-v-1f4c5c65] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark a[data-v-1f4c5c65]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light a[data-v-1f4c5c65]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.topTitleDiv[data-v-1f4c5c65] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-1f4c5c65] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-1f4c5c65] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-1f4c5c65] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-1f4c5c65] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-1f4c5c65] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-1f4c5c65] {\n  background-color: #e53e3e;\n}\n", ""]);
 
 // exports
 
@@ -19636,7 +19635,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".tasks-body[data-v-6750e0cc] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-6750e0cc] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #dd6b20;\n}\n.topRightIcons[data-v-6750e0cc] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-6750e0cc] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-6750e0cc] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-6750e0cc] {\n  background-color: #e53e3e;\n}\n.body[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-6750e0cc] {\n  text-decoration: line-through;\n}\n.date[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-6750e0cc] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-6750e0cc] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-6750e0cc] {\n  color: green;\n}\n.bottom[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-6750e0cc] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-6750e0cc] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-6750e0cc]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-6750e0cc]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiTaskIcon[data-v-6750e0cc] {\n  font-size: 1.3rem;\n}\n.mdiTaskIcon.light[data-v-6750e0cc] {\n  color: #63b3ed;\n}\n.mdiTaskIcon.dark[data-v-6750e0cc] {\n  color: #3182ce;\n}\nlabel[data-v-6750e0cc] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-6750e0cc] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-6750e0cc]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-6750e0cc]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-6750e0cc] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n.taskStatus[data-v-6750e0cc] {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n}\n.documents[data-v-6750e0cc] {\n  background: #2d3748;\n  height: 140px;\n  border: 1px solid #4a5568;\n  display: -webkit-box;\n  display: flex;\n  padding: 10px;\n  overflow: auto;\n}\n.document[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  width: 140px;\n  padding: 2px;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.documentsButtons[data-v-6750e0cc] {\n  padding-top: 10px;\n}\n.line[data-v-6750e0cc] {\n  border-top: 1px dotted #4a5568;\n  padding: 10px 0px;\n}\n.v-context[data-v-6750e0cc],\r\n.v-context ul[data-v-6750e0cc] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\r\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-6750e0cc],\r\n.v-context ul > li[data-v-6750e0cc] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-6750e0cc],\r\n.v-context ul > li > a[data-v-6750e0cc] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-6750e0cc]:focus,\r\n.v-context > li > a[data-v-6750e0cc]:hover,\r\n.v-context ul > li > a[data-v-6750e0cc]:focus,\r\n.v-context ul > li > a[data-v-6750e0cc]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-6750e0cc]:focus,\r\n.v-context > li > a[data-v-6750e0cc]:focus,\r\n.v-context ul[data-v-6750e0cc]:focus,\r\n.v-context ul > li > a[data-v-6750e0cc]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-6750e0cc]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-6750e0cc] {\n  display: none;\n}\r\n", ""]);
+exports.push([module.i, ".tasks-body[data-v-6750e0cc] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-6750e0cc] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #dd6b20;\n}\n.topRightIcons[data-v-6750e0cc] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-6750e0cc] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-6750e0cc] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-6750e0cc] {\n  background-color: #e53e3e;\n}\n.body[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-6750e0cc] {\n  text-decoration: line-through;\n}\n.date[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-6750e0cc] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-6750e0cc] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-6750e0cc] {\n  color: green;\n}\n.bottom[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-6750e0cc] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-6750e0cc] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-6750e0cc]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-6750e0cc]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiTaskIcon[data-v-6750e0cc] {\n  font-size: 1.3rem;\n}\n.mdiTaskIcon.light[data-v-6750e0cc] {\n  color: #63b3ed;\n}\n.mdiTaskIcon.dark[data-v-6750e0cc] {\n  color: #3182ce;\n}\nlabel[data-v-6750e0cc] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-6750e0cc] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-6750e0cc]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-6750e0cc]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-6750e0cc] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n.taskStatus[data-v-6750e0cc] {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n}\n.documents[data-v-6750e0cc] {\n  background: #2d3748;\n  height: 140px;\n  border: 1px solid #4a5568;\n  display: -webkit-box;\n  display: flex;\n  padding: 10px;\n  overflow: auto;\n}\n.document[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  width: 140px;\n  padding: 2px;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.documentsButtons[data-v-6750e0cc] {\n  padding-top: 10px;\n}\n.line[data-v-6750e0cc] {\n  border-top: 1px dotted #4a5568;\n  padding: 10px 0px;\n}\n.v-context[data-v-6750e0cc],\n.v-context ul[data-v-6750e0cc] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-6750e0cc],\n.v-context ul > li[data-v-6750e0cc] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-6750e0cc],\n.v-context ul > li > a[data-v-6750e0cc] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-6750e0cc]:focus,\n.v-context > li > a[data-v-6750e0cc]:hover,\n.v-context ul > li > a[data-v-6750e0cc]:focus,\n.v-context ul > li > a[data-v-6750e0cc]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-6750e0cc]:focus,\n.v-context > li > a[data-v-6750e0cc]:focus,\n.v-context ul[data-v-6750e0cc]:focus,\n.v-context ul > li > a[data-v-6750e0cc]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-6750e0cc]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-6750e0cc] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -19655,7 +19654,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".v-context[data-v-03b2ccc8],\r\n.v-context ul[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\r\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-03b2ccc8],\r\n.v-context ul > li[data-v-03b2ccc8] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-03b2ccc8],\r\n.v-context ul > li > a[data-v-03b2ccc8] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-03b2ccc8]:focus,\r\n.v-context > li > a[data-v-03b2ccc8]:hover,\r\n.v-context ul > li > a[data-v-03b2ccc8]:focus,\r\n.v-context ul > li > a[data-v-03b2ccc8]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-03b2ccc8]:focus,\r\n.v-context > li > a[data-v-03b2ccc8]:focus,\r\n.v-context ul[data-v-03b2ccc8]:focus,\r\n.v-context ul > li > a[data-v-03b2ccc8]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-03b2ccc8]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-03b2ccc8] {\n  display: none;\n}\n\n/** Top part of projects */\n.topProjectsDiv[data-v-03b2ccc8] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Top part of tasks */\n.topTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topTaskDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topTaskDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-03b2ccc8] {\n  border-radius: 0.25rem;\n  width: 70%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-03b2ccc8] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-03b2ccc8] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIconsText[data-v-03b2ccc8] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIconsText.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIconsText.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIconsText.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIconsText.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n.searchIcons[data-v-03b2ccc8] {\n  font-size: 1.5rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIcons.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-03b2ccc8] {\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleTaskId[data-v-03b2ccc8] {\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleTaskId.idBackground.light[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleTaskId.idBackground.dark[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleTaskId.idTextUnfinished.light[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleTaskId.idTextUnfinished.dark[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleTaskId.idTextFinished.light[data-v-03b2ccc8] {\n  color: #f7fafc;\n}\n.singleTaskId.idTextFinished.dark[data-v-03b2ccc8] {\n  color: #1a202c;\n}\n.singleTaskText[data-v-03b2ccc8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleTaskText.titleTextUnfinished.light[data-v-03b2ccc8] {\n  color: #4a5568;\n}\n.singleTaskText.titleTextUnfinished.dark[data-v-03b2ccc8] {\n  color: #e2e8f0;\n}\n.singleTaskText.titleTextFinished.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.singleTaskText.titleTextFinished.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.body-tasks-panel[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-tasks-panel.light[data-v-03b2ccc8] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-tasks-panel.dark[data-v-03b2ccc8] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#tasksListView[data-v-03b2ccc8] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8] {\n  background: #718096;\n  color: #edf2f7;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8] {\n  background: #cbd5e0;\n  color: #2d3748;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.active[data-v-03b2ccc8] {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.ended[data-v-03b2ccc8] {\n  color: #cbd5e0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended[data-v-03b2ccc8] {\n  color: #718096;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem div[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.task_item[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.task_item.light[data-v-03b2ccc8] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.task_item[data-v-03b2ccc8]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.task_item.light[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.task_item.light.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark.active[data-v-03b2ccc8] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\r\n", ""]);
+exports.push([module.i, ".v-context[data-v-03b2ccc8],\n.v-context ul[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-03b2ccc8],\n.v-context ul > li[data-v-03b2ccc8] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-03b2ccc8],\n.v-context ul > li > a[data-v-03b2ccc8] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-03b2ccc8]:focus,\n.v-context > li > a[data-v-03b2ccc8]:hover,\n.v-context ul > li > a[data-v-03b2ccc8]:focus,\n.v-context ul > li > a[data-v-03b2ccc8]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-03b2ccc8]:focus,\n.v-context > li > a[data-v-03b2ccc8]:focus,\n.v-context ul[data-v-03b2ccc8]:focus,\n.v-context ul > li > a[data-v-03b2ccc8]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-03b2ccc8]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-03b2ccc8] {\n  display: none;\n}\n\n/** Top part of projects */\n.topProjectsDiv[data-v-03b2ccc8] {\n  /* flex items-center p-1 bg-gray-900 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topProjectsDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topProjectsDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Top part of tasks */\n.topTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 0.25rem;\n}\n.topTaskDiv.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n}\n.topTaskDiv.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n}\n\n/** Search style */\n.searchInput[data-v-03b2ccc8] {\n  border-radius: 0.25rem;\n  width: 70%;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-03b2ccc8] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-03b2ccc8]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-03b2ccc8]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-03b2ccc8]::placeholder {\n  color: #4a5568;\n}\n\n/** Search by element */\n.searchElementsDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-left: 0.25rem;\n}\n.searchElementsDiv.light[data-v-03b2ccc8] {\n  border-left: 1px dotted #e2e8f0;\n}\n.searchElementsDiv.dark[data-v-03b2ccc8] {\n  border-left: 1px dotted #4a5568;\n}\n\n/** Search by element icons */\n.searchIconsText[data-v-03b2ccc8] {\n  /* text-2xl text-gray-500 hover:text-gray-100 */\n  font-size: 1rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIconsText.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIconsText.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIconsText.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIconsText.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n.searchIcons[data-v-03b2ccc8] {\n  font-size: 1.5rem;\n  padding: 0px 2px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.searchIcons.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.searchIcons.light[data-v-03b2ccc8]:hover {\n  color: #1a202c;\n}\n.searchIcons.dark[data-v-03b2ccc8]:hover {\n  color: #f7fafc;\n}\n\n/** Date style */\n.dateText[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  font-size: 0.75rem;\n}\n.dateText.dateWithLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.dateText.dateWithLine.light[data-v-03b2ccc8] {\n  color: #718096;\n}\n.dateText.dateWithLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.dateText.dateWithoutLine.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n\n/** Style for each project block */\n.singleTaskDiv[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n}\n.singleTaskId[data-v-03b2ccc8] {\n  border-radius: 9999px;\n  height: 1.5rem;\n  width: 1.5rem;\n  font-size: 0.75rem;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.singleTaskId.idBackground.light[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #cbd5e0;\n}\n.singleTaskId.idBackground.dark[data-v-03b2ccc8] {\n  /* bg-gray-600 */\n  background-color: #718096;\n}\n.singleTaskId.idTextUnfinished.light[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #718096;\n}\n.singleTaskId.idTextUnfinished.dark[data-v-03b2ccc8] {\n  /* text-gray-600 */\n  color: #cbd5e0;\n}\n.singleTaskId.idTextFinished.light[data-v-03b2ccc8] {\n  color: #f7fafc;\n}\n.singleTaskId.idTextFinished.dark[data-v-03b2ccc8] {\n  color: #1a202c;\n}\n.singleTaskText[data-v-03b2ccc8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.5rem;\n  padding-top: 0.25rem;\n}\n.singleTaskText.titleTextUnfinished.light[data-v-03b2ccc8] {\n  color: #4a5568;\n}\n.singleTaskText.titleTextUnfinished.dark[data-v-03b2ccc8] {\n  color: #e2e8f0;\n}\n.singleTaskText.titleTextFinished.light[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.singleTaskText.titleTextFinished.dark[data-v-03b2ccc8] {\n  color: #a0aec0;\n}\n.titleTextLine[data-v-03b2ccc8] {\n  text-decoration: line-through;\n}\n.body-tasks-panel[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: calc(100vh - 94px);\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  overflow-x: hidden;\n  overflow-y: hidden;\n}\n.body-tasks-panel.light[data-v-03b2ccc8] {\n  border-right: 1px solid white;\n  background: #f7fafc;\n}\n.body-tasks-panel.dark[data-v-03b2ccc8] {\n  border-right: 1px solid black;\n  background: #1a202c;\n}\n#tasksListView[data-v-03b2ccc8] {\n  width: 100%;\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n#tasksListView div.taskItem[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 10px 20px;\n  margin: 5px 5px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  cursor: pointer;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8] {\n  background: #718096;\n  color: #edf2f7;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8] {\n  background: #cbd5e0;\n  color: #2d3748;\n}\n#tasksListView div.taskItem.light[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.active[data-v-03b2ccc8] {\n  background: #2d3748;\n}\n#tasksListView div.taskItem.dark.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n}\n#tasksListView div.taskItem.light.ended[data-v-03b2ccc8] {\n  color: #cbd5e0;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem.dark.ended[data-v-03b2ccc8] {\n  color: #718096;\n  text-decoration: line-through;\n}\n#tasksListView div.taskItem div[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.task_item[data-v-03b2ccc8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.task_item.light[data-v-03b2ccc8] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.task_item[data-v-03b2ccc8]:first-child {\n  padding: 5px 20px 5px 5px;\n  margin: 0px 5px 5px 5px;\n}\n.task_item.light[data-v-03b2ccc8]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark[data-v-03b2ccc8]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.task_item.light.active[data-v-03b2ccc8] {\n  background: #edf2f7;\n  color: #718096;\n}\n.task_item.dark.active[data-v-03b2ccc8] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n", ""]);
 
 // exports
 
@@ -19674,7 +19673,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/* Start Top panel */\n.generalStyleDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light[data-v-5a26d5a0] {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark[data-v-5a26d5a0] {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg[data-v-5a26d5a0] {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light[data-v-5a26d5a0] {\n  color: #4a5568;\n}\n.contentDiv.dark[data-v-5a26d5a0] {\n  color: #e2e8f0;\n}\n.mdiExitIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light[data-v-5a26d5a0] {\n  color: #fc8181;\n}\n.mdiExitIcon.dark[data-v-5a26d5a0] {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light[data-v-5a26d5a0] {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark[data-v-5a26d5a0] {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light[data-v-5a26d5a0] {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark[data-v-5a26d5a0] {\n  color: #dd6b20;\n}\n.standardSizeIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.topTitleDiv[data-v-5a26d5a0] {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-5a26d5a0] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-5a26d5a0] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light[data-v-5a26d5a0]:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark[data-v-5a26d5a0]:hover {\n  background-color: #718096;\n}\n.rightExitIcon[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-5a26d5a0] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-5a26d5a0] {\n  background-color: #e53e3e;\n}\n.button-bar[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-5a26d5a0] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-5a26d5a0] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar button[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light button[data-v-5a26d5a0] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark button[data-v-5a26d5a0] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark button[data-v-5a26d5a0]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light button[data-v-5a26d5a0]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu[data-v-5a26d5a0] {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul[data-v-5a26d5a0],\r\n#cssmenu li[data-v-5a26d5a0] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul[data-v-5a26d5a0] {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li[data-v-5a26d5a0] {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover[data-v-5a26d5a0],\r\n#cssmenu ul li[data-v-5a26d5a0]:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  float: none;\n}\n#cssmenu ul ul ul[data-v-5a26d5a0] {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul[data-v-5a26d5a0] {\n  visibility: visible;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  margin-top: 0;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  font-weight: normal;\n}\n#cssmenu a[data-v-5a26d5a0] {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul[data-v-5a26d5a0] {\n  display: inline-block;\n}\n#cssmenu[data-v-5a26d5a0]:after,\r\n#cssmenu ul[data-v-5a26d5a0]:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a[data-v-5a26d5a0] {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a[data-v-5a26d5a0] {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul[data-v-5a26d5a0] {\n  border-top: 0 none;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a[data-v-5a26d5a0] {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a[data-v-5a26d5a0] {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a[data-v-5a26d5a0] {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a[data-v-5a26d5a0] {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a[data-v-5a26d5a0] {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a[data-v-5a26d5a0] {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a[data-v-5a26d5a0]:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a[data-v-5a26d5a0],\r\n#cssmenu.dark ul li.active > a[data-v-5a26d5a0] {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a[data-v-5a26d5a0],\r\n#cssmenu.light ul li.active > a[data-v-5a26d5a0] {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul[data-v-5a26d5a0] {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul[data-v-5a26d5a0] {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a[data-v-5a26d5a0] {\n  padding: 3px 10px;\n}\n#cssmenu.dark a[data-v-5a26d5a0] {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a[data-v-5a26d5a0] {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a[data-v-5a26d5a0] {\n  line-height: 30px;\n}\n.mnu-flex[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\r\n", ""]);
+exports.push([module.i, "/* Start Top panel */\n.generalStyleDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light[data-v-5a26d5a0] {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark[data-v-5a26d5a0] {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg[data-v-5a26d5a0] {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light[data-v-5a26d5a0] {\n  color: #4a5568;\n}\n.contentDiv.dark[data-v-5a26d5a0] {\n  color: #e2e8f0;\n}\n.mdiExitIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light[data-v-5a26d5a0] {\n  color: #fc8181;\n}\n.mdiExitIcon.dark[data-v-5a26d5a0] {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light[data-v-5a26d5a0] {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark[data-v-5a26d5a0] {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light[data-v-5a26d5a0] {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark[data-v-5a26d5a0] {\n  color: #dd6b20;\n}\n.standardSizeIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.topTitleDiv[data-v-5a26d5a0] {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-5a26d5a0] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-5a26d5a0] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light[data-v-5a26d5a0]:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark[data-v-5a26d5a0]:hover {\n  background-color: #718096;\n}\n.rightExitIcon[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-5a26d5a0] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-5a26d5a0] {\n  background-color: #e53e3e;\n}\n.button-bar[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-5a26d5a0] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-5a26d5a0] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar button[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light button[data-v-5a26d5a0] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark button[data-v-5a26d5a0] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark button[data-v-5a26d5a0]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light button[data-v-5a26d5a0]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu[data-v-5a26d5a0] {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul[data-v-5a26d5a0],\n#cssmenu li[data-v-5a26d5a0] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul[data-v-5a26d5a0] {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li[data-v-5a26d5a0] {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover[data-v-5a26d5a0],\n#cssmenu ul li[data-v-5a26d5a0]:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  float: none;\n}\n#cssmenu ul ul ul[data-v-5a26d5a0] {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul[data-v-5a26d5a0] {\n  visibility: visible;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  margin-top: 0;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  font-weight: normal;\n}\n#cssmenu a[data-v-5a26d5a0] {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul[data-v-5a26d5a0] {\n  display: inline-block;\n}\n#cssmenu[data-v-5a26d5a0]:after,\n#cssmenu ul[data-v-5a26d5a0]:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a[data-v-5a26d5a0] {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a[data-v-5a26d5a0] {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul[data-v-5a26d5a0] {\n  border-top: 0 none;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a[data-v-5a26d5a0] {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a[data-v-5a26d5a0] {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a[data-v-5a26d5a0] {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a[data-v-5a26d5a0] {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a[data-v-5a26d5a0] {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a[data-v-5a26d5a0] {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a[data-v-5a26d5a0]:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a[data-v-5a26d5a0],\n#cssmenu.dark ul li.active > a[data-v-5a26d5a0] {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a[data-v-5a26d5a0],\n#cssmenu.light ul li.active > a[data-v-5a26d5a0] {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul[data-v-5a26d5a0] {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul[data-v-5a26d5a0] {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a[data-v-5a26d5a0] {\n  padding: 3px 10px;\n}\n#cssmenu.dark a[data-v-5a26d5a0] {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a[data-v-5a26d5a0] {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a[data-v-5a26d5a0] {\n  line-height: 30px;\n}\n.mnu-flex[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\n", ""]);
 
 // exports
 
@@ -57466,7 +57465,7 @@ __webpack_require__.r(__webpack_exports__);
         },
 
         close() {
-            if (! this.show) {
+            if (!this.show) {
                 return;
             }
 
@@ -57493,7 +57492,7 @@ __webpack_require__.r(__webpack_exports__);
         },
 
         focusNext(event, up) {
-            if (! this.show) {
+            if (!this.show) {
                 return;
             }
 
@@ -57509,7 +57508,7 @@ __webpack_require__.r(__webpack_exports__);
                 let index = items.indexOf(event.target);
                 if (up && index > 0) {
                     index--;
-                } else if (! up && index < items.length - 1) {
+                } else if (!up && index < items.length - 1) {
                     index++;
                 }
 
@@ -57570,7 +57569,7 @@ __webpack_require__.r(__webpack_exports__);
                 parentMenu.dispatchEvent(new Event('mouseleave'));
 
                 const items = this.getItems(),
-                      index = items.indexOf(parentMenu.getElementsByTagName('a')[0]);
+                    index = items.indexOf(parentMenu.getElementsByTagName('a')[0]);
 
                 this.focusItem(index, items);
             }
@@ -57597,8 +57596,8 @@ __webpack_require__.r(__webpack_exports__);
 
         openSubMenu(event) {
             const subMenuElement = this.getSubMenuElementByEvent(event),
-                  parentMenu = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(subMenuElement.parentElement, 'v-context'),
-                  bcr = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getBCR"])(event.target);
+                parentMenu = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(subMenuElement.parentElement, 'v-context'),
+                bcr = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getBCR"])(event.target);
 
             // check if another sub menu is open. In this case make sure no other as well as no nested sub menu is open
             if (this.activeSubMenu !== parentMenu) {
@@ -57624,7 +57623,7 @@ __webpack_require__.r(__webpack_exports__);
 
         closeSubMenu(event) {
             const subMenuElement = this.getSubMenuElementByEvent(event),
-                  parentMenu = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(subMenuElement, 'v-context');
+                parentMenu = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["parentElementByClassName"])(subMenuElement, 'v-context');
 
             // if a sub menu is closed and it's not the currently active sub menu (eg. a lowe layered sub menu closed
             // by a mouseleave event) close all nested sub menus
@@ -57643,7 +57642,7 @@ __webpack_require__.r(__webpack_exports__);
                 : null;
         },
 
-        getSubMenuElementByEvent (event) {
+        getSubMenuElementByEvent(event) {
             return event.target.getElementsByTagName('ul')[0];
         },
 
@@ -57713,7 +57712,7 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     render(h) {
-        if (this.lazy && ! this.show) {
+        if (this.lazy && !this.show) {
             return h(false);
         }
 
@@ -57739,7 +57738,7 @@ __webpack_require__.r(__webpack_exports__);
             }
         ];
 
-        if (! this.lazy) {
+        if (!this.lazy) {
             directives.push({
                 name: 'show',
                 value: this.show,
@@ -57756,7 +57755,7 @@ __webpack_require__.r(__webpack_exports__);
                 attrs: {
                     tabindex: '-1',
                     role: this.role,
-                    'aria-hidden': this.lazy ? null : String(! this.show)
+                    'aria-hidden': this.lazy ? null : String(!this.show)
                 },
                 on,
                 directives
@@ -57966,7 +57965,7 @@ var render = function() {
       _c("div", [
         _vm._v("\n            MaxtradeOffice ver:\n            "),
         _c("span", [
-          _vm._v(_vm._s(_vm.getVersion) + " [" + _vm._s(_vm.getUser.name) + "]")
+          _vm._v(_vm._s(_vm.getVersion) + " [" + _vm._s(_vm.getUserName) + "]")
         ])
       ]),
       _vm._v(" "),
@@ -59766,9 +59765,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "topTitleDiv", class: _vm.getTheme }, [
-        _c("span", [
-          _vm._v("MaxtradeOffice [" + _vm._s(_vm.getUser.name) + "]")
-        ])
+        _c("span", [_vm._v("MaxtradeOffice [" + _vm._s(_vm.getUserName) + "]")])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "topRightIcons" }, [
@@ -74186,7 +74183,7 @@ var state = {
     filterstatus: "all"
   },
   documents: [],
-  user: []
+  user_name: document.getElementsByTagName("App")[0].getAttribute("userName")
 };
 var getters = {
   getTheme: function getTheme(state) {
@@ -74250,8 +74247,8 @@ var getters = {
   getVersion: function getVersion(state) {
     return state.version;
   },
-  getUser: function getUser(state) {
-    return state.user;
+  getUserName: function getUserName(state) {
+    return state.user_name;
   }
 };
 var actions = {
@@ -74292,25 +74289,26 @@ var actions = {
 
     return fetchProperties;
   }(),
-  // Fetch all user data from laravel
-  fetchUser: function () {
-    var _fetchUser = _asyncToGenerator(
+  // Fetch properties categories
+  fetchPropertyCategories: function () {
+    var _fetchPropertyCategories = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2) {
-      var commit, response;
+      var commit, response, property_categories;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               commit = _ref2.commit;
               _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/user");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/properties_categories");
 
             case 3:
               response = _context2.sent;
-              commit("setUser", response.data);
+              property_categories = response.data.data;
+              commit("setPropertyCategories", property_categories);
 
-            case 5:
+            case 6:
             case "end":
               return _context2.stop();
           }
@@ -74318,40 +74316,7 @@ var actions = {
       }, _callee2);
     }));
 
-    function fetchUser(_x2) {
-      return _fetchUser.apply(this, arguments);
-    }
-
-    return fetchUser;
-  }(),
-  // Fetch properties categories
-  fetchPropertyCategories: function () {
-    var _fetchPropertyCategories = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3) {
-      var commit, response, property_categories;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              commit = _ref3.commit;
-              _context3.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/properties_categories");
-
-            case 3:
-              response = _context3.sent;
-              property_categories = response.data.data;
-              commit("setPropertyCategories", property_categories);
-
-            case 6:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-
-    function fetchPropertyCategories(_x3) {
+    function fetchPropertyCategories(_x2) {
       return _fetchPropertyCategories.apply(this, arguments);
     }
 
@@ -74361,15 +74326,15 @@ var actions = {
   changeTheme: function () {
     var _changeTheme = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, theme) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, theme) {
       var commit, state;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              commit = _ref4.commit, state = _ref4.state;
+              commit = _ref3.commit, state = _ref3.state;
               commit("setTheme", theme);
-              _context4.next = 4;
+              _context3.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/property", {
                 property_id: state.properties.find(function (prop) {
                   return prop.name === "theme";
@@ -74381,13 +74346,13 @@ var actions = {
 
             case 4:
             case "end":
-              return _context4.stop();
+              return _context3.stop();
           }
         }
-      }, _callee4);
+      }, _callee3);
     }));
 
-    function changeTheme(_x4, _x5) {
+    function changeTheme(_x3, _x4) {
       return _changeTheme.apply(this, arguments);
     }
 
@@ -74398,47 +74363,47 @@ var actions = {
     window.location = "/logout.html";
   },
   // Show panel properties
-  showProperties: function showProperties(_ref5) {
-    var commit = _ref5.commit;
+  showProperties: function showProperties(_ref4) {
+    var commit = _ref4.commit;
     commit("setPanel", "properties");
   },
   // Close current panel
-  closePanel: function closePanel(_ref6) {
-    var commit = _ref6.commit;
+  closePanel: function closePanel(_ref5) {
+    var commit = _ref5.commit;
     commit("setPanel", "");
   },
   // Show About panel
-  showAbout: function showAbout(_ref7) {
-    var commit = _ref7.commit;
+  showAbout: function showAbout(_ref6) {
+    var commit = _ref6.commit;
     commit("setPanel", "about");
   },
   // Fetch all projects
   fetchProjects: function () {
     var _fetchProjects = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref8, status) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref7, status) {
       var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              commit = _ref8.commit;
-              _context5.next = 3;
+              commit = _ref7.commit;
+              _context4.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/projects/" + status);
 
             case 3:
-              response = _context5.sent;
+              response = _context4.sent;
               commit("setProjects", response.data.data);
 
             case 5:
             case "end":
-              return _context5.stop();
+              return _context4.stop();
           }
         }
-      }, _callee5);
+      }, _callee4);
     }));
 
-    function fetchProjects(_x6, _x7) {
+    function fetchProjects(_x5, _x6) {
       return _fetchProjects.apply(this, arguments);
     }
 
@@ -74448,34 +74413,34 @@ var actions = {
   showProject: function () {
     var _showProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref9, project) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref8, project) {
       var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context6.prev = _context6.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
-              commit = _ref9.commit;
+              commit = _ref8.commit;
               commit("setProject", project);
               commit("setCurrentProjectId", project.id);
               commit("setNewProject", false);
               commit("setPanel", "projects");
               commit("setCurrentTaskId", 0);
-              _context6.next = 8;
+              _context5.next = 8;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/all/" + project.id);
 
             case 8:
-              response = _context6.sent;
+              response = _context5.sent;
               commit("setTasks", response.data.data);
 
             case 10:
             case "end":
-              return _context6.stop();
+              return _context5.stop();
           }
         }
-      }, _callee6);
+      }, _callee5);
     }));
 
-    function showProject(_x8, _x9) {
+    function showProject(_x7, _x8) {
       return _showProject.apply(this, arguments);
     }
 
@@ -74485,14 +74450,14 @@ var actions = {
   projectSearch: function () {
     var _projectSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref10, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref9, event) {
       var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
         while (1) {
-          switch (_context7.prev = _context7.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
-              commit = _ref10.commit;
-              _context7.next = 3;
+              commit = _ref9.commit;
+              _context6.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/projects/search", {
                 search: event.target.value
               }, {
@@ -74500,28 +74465,28 @@ var actions = {
               });
 
             case 3:
-              response = _context7.sent;
+              response = _context6.sent;
               commit("setProjects", response.data.data);
 
             case 5:
             case "end":
-              return _context7.stop();
+              return _context6.stop();
           }
         }
-      }, _callee7);
+      }, _callee6);
     }));
 
-    function projectSearch(_x10, _x11) {
+    function projectSearch(_x9, _x10) {
       return _projectSearch.apply(this, arguments);
     }
 
     return projectSearch;
   }(),
   // Toggle project status filter
-  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref11) {
-    var commit = _ref11.commit,
-        state = _ref11.state,
-        dispatch = _ref11.dispatch;
+  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref10) {
+    var commit = _ref10.commit,
+        state = _ref10.state,
+        dispatch = _ref10.dispatch;
 
     if (state.project_filter.filterstatus == "all") {
       commit("setProjectFilterStatus", "act");
@@ -74539,9 +74504,9 @@ var actions = {
     }
   },
   // Toggle project name filter
-  toggleProjectNameFilter: function toggleProjectNameFilter(_ref12) {
-    var commit = _ref12.commit,
-        state = _ref12.state;
+  toggleProjectNameFilter: function toggleProjectNameFilter(_ref11) {
+    var commit = _ref11.commit,
+        state = _ref11.state;
     commit("setProjectFilterName", !state.project_filter.filteraz);
 
     if (state.project_filter.filteraz) {
@@ -74557,9 +74522,9 @@ var actions = {
     }
   },
   // Toggle project ID filter
-  toggleProjectIdFilter: function toggleProjectIdFilter(_ref13) {
-    var commit = _ref13.commit,
-        state = _ref13.state;
+  toggleProjectIdFilter: function toggleProjectIdFilter(_ref12) {
+    var commit = _ref12.commit,
+        state = _ref12.state;
     commit("setProjectFilterId", !state.project_filter.filter09);
 
     if (state.project_filter.filter09) {
@@ -74575,10 +74540,10 @@ var actions = {
     }
   },
   // Add project
-  addProject: function addProject(_ref14) {
-    var commit = _ref14.commit,
-        state = _ref14.state,
-        dispatch = _ref14.dispatch;
+  addProject: function addProject(_ref13) {
+    var commit = _ref13.commit,
+        state = _ref13.state,
+        dispatch = _ref13.dispatch;
     var newProject = {
       id: Math.max.apply(Math, state.projects.map(function (o) {
         return o.id;
@@ -74604,25 +74569,25 @@ var actions = {
   deleteProject: function () {
     var _deleteProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref15) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref14) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
         while (1) {
-          switch (_context8.prev = _context8.next) {
+          switch (_context7.prev = _context7.next) {
             case 0:
-              commit = _ref15.commit, state = _ref15.state;
+              commit = _ref14.commit, state = _ref14.state;
 
               if (!(state.current_project_id != 0)) {
-                _context8.next = 11;
+                _context7.next = 11;
                 break;
               }
 
               if (!confirm("Are You sure?")) {
-                _context8.next = 11;
+                _context7.next = 11;
                 break;
               }
 
-              _context8.next = 5;
+              _context7.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/project/" + state.project.id, {
                 project_id: state.project.id
               }, {
@@ -74630,7 +74595,7 @@ var actions = {
               });
 
             case 5:
-              response = _context8.sent;
+              response = _context7.sent;
               commit("setProjects", state.projects.filter(function (p) {
                 return p.id !== response.data.data.id;
               }));
@@ -74641,23 +74606,23 @@ var actions = {
 
             case 11:
             case "end":
-              return _context8.stop();
+              return _context7.stop();
           }
         }
-      }, _callee8);
+      }, _callee7);
     }));
 
-    function deleteProject(_x12) {
+    function deleteProject(_x11) {
       return _deleteProject.apply(this, arguments);
     }
 
     return deleteProject;
   }(),
   // Complete a project and all tasks bind to this project
-  completeProject: function completeProject(_ref16) {
-    var commit = _ref16.commit,
-        state = _ref16.state,
-        dispatch = _ref16.dispatch;
+  completeProject: function completeProject(_ref15) {
+    var commit = _ref15.commit,
+        state = _ref15.state,
+        dispatch = _ref15.dispatch;
 
     if (state.current_project_id != 0) {
       commit("setProjectStatus", 0);
@@ -74668,21 +74633,21 @@ var actions = {
   saveProject: function () {
     var _saveProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref17, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref16, isMessage) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
         while (1) {
-          switch (_context9.prev = _context9.next) {
+          switch (_context8.prev = _context8.next) {
             case 0:
-              commit = _ref17.commit, state = _ref17.state;
+              commit = _ref16.commit, state = _ref16.state;
               response = null;
 
               if (!state.new_project) {
-                _context9.next = 8;
+                _context8.next = 8;
                 break;
               }
 
-              _context9.next = 5;
+              _context8.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/project", {
                 project_id: 0,
                 title: state.project.title,
@@ -74693,12 +74658,12 @@ var actions = {
               });
 
             case 5:
-              response = _context9.sent;
-              _context9.next = 11;
+              response = _context8.sent;
+              _context8.next = 11;
               break;
 
             case 8:
-              _context9.next = 10;
+              _context8.next = 10;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/project", {
                 project_id: state.project.id,
                 title: state.project.title,
@@ -74709,7 +74674,7 @@ var actions = {
               });
 
             case 10:
-              response = _context9.sent;
+              response = _context8.sent;
 
             case 11:
               state.project.id = response.data.data.id;
@@ -74726,11 +74691,11 @@ var actions = {
 
 
               if (!(state.project.status == 0)) {
-                _context9.next = 23;
+                _context8.next = 23;
                 break;
               }
 
-              _context9.next = 22;
+              _context8.next = 22;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/complete/" + state.project.id);
 
             case 22:
@@ -74740,22 +74705,22 @@ var actions = {
 
             case 23:
             case "end":
-              return _context9.stop();
+              return _context8.stop();
           }
         }
-      }, _callee9);
+      }, _callee8);
     }));
 
-    function saveProject(_x13, _x14) {
+    function saveProject(_x12, _x13) {
       return _saveProject.apply(this, arguments);
     }
 
     return saveProject;
   }(),
   // Add new Task
-  addTask: function addTask(_ref18) {
-    var state = _ref18.state,
-        dispatch = _ref18.dispatch;
+  addTask: function addTask(_ref17) {
+    var state = _ref17.state,
+        dispatch = _ref17.dispatch;
 
     if (state.current_project_id != 0) {
       var newTask = {
@@ -74781,21 +74746,21 @@ var actions = {
   saveTask: function () {
     var _saveTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref19, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref18, isMessage) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
         while (1) {
-          switch (_context10.prev = _context10.next) {
+          switch (_context9.prev = _context9.next) {
             case 0:
-              commit = _ref19.commit, state = _ref19.state;
+              commit = _ref18.commit, state = _ref18.state;
               response = null;
 
               if (!state.new_task) {
-                _context10.next = 8;
+                _context9.next = 8;
                 break;
               }
 
-              _context10.next = 5;
+              _context9.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/task", {
                 task_id: 0,
                 project_id: state.current_project_id,
@@ -74807,12 +74772,12 @@ var actions = {
               });
 
             case 5:
-              response = _context10.sent;
-              _context10.next = 11;
+              response = _context9.sent;
+              _context9.next = 11;
               break;
 
             case 8:
-              _context10.next = 10;
+              _context9.next = 10;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/task", {
                 task_id: state.task.id,
                 project_id: state.current_project_id,
@@ -74824,7 +74789,7 @@ var actions = {
               });
 
             case 10:
-              response = _context10.sent;
+              response = _context9.sent;
 
             case 11:
               state.task.id = response.data.data.id;
@@ -74842,13 +74807,13 @@ var actions = {
 
             case 20:
             case "end":
-              return _context10.stop();
+              return _context9.stop();
           }
         }
-      }, _callee10);
+      }, _callee9);
     }));
 
-    function saveTask(_x15, _x16) {
+    function saveTask(_x14, _x15) {
       return _saveTask.apply(this, arguments);
     }
 
@@ -74858,7 +74823,43 @@ var actions = {
   fetchTasksSearch: function () {
     var _fetchTasksSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref20, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref19, event) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
+        while (1) {
+          switch (_context10.prev = _context10.next) {
+            case 0:
+              commit = _ref19.commit, state = _ref19.state;
+              _context10.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
+                search: event.target.value
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 3:
+              response = _context10.sent;
+              commit("setTasks", response.data.data);
+
+            case 5:
+            case "end":
+              return _context10.stop();
+          }
+        }
+      }, _callee10);
+    }));
+
+    function fetchTasksSearch(_x16, _x17) {
+      return _fetchTasksSearch.apply(this, arguments);
+    }
+
+    return fetchTasksSearch;
+  }(),
+  // Fetch all tasks
+  fetchTasks: function () {
+    var _fetchTasks = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref20, status) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
         while (1) {
@@ -74866,11 +74867,7 @@ var actions = {
             case 0:
               commit = _ref20.commit, state = _ref20.state;
               _context11.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
-                search: event.target.value
-              }, {
-                "Content-Type": "application/json; charset=utf-8"
-              });
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
 
             case 3:
               response = _context11.sent;
@@ -74884,49 +74881,17 @@ var actions = {
       }, _callee11);
     }));
 
-    function fetchTasksSearch(_x17, _x18) {
-      return _fetchTasksSearch.apply(this, arguments);
-    }
-
-    return fetchTasksSearch;
-  }(),
-  // Fetch all tasks
-  fetchTasks: function () {
-    var _fetchTasks = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref21, status) {
-      var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
-        while (1) {
-          switch (_context12.prev = _context12.next) {
-            case 0:
-              commit = _ref21.commit, state = _ref21.state;
-              _context12.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
-
-            case 3:
-              response = _context12.sent;
-              commit("setTasks", response.data.data);
-
-            case 5:
-            case "end":
-              return _context12.stop();
-          }
-        }
-      }, _callee12);
-    }));
-
-    function fetchTasks(_x19, _x20) {
+    function fetchTasks(_x18, _x19) {
       return _fetchTasks.apply(this, arguments);
     }
 
     return fetchTasks;
   }(),
   // Toggle task status filter
-  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref22) {
-    var commit = _ref22.commit,
-        state = _ref22.state,
-        dispatch = _ref22.dispatch;
+  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref21) {
+    var commit = _ref21.commit,
+        state = _ref21.state,
+        dispatch = _ref21.dispatch;
 
     if (state.task_filter.filterstatus == "all") {
       commit("setTaskFilterStatus", "act");
@@ -74944,9 +74909,9 @@ var actions = {
     }
   },
   // Toggle task name filter
-  toggleTaskNameFilter: function toggleTaskNameFilter(_ref23) {
-    var commit = _ref23.commit,
-        state = _ref23.state;
+  toggleTaskNameFilter: function toggleTaskNameFilter(_ref22) {
+    var commit = _ref22.commit,
+        state = _ref22.state;
     commit("setTaskFilterName", !state.task_filter.filteraz);
 
     if (state.task_filter.filteraz) {
@@ -74962,9 +74927,9 @@ var actions = {
     }
   },
   // Toggle tasks ID filter
-  toggleTaskIdFilter: function toggleTaskIdFilter(_ref24) {
-    var commit = _ref24.commit,
-        state = _ref24.state;
+  toggleTaskIdFilter: function toggleTaskIdFilter(_ref23) {
+    var commit = _ref23.commit,
+        state = _ref23.state;
     commit("setTaskFilterId", !state.task_filter.filter09);
 
     if (state.task_filter.filter09) {
@@ -74982,23 +74947,73 @@ var actions = {
   showTask: function () {
     var _showTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref25, task) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref24, task) {
       var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
+        while (1) {
+          switch (_context12.prev = _context12.next) {
+            case 0:
+              commit = _ref24.commit;
+              commit("setTask", task);
+              commit("setCurrentTaskId", task.id);
+              commit("setNewTask", false);
+              _context12.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + task.id);
+
+            case 6:
+              response = _context12.sent;
+              commit("setDocuments", response.data);
+              commit("setPanel", "tasks");
+
+            case 9:
+            case "end":
+              return _context12.stop();
+          }
+        }
+      }, _callee12);
+    }));
+
+    function showTask(_x20, _x21) {
+      return _showTask.apply(this, arguments);
+    }
+
+    return showTask;
+  }(),
+  deleteTask: function () {
+    var _deleteTask = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref25) {
+      var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
         while (1) {
           switch (_context13.prev = _context13.next) {
             case 0:
-              commit = _ref25.commit;
-              commit("setTask", task);
-              commit("setCurrentTaskId", task.id);
-              commit("setNewTask", false);
-              _context13.next = 6;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + task.id);
+              commit = _ref25.commit, state = _ref25.state;
 
-            case 6:
+              if (!(state.current_task_id != 0)) {
+                _context13.next = 9;
+                break;
+              }
+
+              if (!confirm("Are You sure?")) {
+                _context13.next = 9;
+                break;
+              }
+
+              _context13.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/" + state.task.id, {
+                task_id: state.task.id
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 5:
               response = _context13.sent;
-              commit("setDocuments", response.data);
-              commit("setPanel", "tasks");
+              state.tasks = state.tasks.filter(function (t) {
+                return t.id !== response.data.data.id;
+              });
+              commit("setCurrentTaskId", 0);
+              commit("setPanel", "");
 
             case 9:
             case "end":
@@ -75008,66 +75023,16 @@ var actions = {
       }, _callee13);
     }));
 
-    function showTask(_x21, _x22) {
-      return _showTask.apply(this, arguments);
-    }
-
-    return showTask;
-  }(),
-  deleteTask: function () {
-    var _deleteTask = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref26) {
-      var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
-        while (1) {
-          switch (_context14.prev = _context14.next) {
-            case 0:
-              commit = _ref26.commit, state = _ref26.state;
-
-              if (!(state.current_task_id != 0)) {
-                _context14.next = 9;
-                break;
-              }
-
-              if (!confirm("Are You sure?")) {
-                _context14.next = 9;
-                break;
-              }
-
-              _context14.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/" + state.task.id, {
-                task_id: state.task.id
-              }, {
-                "Content-Type": "application/json; charset=utf-8"
-              });
-
-            case 5:
-              response = _context14.sent;
-              state.tasks = state.tasks.filter(function (t) {
-                return t.id !== response.data.data.id;
-              });
-              commit("setCurrentTaskId", 0);
-              commit("setPanel", "");
-
-            case 9:
-            case "end":
-              return _context14.stop();
-          }
-        }
-      }, _callee14);
-    }));
-
-    function deleteTask(_x23) {
+    function deleteTask(_x22) {
       return _deleteTask.apply(this, arguments);
     }
 
     return deleteTask;
   }(),
   // Change task status to complete
-  completeTask: function completeTask(_ref27) {
-    var state = _ref27.state,
-        dispatch = _ref27.dispatch;
+  completeTask: function completeTask(_ref26) {
+    var state = _ref26.state,
+        dispatch = _ref26.dispatch;
 
     if (state.current_task_id != 0) {
       state.task.status = 0;
@@ -75078,18 +75043,18 @@ var actions = {
   deleteDocument: function () {
     var _deleteDocument = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref28, current_document) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref27, current_document) {
       var state, dispatch, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
         while (1) {
-          switch (_context15.prev = _context15.next) {
+          switch (_context14.prev = _context14.next) {
             case 0:
-              state = _ref28.state, dispatch = _ref28.dispatch;
-              _context15.next = 3;
+              state = _ref27.state, dispatch = _ref27.dispatch;
+              _context14.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/document/delete/" + state.task.id + "/" + current_document);
 
             case 3:
-              response = _context15.sent;
+              response = _context14.sent;
 
               if (response.data.result === "success") {
                 dispatch("changeDocuments");
@@ -75099,13 +75064,13 @@ var actions = {
 
             case 5:
             case "end":
-              return _context15.stop();
+              return _context14.stop();
           }
         }
-      }, _callee15);
+      }, _callee14);
     }));
 
-    function deleteDocument(_x24, _x25) {
+    function deleteDocument(_x23, _x24) {
       return _deleteDocument.apply(this, arguments);
     }
 
@@ -75115,58 +75080,58 @@ var actions = {
   changeDocuments: function () {
     var _changeDocuments = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16(_ref29) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref28) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
         while (1) {
-          switch (_context16.prev = _context16.next) {
+          switch (_context15.prev = _context15.next) {
             case 0:
-              commit = _ref29.commit, state = _ref29.state;
-              _context16.next = 3;
+              commit = _ref28.commit, state = _ref28.state;
+              _context15.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + state.task.id);
 
             case 3:
-              response = _context16.sent;
+              response = _context15.sent;
               commit("setDocuments", response.data);
 
             case 5:
             case "end":
-              return _context16.stop();
+              return _context15.stop();
           }
         }
-      }, _callee16);
+      }, _callee15);
     }));
 
-    function changeDocuments(_x26) {
+    function changeDocuments(_x25) {
       return _changeDocuments.apply(this, arguments);
     }
 
     return changeDocuments;
   }(),
   // Filter show all projects
-  showAllProjects: function showAllProjects(_ref30) {
-    var state = _ref30.state,
-        dispatch = _ref30.dispatch;
+  showAllProjects: function showAllProjects(_ref29) {
+    var state = _ref29.state,
+        dispatch = _ref29.dispatch;
     state.project_filter.filterstatus = "all";
     dispatch("fetchProjects", "all");
   },
   // Filter show completed projects
-  showCompletedProjects: function showCompletedProjects(_ref31) {
-    var state = _ref31.state,
-        dispatch = _ref31.dispatch;
+  showCompletedProjects: function showCompletedProjects(_ref30) {
+    var state = _ref30.state,
+        dispatch = _ref30.dispatch;
     state.project_filter.filterstatus = "end";
     dispatch("fetchProjects", "end");
   },
   // Filter show actived projects
-  showActivedProjects: function showActivedProjects(_ref32) {
-    var state = _ref32.state,
-        dispatch = _ref32.dispatch;
+  showActivedProjects: function showActivedProjects(_ref31) {
+    var state = _ref31.state,
+        dispatch = _ref31.dispatch;
     state.project_filter.filterstatus = "act";
     dispatch("fetchProjects", "act");
   },
   // Sort projects by ID ACC
-  sortProjectsIdAcc: function sortProjectsIdAcc(_ref33) {
-    var state = _ref33.state;
+  sortProjectsIdAcc: function sortProjectsIdAcc(_ref32) {
+    var state = _ref32.state;
     state.project_filter.filter09 = true;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -75174,8 +75139,8 @@ var actions = {
     });
   },
   // Sort projects by ID DEC
-  sortProjectsIdDec: function sortProjectsIdDec(_ref34) {
-    var state = _ref34.state;
+  sortProjectsIdDec: function sortProjectsIdDec(_ref33) {
+    var state = _ref33.state;
     state.project_filter.filter09 = false;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -75183,8 +75148,8 @@ var actions = {
     });
   },
   // Sort projects by Name ACC
-  sortProjectsNameAcc: function sortProjectsNameAcc(_ref35) {
-    var state = _ref35.state;
+  sortProjectsNameAcc: function sortProjectsNameAcc(_ref34) {
+    var state = _ref34.state;
     state.project_filter.filteraz = true;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return 1;
@@ -75192,8 +75157,8 @@ var actions = {
     });
   },
   // Sort projects by Name DEC
-  sortProjectsNameDec: function sortProjectsNameDec(_ref36) {
-    var state = _ref36.state;
+  sortProjectsNameDec: function sortProjectsNameDec(_ref35) {
+    var state = _ref35.state;
     state.project_filter.filteraz = false;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return -1;
@@ -75201,29 +75166,29 @@ var actions = {
     });
   },
   // Filter show all tasks
-  showAllTasks: function showAllTasks(_ref37) {
-    var state = _ref37.state,
-        dispatch = _ref37.dispatch;
+  showAllTasks: function showAllTasks(_ref36) {
+    var state = _ref36.state,
+        dispatch = _ref36.dispatch;
     state.task_filter.filterstatus = "all";
     dispatch("fetchTasks", "all", state.current_project_id);
   },
   // Filter show completed tasks
-  showCompletedTasks: function showCompletedTasks(_ref38) {
-    var state = _ref38.state,
-        dispatch = _ref38.dispatch;
+  showCompletedTasks: function showCompletedTasks(_ref37) {
+    var state = _ref37.state,
+        dispatch = _ref37.dispatch;
     state.task_filter.filterstatus = "end";
     dispatch("fetchTasks", "end", state.current_project_id);
   },
   // Filter show actived tasks
-  showActivedTasks: function showActivedTasks(_ref39) {
-    var state = _ref39.state,
-        dispatch = _ref39.dispatch;
+  showActivedTasks: function showActivedTasks(_ref38) {
+    var state = _ref38.state,
+        dispatch = _ref38.dispatch;
     state.task_filter.filterstatus = "act";
     dispatch("fetchTasks", "act", state.current_project_id);
   },
   // Sort tasks by ID ACC
-  sortTasksIdAcc: function sortTasksIdAcc(_ref40) {
-    var state = _ref40.state;
+  sortTasksIdAcc: function sortTasksIdAcc(_ref39) {
+    var state = _ref39.state;
     state.task_filter.filter09 = true;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -75231,8 +75196,8 @@ var actions = {
     });
   },
   // Sort tasks by ID DEC
-  sortTasksIdDec: function sortTasksIdDec(_ref41) {
-    var state = _ref41.state;
+  sortTasksIdDec: function sortTasksIdDec(_ref40) {
+    var state = _ref40.state;
     state.task_filter.filter09 = false;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -75240,8 +75205,8 @@ var actions = {
     });
   },
   // Sort tasks by Name ACC
-  sortTasksNameAcc: function sortTasksNameAcc(_ref42) {
-    var state = _ref42.state;
+  sortTasksNameAcc: function sortTasksNameAcc(_ref41) {
+    var state = _ref41.state;
     state.task_filter.filteraz = true;
     state.tasks.sort(function (a, b) {
       if (a.title > b.title) return 1;
@@ -75317,9 +75282,6 @@ var mutations = {
   },
   setDocuments: function setDocuments(state, documents) {
     return state.documents = documents;
-  },
-  setUser: function setUser(state, user) {
-    return state.user = user;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

@@ -241,7 +241,7 @@
             </div>
             <div class="topTitleDiv" :class="getTheme">
                 <!--Window title-->
-                <span>MaxtradeOffice [{{ getUser.name }}]</span>
+                <span>MaxtradeOffice [{{ getUserName }}]</span>
             </div>
             <div class="topRightIcons">
                 <!--Window title icons-->
@@ -304,7 +304,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
     name: "Header",
 
-    computed: mapGetters(["getTheme", "getUser"]),
+    computed: mapGetters(["getTheme", "getUserName"]),
 
     methods: {
         ...mapActions([

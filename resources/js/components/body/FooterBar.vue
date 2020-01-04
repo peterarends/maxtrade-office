@@ -6,7 +6,7 @@
             <div class="separator-vertical" :class="getTheme"></div>
             <div>
                 MaxtradeOffice ver:
-                <span>{{ getVersion }} [{{ getUser.name }}]</span>
+                <span>{{ getVersion }} [{{ getUserName }}]</span>
             </div>
             <div class="separator-vertical" :class="getTheme"></div>
             <div class="projects-panel-title-dot">
@@ -38,7 +38,7 @@ export default {
         "getVersion",
         "getTasks",
         "getProjects",
-        "getUser"
+        "getUserName"
     ])
 };
 </script>
