@@ -46,14 +46,10 @@ const getters = {
     getDocuments: state => state.documents,
     countAllTasks: state => state.tasks.length,
     countActiveTasks: state => {
-        return state.tasks.filter(
-            p => p.status === 1
-        ).length;
+        return state.tasks.filter(p => p.status === 1).length;
     },
     countEndedTasks: state => {
-        return state.tasks.filter(
-            p => p.status === 0
-        ).length;
+        return state.tasks.filter(p => p.status === 0).length;
     },
     getVersion: state => state.version
 };
@@ -62,9 +58,8 @@ const actions = {
     // Fetch all properties and set theme and properties
     async fetchProperties({ commit }) {
         const response = await axios.get("api/properties");
-        const theme = response.data.data.find(
-            prop => prop.name === "theme"
-        ).value;
+        const theme = response.data.data.find(prop => prop.name === "theme")
+            .value;
         const properties = response.data.data;
         commit("setTheme", theme);
         commit("setProperties", properties);
@@ -86,7 +81,8 @@ const actions = {
                 ).id,
                 value: state.theme
             },
-            { "Content-Type": "application/json; charset=utf-8" });
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
     },
     // Exit program
     exitProgram() {
@@ -126,7 +122,8 @@ const actions = {
             {
                 search: event.target.value
             },
-            { "Content-Type": "application/json; charset=utf-8" });
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
         commit("setProjects", response.data.data);
     },
     // Toggle project status filter
@@ -150,12 +147,12 @@ const actions = {
     toggleProjectNameFilter({ commit, state }) {
         commit("setProjectFilterName", !state.project_filter.filteraz);
         if (state.project_filter.filteraz) {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.title > b.title) return 1;
                 if (a.title < b.title) return -1;
             });
         } else {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.title > b.title) return -1;
                 if (a.title < b.title) return 1;
             });
@@ -165,12 +162,12 @@ const actions = {
     toggleProjectIdFilter({ commit, state }) {
         commit("setProjectFilterId", !state.project_filter.filter09);
         if (state.project_filter.filter09) {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.id > b.id) return 1;
                 if (a.id < b.id) return -1;
             });
         } else {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.id > b.id) return -1;
                 if (a.id < b.id) return 1;
             });
@@ -182,7 +179,7 @@ const actions = {
             id:
                 Math.max.apply(
                     Math,
-                    state.projects.map(function (o) {
+                    state.projects.map(function(o) {
                         return o.id;
                     })
                 ) + 1,
@@ -193,9 +190,13 @@ const actions = {
             status: 1
         };
         state.projects.unshift(newProject);
-        state.project = newProject;
+        commit("setProject", newProject);
         commit("setCurrentProjectId", newProject.id);
         commit("setNewProject", true);
+        commit("setTasks", []);
+        commit("setTask", []);
+        commit("setCurrentTaskId", 0);
+        commit("setDocuments", []);
         commit("setPanel", "projects");
         dispatch("saveProject", false);
     },
@@ -208,10 +209,12 @@ const actions = {
                     {
                         project_id: state.project.id
                     },
-                    { "Content-Type": "application/json; charset=utf-8" });
-                commit("setProjects", state.projects.filter(
-                    p => p.id !== response.data.data.id
-                ));
+                    { "Content-Type": "application/json; charset=utf-8" }
+                );
+                commit(
+                    "setProjects",
+                    state.projects.filter(p => p.id !== response.data.data.id)
+                );
                 commit("setCurrentProjectId", 0);
                 commit("setCurrentTaskId", 0);
                 commit("setTasks", []);
@@ -238,7 +241,8 @@ const actions = {
                     body: state.project.body,
                     status: state.project.status
                 },
-                { "Content-Type": "application/json; charset=utf-8" });
+                { "Content-Type": "application/json; charset=utf-8" }
+            );
         } else {
             response = await axios.put(
                 "api/project",
@@ -248,7 +252,8 @@ const actions = {
                     body: state.project.body,
                     status: state.project.status
                 },
-                { "Content-Type": "application/json; charset=utf-8" });
+                { "Content-Type": "application/json; charset=utf-8" }
+            );
         }
         state.project.id = response.data.data.id;
         state.project.title = response.data.data.title;
@@ -260,13 +265,13 @@ const actions = {
         if (isMessage) {
             alert(
                 "You have successfully saved the changes to the Project: " +
-                response.data.data.title
+                    response.data.data.title
             );
         }
         // change all task status by project
         if (state.project.status == 0) {
             await axios.get("api/task/complete/" + state.project.id);
-            state.tasks.forEach(function (part, index) {
+            state.tasks.forEach(function(part, index) {
                 part.status = 0;
             });
         }
@@ -278,7 +283,7 @@ const actions = {
                 id:
                     Math.max.apply(
                         Math,
-                        state.tasks.map(function (o) {
+                        state.tasks.map(function(o) {
                             return o.id;
                         })
                     ) + 1,
@@ -310,7 +315,8 @@ const actions = {
                     body: state.task.body,
                     status: state.task.status
                 },
-                { "Content-Type": "application/json; charset=utf-8" });
+                { "Content-Type": "application/json; charset=utf-8" }
+            );
         } else {
             response = await axios.put(
                 "api/task",
@@ -321,7 +327,8 @@ const actions = {
                     body: state.task.body,
                     status: state.task.status
                 },
-                { "Content-Type": "application/json; charset=utf-8" });
+                { "Content-Type": "application/json; charset=utf-8" }
+            );
         }
         state.task.id = response.data.data.id;
         state.task.project_id = response.data.data.project_id;
@@ -334,7 +341,7 @@ const actions = {
         if (isMessage) {
             alert(
                 "You have successfully saved the changes to the Task: " +
-                response.data.data.title
+                    response.data.data.title
             );
         }
     },
@@ -345,12 +352,15 @@ const actions = {
             {
                 search: event.target.value
             },
-            { "Content-Type": "application/json; charset=utf-8" });
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
         commit("setTasks", response.data.data);
     },
     // Fetch all tasks
     async fetchTasks({ commit, state }, status) {
-        const response = await axios.get("api/tasks/" + status + "/" + state.current_project_id);
+        const response = await axios.get(
+            "api/tasks/" + status + "/" + state.current_project_id
+        );
         commit("setTasks", response.data.data);
     },
     // Toggle task status filter
@@ -374,12 +384,12 @@ const actions = {
     toggleTaskNameFilter({ commit, state }) {
         commit("setTaskFilterName", !state.task_filter.filteraz);
         if (state.task_filter.filteraz) {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.title > b.title) return 1;
                 if (a.title < b.title) return -1;
             });
         } else {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.title > b.title) return -1;
                 if (a.title < b.title) return 1;
             });
@@ -389,12 +399,12 @@ const actions = {
     toggleTaskIdFilter({ commit, state }) {
         commit("setTaskFilterId", !state.task_filter.filter09);
         if (state.task_filter.filter09) {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.id > b.id) return 1;
                 if (a.id < b.id) return -1;
             });
         } else {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.id > b.id) return -1;
                 if (a.id < b.id) return 1;
             });
@@ -416,7 +426,8 @@ const actions = {
                     {
                         task_id: state.task.id
                     },
-                    { "Content-Type": "application/json; charset=utf-8" });
+                    { "Content-Type": "application/json; charset=utf-8" }
+                );
                 state.tasks = state.tasks.filter(
                     t => t.id !== response.data.data.id
                 );
@@ -434,7 +445,9 @@ const actions = {
     },
     // Delete selected document from task
     async deleteDocument({ state, dispatch }, current_document) {
-        const response = await axios.delete("api/task/document/delete/" + state.task.id + "/" + current_document);
+        const response = await axios.delete(
+            "api/task/document/delete/" + state.task.id + "/" + current_document
+        );
         if (response.data.result === "success") {
             dispatch("changeDocuments");
         } else {
@@ -464,7 +477,7 @@ const actions = {
     // Sort projects by ID ACC
     sortProjectsIdAcc({ state }) {
         state.project_filter.filter09 = true;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.id > b.id) return 1;
             if (a.id < b.id) return -1;
         });
@@ -472,7 +485,7 @@ const actions = {
     // Sort projects by ID DEC
     sortProjectsIdDec({ state }) {
         state.project_filter.filter09 = false;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.id > b.id) return -1;
             if (a.id < b.id) return 1;
         });
@@ -480,7 +493,7 @@ const actions = {
     // Sort projects by Name ACC
     sortProjectsNameAcc({ state }) {
         state.project_filter.filteraz = true;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.title > b.title) return 1;
             if (a.title < b.title) return -1;
         });
@@ -488,7 +501,7 @@ const actions = {
     // Sort projects by Name DEC
     sortProjectsNameDec({ state }) {
         state.project_filter.filteraz = false;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.title > b.title) return -1;
             if (a.title < b.title) return 1;
         });
@@ -511,7 +524,7 @@ const actions = {
     // Sort tasks by ID ACC
     sortTasksIdAcc({ state }) {
         state.task_filter.filter09 = true;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.id > b.id) return 1;
             if (a.id < b.id) return -1;
         });
@@ -519,7 +532,7 @@ const actions = {
     // Sort tasks by ID DEC
     sortTasksIdDec({ state }) {
         state.task_filter.filter09 = false;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.id > b.id) return -1;
             if (a.id < b.id) return 1;
         });
@@ -527,7 +540,7 @@ const actions = {
     // Sort tasks by Name ACC
     sortTasksNameAcc({ state }) {
         state.task_filter.filteraz = true;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.title > b.title) return 1;
             if (a.title < b.title) return -1;
         });
@@ -535,7 +548,7 @@ const actions = {
     // Sort tasks by Name DEC
     sortTasksNameDec() {
         state.task_filter.filteraz = false;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.title > b.title) return -1;
             if (a.title < b.title) return 1;
         });
@@ -545,23 +558,32 @@ const actions = {
 const mutations = {
     setTheme: (state, theme) => (state.theme = theme),
     setProperties: (state, properties) => (state.properties = properties),
-    setPropertyCategories: (state, property_categories) => (state.property_categories = property_categories),
+    setPropertyCategories: (state, property_categories) =>
+        (state.property_categories = property_categories),
     setPanel: (state, panel) => (state.panel = panel),
     setProjects: (state, projects) => (state.projects = projects),
     setProject: (state, project) => (state.project = project),
-    setCurrentProjectId: (state, current_project_id) => (state.current_project_id = current_project_id),
+    setCurrentProjectId: (state, current_project_id) =>
+        (state.current_project_id = current_project_id),
     setNewProject: (state, new_project) => (state.new_project = new_project),
     setTasks: (state, tasks) => (state.tasks = tasks),
     setTask: (state, task) => (state.task = task),
-    setCurrentTaskId: (state, current_task_id) => (state.current_task_id = current_task_id),
+    setCurrentTaskId: (state, current_task_id) =>
+        (state.current_task_id = current_task_id),
     setNewTask: (state, new_task) => (state.new_task = new_task),
-    setProjectFilterStatus: (state, status) => (state.project_filter.filterstatus = status),
-    setProjectFilterName: (state, filteraz) => (state.project_filter.filteraz = filteraz),
-    setProjectFilterId: (state, filter09) => (state.project_filter.filter09 = filter09),
+    setProjectFilterStatus: (state, status) =>
+        (state.project_filter.filterstatus = status),
+    setProjectFilterName: (state, filteraz) =>
+        (state.project_filter.filteraz = filteraz),
+    setProjectFilterId: (state, filter09) =>
+        (state.project_filter.filter09 = filter09),
     setProjectStatus: (state, status) => (state.project.status = status),
-    setTaskFilterStatus: (state, status) => (state.task_filter.filterstatus = status),
-    setTaskFilterName: (state, filteraz) => (state.task_filter.filteraz = filteraz),
-    setTaskFilterId: (state, filter09) => (state.task_filter.filter09 = filter09),
+    setTaskFilterStatus: (state, status) =>
+        (state.task_filter.filterstatus = status),
+    setTaskFilterName: (state, filteraz) =>
+        (state.task_filter.filteraz = filteraz),
+    setTaskFilterId: (state, filter09) =>
+        (state.task_filter.filter09 = filter09),
     setDocuments: (state, documents) => (state.documents = documents)
 };
 

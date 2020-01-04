@@ -74548,9 +74548,13 @@ var actions = {
       status: 1
     };
     state.projects.unshift(newProject);
-    state.project = newProject;
+    commit("setProject", newProject);
     commit("setCurrentProjectId", newProject.id);
     commit("setNewProject", true);
+    commit("setTasks", []);
+    commit("setTask", []);
+    commit("setCurrentTaskId", 0);
+    commit("setDocuments", []);
     commit("setPanel", "projects");
     dispatch("saveProject", false);
   },
