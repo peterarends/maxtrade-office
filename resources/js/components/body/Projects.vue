@@ -62,9 +62,10 @@
                     Ended tasks: <strong>{{ countEndedTasks }}</strong>
                 </div>
             </div>
+            <div class="vp20"></div>
             <div class="chart">
                 <pie-chart
-                    :data="chartData"
+                    :chart-data="chartData"
                     :options="chartOptions"
                 ></pie-chart>
             </div>
@@ -101,7 +102,7 @@
 <script>
 import moment from "moment";
 import { mapGetters, mapActions } from "vuex";
-import PieChart from "./PieChart.js";
+import PieChart from "./PieChart";
 
 export default {
     name: "Projects",
@@ -118,8 +119,14 @@ export default {
             chartData: {
                 hoverBackgroundColor: "red",
                 hoverBorderWidth: 10,
-                labels: ["All", "Active", "Ended"],
-                datasets: []
+                labels: ["Active", "Ended"],
+                datasets: [
+                    {
+                        label: "Data One",
+                        backgroundColor: ["#E46651", "#41B883"],
+                        data: [1, 1]
+                    }
+                ]
             }
         };
     },
@@ -135,17 +142,8 @@ export default {
         ])
     },
 
-    created() {
-        //this.$store.dispatch("FETCH_DEVICE_INFO");
-        if (this.$state.tasks.length) {
-            this.chartData.datasets = [
-                {
-                    label: "Data One",
-                    backgroundColor: ["#00D8FF", "#E46651", "#41B883"],
-                    data: [this.$state.tasks.length, 2, 3]
-                }
-            ];
-        }
+    mounted() {
+        setInterval(this.generateData, 2000);
     },
 
     filters: {
@@ -171,7 +169,21 @@ export default {
     },
 
     methods: {
-        ...mapActions(["closePanel", "saveProject", "deleteProject"])
+        ...mapActions(["closePanel", "saveProject", "deleteProject"]),
+        generateData() {
+            this.chartData = {
+                hoverBackgroundColor: "red",
+                hoverBorderWidth: 10,
+                labels: ["Active", "Ended"],
+                datasets: [
+                    {
+                        label: "Data One",
+                        backgroundColor: ["#E46651", "#41B883"],
+                        data: [this.countActiveTasks, this.countEndedTasks]
+                    }
+                ]
+            };
+        }
     }
 };
 </script>
@@ -423,10 +435,11 @@ input[type="checkbox"]:checked + label:hover span:before {
 }
 .taskEnded {
     flex: 1/3;
-    padding: 3px 6px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 .chart {
-    width: 360px;
-    height: 360px;
+    width: 320px;
+    height: 320px;
 }
 </style>

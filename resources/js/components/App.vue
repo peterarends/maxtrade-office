@@ -189,4 +189,7 @@ h5 {
 ::-webkit-scrollbar-thumb:hover {
     background: #4a5568;
 }
+.vp20 {
+    padding: 20px 0px;
+}
 </style>
