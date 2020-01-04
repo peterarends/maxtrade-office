@@ -30,7 +30,13 @@ class UserController extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    public function logoutUser(Request $request){
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
+    public function logoutUser(Request $request)
+    {
         Auth::logout();
         $request->session()->flush();
         return redirect('/');
