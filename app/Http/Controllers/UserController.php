@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Authenticatable implements MustVerifyEmail
 {
@@ -30,10 +30,10 @@ class UserController extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:api');
+    // }
 
     public function logoutUser(Request $request)
     {
