@@ -26,7 +26,8 @@ const state = {
         filterstatus: "all"
     },
     documents: [],
-    user_name: document.getElementsByTagName("App")[0].getAttribute("userName")
+    user_name: document.getElementsByTagName("App")[0].getAttribute("userName"),
+    user_id: document.getElementsByTagName("App")[0].getAttribute("userId")
 };
 
 const getters = {
@@ -53,7 +54,8 @@ const getters = {
         return state.tasks.filter(p => p.status === 0).length;
     },
     getVersion: state => state.version,
-    getUserName: state => state.user_name
+    getUserName: state => state.user_name,
+    getUserId: state => state.user_id
 };
 
 const actions = {
@@ -140,7 +142,7 @@ const actions = {
     },
     // Fetch all projects
     async fetchProjects({ commit }, status) {
-        const response = await axios.get("api/projects/" + status);
+        const response = await axios.get("api/projects/" + status + "/" + state.user_id);
         commit("setProjects", response.data.data);
     },
     // Show clcicked project and populate tasks panel
@@ -154,9 +156,9 @@ const actions = {
         commit("setTasks", response.data.data);
     },
     // Search in projects panel
-    async projectSearch({ commit }, event) {
+    async projectSearch({ state, commit }, event) {
         const response = await axios.post(
-            "api/projects/search",
+            "api/projects/search/" + state.user_id,
             {
                 search: event.target.value
             },
@@ -225,7 +227,10 @@ const actions = {
             body: "Description of new Project",
             created_at: moment().format(),
             updated_at: "",
-            status: 1
+            status: 1,
+            user_id: state.user_id,
+            last_name: state.user_name,
+            last_id: state.user_id
         };
         state.projects.unshift(newProject);
         commit("setProject", newProject);
@@ -277,7 +282,10 @@ const actions = {
                     project_id: 0,
                     title: state.project.title,
                     body: state.project.body,
-                    status: state.project.status
+                    status: state.project.status,
+                    user_id: state.user_id,
+                    last_name: state.user_name,
+                    last_id: state.user_id
                 },
                 { "Content-Type": "application/json; charset=utf-8" }
             );
@@ -288,7 +296,10 @@ const actions = {
                     project_id: state.project.id,
                     title: state.project.title,
                     body: state.project.body,
-                    status: state.project.status
+                    status: state.project.status,
+                    user_id: state.project.user_id,
+                    last_name: state.user_name,
+                    last_id: state.user_id
                 },
                 { "Content-Type": "application/json; charset=utf-8" }
             );
@@ -299,6 +310,9 @@ const actions = {
         state.project.created_at = response.data.data.created_at;
         state.project.updated_at = response.data.data.updated_at;
         state.project.status = response.data.data.status;
+        state.project.user_id = response.data.data.user_id;
+        state.project.last_name = response.data.data.last_name;
+        state.project.last_id = response.data.data.last_id;
         commit("setNewProject", false);
         if (isMessage) {
             alert(
@@ -331,7 +345,9 @@ const actions = {
                 created_at: moment().format(),
                 updated_at: "",
                 status: 1,
-                decision: ""
+                decision: "",
+                last_name: state.user_name,
+                last_id: state.user_id
             };
             state.tasks.unshift(newTask);
             state.task = newTask;
@@ -353,7 +369,9 @@ const actions = {
                     title: state.task.title,
                     body: state.task.body,
                     status: state.task.status,
-                    decision: state.task.decision
+                    decision: state.task.decision,
+                    last_name: state.user_name,
+                    last_id: state.user_id
                 },
                 { "Content-Type": "application/json; charset=utf-8" }
             );
@@ -366,7 +384,9 @@ const actions = {
                     title: state.task.title,
                     body: state.task.body,
                     status: state.task.status,
-                    decision: state.task.decision
+                    decision: state.task.decision,
+                    last_name: state.user_name,
+                    last_id: state.user_id
                 },
                 { "Content-Type": "application/json; charset=utf-8" }
             );
@@ -379,6 +399,8 @@ const actions = {
         state.task.updated_at = response.data.data.updated_at;
         state.task.status = response.data.data.status;
         state.task.decision = response.data.data.decision;
+        state.task.last_name = response.data.data.last_name;
+        state.task.last_name = response.data.data.last_id;
         commit("setNewTask", false);
         if (isMessage) {
             alert(

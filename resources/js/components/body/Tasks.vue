@@ -120,7 +120,10 @@
                 >&nbsp;Close Task
             </a>
             <div class="status_panel">
-                Last change: {{ getTask.updated_at | formatDate }}
+                Last change: {{ getTask.updated_at | formatDate }} [#{{
+                    getTask.last_id
+                }}
+                / {{ getTask.last_name }}]
             </div>
         </div>
         <vue-context ref="menu" @open="onOpenContextMenu">

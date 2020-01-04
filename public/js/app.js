@@ -2246,6 +2246,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2646,6 +2649,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
 //
 //
 //
@@ -19618,7 +19624,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".projects-body[data-v-c4c8aaa8] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-c4c8aaa8] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-c4c8aaa8] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-c4c8aaa8] {\n  background-color: #e53e3e;\n}\n.body[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-c4c8aaa8] {\n  text-decoration: line-through;\n}\n.date[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-c4c8aaa8] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-c4c8aaa8] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-c4c8aaa8] {\n  color: green;\n}\n.bottom[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-c4c8aaa8] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-c4c8aaa8] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-c4c8aaa8]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-c4c8aaa8]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-c4c8aaa8] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-c4c8aaa8] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-c4c8aaa8] {\n  color: #3182ce;\n}\nlabel[data-v-c4c8aaa8] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-c4c8aaa8] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\r\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\r\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-c4c8aaa8]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-c4c8aaa8]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-c4c8aaa8] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n.projectStatus[data-v-c4c8aaa8] {\n  padding-top: 10px;\n  font-size: 18px;\n}\n.taskStauses[data-v-c4c8aaa8] {\n  margin-left: auto;\n  margin-right: auto;\n  padding-top: 10px;\n  display: -webkit-box;\n  display: flex;\n  font-size: 18px;\n}\n.taskAll[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1/3;\n          flex: 1/3;\n  padding: 3px 6px;\n  border-right: 1px solid #718096;\n}\n.taskActive[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1/3;\n          flex: 1/3;\n  padding: 3px 6px;\n  border-right: 1px solid #718096;\n}\n.taskEnded[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1/3;\n          flex: 1/3;\n  padding-top: 3px;\n  padding-bottom: 3px;\n}\n.chart[data-v-c4c8aaa8] {\n  width: 320px;\n  height: 320px;\n}\r\n", ""]);
+exports.push([module.i, ".projects-body[data-v-c4c8aaa8] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-c4c8aaa8] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-c4c8aaa8] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-c4c8aaa8] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-c4c8aaa8] {\n  background-color: #e53e3e;\n}\n.body[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-c4c8aaa8] {\n  text-decoration: line-through;\n}\n.date[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-c4c8aaa8] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-c4c8aaa8] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-c4c8aaa8] {\n  color: green;\n}\n.bottom[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-c4c8aaa8] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-c4c8aaa8] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-c4c8aaa8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-c4c8aaa8] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-c4c8aaa8] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-c4c8aaa8]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-c4c8aaa8]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-c4c8aaa8] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-c4c8aaa8] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-c4c8aaa8] {\n  color: #3182ce;\n}\nlabel[data-v-c4c8aaa8] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-c4c8aaa8] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-c4c8aaa8]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-c4c8aaa8]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-c4c8aaa8] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-c4c8aaa8]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n.projectStatus[data-v-c4c8aaa8] {\n  padding-top: 10px;\n  font-size: 18px;\n}\n.taskStauses[data-v-c4c8aaa8] {\n  margin-left: auto;\n  margin-right: auto;\n  padding-top: 10px;\n  display: -webkit-box;\n  display: flex;\n  font-size: 18px;\n}\n.taskAll[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1/3;\n          flex: 1/3;\n  padding: 3px 6px;\n  border-right: 1px solid #718096;\n}\n.taskActive[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1/3;\n          flex: 1/3;\n  padding: 3px 6px;\n  border-right: 1px solid #718096;\n}\n.taskEnded[data-v-c4c8aaa8] {\n  -webkit-box-flex: 1/3;\n          flex: 1/3;\n  padding-top: 3px;\n  padding-bottom: 3px;\n}\n.chart[data-v-c4c8aaa8] {\n  width: 320px;\n  height: 320px;\n}\n", ""]);
 
 // exports
 
@@ -58508,7 +58514,11 @@ var render = function() {
         _vm._v(
           "\n            Last change: " +
             _vm._s(_vm._f("formatDate")(_vm.getProject.updated_at)) +
-            "\n        "
+            " [#" +
+            _vm._s(_vm.getProject.last_id) +
+            "\n            / " +
+            _vm._s(_vm.getProject.last_name) +
+            "]\n        "
         )
       ])
     ])
@@ -59363,7 +59373,11 @@ var render = function() {
           _vm._v(
             "\n            Last change: " +
               _vm._s(_vm._f("formatDate")(_vm.getTask.updated_at)) +
-              "\n        "
+              " [#" +
+              _vm._s(_vm.getTask.last_id) +
+              "\n            / " +
+              _vm._s(_vm.getTask.last_name) +
+              "]\n        "
           )
         ])
       ]),
@@ -74370,7 +74384,8 @@ var state = {
     filterstatus: "all"
   },
   documents: [],
-  user_name: document.getElementsByTagName("App")[0].getAttribute("userName")
+  user_name: document.getElementsByTagName("App")[0].getAttribute("userName"),
+  user_id: document.getElementsByTagName("App")[0].getAttribute("userId")
 };
 var getters = {
   getTheme: function getTheme(state) {
@@ -74436,6 +74451,9 @@ var getters = {
   },
   getUserName: function getUserName(state) {
     return state.user_name;
+  },
+  getUserId: function getUserId(state) {
+    return state.user_id;
   }
 };
 var actions = {
@@ -74662,7 +74680,7 @@ var actions = {
             case 0:
               commit = _ref9.commit;
               _context6.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/projects/" + status);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/projects/" + status + "/" + state.user_id);
 
             case 3:
               response = _context6.sent;
@@ -74724,14 +74742,14 @@ var actions = {
     var _projectSearch = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref11, event) {
-      var commit, response;
+      var state, commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
         while (1) {
           switch (_context8.prev = _context8.next) {
             case 0:
-              commit = _ref11.commit;
+              state = _ref11.state, commit = _ref11.commit;
               _context8.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/projects/search", {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/projects/search/" + state.user_id, {
                 search: event.target.value
               }, {
                 "Content-Type": "application/json; charset=utf-8"
@@ -74825,7 +74843,10 @@ var actions = {
       body: "Description of new Project",
       created_at: moment__WEBPACK_IMPORTED_MODULE_2___default()().format(),
       updated_at: "",
-      status: 1
+      status: 1,
+      user_id: state.user_id,
+      last_name: state.user_name,
+      last_id: state.user_id
     };
     state.projects.unshift(newProject);
     commit("setProject", newProject);
@@ -74925,7 +74946,10 @@ var actions = {
                 project_id: 0,
                 title: state.project.title,
                 body: state.project.body,
-                status: state.project.status
+                status: state.project.status,
+                user_id: state.user_id,
+                last_name: state.user_name,
+                last_id: state.user_id
               }, {
                 "Content-Type": "application/json; charset=utf-8"
               });
@@ -74941,7 +74965,10 @@ var actions = {
                 project_id: state.project.id,
                 title: state.project.title,
                 body: state.project.body,
-                status: state.project.status
+                status: state.project.status,
+                user_id: state.project.user_id,
+                last_name: state.user_name,
+                last_id: state.user_id
               }, {
                 "Content-Type": "application/json; charset=utf-8"
               });
@@ -74956,6 +74983,9 @@ var actions = {
               state.project.created_at = response.data.data.created_at;
               state.project.updated_at = response.data.data.updated_at;
               state.project.status = response.data.data.status;
+              state.project.user_id = response.data.data.user_id;
+              state.project.last_name = response.data.data.last_name;
+              state.project.last_id = response.data.data.last_id;
               commit("setNewProject", false);
 
               if (isMessage) {
@@ -74964,19 +74994,19 @@ var actions = {
 
 
               if (!(state.project.status == 0)) {
-                _context10.next = 23;
+                _context10.next = 26;
                 break;
               }
 
-              _context10.next = 22;
+              _context10.next = 25;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/complete/" + state.project.id);
 
-            case 22:
+            case 25:
               state.tasks.forEach(function (part, index) {
                 part.status = 0;
               });
 
-            case 23:
+            case 26:
             case "end":
               return _context10.stop();
           }
@@ -75006,7 +75036,9 @@ var actions = {
         created_at: moment__WEBPACK_IMPORTED_MODULE_2___default()().format(),
         updated_at: "",
         status: 1,
-        decision: ""
+        decision: "",
+        last_name: state.user_name,
+        last_id: state.user_id
       };
       state.tasks.unshift(newTask);
       state.task = newTask;
@@ -75041,7 +75073,9 @@ var actions = {
                 title: state.task.title,
                 body: state.task.body,
                 status: state.task.status,
-                decision: state.task.decision
+                decision: state.task.decision,
+                last_name: state.user_name,
+                last_id: state.user_id
               }, {
                 "Content-Type": "application/json; charset=utf-8"
               });
@@ -75059,7 +75093,9 @@ var actions = {
                 title: state.task.title,
                 body: state.task.body,
                 status: state.task.status,
-                decision: state.task.decision
+                decision: state.task.decision,
+                last_name: state.user_name,
+                last_id: state.user_id
               }, {
                 "Content-Type": "application/json; charset=utf-8"
               });
@@ -75076,13 +75112,15 @@ var actions = {
               state.task.updated_at = response.data.data.updated_at;
               state.task.status = response.data.data.status;
               state.task.decision = response.data.data.decision;
+              state.task.last_name = response.data.data.last_name;
+              state.task.last_name = response.data.data.last_id;
               commit("setNewTask", false);
 
               if (isMessage) {
                 alert("You have successfully saved the changes to the Task: " + response.data.data.title);
               }
 
-            case 21:
+            case 23:
             case "end":
               return _context11.stop();
           }

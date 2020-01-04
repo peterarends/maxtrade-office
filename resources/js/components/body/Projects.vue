@@ -93,7 +93,10 @@
                 >&nbsp;Close Project</a
             >
             <div class="status_panel">
-                Last change: {{ getProject.updated_at | formatDate }}
+                Last change: {{ getProject.updated_at | formatDate }} [#{{
+                    getProject.last_id
+                }}
+                / {{ getProject.last_name }}]
             </div>
         </div>
     </div>

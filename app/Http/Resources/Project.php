@@ -21,11 +21,15 @@ class Project extends JsonResource
             'body'  => $this->body,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'status'    => $this->status
+            'status'    => $this->status,
+            'user_id' => $this->user_id,
+            'last_name' => $this->last_name,
+            'last_id' => $this->last_id
         ];
     }
 
-    public function with($request){
+    public function with($request)
+    {
         return [
             'version'       => '1.0.1',
             'author_url'    => 'https://avalonbg.com'

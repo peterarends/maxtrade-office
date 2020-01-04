@@ -23,7 +23,9 @@ class Tasks extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'status'    => $this->status,
-            'decision' => $this->decision
+            'decision' => $this->decision,
+            'last_name' => $this->last_name,
+            'last_id' => $this->last_id
         ];
     }
 
