@@ -53,12 +53,47 @@
                             </div>
                             <div>
                                 <select
+                                    v-if="property.name === 'theme'"
                                     class="controll"
                                     v-model="property.value"
                                     @change="changeTheme($event.target.value)"
                                 >
                                     <option value="dark">Dark theme</option>
                                     <option value="light">Light theme</option>
+                                </select>
+                                <select
+                                    v-if="property.name === 'projectfilter'"
+                                    class="controll"
+                                    v-model="property.value"
+                                    @change="
+                                        changeProjectFilter($event.target.value)
+                                    "
+                                >
+                                    <option value="all"
+                                        >Show All projects</option
+                                    >
+                                    <option value="act"
+                                        >Show Active projects</option
+                                    >
+                                    <option value="end"
+                                        >Show Ended projects</option
+                                    >
+                                </select>
+                                <select
+                                    v-if="property.name === 'taskfilter'"
+                                    class="controll"
+                                    v-model="property.value"
+                                    @change="
+                                        changeTaskFilter($event.target.value)
+                                    "
+                                >
+                                    <option value="all">Show All tasks</option>
+                                    <option value="act"
+                                        >Show Active task</option
+                                    >
+                                    <option value="end"
+                                        >Show Ended tasks</option
+                                    >
                                 </select>
                             </div>
                         </li>
@@ -99,7 +134,13 @@ export default {
     ]),
 
     methods: {
-        ...mapActions(["fetchPropertyCategories", "changeTheme", "closePanel"])
+        ...mapActions([
+            "fetchPropertyCategories",
+            "changeTheme",
+            "closePanel",
+            "changeProjectFilter",
+            "changeTaskFilter"
+        ])
     }
 };
 </script>

@@ -70,6 +70,7 @@ class TasksController extends Controller
         $task->title = $request->input('title');
         $task->body = $request->input('body');
         $task->status = $request->input('status');
+        $task->decision = $request->input('decision');
 
         if ($task->save()) {
             return new TaskResource($task);
@@ -155,9 +156,9 @@ class TasksController extends Controller
     {
         /** Get Task documents */
         if (!empty($id)) {
-            if (file_exists("images/tasks/" . $id)){
+            if (file_exists("images/tasks/" . $id)) {
                 $files = array_slice(scandir("images/tasks/" . $id), 2);
-            }else{
+            } else {
                 $files = [];
             }
         } else {
@@ -172,10 +173,10 @@ class TasksController extends Controller
     {
         /** Get Task documents */
         if (!empty($id) && !empty($document)) {
-            if (file_exists("images/tasks/" . $id . "/" . $document)){
+            if (file_exists("images/tasks/" . $id . "/" . $document)) {
                 @unlink("images/tasks/" . $id . "/" . $document);
                 $result = "success";
-            }else{
+            } else {
                 $result = "unsuccess";
             }
         } else {

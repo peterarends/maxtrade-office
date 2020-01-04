@@ -43,10 +43,15 @@
                 />
                 <label for="task_status">
                     <span></span>Status of the task:
-                    <strong>{{ getTask.status | statusFilter }}</strong>
-                </label>
+                    <strong>{{ getTask.status | statusFilter }}</strong> </label
+                >&nbsp;&nbsp;
+                <input
+                    class="decision"
+                    type="text"
+                    placeholder="Short description of the decision ..."
+                    v-model="getTask.decision"
+                />
             </div>
-            <hr class="line" />
             <h4>Documents attached to this task:</h4>
             <div class="documents">
                 <div
@@ -337,6 +342,14 @@ export default {
     padding: 4px;
     font-size: 32px;
 }
+.decision {
+    flex: 1;
+    border-bottom: 1px dotted #4a5568;
+    background: transparent;
+    text-align: left;
+    padding: 0px 4px;
+    font-size: 18px;
+}
 .text_body {
     background: transparent;
     padding: 4px;
@@ -486,8 +499,9 @@ input[type="checkbox"]:checked + label:hover span:before {
     transition: width 150ms ease 100ms;
 }
 .taskStatus {
+    display: flex;
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     font-size: 18px;
 }
 .documents {

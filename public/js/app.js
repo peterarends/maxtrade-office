@@ -2564,6 +2564,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Properties",
@@ -2583,7 +2618,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.fetchPropertyCategories();
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getProperties", "getPropertyCategories"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchPropertyCategories", "changeTheme", "closePanel"]))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchPropertyCategories", "changeTheme", "closePanel", "changeProjectFilter", "changeTaskFilter"]))
 });
 
 /***/ }),
@@ -2611,6 +2646,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -19635,7 +19675,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".tasks-body[data-v-6750e0cc] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-6750e0cc] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #dd6b20;\n}\n.topRightIcons[data-v-6750e0cc] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-6750e0cc] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-6750e0cc] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-6750e0cc] {\n  background-color: #e53e3e;\n}\n.body[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-6750e0cc] {\n  text-decoration: line-through;\n}\n.date[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-6750e0cc] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.text_body[data-v-6750e0cc] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-6750e0cc] {\n  color: green;\n}\n.bottom[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-6750e0cc] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-6750e0cc] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-6750e0cc]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-6750e0cc]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiTaskIcon[data-v-6750e0cc] {\n  font-size: 1.3rem;\n}\n.mdiTaskIcon.light[data-v-6750e0cc] {\n  color: #63b3ed;\n}\n.mdiTaskIcon.dark[data-v-6750e0cc] {\n  color: #3182ce;\n}\nlabel[data-v-6750e0cc] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-6750e0cc] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-6750e0cc]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-6750e0cc]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-6750e0cc] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n.taskStatus[data-v-6750e0cc] {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n}\n.documents[data-v-6750e0cc] {\n  background: #2d3748;\n  height: 140px;\n  border: 1px solid #4a5568;\n  display: -webkit-box;\n  display: flex;\n  padding: 10px;\n  overflow: auto;\n}\n.document[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  width: 140px;\n  padding: 2px;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.documentsButtons[data-v-6750e0cc] {\n  padding-top: 10px;\n}\n.line[data-v-6750e0cc] {\n  border-top: 1px dotted #4a5568;\n  padding: 10px 0px;\n}\n.v-context[data-v-6750e0cc],\n.v-context ul[data-v-6750e0cc] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-6750e0cc],\n.v-context ul > li[data-v-6750e0cc] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-6750e0cc],\n.v-context ul > li > a[data-v-6750e0cc] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-6750e0cc]:focus,\n.v-context > li > a[data-v-6750e0cc]:hover,\n.v-context ul > li > a[data-v-6750e0cc]:focus,\n.v-context ul > li > a[data-v-6750e0cc]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-6750e0cc]:focus,\n.v-context > li > a[data-v-6750e0cc]:focus,\n.v-context ul[data-v-6750e0cc]:focus,\n.v-context ul > li > a[data-v-6750e0cc]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-6750e0cc]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-6750e0cc] {\n  display: none;\n}\n", ""]);
+exports.push([module.i, ".tasks-body[data-v-6750e0cc] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-6750e0cc] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #dd6b20;\n}\n.topRightIcons[data-v-6750e0cc] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-6750e0cc] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-6750e0cc] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-6750e0cc] {\n  background-color: #e53e3e;\n}\n.body[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.ended[data-v-6750e0cc] {\n  text-decoration: line-through;\n}\n.date[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding-bottom: 20px;\n}\n.title[data-v-6750e0cc] {\n  background: transparent;\n  text-align: center;\n  padding: 4px;\n  font-size: 32px;\n}\n.decision[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  border-bottom: 1px dotted #4a5568;\n  background: transparent;\n  text-align: left;\n  padding: 0px 4px;\n  font-size: 18px;\n}\n.text_body[data-v-6750e0cc] {\n  background: transparent;\n  padding: 4px;\n  font-size: 18px;\n}\n.continues[data-v-6750e0cc] {\n  color: green;\n}\n.bottom[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-6750e0cc] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-6750e0cc] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-6750e0cc] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-6750e0cc] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-6750e0cc]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-6750e0cc]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-6750e0cc] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiTaskIcon[data-v-6750e0cc] {\n  font-size: 1.3rem;\n}\n.mdiTaskIcon.light[data-v-6750e0cc] {\n  color: #63b3ed;\n}\n.mdiTaskIcon.dark[data-v-6750e0cc] {\n  color: #3182ce;\n}\nlabel[data-v-6750e0cc] {\n  display: inline-block;\n  cursor: pointer;\n  position: relative;\n}\nlabel span[data-v-6750e0cc] {\n  display: inline-block;\n  position: relative;\n  background-color: transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  border: 2px solid #718096;\n  border-radius: 50%;\n  vertical-align: -6px;\n  margin-right: 10px;\n  -webkit-transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n  transition: background-color 150ms 200ms,\n        transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89),\n        -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);\n}\nlabel span[data-v-6750e0cc]:before {\n  content: \"\";\n  width: 0px;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  top: 10px;\n  left: 8px;\n  -webkit-transition: width 50ms ease 50ms;\n  transition: width 50ms ease 50ms;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel span[data-v-6750e0cc]:after {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  border-radius: 2px;\n  background: #cbd5e0;\n  position: absolute;\n  -webkit-transform: rotate(305deg);\n          transform: rotate(305deg);\n  top: 13px;\n  left: 9px;\n  -webkit-transition: width 50ms ease;\n  transition: width 50ms ease;\n  -webkit-transform-origin: 0% 0%;\n          transform-origin: 0% 0%;\n}\nlabel:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  -webkit-transition: width 100ms ease;\n  transition: width 100ms ease;\n}\nlabel:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"][data-v-6750e0cc] {\n  display: none;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc] {\n  background-color: #cbd5e0;\n  -webkit-transform: scale(1.25);\n          transform: scale(1.25);\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:after {\n  width: 10px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\ninput[type=\"checkbox\"]:checked + label:hover span[data-v-6750e0cc]:before {\n  width: 5px;\n  background: #1790b5;\n  -webkit-transition: width 150ms ease 100ms;\n  transition: width 150ms ease 100ms;\n}\n.taskStatus[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  padding-top: 10px;\n  padding-bottom: 20px;\n  font-size: 18px;\n}\n.documents[data-v-6750e0cc] {\n  background: #2d3748;\n  height: 140px;\n  border: 1px solid #4a5568;\n  display: -webkit-box;\n  display: flex;\n  padding: 10px;\n  overflow: auto;\n}\n.document[data-v-6750e0cc] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  width: 140px;\n  padding: 2px;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.documentsButtons[data-v-6750e0cc] {\n  padding-top: 10px;\n}\n.line[data-v-6750e0cc] {\n  border-top: 1px dotted #4a5568;\n  padding: 10px 0px;\n}\n.v-context[data-v-6750e0cc],\n.v-context ul[data-v-6750e0cc] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-6750e0cc],\n.v-context ul > li[data-v-6750e0cc] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-6750e0cc],\n.v-context ul > li > a[data-v-6750e0cc] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.v-context > li > a[data-v-6750e0cc]:focus,\n.v-context > li > a[data-v-6750e0cc]:hover,\n.v-context ul > li > a[data-v-6750e0cc]:focus,\n.v-context ul > li > a[data-v-6750e0cc]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-6750e0cc]:focus,\n.v-context > li > a[data-v-6750e0cc]:focus,\n.v-context ul[data-v-6750e0cc]:focus,\n.v-context ul > li > a[data-v-6750e0cc]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-6750e0cc]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-6750e0cc] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -58778,54 +58818,178 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", [
-                        _c(
-                          "select",
-                          {
-                            directives: [
+                        property.name === "theme"
+                          ? _c(
+                              "select",
                               {
-                                name: "model",
-                                rawName: "v-model",
-                                value: property.value,
-                                expression: "property.value"
-                              }
-                            ],
-                            staticClass: "controll",
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    property,
-                                    "value",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                },
-                                function($event) {
-                                  return _vm.changeTheme($event.target.value)
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: property.value,
+                                    expression: "property.value"
+                                  }
+                                ],
+                                staticClass: "controll",
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        property,
+                                        "value",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    function($event) {
+                                      return _vm.changeTheme(
+                                        $event.target.value
+                                      )
+                                    }
+                                  ]
                                 }
+                              },
+                              [
+                                _c("option", { attrs: { value: "dark" } }, [
+                                  _vm._v("Dark theme")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "light" } }, [
+                                  _vm._v("Light theme")
+                                ])
                               ]
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "dark" } }, [
-                              _vm._v("Dark theme")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "light" } }, [
-                              _vm._v("Light theme")
-                            ])
-                          ]
-                        )
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        property.name === "projectfilter"
+                          ? _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: property.value,
+                                    expression: "property.value"
+                                  }
+                                ],
+                                staticClass: "controll",
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        property,
+                                        "value",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    function($event) {
+                                      return _vm.changeProjectFilter(
+                                        $event.target.value
+                                      )
+                                    }
+                                  ]
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "all" } }, [
+                                  _vm._v("Show All projects")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "act" } }, [
+                                  _vm._v("Show Active projects")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "end" } }, [
+                                  _vm._v("Show Ended projects")
+                                ])
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        property.name === "taskfilter"
+                          ? _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: property.value,
+                                    expression: "property.value"
+                                  }
+                                ],
+                                staticClass: "controll",
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        property,
+                                        "value",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    function($event) {
+                                      return _vm.changeTaskFilter(
+                                        $event.target.value
+                                      )
+                                    }
+                                  ]
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "all" } }, [
+                                  _vm._v("Show All tasks")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "act" } }, [
+                                  _vm._v("Show Active task")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "end" } }, [
+                                  _vm._v("Show Ended tasks")
+                                ])
+                              ]
+                            )
+                          : _vm._e()
                       ])
                     ]
                   )
@@ -59043,10 +59207,33 @@ var render = function() {
               _c("strong", [
                 _vm._v(_vm._s(_vm._f("statusFilter")(_vm.getTask.status)))
               ])
-            ])
+            ]),
+            _vm._v("  \n            "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.getTask.decision,
+                  expression: "getTask.decision"
+                }
+              ],
+              staticClass: "decision",
+              attrs: {
+                type: "text",
+                placeholder: "Short description of the decision ..."
+              },
+              domProps: { value: _vm.getTask.decision },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.getTask, "decision", $event.target.value)
+                }
+              }
+            })
           ]),
-          _vm._v(" "),
-          _c("hr", { staticClass: "line" }),
           _vm._v(" "),
           _c("h4", [_vm._v("Documents attached to this task:")]),
           _vm._v(" "),
@@ -74257,7 +74444,7 @@ var actions = {
     var _fetchProperties = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
-      var commit, response, theme, properties;
+      var commit, response, theme, projectfilter, taskfilter, properties;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -74271,11 +74458,19 @@ var actions = {
               theme = response.data.data.find(function (prop) {
                 return prop.name === "theme";
               }).value;
+              projectfilter = response.data.data.find(function (prop) {
+                return prop.name === "projectfilter";
+              }).value;
+              taskfilter = response.data.data.find(function (prop) {
+                return prop.name === "taskfilter";
+              }).value;
               properties = response.data.data;
               commit("setTheme", theme);
+              commit("setProjectFilterStatus", projectfilter);
+              commit("setTaskFilterStatus", taskfilter);
               commit("setProperties", properties);
 
-            case 8:
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -74339,7 +74534,7 @@ var actions = {
                 property_id: state.properties.find(function (prop) {
                   return prop.name === "theme";
                 }).id,
-                value: state.theme
+                value: theme
               }, {
                 "Content-Type": "application/json; charset=utf-8"
               });
@@ -74358,42 +74553,30 @@ var actions = {
 
     return changeTheme;
   }(),
-  // Exit program
-  exitProgram: function exitProgram() {
-    window.location = "/logout.html";
-  },
-  // Show panel properties
-  showProperties: function showProperties(_ref4) {
-    var commit = _ref4.commit;
-    commit("setPanel", "properties");
-  },
-  // Close current panel
-  closePanel: function closePanel(_ref5) {
-    var commit = _ref5.commit;
-    commit("setPanel", "");
-  },
-  // Show About panel
-  showAbout: function showAbout(_ref6) {
-    var commit = _ref6.commit;
-    commit("setPanel", "about");
-  },
-  // Fetch all projects
-  fetchProjects: function () {
-    var _fetchProjects = _asyncToGenerator(
+  // Change project filter
+  changeProjectFilter: function () {
+    var _changeProjectFilter = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref7, status) {
-      var commit, response;
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, filter) {
+      var commit, state, dispatch;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              commit = _ref7.commit;
-              _context4.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/projects/" + status);
+              commit = _ref4.commit, state = _ref4.state, dispatch = _ref4.dispatch;
+              commit("setProjectFilterStatus", filter);
+              _context4.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/property", {
+                property_id: state.properties.find(function (prop) {
+                  return prop.name === "projectfilter";
+                }).id,
+                value: filter
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
 
-            case 3:
-              response = _context4.sent;
-              commit("setProjects", response.data.data);
+            case 4:
+              dispatch("fetchProjects", filter);
 
             case 5:
             case "end":
@@ -74403,36 +74586,38 @@ var actions = {
       }, _callee4);
     }));
 
-    function fetchProjects(_x5, _x6) {
-      return _fetchProjects.apply(this, arguments);
+    function changeProjectFilter(_x5, _x6) {
+      return _changeProjectFilter.apply(this, arguments);
     }
 
-    return fetchProjects;
+    return changeProjectFilter;
   }(),
-  // Show clcicked project and populate tasks panel
-  showProject: function () {
-    var _showProject = _asyncToGenerator(
+  // Change task filter
+  changeTaskFilter: function () {
+    var _changeTaskFilter = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref8, project) {
-      var commit, response;
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref5, filter) {
+      var commit, state, dispatch;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              commit = _ref8.commit;
-              commit("setProject", project);
-              commit("setCurrentProjectId", project.id);
-              commit("setNewProject", false);
-              commit("setPanel", "projects");
-              commit("setCurrentTaskId", 0);
-              _context5.next = 8;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/all/" + project.id);
+              commit = _ref5.commit, state = _ref5.state, dispatch = _ref5.dispatch;
+              commit("setTaskFilterStatus", filter);
+              _context5.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/property", {
+                property_id: state.properties.find(function (prop) {
+                  return prop.name === "taskfilter";
+                }).id,
+                value: filter
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
 
-            case 8:
-              response = _context5.sent;
-              commit("setTasks", response.data.data);
+            case 4:
+              dispatch("fetchTasks", filter);
 
-            case 10:
+            case 5:
             case "end":
               return _context5.stop();
           }
@@ -74440,17 +74625,36 @@ var actions = {
       }, _callee5);
     }));
 
-    function showProject(_x7, _x8) {
-      return _showProject.apply(this, arguments);
+    function changeTaskFilter(_x7, _x8) {
+      return _changeTaskFilter.apply(this, arguments);
     }
 
-    return showProject;
+    return changeTaskFilter;
   }(),
-  // Search in projects panel
-  projectSearch: function () {
-    var _projectSearch = _asyncToGenerator(
+  // Exit program
+  exitProgram: function exitProgram() {
+    window.location = "/logout.html";
+  },
+  // Show panel properties
+  showProperties: function showProperties(_ref6) {
+    var commit = _ref6.commit;
+    commit("setPanel", "properties");
+  },
+  // Close current panel
+  closePanel: function closePanel(_ref7) {
+    var commit = _ref7.commit;
+    commit("setPanel", "");
+  },
+  // Show About panel
+  showAbout: function showAbout(_ref8) {
+    var commit = _ref8.commit;
+    commit("setPanel", "about");
+  },
+  // Fetch all projects
+  fetchProjects: function () {
+    var _fetchProjects = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref9, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref9, status) {
       var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
         while (1) {
@@ -74458,11 +74662,7 @@ var actions = {
             case 0:
               commit = _ref9.commit;
               _context6.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/projects/search", {
-                search: event.target.value
-              }, {
-                "Content-Type": "application/json; charset=utf-8"
-              });
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/projects/" + status);
 
             case 3:
               response = _context6.sent;
@@ -74476,17 +74676,90 @@ var actions = {
       }, _callee6);
     }));
 
-    function projectSearch(_x9, _x10) {
+    function fetchProjects(_x9, _x10) {
+      return _fetchProjects.apply(this, arguments);
+    }
+
+    return fetchProjects;
+  }(),
+  // Show clcicked project and populate tasks panel
+  showProject: function () {
+    var _showProject = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref10, project) {
+      var state, commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              state = _ref10.state, commit = _ref10.commit;
+              commit("setProject", project);
+              commit("setCurrentProjectId", project.id);
+              commit("setNewProject", false);
+              commit("setPanel", "projects");
+              commit("setCurrentTaskId", 0);
+              _context7.next = 8;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + state.task_filter.filterstatus + "/" + project.id);
+
+            case 8:
+              response = _context7.sent;
+              commit("setTasks", response.data.data);
+
+            case 10:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7);
+    }));
+
+    function showProject(_x11, _x12) {
+      return _showProject.apply(this, arguments);
+    }
+
+    return showProject;
+  }(),
+  // Search in projects panel
+  projectSearch: function () {
+    var _projectSearch = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref11, event) {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              commit = _ref11.commit;
+              _context8.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/projects/search", {
+                search: event.target.value
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 3:
+              response = _context8.sent;
+              commit("setProjects", response.data.data);
+
+            case 5:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8);
+    }));
+
+    function projectSearch(_x13, _x14) {
       return _projectSearch.apply(this, arguments);
     }
 
     return projectSearch;
   }(),
   // Toggle project status filter
-  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref10) {
-    var commit = _ref10.commit,
-        state = _ref10.state,
-        dispatch = _ref10.dispatch;
+  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref12) {
+    var commit = _ref12.commit,
+        state = _ref12.state,
+        dispatch = _ref12.dispatch;
 
     if (state.project_filter.filterstatus == "all") {
       commit("setProjectFilterStatus", "act");
@@ -74504,9 +74777,9 @@ var actions = {
     }
   },
   // Toggle project name filter
-  toggleProjectNameFilter: function toggleProjectNameFilter(_ref11) {
-    var commit = _ref11.commit,
-        state = _ref11.state;
+  toggleProjectNameFilter: function toggleProjectNameFilter(_ref13) {
+    var commit = _ref13.commit,
+        state = _ref13.state;
     commit("setProjectFilterName", !state.project_filter.filteraz);
 
     if (state.project_filter.filteraz) {
@@ -74522,9 +74795,9 @@ var actions = {
     }
   },
   // Toggle project ID filter
-  toggleProjectIdFilter: function toggleProjectIdFilter(_ref12) {
-    var commit = _ref12.commit,
-        state = _ref12.state;
+  toggleProjectIdFilter: function toggleProjectIdFilter(_ref14) {
+    var commit = _ref14.commit,
+        state = _ref14.state;
     commit("setProjectFilterId", !state.project_filter.filter09);
 
     if (state.project_filter.filter09) {
@@ -74540,10 +74813,10 @@ var actions = {
     }
   },
   // Add project
-  addProject: function addProject(_ref13) {
-    var commit = _ref13.commit,
-        state = _ref13.state,
-        dispatch = _ref13.dispatch;
+  addProject: function addProject(_ref15) {
+    var commit = _ref15.commit,
+        state = _ref15.state,
+        dispatch = _ref15.dispatch;
     var newProject = {
       id: Math.max.apply(Math, state.projects.map(function (o) {
         return o.id;
@@ -74569,25 +74842,25 @@ var actions = {
   deleteProject: function () {
     var _deleteProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref14) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref16) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
         while (1) {
-          switch (_context7.prev = _context7.next) {
+          switch (_context9.prev = _context9.next) {
             case 0:
-              commit = _ref14.commit, state = _ref14.state;
+              commit = _ref16.commit, state = _ref16.state;
 
               if (!(state.current_project_id != 0)) {
-                _context7.next = 11;
+                _context9.next = 11;
                 break;
               }
 
               if (!confirm("Are You sure?")) {
-                _context7.next = 11;
+                _context9.next = 11;
                 break;
               }
 
-              _context7.next = 5;
+              _context9.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/project/" + state.project.id, {
                 project_id: state.project.id
               }, {
@@ -74595,7 +74868,7 @@ var actions = {
               });
 
             case 5:
-              response = _context7.sent;
+              response = _context9.sent;
               commit("setProjects", state.projects.filter(function (p) {
                 return p.id !== response.data.data.id;
               }));
@@ -74606,23 +74879,23 @@ var actions = {
 
             case 11:
             case "end":
-              return _context7.stop();
+              return _context9.stop();
           }
         }
-      }, _callee7);
+      }, _callee9);
     }));
 
-    function deleteProject(_x11) {
+    function deleteProject(_x15) {
       return _deleteProject.apply(this, arguments);
     }
 
     return deleteProject;
   }(),
   // Complete a project and all tasks bind to this project
-  completeProject: function completeProject(_ref15) {
-    var commit = _ref15.commit,
-        state = _ref15.state,
-        dispatch = _ref15.dispatch;
+  completeProject: function completeProject(_ref17) {
+    var commit = _ref17.commit,
+        state = _ref17.state,
+        dispatch = _ref17.dispatch;
 
     if (state.current_project_id != 0) {
       commit("setProjectStatus", 0);
@@ -74633,21 +74906,21 @@ var actions = {
   saveProject: function () {
     var _saveProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref16, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref18, isMessage) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
         while (1) {
-          switch (_context8.prev = _context8.next) {
+          switch (_context10.prev = _context10.next) {
             case 0:
-              commit = _ref16.commit, state = _ref16.state;
+              commit = _ref18.commit, state = _ref18.state;
               response = null;
 
               if (!state.new_project) {
-                _context8.next = 8;
+                _context10.next = 8;
                 break;
               }
 
-              _context8.next = 5;
+              _context10.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/project", {
                 project_id: 0,
                 title: state.project.title,
@@ -74658,12 +74931,12 @@ var actions = {
               });
 
             case 5:
-              response = _context8.sent;
-              _context8.next = 11;
+              response = _context10.sent;
+              _context10.next = 11;
               break;
 
             case 8:
-              _context8.next = 10;
+              _context10.next = 10;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/project", {
                 project_id: state.project.id,
                 title: state.project.title,
@@ -74674,7 +74947,7 @@ var actions = {
               });
 
             case 10:
-              response = _context8.sent;
+              response = _context10.sent;
 
             case 11:
               state.project.id = response.data.data.id;
@@ -74691,11 +74964,11 @@ var actions = {
 
 
               if (!(state.project.status == 0)) {
-                _context8.next = 23;
+                _context10.next = 23;
                 break;
               }
 
-              _context8.next = 22;
+              _context10.next = 22;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/complete/" + state.project.id);
 
             case 22:
@@ -74705,22 +74978,22 @@ var actions = {
 
             case 23:
             case "end":
-              return _context8.stop();
+              return _context10.stop();
           }
         }
-      }, _callee8);
+      }, _callee10);
     }));
 
-    function saveProject(_x12, _x13) {
+    function saveProject(_x16, _x17) {
       return _saveProject.apply(this, arguments);
     }
 
     return saveProject;
   }(),
   // Add new Task
-  addTask: function addTask(_ref17) {
-    var state = _ref17.state,
-        dispatch = _ref17.dispatch;
+  addTask: function addTask(_ref19) {
+    var state = _ref19.state,
+        dispatch = _ref19.dispatch;
 
     if (state.current_project_id != 0) {
       var newTask = {
@@ -74732,7 +75005,8 @@ var actions = {
         body: "Description of new Task",
         created_at: moment__WEBPACK_IMPORTED_MODULE_2___default()().format(),
         updated_at: "",
-        status: 1
+        status: 1,
+        decision: ""
       };
       state.tasks.unshift(newTask);
       state.task = newTask;
@@ -74746,50 +75020,52 @@ var actions = {
   saveTask: function () {
     var _saveTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref18, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref20, isMessage) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
         while (1) {
-          switch (_context9.prev = _context9.next) {
+          switch (_context11.prev = _context11.next) {
             case 0:
-              commit = _ref18.commit, state = _ref18.state;
+              commit = _ref20.commit, state = _ref20.state;
               response = null;
 
               if (!state.new_task) {
-                _context9.next = 8;
+                _context11.next = 8;
                 break;
               }
 
-              _context9.next = 5;
+              _context11.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/task", {
                 task_id: 0,
                 project_id: state.current_project_id,
                 title: state.task.title,
                 body: state.task.body,
-                status: state.task.status
+                status: state.task.status,
+                decision: state.task.decision
               }, {
                 "Content-Type": "application/json; charset=utf-8"
               });
 
             case 5:
-              response = _context9.sent;
-              _context9.next = 11;
+              response = _context11.sent;
+              _context11.next = 11;
               break;
 
             case 8:
-              _context9.next = 10;
+              _context11.next = 10;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/task", {
                 task_id: state.task.id,
                 project_id: state.current_project_id,
                 title: state.task.title,
                 body: state.task.body,
-                status: state.task.status
+                status: state.task.status,
+                decision: state.task.decision
               }, {
                 "Content-Type": "application/json; charset=utf-8"
               });
 
             case 10:
-              response = _context9.sent;
+              response = _context11.sent;
 
             case 11:
               state.task.id = response.data.data.id;
@@ -74799,21 +75075,22 @@ var actions = {
               state.task.created_at = response.data.data.created_at;
               state.task.updated_at = response.data.data.updated_at;
               state.task.status = response.data.data.status;
+              state.task.decision = response.data.data.decision;
               commit("setNewTask", false);
 
               if (isMessage) {
                 alert("You have successfully saved the changes to the Task: " + response.data.data.title);
               }
 
-            case 20:
+            case 21:
             case "end":
-              return _context9.stop();
+              return _context11.stop();
           }
         }
-      }, _callee9);
+      }, _callee11);
     }));
 
-    function saveTask(_x14, _x15) {
+    function saveTask(_x18, _x19) {
       return _saveTask.apply(this, arguments);
     }
 
@@ -74823,14 +75100,14 @@ var actions = {
   fetchTasksSearch: function () {
     var _fetchTasksSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref19, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref21, event) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
         while (1) {
-          switch (_context10.prev = _context10.next) {
+          switch (_context12.prev = _context12.next) {
             case 0:
-              commit = _ref19.commit, state = _ref19.state;
-              _context10.next = 3;
+              commit = _ref21.commit, state = _ref21.state;
+              _context12.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
                 search: event.target.value
               }, {
@@ -74838,18 +75115,18 @@ var actions = {
               });
 
             case 3:
-              response = _context10.sent;
+              response = _context12.sent;
               commit("setTasks", response.data.data);
 
             case 5:
             case "end":
-              return _context10.stop();
+              return _context12.stop();
           }
         }
-      }, _callee10);
+      }, _callee12);
     }));
 
-    function fetchTasksSearch(_x16, _x17) {
+    function fetchTasksSearch(_x20, _x21) {
       return _fetchTasksSearch.apply(this, arguments);
     }
 
@@ -74859,39 +75136,39 @@ var actions = {
   fetchTasks: function () {
     var _fetchTasks = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref20, status) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref22, status) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
         while (1) {
-          switch (_context11.prev = _context11.next) {
+          switch (_context13.prev = _context13.next) {
             case 0:
-              commit = _ref20.commit, state = _ref20.state;
-              _context11.next = 3;
+              commit = _ref22.commit, state = _ref22.state;
+              _context13.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
 
             case 3:
-              response = _context11.sent;
+              response = _context13.sent;
               commit("setTasks", response.data.data);
 
             case 5:
             case "end":
-              return _context11.stop();
+              return _context13.stop();
           }
         }
-      }, _callee11);
+      }, _callee13);
     }));
 
-    function fetchTasks(_x18, _x19) {
+    function fetchTasks(_x22, _x23) {
       return _fetchTasks.apply(this, arguments);
     }
 
     return fetchTasks;
   }(),
   // Toggle task status filter
-  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref21) {
-    var commit = _ref21.commit,
-        state = _ref21.state,
-        dispatch = _ref21.dispatch;
+  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref23) {
+    var commit = _ref23.commit,
+        state = _ref23.state,
+        dispatch = _ref23.dispatch;
 
     if (state.task_filter.filterstatus == "all") {
       commit("setTaskFilterStatus", "act");
@@ -74909,9 +75186,9 @@ var actions = {
     }
   },
   // Toggle task name filter
-  toggleTaskNameFilter: function toggleTaskNameFilter(_ref22) {
-    var commit = _ref22.commit,
-        state = _ref22.state;
+  toggleTaskNameFilter: function toggleTaskNameFilter(_ref24) {
+    var commit = _ref24.commit,
+        state = _ref24.state;
     commit("setTaskFilterName", !state.task_filter.filteraz);
 
     if (state.task_filter.filteraz) {
@@ -74927,9 +75204,9 @@ var actions = {
     }
   },
   // Toggle tasks ID filter
-  toggleTaskIdFilter: function toggleTaskIdFilter(_ref23) {
-    var commit = _ref23.commit,
-        state = _ref23.state;
+  toggleTaskIdFilter: function toggleTaskIdFilter(_ref25) {
+    var commit = _ref25.commit,
+        state = _ref25.state;
     commit("setTaskFilterId", !state.task_filter.filter09);
 
     if (state.task_filter.filter09) {
@@ -74947,33 +75224,33 @@ var actions = {
   showTask: function () {
     var _showTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref24, task) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref26, task) {
       var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
         while (1) {
-          switch (_context12.prev = _context12.next) {
+          switch (_context14.prev = _context14.next) {
             case 0:
-              commit = _ref24.commit;
+              commit = _ref26.commit;
               commit("setTask", task);
               commit("setCurrentTaskId", task.id);
               commit("setNewTask", false);
-              _context12.next = 6;
+              _context14.next = 6;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + task.id);
 
             case 6:
-              response = _context12.sent;
+              response = _context14.sent;
               commit("setDocuments", response.data);
               commit("setPanel", "tasks");
 
             case 9:
             case "end":
-              return _context12.stop();
+              return _context14.stop();
           }
         }
-      }, _callee12);
+      }, _callee14);
     }));
 
-    function showTask(_x20, _x21) {
+    function showTask(_x24, _x25) {
       return _showTask.apply(this, arguments);
     }
 
@@ -74982,25 +75259,25 @@ var actions = {
   deleteTask: function () {
     var _deleteTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref25) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref27) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
         while (1) {
-          switch (_context13.prev = _context13.next) {
+          switch (_context15.prev = _context15.next) {
             case 0:
-              commit = _ref25.commit, state = _ref25.state;
+              commit = _ref27.commit, state = _ref27.state;
 
               if (!(state.current_task_id != 0)) {
-                _context13.next = 9;
+                _context15.next = 9;
                 break;
               }
 
               if (!confirm("Are You sure?")) {
-                _context13.next = 9;
+                _context15.next = 9;
                 break;
               }
 
-              _context13.next = 5;
+              _context15.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/" + state.task.id, {
                 task_id: state.task.id
               }, {
@@ -75008,7 +75285,7 @@ var actions = {
               });
 
             case 5:
-              response = _context13.sent;
+              response = _context15.sent;
               state.tasks = state.tasks.filter(function (t) {
                 return t.id !== response.data.data.id;
               });
@@ -75017,22 +75294,22 @@ var actions = {
 
             case 9:
             case "end":
-              return _context13.stop();
+              return _context15.stop();
           }
         }
-      }, _callee13);
+      }, _callee15);
     }));
 
-    function deleteTask(_x22) {
+    function deleteTask(_x26) {
       return _deleteTask.apply(this, arguments);
     }
 
     return deleteTask;
   }(),
   // Change task status to complete
-  completeTask: function completeTask(_ref26) {
-    var state = _ref26.state,
-        dispatch = _ref26.dispatch;
+  completeTask: function completeTask(_ref28) {
+    var state = _ref28.state,
+        dispatch = _ref28.dispatch;
 
     if (state.current_task_id != 0) {
       state.task.status = 0;
@@ -75043,18 +75320,18 @@ var actions = {
   deleteDocument: function () {
     var _deleteDocument = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref27, current_document) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16(_ref29, current_document) {
       var state, dispatch, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
         while (1) {
-          switch (_context14.prev = _context14.next) {
+          switch (_context16.prev = _context16.next) {
             case 0:
-              state = _ref27.state, dispatch = _ref27.dispatch;
-              _context14.next = 3;
+              state = _ref29.state, dispatch = _ref29.dispatch;
+              _context16.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/document/delete/" + state.task.id + "/" + current_document);
 
             case 3:
-              response = _context14.sent;
+              response = _context16.sent;
 
               if (response.data.result === "success") {
                 dispatch("changeDocuments");
@@ -75064,13 +75341,13 @@ var actions = {
 
             case 5:
             case "end":
-              return _context14.stop();
+              return _context16.stop();
           }
         }
-      }, _callee14);
+      }, _callee16);
     }));
 
-    function deleteDocument(_x23, _x24) {
+    function deleteDocument(_x27, _x28) {
       return _deleteDocument.apply(this, arguments);
     }
 
@@ -75080,58 +75357,58 @@ var actions = {
   changeDocuments: function () {
     var _changeDocuments = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref28) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17(_ref30) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
         while (1) {
-          switch (_context15.prev = _context15.next) {
+          switch (_context17.prev = _context17.next) {
             case 0:
-              commit = _ref28.commit, state = _ref28.state;
-              _context15.next = 3;
+              commit = _ref30.commit, state = _ref30.state;
+              _context17.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + state.task.id);
 
             case 3:
-              response = _context15.sent;
+              response = _context17.sent;
               commit("setDocuments", response.data);
 
             case 5:
             case "end":
-              return _context15.stop();
+              return _context17.stop();
           }
         }
-      }, _callee15);
+      }, _callee17);
     }));
 
-    function changeDocuments(_x25) {
+    function changeDocuments(_x29) {
       return _changeDocuments.apply(this, arguments);
     }
 
     return changeDocuments;
   }(),
   // Filter show all projects
-  showAllProjects: function showAllProjects(_ref29) {
-    var state = _ref29.state,
-        dispatch = _ref29.dispatch;
+  showAllProjects: function showAllProjects(_ref31) {
+    var state = _ref31.state,
+        dispatch = _ref31.dispatch;
     state.project_filter.filterstatus = "all";
     dispatch("fetchProjects", "all");
   },
   // Filter show completed projects
-  showCompletedProjects: function showCompletedProjects(_ref30) {
-    var state = _ref30.state,
-        dispatch = _ref30.dispatch;
+  showCompletedProjects: function showCompletedProjects(_ref32) {
+    var state = _ref32.state,
+        dispatch = _ref32.dispatch;
     state.project_filter.filterstatus = "end";
     dispatch("fetchProjects", "end");
   },
   // Filter show actived projects
-  showActivedProjects: function showActivedProjects(_ref31) {
-    var state = _ref31.state,
-        dispatch = _ref31.dispatch;
+  showActivedProjects: function showActivedProjects(_ref33) {
+    var state = _ref33.state,
+        dispatch = _ref33.dispatch;
     state.project_filter.filterstatus = "act";
     dispatch("fetchProjects", "act");
   },
   // Sort projects by ID ACC
-  sortProjectsIdAcc: function sortProjectsIdAcc(_ref32) {
-    var state = _ref32.state;
+  sortProjectsIdAcc: function sortProjectsIdAcc(_ref34) {
+    var state = _ref34.state;
     state.project_filter.filter09 = true;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -75139,8 +75416,8 @@ var actions = {
     });
   },
   // Sort projects by ID DEC
-  sortProjectsIdDec: function sortProjectsIdDec(_ref33) {
-    var state = _ref33.state;
+  sortProjectsIdDec: function sortProjectsIdDec(_ref35) {
+    var state = _ref35.state;
     state.project_filter.filter09 = false;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -75148,8 +75425,8 @@ var actions = {
     });
   },
   // Sort projects by Name ACC
-  sortProjectsNameAcc: function sortProjectsNameAcc(_ref34) {
-    var state = _ref34.state;
+  sortProjectsNameAcc: function sortProjectsNameAcc(_ref36) {
+    var state = _ref36.state;
     state.project_filter.filteraz = true;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return 1;
@@ -75157,8 +75434,8 @@ var actions = {
     });
   },
   // Sort projects by Name DEC
-  sortProjectsNameDec: function sortProjectsNameDec(_ref35) {
-    var state = _ref35.state;
+  sortProjectsNameDec: function sortProjectsNameDec(_ref37) {
+    var state = _ref37.state;
     state.project_filter.filteraz = false;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return -1;
@@ -75166,29 +75443,29 @@ var actions = {
     });
   },
   // Filter show all tasks
-  showAllTasks: function showAllTasks(_ref36) {
-    var state = _ref36.state,
-        dispatch = _ref36.dispatch;
+  showAllTasks: function showAllTasks(_ref38) {
+    var state = _ref38.state,
+        dispatch = _ref38.dispatch;
     state.task_filter.filterstatus = "all";
     dispatch("fetchTasks", "all", state.current_project_id);
   },
   // Filter show completed tasks
-  showCompletedTasks: function showCompletedTasks(_ref37) {
-    var state = _ref37.state,
-        dispatch = _ref37.dispatch;
+  showCompletedTasks: function showCompletedTasks(_ref39) {
+    var state = _ref39.state,
+        dispatch = _ref39.dispatch;
     state.task_filter.filterstatus = "end";
     dispatch("fetchTasks", "end", state.current_project_id);
   },
   // Filter show actived tasks
-  showActivedTasks: function showActivedTasks(_ref38) {
-    var state = _ref38.state,
-        dispatch = _ref38.dispatch;
+  showActivedTasks: function showActivedTasks(_ref40) {
+    var state = _ref40.state,
+        dispatch = _ref40.dispatch;
     state.task_filter.filterstatus = "act";
     dispatch("fetchTasks", "act", state.current_project_id);
   },
   // Sort tasks by ID ACC
-  sortTasksIdAcc: function sortTasksIdAcc(_ref39) {
-    var state = _ref39.state;
+  sortTasksIdAcc: function sortTasksIdAcc(_ref41) {
+    var state = _ref41.state;
     state.task_filter.filter09 = true;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -75196,8 +75473,8 @@ var actions = {
     });
   },
   // Sort tasks by ID DEC
-  sortTasksIdDec: function sortTasksIdDec(_ref40) {
-    var state = _ref40.state;
+  sortTasksIdDec: function sortTasksIdDec(_ref42) {
+    var state = _ref42.state;
     state.task_filter.filter09 = false;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -75205,8 +75482,8 @@ var actions = {
     });
   },
   // Sort tasks by Name ACC
-  sortTasksNameAcc: function sortTasksNameAcc(_ref41) {
-    var state = _ref41.state;
+  sortTasksNameAcc: function sortTasksNameAcc(_ref43) {
+    var state = _ref43.state;
     state.task_filter.filteraz = true;
     state.tasks.sort(function (a, b) {
       if (a.title > b.title) return 1;

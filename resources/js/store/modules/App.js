@@ -62,8 +62,14 @@ const actions = {
         const response = await axios.get("api/properties");
         const theme = response.data.data.find(prop => prop.name === "theme")
             .value;
+        const projectfilter = response.data.data.find(prop => prop.name === "projectfilter")
+            .value;
+        const taskfilter = response.data.data.find(prop => prop.name === "taskfilter")
+            .value;
         const properties = response.data.data;
         commit("setTheme", theme);
+        commit("setProjectFilterStatus", projectfilter);
+        commit("setTaskFilterStatus", taskfilter);
         commit("setProperties", properties);
     },
     // Fetch properties categories
@@ -81,10 +87,40 @@ const actions = {
                 property_id: state.properties.find(
                     prop => prop.name === "theme"
                 ).id,
-                value: state.theme
+                value: theme
             },
             { "Content-Type": "application/json; charset=utf-8" }
         );
+    },
+    // Change project filter
+    async changeProjectFilter({ commit, state, dispatch }, filter) {
+        commit("setProjectFilterStatus", filter);
+        await axios.put(
+            "api/property",
+            {
+                property_id: state.properties.find(
+                    prop => prop.name === "projectfilter"
+                ).id,
+                value: filter
+            },
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
+        dispatch("fetchProjects", filter);
+    },
+    // Change task filter
+    async changeTaskFilter({ commit, state, dispatch }, filter) {
+        commit("setTaskFilterStatus", filter);
+        await axios.put(
+            "api/property",
+            {
+                property_id: state.properties.find(
+                    prop => prop.name === "taskfilter"
+                ).id,
+                value: filter
+            },
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
+        dispatch("fetchTasks", filter);
     },
     // Exit program
     exitProgram() {
@@ -108,13 +144,13 @@ const actions = {
         commit("setProjects", response.data.data);
     },
     // Show clcicked project and populate tasks panel
-    async showProject({ commit }, project) {
+    async showProject({ state, commit }, project) {
         commit("setProject", project);
         commit("setCurrentProjectId", project.id);
         commit("setNewProject", false);
         commit("setPanel", "projects");
         commit("setCurrentTaskId", 0);
-        const response = await axios.get("api/tasks/all/" + project.id);
+        const response = await axios.get("api/tasks/" + state.task_filter.filterstatus + "/" + project.id);
         commit("setTasks", response.data.data);
     },
     // Search in projects panel
@@ -294,7 +330,8 @@ const actions = {
                 body: "Description of new Task",
                 created_at: moment().format(),
                 updated_at: "",
-                status: 1
+                status: 1,
+                decision: ""
             };
             state.tasks.unshift(newTask);
             state.task = newTask;
@@ -315,7 +352,8 @@ const actions = {
                     project_id: state.current_project_id,
                     title: state.task.title,
                     body: state.task.body,
-                    status: state.task.status
+                    status: state.task.status,
+                    decision: state.task.decision
                 },
                 { "Content-Type": "application/json; charset=utf-8" }
             );
@@ -327,7 +365,8 @@ const actions = {
                     project_id: state.current_project_id,
                     title: state.task.title,
                     body: state.task.body,
-                    status: state.task.status
+                    status: state.task.status,
+                    decision: state.task.decision
                 },
                 { "Content-Type": "application/json; charset=utf-8" }
             );
@@ -339,6 +378,7 @@ const actions = {
         state.task.created_at = response.data.data.created_at;
         state.task.updated_at = response.data.data.updated_at;
         state.task.status = response.data.data.status;
+        state.task.decision = response.data.data.decision;
         commit("setNewTask", false);
         if (isMessage) {
             alert(
