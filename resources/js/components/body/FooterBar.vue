@@ -5,7 +5,8 @@
             <div><i class="mdi mdi-server-network serverIcon"></i></div>
             <div class="separator-vertical" :class="getTheme"></div>
             <div>
-                MaxtradeOffice ver: <span>{{ getVersion }}</span>
+                MaxtradeOffice ver:
+                <span>{{ getVersion }} [{{ getUser.name }}]</span>
             </div>
             <div class="separator-vertical" :class="getTheme"></div>
             <div class="projects-panel-title-dot">
@@ -32,7 +33,13 @@ import { mapGetters, mapActions } from "vuex";
 export default {
     name: "FooterBar",
 
-    computed: mapGetters(["getTheme", "getVersion", "getTasks", "getProjects"])
+    computed: mapGetters([
+        "getTheme",
+        "getVersion",
+        "getTasks",
+        "getProjects",
+        "getUser"
+    ])
 };
 </script>
 

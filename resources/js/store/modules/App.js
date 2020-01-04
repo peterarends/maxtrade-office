@@ -25,7 +25,8 @@ const state = {
         filteraz: false,
         filterstatus: "all"
     },
-    documents: []
+    documents: [],
+    user: []
 };
 
 const getters = {
@@ -51,7 +52,8 @@ const getters = {
     countEndedTasks: state => {
         return state.tasks.filter(p => p.status === 0).length;
     },
-    getVersion: state => state.version
+    getVersion: state => state.version,
+    getUser: state => state.user
 };
 
 const actions = {
@@ -63,6 +65,11 @@ const actions = {
         const properties = response.data.data;
         commit("setTheme", theme);
         commit("setProperties", properties);
+    },
+    // Fetch all user data from laravel
+    async fetchUser({ commit }) {
+        const response = await axios.get("api/user");
+        commit("setUser", response.data);
     },
     // Fetch properties categories
     async fetchPropertyCategories({ commit }) {
@@ -584,7 +591,8 @@ const mutations = {
         (state.task_filter.filteraz = filteraz),
     setTaskFilterId: (state, filter09) =>
         (state.task_filter.filter09 = filter09),
-    setDocuments: (state, documents) => (state.documents = documents)
+    setDocuments: (state, documents) => (state.documents = documents),
+    setUser: (state, user) => (state.user = user)
 };
 
 export default {

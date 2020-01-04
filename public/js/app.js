@@ -1914,9 +1914,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   created: function created() {
     this.fetchProperties();
+    this.fetchUser();
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapGetters"])(["getTheme", "getPanel"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapActions"])(["fetchProperties"]))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapActions"])(["fetchProperties", "fetchUser"]))
 });
 
 /***/ }),
@@ -2032,10 +2033,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FooterBar",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getVersion", "getTasks", "getProjects"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getVersion", "getTasks", "getProjects", "getUser"])
 });
 
 /***/ }),
@@ -3322,7 +3324,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getUser"]),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["exitProgram", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "addProject", "getCurrentProjectId", "deleteProject", "addTask", "getCurrentTaskId", "deleteTask", "showProperties", "showAbout"]))
 });
 
@@ -57962,8 +57964,10 @@ var render = function() {
       _c("div", { staticClass: "separator-vertical", class: _vm.getTheme }),
       _vm._v(" "),
       _c("div", [
-        _vm._v("\n            MaxtradeOffice ver: "),
-        _c("span", [_vm._v(_vm._s(_vm.getVersion))])
+        _vm._v("\n            MaxtradeOffice ver:\n            "),
+        _c("span", [
+          _vm._v(_vm._s(_vm.getVersion) + " [" + _vm._s(_vm.getUser.name) + "]")
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "separator-vertical", class: _vm.getTheme }),
@@ -59762,7 +59766,9 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "topTitleDiv", class: _vm.getTheme }, [
-        _c("span", [_vm._v("MaxtradeOffice")])
+        _c("span", [
+          _vm._v("MaxtradeOffice [" + _vm._s(_vm.getUser.name) + "]")
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "topRightIcons" }, [
@@ -74179,7 +74185,8 @@ var state = {
     filteraz: false,
     filterstatus: "all"
   },
-  documents: []
+  documents: [],
+  user: []
 };
 var getters = {
   getTheme: function getTheme(state) {
@@ -74242,6 +74249,9 @@ var getters = {
   },
   getVersion: function getVersion(state) {
     return state.version;
+  },
+  getUser: function getUser(state) {
+    return state.user;
   }
 };
 var actions = {
@@ -74282,26 +74292,25 @@ var actions = {
 
     return fetchProperties;
   }(),
-  // Fetch properties categories
-  fetchPropertyCategories: function () {
-    var _fetchPropertyCategories = _asyncToGenerator(
+  // Fetch all user data from laravel
+  fetchUser: function () {
+    var _fetchUser = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2) {
-      var commit, response, property_categories;
+      var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               commit = _ref2.commit;
               _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/properties_categories");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/user");
 
             case 3:
               response = _context2.sent;
-              property_categories = response.data.data;
-              commit("setPropertyCategories", property_categories);
+              commit("setUser", response.data);
 
-            case 6:
+            case 5:
             case "end":
               return _context2.stop();
           }
@@ -74309,7 +74318,40 @@ var actions = {
       }, _callee2);
     }));
 
-    function fetchPropertyCategories(_x2) {
+    function fetchUser(_x2) {
+      return _fetchUser.apply(this, arguments);
+    }
+
+    return fetchUser;
+  }(),
+  // Fetch properties categories
+  fetchPropertyCategories: function () {
+    var _fetchPropertyCategories = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3) {
+      var commit, response, property_categories;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/properties_categories");
+
+            case 3:
+              response = _context3.sent;
+              property_categories = response.data.data;
+              commit("setPropertyCategories", property_categories);
+
+            case 6:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    function fetchPropertyCategories(_x3) {
       return _fetchPropertyCategories.apply(this, arguments);
     }
 
@@ -74319,15 +74361,15 @@ var actions = {
   changeTheme: function () {
     var _changeTheme = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, theme) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, theme) {
       var commit, state;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              commit = _ref3.commit, state = _ref3.state;
+              commit = _ref4.commit, state = _ref4.state;
               commit("setTheme", theme);
-              _context3.next = 4;
+              _context4.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/property", {
                 property_id: state.properties.find(function (prop) {
                   return prop.name === "theme";
@@ -74339,13 +74381,13 @@ var actions = {
 
             case 4:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3);
+      }, _callee4);
     }));
 
-    function changeTheme(_x3, _x4) {
+    function changeTheme(_x4, _x5) {
       return _changeTheme.apply(this, arguments);
     }
 
@@ -74356,47 +74398,47 @@ var actions = {
     window.location = "/logout.html";
   },
   // Show panel properties
-  showProperties: function showProperties(_ref4) {
-    var commit = _ref4.commit;
+  showProperties: function showProperties(_ref5) {
+    var commit = _ref5.commit;
     commit("setPanel", "properties");
   },
   // Close current panel
-  closePanel: function closePanel(_ref5) {
-    var commit = _ref5.commit;
+  closePanel: function closePanel(_ref6) {
+    var commit = _ref6.commit;
     commit("setPanel", "");
   },
   // Show About panel
-  showAbout: function showAbout(_ref6) {
-    var commit = _ref6.commit;
+  showAbout: function showAbout(_ref7) {
+    var commit = _ref7.commit;
     commit("setPanel", "about");
   },
   // Fetch all projects
   fetchProjects: function () {
     var _fetchProjects = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref7, status) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref8, status) {
       var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
-              commit = _ref7.commit;
-              _context4.next = 3;
+              commit = _ref8.commit;
+              _context5.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/projects/" + status);
 
             case 3:
-              response = _context4.sent;
+              response = _context5.sent;
               commit("setProjects", response.data.data);
 
             case 5:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
-      }, _callee4);
+      }, _callee5);
     }));
 
-    function fetchProjects(_x5, _x6) {
+    function fetchProjects(_x6, _x7) {
       return _fetchProjects.apply(this, arguments);
     }
 
@@ -74406,34 +74448,34 @@ var actions = {
   showProject: function () {
     var _showProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref8, project) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref9, project) {
       var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
-              commit = _ref8.commit;
+              commit = _ref9.commit;
               commit("setProject", project);
               commit("setCurrentProjectId", project.id);
               commit("setNewProject", false);
               commit("setPanel", "projects");
               commit("setCurrentTaskId", 0);
-              _context5.next = 8;
+              _context6.next = 8;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/all/" + project.id);
 
             case 8:
-              response = _context5.sent;
+              response = _context6.sent;
               commit("setTasks", response.data.data);
 
             case 10:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
-      }, _callee5);
+      }, _callee6);
     }));
 
-    function showProject(_x7, _x8) {
+    function showProject(_x8, _x9) {
       return _showProject.apply(this, arguments);
     }
 
@@ -74443,14 +74485,14 @@ var actions = {
   projectSearch: function () {
     var _projectSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref9, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref10, event) {
       var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
         while (1) {
-          switch (_context6.prev = _context6.next) {
+          switch (_context7.prev = _context7.next) {
             case 0:
-              commit = _ref9.commit;
-              _context6.next = 3;
+              commit = _ref10.commit;
+              _context7.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/projects/search", {
                 search: event.target.value
               }, {
@@ -74458,28 +74500,28 @@ var actions = {
               });
 
             case 3:
-              response = _context6.sent;
+              response = _context7.sent;
               commit("setProjects", response.data.data);
 
             case 5:
             case "end":
-              return _context6.stop();
+              return _context7.stop();
           }
         }
-      }, _callee6);
+      }, _callee7);
     }));
 
-    function projectSearch(_x9, _x10) {
+    function projectSearch(_x10, _x11) {
       return _projectSearch.apply(this, arguments);
     }
 
     return projectSearch;
   }(),
   // Toggle project status filter
-  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref10) {
-    var commit = _ref10.commit,
-        state = _ref10.state,
-        dispatch = _ref10.dispatch;
+  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref11) {
+    var commit = _ref11.commit,
+        state = _ref11.state,
+        dispatch = _ref11.dispatch;
 
     if (state.project_filter.filterstatus == "all") {
       commit("setProjectFilterStatus", "act");
@@ -74497,9 +74539,9 @@ var actions = {
     }
   },
   // Toggle project name filter
-  toggleProjectNameFilter: function toggleProjectNameFilter(_ref11) {
-    var commit = _ref11.commit,
-        state = _ref11.state;
+  toggleProjectNameFilter: function toggleProjectNameFilter(_ref12) {
+    var commit = _ref12.commit,
+        state = _ref12.state;
     commit("setProjectFilterName", !state.project_filter.filteraz);
 
     if (state.project_filter.filteraz) {
@@ -74515,9 +74557,9 @@ var actions = {
     }
   },
   // Toggle project ID filter
-  toggleProjectIdFilter: function toggleProjectIdFilter(_ref12) {
-    var commit = _ref12.commit,
-        state = _ref12.state;
+  toggleProjectIdFilter: function toggleProjectIdFilter(_ref13) {
+    var commit = _ref13.commit,
+        state = _ref13.state;
     commit("setProjectFilterId", !state.project_filter.filter09);
 
     if (state.project_filter.filter09) {
@@ -74533,10 +74575,10 @@ var actions = {
     }
   },
   // Add project
-  addProject: function addProject(_ref13) {
-    var commit = _ref13.commit,
-        state = _ref13.state,
-        dispatch = _ref13.dispatch;
+  addProject: function addProject(_ref14) {
+    var commit = _ref14.commit,
+        state = _ref14.state,
+        dispatch = _ref14.dispatch;
     var newProject = {
       id: Math.max.apply(Math, state.projects.map(function (o) {
         return o.id;
@@ -74562,25 +74604,25 @@ var actions = {
   deleteProject: function () {
     var _deleteProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref14) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref15) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
         while (1) {
-          switch (_context7.prev = _context7.next) {
+          switch (_context8.prev = _context8.next) {
             case 0:
-              commit = _ref14.commit, state = _ref14.state;
+              commit = _ref15.commit, state = _ref15.state;
 
               if (!(state.current_project_id != 0)) {
-                _context7.next = 11;
+                _context8.next = 11;
                 break;
               }
 
               if (!confirm("Are You sure?")) {
-                _context7.next = 11;
+                _context8.next = 11;
                 break;
               }
 
-              _context7.next = 5;
+              _context8.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/project/" + state.project.id, {
                 project_id: state.project.id
               }, {
@@ -74588,7 +74630,7 @@ var actions = {
               });
 
             case 5:
-              response = _context7.sent;
+              response = _context8.sent;
               commit("setProjects", state.projects.filter(function (p) {
                 return p.id !== response.data.data.id;
               }));
@@ -74599,23 +74641,23 @@ var actions = {
 
             case 11:
             case "end":
-              return _context7.stop();
+              return _context8.stop();
           }
         }
-      }, _callee7);
+      }, _callee8);
     }));
 
-    function deleteProject(_x11) {
+    function deleteProject(_x12) {
       return _deleteProject.apply(this, arguments);
     }
 
     return deleteProject;
   }(),
   // Complete a project and all tasks bind to this project
-  completeProject: function completeProject(_ref15) {
-    var commit = _ref15.commit,
-        state = _ref15.state,
-        dispatch = _ref15.dispatch;
+  completeProject: function completeProject(_ref16) {
+    var commit = _ref16.commit,
+        state = _ref16.state,
+        dispatch = _ref16.dispatch;
 
     if (state.current_project_id != 0) {
       commit("setProjectStatus", 0);
@@ -74626,21 +74668,21 @@ var actions = {
   saveProject: function () {
     var _saveProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref16, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref17, isMessage) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
         while (1) {
-          switch (_context8.prev = _context8.next) {
+          switch (_context9.prev = _context9.next) {
             case 0:
-              commit = _ref16.commit, state = _ref16.state;
+              commit = _ref17.commit, state = _ref17.state;
               response = null;
 
               if (!state.new_project) {
-                _context8.next = 8;
+                _context9.next = 8;
                 break;
               }
 
-              _context8.next = 5;
+              _context9.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/project", {
                 project_id: 0,
                 title: state.project.title,
@@ -74651,12 +74693,12 @@ var actions = {
               });
 
             case 5:
-              response = _context8.sent;
-              _context8.next = 11;
+              response = _context9.sent;
+              _context9.next = 11;
               break;
 
             case 8:
-              _context8.next = 10;
+              _context9.next = 10;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/project", {
                 project_id: state.project.id,
                 title: state.project.title,
@@ -74667,7 +74709,7 @@ var actions = {
               });
 
             case 10:
-              response = _context8.sent;
+              response = _context9.sent;
 
             case 11:
               state.project.id = response.data.data.id;
@@ -74684,11 +74726,11 @@ var actions = {
 
 
               if (!(state.project.status == 0)) {
-                _context8.next = 23;
+                _context9.next = 23;
                 break;
               }
 
-              _context8.next = 22;
+              _context9.next = 22;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/complete/" + state.project.id);
 
             case 22:
@@ -74698,22 +74740,22 @@ var actions = {
 
             case 23:
             case "end":
-              return _context8.stop();
+              return _context9.stop();
           }
         }
-      }, _callee8);
+      }, _callee9);
     }));
 
-    function saveProject(_x12, _x13) {
+    function saveProject(_x13, _x14) {
       return _saveProject.apply(this, arguments);
     }
 
     return saveProject;
   }(),
   // Add new Task
-  addTask: function addTask(_ref17) {
-    var state = _ref17.state,
-        dispatch = _ref17.dispatch;
+  addTask: function addTask(_ref18) {
+    var state = _ref18.state,
+        dispatch = _ref18.dispatch;
 
     if (state.current_project_id != 0) {
       var newTask = {
@@ -74739,21 +74781,21 @@ var actions = {
   saveTask: function () {
     var _saveTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref18, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref19, isMessage) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
         while (1) {
-          switch (_context9.prev = _context9.next) {
+          switch (_context10.prev = _context10.next) {
             case 0:
-              commit = _ref18.commit, state = _ref18.state;
+              commit = _ref19.commit, state = _ref19.state;
               response = null;
 
               if (!state.new_task) {
-                _context9.next = 8;
+                _context10.next = 8;
                 break;
               }
 
-              _context9.next = 5;
+              _context10.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/task", {
                 task_id: 0,
                 project_id: state.current_project_id,
@@ -74765,12 +74807,12 @@ var actions = {
               });
 
             case 5:
-              response = _context9.sent;
-              _context9.next = 11;
+              response = _context10.sent;
+              _context10.next = 11;
               break;
 
             case 8:
-              _context9.next = 10;
+              _context10.next = 10;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/task", {
                 task_id: state.task.id,
                 project_id: state.current_project_id,
@@ -74782,7 +74824,7 @@ var actions = {
               });
 
             case 10:
-              response = _context9.sent;
+              response = _context10.sent;
 
             case 11:
               state.task.id = response.data.data.id;
@@ -74800,13 +74842,13 @@ var actions = {
 
             case 20:
             case "end":
-              return _context9.stop();
+              return _context10.stop();
           }
         }
-      }, _callee9);
+      }, _callee10);
     }));
 
-    function saveTask(_x14, _x15) {
+    function saveTask(_x15, _x16) {
       return _saveTask.apply(this, arguments);
     }
 
@@ -74816,43 +74858,7 @@ var actions = {
   fetchTasksSearch: function () {
     var _fetchTasksSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref19, event) {
-      var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
-        while (1) {
-          switch (_context10.prev = _context10.next) {
-            case 0:
-              commit = _ref19.commit, state = _ref19.state;
-              _context10.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
-                search: event.target.value
-              }, {
-                "Content-Type": "application/json; charset=utf-8"
-              });
-
-            case 3:
-              response = _context10.sent;
-              commit("setTasks", response.data.data);
-
-            case 5:
-            case "end":
-              return _context10.stop();
-          }
-        }
-      }, _callee10);
-    }));
-
-    function fetchTasksSearch(_x16, _x17) {
-      return _fetchTasksSearch.apply(this, arguments);
-    }
-
-    return fetchTasksSearch;
-  }(),
-  // Fetch all tasks
-  fetchTasks: function () {
-    var _fetchTasks = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref20, status) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref20, event) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
         while (1) {
@@ -74860,7 +74866,11 @@ var actions = {
             case 0:
               commit = _ref20.commit, state = _ref20.state;
               _context11.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
+                search: event.target.value
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
 
             case 3:
               response = _context11.sent;
@@ -74874,17 +74884,49 @@ var actions = {
       }, _callee11);
     }));
 
-    function fetchTasks(_x18, _x19) {
+    function fetchTasksSearch(_x17, _x18) {
+      return _fetchTasksSearch.apply(this, arguments);
+    }
+
+    return fetchTasksSearch;
+  }(),
+  // Fetch all tasks
+  fetchTasks: function () {
+    var _fetchTasks = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref21, status) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
+        while (1) {
+          switch (_context12.prev = _context12.next) {
+            case 0:
+              commit = _ref21.commit, state = _ref21.state;
+              _context12.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
+
+            case 3:
+              response = _context12.sent;
+              commit("setTasks", response.data.data);
+
+            case 5:
+            case "end":
+              return _context12.stop();
+          }
+        }
+      }, _callee12);
+    }));
+
+    function fetchTasks(_x19, _x20) {
       return _fetchTasks.apply(this, arguments);
     }
 
     return fetchTasks;
   }(),
   // Toggle task status filter
-  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref21) {
-    var commit = _ref21.commit,
-        state = _ref21.state,
-        dispatch = _ref21.dispatch;
+  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref22) {
+    var commit = _ref22.commit,
+        state = _ref22.state,
+        dispatch = _ref22.dispatch;
 
     if (state.task_filter.filterstatus == "all") {
       commit("setTaskFilterStatus", "act");
@@ -74902,9 +74944,9 @@ var actions = {
     }
   },
   // Toggle task name filter
-  toggleTaskNameFilter: function toggleTaskNameFilter(_ref22) {
-    var commit = _ref22.commit,
-        state = _ref22.state;
+  toggleTaskNameFilter: function toggleTaskNameFilter(_ref23) {
+    var commit = _ref23.commit,
+        state = _ref23.state;
     commit("setTaskFilterName", !state.task_filter.filteraz);
 
     if (state.task_filter.filteraz) {
@@ -74920,9 +74962,9 @@ var actions = {
     }
   },
   // Toggle tasks ID filter
-  toggleTaskIdFilter: function toggleTaskIdFilter(_ref23) {
-    var commit = _ref23.commit,
-        state = _ref23.state;
+  toggleTaskIdFilter: function toggleTaskIdFilter(_ref24) {
+    var commit = _ref24.commit,
+        state = _ref24.state;
     commit("setTaskFilterId", !state.task_filter.filter09);
 
     if (state.task_filter.filter09) {
@@ -74940,73 +74982,23 @@ var actions = {
   showTask: function () {
     var _showTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref24, task) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref25, task) {
       var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
-        while (1) {
-          switch (_context12.prev = _context12.next) {
-            case 0:
-              commit = _ref24.commit;
-              commit("setTask", task);
-              commit("setCurrentTaskId", task.id);
-              commit("setNewTask", false);
-              _context12.next = 6;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + task.id);
-
-            case 6:
-              response = _context12.sent;
-              commit("setDocuments", response.data);
-              commit("setPanel", "tasks");
-
-            case 9:
-            case "end":
-              return _context12.stop();
-          }
-        }
-      }, _callee12);
-    }));
-
-    function showTask(_x20, _x21) {
-      return _showTask.apply(this, arguments);
-    }
-
-    return showTask;
-  }(),
-  deleteTask: function () {
-    var _deleteTask = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref25) {
-      var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
         while (1) {
           switch (_context13.prev = _context13.next) {
             case 0:
-              commit = _ref25.commit, state = _ref25.state;
+              commit = _ref25.commit;
+              commit("setTask", task);
+              commit("setCurrentTaskId", task.id);
+              commit("setNewTask", false);
+              _context13.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + task.id);
 
-              if (!(state.current_task_id != 0)) {
-                _context13.next = 9;
-                break;
-              }
-
-              if (!confirm("Are You sure?")) {
-                _context13.next = 9;
-                break;
-              }
-
-              _context13.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/" + state.task.id, {
-                task_id: state.task.id
-              }, {
-                "Content-Type": "application/json; charset=utf-8"
-              });
-
-            case 5:
+            case 6:
               response = _context13.sent;
-              state.tasks = state.tasks.filter(function (t) {
-                return t.id !== response.data.data.id;
-              });
-              commit("setCurrentTaskId", 0);
-              commit("setPanel", "");
+              commit("setDocuments", response.data);
+              commit("setPanel", "tasks");
 
             case 9:
             case "end":
@@ -75016,16 +75008,66 @@ var actions = {
       }, _callee13);
     }));
 
-    function deleteTask(_x22) {
+    function showTask(_x21, _x22) {
+      return _showTask.apply(this, arguments);
+    }
+
+    return showTask;
+  }(),
+  deleteTask: function () {
+    var _deleteTask = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref26) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+        while (1) {
+          switch (_context14.prev = _context14.next) {
+            case 0:
+              commit = _ref26.commit, state = _ref26.state;
+
+              if (!(state.current_task_id != 0)) {
+                _context14.next = 9;
+                break;
+              }
+
+              if (!confirm("Are You sure?")) {
+                _context14.next = 9;
+                break;
+              }
+
+              _context14.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/" + state.task.id, {
+                task_id: state.task.id
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 5:
+              response = _context14.sent;
+              state.tasks = state.tasks.filter(function (t) {
+                return t.id !== response.data.data.id;
+              });
+              commit("setCurrentTaskId", 0);
+              commit("setPanel", "");
+
+            case 9:
+            case "end":
+              return _context14.stop();
+          }
+        }
+      }, _callee14);
+    }));
+
+    function deleteTask(_x23) {
       return _deleteTask.apply(this, arguments);
     }
 
     return deleteTask;
   }(),
   // Change task status to complete
-  completeTask: function completeTask(_ref26) {
-    var state = _ref26.state,
-        dispatch = _ref26.dispatch;
+  completeTask: function completeTask(_ref27) {
+    var state = _ref27.state,
+        dispatch = _ref27.dispatch;
 
     if (state.current_task_id != 0) {
       state.task.status = 0;
@@ -75036,18 +75078,18 @@ var actions = {
   deleteDocument: function () {
     var _deleteDocument = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref27, current_document) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref28, current_document) {
       var state, dispatch, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
         while (1) {
-          switch (_context14.prev = _context14.next) {
+          switch (_context15.prev = _context15.next) {
             case 0:
-              state = _ref27.state, dispatch = _ref27.dispatch;
-              _context14.next = 3;
+              state = _ref28.state, dispatch = _ref28.dispatch;
+              _context15.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/document/delete/" + state.task.id + "/" + current_document);
 
             case 3:
-              response = _context14.sent;
+              response = _context15.sent;
 
               if (response.data.result === "success") {
                 dispatch("changeDocuments");
@@ -75057,13 +75099,13 @@ var actions = {
 
             case 5:
             case "end":
-              return _context14.stop();
+              return _context15.stop();
           }
         }
-      }, _callee14);
+      }, _callee15);
     }));
 
-    function deleteDocument(_x23, _x24) {
+    function deleteDocument(_x24, _x25) {
       return _deleteDocument.apply(this, arguments);
     }
 
@@ -75073,58 +75115,58 @@ var actions = {
   changeDocuments: function () {
     var _changeDocuments = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref28) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16(_ref29) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
         while (1) {
-          switch (_context15.prev = _context15.next) {
+          switch (_context16.prev = _context16.next) {
             case 0:
-              commit = _ref28.commit, state = _ref28.state;
-              _context15.next = 3;
+              commit = _ref29.commit, state = _ref29.state;
+              _context16.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + state.task.id);
 
             case 3:
-              response = _context15.sent;
+              response = _context16.sent;
               commit("setDocuments", response.data);
 
             case 5:
             case "end":
-              return _context15.stop();
+              return _context16.stop();
           }
         }
-      }, _callee15);
+      }, _callee16);
     }));
 
-    function changeDocuments(_x25) {
+    function changeDocuments(_x26) {
       return _changeDocuments.apply(this, arguments);
     }
 
     return changeDocuments;
   }(),
   // Filter show all projects
-  showAllProjects: function showAllProjects(_ref29) {
-    var state = _ref29.state,
-        dispatch = _ref29.dispatch;
+  showAllProjects: function showAllProjects(_ref30) {
+    var state = _ref30.state,
+        dispatch = _ref30.dispatch;
     state.project_filter.filterstatus = "all";
     dispatch("fetchProjects", "all");
   },
   // Filter show completed projects
-  showCompletedProjects: function showCompletedProjects(_ref30) {
-    var state = _ref30.state,
-        dispatch = _ref30.dispatch;
+  showCompletedProjects: function showCompletedProjects(_ref31) {
+    var state = _ref31.state,
+        dispatch = _ref31.dispatch;
     state.project_filter.filterstatus = "end";
     dispatch("fetchProjects", "end");
   },
   // Filter show actived projects
-  showActivedProjects: function showActivedProjects(_ref31) {
-    var state = _ref31.state,
-        dispatch = _ref31.dispatch;
+  showActivedProjects: function showActivedProjects(_ref32) {
+    var state = _ref32.state,
+        dispatch = _ref32.dispatch;
     state.project_filter.filterstatus = "act";
     dispatch("fetchProjects", "act");
   },
   // Sort projects by ID ACC
-  sortProjectsIdAcc: function sortProjectsIdAcc(_ref32) {
-    var state = _ref32.state;
+  sortProjectsIdAcc: function sortProjectsIdAcc(_ref33) {
+    var state = _ref33.state;
     state.project_filter.filter09 = true;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -75132,8 +75174,8 @@ var actions = {
     });
   },
   // Sort projects by ID DEC
-  sortProjectsIdDec: function sortProjectsIdDec(_ref33) {
-    var state = _ref33.state;
+  sortProjectsIdDec: function sortProjectsIdDec(_ref34) {
+    var state = _ref34.state;
     state.project_filter.filter09 = false;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -75141,8 +75183,8 @@ var actions = {
     });
   },
   // Sort projects by Name ACC
-  sortProjectsNameAcc: function sortProjectsNameAcc(_ref34) {
-    var state = _ref34.state;
+  sortProjectsNameAcc: function sortProjectsNameAcc(_ref35) {
+    var state = _ref35.state;
     state.project_filter.filteraz = true;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return 1;
@@ -75150,8 +75192,8 @@ var actions = {
     });
   },
   // Sort projects by Name DEC
-  sortProjectsNameDec: function sortProjectsNameDec(_ref35) {
-    var state = _ref35.state;
+  sortProjectsNameDec: function sortProjectsNameDec(_ref36) {
+    var state = _ref36.state;
     state.project_filter.filteraz = false;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return -1;
@@ -75159,29 +75201,29 @@ var actions = {
     });
   },
   // Filter show all tasks
-  showAllTasks: function showAllTasks(_ref36) {
-    var state = _ref36.state,
-        dispatch = _ref36.dispatch;
+  showAllTasks: function showAllTasks(_ref37) {
+    var state = _ref37.state,
+        dispatch = _ref37.dispatch;
     state.task_filter.filterstatus = "all";
     dispatch("fetchTasks", "all", state.current_project_id);
   },
   // Filter show completed tasks
-  showCompletedTasks: function showCompletedTasks(_ref37) {
-    var state = _ref37.state,
-        dispatch = _ref37.dispatch;
+  showCompletedTasks: function showCompletedTasks(_ref38) {
+    var state = _ref38.state,
+        dispatch = _ref38.dispatch;
     state.task_filter.filterstatus = "end";
     dispatch("fetchTasks", "end", state.current_project_id);
   },
   // Filter show actived tasks
-  showActivedTasks: function showActivedTasks(_ref38) {
-    var state = _ref38.state,
-        dispatch = _ref38.dispatch;
+  showActivedTasks: function showActivedTasks(_ref39) {
+    var state = _ref39.state,
+        dispatch = _ref39.dispatch;
     state.task_filter.filterstatus = "act";
     dispatch("fetchTasks", "act", state.current_project_id);
   },
   // Sort tasks by ID ACC
-  sortTasksIdAcc: function sortTasksIdAcc(_ref39) {
-    var state = _ref39.state;
+  sortTasksIdAcc: function sortTasksIdAcc(_ref40) {
+    var state = _ref40.state;
     state.task_filter.filter09 = true;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -75189,8 +75231,8 @@ var actions = {
     });
   },
   // Sort tasks by ID DEC
-  sortTasksIdDec: function sortTasksIdDec(_ref40) {
-    var state = _ref40.state;
+  sortTasksIdDec: function sortTasksIdDec(_ref41) {
+    var state = _ref41.state;
     state.task_filter.filter09 = false;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -75198,8 +75240,8 @@ var actions = {
     });
   },
   // Sort tasks by Name ACC
-  sortTasksNameAcc: function sortTasksNameAcc(_ref41) {
-    var state = _ref41.state;
+  sortTasksNameAcc: function sortTasksNameAcc(_ref42) {
+    var state = _ref42.state;
     state.task_filter.filteraz = true;
     state.tasks.sort(function (a, b) {
       if (a.title > b.title) return 1;
@@ -75275,6 +75317,9 @@ var mutations = {
   },
   setDocuments: function setDocuments(state, documents) {
     return state.documents = documents;
+  },
+  setUser: function setUser(state, user) {
+    return state.user = user;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
