@@ -85,6 +85,15 @@
                 ></i
                 >&nbsp;Delete Project</a
             >
+            <a
+                :href="'/project/' + getProject.id + '/export.html'"
+                target="_blank"
+                ><i
+                    class="mdi mdi-delete-outline mdiProjectIcon"
+                    :class="getTheme"
+                ></i
+                >&nbsp;Export Project</a
+            >
             <a @click.prevent="closePanel"
                 ><i
                     class="mdi mdi-close-outline mdiProjectIcon"

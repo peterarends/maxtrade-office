@@ -2249,6 +2249,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -58488,6 +58497,23 @@ var render = function() {
             class: _vm.getTheme
           }),
           _vm._v(" Delete Project")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          attrs: {
+            href: "/project/" + _vm.getProject.id + "/export.html",
+            target: "_blank"
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-delete-outline mdiProjectIcon",
+            class: _vm.getTheme
+          }),
+          _vm._v(" Export Project")
         ]
       ),
       _vm._v(" "),

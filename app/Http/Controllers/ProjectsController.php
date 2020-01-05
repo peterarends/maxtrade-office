@@ -110,4 +110,9 @@ class ProjectsController extends Controller
             return new ProjectResource($project);
         }
     }
+
+    public function export($id)
+    {
+        return view('export');
+    }
 }
