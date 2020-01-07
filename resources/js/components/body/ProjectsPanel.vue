@@ -123,10 +123,6 @@ export default {
         "countEndedTasks"
     ]),
 
-    created() {
-        this.fetchProjects(this.getProjectFilter.filterstatus);
-    },
-
     filters: {
         formatDate: function(value) {
             if (value) {
@@ -137,7 +133,6 @@ export default {
 
     methods: {
         ...mapActions([
-            "fetchProjects",
             "showProject",
             "projectSearch",
             "toggleProjectStatusFilter",

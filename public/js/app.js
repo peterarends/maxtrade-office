@@ -1914,9 +1914,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   created: function created() {
     this.fetchProperties();
+    this.fetchProjects("act");
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapGetters"])(["getTheme", "getPanel"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapActions"])(["fetchProperties"]))
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapGetters"])(["getTheme", "getPanel", "getProjectFilter"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapActions"])(["fetchProperties", "fetchProjects"]))
 });
 
 /***/ }),
@@ -2457,9 +2458,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     VueContext: vue_context__WEBPACK_IMPORTED_MODULE_1__["VueContext"]
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getTheme", "getProjects", "getProjectFilter", "getCurrentProjectId", "countAllTasks", "countActiveTasks", "countEndedTasks"]),
-  created: function created() {
-    this.fetchProjects(this.getProjectFilter.filterstatus);
-  },
   filters: {
     formatDate: function formatDate(value) {
       if (value) {
@@ -2467,7 +2465,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(["fetchProjects", "showProject", "projectSearch", "toggleProjectStatusFilter", "toggleProjectNameFilter", "toggleProjectIdFilter", "deleteProject", "completeProject", "addTask"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(["showProject", "projectSearch", "toggleProjectStatusFilter", "toggleProjectNameFilter", "toggleProjectIdFilter", "deleteProject", "completeProject", "addTask"]), {
     onClickContextMenu: function onClickContextMenu(action) {
       if (action == "delete") {
         this.deleteProject();

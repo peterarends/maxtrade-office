@@ -48,12 +48,13 @@ export default {
 
     created() {
         this.fetchProperties();
+        this.fetchProjects("act");
     },
 
-    computed: mapGetters(["getTheme", "getPanel"]),
+    computed: mapGetters(["getTheme", "getPanel", "getProjectFilter"]),
 
     methods: {
-        ...mapActions(["fetchProperties"])
+        ...mapActions(["fetchProperties", "fetchProjects"])
     }
 };
 </script>
