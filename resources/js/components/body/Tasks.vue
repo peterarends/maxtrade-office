@@ -30,11 +30,7 @@
                 </h3>
             </div>
             <input class="title" type="text" v-model="getTask.title" />
-            <textarea
-                class="text_body"
-                rows="10"
-                v-model="getTask.body"
-            ></textarea>
+            <textarea class="text_body" v-model="getTask.body"></textarea>
             <div class="taskStatus">
                 <input
                     type="checkbox"
@@ -355,6 +351,7 @@ export default {
 }
 .text_body {
     background: transparent;
+    height: 260px;
     padding: 4px;
     font-size: 18px;
 }

@@ -268,7 +268,7 @@ export default {
 .date {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 .title {
     background: transparent;
@@ -451,7 +451,18 @@ input[type="checkbox"]:checked + label:hover span:before {
     padding-bottom: 3px;
 }
 .chart {
-    width: 320px;
-    height: 320px;
+    max-width: 320px;
+    max-height: 320px;
+}
+@media screen and (max-width: 1366px), screen and (max-height: 768px) {
+    .chart {
+        display: none;
+    }
+}
+@media screen and (max-width: 1440px), screen and (max-height: 900px) {
+    .chart {
+        max-width: 160px;
+        max-height: 160px;
+    }
 }
 </style>
