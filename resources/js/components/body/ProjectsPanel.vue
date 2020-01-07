@@ -124,7 +124,7 @@ export default {
     ]),
 
     created() {
-        this.fetchProjects("all");
+        this.fetchProjects(this.getProjectFilter.filterstatus);
     },
 
     filters: {
