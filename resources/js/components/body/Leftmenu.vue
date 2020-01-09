@@ -1,6 +1,6 @@
 <template>
     <div class="body-left-menu" :class="getTheme">
-        <a class="active" title="Show Projects Panel">
+        <a class="active" title="Return to ready state" @click.prevent="readyState">
             <i class="mdi mdi-finance mdiIcon"></i>
         </a>
         <a title="Show Mails Panel">
@@ -53,7 +53,7 @@ export default {
     computed: mapGetters(["getTheme"]),
 
     methods: {
-        ...mapActions(["showProperties", "changeTheme"]),
+        ...mapActions(["showProperties", "changeTheme", "readyState"]),
         onClickContextMenu(action) {
             if (action == "properties") {
                 this.showProperties();

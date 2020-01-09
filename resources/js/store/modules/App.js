@@ -132,16 +132,19 @@ const actions = {
         window.location = "/logout.html";
     },
     // Show panel properties
-    showProperties({ commit }) {
+    showProperties({ commit, dispatch }) {
         commit("setPanel", "properties");
+        dispatch("readyState");
     },
     // Close current panel
-    closePanel({ commit }) {
+    closePanel({ commit, dispatch }) {
         commit("setPanel", "");
+        dispatch("readyState");
     },
     // Show About panel
-    showAbout({ commit }) {
+    showAbout({ commit, dispatch }) {
         commit("setPanel", "about");
+        dispatch("readyState");
     },
     // Fetch all projects
     async fetchProjects({ commit }, status) {
@@ -623,6 +626,15 @@ const actions = {
             if (a.title > b.title) return -1;
             if (a.title < b.title) return 1;
         });
+    },
+    // Refresh to ready state
+    readyState({ commit }) {
+        commit("setCurrentProjectId", 0);
+        commit("setCurrentTaskId", 0);
+        commit("setProject", []);
+        commit("setTask", []);
+        commit("setTasks", []);
+        commit("setPanel", "");
     }
 };
 
