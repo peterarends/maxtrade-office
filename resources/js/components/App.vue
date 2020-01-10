@@ -192,4 +192,13 @@ h5 {
 .vp20 {
     padding: 20px 0px;
 }
+.button {
+    border: 1px solid #4a5568;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: #2a4365;
+}
+.button:hover {
+    background: #2b6cb0;
+}
 </style>
