@@ -99,27 +99,27 @@
                     class="mdi mdi-content-save-outline mdiTaskIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Save Task
+                >&nbsp;Save
             </a>
             <a @click.prevent="deleteTask">
                 <i
                     class="mdi mdi-delete-outline mdiTaskIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Delete Task
+                >&nbsp;Delete
             </a>
             <a @click.prevent="closePanel">
                 <i
                     class="mdi mdi-close-outline mdiTaskIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Close Task
+                >&nbsp;Close
             </a>
             <div class="status_panel">
-                Last change: {{ getTask.updated_at | formatDate }} [#{{
-                    getTask.last_id
-                }}
-                / {{ getTask.last_name }}]
+                Last change: {{ getTask.updated_at | formatDate
+                }}<span class="status_panel_user">
+                    [#{{ getTask.last_id }} / {{ getTask.last_name }}]</span
+                >
             </div>
         </div>
         <vue-context ref="menu" @open="onOpenContextMenu">
@@ -583,5 +583,16 @@ input[type="checkbox"]:checked + label:hover span:before {
 }
 .v-context__sub > ul {
     display: none;
+}
+@media screen and (max-width: 1440px), screen and (max-height: 900px) {
+    .status_panel_user {
+        display: none;
+    }
+    .text_body {
+        background: transparent;
+        height: 120px;
+        padding: 4px;
+        font-size: 18px;
+    }
 }
 </style>

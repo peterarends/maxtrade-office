@@ -177,6 +177,12 @@ export default {
     max-width: 480px;
     align-self: auto;
 }
+@media screen and (max-width: 1440px), screen and (max-height: 900px) {
+    .abaout_img {
+        max-width: 220px;
+        align-self: auto;
+    }
+}
 .bottom {
     display: flex;
     justify-content: space-between;

@@ -76,14 +76,14 @@
                     class="mdi mdi-content-save-outline mdiProjectIcon"
                     v-bind:class="getTheme"
                 ></i
-                >&nbsp;Save Project</a
+                >&nbsp;Save</a
             >
             <a @click.prevent="deleteProject"
                 ><i
                     class="mdi mdi-delete-outline mdiProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Delete Project</a
+                >&nbsp;Delete</a
             >
             <a
                 :href="'/project/' + getProject.id + '/export.html'"
@@ -92,20 +92,21 @@
                     class="mdi mdi-delete-outline mdiProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Export Project</a
+                >&nbsp;Export</a
             >
             <a @click.prevent="closePanel"
                 ><i
                     class="mdi mdi-close-outline mdiProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Close Project</a
+                >&nbsp;Close</a
             >
             <div class="status_panel">
-                Last change: {{ getProject.updated_at | formatDate }} [#{{
-                    getProject.last_id
-                }}
-                / {{ getProject.last_name }}]
+                Last change: {{ getProject.updated_at | formatDate
+                }}<span class="status_panel_user">
+                    [#{{ getProject.last_id }} /
+                    {{ getProject.last_name }}]</span
+                >
             </div>
         </div>
     </div>
@@ -454,15 +455,12 @@ input[type="checkbox"]:checked + label:hover span:before {
     max-width: 320px;
     max-height: 320px;
 }
-@media screen and (max-width: 1366px), screen and (max-height: 768px) {
+@media screen and (max-width: 1440px), screen and (max-height: 900px) {
     .chart {
         display: none;
     }
-}
-@media screen and (max-width: 1440px), screen and (max-height: 900px) {
-    .chart {
-        max-width: 160px;
-        max-height: 160px;
+    .status_panel_user {
+        display: none;
     }
 }
 </style>
