@@ -201,17 +201,59 @@
                         <li class="has-sub">
                             <a><span>Tools</span></a>
                             <ul>
-                                <li id="mnuOptions">
+                                <li>
                                     <a>
                                         <div
                                             class="mnu-flex"
-                                            @click="showProperties($event)"
+                                            @click="showProperties"
                                         >
                                             <i
                                                 class="mdi mdi-tools standardSizeIcon"
                                                 :class="getTheme"
                                             ></i
                                             >&nbsp;<span>Options</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <div
+                                            class="mnu-flex"
+                                            @click="showSearchtasks"
+                                        >
+                                            <i
+                                                class="mdi mdi-file-document-box-search standardSizeIcon"
+                                                :class="getTheme"
+                                            ></i
+                                            >&nbsp;<span>Search Tasks</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <div
+                                            class="mnu-flex"
+                                            @click="showEmails"
+                                        >
+                                            <i
+                                                class="mdi mdi-email-check standardSizeIcon"
+                                                :class="getTheme"
+                                            ></i
+                                            >&nbsp;<span>E-Mails</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <div
+                                            class="mnu-flex"
+                                            @click="showContacts"
+                                        >
+                                            <i
+                                                class="mdi mdi-contacts standardSizeIcon"
+                                                :class="getTheme"
+                                            ></i
+                                            >&nbsp;<span>Contacts</span>
                                         </div>
                                     </a>
                                 </li>
@@ -332,7 +374,10 @@ export default {
             "getCurrentTaskId",
             "deleteTask",
             "showProperties",
-            "showAbout"
+            "showContacts",
+            "showEmails",
+            "showAbout",
+            "showSearchtasks"
         ])
     }
 };

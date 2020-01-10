@@ -1,12 +1,39 @@
 <template>
     <div class="body-left-menu" :class="getTheme">
-        <a class="active" title="Return to ready state" @click.prevent="readyState">
+        <a
+            :class="[
+                getPanel === '' ||
+                getPanel === 'properties' ||
+                getPanel === 'about' ||
+                getPanel === 'projects' ||
+                getPanel === 'tasks'
+                    ? 'active'
+                    : ''
+            ]"
+            title="Return to ready state"
+            @click.prevent="readyState"
+        >
             <i class="mdi mdi-finance mdiIcon"></i>
         </a>
-        <a title="Show Mails Panel">
+        <a
+            title="Show Search tasks Panel"
+            @click.prevent="showSearchtasks"
+            :class="[getPanel === 'searchtasks' ? 'active' : '']"
+        >
+            <i class="mdi mdi-file-document-box-search mdiIcon"></i>
+        </a>
+        <a
+            title="Show Mails Panel"
+            @click.prevent="showEmails"
+            :class="[getPanel === 'emails' ? 'active' : '']"
+        >
             <i class="mdi mdi-email-check mdiIcon"></i>
         </a>
-        <a title="Show Contacts Panel">
+        <a
+            title="Show Contacts Panel"
+            @click.prevent="showContacts"
+            :class="[getPanel === 'contacts' ? 'active' : '']"
+        >
             <i class="mdi mdi-contacts mdiIcon"></i>
         </a>
         <div class="left-menu-title" :class="getTheme">
@@ -27,12 +54,14 @@
             </li>
             <li>
                 <a @click.prevent="onClickContextMenu('dark')"
-                    >Dark Theme <strong v-show="getTheme === 'dark'">&check;</strong></a
+                    >Dark Theme
+                    <strong v-show="getTheme === 'dark'">&check;</strong></a
                 >
             </li>
             <li>
                 <a @click.prevent="onClickContextMenu('light')"
-                    >Light Theme <strong v-show="getTheme === 'light'">&check;</strong></a
+                    >Light Theme
+                    <strong v-show="getTheme === 'light'">&check;</strong></a
                 >
             </li>
         </vue-context>
@@ -50,10 +79,17 @@ export default {
         VueContext
     },
 
-    computed: mapGetters(["getTheme"]),
+    computed: mapGetters(["getTheme", "getPanel"]),
 
     methods: {
-        ...mapActions(["showProperties", "changeTheme", "readyState"]),
+        ...mapActions([
+            "showProperties",
+            "changeTheme",
+            "readyState",
+            "showContacts",
+            "showEmails",
+            "showSearchtasks"
+        ]),
         onClickContextMenu(action) {
             if (action == "properties") {
                 this.showProperties();

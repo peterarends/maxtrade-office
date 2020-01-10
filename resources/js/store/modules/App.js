@@ -132,8 +132,20 @@ const actions = {
         window.location = "/logout.html";
     },
     // Show panel properties
-    showProperties({ commit, dispatch }) {
+    showProperties({ commit }) {
         commit("setPanel", "properties");
+    },
+    // Show panel contacts
+    showContacts({ commit }) {
+        commit("setPanel", "contacts");
+    },
+    // Show panel emails
+    showEmails({ commit }) {
+        commit("setPanel", "emails");
+    },
+    // Show panel all tasks
+    showSearchtasks({ commit }) {
+        commit("setPanel", "searchtasks");
     },
     // Close current panel
     closePanel({ commit, dispatch }) {

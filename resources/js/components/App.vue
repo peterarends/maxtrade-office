@@ -11,6 +11,9 @@
                 <projects v-show="getPanel == 'projects'"></projects>
                 <tasks v-show="getPanel == 'tasks'"></tasks>
                 <about v-show="getPanel == 'about'"></about>
+                <contacts v-show="getPanel == 'contacts'"></contacts>
+                <emails v-show="getPanel == 'emails'"></emails>
+                <searchtasks v-show="getPanel == 'searchtasks'"></searchtasks>
             </div>
         </div>
         <!-- End body panel -->
@@ -28,6 +31,9 @@ import Properties from "./body/Properties";
 import Projects from "./body/Projects";
 import Tasks from "./body/Tasks";
 import About from "./body/About";
+import Contacts from "./body/Contacts";
+import Emails from "./body/Emails";
+import Searchtasks from "./body/Searchtasks";
 import FooterBar from "./body/FooterBar";
 import { mapGetters, mapActions } from "vuex";
 
@@ -43,6 +49,9 @@ export default {
         Projects,
         Tasks,
         About,
+        Contacts,
+        Emails,
+        Searchtasks,
         FooterBar
     },
 
