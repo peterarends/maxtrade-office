@@ -23,6 +23,15 @@
                 Tasks: <span>{{ getTasks.length }}</span>
             </div>
             <div class="separator-vertical" :class="getTheme"></div>
+            <div class="progressbar">
+                <div class="progress" :style="{ flex: getProgress }"></div>
+                <div
+                    class="toprogress"
+                    :style="{ flex: 100 - getProgress }"
+                ></div>
+            </div>
+            &nbsp;
+            <div class="progresstxt">{{ getProgress }}%</div>
         </div>
     </div>
 </template>
@@ -38,7 +47,8 @@ export default {
         "getVersion",
         "getTasks",
         "getProjects",
-        "getUserName"
+        "getUserName",
+        "getProgress"
     ])
 };
 </script>
@@ -77,6 +87,18 @@ export default {
     background: #2d3748;
     border: 1px solid #4a5568;
     border-radius: 5px;
+}
+.progressbar {
+    display: flex;
+    width: 300px;
+    height: 24px;
+    border: 1px solid #718096;
+}
+.progress {
+    background: #4a5568;
+}
+.toprogress {
+    background: #2d3748;
 }
 /* End Footer panel */
 </style>

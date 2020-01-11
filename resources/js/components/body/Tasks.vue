@@ -210,7 +210,8 @@ export default {
             "saveTask",
             "deleteTask",
             "deleteDocument",
-            "changeDocuments"
+            "changeDocuments",
+            "changeProgress"
         ]),
         onFileSelected(event) {
             this.file = event.target.files[0];
@@ -225,12 +226,18 @@ export default {
                             Math.round(
                                 (uploudEvent.loaded / uploudEvent.total) * 100
                             ) + "%";
+                        this.changeProgress(
+                            Math.round(
+                                (uploudEvent.loaded / uploudEvent.total) * 100
+                            )
+                        );
                     }
                 })
                 .then(res => {
                     if (res.data.result == "success") {
                         this.$refs.file.value = "";
                         this.$refs.uploadPurcent.innerHTML = "";
+                        this.changeProgress(0);
                         this.file = null;
                         this.changeDocuments();
                     } else {

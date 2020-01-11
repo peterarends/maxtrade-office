@@ -2187,10 +2187,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FooterBar",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getVersion", "getTasks", "getProjects", "getUserName"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getVersion", "getTasks", "getProjects", "getUserName", "getProgress"])
 });
 
 /***/ }),
@@ -3116,7 +3125,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapActions"])(["closePanel", "saveTask", "deleteTask", "deleteDocument", "changeDocuments"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapActions"])(["closePanel", "saveTask", "deleteTask", "deleteDocument", "changeDocuments", "changeProgress"]), {
     onFileSelected: function onFileSelected(event) {
       this.file = event.target.files[0];
     },
@@ -3128,11 +3137,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("api/task/file/" + this.getTask.id, formData, {
         onUploadProgress: function onUploadProgress(uploudEvent) {
           _this.$refs.uploadPurcent.innerHTML = Math.round(uploudEvent.loaded / uploudEvent.total * 100) + "%";
+
+          _this.changeProgress(Math.round(uploudEvent.loaded / uploudEvent.total * 100));
         }
       }).then(function (res) {
         if (res.data.result == "success") {
           _this.$refs.file.value = "";
           _this.$refs.uploadPurcent.innerHTML = "";
+
+          _this.changeProgress(0);
+
           _this.file = null;
 
           _this.changeDocuments();
@@ -19923,7 +19937,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** Start Footer panel */\n.footerMainDiv[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark[data-v-42b57c94] {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light[data-v-42b57c94] {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon[data-v-42b57c94] {\n  font-size: 1.25rem;\n}\n.footer-icon[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-42b57c94]:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button[data-v-42b57c94] {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n\n/* End Footer panel */\r\n", ""]);
+exports.push([module.i, "/** Start Footer panel */\n.footerMainDiv[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark[data-v-42b57c94] {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light[data-v-42b57c94] {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon[data-v-42b57c94] {\n  font-size: 1.25rem;\n}\n.footer-icon[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-42b57c94]:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button[data-v-42b57c94] {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n.progressbar[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: 24px;\n  border: 1px solid #718096;\n}\n.progress[data-v-42b57c94] {\n  background: #4a5568;\n}\n.toprogress[data-v-42b57c94] {\n  background: #2d3748;\n}\n\n/* End Footer panel */\r\n", ""]);
 
 // exports
 
@@ -58692,7 +58706,23 @@ var render = function() {
         _c("span", [_vm._v(_vm._s(_vm.getTasks.length))])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "separator-vertical", class: _vm.getTheme })
+      _c("div", { staticClass: "separator-vertical", class: _vm.getTheme }),
+      _vm._v(" "),
+      _c("div", { staticClass: "progressbar" }, [
+        _c("div", {
+          staticClass: "progress",
+          style: { flex: _vm.getProgress }
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "toprogress",
+          style: { flex: 100 - _vm.getProgress }
+        })
+      ]),
+      _vm._v("\n         \n        "),
+      _c("div", { staticClass: "progresstxt" }, [
+        _vm._v(_vm._s(_vm.getProgress) + "%")
+      ])
     ])
   ])
 }
@@ -75511,7 +75541,8 @@ var state = {
   },
   documents: [],
   user_name: document.getElementsByTagName("App")[0].getAttribute("userName"),
-  user_id: document.getElementsByTagName("App")[0].getAttribute("userId")
+  user_id: document.getElementsByTagName("App")[0].getAttribute("userId"),
+  progress: 0
 };
 var getters = {
   getTheme: function getTheme(state) {
@@ -75580,6 +75611,9 @@ var getters = {
   },
   getUserId: function getUserId(state) {
     return state.user_id;
+  },
+  getProgress: function getProgress(state) {
+    return state.progress;
   }
 };
 var actions = {
@@ -76690,6 +76724,10 @@ var actions = {
     commit("setTask", []);
     commit("setTasks", []);
     commit("setPanel", "");
+  },
+  changeProgress: function changeProgress(_ref48, progress) {
+    var commit = _ref48.commit;
+    commit("setProgress", progress);
   }
 };
 var mutations = {
@@ -76752,6 +76790,9 @@ var mutations = {
   },
   setDocuments: function setDocuments(state, documents) {
     return state.documents = documents;
+  },
+  setProgress: function setProgress(state, progress) {
+    return state.progress = progress;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

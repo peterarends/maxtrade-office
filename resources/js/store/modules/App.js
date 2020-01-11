@@ -27,7 +27,8 @@ const state = {
     },
     documents: [],
     user_name: document.getElementsByTagName("App")[0].getAttribute("userName"),
-    user_id: document.getElementsByTagName("App")[0].getAttribute("userId")
+    user_id: document.getElementsByTagName("App")[0].getAttribute("userId"),
+    progress: 0
 };
 
 const getters = {
@@ -55,7 +56,8 @@ const getters = {
     },
     getVersion: state => state.version,
     getUserName: state => state.user_name,
-    getUserId: state => state.user_id
+    getUserId: state => state.user_id,
+    getProgress: state => state.progress
 };
 
 const actions = {
@@ -645,6 +647,9 @@ const actions = {
         commit("setTask", []);
         commit("setTasks", []);
         commit("setPanel", "");
+    },
+    changeProgress({ commit }, progress) {
+        commit("setProgress", progress);
     }
 };
 
@@ -677,7 +682,8 @@ const mutations = {
         (state.task_filter.filteraz = filteraz),
     setTaskFilterId: (state, filter09) =>
         (state.task_filter.filter09 = filter09),
-    setDocuments: (state, documents) => (state.documents = documents)
+    setDocuments: (state, documents) => (state.documents = documents),
+    setProgress: (state, progress) => (state.progress = progress)
 };
 
 export default {
