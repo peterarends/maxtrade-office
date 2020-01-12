@@ -161,13 +161,14 @@ export default {
             "getNewTask",
             "countAllTasks",
             "countActiveTasks",
-            "countEndedTasks"
+            "countEndedTasks",
+            "getLanguage"
         ])
     },
 
     mounted() {
         setInterval(this.generateData, 2000);
-        this.$translate.setLang("bg_BG");
+        this.$translate.setLang(this.getLanguage);
     },
 
     locales: {

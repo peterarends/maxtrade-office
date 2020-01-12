@@ -107,7 +107,7 @@ export default {
 .progressbar {
     display: flex;
     width: 300px;
-    height: 24px;
+    height: 20px;
     border: 1px solid #718096;
 }
 .progress {

@@ -56,10 +56,10 @@ Vue.use(VueTranslate);
 export default {
     name: "About",
 
-    computed: mapGetters(["getTheme"]),
+    computed: mapGetters(["getTheme", "getLanguage"]),
 
     mounted() {
-        this.$translate.setLang("bg_BG");
+        this.$translate.setLang(this.getLanguage);
     },
 
     locales: {

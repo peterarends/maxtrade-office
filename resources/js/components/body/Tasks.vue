@@ -165,10 +165,16 @@ export default {
         VueContext
     },
 
-    computed: mapGetters(["getTheme", "getTask", "getNewTask", "getDocuments"]),
+    computed: mapGetters([
+        "getTheme",
+        "getTask",
+        "getNewTask",
+        "getDocuments",
+        "getLanguage"
+    ]),
 
     mounted() {
-        this.$translate.setLang("bg_BG");
+        this.$translate.setLang(this.getLanguage);
     },
 
     locales: {

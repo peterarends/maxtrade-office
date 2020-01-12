@@ -432,10 +432,10 @@ Vue.use(VueTranslate);
 export default {
     name: "Header",
 
-    computed: mapGetters(["getTheme", "getUserName"]),
+    computed: mapGetters(["getTheme", "getUserName", "getLanguage"]),
 
     mounted() {
-        this.$translate.setLang("bg_BG");
+        this.$translate.setLang("en_US");
     },
 
     locales: {

@@ -40,10 +40,10 @@ Vue.use(VueTranslate);
 export default {
     name: "Searchtasks",
 
-    computed: mapGetters(["getTheme"]),
+    computed: mapGetters(["getTheme", "getLanguage"]),
 
     mounted() {
-        this.$translate.setLang("bg_BG");
+        this.$translate.setLang(this.getLanguage);
     },
 
     locales: {

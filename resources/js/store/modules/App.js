@@ -1,9 +1,10 @@
 import axios from "axios";
-import moment from "moment";
+import moment, { lang } from "moment";
 
 const state = {
     version: "1.0.1",
     theme: "dark",
+    language: "bg_BG",
     properties: [],
     property_categories: [],
     panel: "",
@@ -33,6 +34,7 @@ const state = {
 
 const getters = {
     getTheme: state => state.theme,
+    getLanguage: state => state.language,
     getProperties: state => state.properties,
     getPropertyCategories: state => state.property_categories,
     getCurrentProjectId: state => state.current_project_id,
@@ -66,6 +68,8 @@ const actions = {
         const response = await axios.get("api/properties");
         const theme = response.data.data.find(prop => prop.name === "theme")
             .value;
+        const language = response.data.data.find(prop => prop.name === "language")
+            .value;
         const projectfilter = response.data.data.find(
             prop => prop.name === "projectfilter"
         ).value;
@@ -74,6 +78,7 @@ const actions = {
         ).value;
         const properties = response.data.data;
         commit("setTheme", theme);
+        commit("setLanguage", language);
         commit("setProjectFilterStatus", projectfilter);
         commit("setTaskFilterStatus", taskfilter);
         commit("setProperties", properties);
@@ -95,6 +100,20 @@ const actions = {
                     prop => prop.name === "theme"
                 ).id,
                 value: theme
+            },
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
+    },
+    // Change language
+    async changeLanguage({ commit, state }, language) {
+        commit("setLanguage", language);
+        await axios.put(
+            "api/property",
+            {
+                property_id: state.properties.find(
+                    prop => prop.name === "language"
+                ).id,
+                value: language
             },
             { "Content-Type": "application/json; charset=utf-8" }
         );
@@ -660,6 +679,7 @@ const actions = {
 
 const mutations = {
     setTheme: (state, theme) => (state.theme = theme),
+    setLanguage: (state, language) => (state.language = language),
     setProperties: (state, properties) => (state.properties = properties),
     setPropertyCategories: (state, property_categories) =>
         (state.property_categories = property_categories),

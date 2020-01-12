@@ -83,10 +83,10 @@ export default {
         VueContext
     },
 
-    computed: mapGetters(["getTheme", "getPanel"]),
+    computed: mapGetters(["getTheme", "getPanel", "getLanguage"]),
 
     mounted() {
-        this.$translate.setLang("bg_BG");
+        this.$translate.setLang(this.getLanguage);
     },
 
     locales: {

@@ -124,11 +124,12 @@ export default {
         "getCurrentProjectId",
         "countAllTasks",
         "countActiveTasks",
-        "countEndedTasks"
+        "countEndedTasks",
+        "getLanguage"
     ]),
 
     mounted() {
-        this.$translate.setLang("bg_BG");
+        this.$translate.setLang(this.getLanguage);
     },
 
     locales: {

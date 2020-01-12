@@ -101,6 +101,21 @@
                                         t("Show Ended tasks")
                                     }}</option>
                                 </select>
+                                <select
+                                    v-if="property.name === 'language'"
+                                    class="controll"
+                                    v-model="property.value"
+                                    @change="
+                                        changeLanguage($event.target.value)
+                                    "
+                                >
+                                    <option value="bg_BG">{{
+                                        t("Bulgarian")
+                                    }}</option>
+                                    <option value="en_US">{{
+                                        t("English")
+                                    }}</option>
+                                </select>
                             </div>
                         </li>
                     </ul>
@@ -139,12 +154,13 @@ export default {
 
     computed: mapGetters([
         "getTheme",
+        "getLanguage",
         "getProperties",
         "getPropertyCategories"
     ]),
 
     mounted() {
-        this.$translate.setLang("bg_BG");
+        this.$translate.setLang(this.getLanguage);
     },
 
     locales: {
@@ -160,7 +176,9 @@ export default {
             "Show Ended projects": "Покажи приключените проекти",
             "Show All tasks": "Покажи всички задачи",
             "Show Active tasks": "Покажи активните задачи",
-            "Show Ended tasks": "Покажи приключените задачи"
+            "Show Ended tasks": "Покажи приключените задачи",
+            Bulgarian: "Български",
+            English: "Английски"
         }
     },
 
@@ -168,6 +186,7 @@ export default {
         ...mapActions([
             "fetchPropertyCategories",
             "changeTheme",
+            "changeLanguage",
             "closePanel",
             "changeProjectFilter",
             "changeTaskFilter"

@@ -2007,9 +2007,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMPORTED_MODULE_2___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "About",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getLanguage"]),
   mounted: function mounted() {
-    this.$translate.setLang("bg_BG");
+    this.$translate.setLang(this.getLanguage);
   },
   locales: {
     en_US: {},
@@ -2094,9 +2094,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMPORTED_MODULE_2___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Contacts",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getLanguage"]),
   mounted: function mounted() {
-    this.$translate.setLang("bg_BG");
+    this.$translate.setLang(this.getLanguage);
   },
   locales: {
     en_US: {},
@@ -2181,9 +2181,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMPORTED_MODULE_2___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Emails",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getLanguage"]),
   mounted: function mounted() {
-    this.$translate.setLang("bg_BG");
+    this.$translate.setLang(this.getLanguage);
   },
   locales: {
     en_US: {},
@@ -2370,9 +2370,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMP
   components: {
     VueContext: vue_context__WEBPACK_IMPORTED_MODULE_2__["VueContext"]
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getPanel"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getPanel", "getLanguage"]),
   mounted: function mounted() {
-    this.$translate.setLang("bg_BG");
+    this.$translate.setLang(this.getLanguage);
   },
   locales: {
     en_US: {},
@@ -2573,10 +2573,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMP
       }
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getTheme", "getProject", "getNewTask", "countAllTasks", "countActiveTasks", "countEndedTasks"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getTheme", "getProject", "getNewTask", "countAllTasks", "countActiveTasks", "countEndedTasks", "getLanguage"])),
   mounted: function mounted() {
     setInterval(this.generateData, 2000);
-    this.$translate.setLang("bg_BG");
+    this.$translate.setLang(this.getLanguage);
   },
   locales: {
     en_US: {},
@@ -2774,9 +2774,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMP
   components: {
     VueContext: vue_context__WEBPACK_IMPORTED_MODULE_2__["VueContext"]
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getTheme", "getProjects", "getProjectFilter", "getCurrentProjectId", "countAllTasks", "countActiveTasks", "countEndedTasks"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getTheme", "getProjects", "getProjectFilter", "getCurrentProjectId", "countAllTasks", "countActiveTasks", "countEndedTasks", "getLanguage"]),
   mounted: function mounted() {
-    this.$translate.setLang("bg_BG");
+    this.$translate.setLang(this.getLanguage);
   },
   locales: {
     en_US: {},
@@ -2945,6 +2945,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2966,9 +2981,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMP
   created: function created() {
     this.fetchPropertyCategories();
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getProperties", "getPropertyCategories"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getLanguage", "getProperties", "getPropertyCategories"]),
   mounted: function mounted() {
-    this.$translate.setLang("bg_BG");
+    this.$translate.setLang(this.getLanguage);
   },
   locales: {
     en_US: {},
@@ -2983,10 +2998,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMP
       "Show Ended projects": "Покажи приключените проекти",
       "Show All tasks": "Покажи всички задачи",
       "Show Active tasks": "Покажи активните задачи",
-      "Show Ended tasks": "Покажи приключените задачи"
+      "Show Ended tasks": "Покажи приключените задачи",
+      Bulgarian: "Български",
+      English: "Английски"
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(["fetchPropertyCategories", "changeTheme", "closePanel", "changeProjectFilter", "changeTaskFilter"]))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(["fetchPropertyCategories", "changeTheme", "changeLanguage", "closePanel", "changeProjectFilter", "changeTaskFilter"]))
 });
 
 /***/ }),
@@ -3049,9 +3066,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMPORTED_MODULE_2___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Searchtasks",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getLanguage"]),
   mounted: function mounted() {
-    this.$translate.setLang("bg_BG");
+    this.$translate.setLang(this.getLanguage);
   },
   locales: {
     en_US: {},
@@ -3253,9 +3270,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMP
   components: {
     VueContext: vue_context__WEBPACK_IMPORTED_MODULE_4__["VueContext"]
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])(["getTheme", "getTask", "getNewTask", "getDocuments"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])(["getTheme", "getTask", "getNewTask", "getDocuments", "getLanguage"]),
   mounted: function mounted() {
-    this.$translate.setLang("bg_BG");
+    this.$translate.setLang(this.getLanguage);
   },
   locales: {
     en_US: {},
@@ -3520,9 +3537,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMP
   components: {
     VueContext: vue_context__WEBPACK_IMPORTED_MODULE_2__["VueContext"]
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getTheme", "getTasks", "getTaskFilter", "getCurrentTaskId"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getTheme", "getTasks", "getTaskFilter", "getCurrentTaskId", "getLanguage"]),
   mounted: function mounted() {
-    this.$translate.setLang("bg_BG");
+    this.$translate.setLang(this.getLanguage);
   },
   locales: {
     en_US: {},
@@ -4007,9 +4024,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_translate_plugin__WEBPACK_IMPORTED_MODULE_2___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getUserName"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getUserName", "getLanguage"]),
   mounted: function mounted() {
-    this.$translate.setLang("bg_BG");
+    this.$translate.setLang("en_US");
   },
   locales: {
     en_US: {},
@@ -20303,7 +20320,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** Start Footer panel */\n.footerMainDiv[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark[data-v-42b57c94] {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light[data-v-42b57c94] {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon[data-v-42b57c94] {\n  font-size: 1.25rem;\n}\n.footer-icon[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-42b57c94]:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button[data-v-42b57c94] {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n.progressbar[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: 24px;\n  border: 1px solid #718096;\n}\n.progress[data-v-42b57c94] {\n  background: #4a5568;\n}\n.toprogress[data-v-42b57c94] {\n  background: #2d3748;\n}\n\n/* End Footer panel */\n", ""]);
+exports.push([module.i, "/** Start Footer panel */\n.footerMainDiv[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark[data-v-42b57c94] {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light[data-v-42b57c94] {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon[data-v-42b57c94] {\n  font-size: 1.25rem;\n}\n.footer-icon[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-42b57c94]:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button[data-v-42b57c94] {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n.progressbar[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: 20px;\n  border: 1px solid #718096;\n}\n.progress[data-v-42b57c94] {\n  background: #4a5568;\n}\n.toprogress[data-v-42b57c94] {\n  background: #2d3748;\n}\n\n/* End Footer panel */\n", ""]);
 
 // exports
 
@@ -60133,6 +60150,61 @@ var render = function() {
                                 ])
                               ]
                             )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        property.name === "language"
+                          ? _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: property.value,
+                                    expression: "property.value"
+                                  }
+                                ],
+                                staticClass: "controll",
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        property,
+                                        "value",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    function($event) {
+                                      return _vm.changeLanguage(
+                                        $event.target.value
+                                      )
+                                    }
+                                  ]
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "bg_BG" } }, [
+                                  _vm._v(_vm._s(_vm.t("Bulgarian")))
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "en_US" } }, [
+                                  _vm._v(_vm._s(_vm.t("English")))
+                                ])
+                              ]
+                            )
                           : _vm._e()
                       ])
                     ]
@@ -76034,6 +76106,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var state = {
   version: "1.0.1",
   theme: "dark",
+  language: "bg_BG",
   properties: [],
   property_categories: [],
   panel: "",
@@ -76063,6 +76136,9 @@ var state = {
 var getters = {
   getTheme: function getTheme(state) {
     return state.theme;
+  },
+  getLanguage: function getLanguage(state) {
+    return state.language;
   },
   getProperties: function getProperties(state) {
     return state.properties;
@@ -76138,7 +76214,7 @@ var actions = {
     var _fetchProperties = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
-      var commit, dispatch, response, theme, projectfilter, taskfilter, properties;
+      var commit, dispatch, response, theme, language, projectfilter, taskfilter, properties;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -76152,6 +76228,9 @@ var actions = {
               theme = response.data.data.find(function (prop) {
                 return prop.name === "theme";
               }).value;
+              language = response.data.data.find(function (prop) {
+                return prop.name === "language";
+              }).value;
               projectfilter = response.data.data.find(function (prop) {
                 return prop.name === "projectfilter";
               }).value;
@@ -76160,12 +76239,13 @@ var actions = {
               }).value;
               properties = response.data.data;
               commit("setTheme", theme);
+              commit("setLanguage", language);
               commit("setProjectFilterStatus", projectfilter);
               commit("setTaskFilterStatus", taskfilter);
               commit("setProperties", properties);
               dispatch("fetchProjects", projectfilter);
 
-            case 13:
+            case 15:
             case "end":
               return _context.stop();
           }
@@ -76248,19 +76328,55 @@ var actions = {
 
     return changeTheme;
   }(),
-  // Change project filter
-  changeProjectFilter: function () {
-    var _changeProjectFilter = _asyncToGenerator(
+  // Change language
+  changeLanguage: function () {
+    var _changeLanguage = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, filter) {
-      var commit, state, dispatch;
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, language) {
+      var commit, state;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              commit = _ref4.commit, state = _ref4.state, dispatch = _ref4.dispatch;
-              commit("setProjectFilterStatus", filter);
+              commit = _ref4.commit, state = _ref4.state;
+              commit("setLanguage", language);
               _context4.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/property", {
+                property_id: state.properties.find(function (prop) {
+                  return prop.name === "language";
+                }).id,
+                value: language
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    function changeLanguage(_x5, _x6) {
+      return _changeLanguage.apply(this, arguments);
+    }
+
+    return changeLanguage;
+  }(),
+  // Change project filter
+  changeProjectFilter: function () {
+    var _changeProjectFilter = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref5, filter) {
+      var commit, state, dispatch;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              commit = _ref5.commit, state = _ref5.state, dispatch = _ref5.dispatch;
+              commit("setProjectFilterStatus", filter);
+              _context5.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/property", {
                 property_id: state.properties.find(function (prop) {
                   return prop.name === "projectfilter";
@@ -76275,13 +76391,13 @@ var actions = {
 
             case 5:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
-      }, _callee4);
+      }, _callee5);
     }));
 
-    function changeProjectFilter(_x5, _x6) {
+    function changeProjectFilter(_x7, _x8) {
       return _changeProjectFilter.apply(this, arguments);
     }
 
@@ -76291,15 +76407,15 @@ var actions = {
   changeTaskFilter: function () {
     var _changeTaskFilter = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref5, filter) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref6, filter) {
       var commit, state, dispatch;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
-              commit = _ref5.commit, state = _ref5.state, dispatch = _ref5.dispatch;
+              commit = _ref6.commit, state = _ref6.state, dispatch = _ref6.dispatch;
               commit("setTaskFilterStatus", filter);
-              _context5.next = 4;
+              _context6.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/property", {
                 property_id: state.properties.find(function (prop) {
                   return prop.name === "taskfilter";
@@ -76314,13 +76430,13 @@ var actions = {
 
             case 5:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
-      }, _callee5);
+      }, _callee6);
     }));
 
-    function changeTaskFilter(_x7, _x8) {
+    function changeTaskFilter(_x9, _x10) {
       return _changeTaskFilter.apply(this, arguments);
     }
 
@@ -76331,64 +76447,64 @@ var actions = {
     window.location = "/logout.html";
   },
   // Show panel properties
-  showProperties: function showProperties(_ref6) {
-    var commit = _ref6.commit;
+  showProperties: function showProperties(_ref7) {
+    var commit = _ref7.commit;
     commit("setPanel", "properties");
   },
   // Show panel contacts
-  showContacts: function showContacts(_ref7) {
-    var commit = _ref7.commit;
+  showContacts: function showContacts(_ref8) {
+    var commit = _ref8.commit;
     commit("setPanel", "contacts");
   },
   // Show panel emails
-  showEmails: function showEmails(_ref8) {
-    var commit = _ref8.commit;
+  showEmails: function showEmails(_ref9) {
+    var commit = _ref9.commit;
     commit("setPanel", "emails");
   },
   // Show panel all tasks
-  showSearchtasks: function showSearchtasks(_ref9) {
-    var commit = _ref9.commit;
+  showSearchtasks: function showSearchtasks(_ref10) {
+    var commit = _ref10.commit;
     commit("setPanel", "searchtasks");
   },
   // Close current panel
-  closePanel: function closePanel(_ref10) {
-    var commit = _ref10.commit,
-        dispatch = _ref10.dispatch;
+  closePanel: function closePanel(_ref11) {
+    var commit = _ref11.commit,
+        dispatch = _ref11.dispatch;
     dispatch("readyState");
   },
   // Show About panel
-  showAbout: function showAbout(_ref11) {
-    var commit = _ref11.commit,
-        dispatch = _ref11.dispatch;
+  showAbout: function showAbout(_ref12) {
+    var commit = _ref12.commit,
+        dispatch = _ref12.dispatch;
     commit("setPanel", "about");
   },
   // Fetch all projects
   fetchProjects: function () {
     var _fetchProjects = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(_ref12, status) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref13, status) {
       var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
         while (1) {
-          switch (_context6.prev = _context6.next) {
+          switch (_context7.prev = _context7.next) {
             case 0:
-              commit = _ref12.commit;
-              _context6.next = 3;
+              commit = _ref13.commit;
+              _context7.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/projects/" + status + "/" + state.user_id);
 
             case 3:
-              response = _context6.sent;
+              response = _context7.sent;
               commit("setProjects", response.data.data);
 
             case 5:
             case "end":
-              return _context6.stop();
+              return _context7.stop();
           }
         }
-      }, _callee6);
+      }, _callee7);
     }));
 
-    function fetchProjects(_x9, _x10) {
+    function fetchProjects(_x11, _x12) {
       return _fetchProjects.apply(this, arguments);
     }
 
@@ -76398,34 +76514,34 @@ var actions = {
   showProject: function () {
     var _showProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref13, project) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref14, project) {
       var state, commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
         while (1) {
-          switch (_context7.prev = _context7.next) {
+          switch (_context8.prev = _context8.next) {
             case 0:
-              state = _ref13.state, commit = _ref13.commit;
+              state = _ref14.state, commit = _ref14.commit;
               commit("setProject", project);
               commit("setCurrentProjectId", project.id);
               commit("setNewProject", false);
               commit("setPanel", "projects");
               commit("setCurrentTaskId", 0);
-              _context7.next = 8;
+              _context8.next = 8;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + state.task_filter.filterstatus + "/" + project.id);
 
             case 8:
-              response = _context7.sent;
+              response = _context8.sent;
               commit("setTasks", response.data.data);
 
             case 10:
             case "end":
-              return _context7.stop();
+              return _context8.stop();
           }
         }
-      }, _callee7);
+      }, _callee8);
     }));
 
-    function showProject(_x11, _x12) {
+    function showProject(_x13, _x14) {
       return _showProject.apply(this, arguments);
     }
 
@@ -76435,14 +76551,14 @@ var actions = {
   projectSearch: function () {
     var _projectSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref14, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref15, event) {
       var state, commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
         while (1) {
-          switch (_context8.prev = _context8.next) {
+          switch (_context9.prev = _context9.next) {
             case 0:
-              state = _ref14.state, commit = _ref14.commit;
-              _context8.next = 3;
+              state = _ref15.state, commit = _ref15.commit;
+              _context9.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/projects/search/" + state.user_id, {
                 search: event.target.value
               }, {
@@ -76450,28 +76566,28 @@ var actions = {
               });
 
             case 3:
-              response = _context8.sent;
+              response = _context9.sent;
               commit("setProjects", response.data.data);
 
             case 5:
             case "end":
-              return _context8.stop();
+              return _context9.stop();
           }
         }
-      }, _callee8);
+      }, _callee9);
     }));
 
-    function projectSearch(_x13, _x14) {
+    function projectSearch(_x15, _x16) {
       return _projectSearch.apply(this, arguments);
     }
 
     return projectSearch;
   }(),
   // Toggle project status filter
-  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref15) {
-    var commit = _ref15.commit,
-        state = _ref15.state,
-        dispatch = _ref15.dispatch;
+  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref16) {
+    var commit = _ref16.commit,
+        state = _ref16.state,
+        dispatch = _ref16.dispatch;
 
     if (state.project_filter.filterstatus == "all") {
       commit("setProjectFilterStatus", "act");
@@ -76489,9 +76605,9 @@ var actions = {
     }
   },
   // Toggle project name filter
-  toggleProjectNameFilter: function toggleProjectNameFilter(_ref16) {
-    var commit = _ref16.commit,
-        state = _ref16.state;
+  toggleProjectNameFilter: function toggleProjectNameFilter(_ref17) {
+    var commit = _ref17.commit,
+        state = _ref17.state;
     commit("setProjectFilterName", !state.project_filter.filteraz);
 
     if (state.project_filter.filteraz) {
@@ -76507,9 +76623,9 @@ var actions = {
     }
   },
   // Toggle project ID filter
-  toggleProjectIdFilter: function toggleProjectIdFilter(_ref17) {
-    var commit = _ref17.commit,
-        state = _ref17.state;
+  toggleProjectIdFilter: function toggleProjectIdFilter(_ref18) {
+    var commit = _ref18.commit,
+        state = _ref18.state;
     commit("setProjectFilterId", !state.project_filter.filter09);
 
     if (state.project_filter.filter09) {
@@ -76525,10 +76641,10 @@ var actions = {
     }
   },
   // Add project
-  addProject: function addProject(_ref18) {
-    var commit = _ref18.commit,
-        state = _ref18.state,
-        dispatch = _ref18.dispatch;
+  addProject: function addProject(_ref19) {
+    var commit = _ref19.commit,
+        state = _ref19.state,
+        dispatch = _ref19.dispatch;
     var newProject = {
       id: Math.max.apply(Math, state.projects.map(function (o) {
         return o.id;
@@ -76557,25 +76673,25 @@ var actions = {
   deleteProject: function () {
     var _deleteProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref19) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref20) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
         while (1) {
-          switch (_context9.prev = _context9.next) {
+          switch (_context10.prev = _context10.next) {
             case 0:
-              commit = _ref19.commit, state = _ref19.state;
+              commit = _ref20.commit, state = _ref20.state;
 
               if (!(state.current_project_id != 0)) {
-                _context9.next = 11;
+                _context10.next = 11;
                 break;
               }
 
               if (!confirm("Are You sure?")) {
-                _context9.next = 11;
+                _context10.next = 11;
                 break;
               }
 
-              _context9.next = 5;
+              _context10.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/project/" + state.project.id, {
                 project_id: state.project.id
               }, {
@@ -76583,7 +76699,7 @@ var actions = {
               });
 
             case 5:
-              response = _context9.sent;
+              response = _context10.sent;
               commit("setProjects", state.projects.filter(function (p) {
                 return p.id !== response.data.data.id;
               }));
@@ -76594,23 +76710,23 @@ var actions = {
 
             case 11:
             case "end":
-              return _context9.stop();
+              return _context10.stop();
           }
         }
-      }, _callee9);
+      }, _callee10);
     }));
 
-    function deleteProject(_x15) {
+    function deleteProject(_x17) {
       return _deleteProject.apply(this, arguments);
     }
 
     return deleteProject;
   }(),
   // Complete a project and all tasks bind to this project
-  completeProject: function completeProject(_ref20) {
-    var commit = _ref20.commit,
-        state = _ref20.state,
-        dispatch = _ref20.dispatch;
+  completeProject: function completeProject(_ref21) {
+    var commit = _ref21.commit,
+        state = _ref21.state,
+        dispatch = _ref21.dispatch;
 
     if (state.current_project_id != 0) {
       commit("setProjectStatus", 0);
@@ -76621,21 +76737,21 @@ var actions = {
   saveProject: function () {
     var _saveProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref21, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref22, isMessage) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
         while (1) {
-          switch (_context10.prev = _context10.next) {
+          switch (_context11.prev = _context11.next) {
             case 0:
-              commit = _ref21.commit, state = _ref21.state;
+              commit = _ref22.commit, state = _ref22.state;
               response = null;
 
               if (!state.new_project) {
-                _context10.next = 8;
+                _context11.next = 8;
                 break;
               }
 
-              _context10.next = 5;
+              _context11.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/project", {
                 project_id: 0,
                 title: state.project.title,
@@ -76649,12 +76765,12 @@ var actions = {
               });
 
             case 5:
-              response = _context10.sent;
-              _context10.next = 11;
+              response = _context11.sent;
+              _context11.next = 11;
               break;
 
             case 8:
-              _context10.next = 10;
+              _context11.next = 10;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/project", {
                 project_id: state.project.id,
                 title: state.project.title,
@@ -76668,7 +76784,7 @@ var actions = {
               });
 
             case 10:
-              response = _context10.sent;
+              response = _context11.sent;
 
             case 11:
               state.project.id = response.data.data.id;
@@ -76688,11 +76804,11 @@ var actions = {
 
 
               if (!(state.project.status == 0)) {
-                _context10.next = 26;
+                _context11.next = 26;
                 break;
               }
 
-              _context10.next = 25;
+              _context11.next = 25;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/complete/" + state.project.id);
 
             case 25:
@@ -76702,23 +76818,23 @@ var actions = {
 
             case 26:
             case "end":
-              return _context10.stop();
+              return _context11.stop();
           }
         }
-      }, _callee10);
+      }, _callee11);
     }));
 
-    function saveProject(_x16, _x17) {
+    function saveProject(_x18, _x19) {
       return _saveProject.apply(this, arguments);
     }
 
     return saveProject;
   }(),
   // Add new Task
-  addTask: function addTask(_ref22) {
-    var state = _ref22.state,
-        commit = _ref22.commit,
-        dispatch = _ref22.dispatch;
+  addTask: function addTask(_ref23) {
+    var state = _ref23.state,
+        commit = _ref23.commit,
+        dispatch = _ref23.dispatch;
 
     if (state.current_project_id != 0) {
       commit("setDocuments", []);
@@ -76748,21 +76864,21 @@ var actions = {
   saveTask: function () {
     var _saveTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref23, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref24, isMessage) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
         while (1) {
-          switch (_context11.prev = _context11.next) {
+          switch (_context12.prev = _context12.next) {
             case 0:
-              commit = _ref23.commit, state = _ref23.state;
+              commit = _ref24.commit, state = _ref24.state;
               response = null;
 
               if (!state.new_task) {
-                _context11.next = 8;
+                _context12.next = 8;
                 break;
               }
 
-              _context11.next = 5;
+              _context12.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/task", {
                 task_id: 0,
                 project_id: state.current_project_id,
@@ -76778,12 +76894,12 @@ var actions = {
               });
 
             case 5:
-              response = _context11.sent;
-              _context11.next = 11;
+              response = _context12.sent;
+              _context12.next = 11;
               break;
 
             case 8:
-              _context11.next = 10;
+              _context12.next = 10;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/task", {
                 task_id: state.task.id,
                 project_id: state.current_project_id,
@@ -76799,7 +76915,7 @@ var actions = {
               });
 
             case 10:
-              response = _context11.sent;
+              response = _context12.sent;
 
             case 11:
               state.task.id = response.data.data.id;
@@ -76822,13 +76938,13 @@ var actions = {
 
             case 25:
             case "end":
-              return _context11.stop();
+              return _context12.stop();
           }
         }
-      }, _callee11);
+      }, _callee12);
     }));
 
-    function saveTask(_x18, _x19) {
+    function saveTask(_x20, _x21) {
       return _saveTask.apply(this, arguments);
     }
 
@@ -76838,43 +76954,7 @@ var actions = {
   fetchTasksSearch: function () {
     var _fetchTasksSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref24, event) {
-      var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
-        while (1) {
-          switch (_context12.prev = _context12.next) {
-            case 0:
-              commit = _ref24.commit, state = _ref24.state;
-              _context12.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
-                search: event.target.value
-              }, {
-                "Content-Type": "application/json; charset=utf-8"
-              });
-
-            case 3:
-              response = _context12.sent;
-              commit("setTasks", response.data.data);
-
-            case 5:
-            case "end":
-              return _context12.stop();
-          }
-        }
-      }, _callee12);
-    }));
-
-    function fetchTasksSearch(_x20, _x21) {
-      return _fetchTasksSearch.apply(this, arguments);
-    }
-
-    return fetchTasksSearch;
-  }(),
-  // Fetch all tasks
-  fetchTasks: function () {
-    var _fetchTasks = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref25, status) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref25, event) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
         while (1) {
@@ -76882,7 +76962,11 @@ var actions = {
             case 0:
               commit = _ref25.commit, state = _ref25.state;
               _context13.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
+                search: event.target.value
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
 
             case 3:
               response = _context13.sent;
@@ -76896,17 +76980,49 @@ var actions = {
       }, _callee13);
     }));
 
-    function fetchTasks(_x22, _x23) {
+    function fetchTasksSearch(_x22, _x23) {
+      return _fetchTasksSearch.apply(this, arguments);
+    }
+
+    return fetchTasksSearch;
+  }(),
+  // Fetch all tasks
+  fetchTasks: function () {
+    var _fetchTasks = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref26, status) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+        while (1) {
+          switch (_context14.prev = _context14.next) {
+            case 0:
+              commit = _ref26.commit, state = _ref26.state;
+              _context14.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
+
+            case 3:
+              response = _context14.sent;
+              commit("setTasks", response.data.data);
+
+            case 5:
+            case "end":
+              return _context14.stop();
+          }
+        }
+      }, _callee14);
+    }));
+
+    function fetchTasks(_x24, _x25) {
       return _fetchTasks.apply(this, arguments);
     }
 
     return fetchTasks;
   }(),
   // Toggle task status filter
-  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref26) {
-    var commit = _ref26.commit,
-        state = _ref26.state,
-        dispatch = _ref26.dispatch;
+  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref27) {
+    var commit = _ref27.commit,
+        state = _ref27.state,
+        dispatch = _ref27.dispatch;
 
     if (state.task_filter.filterstatus == "all") {
       commit("setTaskFilterStatus", "act");
@@ -76924,9 +77040,9 @@ var actions = {
     }
   },
   // Toggle task name filter
-  toggleTaskNameFilter: function toggleTaskNameFilter(_ref27) {
-    var commit = _ref27.commit,
-        state = _ref27.state;
+  toggleTaskNameFilter: function toggleTaskNameFilter(_ref28) {
+    var commit = _ref28.commit,
+        state = _ref28.state;
     commit("setTaskFilterName", !state.task_filter.filteraz);
 
     if (state.task_filter.filteraz) {
@@ -76942,9 +77058,9 @@ var actions = {
     }
   },
   // Toggle tasks ID filter
-  toggleTaskIdFilter: function toggleTaskIdFilter(_ref28) {
-    var commit = _ref28.commit,
-        state = _ref28.state;
+  toggleTaskIdFilter: function toggleTaskIdFilter(_ref29) {
+    var commit = _ref29.commit,
+        state = _ref29.state;
     commit("setTaskFilterId", !state.task_filter.filter09);
 
     if (state.task_filter.filter09) {
@@ -76962,73 +77078,23 @@ var actions = {
   showTask: function () {
     var _showTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref29, task) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref30, task) {
       var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
-        while (1) {
-          switch (_context14.prev = _context14.next) {
-            case 0:
-              commit = _ref29.commit;
-              commit("setTask", task);
-              commit("setCurrentTaskId", task.id);
-              commit("setNewTask", false);
-              _context14.next = 6;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + task.id);
-
-            case 6:
-              response = _context14.sent;
-              commit("setDocuments", response.data);
-              commit("setPanel", "tasks");
-
-            case 9:
-            case "end":
-              return _context14.stop();
-          }
-        }
-      }, _callee14);
-    }));
-
-    function showTask(_x24, _x25) {
-      return _showTask.apply(this, arguments);
-    }
-
-    return showTask;
-  }(),
-  deleteTask: function () {
-    var _deleteTask = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref30) {
-      var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
         while (1) {
           switch (_context15.prev = _context15.next) {
             case 0:
-              commit = _ref30.commit, state = _ref30.state;
+              commit = _ref30.commit;
+              commit("setTask", task);
+              commit("setCurrentTaskId", task.id);
+              commit("setNewTask", false);
+              _context15.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + task.id);
 
-              if (!(state.current_task_id != 0)) {
-                _context15.next = 9;
-                break;
-              }
-
-              if (!confirm("Are You sure?")) {
-                _context15.next = 9;
-                break;
-              }
-
-              _context15.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/" + state.task.id, {
-                task_id: state.task.id
-              }, {
-                "Content-Type": "application/json; charset=utf-8"
-              });
-
-            case 5:
+            case 6:
               response = _context15.sent;
-              state.tasks = state.tasks.filter(function (t) {
-                return t.id !== response.data.data.id;
-              });
-              commit("setCurrentTaskId", 0);
-              commit("setPanel", "");
+              commit("setDocuments", response.data);
+              commit("setPanel", "tasks");
 
             case 9:
             case "end":
@@ -77038,16 +77104,66 @@ var actions = {
       }, _callee15);
     }));
 
-    function deleteTask(_x26) {
+    function showTask(_x26, _x27) {
+      return _showTask.apply(this, arguments);
+    }
+
+    return showTask;
+  }(),
+  deleteTask: function () {
+    var _deleteTask = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16(_ref31) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
+        while (1) {
+          switch (_context16.prev = _context16.next) {
+            case 0:
+              commit = _ref31.commit, state = _ref31.state;
+
+              if (!(state.current_task_id != 0)) {
+                _context16.next = 9;
+                break;
+              }
+
+              if (!confirm("Are You sure?")) {
+                _context16.next = 9;
+                break;
+              }
+
+              _context16.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/" + state.task.id, {
+                task_id: state.task.id
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 5:
+              response = _context16.sent;
+              state.tasks = state.tasks.filter(function (t) {
+                return t.id !== response.data.data.id;
+              });
+              commit("setCurrentTaskId", 0);
+              commit("setPanel", "");
+
+            case 9:
+            case "end":
+              return _context16.stop();
+          }
+        }
+      }, _callee16);
+    }));
+
+    function deleteTask(_x28) {
       return _deleteTask.apply(this, arguments);
     }
 
     return deleteTask;
   }(),
   // Change task status to complete
-  completeTask: function completeTask(_ref31) {
-    var state = _ref31.state,
-        dispatch = _ref31.dispatch;
+  completeTask: function completeTask(_ref32) {
+    var state = _ref32.state,
+        dispatch = _ref32.dispatch;
 
     if (state.current_task_id != 0) {
       state.task.status = 0;
@@ -77058,18 +77174,18 @@ var actions = {
   deleteDocument: function () {
     var _deleteDocument = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16(_ref32, current_document) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17(_ref33, current_document) {
       var state, dispatch, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
         while (1) {
-          switch (_context16.prev = _context16.next) {
+          switch (_context17.prev = _context17.next) {
             case 0:
-              state = _ref32.state, dispatch = _ref32.dispatch;
-              _context16.next = 3;
+              state = _ref33.state, dispatch = _ref33.dispatch;
+              _context17.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/document/delete/" + state.task.id + "/" + current_document);
 
             case 3:
-              response = _context16.sent;
+              response = _context17.sent;
 
               if (response.data.result === "success") {
                 dispatch("changeDocuments");
@@ -77079,13 +77195,13 @@ var actions = {
 
             case 5:
             case "end":
-              return _context16.stop();
+              return _context17.stop();
           }
         }
-      }, _callee16);
+      }, _callee17);
     }));
 
-    function deleteDocument(_x27, _x28) {
+    function deleteDocument(_x29, _x30) {
       return _deleteDocument.apply(this, arguments);
     }
 
@@ -77095,58 +77211,58 @@ var actions = {
   changeDocuments: function () {
     var _changeDocuments = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17(_ref33) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee18(_ref34) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee18$(_context18) {
         while (1) {
-          switch (_context17.prev = _context17.next) {
+          switch (_context18.prev = _context18.next) {
             case 0:
-              commit = _ref33.commit, state = _ref33.state;
-              _context17.next = 3;
+              commit = _ref34.commit, state = _ref34.state;
+              _context18.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + state.task.id);
 
             case 3:
-              response = _context17.sent;
+              response = _context18.sent;
               commit("setDocuments", response.data);
 
             case 5:
             case "end":
-              return _context17.stop();
+              return _context18.stop();
           }
         }
-      }, _callee17);
+      }, _callee18);
     }));
 
-    function changeDocuments(_x29) {
+    function changeDocuments(_x31) {
       return _changeDocuments.apply(this, arguments);
     }
 
     return changeDocuments;
   }(),
   // Filter show all projects
-  showAllProjects: function showAllProjects(_ref34) {
-    var state = _ref34.state,
-        dispatch = _ref34.dispatch;
+  showAllProjects: function showAllProjects(_ref35) {
+    var state = _ref35.state,
+        dispatch = _ref35.dispatch;
     state.project_filter.filterstatus = "all";
     dispatch("fetchProjects", "all");
   },
   // Filter show completed projects
-  showCompletedProjects: function showCompletedProjects(_ref35) {
-    var state = _ref35.state,
-        dispatch = _ref35.dispatch;
+  showCompletedProjects: function showCompletedProjects(_ref36) {
+    var state = _ref36.state,
+        dispatch = _ref36.dispatch;
     state.project_filter.filterstatus = "end";
     dispatch("fetchProjects", "end");
   },
   // Filter show actived projects
-  showActivedProjects: function showActivedProjects(_ref36) {
-    var state = _ref36.state,
-        dispatch = _ref36.dispatch;
+  showActivedProjects: function showActivedProjects(_ref37) {
+    var state = _ref37.state,
+        dispatch = _ref37.dispatch;
     state.project_filter.filterstatus = "act";
     dispatch("fetchProjects", "act");
   },
   // Sort projects by ID ACC
-  sortProjectsIdAcc: function sortProjectsIdAcc(_ref37) {
-    var state = _ref37.state;
+  sortProjectsIdAcc: function sortProjectsIdAcc(_ref38) {
+    var state = _ref38.state;
     state.project_filter.filter09 = true;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -77154,8 +77270,8 @@ var actions = {
     });
   },
   // Sort projects by ID DEC
-  sortProjectsIdDec: function sortProjectsIdDec(_ref38) {
-    var state = _ref38.state;
+  sortProjectsIdDec: function sortProjectsIdDec(_ref39) {
+    var state = _ref39.state;
     state.project_filter.filter09 = false;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -77163,8 +77279,8 @@ var actions = {
     });
   },
   // Sort projects by Name ACC
-  sortProjectsNameAcc: function sortProjectsNameAcc(_ref39) {
-    var state = _ref39.state;
+  sortProjectsNameAcc: function sortProjectsNameAcc(_ref40) {
+    var state = _ref40.state;
     state.project_filter.filteraz = true;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return 1;
@@ -77172,8 +77288,8 @@ var actions = {
     });
   },
   // Sort projects by Name DEC
-  sortProjectsNameDec: function sortProjectsNameDec(_ref40) {
-    var state = _ref40.state;
+  sortProjectsNameDec: function sortProjectsNameDec(_ref41) {
+    var state = _ref41.state;
     state.project_filter.filteraz = false;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return -1;
@@ -77181,29 +77297,29 @@ var actions = {
     });
   },
   // Filter show all tasks
-  showAllTasks: function showAllTasks(_ref41) {
-    var state = _ref41.state,
-        dispatch = _ref41.dispatch;
+  showAllTasks: function showAllTasks(_ref42) {
+    var state = _ref42.state,
+        dispatch = _ref42.dispatch;
     state.task_filter.filterstatus = "all";
     dispatch("fetchTasks", "all", state.current_project_id);
   },
   // Filter show completed tasks
-  showCompletedTasks: function showCompletedTasks(_ref42) {
-    var state = _ref42.state,
-        dispatch = _ref42.dispatch;
+  showCompletedTasks: function showCompletedTasks(_ref43) {
+    var state = _ref43.state,
+        dispatch = _ref43.dispatch;
     state.task_filter.filterstatus = "end";
     dispatch("fetchTasks", "end", state.current_project_id);
   },
   // Filter show actived tasks
-  showActivedTasks: function showActivedTasks(_ref43) {
-    var state = _ref43.state,
-        dispatch = _ref43.dispatch;
+  showActivedTasks: function showActivedTasks(_ref44) {
+    var state = _ref44.state,
+        dispatch = _ref44.dispatch;
     state.task_filter.filterstatus = "act";
     dispatch("fetchTasks", "act", state.current_project_id);
   },
   // Sort tasks by ID ACC
-  sortTasksIdAcc: function sortTasksIdAcc(_ref44) {
-    var state = _ref44.state;
+  sortTasksIdAcc: function sortTasksIdAcc(_ref45) {
+    var state = _ref45.state;
     state.task_filter.filter09 = true;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -77211,8 +77327,8 @@ var actions = {
     });
   },
   // Sort tasks by ID DEC
-  sortTasksIdDec: function sortTasksIdDec(_ref45) {
-    var state = _ref45.state;
+  sortTasksIdDec: function sortTasksIdDec(_ref46) {
+    var state = _ref46.state;
     state.task_filter.filter09 = false;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -77220,8 +77336,8 @@ var actions = {
     });
   },
   // Sort tasks by Name ACC
-  sortTasksNameAcc: function sortTasksNameAcc(_ref46) {
-    var state = _ref46.state;
+  sortTasksNameAcc: function sortTasksNameAcc(_ref47) {
+    var state = _ref47.state;
     state.task_filter.filteraz = true;
     state.tasks.sort(function (a, b) {
       if (a.title > b.title) return 1;
@@ -77237,8 +77353,8 @@ var actions = {
     });
   },
   // Refresh to ready state
-  readyState: function readyState(_ref47) {
-    var commit = _ref47.commit;
+  readyState: function readyState(_ref48) {
+    var commit = _ref48.commit;
     commit("setCurrentProjectId", 0);
     commit("setCurrentTaskId", 0);
     commit("setProject", []);
@@ -77247,14 +77363,17 @@ var actions = {
     commit("setDocuments", []);
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref48, progress) {
-    var commit = _ref48.commit;
+  changeProgress: function changeProgress(_ref49, progress) {
+    var commit = _ref49.commit;
     commit("setProgress", progress);
   }
 };
 var mutations = {
   setTheme: function setTheme(state, theme) {
     return state.theme = theme;
+  },
+  setLanguage: function setLanguage(state, language) {
+    return state.language = language;
   },
   setProperties: function setProperties(state, properties) {
     return state.properties = properties;

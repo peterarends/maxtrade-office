@@ -114,11 +114,12 @@ export default {
         "getTheme",
         "getTasks",
         "getTaskFilter",
-        "getCurrentTaskId"
+        "getCurrentTaskId",
+        "getLanguage"
     ]),
 
     mounted() {
-        this.$translate.setLang("bg_BG");
+        this.$translate.setLang(this.getLanguage);
     },
 
     locales: {
