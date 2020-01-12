@@ -13,14 +13,14 @@
                 <i class="fas fa-circle"></i>
             </div>
             <div>
-                Projects: <span>{{ getProjects.length }}</span>
+                {{ t("Projects") }}: <span>{{ getProjects.length }}</span>
             </div>
             <div class="separator-vertical" :class="getTheme"></div>
             <div class="tasks-panel-title-dot">
                 <i class="fas fa-circle"></i>
             </div>
             <div>
-                Tasks: <span>{{ getTasks.length }}</span>
+                {{ t("Tasks") }}: <span>{{ getTasks.length }}</span>
             </div>
             <div class="separator-vertical" :class="getTheme"></div>
             <div class="progressbar">
@@ -37,7 +37,11 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
+import VueTranslate from "vue-translate-plugin";
+
+Vue.use(VueTranslate);
 
 export default {
     name: "FooterBar",
@@ -49,7 +53,19 @@ export default {
         "getProjects",
         "getUserName",
         "getProgress"
-    ])
+    ]),
+
+    mounted() {
+        this.$translate.setLang("bg_BG");
+    },
+
+    locales: {
+        en_US: {},
+        bg_BG: {
+            Projects: "Проекти",
+            Tasks: "Задачи"
+        }
+    }
 };
 </script>
 

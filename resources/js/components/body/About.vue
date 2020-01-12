@@ -3,7 +3,7 @@
         <div class="button-bar" :class="getTheme">
             <div class="topTitleDiv" :class="getTheme">
                 <!--Window title-->
-                <span>About</span>
+                <span>{{ t("About") }}</span>
             </div>
             <div class="topRightIcons">
                 <!--Window title icons-->
@@ -47,12 +47,27 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
+import VueTranslate from "vue-translate-plugin";
+
+Vue.use(VueTranslate);
 
 export default {
     name: "About",
 
     computed: mapGetters(["getTheme"]),
+
+    mounted() {
+        this.$translate.setLang("bg_BG");
+    },
+
+    locales: {
+        en_US: {},
+        bg_BG: {
+            About: "За Програмата"
+        }
+    },
 
     methods: {
         ...mapActions(["closePanel"])

@@ -5,7 +5,7 @@
                 type="text"
                 class="searchInput"
                 :class="getTheme"
-                placeholder="projects search ..."
+                :placeholder="t('projects search ...')"
                 @input="projectSearch($event)"
             />
             <div class="searchElementsDiv" :class="getTheme">
@@ -102,9 +102,13 @@
 </template>
 
 <script>
+import Vue from "vue";
 import moment from "moment";
 import { VueContext } from "vue-context";
 import { mapGetters, mapActions } from "vuex";
+import VueTranslate from "vue-translate-plugin";
+
+Vue.use(VueTranslate);
 
 export default {
     name: "ProjectsPanel",
@@ -122,6 +126,17 @@ export default {
         "countActiveTasks",
         "countEndedTasks"
     ]),
+
+    mounted() {
+        this.$translate.setLang("bg_BG");
+    },
+
+    locales: {
+        en_US: {},
+        bg_BG: {
+            "projects search ...": "търси в проекти ..."
+        }
+    },
 
     filters: {
         formatDate: function(value) {

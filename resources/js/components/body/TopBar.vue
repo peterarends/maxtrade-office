@@ -11,7 +11,9 @@
                 <div id="cssmenu" v-bind:class="getTheme">
                     <ul>
                         <li class="has-sub">
-                            <a><span>File</span></a>
+                            <a
+                                ><span>{{ t("File") }}</span></a
+                            >
                             <ul>
                                 <li>
                                     <a>
@@ -23,14 +25,16 @@
                                                 class="mdi mdi-location-exit mdiExitIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>Exit</span>
+                                            >&nbsp;<span>{{ t("Exit") }}</span>
                                         </div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="has-sub">
-                            <a><span>Projects</span></a>
+                            <a
+                                ><span>{{ t("Projects") }}</span></a
+                            >
                             <ul>
                                 <li>
                                     <a @click.prevent="addProject">
@@ -39,7 +43,9 @@
                                                 class="mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>Add Project</span>
+                                            >&nbsp;<span>{{
+                                                t("Add Project")
+                                            }}</span>
                                         </div>
                                     </a>
                                 </li>
@@ -50,7 +56,9 @@
                                                 class="mdi mdi-delete mdiAddEditDeleteProjectIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>Delete Project</span>
+                                            >&nbsp;<span>{{
+                                                t("Delete Project")
+                                            }}</span>
                                         </div>
                                     </a>
                                 </li>
@@ -61,60 +69,82 @@
                                                 class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>Add Task</span>
+                                            >&nbsp;<span>{{
+                                                t("Add Task")
+                                            }}</span>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a @click="completeProject"
-                                        ><span>Complete Project</span></a
+                                        ><span>{{
+                                            t("Complete Project")
+                                        }}</span></a
                                     >
                                 </li>
                                 <li class="has-sub">
-                                    <a><span>Projects Filter</span></a>
+                                    <a
+                                        ><span>{{
+                                            t("Projects Filter")
+                                        }}</span></a
+                                    >
                                     <ul>
                                         <li>
                                             <a @click="showAllProjects"
-                                                ><span>All Projects</span></a
+                                                ><span>{{
+                                                    t("All Projects")
+                                                }}</span></a
                                             >
                                         </li>
                                         <li>
                                             <a @click="showCompletedProjects"
-                                                ><span
-                                                    >Completed Projects</span
-                                                ></a
+                                                ><span>{{
+                                                    t("Completed Projects")
+                                                }}</span></a
                                             >
                                         </li>
                                         <li>
                                             <a @click="showActivedProjects"
-                                                ><span
-                                                    >Actived Projects</span
-                                                ></a
+                                                ><span>{{
+                                                    t("Actived Projects")
+                                                }}</span></a
                                             >
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="has-sub">
-                                    <a><span>Projects Sort</span></a>
+                                    <a
+                                        ><span>{{
+                                            t("Projects Sort")
+                                        }}</span></a
+                                    >
                                     <ul>
                                         <li>
                                             <a @click="sortProjectsIdAcc"
-                                                ><span>Id Ascending</span></a
+                                                ><span>{{
+                                                    t("Id Ascending")
+                                                }}</span></a
                                             >
                                         </li>
                                         <li>
                                             <a @click="sortProjectsIdDec"
-                                                ><span>Id Descending</span></a
+                                                ><span>{{
+                                                    t("Id Descending")
+                                                }}</span></a
                                             >
                                         </li>
                                         <li>
                                             <a @click="sortProjectsNameAcc"
-                                                ><span>Name A-Z</span></a
+                                                ><span>{{
+                                                    t("Name A-Z")
+                                                }}</span></a
                                             >
                                         </li>
                                         <li>
                                             <a @click="sortProjectsNameDec"
-                                                ><span>Name Z-A</span></a
+                                                ><span>{{
+                                                    t("Name Z-A")
+                                                }}</span></a
                                             >
                                         </li>
                                     </ul>
@@ -122,7 +152,9 @@
                             </ul>
                         </li>
                         <li class="has-sub">
-                            <a><span>Tasks</span></a>
+                            <a
+                                ><span>{{ t("Tasks") }}</span></a
+                            >
                             <ul>
                                 <li>
                                     <a @click.prevent="addTask">
@@ -131,7 +163,9 @@
                                                 class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>Add Task</span>
+                                            >&nbsp;<span>{{
+                                                t("Add Task")
+                                            }}</span>
                                         </div>
                                     </a>
                                 </li>
@@ -142,56 +176,78 @@
                                                 class="mdi mdi-delete mdiAddEditDeleteTaskIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>Delete Task</span>
+                                            >&nbsp;<span>{{
+                                                t("Delete Task")
+                                            }}</span>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a @click="completeTask"
-                                        ><span>Complete Task</span></a
+                                        ><span>{{
+                                            t("Complete Task")
+                                        }}</span></a
                                     >
                                 </li>
                                 <li class="has-sub">
-                                    <a><span>Tasks Filter</span></a>
+                                    <a
+                                        ><span>{{ t("Tasks Filter") }}</span></a
+                                    >
                                     <ul>
                                         <li>
                                             <a @click="showAllTasks"
-                                                ><span>All Tasks</span></a
+                                                ><span>{{
+                                                    t("All Tasks")
+                                                }}</span></a
                                             >
                                         </li>
                                         <li>
                                             <a @click="showCompletedTasks"
-                                                ><span>Completed Tasks</span></a
+                                                ><span>{{
+                                                    t("Completed Tasks")
+                                                }}</span></a
                                             >
                                         </li>
                                         <li>
                                             <a @click="showActivedTasks"
-                                                ><span>Actived Tasks</span></a
+                                                ><span>{{
+                                                    t("Actived Tasks")
+                                                }}</span></a
                                             >
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="has-sub">
-                                    <a><span>Tasks Sort</span></a>
+                                    <a
+                                        ><span>{{ t("Tasks Sort") }}</span></a
+                                    >
                                     <ul>
                                         <li>
                                             <a @click="sortTasksIdAcc"
-                                                ><span>Id Ascending</span></a
+                                                ><span>{{
+                                                    t("Id Ascending")
+                                                }}</span></a
                                             >
                                         </li>
                                         <li>
                                             <a @click="sortTasksIdDec"
-                                                ><span>Id Descending</span></a
+                                                ><span>{{
+                                                    t("Id Descending")
+                                                }}</span></a
                                             >
                                         </li>
                                         <li>
                                             <a @click="sortTasksNameAcc"
-                                                ><span>Name A-Z</span></a
+                                                ><span>{{
+                                                    t("Name A-Z")
+                                                }}</span></a
                                             >
                                         </li>
                                         <li>
                                             <a @click="sortTasksNameDec"
-                                                ><span>Name Z-A</span></a
+                                                ><span>{{
+                                                    t("Name Z-A")
+                                                }}</span></a
                                             >
                                         </li>
                                     </ul>
@@ -199,7 +255,9 @@
                             </ul>
                         </li>
                         <li class="has-sub">
-                            <a><span>Panels</span></a>
+                            <a
+                                ><span>{{ t("Panels") }}</span></a
+                            >
                             <ul>
                                 <li>
                                     <a>
@@ -211,7 +269,9 @@
                                                 class="mdi mdi-file-document-box-search standardSizeIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>Search Panel</span>
+                                            >&nbsp;<span>{{
+                                                t("Search Panel")
+                                            }}</span>
                                         </div>
                                     </a>
                                 </li>
@@ -225,7 +285,9 @@
                                                 class="mdi mdi-email-check standardSizeIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>E-Mails</span>
+                                            >&nbsp;<span>{{
+                                                t("E-Mails")
+                                            }}</span>
                                         </div>
                                     </a>
                                 </li>
@@ -239,14 +301,18 @@
                                                 class="mdi mdi-contacts standardSizeIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>Contacts</span>
+                                            >&nbsp;<span>{{
+                                                t("Contacts")
+                                            }}</span>
                                         </div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="has-sub">
-                            <a><span>Tools</span></a>
+                            <a
+                                ><span>{{ t("Tools") }}</span></a
+                            >
                             <ul>
                                 <li>
                                     <a>
@@ -258,14 +324,18 @@
                                                 class="mdi mdi-tools standardSizeIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>Options</span>
+                                            >&nbsp;<span>{{
+                                                t("Options")
+                                            }}</span>
                                         </div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="has-sub">
-                            <a><span>Help</span></a>
+                            <a
+                                ><span>{{ t("Help") }}</span></a
+                            >
                             <ul>
                                 <li>
                                     <a>
@@ -277,7 +347,7 @@
                                                 class="mdi mdi-information-variant standardSizeIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>About</span>
+                                            >&nbsp;<span>{{ t("About") }}</span>
                                         </div>
                                     </a>
                                 </li>
@@ -319,46 +389,92 @@
                     class="mdi mdi-plus-circle-outline mdiAddEditDeleteProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Add Project
+                >&nbsp;{{ t("Add Project") }}
             </button>
             <button :disabled="getCurrentProjectId == 0" @click="deleteProject">
                 <i
                     class="mdi mdi-delete mdiAddEditDeleteProjectIcon"
                     v-bind:class="getTheme"
                 ></i
-                >&nbsp;Delete Project
+                >&nbsp;{{ t("Delete Project") }}
             </button>
             <button @click="addTask" :disabled="getCurrentProjectId == 0">
                 <i
                     class="mdi mdi-plus-circle-outline mdiAddEditDeleteTaskIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Add Task
+                >&nbsp;{{ t("Add Task") }}
             </button>
             <button :disabled="getCurrentTaskId == 0" @click="deleteTask">
                 <i
                     class="mdi mdi-delete mdiAddEditDeleteTaskIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Delete Task
+                >&nbsp;{{ t("Delete Task") }}
             </button>
             <button @click="showSearchtasks">
                 <i
                     class="mdi mdi-file-document-box-search mdiOtherIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Search Panel
+                >&nbsp;{{ t("Search Panel") }}
             </button>
         </div>
     </div>
 </template>
 <script>
+import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
+import VueTranslate from "vue-translate-plugin";
+
+Vue.use(VueTranslate);
 
 export default {
     name: "Header",
 
     computed: mapGetters(["getTheme", "getUserName"]),
+
+    mounted() {
+        this.$translate.setLang("bg_BG");
+    },
+
+    locales: {
+        en_US: {},
+        bg_BG: {
+            File: "Програма",
+            Exit: "Изход",
+            Projects: "Проекти",
+            "Add Project": "Добави Проект",
+            "Delete Project": "Изтрий Проект",
+            "Add Task": "Добави Задача",
+            "Complete Project": "Приключи Проект",
+            "Projects Filter": "Филтър Проекти",
+            "All Projects": "Всички Проекти",
+            "Completed Projects": "Приключени Проекти",
+            "Actived Projects": "Активни Проекти",
+            "Projects Sort": "Пордеждане на Проекти",
+            "Id Ascending": "По ИД Възходящо",
+            "Id Descending": "По ИД Низходящо",
+            "Name A-Z": "По Име А-Я",
+            "Name Z-A": "По Име Я-А",
+            Tasks: "Задачи",
+            "Delete Task": "Изтрий Задача",
+            "Complete Task": "Приключи задача",
+            "Tasks Filter": "Филтър Задачи",
+            "All Tasks": "Всички Задачи",
+            "Completed Tasks": "Приключени Задачи",
+            "Actived Tasks": "Активни задачи",
+            "Tasks Sort": "Подреждане на Задачи",
+            Panels: "Модули",
+            "Search Panel": "Модул Търсене",
+            "E-Mails": "Модул E-Mails",
+            Contacts: "Модул Контакти",
+            Tools: "Инструменти",
+            Options: "Настройки",
+            Help: "Помощ",
+            About: "За Програмата"
+        }
+    },
 
     methods: {
         ...mapActions([
@@ -391,7 +507,9 @@ export default {
             "showAbout",
             "showSearchtasks"
         ])
-    }
+    },
+
+    props: ["File"]
 };
 </script>
 <style scoped>

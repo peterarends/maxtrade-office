@@ -4,7 +4,7 @@
             <div class="topTitleDiv">
                 <!--Window title-->
                 <span
-                    >Project:
+                    >{{ t("Project") }}:
                     {{ getProject.id | formatProjectId(getNewTask) }}</span
                 >
             </div>
@@ -21,11 +21,14 @@
         </div>
         <div class="body" :class="[getProject.status == 0 ? 'ended' : '']">
             <div class="date">
-                <h3>Date start: {{ getProject.created_at | formatDate }}</h3>
                 <h3>
-                    Date end:
+                    {{ t("Date start") }}:
+                    {{ getProject.created_at | formatDate }}
+                </h3>
+                <h3>
+                    {{ t("Date end") }}:
                     <span v-show="getProject.status == 1" class="continues"
-                        >Continues
+                        >{{ t("Continues") }}
                     </span>
                     <span v-show="getProject.status == 0"
                         >{{ getProject.updated_at | formatDate }}
@@ -45,21 +48,24 @@
                     v-model="getProject.status"
                 />
                 <label for="project_status"
-                    ><span></span>Status of the project:
+                    ><span></span>{{ t("Status of the project") }}:
                     <strong>{{
-                        getProject.status | statusFilter
+                        getProject.status
+                            | statusFilter(t("Active"), t("Completed"))
                     }}</strong></label
                 >
             </div>
             <div class="taskStauses">
                 <div class="taskAll">
-                    All tasks: <strong>{{ countAllTasks }}</strong>
+                    {{ t("All tasks") }}: <strong>{{ countAllTasks }}</strong>
                 </div>
                 <div class="taskActive">
-                    Active tasks: <strong>{{ countActiveTasks }}</strong>
+                    {{ t("Active tasks") }}:
+                    <strong>{{ countActiveTasks }}</strong>
                 </div>
                 <div class="taskEnded">
-                    Ended tasks: <strong>{{ countEndedTasks }}</strong>
+                    {{ t("Ended tasks") }}:
+                    <strong>{{ countEndedTasks }}</strong>
                 </div>
             </div>
             <div class="vp20"></div>
@@ -76,14 +82,14 @@
                     class="mdi mdi-content-save-outline mdiProjectIcon"
                     v-bind:class="getTheme"
                 ></i
-                >&nbsp;Save</a
+                >&nbsp;{{ t("Save") }}</a
             >
             <a @click.prevent="deleteProject"
                 ><i
                     class="mdi mdi-delete-outline mdiProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Delete</a
+                >&nbsp;{{ t("Delete") }}</a
             >
             <a
                 :href="'/project/' + getProject.id + '/export.html'"
@@ -92,17 +98,17 @@
                     class="mdi mdi-delete-outline mdiProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Export</a
+                >&nbsp;{{ t("Export") }}</a
             >
             <a @click.prevent="closePanel"
                 ><i
                     class="mdi mdi-close-outline mdiProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Close</a
+                >&nbsp;{{ t("Close") }}</a
             >
             <div class="status_panel">
-                Last change: {{ getProject.updated_at | formatDate
+                {{ t("Last change") }}: {{ getProject.updated_at | formatDate
                 }}<span class="status_panel_user">
                     [#{{ getProject.last_id }} /
                     {{ getProject.last_name }}]</span
@@ -113,9 +119,13 @@
 </template>
 
 <script>
+import Vue from "vue";
 import moment from "moment";
 import { mapGetters, mapActions } from "vuex";
 import PieChart from "./PieChart";
+import VueTranslate from "vue-translate-plugin";
+
+Vue.use(VueTranslate);
 
 export default {
     name: "Projects",
@@ -157,6 +167,28 @@ export default {
 
     mounted() {
         setInterval(this.generateData, 2000);
+        this.$translate.setLang("bg_BG");
+    },
+
+    locales: {
+        en_US: {},
+        bg_BG: {
+            Project: "Проект",
+            "Date start": "Начало",
+            "Date end": "Край",
+            Continues: "Не е завършен",
+            "Status of the project": "Състояние на проекта",
+            "All tasks": "Всчики задачи",
+            "Active tasks": "Активни задачи",
+            "Ended tasks": "Приключени задачи",
+            Save: "Запиши",
+            Delete: "Изтрий",
+            Export: "Експортирай",
+            Close: "Затвори",
+            "Last change": "Последна промяна",
+            Active: "Активен",
+            Completed: "Приключен"
+        }
     },
 
     filters: {
@@ -165,11 +197,11 @@ export default {
                 return moment(String(value)).format("DD.MM.YYYY hh:mm");
             }
         },
-        statusFilter: function(value) {
+        statusFilter: function(value, label1, label2) {
             if (value == 1) {
-                return "Active";
+                return label1;
             } else {
-                return "Completed";
+                return label2;
             }
         },
         formatProjectId: function(value, _new_project) {

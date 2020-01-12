@@ -5,7 +5,7 @@
                 type="text"
                 class="searchInput"
                 :class="getTheme"
-                placeholder="tasks search ..."
+                :placeholder="t('tasks search ...')"
                 @input="fetchTasksSearch($event)"
             />
             <div class="searchElementsDiv" :class="getTheme">
@@ -81,21 +81,27 @@
         </div>
         <vue-context ref="menu" @open="onOpenContextMenu">
             <li>
-                <a @click.prevent="onClickContextMenu('delete')">Delete Task</a>
+                <a @click.prevent="onClickContextMenu('delete')">{{
+                    t("Delete Task")
+                }}</a>
             </li>
             <li>
-                <a @click.prevent="onClickContextMenu('complete')"
-                    >Complete Task</a
-                >
+                <a @click.prevent="onClickContextMenu('complete')">{{
+                    t("Complete Task")
+                }}</a>
             </li>
         </vue-context>
     </div>
 </template>
 
 <script>
+import Vue from "vue";
 import moment from "moment";
 import { VueContext } from "vue-context";
 import { mapGetters, mapActions } from "vuex";
+import VueTranslate from "vue-translate-plugin";
+
+Vue.use(VueTranslate);
 
 export default {
     name: "TasksPanel",
@@ -110,6 +116,19 @@ export default {
         "getTaskFilter",
         "getCurrentTaskId"
     ]),
+
+    mounted() {
+        this.$translate.setLang("bg_BG");
+    },
+
+    locales: {
+        en_US: {},
+        bg_BG: {
+            "tasks search ...": "търси в задачи ...",
+            "Delete Task": "Изтрий задачата",
+            "Complete Task": "Приключи задачата"
+        }
+    },
 
     filters: {
         formatDate: function(value) {

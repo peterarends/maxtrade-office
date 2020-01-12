@@ -3,7 +3,7 @@
         <div class="button-bar" :class="getTheme">
             <div class="topTitleDiv" :class="getTheme">
                 <!--Window title-->
-                <span>Properties</span>
+                <span>{{ t("Properties") }}</span>
             </div>
             <div class="topRightIcons">
                 <!--Window title icons-->
@@ -20,18 +20,18 @@
             <input
                 type="text"
                 class="search_input"
-                placeholder="Search settings ..."
+                :placeholder="t('search settings ...')"
             />
         </div>
         <div class="body">
-            <h2 class="property_title">Properties:</h2>
+            <h2 class="property_title">{{ t("Properties") }}:</h2>
             <ul>
                 <li
                     v-for="category in getPropertyCategories"
                     :key="category.category"
                 >
                     <h4 class="property_section">
-                        {{ category.category }} properties
+                        {{ category.category }} {{ t("properties") }}
                     </h4>
                     <ul>
                         <li
@@ -58,8 +58,12 @@
                                     v-model="property.value"
                                     @change="changeTheme($event.target.value)"
                                 >
-                                    <option value="dark">Dark theme</option>
-                                    <option value="light">Light theme</option>
+                                    <option value="dark">{{
+                                        t("Dark theme")
+                                    }}</option>
+                                    <option value="light">{{
+                                        t("Light theme")
+                                    }}</option>
                                 </select>
                                 <select
                                     v-if="property.name === 'projectfilter'"
@@ -69,15 +73,15 @@
                                         changeProjectFilter($event.target.value)
                                     "
                                 >
-                                    <option value="all"
-                                        >Show All projects</option
-                                    >
-                                    <option value="act"
-                                        >Show Active projects</option
-                                    >
-                                    <option value="end"
-                                        >Show Ended projects</option
-                                    >
+                                    <option value="all">{{
+                                        t("Show All projects")
+                                    }}</option>
+                                    <option value="act">{{
+                                        t("Show Active projects")
+                                    }}</option>
+                                    <option value="end">{{
+                                        t("Show Ended projects")
+                                    }}</option>
                                 </select>
                                 <select
                                     v-if="property.name === 'taskfilter'"
@@ -87,13 +91,15 @@
                                         changeTaskFilter($event.target.value)
                                     "
                                 >
-                                    <option value="all">Show All tasks</option>
-                                    <option value="act"
-                                        >Show Active task</option
-                                    >
-                                    <option value="end"
-                                        >Show Ended tasks</option
-                                    >
+                                    <option value="all">{{
+                                        t("Show All tasks")
+                                    }}</option>
+                                    <option value="act">{{
+                                        t("Show Active tasks")
+                                    }}</option>
+                                    <option value="end">{{
+                                        t("Show Ended tasks")
+                                    }}</option>
                                 </select>
                             </div>
                         </li>
@@ -105,7 +111,11 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
+import VueTranslate from "vue-translate-plugin";
+
+Vue.use(VueTranslate);
 
 export default {
     name: "Properties",
@@ -132,6 +142,27 @@ export default {
         "getProperties",
         "getPropertyCategories"
     ]),
+
+    mounted() {
+        this.$translate.setLang("bg_BG");
+    },
+
+    locales: {
+        en_US: {},
+        bg_BG: {
+            Properties: "Настройки",
+            "search settings ...": "търси в настройки ...",
+            properties: "настройки",
+            "Dark theme": "Тъмна тема",
+            "Light theme": "Светла тема",
+            "Show All projects": "Покажи всички проекти",
+            "Show Active projects": "Покажи активните проекти",
+            "Show Ended projects": "Покажи приключените проекти",
+            "Show All tasks": "Покажи всички задачи",
+            "Show Active tasks": "Покажи активните задачи",
+            "Show Ended tasks": "Покажи приключените задачи"
+        }
+    },
 
     methods: {
         ...mapActions([

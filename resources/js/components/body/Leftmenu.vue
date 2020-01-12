@@ -10,27 +10,27 @@
                     ? 'active'
                     : ''
             ]"
-            title="Return to ready state"
+            :title="t('Return to ready state')"
             @click.prevent="readyState"
         >
             <i class="mdi mdi-finance mdiIcon"></i>
         </a>
         <a
-            title="Show Search Panel"
+            :title="t('Show Search Panel')"
             @click.prevent="showSearchtasks"
             :class="[getPanel === 'searchtasks' ? 'active' : '']"
         >
             <i class="mdi mdi-file-document-box-search mdiIcon"></i>
         </a>
         <a
-            title="Show Mails Panel"
+            :title="t('Show Mails Panel')"
             @click.prevent="showEmails"
             :class="[getPanel === 'emails' ? 'active' : '']"
         >
             <i class="mdi mdi-email-check mdiIcon"></i>
         </a>
         <a
-            title="Show Contacts Panel"
+            :title="t('Show Contacts Panel')"
             @click.prevent="showContacts"
             :class="[getPanel === 'contacts' ? 'active' : '']"
         >
@@ -69,8 +69,12 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
 import { VueContext } from "vue-context";
+import VueTranslate from "vue-translate-plugin";
+
+Vue.use(VueTranslate);
 
 export default {
     name: "Leftmenu",
@@ -80,6 +84,20 @@ export default {
     },
 
     computed: mapGetters(["getTheme", "getPanel"]),
+
+    mounted() {
+        this.$translate.setLang("bg_BG");
+    },
+
+    locales: {
+        en_US: {},
+        bg_BG: {
+            "Return to ready state": "Върни в началото",
+            "Show Search Panel": "Покажи панела за търсене",
+            "Show Mails Panel": "Покажи панела съобщения",
+            "Show Contacts Panel": "Покажи панела контакти"
+        }
+    },
 
     methods: {
         ...mapActions([

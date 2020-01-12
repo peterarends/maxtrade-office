@@ -3,7 +3,7 @@
         <div class="button-bar" :class="getTheme">
             <div class="topTitleDiv">
                 <!--Window title-->
-                <span>Search tasks</span>
+                <span>{{ t("Search Projects and Tasks") }}</span>
             </div>
             <div class="topRightIcons">
                 <!--Window title icons-->
@@ -16,28 +16,14 @@
                 </div>
             </div>
         </div>
-        <div class="body">Search tasks</div>
+        <div class="body">{{ t("Search Projects and Tasks") }}</div>
         <div class="bottom" :class="getTheme">
-            <a
-                ><i
-                    class="mdi mdi-content-save-outline mdiProjectIcon"
-                    v-bind:class="getTheme"
-                ></i
-                >&nbsp;Save</a
-            >
-            <a
-                ><i
-                    class="mdi mdi-delete-outline mdiProjectIcon"
-                    :class="getTheme"
-                ></i
-                >&nbsp;Delete</a
-            >
             <a @click.prevent="closePanel"
                 ><i
                     class="mdi mdi-close-outline mdiProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Close</a
+                >&nbsp;{{ t("Close") }}</a
             >
             <div class="status_panel"></div>
         </div>
@@ -45,12 +31,28 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
+import VueTranslate from "vue-translate-plugin";
+
+Vue.use(VueTranslate);
 
 export default {
     name: "Searchtasks",
 
     computed: mapGetters(["getTheme"]),
+
+    mounted() {
+        this.$translate.setLang("bg_BG");
+    },
+
+    locales: {
+        en_US: {},
+        bg_BG: {
+            "Search Projects and Tasks": "Търси в Проекти и задачи",
+            Close: "Затвори"
+        }
+    },
 
     methods: { ...mapActions(["closePanel"]) }
 };

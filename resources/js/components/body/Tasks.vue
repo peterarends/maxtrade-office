@@ -3,7 +3,10 @@
         <div class="button-bar" :class="getTheme">
             <div class="topTitleDiv">
                 <!--Window title-->
-                <span>Task: {{ getTask.id | formatTaskId(getNewTask) }}</span>
+                <span
+                    >{{ t("Task") }}:
+                    {{ getTask.id | formatTaskId(getNewTask) }}</span
+                >
             </div>
             <div class="topRightIcons">
                 <!--Window title icons-->
@@ -18,12 +21,14 @@
         </div>
         <div class="body" :class="[getTask.status == 0 ? 'ended' : '']">
             <div class="date">
-                <h3>Date start: {{ getTask.created_at | formatDate }}</h3>
                 <h3>
-                    Date end:
-                    <span v-show="getTask.status == 1" class="continues"
-                        >Continues</span
-                    >
+                    {{ t("Date start") }}: {{ getTask.created_at | formatDate }}
+                </h3>
+                <h3>
+                    {{ t("Date end") }}:
+                    <span v-show="getTask.status == 1" class="continues">{{
+                        t("Continues")
+                    }}</span>
                     <span v-show="getTask.status == 0">{{
                         getTask.updated_at | formatDate
                     }}</span>
@@ -38,17 +43,20 @@
                     v-model="getTask.status"
                 />
                 <label for="task_status">
-                    <span></span>Status of the task:
-                    <strong>{{ getTask.status | statusFilter }}</strong> </label
+                    <span></span>{{ t("Status of the task") }}:
+                    <strong>{{
+                        getTask.status
+                            | statusFilter(t("Active"), t("Completed"))
+                    }}</strong> </label
                 >&nbsp;&nbsp;
                 <input
                     class="decision"
                     type="text"
-                    placeholder="Short description of the decision ..."
+                    :placeholder="t('Short description of the decision ...')"
                     v-model="getTask.decision"
                 />
             </div>
-            <h4>Documents attached to this task:</h4>
+            <h4>{{ t("Documents attached to this task") }}:</h4>
             <div class="documents">
                 <div
                     class="document"
@@ -86,10 +94,10 @@
                 >&nbsp;&nbsp;&nbsp;
                 <button
                     class="button"
-                    title="Add selected file."
+                    :title="t('Add selected file.')"
                     @click="onUpload"
                 >
-                    <i class="mdi mdi-plus-circle-outline"></i>Add
+                    <i class="mdi mdi-plus-circle-outline"></i>{{ t("Add") }}
                 </button>
             </div>
         </div>
@@ -99,24 +107,24 @@
                     class="mdi mdi-content-save-outline mdiTaskIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Save
+                >&nbsp;{{ t("Save") }}
             </a>
             <a @click.prevent="deleteTask">
                 <i
                     class="mdi mdi-delete-outline mdiTaskIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Delete
+                >&nbsp;{{ t("Delete") }}
             </a>
             <a @click.prevent="closePanel">
                 <i
                     class="mdi mdi-close-outline mdiTaskIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Close
+                >&nbsp;{{ t("Close") }}
             </a>
             <div class="status_panel">
-                Last change: {{ getTask.updated_at | formatDate
+                {{ t("Last change") }}: {{ getTask.updated_at | formatDate
                 }}<span class="status_panel_user">
                     [#{{ getTask.last_id }} / {{ getTask.last_name }}]</span
                 >
@@ -124,18 +132,24 @@
         </div>
         <vue-context ref="menu" @open="onOpenContextMenu">
             <li>
-                <a @click.prevent="onClickContextMenu('delete')">Delete File</a>
+                <a @click.prevent="onClickContextMenu('delete')">{{
+                    t("Delete File")
+                }}</a>
             </li>
         </vue-context>
     </div>
 </template>
 
 <script>
+import Vue from "vue";
 import moment from "moment";
 import path from "path";
 import axios from "axios";
 import { VueContext } from "vue-context";
 import { mapGetters, mapActions } from "vuex";
+import VueTranslate from "vue-translate-plugin";
+
+Vue.use(VueTranslate);
 
 export default {
     name: "Tasks",
@@ -153,17 +167,45 @@ export default {
 
     computed: mapGetters(["getTheme", "getTask", "getNewTask", "getDocuments"]),
 
+    mounted() {
+        this.$translate.setLang("bg_BG");
+    },
+
+    locales: {
+        en_US: {},
+        bg_BG: {
+            Task: "Задача",
+            "Date start": "Начало",
+            "Date end": "Край",
+            Continues: "Не е завършен",
+            "Status of the task": "Състояние на задачата",
+            Active: "Активна",
+            Completed: "Приключена",
+            "Short description of the decision ...":
+                "Описание на решението ...",
+            "Documents attached to this task":
+                "Документи прикачени към тази задача",
+            "Add selected file.": "Добави избрания файл.",
+            Add: "Добави",
+            Save: "Запиши",
+            Delete: "Изтрий",
+            Close: "Затвори",
+            "Last change": "Последна промяна",
+            "Delete File": "Изтрий файла"
+        }
+    },
+
     filters: {
         formatDate: function(value) {
             if (value) {
                 return moment(String(value)).format("DD.MM.YYYY hh:mm");
             }
         },
-        statusFilter: function(value) {
+        statusFilter: function(value, label1, label2) {
             if (value == 1) {
-                return "Active";
+                return label1;
             } else {
-                return "Completed";
+                return label2;
             }
         },
         formatTaskId: function(value, _new_task) {
