@@ -199,22 +199,8 @@
                             </ul>
                         </li>
                         <li class="has-sub">
-                            <a><span>Tools</span></a>
+                            <a><span>Panels</span></a>
                             <ul>
-                                <li>
-                                    <a>
-                                        <div
-                                            class="mnu-flex"
-                                            @click="showProperties"
-                                        >
-                                            <i
-                                                class="mdi mdi-tools standardSizeIcon"
-                                                :class="getTheme"
-                                            ></i
-                                            >&nbsp;<span>Options</span>
-                                        </div>
-                                    </a>
-                                </li>
                                 <li>
                                     <a>
                                         <div
@@ -225,7 +211,7 @@
                                                 class="mdi mdi-file-document-box-search standardSizeIcon"
                                                 :class="getTheme"
                                             ></i
-                                            >&nbsp;<span>Search Tasks</span>
+                                            >&nbsp;<span>Search Panel</span>
                                         </div>
                                     </a>
                                 </li>
@@ -254,6 +240,25 @@
                                                 :class="getTheme"
                                             ></i
                                             >&nbsp;<span>Contacts</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a><span>Tools</span></a>
+                            <ul>
+                                <li>
+                                    <a>
+                                        <div
+                                            class="mnu-flex"
+                                            @click="showProperties"
+                                        >
+                                            <i
+                                                class="mdi mdi-tools standardSizeIcon"
+                                                :class="getTheme"
+                                            ></i
+                                            >&nbsp;<span>Options</span>
                                         </div>
                                     </a>
                                 </li>
@@ -336,6 +341,13 @@
                     :class="getTheme"
                 ></i
                 >&nbsp;Delete Task
+            </button>
+            <button @click="showSearchtasks">
+                <i
+                    class="mdi mdi-file-document-box-search mdiOtherIcon"
+                    :class="getTheme"
+                ></i
+                >&nbsp;Search Panel
             </button>
         </div>
     </div>
@@ -449,6 +461,10 @@ export default {
 }
 .mdiAddEditDeleteTaskIcon.dark {
     color: #dd6b20;
+}
+.mdiOtherIcon {
+    font-size: 1.5rem;
+    color: #a0aec0;
 }
 .standardSizeIcon {
     font-size: 1.5rem;

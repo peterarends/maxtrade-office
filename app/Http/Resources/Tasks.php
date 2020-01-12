@@ -25,7 +25,8 @@ class Tasks extends JsonResource
             'status'    => $this->status,
             'decision' => $this->decision,
             'last_name' => $this->last_name,
-            'last_id' => $this->last_id
+            'last_id' => $this->last_id,
+            'isfiles' => $this->isfiles
         ];
     }
 

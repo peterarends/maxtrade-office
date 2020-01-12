@@ -3287,6 +3287,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3337,6 +3343,18 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -19956,7 +19974,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0] {\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0] {\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n}\n.body-left-menu.light[data-v-7bf753d0] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n}\n.body-left-menu.dark[data-v-7bf753d0] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n}\n.body-left-menu a[data-v-7bf753d0] {\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu.light a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.dark a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.light a[data-v-7bf753d0]:hover {\n  color: #1a202c;\n}\n.body-left-menu.dark a[data-v-7bf753d0]:hover {\n  color: #f7fafc;\n}\n.left-menu-title[data-v-7bf753d0] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n}\n.left-menu-title.light[data-v-7bf753d0] {\n  opacity: 0.5;\n  color: #4299e1;\n}\n.left-menu-title.dark[data-v-7bf753d0] {\n  opacity: 0.3;\n  color: #4299e1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0] {\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu.light a.active[data-v-7bf753d0] {\n  color: #1a202c;\n}\n.body-left-menu.dark a.active[data-v-7bf753d0] {\n  color: #f7fafc;\n}\n.contextMenu[data-v-7bf753d0] {\n  width: 300px;\n  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);\n  background-color: #1a202c;\n  position: absolute;\n  bottom: 87px;\n  left: 25px;\n}\n.contextMenu-options[data-v-7bf753d0] {\n  list-style: none;\n  padding: 10px 0;\n}\n.contextMenu-option[data-v-7bf753d0] {\n  font-weight: 500;\n  font-size: 14px;\n  padding: 10px 40px 10px 20px;\n  cursor: pointer;\n  color: #a0aec0;\n}\n.contextMenu-option[data-v-7bf753d0]:hover {\n  background: rgba(0, 0, 0, 0.2);\n}\n.right-text[data-v-7bf753d0] {\n  float: right;\n}\n.v-context[data-v-7bf753d0],\r\n.v-context ul[data-v-7bf753d0] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\r\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-7bf753d0],\r\n.v-context ul > li[data-v-7bf753d0] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-7bf753d0],\r\n.v-context ul > li > a[data-v-7bf753d0] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n  font-size: 14px;\n}\n.v-context > li > a[data-v-7bf753d0]:focus,\r\n.v-context > li > a[data-v-7bf753d0]:hover,\r\n.v-context ul > li > a[data-v-7bf753d0]:focus,\r\n.v-context ul > li > a[data-v-7bf753d0]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-7bf753d0]:focus,\r\n.v-context > li > a[data-v-7bf753d0]:focus,\r\n.v-context ul[data-v-7bf753d0]:focus,\r\n.v-context ul > li > a[data-v-7bf753d0]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-7bf753d0]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-7bf753d0] {\n  display: none;\n}\r\n", ""]);
+exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0] {\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0] {\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n}\n.body-left-menu.light[data-v-7bf753d0] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n}\n.body-left-menu.dark[data-v-7bf753d0] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n}\n.body-left-menu a[data-v-7bf753d0] {\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu.light a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.dark a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.light a[data-v-7bf753d0]:hover {\n  color: #1a202c;\n}\n.body-left-menu.dark a[data-v-7bf753d0]:hover {\n  color: #f7fafc;\n}\n.left-menu-title[data-v-7bf753d0] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n}\n.left-menu-title.light[data-v-7bf753d0] {\n  opacity: 0.5;\n  color: #4299e1;\n}\n.left-menu-title.dark[data-v-7bf753d0] {\n  opacity: 0.3;\n  color: #4299e1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0] {\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu.light a.active[data-v-7bf753d0] {\n  color: #1a202c;\n}\n.body-left-menu.dark a.active[data-v-7bf753d0] {\n  color: #f7fafc;\n}\n.contextMenu[data-v-7bf753d0] {\n  width: 300px;\n  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);\n  background-color: #1a202c;\n  position: absolute;\n  bottom: 87px;\n  left: 25px;\n}\n.contextMenu-options[data-v-7bf753d0] {\n  list-style: none;\n  padding: 10px 0;\n}\n.contextMenu-option[data-v-7bf753d0] {\n  font-weight: 500;\n  font-size: 14px;\n  padding: 10px 40px 10px 20px;\n  cursor: pointer;\n  color: #a0aec0;\n}\n.contextMenu-option[data-v-7bf753d0]:hover {\n  background: rgba(0, 0, 0, 0.2);\n}\n.right-text[data-v-7bf753d0] {\n  float: right;\n}\n.v-context[data-v-7bf753d0],\n.v-context ul[data-v-7bf753d0] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-7bf753d0],\n.v-context ul > li[data-v-7bf753d0] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-7bf753d0],\n.v-context ul > li > a[data-v-7bf753d0] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n  font-size: 14px;\n}\n.v-context > li > a[data-v-7bf753d0]:focus,\n.v-context > li > a[data-v-7bf753d0]:hover,\n.v-context ul > li > a[data-v-7bf753d0]:focus,\n.v-context ul > li > a[data-v-7bf753d0]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-7bf753d0]:focus,\n.v-context > li > a[data-v-7bf753d0]:focus,\n.v-context ul[data-v-7bf753d0]:focus,\n.v-context ul > li > a[data-v-7bf753d0]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-7bf753d0]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-7bf753d0] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -20089,7 +20107,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/* Start Top panel */\n.generalStyleDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light[data-v-5a26d5a0] {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark[data-v-5a26d5a0] {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg[data-v-5a26d5a0] {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light[data-v-5a26d5a0] {\n  color: #4a5568;\n}\n.contentDiv.dark[data-v-5a26d5a0] {\n  color: #e2e8f0;\n}\n.mdiExitIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light[data-v-5a26d5a0] {\n  color: #fc8181;\n}\n.mdiExitIcon.dark[data-v-5a26d5a0] {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light[data-v-5a26d5a0] {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark[data-v-5a26d5a0] {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light[data-v-5a26d5a0] {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark[data-v-5a26d5a0] {\n  color: #dd6b20;\n}\n.standardSizeIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.topTitleDiv[data-v-5a26d5a0] {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-5a26d5a0] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-5a26d5a0] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light[data-v-5a26d5a0]:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark[data-v-5a26d5a0]:hover {\n  background-color: #718096;\n}\n.rightExitIcon[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-5a26d5a0] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-5a26d5a0] {\n  background-color: #e53e3e;\n}\n.button-bar[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-5a26d5a0] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-5a26d5a0] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar button[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light button[data-v-5a26d5a0] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark button[data-v-5a26d5a0] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark button[data-v-5a26d5a0]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light button[data-v-5a26d5a0]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu[data-v-5a26d5a0] {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul[data-v-5a26d5a0],\r\n#cssmenu li[data-v-5a26d5a0] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul[data-v-5a26d5a0] {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li[data-v-5a26d5a0] {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover[data-v-5a26d5a0],\r\n#cssmenu ul li[data-v-5a26d5a0]:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  float: none;\n}\n#cssmenu ul ul ul[data-v-5a26d5a0] {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul[data-v-5a26d5a0] {\n  visibility: visible;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  margin-top: 0;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  font-weight: normal;\n}\n#cssmenu a[data-v-5a26d5a0] {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul[data-v-5a26d5a0] {\n  display: inline-block;\n}\n#cssmenu[data-v-5a26d5a0]:after,\r\n#cssmenu ul[data-v-5a26d5a0]:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a[data-v-5a26d5a0] {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a[data-v-5a26d5a0] {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul[data-v-5a26d5a0] {\n  border-top: 0 none;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a[data-v-5a26d5a0] {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a[data-v-5a26d5a0] {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a[data-v-5a26d5a0] {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a[data-v-5a26d5a0] {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a[data-v-5a26d5a0] {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a[data-v-5a26d5a0] {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a[data-v-5a26d5a0]:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a[data-v-5a26d5a0],\r\n#cssmenu.dark ul li.active > a[data-v-5a26d5a0] {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a[data-v-5a26d5a0],\r\n#cssmenu.light ul li.active > a[data-v-5a26d5a0] {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul[data-v-5a26d5a0] {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul[data-v-5a26d5a0] {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a[data-v-5a26d5a0] {\n  padding: 3px 10px;\n}\n#cssmenu.dark a[data-v-5a26d5a0] {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a[data-v-5a26d5a0] {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a[data-v-5a26d5a0] {\n  line-height: 30px;\n}\n.mnu-flex[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\r\n", ""]);
+exports.push([module.i, "/* Start Top panel */\n.generalStyleDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n  border-bottom-width: 1px;\n}\n.generalStyleDiv.light[data-v-5a26d5a0] {\n  background-color: #e2e8f0;\n  border-color: #cbd5e0;\n}\n.generalStyleDiv.dark[data-v-5a26d5a0] {\n  background-color: #4a5568;\n  border-color: #718096;\n}\n.iconDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n}\n.iconImg[data-v-5a26d5a0] {\n  width: 1.5rem;\n  height: 1.5rem;\n  margin-right: auto;\n  margin-left: auto;\n}\n.contentDiv[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  padding-right: 0.5rem;\n}\n.contentDiv.light[data-v-5a26d5a0] {\n  color: #4a5568;\n}\n.contentDiv.dark[data-v-5a26d5a0] {\n  color: #e2e8f0;\n}\n.mdiExitIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiExitIcon.light[data-v-5a26d5a0] {\n  color: #fc8181;\n}\n.mdiExitIcon.dark[data-v-5a26d5a0] {\n  color: #e53e3e;\n}\n.mdiAddEditDeleteProjectIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteProjectIcon.light[data-v-5a26d5a0] {\n  color: #63b3ed;\n}\n.mdiAddEditDeleteProjectIcon.dark[data-v-5a26d5a0] {\n  color: #3182ce;\n}\n.mdiAddEditDeleteTaskIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.mdiAddEditDeleteTaskIcon.light[data-v-5a26d5a0] {\n  color: #f6ad55;\n}\n.mdiAddEditDeleteTaskIcon.dark[data-v-5a26d5a0] {\n  color: #dd6b20;\n}\n.mdiOtherIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n  color: #a0aec0;\n}\n.standardSizeIcon[data-v-5a26d5a0] {\n  font-size: 1.5rem;\n}\n.topTitleDiv[data-v-5a26d5a0] {\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #e2e8f0;\n}\n.topTitleDiv.light[data-v-5a26d5a0] {\n  color: #4a5568;\n}\n.topTitleDiv.dark[data-v-5a26d5a0] {\n  color: #e2e8f0;\n}\n.topRightIcons[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.minMaxIcons[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.minMaxIcons.light[data-v-5a26d5a0]:hover {\n  background-color: #cbd5e0;\n}\n.minMaxIcons.dark[data-v-5a26d5a0]:hover {\n  background-color: #718096;\n}\n.rightExitIcon[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-5a26d5a0] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-5a26d5a0] {\n  background-color: #e53e3e;\n}\n.button-bar[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-5a26d5a0] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-5a26d5a0] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.button-bar button[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 30px;\n  cursor: pointer;\n}\n.button-bar.light button[data-v-5a26d5a0] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.button-bar.dark button[data-v-5a26d5a0] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.button-bar.dark button[data-v-5a26d5a0]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.button-bar.light button[data-v-5a26d5a0]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu[data-v-5a26d5a0] {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  width: auto;\n}\n#cssmenu ul[data-v-5a26d5a0],\n#cssmenu li[data-v-5a26d5a0] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n#cssmenu ul[data-v-5a26d5a0] {\n  position: relative;\n  z-index: 597;\n}\n#cssmenu ul li[data-v-5a26d5a0] {\n  float: left;\n  min-height: 1px;\n  vertical-align: middle;\n}\n#cssmenu ul li.hover[data-v-5a26d5a0],\n#cssmenu ul li[data-v-5a26d5a0]:hover {\n  position: relative;\n  z-index: 599;\n  cursor: default;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  visibility: hidden;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 598;\n  width: 100%;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  float: none;\n}\n#cssmenu ul ul ul[data-v-5a26d5a0] {\n  top: 0;\n  left: 190px;\n  width: 190px;\n}\n#cssmenu ul li:hover > ul[data-v-5a26d5a0] {\n  visibility: visible;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  bottom: 0;\n  left: 0;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  margin-top: 0;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  font-weight: normal;\n}\n#cssmenu a[data-v-5a26d5a0] {\n  display: block;\n  line-height: 1em;\n  text-decoration: none;\n}\n#cssmenu > ul[data-v-5a26d5a0] {\n  display: inline-block;\n}\n#cssmenu[data-v-5a26d5a0]:after,\n#cssmenu ul[data-v-5a26d5a0]:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n#cssmenu ul ul[data-v-5a26d5a0] {\n  text-transform: none;\n  min-width: 190px;\n}\n#cssmenu.dark ul ul a[data-v-5a26d5a0] {\n  background: #4a5568;\n  color: #edf2f7;\n  border: 1px solid #2d3748;\n  border-top: 0px none #2d3748;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu.light ul ul a[data-v-5a26d5a0] {\n  background: #e2e8f0;\n  color: #2d3748;\n  border: 1px solid #edf2f7;\n  border-top: 0px none #edf2f7;\n  line-height: 110%;\n  padding: 6px 10px;\n}\n#cssmenu ul ul ul[data-v-5a26d5a0] {\n  border-top: 0 none;\n}\n#cssmenu ul ul li[data-v-5a26d5a0] {\n  position: relative;\n}\n#cssmenu.dark ul ul li:hover > a[data-v-5a26d5a0] {\n  background: #2b6cb0;\n}\n#cssmenu.light ul ul li:hover > a[data-v-5a26d5a0] {\n  background: #90cdf4;\n}\n#cssmenu.dark ul ul li:first-child > a[data-v-5a26d5a0] {\n  border: 1px solid #2d3748;\n}\n#cssmenu.light ul ul li:first-child > a[data-v-5a26d5a0] {\n  border: 1px solid #edf2f7;\n}\n#cssmenu.dark ul ul li:last-child > a[data-v-5a26d5a0] {\n  box-shadow: 0 3px 0 #f7fafc;\n}\n#cssmenu.light ul ul li:last-child > a[data-v-5a26d5a0] {\n  box-shadow: 0 3px 0 #1a202c;\n}\n#cssmenu ul ul li.has-sub > a[data-v-5a26d5a0]:after {\n  content: \"+\";\n  position: absolute;\n  top: 50%;\n  right: 15px;\n  margin-top: -8px;\n}\n#cssmenu ul li:hover > a[data-v-5a26d5a0],\n#cssmenu.dark ul li.active > a[data-v-5a26d5a0] {\n  background: #2b6cb0;\n  color: #f7fafc;\n}\n#cssmenu ul li:hover > a[data-v-5a26d5a0],\n#cssmenu.light ul li.active > a[data-v-5a26d5a0] {\n  background: #90cdf4;\n  color: #1a202c;\n}\n#cssmenu ul li.last ul[data-v-5a26d5a0] {\n  left: auto;\n  right: 0;\n}\n#cssmenu ul li.last ul ul[data-v-5a26d5a0] {\n  left: auto;\n  right: 99.5%;\n}\n#cssmenu a[data-v-5a26d5a0] {\n  padding: 3px 10px;\n}\n#cssmenu.dark a[data-v-5a26d5a0] {\n  background: #4a5568;\n  color: #edf2f7;\n}\n#cssmenu.light a[data-v-5a26d5a0] {\n  background: #e2e8f0;\n  color: #2d3748;\n}\n#cssmenu > ul > li > a[data-v-5a26d5a0] {\n  line-height: 30px;\n}\n.mnu-flex[data-v-5a26d5a0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n/* End Top panel */\n", ""]);
 
 // exports
 
@@ -58804,7 +58822,7 @@ var render = function() {
         "a",
         {
           class: [_vm.getPanel === "searchtasks" ? "active" : ""],
-          attrs: { title: "Show Search tasks Panel" },
+          attrs: { title: "Show Search Panel" },
           on: {
             click: function($event) {
               $event.preventDefault()
@@ -60339,9 +60357,19 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                " +
-                      _vm._s(_vm._f("formatDate")(task.created_at)) +
-                      "\n            "
-                  )
+                      _vm._s(_vm._f("formatDate")(task.created_at))
+                  ),
+                  task.isfiles
+                    ? _c("span", [
+                        _vm._v(" | "),
+                        _c("i", {
+                          staticClass: "mdi mdi-file-multiple mdiIcon",
+                          attrs: {
+                            title: "Тhere are files available in this task"
+                          }
+                        })
+                      ])
+                    : _vm._e()
                 ]
               ),
               _vm._v(" "),
@@ -60749,26 +60777,6 @@ var render = function() {
                       "div",
                       {
                         staticClass: "mnu-flex",
-                        on: { click: _vm.showProperties }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "mdi mdi-tools standardSizeIcon",
-                          class: _vm.getTheme
-                        }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Options")])
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "mnu-flex",
                         on: { click: _vm.showSearchtasks }
                       },
                       [
@@ -60778,7 +60786,7 @@ var render = function() {
                           class: _vm.getTheme
                         }),
                         _vm._v(" "),
-                        _c("span", [_vm._v("Search Tasks")])
+                        _c("span", [_vm._v("Search Panel")])
                       ]
                     )
                   ])
@@ -60828,6 +60836,32 @@ var render = function() {
             _vm._v(" "),
             _c("li", { staticClass: "has-sub" }, [
               _vm._m(9),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _c("a", [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "mnu-flex",
+                        on: { click: _vm.showProperties }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "mdi mdi-tools standardSizeIcon",
+                          class: _vm.getTheme
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Options")])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "has-sub" }, [
+              _vm._m(10),
               _vm._v(" "),
               _c("ul", [
                 _c("li", [
@@ -60952,7 +60986,15 @@ var render = function() {
           }),
           _vm._v(" Delete Task\n        ")
         ]
-      )
+      ),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.showSearchtasks } }, [
+        _c("i", {
+          staticClass: "mdi mdi-file-document-box-search mdiOtherIcon",
+          class: _vm.getTheme
+        }),
+        _vm._v(" Search Panel\n        ")
+      ])
     ])
   ])
 }
@@ -61009,6 +61051,12 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("a", [_c("span", [_vm._v("Tasks Sort")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [_c("span", [_vm._v("Panels")])])
   },
   function() {
     var _vm = this
@@ -76255,7 +76303,8 @@ var actions = {
                 status: state.task.status,
                 decision: state.task.decision,
                 last_name: state.user_name,
-                last_id: state.user_id
+                last_id: state.user_id,
+                isfiles: 0
               }, {
                 "Content-Type": "application/json; charset=utf-8"
               });
@@ -76275,7 +76324,8 @@ var actions = {
                 status: state.task.status,
                 decision: state.task.decision,
                 last_name: state.user_name,
-                last_id: state.user_id
+                last_id: state.user_id,
+                isfiles: state.documents.length > 0 ? 1 : 0
               }, {
                 "Content-Type": "application/json; charset=utf-8"
               });
@@ -76294,6 +76344,7 @@ var actions = {
               state.task.decision = response.data.data.decision;
               state.task.last_name = response.data.data.last_name;
               state.task.last_id = response.data.data.last_id;
+              state.task.isfiles = response.data.data.isfiles;
               commit("setNewTask", false);
               commit("setCurrentTaskId", response.data.data.id);
 
@@ -76301,7 +76352,7 @@ var actions = {
                 alert("You have successfully saved the changes to the Task: " + response.data.data.title);
               }
 
-            case 24:
+            case 25:
             case "end":
               return _context11.stop();
           }

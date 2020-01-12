@@ -73,6 +73,7 @@ class TasksController extends Controller
         $task->decision = $request->input('decision');
         $task->last_name = $request->input('last_name');
         $task->last_id = $request->input('last_id');
+        $task->isfiles = $request->input('isfiles');
 
         if ($task->save()) {
             return new TaskResource($task);

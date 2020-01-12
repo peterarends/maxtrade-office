@@ -16,7 +16,7 @@
             <i class="mdi mdi-finance mdiIcon"></i>
         </a>
         <a
-            title="Show Search tasks Panel"
+            title="Show Search Panel"
             @click.prevent="showSearchtasks"
             :class="[getPanel === 'searchtasks' ? 'active' : '']"
         >

@@ -393,7 +393,8 @@ const actions = {
                     status: state.task.status,
                     decision: state.task.decision,
                     last_name: state.user_name,
-                    last_id: state.user_id
+                    last_id: state.user_id,
+                    isfiles: 0
                 },
                 { "Content-Type": "application/json; charset=utf-8" }
             );
@@ -408,7 +409,8 @@ const actions = {
                     status: state.task.status,
                     decision: state.task.decision,
                     last_name: state.user_name,
-                    last_id: state.user_id
+                    last_id: state.user_id,
+                    isfiles: state.documents.length > 0 ? 1 : 0
                 },
                 { "Content-Type": "application/json; charset=utf-8" }
             );
@@ -423,6 +425,7 @@ const actions = {
         state.task.decision = response.data.data.decision;
         state.task.last_name = response.data.data.last_name;
         state.task.last_id = response.data.data.last_id;
+        state.task.isfiles = response.data.data.isfiles;
         commit("setNewTask", false);
         commit("setCurrentTaskId", response.data.data.id);
         if (isMessage) {

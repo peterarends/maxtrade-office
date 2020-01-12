@@ -43,7 +43,13 @@
                         getTheme
                     ]"
                 >
-                    {{ task.created_at | formatDate }}
+                    {{ task.created_at | formatDate
+                    }}<span v-if="task.isfiles"
+                        >&nbsp;|&nbsp;<i
+                            class="mdi mdi-file-multiple mdiIcon"
+                            title="Тhere are files available in this task"
+                        ></i
+                    ></span>
                 </div>
                 <div class="singleTaskDiv">
                     <div
