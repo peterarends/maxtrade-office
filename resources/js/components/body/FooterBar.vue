@@ -37,11 +37,7 @@
 </template>
 
 <script>
-import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
-// import VueTranslate from "vue-translate-plugin";
-
-// Vue.use(VueTranslate);
 
 export default {
     name: "FooterBar",
@@ -54,18 +50,6 @@ export default {
         "getUserName",
         "getProgress"
     ])
-
-    // mounted() {
-    //     this.$translate.setLang("bg_BG");
-    // },
-
-    // locales: {
-    //     en_US: {},
-    //     bg_BG: {
-    //         Projects: "Проекти",
-    //         Tasks: "Задачи"
-    //     }
-    // }
 };
 </script>
 

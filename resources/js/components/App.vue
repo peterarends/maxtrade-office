@@ -64,10 +64,7 @@ export default {
     },
 
     locales: {
-        en_US: {
-            File: "File1",
-            "Add Project": "Add Project"
-        },
+        en_US: {},
         bg_BG: {
             File: "Програма",
             Exit: "Изход",
@@ -100,7 +97,49 @@ export default {
             Tools: "Инструменти",
             Options: "Настройки",
             Help: "Помощ",
-            About: "За Програмата"
+            About: "За Програмата",
+            "Return to ready state": "Върни в началото",
+            "Show Search Panel": "Покажи панела за търсене",
+            "Show Mails Panel": "Покажи панела съобщения",
+            "Show Contacts Panel": "Покажи панела контакти",
+            Project: "Проект",
+            "Date start": "Начало",
+            "Date end": "Край",
+            Continues: "Не е завършен",
+            "Status of the project": "Състояние на проекта",
+            "Ended tasks": "Приключени задачи",
+            Save: "Запиши",
+            Delete: "Изтрий",
+            Export: "Експортирай",
+            Close: "Затвори",
+            "Last change": "Последна промяна",
+            Active: "Активен",
+            Completed: "Приключен",
+            "projects search ...": "търси в проекти ...",
+            Properties: "Настройки",
+            "search settings ...": "търси в настройки ...",
+            properties: "настройки",
+            "Dark theme": "Тъмна тема",
+            "Light theme": "Светла тема",
+            "Show All projects": "Покажи всички проекти",
+            "Show Active projects": "Покажи активните проекти",
+            "Show Ended projects": "Покажи приключените проекти",
+            "Show All tasks": "Покажи всички задачи",
+            "Show Active tasks": "Покажи активните задачи",
+            "Show Ended tasks": "Покажи приключените задачи",
+            Bulgarian: "Български",
+            English: "Английски",
+            "Search Projects and Tasks": "Търси в Проекти и задачи",
+            Task: "Задача",
+            "Status of the task": "Състояние на задачата",
+            "Short description of the decision ...":
+                "Описание на решението ...",
+            "Documents attached to this task":
+                "Документи прикачени към тази задача",
+            "Add selected file.": "Добави избрания файл.",
+            Add: "Добави",
+            "Delete File": "Изтрий файла",
+            "tasks search ...": "търси в задачи ..."
         }
     },
 

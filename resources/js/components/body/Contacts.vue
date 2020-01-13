@@ -45,27 +45,12 @@
 </template>
 
 <script>
-import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
-// import VueTranslate from "vue-translate-plugin";
-
-// Vue.use(VueTranslate);
 
 export default {
     name: "Contacts",
 
-    computed: mapGetters(["getTheme", "getLanguage"]),
-
-    // mounted() {
-    //     this.$translate.setLang(this.getLanguage);
-    // },
-
-    // locales: {
-    //     en_US: {},
-    //     bg_BG: {
-    //         Contacts: "Контакти"
-    //     }
-    // },
+    computed: mapGetters(["getTheme"]),
 
     methods: { ...mapActions(["closePanel"]) }
 };

@@ -60,7 +60,7 @@
                     {{ t("All tasks") }}: <strong>{{ countAllTasks }}</strong>
                 </div>
                 <div class="taskActive">
-                    {{ t("Active tasks") }}:
+                    {{ t("Actived Tasks") }}:
                     <strong>{{ countActiveTasks }}</strong>
                 </div>
                 <div class="taskEnded">
@@ -119,13 +119,9 @@
 </template>
 
 <script>
-import Vue from "vue";
 import moment from "moment";
 import { mapGetters, mapActions } from "vuex";
 import PieChart from "./PieChart";
-// import VueTranslate from "vue-translate-plugin";
-
-// Vue.use(VueTranslate);
 
 export default {
     name: "Projects",
@@ -161,36 +157,9 @@ export default {
             "getNewTask",
             "countAllTasks",
             "countActiveTasks",
-            "countEndedTasks",
-            "getLanguage"
+            "countEndedTasks"
         ])
     },
-
-    // mounted() {
-    //     setInterval(this.generateData, 2000);
-    //     this.$translate.setLang(this.getLanguage);
-    // },
-
-    // locales: {
-    //     en_US: {},
-    //     bg_BG: {
-    //         Project: "Проект",
-    //         "Date start": "Начало",
-    //         "Date end": "Край",
-    //         Continues: "Не е завършен",
-    //         "Status of the project": "Състояние на проекта",
-    //         "All tasks": "Всчики задачи",
-    //         "Active tasks": "Активни задачи",
-    //         "Ended tasks": "Приключени задачи",
-    //         Save: "Запиши",
-    //         Delete: "Изтрий",
-    //         Export: "Експортирай",
-    //         Close: "Затвори",
-    //         "Last change": "Последна промяна",
-    //         Active: "Активен",
-    //         Completed: "Приключен"
-    //     }
-    // },
 
     filters: {
         formatDate: function(value) {

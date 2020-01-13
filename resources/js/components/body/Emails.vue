@@ -3,7 +3,7 @@
         <div class="button-bar" :class="getTheme">
             <div class="topTitleDiv">
                 <!--Window title-->
-                <span>{{ t("E-Мails") }}</span>
+                <span>{{ t("E-Mails") }}</span>
             </div>
             <div class="topRightIcons">
                 <!--Window title icons-->
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <div class="body">{{ t("E-Мails") }}</div>
+        <div class="body">{{ t("E-Mails") }}</div>
         <div class="bottom" :class="getTheme">
             <a
                 ><i
@@ -45,27 +45,12 @@
 </template>
 
 <script>
-import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
-// import VueTranslate from "vue-translate-plugin";
-
-// Vue.use(VueTranslate);
 
 export default {
     name: "Emails",
 
-    computed: mapGetters(["getTheme", "getLanguage"]),
-
-    // mounted() {
-    //     this.$translate.setLang(this.getLanguage);
-    // },
-
-    // locales: {
-    //     en_US: {},
-    //     bg_BG: {
-    //         "E-Мails": "Съобщения"
-    //     }
-    // },
+    computed: mapGetters(["getTheme"]),
 
     methods: { ...mapActions(["closePanel"]) }
 };

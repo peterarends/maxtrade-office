@@ -31,28 +31,12 @@
 </template>
 
 <script>
-import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
-// import VueTranslate from "vue-translate-plugin";
-
-// Vue.use(VueTranslate);
 
 export default {
     name: "Searchtasks",
 
     computed: mapGetters(["getTheme", "getLanguage"]),
-
-    // mounted() {
-    //     this.$translate.setLang(this.getLanguage);
-    // },
-
-    // locales: {
-    //     en_US: {},
-    //     bg_BG: {
-    //         "Search Projects and Tasks": "Търси в Проекти и задачи",
-    //         Close: "Затвори"
-    //     }
-    // },
 
     methods: { ...mapActions(["closePanel"]) }
 };

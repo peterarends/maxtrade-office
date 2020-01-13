@@ -428,7 +428,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
     name: "TopBar",
 
-    computed: mapGetters(["getTheme", "getUserName", "getLanguage"]),
+    computed: mapGetters(["getTheme", "getUserName"]),
 
     methods: {
         ...mapActions([

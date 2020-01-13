@@ -102,13 +102,9 @@
 </template>
 
 <script>
-import Vue from "vue";
 import moment from "moment";
 import { VueContext } from "vue-context";
 import { mapGetters, mapActions } from "vuex";
-// import VueTranslate from "vue-translate-plugin";
-
-// Vue.use(VueTranslate);
 
 export default {
     name: "ProjectsPanel",
@@ -124,20 +120,8 @@ export default {
         "getCurrentProjectId",
         "countAllTasks",
         "countActiveTasks",
-        "countEndedTasks",
-        "getLanguage"
+        "countEndedTasks"
     ]),
-
-    // mounted() {
-    //     this.$translate.setLang(this.getLanguage);
-    // },
-
-    // locales: {
-    //     en_US: {},
-    //     bg_BG: {
-    //         "projects search ...": "търси в проекти ..."
-    //     }
-    // },
 
     filters: {
         formatDate: function(value) {
