@@ -161,6 +161,10 @@ export default {
         ])
     },
 
+    mounted() {
+        setInterval(this.generateData, 2000);
+    },
+
     filters: {
         formatDate: function(value) {
             if (value) {

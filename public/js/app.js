@@ -2597,6 +2597,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getTheme", "getProject", "getNewTask", "countAllTasks", "countActiveTasks", "countEndedTasks"])),
+  mounted: function mounted() {
+    setInterval(this.generateData, 2000);
+  },
   filters: {
     formatDate: function formatDate(value) {
       if (value) {
