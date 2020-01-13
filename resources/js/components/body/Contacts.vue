@@ -47,25 +47,25 @@
 <script>
 import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
-import VueTranslate from "vue-translate-plugin";
+// import VueTranslate from "vue-translate-plugin";
 
-Vue.use(VueTranslate);
+// Vue.use(VueTranslate);
 
 export default {
     name: "Contacts",
 
     computed: mapGetters(["getTheme", "getLanguage"]),
 
-    mounted() {
-        this.$translate.setLang(this.getLanguage);
-    },
+    // mounted() {
+    //     this.$translate.setLang(this.getLanguage);
+    // },
 
-    locales: {
-        en_US: {},
-        bg_BG: {
-            Contacts: "Контакти"
-        }
-    },
+    // locales: {
+    //     en_US: {},
+    //     bg_BG: {
+    //         Contacts: "Контакти"
+    //     }
+    // },
 
     methods: { ...mapActions(["closePanel"]) }
 };

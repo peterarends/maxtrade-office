@@ -147,9 +147,9 @@ import path from "path";
 import axios from "axios";
 import { VueContext } from "vue-context";
 import { mapGetters, mapActions } from "vuex";
-import VueTranslate from "vue-translate-plugin";
+// import VueTranslate from "vue-translate-plugin";
 
-Vue.use(VueTranslate);
+// Vue.use(VueTranslate);
 
 export default {
     name: "Tasks",
@@ -173,33 +173,33 @@ export default {
         "getLanguage"
     ]),
 
-    mounted() {
-        this.$translate.setLang(this.getLanguage);
-    },
+    // mounted() {
+    //     this.$translate.setLang(this.getLanguage);
+    // },
 
-    locales: {
-        en_US: {},
-        bg_BG: {
-            Task: "Задача",
-            "Date start": "Начало",
-            "Date end": "Край",
-            Continues: "Не е завършен",
-            "Status of the task": "Състояние на задачата",
-            Active: "Активна",
-            Completed: "Приключена",
-            "Short description of the decision ...":
-                "Описание на решението ...",
-            "Documents attached to this task":
-                "Документи прикачени към тази задача",
-            "Add selected file.": "Добави избрания файл.",
-            Add: "Добави",
-            Save: "Запиши",
-            Delete: "Изтрий",
-            Close: "Затвори",
-            "Last change": "Последна промяна",
-            "Delete File": "Изтрий файла"
-        }
-    },
+    // locales: {
+    //     en_US: {},
+    //     bg_BG: {
+    //         Task: "Задача",
+    //         "Date start": "Начало",
+    //         "Date end": "Край",
+    //         Continues: "Не е завършен",
+    //         "Status of the task": "Състояние на задачата",
+    //         Active: "Активна",
+    //         Completed: "Приключена",
+    //         "Short description of the decision ...":
+    //             "Описание на решението ...",
+    //         "Documents attached to this task":
+    //             "Документи прикачени към тази задача",
+    //         "Add selected file.": "Добави избрания файл.",
+    //         Add: "Добави",
+    //         Save: "Запиши",
+    //         Delete: "Изтрий",
+    //         Close: "Затвори",
+    //         "Last change": "Последна промяна",
+    //         "Delete File": "Изтрий файла"
+    //     }
+    // },
 
     filters: {
         formatDate: function(value) {

@@ -36,6 +36,9 @@ import Emails from "./body/Emails";
 import Searchtasks from "./body/Searchtasks";
 import FooterBar from "./body/FooterBar";
 import { mapGetters, mapActions } from "vuex";
+import VueTranslate from "vue-translate-plugin";
+
+Vue.use(VueTranslate);
 
 export default {
     name: "App",
@@ -55,11 +58,58 @@ export default {
         FooterBar
     },
 
-    created() {
-        this.fetchProperties();
+    async created() {
+        await this.fetchProperties();
+        this.$translate.setLang(this.getLanguage);
     },
 
-    computed: mapGetters(["getTheme", "getPanel", "getProjectFilter"]),
+    locales: {
+        en_US: {
+            File: "File1",
+            "Add Project": "Add Project"
+        },
+        bg_BG: {
+            File: "Програма",
+            Exit: "Изход",
+            Projects: "Проекти",
+            "Add Project": "Добави Проект",
+            "Delete Project": "Изтрий Проект",
+            "Add Task": "Добави Задача",
+            "Complete Project": "Приключи Проект",
+            "Projects Filter": "Филтър Проекти",
+            "All Projects": "Всички Проекти",
+            "Completed Projects": "Приключени Проекти",
+            "Actived Projects": "Активни Проекти",
+            "Projects Sort": "Подреждане на Проекти",
+            "Id Ascending": "По ИД Възходящо",
+            "Id Descending": "По ИД Низходящо",
+            "Name A-Z": "По Име А-Я",
+            "Name Z-A": "По Име Я-А",
+            Tasks: "Задачи",
+            "Delete Task": "Изтрий Задача",
+            "Complete Task": "Приключи задача",
+            "Tasks Filter": "Филтър Задачи",
+            "All Tasks": "Всички Задачи",
+            "Completed Tasks": "Приключени Задачи",
+            "Actived Tasks": "Активни задачи",
+            "Tasks Sort": "Подреждане на Задачи",
+            Panels: "Модули",
+            "Search Panel": "Модул Търсене",
+            "E-Mails": "Модул E-Mails",
+            Contacts: "Модул Контакти",
+            Tools: "Инструменти",
+            Options: "Настройки",
+            Help: "Помощ",
+            About: "За Програмата"
+        }
+    },
+
+    computed: mapGetters([
+        "getTheme",
+        "getPanel",
+        "getProjectFilter",
+        "getLanguage"
+    ]),
 
     methods: {
         ...mapActions(["fetchProperties", "fetchProjects"])

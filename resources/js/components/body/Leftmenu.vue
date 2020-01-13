@@ -72,9 +72,9 @@
 import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
 import { VueContext } from "vue-context";
-import VueTranslate from "vue-translate-plugin";
+// import VueTranslate from "vue-translate-plugin";
 
-Vue.use(VueTranslate);
+// Vue.use(VueTranslate);
 
 export default {
     name: "Leftmenu",
@@ -85,19 +85,19 @@ export default {
 
     computed: mapGetters(["getTheme", "getPanel", "getLanguage"]),
 
-    mounted() {
-        this.$translate.setLang(this.getLanguage);
-    },
+    // mounted() {
+    //     this.$translate.setLang(this.getLanguage);
+    // },
 
-    locales: {
-        en_US: {},
-        bg_BG: {
-            "Return to ready state": "Върни в началото",
-            "Show Search Panel": "Покажи панела за търсене",
-            "Show Mails Panel": "Покажи панела съобщения",
-            "Show Contacts Panel": "Покажи панела контакти"
-        }
-    },
+    // locales: {
+    //     en_US: {},
+    //     bg_BG: {
+    //         "Return to ready state": "Върни в началото",
+    //         "Show Search Panel": "Покажи панела за търсене",
+    //         "Show Mails Panel": "Покажи панела съобщения",
+    //         "Show Contacts Panel": "Покажи панела контакти"
+    //     }
+    // },
 
     methods: {
         ...mapActions([

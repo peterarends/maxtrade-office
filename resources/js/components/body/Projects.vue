@@ -123,9 +123,9 @@ import Vue from "vue";
 import moment from "moment";
 import { mapGetters, mapActions } from "vuex";
 import PieChart from "./PieChart";
-import VueTranslate from "vue-translate-plugin";
+// import VueTranslate from "vue-translate-plugin";
 
-Vue.use(VueTranslate);
+// Vue.use(VueTranslate);
 
 export default {
     name: "Projects",
@@ -166,31 +166,31 @@ export default {
         ])
     },
 
-    mounted() {
-        setInterval(this.generateData, 2000);
-        this.$translate.setLang(this.getLanguage);
-    },
+    // mounted() {
+    //     setInterval(this.generateData, 2000);
+    //     this.$translate.setLang(this.getLanguage);
+    // },
 
-    locales: {
-        en_US: {},
-        bg_BG: {
-            Project: "Проект",
-            "Date start": "Начало",
-            "Date end": "Край",
-            Continues: "Не е завършен",
-            "Status of the project": "Състояние на проекта",
-            "All tasks": "Всчики задачи",
-            "Active tasks": "Активни задачи",
-            "Ended tasks": "Приключени задачи",
-            Save: "Запиши",
-            Delete: "Изтрий",
-            Export: "Експортирай",
-            Close: "Затвори",
-            "Last change": "Последна промяна",
-            Active: "Активен",
-            Completed: "Приключен"
-        }
-    },
+    // locales: {
+    //     en_US: {},
+    //     bg_BG: {
+    //         Project: "Проект",
+    //         "Date start": "Начало",
+    //         "Date end": "Край",
+    //         Continues: "Не е завършен",
+    //         "Status of the project": "Състояние на проекта",
+    //         "All tasks": "Всчики задачи",
+    //         "Active tasks": "Активни задачи",
+    //         "Ended tasks": "Приключени задачи",
+    //         Save: "Запиши",
+    //         Delete: "Изтрий",
+    //         Export: "Експортирай",
+    //         Close: "Затвори",
+    //         "Last change": "Последна промяна",
+    //         Active: "Активен",
+    //         Completed: "Приключен"
+    //     }
+    // },
 
     filters: {
         formatDate: function(value) {

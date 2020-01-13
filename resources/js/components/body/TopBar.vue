@@ -423,58 +423,12 @@
     </div>
 </template>
 <script>
-import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
-import VueTranslate from "vue-translate-plugin";
-
-Vue.use(VueTranslate);
 
 export default {
-    name: "Header",
+    name: "TopBar",
 
     computed: mapGetters(["getTheme", "getUserName", "getLanguage"]),
-
-    mounted() {
-        this.$translate.setLang("en_US");
-    },
-
-    locales: {
-        en_US: {},
-        bg_BG: {
-            File: "Програма",
-            Exit: "Изход",
-            Projects: "Проекти",
-            "Add Project": "Добави Проект",
-            "Delete Project": "Изтрий Проект",
-            "Add Task": "Добави Задача",
-            "Complete Project": "Приключи Проект",
-            "Projects Filter": "Филтър Проекти",
-            "All Projects": "Всички Проекти",
-            "Completed Projects": "Приключени Проекти",
-            "Actived Projects": "Активни Проекти",
-            "Projects Sort": "Пордеждане на Проекти",
-            "Id Ascending": "По ИД Възходящо",
-            "Id Descending": "По ИД Низходящо",
-            "Name A-Z": "По Име А-Я",
-            "Name Z-A": "По Име Я-А",
-            Tasks: "Задачи",
-            "Delete Task": "Изтрий Задача",
-            "Complete Task": "Приключи задача",
-            "Tasks Filter": "Филтър Задачи",
-            "All Tasks": "Всички Задачи",
-            "Completed Tasks": "Приключени Задачи",
-            "Actived Tasks": "Активни задачи",
-            "Tasks Sort": "Подреждане на Задачи",
-            Panels: "Модули",
-            "Search Panel": "Модул Търсене",
-            "E-Mails": "Модул E-Mails",
-            Contacts: "Модул Контакти",
-            Tools: "Инструменти",
-            Options: "Настройки",
-            Help: "Помощ",
-            About: "За Програмата"
-        }
-    },
 
     methods: {
         ...mapActions([
@@ -507,9 +461,7 @@ export default {
             "showAbout",
             "showSearchtasks"
         ])
-    },
-
-    props: ["File"]
+    }
 };
 </script>
 <style scoped>

@@ -128,9 +128,9 @@
 <script>
 import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
-import VueTranslate from "vue-translate-plugin";
+// import VueTranslate from "vue-translate-plugin";
 
-Vue.use(VueTranslate);
+// Vue.use(VueTranslate);
 
 export default {
     name: "Properties",
@@ -159,28 +159,28 @@ export default {
         "getPropertyCategories"
     ]),
 
-    mounted() {
-        this.$translate.setLang(this.getLanguage);
-    },
+    // mounted() {
+    //     this.$translate.setLang(this.getLanguage);
+    // },
 
-    locales: {
-        en_US: {},
-        bg_BG: {
-            Properties: "Настройки",
-            "search settings ...": "търси в настройки ...",
-            properties: "настройки",
-            "Dark theme": "Тъмна тема",
-            "Light theme": "Светла тема",
-            "Show All projects": "Покажи всички проекти",
-            "Show Active projects": "Покажи активните проекти",
-            "Show Ended projects": "Покажи приключените проекти",
-            "Show All tasks": "Покажи всички задачи",
-            "Show Active tasks": "Покажи активните задачи",
-            "Show Ended tasks": "Покажи приключените задачи",
-            Bulgarian: "Български",
-            English: "Английски"
-        }
-    },
+    // locales: {
+    //     en_US: {},
+    //     bg_BG: {
+    //         Properties: "Настройки",
+    //         "search settings ...": "търси в настройки ...",
+    //         properties: "настройки",
+    //         "Dark theme": "Тъмна тема",
+    //         "Light theme": "Светла тема",
+    //         "Show All projects": "Покажи всички проекти",
+    //         "Show Active projects": "Покажи активните проекти",
+    //         "Show Ended projects": "Покажи приключените проекти",
+    //         "Show All tasks": "Покажи всички задачи",
+    //         "Show Active tasks": "Покажи активните задачи",
+    //         "Show Ended tasks": "Покажи приключените задачи",
+    //         Bulgarian: "Български",
+    //         English: "Английски"
+    //     }
+    // },
 
     methods: {
         ...mapActions([
