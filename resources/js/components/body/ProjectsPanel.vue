@@ -85,17 +85,19 @@
         </div>
         <vue-context ref="menu" @open="onOpenContextMenu">
             <li>
-                <a @click.prevent="onClickContextMenu('delete')"
-                    >Delete Project</a
-                >
+                <a @click.prevent="onClickContextMenu('delete')">{{
+                    t("Delete Project")
+                }}</a>
             </li>
             <li>
-                <a @click.prevent="onClickContextMenu('complete')"
-                    >Complete Project</a
-                >
+                <a @click.prevent="onClickContextMenu('complete')">{{
+                    t("Complete Project")
+                }}</a>
             </li>
             <li>
-                <a @click.prevent="onClickContextMenu('addtask')">New Task</a>
+                <a @click.prevent="onClickContextMenu('addtask')">{{
+                    t("New Task")
+                }}</a>
             </li>
         </vue-context>
     </div>

@@ -6,6 +6,7 @@ use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Resources\Project as ProjectResource;
 use App\Http\Requests;
+use App\Task;
 
 class ProjectsController extends Controller
 {
@@ -113,6 +114,21 @@ class ProjectsController extends Controller
 
     public function export($id)
     {
-        return view('export');
+        if (!empty($id)) {
+            $project = Project::findOrFail($id);
+            if ($project->status) {
+                $stop = "Continues";
+            } else {
+                $stop = $project->updated_at;
+            }
+            $tasks = Task::where(['project_id' => $project->id])->get();
+            return view('export')->with([
+                'start' => $project->created_at,
+                'stop' => $stop,
+                'title' => $project->title,
+                'body' => $project->body,
+                'tasks' => $tasks
+            ]);
+        }
     }
 }

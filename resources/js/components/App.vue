@@ -139,7 +139,8 @@ export default {
             "Add selected file.": "Добави избрания файл.",
             Add: "Добави",
             "Delete File": "Изтрий файла",
-            "tasks search ...": "търси в задачи ..."
+            "tasks search ...": "търси в задачи ...",
+            "New Task": "Нова Задача"
         }
     },
 

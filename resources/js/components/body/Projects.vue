@@ -94,10 +94,7 @@
             <a
                 :href="'/project/' + getProject.id + '/export.html'"
                 target="_blank"
-                ><i
-                    class="mdi mdi-delete-outline mdiProjectIcon"
-                    :class="getTheme"
-                ></i
+                ><i class="mdi mdi-printer mdiProjectIcon" :class="getTheme"></i
                 >&nbsp;{{ t("Export") }}</a
             >
             <a @click.prevent="closePanel"
