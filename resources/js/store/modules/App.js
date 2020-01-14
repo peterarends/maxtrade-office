@@ -29,7 +29,8 @@ const state = {
     documents: [],
     user_name: document.getElementsByTagName("App")[0].getAttribute("userName"),
     user_id: document.getElementsByTagName("App")[0].getAttribute("userId"),
-    progress: 0
+    progress: 0,
+    users: []
 };
 
 const getters = {
@@ -59,7 +60,8 @@ const getters = {
     getVersion: state => state.version,
     getUserName: state => state.user_name,
     getUserId: state => state.user_id,
-    getProgress: state => state.progress
+    getProgress: state => state.progress,
+    getUsers: state => state.users
 };
 
 const actions = {
@@ -179,6 +181,11 @@ const actions = {
     // Show Users panel
     showUsers({ commit }) {
         commit("setPanel", "users");
+    },
+    // Fetch all projects
+    async fetchUsers({ commit }, id) {
+        const response = await axios.get("api/users/" + id);
+        commit("setUsers", response.data.data);
     },
     // Fetch all projects
     async fetchProjects({ commit }, status) {
@@ -712,7 +719,8 @@ const mutations = {
     setTaskFilterId: (state, filter09) =>
         (state.task_filter.filter09 = filter09),
     setDocuments: (state, documents) => (state.documents = documents),
-    setProgress: (state, progress) => (state.progress = progress)
+    setProgress: (state, progress) => (state.progress = progress),
+    setUsers: (state, users) => (state.users = users)
 };
 
 export default {

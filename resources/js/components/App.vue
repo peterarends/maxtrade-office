@@ -146,7 +146,11 @@ export default {
             "New Task": "Нова Задача",
             Users: "Потребители",
             "Managing users to a Project":
-                "Управление на потребители към Проекта"
+                "Управление на потребители към Проекта",
+            "Add the selected user to those who are allowed to work with the project":
+                "Добави избрания потребител към тези на които е позволено да работят с проекта",
+            "Users attached to this project":
+                "Потребители прикачени към този проект"
         }
     },
 

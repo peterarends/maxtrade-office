@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\Users as UserResource;
 
 class UserController extends Authenticatable implements MustVerifyEmail
 {
@@ -41,5 +42,14 @@ class UserController extends Authenticatable implements MustVerifyEmail
         Auth::logout();
         $request->session()->flush();
         return redirect('/');
+    }
+
+    public function getUsers(Request $request)
+    {
+        /** Get Users */
+        $users = User::where('id', '!=', $request->id)->orderBy('name', 'desc')->get();
+
+        /** Return collection of Users as resource */
+        return UserResource::collection($users);
     }
 }

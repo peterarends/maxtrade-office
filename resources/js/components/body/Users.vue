@@ -22,6 +22,59 @@
         <div class="body" :class="[getProject.status == 0 ? 'ended' : '']">
             <input class="title" type="text" v-model="getProject.title" />
             <div class="vp20"></div>
+            <div class="select">
+                <select class="controll">
+                    <option
+                        v-for="user in getUsers"
+                        :key="user.id"
+                        :value="user.id"
+                        >{{ user.name }} ({{ user.email }})</option
+                    > </select
+                >&nbsp;&nbsp;&nbsp;
+                <button
+                    class="button"
+                    :title="
+                        t(
+                            'Add the selected user to those who are allowed to work with the project'
+                        )
+                    "
+                >
+                    <i class="mdi mdi-plus-circle-outline"></i>{{ t("Add") }}
+                </button>
+            </div>
+            <div class="vp20"></div>
+            <div>
+                <h4>{{ t("Users attached to this project") }}:</h4>
+                <div class="documents">
+                    <div
+                        class="document"
+                        v-for="document in getDocuments"
+                        :key="document"
+                    >
+                        <a
+                            target="_blank"
+                            v-bind:href="
+                                'images/tasks/' + getTask.id + '/' + document
+                            "
+                        >
+                            <img
+                                :src="
+                                    ('images/tasks/' +
+                                        getTask.id +
+                                        '/' +
+                                        document)
+                                        | formatIcons
+                                "
+                                :alt="document"
+                                @contextmenu.prevent="
+                                    $refs.menu.open($event, document)
+                                "
+                            />
+                        </a>
+                        <span class="documenName">{{ document }}</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="bottom" :class="getTheme">
             <a @click.prevent="closePanel"
@@ -42,7 +95,17 @@ export default {
     name: "Users",
 
     computed: {
-        ...mapGetters(["getTheme", "getProject", "getNewTask"])
+        ...mapGetters([
+            "getTheme",
+            "getProject",
+            "getNewTask",
+            "getUsers",
+            "getUserId"
+        ])
+    },
+
+    async created() {
+        await this.fetchUsers(this.getUserId);
     },
 
     filters: {
@@ -56,7 +119,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(["closePanel"])
+        ...mapActions(["closePanel", "fetchUsers"])
     }
 };
 </script>
@@ -183,5 +246,28 @@ export default {
 }
 .mdiProjectIcon.dark {
     color: #3182ce;
+}
+.select {
+    display: flex;
+}
+.controll {
+    background: #4a5568;
+    padding: 1px 3px;
+    border: 1px dotted #718096;
+}
+.documents {
+    background: #2d3748;
+    height: 140px;
+    border: 1px solid #4a5568;
+    display: flex;
+    padding: 10px;
+    overflow: auto;
+}
+.document {
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    padding: 2px;
+    align-items: center;
 }
 </style>
