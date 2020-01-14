@@ -85,6 +85,11 @@
         </div>
         <vue-context ref="menu" @open="onOpenContextMenu">
             <li>
+                <a @click.prevent="onClickContextMenu('users')">{{
+                    t("Users")
+                }}</a>
+            </li>
+            <li>
                 <a @click.prevent="onClickContextMenu('delete')">{{
                     t("Delete Project")
                 }}</a>
@@ -142,7 +147,8 @@ export default {
             "toggleProjectIdFilter",
             "deleteProject",
             "completeProject",
-            "addTask"
+            "addTask",
+            "showUsers"
         ]),
 
         onClickContextMenu(action) {
@@ -154,6 +160,10 @@ export default {
                 } else {
                     if (action == "addtask") {
                         this.addTask();
+                    } else {
+                        if (action == "users") {
+                            this.showUsers();
+                        }
                     }
                 }
             }

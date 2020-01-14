@@ -97,6 +97,10 @@
                 ><i class="mdi mdi-printer mdiProjectIcon" :class="getTheme"></i
                 >&nbsp;{{ t("Export") }}</a
             >
+            <a @click.prevent="showUsers"
+                ><i class="mdi mdi-account mdiProjectIcon" :class="getTheme"></i
+                >&nbsp;{{ t("Users") }}</a
+            >
             <a @click.prevent="closePanel"
                 ><i
                     class="mdi mdi-close-outline mdiProjectIcon"
@@ -105,11 +109,11 @@
                 >&nbsp;{{ t("Close") }}</a
             >
             <div class="status_panel">
-                {{ t("Last change") }}: {{ getProject.updated_at | formatDate
-                }}<span class="status_panel_user">
-                    [#{{ getProject.last_id }} /
-                    {{ getProject.last_name }}]</span
-                >
+                {{ t("Last change") }}:
+                {{ getProject.updated_at | formatDate }} [#{{
+                    getProject.last_id
+                }}
+                / {{ getProject.last_name }}]
             </div>
         </div>
     </div>
@@ -185,7 +189,12 @@ export default {
     },
 
     methods: {
-        ...mapActions(["closePanel", "saveProject", "deleteProject"]),
+        ...mapActions([
+            "closePanel",
+            "saveProject",
+            "deleteProject",
+            "showUsers"
+        ]),
         generateData() {
             this.chartData = {
                 hoverBackgroundColor: "red",
@@ -462,7 +471,7 @@ input[type="checkbox"]:checked + label:hover span:before {
     .chart {
         display: none;
     }
-    .status_panel_user {
+    .status_panel {
         display: none;
     }
 }

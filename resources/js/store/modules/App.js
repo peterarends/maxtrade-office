@@ -173,8 +173,12 @@ const actions = {
         dispatch("readyState");
     },
     // Show About panel
-    showAbout({ commit, dispatch }) {
+    showAbout({ commit }) {
         commit("setPanel", "about");
+    },
+    // Show Users panel
+    showUsers({ commit }) {
+        commit("setPanel", "users");
     },
     // Fetch all projects
     async fetchProjects({ commit }, status) {

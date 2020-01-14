@@ -14,6 +14,7 @@
                 <contacts v-show="getPanel == 'contacts'"></contacts>
                 <emails v-show="getPanel == 'emails'"></emails>
                 <searchtasks v-show="getPanel == 'searchtasks'"></searchtasks>
+                <users v-show="getPanel == 'users'"></users>
             </div>
         </div>
         <!-- End body panel -->
@@ -29,6 +30,7 @@ import ProjectsPanel from "./body/ProjectsPanel";
 import TasksPanel from "./body/TasksPanel";
 import Properties from "./body/Properties";
 import Projects from "./body/Projects";
+import Users from "./body/Users";
 import Tasks from "./body/Tasks";
 import About from "./body/About";
 import Contacts from "./body/Contacts";
@@ -50,6 +52,7 @@ export default {
         TasksPanel,
         Properties,
         Projects,
+        Users,
         Tasks,
         About,
         Contacts,
@@ -140,7 +143,10 @@ export default {
             Add: "Добави",
             "Delete File": "Изтрий файла",
             "tasks search ...": "търси в задачи ...",
-            "New Task": "Нова Задача"
+            "New Task": "Нова Задача",
+            Users: "Потребители",
+            "Managing users to a Project":
+                "Управление на потребители към Проекта"
         }
     },
 
