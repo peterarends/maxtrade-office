@@ -68,4 +68,4 @@ Route::put('property', 'PropertiesController@store');
 Route::get('properties_categories', 'PropertiesController@categories');
 
 /** List All Users */
-Route::get('users/{id}', 'UserController@getUsers');
+Route::get('users', 'UserController@getUsers');

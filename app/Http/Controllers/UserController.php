@@ -44,10 +44,10 @@ class UserController extends Authenticatable implements MustVerifyEmail
         return redirect('/');
     }
 
-    public function getUsers(Request $request)
+    public function getUsers()
     {
         /** Get Users */
-        $users = User::where('id', '!=', $request->id)->orderBy('name', 'desc')->get();
+        $users = User::all();
 
         /** Return collection of Users as resource */
         return UserResource::collection($users);

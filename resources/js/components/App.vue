@@ -150,7 +150,8 @@ export default {
             "Add the selected user to those who are allowed to work with the project":
                 "Добави избрания потребител към тези на които е позволено да работят с проекта",
             "Users attached to this project":
-                "Потребители прикачени към този проект"
+                "Потребители прикачени към този проект",
+            "Root User": "Собственик"
         }
     },
 

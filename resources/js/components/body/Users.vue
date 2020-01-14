@@ -25,10 +25,12 @@
             <div class="select">
                 <select class="controll">
                     <option
-                        v-for="user in getUsers"
+                        v-for="user in returnAllUsers(getUsers, getUserId)"
                         :key="user.id"
                         :value="user.id"
-                        >{{ user.name }} ({{ user.email }})</option
+                        >{{ user.id }}{{ getUserId }}{{ user.name }} ({{
+                            user.email
+                        }})</option
                     > </select
                 >&nbsp;&nbsp;&nbsp;
                 <button
@@ -46,7 +48,11 @@
             <div>
                 <h4>{{ t("Users attached to this project") }}:</h4>
                 <div class="documents">
-                    <div
+                    <div class="document">
+                        <img :src="'images/document_icons/user.png'" />
+                        <span class="documenName">{{ t("Root User") }}</span>
+                    </div>
+                    <!-- <div
                         class="document"
                         v-for="document in getDocuments"
                         :key="document"
@@ -72,7 +78,7 @@
                             />
                         </a>
                         <span class="documenName">{{ document }}</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -99,13 +105,14 @@ export default {
             "getTheme",
             "getProject",
             "getNewTask",
-            "getUsers",
-            "getUserId"
+            "getUserId",
+            "getUsers"
         ])
     },
 
     async created() {
-        await this.fetchUsers(this.getUserId);
+        await this.fetchUsers();
+        console.log(this.returnAllUsers(this.getUsers, this.getUserId));
     },
 
     filters: {
@@ -119,7 +126,10 @@ export default {
     },
 
     methods: {
-        ...mapActions(["closePanel", "fetchUsers"])
+        ...mapActions(["closePanel", "fetchUsers"]),
+        returnAllUsers(users, curruser) {
+            return users.filter(u => u.id !== curruser);
+        }
     }
 };
 </script>
