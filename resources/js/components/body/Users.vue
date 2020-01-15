@@ -23,18 +23,25 @@
             <input class="title" type="text" v-model="getProject.title" />
             <div class="vp20"></div>
             <div class="select">
-                <select class="controll">
+                <select
+                    class="controll"
+                    v-model="current_user"
+                    ref="selected_user"
+                >
+                    <option value="0">{{ t("Choose User to add...") }}</option>
                     <option
-                        v-for="user in returnAllUsers(getUsers, getUserId)"
+                        v-for="user in getUsers.filter(
+                            u => u.id !== getProject.user_id
+                        )"
                         :key="user.id"
                         :value="user.id"
-                        >{{ user.id }}{{ getUserId }}{{ user.name }} ({{
-                            user.email
-                        }})</option
+                        >{{ user.name }} ({{ user.email }})</option
                     > </select
                 >&nbsp;&nbsp;&nbsp;
                 <button
+                    v-if="current_user != 0"
                     class="button"
+                    @click="addUsersProject(current_user)"
                     :title="
                         t(
                             'Add the selected user to those who are allowed to work with the project'
@@ -50,35 +57,29 @@
                 <div class="documents">
                     <div class="document">
                         <img :src="'images/document_icons/user.png'" />
-                        <span class="documenName">{{ t("Root User") }}</span>
+                        <span class="documenName">{{
+                            typeof getUsers.find(
+                                u => u.id === getProject.user_id
+                            ) != "undefined"
+                                ? getUsers.find(
+                                      u => u.id === getProject.user_id
+                                  ).name
+                                : ""
+                        }}</span>
                     </div>
-                    <!-- <div
+                    <div
                         class="document"
-                        v-for="document in getDocuments"
-                        :key="document"
+                        v-for="user in getUsersProjects"
+                        :key="user.id"
                     >
-                        <a
-                            target="_blank"
-                            v-bind:href="
-                                'images/tasks/' + getTask.id + '/' + document
+                        <img
+                            :src="'images/document_icons/users.png'"
+                            @contextmenu.prevent="
+                                $refs.menu.open($event, user.id)
                             "
-                        >
-                            <img
-                                :src="
-                                    ('images/tasks/' +
-                                        getTask.id +
-                                        '/' +
-                                        document)
-                                        | formatIcons
-                                "
-                                :alt="document"
-                                @contextmenu.prevent="
-                                    $refs.menu.open($event, document)
-                                "
-                            />
-                        </a>
-                        <span class="documenName">{{ document }}</span>
-                    </div> -->
+                        />
+                        <span class="documenName">{{ user.name }}</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,14 +92,33 @@
                 >&nbsp;{{ t("Close") }}</a
             >
         </div>
+        <vue-context ref="menu" @open="onOpenContextMenu">
+            <li>
+                <a @click.prevent="onClickContextMenu('delete')">{{
+                    t("Remove User")
+                }}</a>
+            </li>
+        </vue-context>
     </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { VueContext } from "vue-context";
 
 export default {
     name: "Users",
+
+    components: {
+        VueContext
+    },
+
+    data() {
+        return {
+            curr_user: 0,
+            curr_user_delete: null
+        };
+    },
 
     computed: {
         ...mapGetters([
@@ -106,13 +126,21 @@ export default {
             "getProject",
             "getNewTask",
             "getUserId",
-            "getUsers"
-        ])
+            "getUsers",
+            "getUsersProjects"
+        ]),
+        current_user: {
+            set: function(val) {
+                this.curr_user = val;
+            },
+            get: function() {
+                return this.curr_user;
+            }
+        }
     },
 
-    async created() {
-        await this.fetchUsers();
-        console.log(this.returnAllUsers(this.getUsers, this.getUserId));
+    created() {
+        this.fetchUsers();
     },
 
     filters: {
@@ -126,9 +154,21 @@ export default {
     },
 
     methods: {
-        ...mapActions(["closePanel", "fetchUsers"]),
-        returnAllUsers(users, curruser) {
-            return users.filter(u => u.id !== curruser);
+        ...mapActions([
+            "closePanel",
+            "fetchUsers",
+            "fetchUsersByProjects",
+            "addUsersProject",
+            "deleteUsersProject"
+        ]),
+        onOpenContextMenu(event, id) {
+            this.curr_user_delete = id;
+        },
+        onClickContextMenu(action) {
+            if (action === "delete" && this.curr_user_delete !== null) {
+                this.deleteUsersProject(this.curr_user_delete);
+                this.curr_user_delete = null;
+            }
         }
     }
 };
@@ -279,5 +319,63 @@ export default {
     width: 140px;
     padding: 2px;
     align-items: center;
+}
+.v-context,
+.v-context ul {
+    background-color: #1a202c;
+    background-clip: padding-box;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    display: block;
+    margin: 0;
+    padding: 0px;
+    min-width: 10rem;
+    z-index: 1500;
+    position: fixed;
+    list-style: none;
+    box-sizing: border-box;
+    max-height: calc(100% - 50px);
+    overflow-y: auto;
+}
+.v-context > li,
+.v-context ul > li {
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+}
+.v-context > li > a,
+.v-context ul > li > a {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    font-weight: 400;
+    color: #cbd5e0;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+.v-context > li > a:focus,
+.v-context > li > a:hover,
+.v-context ul > li > a:focus,
+.v-context ul > li > a:hover {
+    text-decoration: none;
+    color: #212529;
+    background-color: #a0aec0;
+}
+.v-context:focus,
+.v-context > li > a:focus,
+.v-context ul:focus,
+.v-context ul > li > a:focus {
+    outline: 0;
+}
+.v-context__sub > a:after {
+    content: "\2BC8";
+    float: right;
+    padding-left: 1rem;
+}
+.v-context__sub > ul {
+    display: none;
 }
 </style>

@@ -69,3 +69,9 @@ Route::get('properties_categories', 'PropertiesController@categories');
 
 /** List All Users */
 Route::get('users', 'UserController@getUsers');
+/** List all Users to this Project */
+Route::get('users/project/{id}', 'UserController@getUsersByProject');
+/** Add User to this Project */
+Route::post('add/user', 'UserController@store');
+/** Delete User to this Project */
+Route::delete('delete/user/{user_id}/project/{project_id}', 'UserController@deleteUserByProject');
