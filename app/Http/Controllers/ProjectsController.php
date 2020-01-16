@@ -6,6 +6,7 @@ use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Resources\Project as ProjectResource;
 use App\Http\Requests;
+use App\ProjectsUser;
 use App\Task;
 
 class ProjectsController extends Controller
@@ -18,7 +19,9 @@ class ProjectsController extends Controller
     public function index(Request $request)
     {
         /** Get Projects */
-        $projects = Project::where(['user_id' => $request->id])->orderBy('created_at', 'desc')->get();
+        // $projects_users = ProjectsUser::where(['user_id' => $request->id])->pluck('project_id');
+        $projects_users = [1, 31];
+        $projects = Project::where(['user_id' => $request->id])->orWhereIn($projects_users, 'id')->orderBy('created_at', 'desc')->get();
 
         /** Return collection of Projects as resource */
         return ProjectResource::collection($projects);
