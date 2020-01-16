@@ -69,11 +69,35 @@
                 </div>
             </div>
             <div class="vp20"></div>
-            <div class="chart">
-                <pie-chart
-                    :chart-data="chartData"
-                    :options="chartOptions"
-                ></pie-chart>
+            <div class="last">
+                <div class="chart">
+                    <pie-chart
+                        :chart-data="chartData"
+                        :options="chartOptions"
+                    ></pie-chart>
+                </div>
+                <div class="vert"></div>
+                <div class="users">
+                    <h4>{{ t("Users attached to this project") }}:</h4>
+                    <div>
+                        <div>
+                            <span class="rootuser"
+                                >{{
+                                    typeof getUsers.find(
+                                        u => u.id === getProject.user_id
+                                    ) != "undefined"
+                                        ? getUsers.find(
+                                              u => u.id === getProject.user_id
+                                          ).name
+                                        : ""
+                                }}&nbsp;-&nbsp;{{ t("owner") }}</span
+                            >
+                        </div>
+                        <div v-for="user in getUsersProjects" :key="user.id">
+                            <span>{{ user.name }}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="bottom" :class="getTheme">
@@ -158,7 +182,9 @@ export default {
             "getNewTask",
             "countAllTasks",
             "countActiveTasks",
-            "countEndedTasks"
+            "countEndedTasks",
+            "getUsers",
+            "getUsersProjects"
         ])
     },
 
@@ -463,9 +489,25 @@ input[type="checkbox"]:checked + label:hover span:before {
     padding-top: 3px;
     padding-bottom: 3px;
 }
+.last {
+    display: flex;
+    flex-direction: row;
+}
 .chart {
+    flex: 1;
     max-width: 320px;
     max-height: 320px;
+}
+.vert {
+    width: 20px;
+    border-right: 1px dotted #718096;
+}
+.users {
+    padding-left: 20px;
+    flex: 1;
+}
+.rootuser {
+    color: #dd6b20;
 }
 @media screen and (max-width: 1440px), screen and (max-height: 900px) {
     .chart {
