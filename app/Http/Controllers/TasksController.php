@@ -133,7 +133,7 @@ class TasksController extends Controller
                     ($_FILES['file']["type"] == "text/plain") ||
                     (getimagesize($_FILES['file']['tmp_name'])) ||
                     ($_FILES['file']["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")) &&
-                ($_FILES['file']["size"] < 307200));
+                ($_FILES['file']["size"] < 512000));
             if ($check !== false) {
                 if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . $_FILES['file']['name'])) {
                     $result = "success";
@@ -142,7 +142,7 @@ class TasksController extends Controller
                 if (!isset($_FILES['file'])) {
                     $result = "no file";
                 } else {
-                    if ($_FILES['file']["size"] >= 307200) {
+                    if ($_FILES['file']["size"] >= 512000) {
                         $result = "exceed file size";
                     } else {
                         $result = "wrong file type";
