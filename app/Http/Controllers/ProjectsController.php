@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Project;
-use Illuminate\Http\Request;
 use App\Http\Resources\Project as ProjectResource;
-use App\Http\Requests;
+use App\Project;
 use App\ProjectsUser;
 use App\Task;
+use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
@@ -19,42 +18,12 @@ class ProjectsController extends Controller
     public function index(Request $request)
     {
         /** Get Projects */
-        // $projects_users = ProjectsUser::where(['user_id' => $request->id])->pluck('project_id');
-        $projects_users = [1, 31];
-        $projects = Project::where(['user_id' => $request->id])->orWhereIn($projects_users, 'id')->orderBy('created_at', 'desc')->get();
+        $projects_users = ProjectsUser::where(['user_id' => $request->id])->pluck('project_id');
 
-        /** Return collection of Projects as resource */
-        return ProjectResource::collection($projects);
-    }
-
-    public function search(Request $request)
-    {
-        /** Get Projects */
-        $projects = Project::where(['user_id' => $request->id]);
-        if (!empty($request->search)) {
-            $projects = $projects->where('title', 'LIKE', '%' . $request->search . '%')
-                ->orWhere('body', 'LIKE', '%' . $request->search . '%')
-                ->orderBy('created_at', 'desc')->get();
-        } else {
-            $projects = $projects->orderBy('created_at', 'desc')->get();
-        }
-        /** Return collection of Projects as resource */
-        return ProjectResource::collection($projects);
-    }
-
-    public function indexActive(Request $request)
-    {
-        /** Get only active Projects */
-        $projects = Project::where(['status' => 1, 'user_id' => $request->id])->orderBy('created_at', 'desc')->get();
-
-        /** Return collection of Projects as resource */
-        return ProjectResource::collection($projects);
-    }
-
-    public function indexEnded(Request $request)
-    {
-        /** Get only ended Projects */
-        $projects = Project::where(['status' => 0, 'user_id' => $request->id])->orderBy('created_at', 'desc')->get();
+        $projects = Project::where(['user_id' => $request->id])
+            ->orWhereIn('id', $projects_users)->
+            orderBy('created_at', 'desc')
+            ->get();
 
         /** Return collection of Projects as resource */
         return ProjectResource::collection($projects);
@@ -130,7 +99,7 @@ class ProjectsController extends Controller
                 'stop' => $stop,
                 'title' => $project->title,
                 'body' => $project->body,
-                'tasks' => $tasks
+                'tasks' => $tasks,
             ]);
         }
     }

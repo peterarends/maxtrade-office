@@ -12,20 +12,14 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 /** List All Projects */
-Route::get('projects/all/{id}', 'ProjectsController@index');
-/** Search Projects */
-Route::post('projects/search/{id}', 'ProjectsController@search');
-/** List only active Projects */
-Route::get('projects/act/{id}', 'ProjectsController@indexActive');
-/** List only ended Projects */
-Route::get('projects/end/{id}', 'ProjectsController@indexEnded');
+Route::get('projects/{id}', 'ProjectsController@index');
 /** List single Project */
 Route::get('project/{id}', 'ProjectsController@show');
 /** Create new Project */
