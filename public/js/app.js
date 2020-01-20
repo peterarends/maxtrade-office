@@ -2050,7 +2050,14 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_translate_plugin__WEBPACK_IMP
       "Users attached to this project": "Потребители прикачени към този проект",
       "Choose User to add...": "Изберете потребител за добавяне към проекта",
       "Remove User": "Премахни потребителя",
-      owner: "собственик"
+      owner: "собственик",
+      "search for a match ...": "търси за съвпадение ...",
+      "Search in Projects and Tasks ...": "Търси в Проекти и Задачи ...",
+      Search: "Търси",
+      "Matches in Projects": "Съвпадения в Проекти",
+      "#": "№",
+      "Created at": "Създаден на",
+      "Matches in Tasks": "Съвпадения в Задачи"
     }
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_15__["mapGetters"])(["getTheme", "getPanel", "getProjectFilter", "getLanguage"]),
@@ -3062,11 +3069,80 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Searchtasks",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getLanguage"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel"]))
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getLanguage", "getProjectsSearch", "getTasksSearch", "getProjects"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "allSearch", "showProject", "clearSearch", "showAllProjects", "showTask"]), {
+    gotoProject: function gotoProject(project) {
+      this.$refs.search_input.value = "";
+      this.clearSearch();
+      this.showAllProjects();
+      this.showProject(project);
+    },
+    gotoTask: function gotoTask(task) {
+      this.$refs.search_input.value = "";
+      this.clearSearch();
+      this.showAllProjects();
+      var project = this.getProjects.find(function (p) {
+        return p.id == task.project_id;
+      });
+      this.showProject(project);
+      this.showTask(task);
+    }
+  })
 });
 
 /***/ }),
@@ -20307,7 +20383,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n.vp20 {\n  padding: 20px 0px;\n}\n.button {\n  border: 1px solid #4a5568;\n  padding: 2px 8px;\n  border-radius: 5px;\n  background: #2a4365;\n}\n.button:hover {\n  background: #2b6cb0;\n}\r\n", ""]);
+exports.push([module.i, ".mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n.vp20 {\n  padding: 20px 0px;\n}\n.button {\n  border: 1px solid #4a5568;\n  padding: 2px 8px;\n  border-radius: 5px;\n  background: #2a4365;\n}\n.button:hover {\n  background: #2b6cb0;\n}\ntable,\r\nth,\r\ntd {\n  border: 1px dotted #4a5568;\n  text-align: left;\n}\nth {\n  background: #4a5568;\n  font-size: 18px;\n  font-weight: normal;\n}\r\n", ""]);
 
 // exports
 
@@ -20478,7 +20554,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".aearchtasks-body[data-v-4ab203a4] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-4ab203a4] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-4ab203a4] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-4ab203a4] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-4ab203a4] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-4ab203a4] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-4ab203a4] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-4ab203a4] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-4ab203a4] {\n  background-color: #e53e3e;\n}\n.body[data-v-4ab203a4] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.bottom[data-v-4ab203a4] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-4ab203a4] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-4ab203a4] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-4ab203a4] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-4ab203a4] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-4ab203a4] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-4ab203a4]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-4ab203a4]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-4ab203a4] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-4ab203a4] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-4ab203a4] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-4ab203a4] {\n  color: #3182ce;\n}\r\n", ""]);
+exports.push([module.i, ".aearchtasks-body[data-v-4ab203a4] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-4ab203a4] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-4ab203a4] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-4ab203a4] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-4ab203a4] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-4ab203a4] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-4ab203a4] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-4ab203a4] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-4ab203a4] {\n  background-color: #e53e3e;\n}\n.body[data-v-4ab203a4] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.searchpanel[data-v-4ab203a4] {\n  display: -webkit-box;\n  display: flex;\n}\n.resultpanel[data-v-4ab203a4] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  max-height: calc(100vh - 250px);\n  overflow-y: auto;\n}\n.searchInput[data-v-4ab203a4] {\n  border-radius: 0.25rem;\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-4ab203a4] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-4ab203a4] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-4ab203a4]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-4ab203a4]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-4ab203a4]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-4ab203a4]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-4ab203a4]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-4ab203a4]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-4ab203a4]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-4ab203a4]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-4ab203a4]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-4ab203a4]::placeholder {\n  color: #4a5568;\n}\n.title[data-v-4ab203a4] {\n  cursor: pointer;\n}\n.title[data-v-4ab203a4]:hover {\n  background: #4a5568;\n}\n.bottom[data-v-4ab203a4] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-4ab203a4] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-4ab203a4] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-4ab203a4] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-4ab203a4] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-4ab203a4] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-4ab203a4]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-4ab203a4]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-4ab203a4] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-4ab203a4] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-4ab203a4] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-4ab203a4] {\n  color: #3182ce;\n}\r\n", ""]);
 
 // exports
 
@@ -60458,7 +60534,107 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "body" }, [
-      _vm._v(_vm._s(_vm.t("Search Projects and Tasks")))
+      _c("div", { staticClass: "searchpanel" }, [
+        _c("input", {
+          ref: "search_input",
+          staticClass: "searchInput",
+          class: _vm.getTheme,
+          attrs: { type: "text", placeholder: _vm.t("search for a match ...") },
+          on: {
+            input: function($event) {
+              return _vm.allSearch($event)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "vp20" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "resultpanel" }, [
+        _c("h4", [_vm._v(_vm._s(_vm.t("Matches in Projects")) + ":")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticStyle: { width: "100%" } },
+          [
+            _c("tr", [
+              _c("th", [_vm._v(_vm._s(_vm.t("#")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.t("Project")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.t("Created at")))])
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.getProjectsSearch, function(project) {
+              return _c("tr", { key: project.id }, [
+                _c("td", [_vm._v(_vm._s(project.id))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "title",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.gotoProject(project)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(project.title))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(project.created_at))])
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "vp20" }),
+        _vm._v(" "),
+        _c("h4", [_vm._v(_vm._s(_vm.t("Matches in Tasks")) + ":")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticStyle: { width: "100%" } },
+          [
+            _c("tr", [
+              _c("th", [_vm._v(_vm._s(_vm.t("#")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.t("Task")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.t("Created at")))])
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.getTasksSearch, function(task) {
+              return _c("tr", { key: task.id }, [
+                _c("td", [_vm._v(_vm._s(task.id))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "title",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.gotoTask(task)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(task.title))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(task.created_at))])
+              ])
+            })
+          ],
+          2
+        )
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "bottom", class: _vm.getTheme }, [
@@ -76653,11 +76829,13 @@ var state = {
   panel: "",
   current_project_id: 0,
   tasks: [],
+  tasks_search: [],
   task: [],
   new_task: false,
   current_task_id: 0,
   projects: [],
   projects_temp: [],
+  projects_search: [],
   project: [],
   new_project: false,
   project_filter: {
@@ -76713,6 +76891,12 @@ var getters = {
   },
   getProjectsTemp: function getProjectsTemp(state) {
     return state.projects_temp;
+  },
+  getProjectsSearch: function getProjectsSearch(state) {
+    return state.projects_search;
+  },
+  getTasksSearch: function getTasksSearch(state) {
+    return state.tasks_search;
   },
   getProject: function getProject(state) {
     return state.project;
@@ -77269,10 +77453,53 @@ var actions = {
 
     return projectSearch;
   }(),
+  // Search in projects and task
+  allSearch: function () {
+    var _allSearch = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref21, event) {
+      var state, commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
+        while (1) {
+          switch (_context13.prev = _context13.next) {
+            case 0:
+              state = _ref21.state, commit = _ref21.commit;
+              _context13.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/search", {
+                search: event.target.value,
+                user_id: state.user_id
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 3:
+              response = _context13.sent;
+              commit("setProjectsSearch", response.data.projects);
+              commit("setTasksSearch", response.data.tasks);
+
+            case 6:
+            case "end":
+              return _context13.stop();
+          }
+        }
+      }, _callee13);
+    }));
+
+    function allSearch(_x21, _x22) {
+      return _allSearch.apply(this, arguments);
+    }
+
+    return allSearch;
+  }(),
+  clearSearch: function clearSearch(_ref22) {
+    var commit = _ref22.commit;
+    commit("setProjectsSearch", []);
+    commit("setTasksSearch", []);
+  },
   // Toggle project status filter
-  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref21) {
-    var commit = _ref21.commit,
-        state = _ref21.state;
+  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref23) {
+    var commit = _ref23.commit,
+        state = _ref23.state;
 
     if (state.project_filter.filterstatus == "all") {
       commit("setProjectFilterStatus", "act");
@@ -77294,9 +77521,9 @@ var actions = {
     }
   },
   // Toggle project name filter
-  toggleProjectNameFilter: function toggleProjectNameFilter(_ref22) {
-    var commit = _ref22.commit,
-        state = _ref22.state;
+  toggleProjectNameFilter: function toggleProjectNameFilter(_ref24) {
+    var commit = _ref24.commit,
+        state = _ref24.state;
     commit("setProjectFilterName", !state.project_filter.filteraz);
 
     if (state.project_filter.filteraz) {
@@ -77312,9 +77539,9 @@ var actions = {
     }
   },
   // Toggle project ID filter
-  toggleProjectIdFilter: function toggleProjectIdFilter(_ref23) {
-    var commit = _ref23.commit,
-        state = _ref23.state;
+  toggleProjectIdFilter: function toggleProjectIdFilter(_ref25) {
+    var commit = _ref25.commit,
+        state = _ref25.state;
     commit("setProjectFilterId", !state.project_filter.filter09);
 
     if (state.project_filter.filter09) {
@@ -77330,10 +77557,10 @@ var actions = {
     }
   },
   // Add project
-  addProject: function addProject(_ref24) {
-    var commit = _ref24.commit,
-        state = _ref24.state,
-        dispatch = _ref24.dispatch;
+  addProject: function addProject(_ref26) {
+    var commit = _ref26.commit,
+        state = _ref26.state,
+        dispatch = _ref26.dispatch;
     var newProject = {
       id: Math.max.apply(Math, state.projects.map(function (o) {
         return o.id;
@@ -77362,25 +77589,25 @@ var actions = {
   deleteProject: function () {
     var _deleteProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref25) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref27) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
         while (1) {
-          switch (_context13.prev = _context13.next) {
+          switch (_context14.prev = _context14.next) {
             case 0:
-              commit = _ref25.commit, state = _ref25.state;
+              commit = _ref27.commit, state = _ref27.state;
 
               if (!(state.current_project_id != 0)) {
-                _context13.next = 11;
+                _context14.next = 11;
                 break;
               }
 
               if (!confirm("Are You sure?")) {
-                _context13.next = 11;
+                _context14.next = 11;
                 break;
               }
 
-              _context13.next = 5;
+              _context14.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/project/" + state.project.id, {
                 project_id: state.project.id
               }, {
@@ -77388,7 +77615,7 @@ var actions = {
               });
 
             case 5:
-              response = _context13.sent;
+              response = _context14.sent;
               commit("setProjects", state.projects.filter(function (p) {
                 return p.id !== response.data.data.id;
               }));
@@ -77399,23 +77626,23 @@ var actions = {
 
             case 11:
             case "end":
-              return _context13.stop();
+              return _context14.stop();
           }
         }
-      }, _callee13);
+      }, _callee14);
     }));
 
-    function deleteProject(_x21) {
+    function deleteProject(_x23) {
       return _deleteProject.apply(this, arguments);
     }
 
     return deleteProject;
   }(),
   // Complete a project and all tasks bind to this project
-  completeProject: function completeProject(_ref26) {
-    var commit = _ref26.commit,
-        state = _ref26.state,
-        dispatch = _ref26.dispatch;
+  completeProject: function completeProject(_ref28) {
+    var commit = _ref28.commit,
+        state = _ref28.state,
+        dispatch = _ref28.dispatch;
 
     if (state.current_project_id != 0) {
       commit("setProjectStatus", 0);
@@ -77426,21 +77653,21 @@ var actions = {
   saveProject: function () {
     var _saveProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref27, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref29, isMessage) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
         while (1) {
-          switch (_context14.prev = _context14.next) {
+          switch (_context15.prev = _context15.next) {
             case 0:
-              commit = _ref27.commit, state = _ref27.state;
+              commit = _ref29.commit, state = _ref29.state;
               response = null;
 
               if (!state.new_project) {
-                _context14.next = 8;
+                _context15.next = 8;
                 break;
               }
 
-              _context14.next = 5;
+              _context15.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/project", {
                 project_id: 0,
                 title: state.project.title,
@@ -77454,12 +77681,12 @@ var actions = {
               });
 
             case 5:
-              response = _context14.sent;
-              _context14.next = 11;
+              response = _context15.sent;
+              _context15.next = 11;
               break;
 
             case 8:
-              _context14.next = 10;
+              _context15.next = 10;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/project", {
                 project_id: state.project.id,
                 title: state.project.title,
@@ -77473,7 +77700,7 @@ var actions = {
               });
 
             case 10:
-              response = _context14.sent;
+              response = _context15.sent;
 
             case 11:
               state.project.id = response.data.data.id;
@@ -77493,11 +77720,11 @@ var actions = {
 
 
               if (!(state.project.status == 0)) {
-                _context14.next = 26;
+                _context15.next = 26;
                 break;
               }
 
-              _context14.next = 25;
+              _context15.next = 25;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/complete/" + state.project.id);
 
             case 25:
@@ -77507,23 +77734,23 @@ var actions = {
 
             case 26:
             case "end":
-              return _context14.stop();
+              return _context15.stop();
           }
         }
-      }, _callee14);
+      }, _callee15);
     }));
 
-    function saveProject(_x22, _x23) {
+    function saveProject(_x24, _x25) {
       return _saveProject.apply(this, arguments);
     }
 
     return saveProject;
   }(),
   // Add new Task
-  addTask: function addTask(_ref28) {
-    var state = _ref28.state,
-        commit = _ref28.commit,
-        dispatch = _ref28.dispatch;
+  addTask: function addTask(_ref30) {
+    var state = _ref30.state,
+        commit = _ref30.commit,
+        dispatch = _ref30.dispatch;
 
     if (state.current_project_id != 0) {
       commit("setDocuments", []);
@@ -77553,21 +77780,21 @@ var actions = {
   saveTask: function () {
     var _saveTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref29, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16(_ref31, isMessage) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
         while (1) {
-          switch (_context15.prev = _context15.next) {
+          switch (_context16.prev = _context16.next) {
             case 0:
-              commit = _ref29.commit, state = _ref29.state;
+              commit = _ref31.commit, state = _ref31.state;
               response = null;
 
               if (!state.new_task) {
-                _context15.next = 8;
+                _context16.next = 8;
                 break;
               }
 
-              _context15.next = 5;
+              _context16.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/task", {
                 task_id: 0,
                 project_id: state.current_project_id,
@@ -77583,12 +77810,12 @@ var actions = {
               });
 
             case 5:
-              response = _context15.sent;
-              _context15.next = 11;
+              response = _context16.sent;
+              _context16.next = 11;
               break;
 
             case 8:
-              _context15.next = 10;
+              _context16.next = 10;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/task", {
                 task_id: state.task.id,
                 project_id: state.current_project_id,
@@ -77604,7 +77831,7 @@ var actions = {
               });
 
             case 10:
-              response = _context15.sent;
+              response = _context16.sent;
 
             case 11:
               state.task.id = response.data.data.id;
@@ -77627,13 +77854,13 @@ var actions = {
 
             case 25:
             case "end":
-              return _context15.stop();
+              return _context16.stop();
           }
         }
-      }, _callee15);
+      }, _callee16);
     }));
 
-    function saveTask(_x24, _x25) {
+    function saveTask(_x26, _x27) {
       return _saveTask.apply(this, arguments);
     }
 
@@ -77643,51 +77870,19 @@ var actions = {
   fetchTasksSearch: function () {
     var _fetchTasksSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16(_ref30, event) {
-      var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
-        while (1) {
-          switch (_context16.prev = _context16.next) {
-            case 0:
-              commit = _ref30.commit, state = _ref30.state;
-              _context16.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
-                search: event.target.value
-              }, {
-                "Content-Type": "application/json; charset=utf-8"
-              });
-
-            case 3:
-              response = _context16.sent;
-              commit("setTasks", response.data.data);
-
-            case 5:
-            case "end":
-              return _context16.stop();
-          }
-        }
-      }, _callee16);
-    }));
-
-    function fetchTasksSearch(_x26, _x27) {
-      return _fetchTasksSearch.apply(this, arguments);
-    }
-
-    return fetchTasksSearch;
-  }(),
-  // Fetch all tasks
-  fetchTasks: function () {
-    var _fetchTasks = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17(_ref31, status) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17(_ref32, event) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
         while (1) {
           switch (_context17.prev = _context17.next) {
             case 0:
-              commit = _ref31.commit, state = _ref31.state;
+              commit = _ref32.commit, state = _ref32.state;
               _context17.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
+                search: event.target.value
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
 
             case 3:
               response = _context17.sent;
@@ -77701,17 +77896,49 @@ var actions = {
       }, _callee17);
     }));
 
-    function fetchTasks(_x28, _x29) {
+    function fetchTasksSearch(_x28, _x29) {
+      return _fetchTasksSearch.apply(this, arguments);
+    }
+
+    return fetchTasksSearch;
+  }(),
+  // Fetch all tasks
+  fetchTasks: function () {
+    var _fetchTasks = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee18(_ref33, status) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee18$(_context18) {
+        while (1) {
+          switch (_context18.prev = _context18.next) {
+            case 0:
+              commit = _ref33.commit, state = _ref33.state;
+              _context18.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
+
+            case 3:
+              response = _context18.sent;
+              commit("setTasks", response.data.data);
+
+            case 5:
+            case "end":
+              return _context18.stop();
+          }
+        }
+      }, _callee18);
+    }));
+
+    function fetchTasks(_x30, _x31) {
       return _fetchTasks.apply(this, arguments);
     }
 
     return fetchTasks;
   }(),
   // Toggle task status filter
-  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref32) {
-    var commit = _ref32.commit,
-        state = _ref32.state,
-        dispatch = _ref32.dispatch;
+  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref34) {
+    var commit = _ref34.commit,
+        state = _ref34.state,
+        dispatch = _ref34.dispatch;
 
     if (state.task_filter.filterstatus == "all") {
       commit("setTaskFilterStatus", "act");
@@ -77729,9 +77956,9 @@ var actions = {
     }
   },
   // Toggle task name filter
-  toggleTaskNameFilter: function toggleTaskNameFilter(_ref33) {
-    var commit = _ref33.commit,
-        state = _ref33.state;
+  toggleTaskNameFilter: function toggleTaskNameFilter(_ref35) {
+    var commit = _ref35.commit,
+        state = _ref35.state;
     commit("setTaskFilterName", !state.task_filter.filteraz);
 
     if (state.task_filter.filteraz) {
@@ -77747,9 +77974,9 @@ var actions = {
     }
   },
   // Toggle tasks ID filter
-  toggleTaskIdFilter: function toggleTaskIdFilter(_ref34) {
-    var commit = _ref34.commit,
-        state = _ref34.state;
+  toggleTaskIdFilter: function toggleTaskIdFilter(_ref36) {
+    var commit = _ref36.commit,
+        state = _ref36.state;
     commit("setTaskFilterId", !state.task_filter.filter09);
 
     if (state.task_filter.filter09) {
@@ -77767,73 +77994,23 @@ var actions = {
   showTask: function () {
     var _showTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee18(_ref35, task) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee19(_ref37, task) {
       var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee18$(_context18) {
-        while (1) {
-          switch (_context18.prev = _context18.next) {
-            case 0:
-              commit = _ref35.commit;
-              commit("setTask", task);
-              commit("setCurrentTaskId", task.id);
-              commit("setNewTask", false);
-              _context18.next = 6;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + task.id);
-
-            case 6:
-              response = _context18.sent;
-              commit("setDocuments", response.data);
-              commit("setPanel", "tasks");
-
-            case 9:
-            case "end":
-              return _context18.stop();
-          }
-        }
-      }, _callee18);
-    }));
-
-    function showTask(_x30, _x31) {
-      return _showTask.apply(this, arguments);
-    }
-
-    return showTask;
-  }(),
-  deleteTask: function () {
-    var _deleteTask = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee19(_ref36) {
-      var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee19$(_context19) {
         while (1) {
           switch (_context19.prev = _context19.next) {
             case 0:
-              commit = _ref36.commit, state = _ref36.state;
+              commit = _ref37.commit;
+              commit("setTask", task);
+              commit("setCurrentTaskId", task.id);
+              commit("setNewTask", false);
+              _context19.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + task.id);
 
-              if (!(state.current_task_id != 0)) {
-                _context19.next = 9;
-                break;
-              }
-
-              if (!confirm("Are You sure?")) {
-                _context19.next = 9;
-                break;
-              }
-
-              _context19.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/" + state.task.id, {
-                task_id: state.task.id
-              }, {
-                "Content-Type": "application/json; charset=utf-8"
-              });
-
-            case 5:
+            case 6:
               response = _context19.sent;
-              state.tasks = state.tasks.filter(function (t) {
-                return t.id !== response.data.data.id;
-              });
-              commit("setCurrentTaskId", 0);
-              commit("setPanel", "");
+              commit("setDocuments", response.data);
+              commit("setPanel", "tasks");
 
             case 9:
             case "end":
@@ -77843,16 +78020,66 @@ var actions = {
       }, _callee19);
     }));
 
-    function deleteTask(_x32) {
+    function showTask(_x32, _x33) {
+      return _showTask.apply(this, arguments);
+    }
+
+    return showTask;
+  }(),
+  deleteTask: function () {
+    var _deleteTask = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee20(_ref38) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee20$(_context20) {
+        while (1) {
+          switch (_context20.prev = _context20.next) {
+            case 0:
+              commit = _ref38.commit, state = _ref38.state;
+
+              if (!(state.current_task_id != 0)) {
+                _context20.next = 9;
+                break;
+              }
+
+              if (!confirm("Are You sure?")) {
+                _context20.next = 9;
+                break;
+              }
+
+              _context20.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/" + state.task.id, {
+                task_id: state.task.id
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 5:
+              response = _context20.sent;
+              state.tasks = state.tasks.filter(function (t) {
+                return t.id !== response.data.data.id;
+              });
+              commit("setCurrentTaskId", 0);
+              commit("setPanel", "");
+
+            case 9:
+            case "end":
+              return _context20.stop();
+          }
+        }
+      }, _callee20);
+    }));
+
+    function deleteTask(_x34) {
       return _deleteTask.apply(this, arguments);
     }
 
     return deleteTask;
   }(),
   // Change task status to complete
-  completeTask: function completeTask(_ref37) {
-    var state = _ref37.state,
-        dispatch = _ref37.dispatch;
+  completeTask: function completeTask(_ref39) {
+    var state = _ref39.state,
+        dispatch = _ref39.dispatch;
 
     if (state.current_task_id != 0) {
       state.task.status = 0;
@@ -77863,18 +78090,18 @@ var actions = {
   deleteDocument: function () {
     var _deleteDocument = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee20(_ref38, current_document) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee21(_ref40, current_document) {
       var state, dispatch, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee20$(_context20) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee21$(_context21) {
         while (1) {
-          switch (_context20.prev = _context20.next) {
+          switch (_context21.prev = _context21.next) {
             case 0:
-              state = _ref38.state, dispatch = _ref38.dispatch;
-              _context20.next = 3;
+              state = _ref40.state, dispatch = _ref40.dispatch;
+              _context21.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/document/delete/" + state.task.id + "/" + current_document);
 
             case 3:
-              response = _context20.sent;
+              response = _context21.sent;
 
               if (response.data.result === "success") {
                 dispatch("changeDocuments");
@@ -77884,13 +78111,13 @@ var actions = {
 
             case 5:
             case "end":
-              return _context20.stop();
+              return _context21.stop();
           }
         }
-      }, _callee20);
+      }, _callee21);
     }));
 
-    function deleteDocument(_x33, _x34) {
+    function deleteDocument(_x35, _x36) {
       return _deleteDocument.apply(this, arguments);
     }
 
@@ -77900,58 +78127,58 @@ var actions = {
   changeDocuments: function () {
     var _changeDocuments = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee21(_ref39) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee22(_ref41) {
       var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee21$(_context21) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee22$(_context22) {
         while (1) {
-          switch (_context21.prev = _context21.next) {
+          switch (_context22.prev = _context22.next) {
             case 0:
-              commit = _ref39.commit, state = _ref39.state;
-              _context21.next = 3;
+              commit = _ref41.commit, state = _ref41.state;
+              _context22.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + state.task.id);
 
             case 3:
-              response = _context21.sent;
+              response = _context22.sent;
               commit("setDocuments", response.data);
 
             case 5:
             case "end":
-              return _context21.stop();
+              return _context22.stop();
           }
         }
-      }, _callee21);
+      }, _callee22);
     }));
 
-    function changeDocuments(_x35) {
+    function changeDocuments(_x37) {
       return _changeDocuments.apply(this, arguments);
     }
 
     return changeDocuments;
   }(),
   // Filter show all projects
-  showAllProjects: function showAllProjects(_ref40) {
-    var state = _ref40.state,
-        dispatch = _ref40.dispatch;
+  showAllProjects: function showAllProjects(_ref42) {
+    var state = _ref42.state,
+        dispatch = _ref42.dispatch;
     state.project_filter.filterstatus = "all";
     dispatch("fetchProjects", "all");
   },
   // Filter show completed projects
-  showCompletedProjects: function showCompletedProjects(_ref41) {
-    var state = _ref41.state,
-        dispatch = _ref41.dispatch;
+  showCompletedProjects: function showCompletedProjects(_ref43) {
+    var state = _ref43.state,
+        dispatch = _ref43.dispatch;
     state.project_filter.filterstatus = "end";
     dispatch("fetchProjects", "end");
   },
   // Filter show actived projects
-  showActivedProjects: function showActivedProjects(_ref42) {
-    var state = _ref42.state,
-        dispatch = _ref42.dispatch;
+  showActivedProjects: function showActivedProjects(_ref44) {
+    var state = _ref44.state,
+        dispatch = _ref44.dispatch;
     state.project_filter.filterstatus = "act";
     dispatch("fetchProjects", "act");
   },
   // Sort projects by ID ACC
-  sortProjectsIdAcc: function sortProjectsIdAcc(_ref43) {
-    var state = _ref43.state;
+  sortProjectsIdAcc: function sortProjectsIdAcc(_ref45) {
+    var state = _ref45.state;
     state.project_filter.filter09 = true;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -77959,8 +78186,8 @@ var actions = {
     });
   },
   // Sort projects by ID DEC
-  sortProjectsIdDec: function sortProjectsIdDec(_ref44) {
-    var state = _ref44.state;
+  sortProjectsIdDec: function sortProjectsIdDec(_ref46) {
+    var state = _ref46.state;
     state.project_filter.filter09 = false;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -77968,8 +78195,8 @@ var actions = {
     });
   },
   // Sort projects by Name ACC
-  sortProjectsNameAcc: function sortProjectsNameAcc(_ref45) {
-    var state = _ref45.state;
+  sortProjectsNameAcc: function sortProjectsNameAcc(_ref47) {
+    var state = _ref47.state;
     state.project_filter.filteraz = true;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return 1;
@@ -77977,8 +78204,8 @@ var actions = {
     });
   },
   // Sort projects by Name DEC
-  sortProjectsNameDec: function sortProjectsNameDec(_ref46) {
-    var state = _ref46.state;
+  sortProjectsNameDec: function sortProjectsNameDec(_ref48) {
+    var state = _ref48.state;
     state.project_filter.filteraz = false;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return -1;
@@ -77986,29 +78213,29 @@ var actions = {
     });
   },
   // Filter show all tasks
-  showAllTasks: function showAllTasks(_ref47) {
-    var state = _ref47.state,
-        dispatch = _ref47.dispatch;
+  showAllTasks: function showAllTasks(_ref49) {
+    var state = _ref49.state,
+        dispatch = _ref49.dispatch;
     state.task_filter.filterstatus = "all";
     dispatch("fetchTasks", "all", state.current_project_id);
   },
   // Filter show completed tasks
-  showCompletedTasks: function showCompletedTasks(_ref48) {
-    var state = _ref48.state,
-        dispatch = _ref48.dispatch;
+  showCompletedTasks: function showCompletedTasks(_ref50) {
+    var state = _ref50.state,
+        dispatch = _ref50.dispatch;
     state.task_filter.filterstatus = "end";
     dispatch("fetchTasks", "end", state.current_project_id);
   },
   // Filter show actived tasks
-  showActivedTasks: function showActivedTasks(_ref49) {
-    var state = _ref49.state,
-        dispatch = _ref49.dispatch;
+  showActivedTasks: function showActivedTasks(_ref51) {
+    var state = _ref51.state,
+        dispatch = _ref51.dispatch;
     state.task_filter.filterstatus = "act";
     dispatch("fetchTasks", "act", state.current_project_id);
   },
   // Sort tasks by ID ACC
-  sortTasksIdAcc: function sortTasksIdAcc(_ref50) {
-    var state = _ref50.state;
+  sortTasksIdAcc: function sortTasksIdAcc(_ref52) {
+    var state = _ref52.state;
     state.task_filter.filter09 = true;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -78016,8 +78243,8 @@ var actions = {
     });
   },
   // Sort tasks by ID DEC
-  sortTasksIdDec: function sortTasksIdDec(_ref51) {
-    var state = _ref51.state;
+  sortTasksIdDec: function sortTasksIdDec(_ref53) {
+    var state = _ref53.state;
     state.task_filter.filter09 = false;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -78025,8 +78252,8 @@ var actions = {
     });
   },
   // Sort tasks by Name ACC
-  sortTasksNameAcc: function sortTasksNameAcc(_ref52) {
-    var state = _ref52.state;
+  sortTasksNameAcc: function sortTasksNameAcc(_ref54) {
+    var state = _ref54.state;
     state.task_filter.filteraz = true;
     state.tasks.sort(function (a, b) {
       if (a.title > b.title) return 1;
@@ -78042,8 +78269,8 @@ var actions = {
     });
   },
   // Refresh to ready state
-  readyState: function readyState(_ref53) {
-    var commit = _ref53.commit;
+  readyState: function readyState(_ref55) {
+    var commit = _ref55.commit;
     commit("setCurrentProjectId", 0);
     commit("setCurrentTaskId", 0);
     commit("setProject", []);
@@ -78052,8 +78279,8 @@ var actions = {
     commit("setDocuments", []);
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref54, progress) {
-    var commit = _ref54.commit;
+  changeProgress: function changeProgress(_ref56, progress) {
+    var commit = _ref56.commit;
     commit("setProgress", progress);
   }
 };
@@ -78078,6 +78305,12 @@ var mutations = {
   },
   setProjectsTemp: function setProjectsTemp(state, projects_temp) {
     return state.projects_temp = projects_temp;
+  },
+  setProjectsSearch: function setProjectsSearch(state, projects_search) {
+    return state.projects_search = projects_search;
+  },
+  setTasksSearch: function setTasksSearch(state, tasks_search) {
+    return state.tasks_search = tasks_search;
   },
   setProject: function setProject(state, project) {
     return state.project = project;

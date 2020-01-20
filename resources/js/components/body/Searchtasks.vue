@@ -16,7 +16,59 @@
                 </div>
             </div>
         </div>
-        <div class="body">{{ t("Search Projects and Tasks") }}</div>
+        <div class="body">
+            <div class="searchpanel">
+                <input
+                    type="text"
+                    class="searchInput"
+                    :class="getTheme"
+                    ref="search_input"
+                    :placeholder="t('search for a match ...')"
+                    @input="allSearch($event)"
+                />
+            </div>
+            <div class="vp20"></div>
+            <div class="resultpanel">
+                <h4>{{ t("Matches in Projects") }}:</h4>
+                <table style="width:100%">
+                    <tr>
+                        <th>{{ t("#") }}</th>
+                        <th>{{ t("Project") }}</th>
+                        <th>{{ t("Created at") }}</th>
+                    </tr>
+                    <tr v-for="project in getProjectsSearch" :key="project.id">
+                        <td>{{ project.id }}</td>
+                        <td>
+                            <a
+                                class="title"
+                                @click.prevent="gotoProject(project)"
+                                >{{ project.title }}</a
+                            >
+                        </td>
+                        <td>{{ project.created_at }}</td>
+                    </tr>
+                </table>
+
+                <div class="vp20"></div>
+                <h4>{{ t("Matches in Tasks") }}:</h4>
+                <table style="width:100%">
+                    <tr>
+                        <th>{{ t("#") }}</th>
+                        <th>{{ t("Task") }}</th>
+                        <th>{{ t("Created at") }}</th>
+                    </tr>
+                    <tr v-for="task in getTasksSearch" :key="task.id">
+                        <td>{{ task.id }}</td>
+                        <td>
+                            <a class="title" @click.prevent="gotoTask(task)">{{
+                                task.title
+                            }}</a>
+                        </td>
+                        <td>{{ task.created_at }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
         <div class="bottom" :class="getTheme">
             <a @click.prevent="closePanel"
                 ><i
@@ -36,9 +88,38 @@ import { mapGetters, mapActions } from "vuex";
 export default {
     name: "Searchtasks",
 
-    computed: mapGetters(["getTheme", "getLanguage"]),
+    computed: mapGetters([
+        "getTheme",
+        "getLanguage",
+        "getProjectsSearch",
+        "getTasksSearch",
+        "getProjects"
+    ]),
 
-    methods: { ...mapActions(["closePanel"]) }
+    methods: {
+        ...mapActions([
+            "closePanel",
+            "allSearch",
+            "showProject",
+            "clearSearch",
+            "showAllProjects",
+            "showTask"
+        ]),
+        gotoProject(project) {
+            this.$refs.search_input.value = "";
+            this.clearSearch();
+            this.showAllProjects();
+            this.showProject(project);
+        },
+        gotoTask(task) {
+            this.$refs.search_input.value = "";
+            this.clearSearch();
+            this.showAllProjects();
+            const project = this.getProjects.find(p => p.id == task.project_id);
+            this.showProject(project);
+            this.showTask(task);
+        }
+    }
 };
 </script>
 
@@ -103,6 +184,44 @@ export default {
     padding: 10px;
     display: flex;
     flex-direction: column;
+}
+.searchpanel {
+    display: flex;
+}
+.resultpanel {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+.searchInput {
+    border-radius: 0.25rem;
+    flex: 1;
+    padding-left: 0.25rem;
+    padding-bottom: 0.25rem;
+    margin-right: 0.25rem;
+}
+.searchInput.light {
+    background-color: #f7fafc;
+    border: 1px solid #edf2f7;
+    color: #4a5568;
+}
+.searchInput.dark {
+    background-color: #1a202c;
+    border: 1px solid #2d3748;
+    color: #e2e8f0;
+}
+.searchInput.light::placeholder {
+    color: #e2e8f0;
+}
+.searchInput.dark::placeholder {
+    color: #4a5568;
+}
+.title {
+    cursor: pointer;
+}
+.title:hover {
+    background: #4a5568;
 }
 .bottom {
     display: flex;

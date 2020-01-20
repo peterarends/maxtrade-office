@@ -10,11 +10,13 @@ const state = {
     panel: "",
     current_project_id: 0,
     tasks: [],
+    tasks_search: [],
     task: [],
     new_task: false,
     current_task_id: 0,
     projects: [],
     projects_temp: [],
+    projects_search: [],
     project: [],
     new_project: false,
     project_filter: {
@@ -48,6 +50,8 @@ const getters = {
     getPanel: state => state.panel,
     getProjects: state => state.projects,
     getProjectsTemp: state => state.projects_temp,
+    getProjectsSearch: state => state.projects_search,
+    getTasksSearch: state => state.tasks_search,
     getProject: state => state.project,
     getNewProject: state => state.new_project,
     getProjectFilter: state => state.project_filter,
@@ -223,25 +227,29 @@ const actions = {
         );
         axios.delete(
             "api/delete/user/" +
-            user_id +
-            "/project/" +
-            state.current_project_id
+                user_id +
+                "/project/" +
+                state.current_project_id
         );
     },
     // Fetch all projects
     async fetchProjects({ commit }) {
-        const response = await axios.get(
-            "api/projects/" + state.user_id
-        );
+        const response = await axios.get("api/projects/" + state.user_id);
         commit("setProjectsTemp", response.data.data);
         if (state.project_filter.filterstatus == "all") {
             commit("setProjects", state.projects_temp);
         } else {
             if (state.project_filter.filterstatus == "act") {
-                commit("setProjects", state.projects_temp.filter(p => p.status == 1));
+                commit(
+                    "setProjects",
+                    state.projects_temp.filter(p => p.status == 1)
+                );
             } else {
                 if (state.project_filter.filterstatus == "end") {
-                    commit("setProjects", state.projects_temp.filter(p => p.status == 0));
+                    commit(
+                        "setProjects",
+                        state.projects_temp.filter(p => p.status == 0)
+                    );
                 }
             }
         }
@@ -261,17 +269,43 @@ const actions = {
     },
     // Search in projects panel
     async projectSearch({ state, commit }, event) {
-        commit("setProjects", state.projects_temp.filter(p => p.title != event.target.value));
+        commit(
+            "setProjects",
+            state.projects_temp.filter(p => p.title != event.target.value)
+        );
+    },
+    // Search in projects and task
+    async allSearch({ state, commit }, event) {
+        const response = await axios.post(
+            "api/search",
+            {
+                search: event.target.value,
+                user_id: state.user_id
+            },
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
+        commit("setProjectsSearch", response.data.projects);
+        commit("setTasksSearch", response.data.tasks);
+    },
+    clearSearch({ commit }) {
+        commit("setProjectsSearch", []);
+        commit("setTasksSearch", []);
     },
     // Toggle project status filter
     toggleProjectStatusFilter({ commit, state }) {
         if (state.project_filter.filterstatus == "all") {
             commit("setProjectFilterStatus", "act");
-            commit("setProjects", state.projects_temp.filter(p => p.status == 1));
+            commit(
+                "setProjects",
+                state.projects_temp.filter(p => p.status == 1)
+            );
         } else {
             if (state.project_filter.filterstatus == "act") {
                 commit("setProjectFilterStatus", "end");
-                commit("setProjects", state.projects_temp.filter(p => p.status == 0));
+                commit(
+                    "setProjects",
+                    state.projects_temp.filter(p => p.status == 0)
+                );
             } else {
                 if (state.project_filter.filterstatus == "end") {
                     commit("setProjectFilterStatus", "all");
@@ -284,12 +318,12 @@ const actions = {
     toggleProjectNameFilter({ commit, state }) {
         commit("setProjectFilterName", !state.project_filter.filteraz);
         if (state.project_filter.filteraz) {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.title > b.title) return 1;
                 if (a.title < b.title) return -1;
             });
         } else {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.title > b.title) return -1;
                 if (a.title < b.title) return 1;
             });
@@ -299,12 +333,12 @@ const actions = {
     toggleProjectIdFilter({ commit, state }) {
         commit("setProjectFilterId", !state.project_filter.filter09);
         if (state.project_filter.filter09) {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.id > b.id) return 1;
                 if (a.id < b.id) return -1;
             });
         } else {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.id > b.id) return -1;
                 if (a.id < b.id) return 1;
             });
@@ -316,7 +350,7 @@ const actions = {
             id:
                 Math.max.apply(
                     Math,
-                    state.projects.map(function (o) {
+                    state.projects.map(function(o) {
                         return o.id;
                     })
                 ) + 1,
@@ -414,13 +448,13 @@ const actions = {
         if (isMessage) {
             alert(
                 "You have successfully saved the changes to the Project: " +
-                response.data.data.title
+                    response.data.data.title
             );
         }
         // change all task status by project
         if (state.project.status == 0) {
             await axios.get("api/task/complete/" + state.project.id);
-            state.tasks.forEach(function (part, index) {
+            state.tasks.forEach(function(part, index) {
                 part.status = 0;
             });
         }
@@ -433,7 +467,7 @@ const actions = {
                 id:
                     Math.max.apply(
                         Math,
-                        state.tasks.map(function (o) {
+                        state.tasks.map(function(o) {
                             return o.id;
                         })
                     ) + 1,
@@ -507,7 +541,7 @@ const actions = {
         if (isMessage) {
             alert(
                 "You have successfully saved the changes to the Task: " +
-                response.data.data.title
+                    response.data.data.title
             );
         }
     },
@@ -550,12 +584,12 @@ const actions = {
     toggleTaskNameFilter({ commit, state }) {
         commit("setTaskFilterName", !state.task_filter.filteraz);
         if (state.task_filter.filteraz) {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.title > b.title) return 1;
                 if (a.title < b.title) return -1;
             });
         } else {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.title > b.title) return -1;
                 if (a.title < b.title) return 1;
             });
@@ -565,12 +599,12 @@ const actions = {
     toggleTaskIdFilter({ commit, state }) {
         commit("setTaskFilterId", !state.task_filter.filter09);
         if (state.task_filter.filter09) {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.id > b.id) return 1;
                 if (a.id < b.id) return -1;
             });
         } else {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.id > b.id) return -1;
                 if (a.id < b.id) return 1;
             });
@@ -643,7 +677,7 @@ const actions = {
     // Sort projects by ID ACC
     sortProjectsIdAcc({ state }) {
         state.project_filter.filter09 = true;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.id > b.id) return 1;
             if (a.id < b.id) return -1;
         });
@@ -651,7 +685,7 @@ const actions = {
     // Sort projects by ID DEC
     sortProjectsIdDec({ state }) {
         state.project_filter.filter09 = false;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.id > b.id) return -1;
             if (a.id < b.id) return 1;
         });
@@ -659,7 +693,7 @@ const actions = {
     // Sort projects by Name ACC
     sortProjectsNameAcc({ state }) {
         state.project_filter.filteraz = true;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.title > b.title) return 1;
             if (a.title < b.title) return -1;
         });
@@ -667,7 +701,7 @@ const actions = {
     // Sort projects by Name DEC
     sortProjectsNameDec({ state }) {
         state.project_filter.filteraz = false;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.title > b.title) return -1;
             if (a.title < b.title) return 1;
         });
@@ -690,7 +724,7 @@ const actions = {
     // Sort tasks by ID ACC
     sortTasksIdAcc({ state }) {
         state.task_filter.filter09 = true;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.id > b.id) return 1;
             if (a.id < b.id) return -1;
         });
@@ -698,7 +732,7 @@ const actions = {
     // Sort tasks by ID DEC
     sortTasksIdDec({ state }) {
         state.task_filter.filter09 = false;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.id > b.id) return -1;
             if (a.id < b.id) return 1;
         });
@@ -706,7 +740,7 @@ const actions = {
     // Sort tasks by Name ACC
     sortTasksNameAcc({ state }) {
         state.task_filter.filteraz = true;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.title > b.title) return 1;
             if (a.title < b.title) return -1;
         });
@@ -714,7 +748,7 @@ const actions = {
     // Sort tasks by Name DEC
     sortTasksNameDec() {
         state.task_filter.filteraz = false;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.title > b.title) return -1;
             if (a.title < b.title) return 1;
         });
@@ -742,7 +776,12 @@ const mutations = {
         (state.property_categories = property_categories),
     setPanel: (state, panel) => (state.panel = panel),
     setProjects: (state, projects) => (state.projects = projects),
-    setProjectsTemp: (state, projects_temp) => (state.projects_temp = projects_temp),
+    setProjectsTemp: (state, projects_temp) =>
+        (state.projects_temp = projects_temp),
+    setProjectsSearch: (state, projects_search) =>
+        (state.projects_search = projects_search),
+    setTasksSearch: (state, tasks_search) =>
+        (state.tasks_search = tasks_search),
     setProject: (state, project) => (state.project = project),
     setCurrentProjectId: (state, current_project_id) =>
         (state.current_project_id = current_project_id),

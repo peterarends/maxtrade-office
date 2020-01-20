@@ -154,7 +154,14 @@ export default {
             "Choose User to add...":
                 "Изберете потребител за добавяне към проекта",
             "Remove User": "Премахни потребителя",
-            owner: "собственик"
+            owner: "собственик",
+            "search for a match ...": "търси за съвпадение ...",
+            "Search in Projects and Tasks ...": "Търси в Проекти и Задачи ...",
+            Search: "Търси",
+            "Matches in Projects": "Съвпадения в Проекти",
+            "#": "№",
+            "Created at": "Създаден на",
+            "Matches in Tasks": "Съвпадения в Задачи"
         }
     },
 
@@ -313,5 +320,16 @@ h5 {
 }
 .button:hover {
     background: #2b6cb0;
+}
+table,
+th,
+td {
+    border: 1px dotted #4a5568;
+    text-align: left;
+}
+th {
+    background: #4a5568;
+    font-size: 18px;
+    font-weight: normal;
 }
 </style>

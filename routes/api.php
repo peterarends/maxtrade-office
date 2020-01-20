@@ -69,3 +69,6 @@ Route::get('users/project/{id}', 'UserController@getUsersByProject');
 Route::post('add/user', 'UserController@store');
 /** Delete User to this Project */
 Route::delete('delete/user/{user_id}/project/{project_id}', 'UserController@deleteUserByProject');
+
+/** Search all projects and tasks */
+Route::post('search', 'SearchController@index');
