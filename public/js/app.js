@@ -77412,9 +77412,10 @@ var actions = {
             case 8:
               response = _context11.sent;
               commit("setTasks", response.data.data);
+              commit("setTasksTemp", response.data.data);
               dispatch("fetchUsersByProjects", project.id);
 
-            case 11:
+            case 12:
             case "end":
               return _context11.stop();
           }

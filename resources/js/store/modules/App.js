@@ -267,6 +267,7 @@ const actions = {
             "api/tasks/" + state.task_filter.filterstatus + "/" + project.id
         );
         commit("setTasks", response.data.data);
+        commit("setTasksTemp", response.data.data);
         dispatch("fetchUsersByProjects", project.id);
     },
     // Search in projects panel
