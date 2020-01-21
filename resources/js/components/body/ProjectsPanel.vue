@@ -358,10 +358,9 @@ export default {
     display: flex;
 }
 .singleProjectId {
-    /* rounded-full h-6 w-6 text-xs flex items-center justify-center */
-    border-radius: 9999px;
-    height: 1.5rem;
-    width: 1.5rem;
+    border-radius: 1.3rem;
+    height: 1.3rem;
+    width: 2.5rem;
     font-size: 0.75rem;
     display: flex;
     align-items: center;
