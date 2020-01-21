@@ -96,6 +96,10 @@ export default {
         "getProjects"
     ]),
 
+    mounted() {
+        setInterval(this.setFocus, 500);
+    },
+
     methods: {
         ...mapActions([
             "closePanel",
@@ -118,6 +122,9 @@ export default {
             const project = this.getProjects.find(p => p.id == task.project_id);
             this.showProject(project);
             this.showTask(task);
+        },
+        setFocus() {
+            this.$refs.search_input.focus();
         }
     }
 };

@@ -3125,6 +3125,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Searchtasks",
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getLanguage", "getProjectsSearch", "getTasksSearch", "getProjects"]),
+  mounted: function mounted() {
+    setInterval(this.setFocus, 500);
+  },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "allSearch", "showProject", "clearSearch", "showAllProjects", "showTask"]), {
     gotoProject: function gotoProject(project) {
       this.$refs.search_input.value = "";
@@ -3141,6 +3144,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       this.showProject(project);
       this.showTask(task);
+    },
+    setFocus: function setFocus() {
+      this.$refs.search_input.focus();
     }
   })
 });
