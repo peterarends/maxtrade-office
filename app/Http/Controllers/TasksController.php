@@ -22,22 +22,6 @@ class TasksController extends Controller
         return TaskResource::collection($tasks);
     }
 
-    public function search($project_id, Request $request)
-    {
-        /** Get Tasks */
-        if (!empty($request->search)) {
-            $tasks = Task::where(['project_id' => $project_id]);
-            $tasks = $tasks
-                ->where('title', 'LIKE', '%' . $request->search . '%')
-                ->orWhere('body', 'LIKE', '%' . $request->search . '%')
-                ->orderBy('created_at', 'desc')->get();
-        } else {
-            $tasks = Task::where(['project_id' => $project_id])->orderBy('created_at', 'desc')->get();
-        }
-        /** Return collection of Tasks as resource */
-        return TaskResource::collection($tasks);
-    }
-
     public function indexActive($project_id)
     {
         /** Get only active Tasks */

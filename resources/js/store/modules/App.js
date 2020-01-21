@@ -10,6 +10,7 @@ const state = {
     panel: "",
     current_project_id: 0,
     tasks: [],
+    tasks_temp: [],
     tasks_search: [],
     task: [],
     new_task: false,
@@ -44,6 +45,7 @@ const getters = {
     getPropertyCategories: state => state.property_categories,
     getCurrentProjectId: state => state.current_project_id,
     getTasks: state => state.tasks,
+    getTasksTemp: state => state.tasks_temp,
     getTask: state => state.task,
     getNewTask: state => state.new_task,
     getCurrentTaskId: state => state.current_task_id,
@@ -271,7 +273,9 @@ const actions = {
     async projectSearch({ state, commit }, event) {
         commit(
             "setProjects",
-            state.projects_temp.filter(p => p.title != event.target.value)
+            state.projects_temp.filter(p =>
+                p.title.toUpperCase().includes(event.target.value.toUpperCase())
+            )
         );
     },
     // Search in projects and task
@@ -547,17 +551,22 @@ const actions = {
     },
     // Search task by text
     async fetchTasksSearch({ commit, state }, event) {
-        const response = await axios.post(
-            "api/tasks/search/" + state.current_project_id,
-            {
-                search: event.target.value
-            },
-            { "Content-Type": "application/json; charset=utf-8" }
+        commit(
+            "setTasks",
+            state.tasks_temp.filter(p =>
+                p.title.toUpperCase().includes(event.target.value.toUpperCase())
+            )
         );
-        commit("setTasks", response.data.data);
+        console.log(state.tasks_temp);
+        console.log(
+            state.tasks_temp.filter(p =>
+                p.title.toUpperCase().includes(event.target.value.toUpperCase())
+            )
+        );
     },
     // Fetch all tasks
     async fetchTasks({ commit, state }, status) {
+        commit("setTasksTemp", response.data.data);
         const response = await axios.get(
             "api/tasks/" + status + "/" + state.current_project_id
         );
@@ -787,6 +796,7 @@ const mutations = {
         (state.current_project_id = current_project_id),
     setNewProject: (state, new_project) => (state.new_project = new_project),
     setTasks: (state, tasks) => (state.tasks = tasks),
+    setTasksTemp: (state, tasks_temp) => (state.tasks_temp = tasks_temp),
     setTask: (state, task) => (state.task = task),
     setCurrentTaskId: (state, current_task_id) =>
         (state.current_task_id = current_task_id),

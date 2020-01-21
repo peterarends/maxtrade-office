@@ -76829,6 +76829,7 @@ var state = {
   panel: "",
   current_project_id: 0,
   tasks: [],
+  tasks_temp: [],
   tasks_search: [],
   task: [],
   new_task: false,
@@ -76873,6 +76874,9 @@ var getters = {
   },
   getTasks: function getTasks(state) {
     return state.tasks;
+  },
+  getTasksTemp: function getTasksTemp(state) {
+    return state.tasks_temp;
   },
   getTask: function getTask(state) {
     return state.task;
@@ -77436,7 +77440,7 @@ var actions = {
             case 0:
               state = _ref20.state, commit = _ref20.commit;
               commit("setProjects", state.projects_temp.filter(function (p) {
-                return p.title != event.target.value;
+                return p.title.toUpperCase().includes(event.target.value.toUpperCase());
               }));
 
             case 2:
@@ -77871,24 +77875,21 @@ var actions = {
     var _fetchTasksSearch = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17(_ref32, event) {
-      var commit, state, response;
+      var commit, state;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
         while (1) {
           switch (_context17.prev = _context17.next) {
             case 0:
               commit = _ref32.commit, state = _ref32.state;
-              _context17.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/tasks/search/" + state.current_project_id, {
-                search: event.target.value
-              }, {
-                "Content-Type": "application/json; charset=utf-8"
-              });
+              commit("setTasks", state.tasks_temp.filter(function (p) {
+                return p.title.toUpperCase().includes(event.target.value.toUpperCase());
+              }));
+              console.log(state.tasks_temp);
+              console.log(state.tasks_temp.filter(function (p) {
+                return p.title.toUpperCase().includes(event.target.value.toUpperCase());
+              }));
 
-            case 3:
-              response = _context17.sent;
-              commit("setTasks", response.data.data);
-
-            case 5:
+            case 4:
             case "end":
               return _context17.stop();
           }
@@ -77913,14 +77914,15 @@ var actions = {
           switch (_context18.prev = _context18.next) {
             case 0:
               commit = _ref33.commit, state = _ref33.state;
-              _context18.next = 3;
+              commit("setTasksTemp", response.data.data);
+              _context18.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
 
-            case 3:
+            case 4:
               response = _context18.sent;
               commit("setTasks", response.data.data);
 
-            case 5:
+            case 6:
             case "end":
               return _context18.stop();
           }
@@ -78323,6 +78325,9 @@ var mutations = {
   },
   setTasks: function setTasks(state, tasks) {
     return state.tasks = tasks;
+  },
+  setTasksTemp: function setTasksTemp(state, tasks_temp) {
+    return state.tasks_temp = tasks_temp;
   },
   setTask: function setTask(state, task) {
     return state.task = task;

@@ -31,8 +31,6 @@ Route::delete('project/{id}', 'ProjectsController@destroy');
 
 /** List tasks */
 Route::get('tasks/all/{id}', 'TasksController@index');
-/** Search Tasks */
-Route::post('tasks/search/{id}', 'TasksController@search');
 /** List only active Tasks */
 Route::get('tasks/act/{id}', 'TasksController@indexActive');
 /** List only ended Tasks */
