@@ -558,12 +558,6 @@ const actions = {
                 p.title.toUpperCase().includes(event.target.value.toUpperCase())
             )
         );
-        console.log(state.tasks_temp);
-        console.log(
-            state.tasks_temp.filter(p =>
-                p.title.toUpperCase().includes(event.target.value.toUpperCase())
-            )
-        );
     },
     // Fetch all tasks
     async fetchTasks({ commit, state }, status) {

@@ -77885,12 +77885,8 @@ var actions = {
               commit("setTasks", state.tasks_temp.filter(function (p) {
                 return p.title.toUpperCase().includes(event.target.value.toUpperCase());
               }));
-              console.log(state.tasks_temp);
-              console.log(state.tasks_temp.filter(function (p) {
-                return p.title.toUpperCase().includes(event.target.value.toUpperCase());
-              }));
 
-            case 4:
+            case 2:
             case "end":
               return _context17.stop();
           }
