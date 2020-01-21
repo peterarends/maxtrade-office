@@ -11,9 +11,8 @@ class SearchController extends Controller
     public function index(Request $request)
     {
         if (!empty($request->search)) {
-            $projects = Project::where(['user_id' => $request->user_id]);
-            $projects = $projects->where('title', 'LIKE', '%' . $request->search . '%')
-                ->orWhere('body', 'LIKE', '%' . $request->search . '%');
+            $projects = Project::where([['user_id', '=',  $request->user_id], ['title', 'LIKE', '%' . $request->search . '%']])
+                ->orWhere([['user_id', '=', $request->user_id], ['body', 'LIKE', '%' . $request->search . '%']]);
             $projects = $projects->orderBy('title', 'asc');
             $projects = $projects->get();
 
