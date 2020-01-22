@@ -767,6 +767,9 @@ const actions = {
         const response = await axios.get("api/contacts/" + state.user_id);
         commit("setContacts", response.data.data);
     },
+    changeCurrentContactId({ commit }, current_contact_id) {
+        commit("setCurrentContactId", current_contact_id);
+    },
     // Refresh to ready state
     readyState({ commit }) {
         commit("setCurrentProjectId", 0);

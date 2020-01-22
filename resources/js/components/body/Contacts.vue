@@ -37,10 +37,33 @@
                         getTheme
                     ]"
                 >
-                    <div>{{ contact.name }}</div>
-                    <div>{{ contact.phone }}</div>
-                    <div>{{ contact.email }}</div>
-                    <div class="description">{{ contact.description }}</div>
+                    <input
+                        type="text"
+                        class="title"
+                        v-model="contact.name"
+                        @click="changeCurrentContactId(contact.id)"
+                    />
+                    <div>
+                        <input
+                            type="text"
+                            class="title_phone"
+                            v-model="contact.phone"
+                            @click="changeCurrentContactId(contact.id)"
+                        />
+                        |
+                        <input
+                            type="text"
+                            class="title_phone"
+                            v-model="contact.email"
+                            @click="changeCurrentContactId(contact.id)"
+                        />
+                    </div>
+                    <textarea
+                        maxlength="100"
+                        class="title_description"
+                        v-model="contact.description"
+                        @click="changeCurrentContactId(contact.id)"
+                    ></textarea>
                 </div>
             </div>
         </div>
@@ -79,7 +102,9 @@ export default {
 
     computed: mapGetters(["getTheme", "getContacts", "getCurrentContactId"]),
 
-    methods: { ...mapActions(["closePanel"]) }
+    methods: {
+        ...mapActions(["closePanel", "changeCurrentContactId"])
+    }
 };
 </script>
 
@@ -173,17 +198,38 @@ export default {
 }
 .resultpanel {
     display: flex;
+    flex-wrap: wrap;
     max-height: calc(100vh - 250px);
     overflow-y: auto;
-    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .contactItem {
     display: flex;
-    flex: 1 1 160px;
-    height: 100px;
     flex-direction: column;
-    padding: 5px 20px 5px 5px;
-    margin: 5px 5px;
+    height: 100px;
+    width: 32%;
+    padding: 2px;
+    margin: 2px;
+}
+.title {
+    background: transparent;
+    padding: 0px;
+    width: 100%;
+}
+.title_description {
+    background: transparent;
+    padding: 0px;
+    width: 100%;
+    height: 60px;
+}
+.title_phone {
+    background: transparent;
+    padding: 0px;
+}
+.contactItemTitle {
+    height: 100%;
+    width: 30px;
+    background: #2d3748;
     transition: 0.3s;
     cursor: pointer;
 }
@@ -195,11 +241,11 @@ export default {
     background: #4a5568;
     color: #cbd5e0;
 }
-.contactItem.light:hover {
+.contactItem:hover.light {
     background: #edf2f7;
     color: #718096;
 }
-.contactItem.dark:hover {
+.contactItem:hover.dark {
     background: #2d3748;
     color: #cbd5e0;
 }
