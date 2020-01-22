@@ -16,7 +16,34 @@
                 </div>
             </div>
         </div>
-        <div class="body">{{ t("Contacts") }}</div>
+        <div class="body">
+            <div class="searchpanel">
+                <input
+                    type="text"
+                    class="searchInput"
+                    :class="getTheme"
+                    ref="search_contacts"
+                    :placeholder="t('search for a match ...')"
+                />
+            </div>
+            <div class="vp20"></div>
+            <div class="resultpanel">
+                <div
+                    class="contactItem"
+                    v-for="contact in getContacts"
+                    :key="contact.id"
+                    :class="[
+                        contact.id == getCurrentContactId ? 'active' : '',
+                        getTheme
+                    ]"
+                >
+                    <div>{{ contact.name }}</div>
+                    <div>{{ contact.phone }}</div>
+                    <div>{{ contact.email }}</div>
+                    <div class="description">{{ contact.description }}</div>
+                </div>
+            </div>
+        </div>
         <div class="bottom" :class="getTheme">
             <a
                 ><i
@@ -50,7 +77,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
     name: "Contacts",
 
-    computed: mapGetters(["getTheme"]),
+    computed: mapGetters(["getTheme", "getContacts", "getCurrentContactId"]),
 
     methods: { ...mapActions(["closePanel"]) }
 };
@@ -117,6 +144,72 @@ export default {
     padding: 10px;
     display: flex;
     flex-direction: column;
+}
+.searchpanel {
+    display: flex;
+}
+.searchInput {
+    border-radius: 0.25rem;
+    flex: 1;
+    padding-left: 0.25rem;
+    padding-bottom: 0.25rem;
+    margin-right: 0.25rem;
+}
+.searchInput.light {
+    background-color: #f7fafc;
+    border: 1px solid #edf2f7;
+    color: #4a5568;
+}
+.searchInput.dark {
+    background-color: #1a202c;
+    border: 1px solid #2d3748;
+    color: #e2e8f0;
+}
+.searchInput.light::placeholder {
+    color: #e2e8f0;
+}
+.searchInput.dark::placeholder {
+    color: #4a5568;
+}
+.resultpanel {
+    display: flex;
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+    flex-wrap: wrap;
+}
+.contactItem {
+    display: flex;
+    flex: 1 1 160px;
+    height: 100px;
+    flex-direction: column;
+    padding: 5px 20px 5px 5px;
+    margin: 5px 5px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.contactItem.light {
+    background: #e2e8f0;
+    color: #718096;
+}
+.contactItem.dark {
+    background: #4a5568;
+    color: #cbd5e0;
+}
+.contactItem.light:hover {
+    background: #edf2f7;
+    color: #718096;
+}
+.contactItem.dark:hover {
+    background: #2d3748;
+    color: #cbd5e0;
+}
+.contactItem.light.active {
+    background: #edf2f7;
+    color: #718096;
+}
+.contactItem.dark.active {
+    background: #2d3748;
+    color: #cbd5e0;
 }
 .bottom {
     display: flex;

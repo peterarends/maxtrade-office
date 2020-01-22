@@ -35,7 +35,9 @@ const state = {
     user_id: document.getElementsByTagName("App")[0].getAttribute("userId"),
     progress: 0,
     users: [],
-    users_projects: []
+    users_projects: [],
+    contacts: [],
+    current_contact_id: 0
 };
 
 const getters = {
@@ -72,7 +74,9 @@ const getters = {
     getProgress: state => state.progress,
     getUsers: state => state.users,
     getUsersProjects: state => state.users_projects,
-    getCurrentUser: state => state.current_user
+    getCurrentUser: state => state.current_user,
+    getContacts: state => state.contacts,
+    getCurrentContactId: state => state.current_contact_id
 };
 
 const actions = {
@@ -170,7 +174,8 @@ const actions = {
         commit("setPanel", "properties");
     },
     // Show panel contacts
-    showContacts({ commit }) {
+    showContacts({ commit, dispatch }) {
+        dispatch("fetchContacts");
         commit("setPanel", "contacts");
     },
     // Show panel emails
@@ -561,10 +566,10 @@ const actions = {
     },
     // Fetch all tasks
     async fetchTasks({ commit, state }, status) {
-        commit("setTasksTemp", response.data.data);
         const response = await axios.get(
             "api/tasks/" + status + "/" + state.current_project_id
         );
+        commit("setTasksTemp", response.data.data);
         commit("setTasks", response.data.data);
     },
     // Toggle task status filter
@@ -757,6 +762,11 @@ const actions = {
             if (a.title < b.title) return 1;
         });
     },
+    // Fetch all contacts
+    async fetchContacts({ commit, state }) {
+        const response = await axios.get("api/contacts/" + state.user_id);
+        commit("setContacts", response.data.data);
+    },
     // Refresh to ready state
     readyState({ commit }) {
         commit("setCurrentProjectId", 0);
@@ -813,7 +823,10 @@ const mutations = {
     setProgress: (state, progress) => (state.progress = progress),
     setUsers: (state, users) => (state.users = users),
     setUsersProjects: (state, users_projects) =>
-        (state.users_projects = users_projects)
+        (state.users_projects = users_projects),
+    setContacts: (state, contacts) => (state.contacts = contacts),
+    setCurrentContactId: (state, current_contact_id) =>
+        (state.current_contact_id = current_contact_id)
 };
 
 export default {

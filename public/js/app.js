@@ -2201,10 +2201,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Contacts",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getContacts", "getCurrentContactId"]),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel"]))
 });
 
@@ -20427,7 +20454,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".address-body[data-v-9c7343f6] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-9c7343f6] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-9c7343f6] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-9c7343f6] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-9c7343f6] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-9c7343f6] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-9c7343f6] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-9c7343f6] {\n  background-color: #e53e3e;\n}\n.body[data-v-9c7343f6] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.bottom[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-9c7343f6] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-9c7343f6] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-9c7343f6] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-9c7343f6] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-9c7343f6]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-9c7343f6]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-9c7343f6] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-9c7343f6] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-9c7343f6] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-9c7343f6] {\n  color: #3182ce;\n}\r\n", ""]);
+exports.push([module.i, ".address-body[data-v-9c7343f6] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-9c7343f6] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-9c7343f6] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-9c7343f6] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-9c7343f6] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-9c7343f6] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-9c7343f6] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-9c7343f6] {\n  background-color: #e53e3e;\n}\n.body[data-v-9c7343f6] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.searchpanel[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n}\n.searchInput[data-v-9c7343f6] {\n  border-radius: 0.25rem;\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-9c7343f6] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-9c7343f6]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]::placeholder {\n  color: #4a5568;\n}\n.resultpanel[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  max-height: calc(100vh - 250px);\n  overflow-y: auto;\n  flex-wrap: wrap;\n}\n.contactItem[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1 1 160px;\n  height: 100px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  padding: 5px 20px 5px 5px;\n  margin: 5px 5px;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.contactItem.light[data-v-9c7343f6] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.contactItem.dark[data-v-9c7343f6] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.contactItem.light[data-v-9c7343f6]:hover {\n  background: #edf2f7;\n  color: #718096;\n}\n.contactItem.dark[data-v-9c7343f6]:hover {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.contactItem.light.active[data-v-9c7343f6] {\n  background: #edf2f7;\n  color: #718096;\n}\n.contactItem.dark.active[data-v-9c7343f6] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.bottom[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-9c7343f6] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-9c7343f6] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-9c7343f6] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-9c7343f6] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-9c7343f6]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-9c7343f6]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-9c7343f6] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-9c7343f6] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-9c7343f6] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-9c7343f6] {\n  color: #3182ce;\n}\r\n", ""]);
 
 // exports
 
@@ -59102,7 +59129,48 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "body" }, [_vm._v(_vm._s(_vm.t("Contacts")))]),
+    _c("div", { staticClass: "body" }, [
+      _c("div", { staticClass: "searchpanel" }, [
+        _c("input", {
+          ref: "search_contacts",
+          staticClass: "searchInput",
+          class: _vm.getTheme,
+          attrs: { type: "text", placeholder: _vm.t("search for a match ...") }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "vp20" }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "resultpanel" },
+        _vm._l(_vm.getContacts, function(contact) {
+          return _c(
+            "div",
+            {
+              key: contact.id,
+              staticClass: "contactItem",
+              class: [
+                contact.id == _vm.getCurrentContactId ? "active" : "",
+                _vm.getTheme
+              ]
+            },
+            [
+              _c("div", [_vm._v(_vm._s(contact.name))]),
+              _vm._v(" "),
+              _c("div", [_vm._v(_vm._s(contact.phone))]),
+              _vm._v(" "),
+              _c("div", [_vm._v(_vm._s(contact.email))]),
+              _vm._v(" "),
+              _c("div", { staticClass: "description" }, [
+                _vm._v(_vm._s(contact.description))
+              ])
+            ]
+          )
+        }),
+        0
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "bottom", class: _vm.getTheme }, [
       _c("a", [
@@ -76860,7 +76928,9 @@ var state = {
   user_id: document.getElementsByTagName("App")[0].getAttribute("userId"),
   progress: 0,
   users: [],
-  users_projects: []
+  users_projects: [],
+  contacts: [],
+  current_contact_id: 0
 };
 var getters = {
   getTheme: function getTheme(state) {
@@ -76956,6 +77026,12 @@ var getters = {
   },
   getCurrentUser: function getCurrentUser(state) {
     return state.current_user;
+  },
+  getContacts: function getContacts(state) {
+    return state.contacts;
+  },
+  getCurrentContactId: function getCurrentContactId(state) {
+    return state.current_contact_id;
   }
 };
 var actions = {
@@ -77203,7 +77279,9 @@ var actions = {
   },
   // Show panel contacts
   showContacts: function showContacts(_ref8) {
-    var commit = _ref8.commit;
+    var commit = _ref8.commit,
+        dispatch = _ref8.dispatch;
+    dispatch("fetchContacts");
     commit("setPanel", "contacts");
   },
   // Show panel emails
@@ -77917,12 +77995,12 @@ var actions = {
           switch (_context18.prev = _context18.next) {
             case 0:
               commit = _ref33.commit, state = _ref33.state;
-              commit("setTasksTemp", response.data.data);
-              _context18.next = 4;
+              _context18.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
 
-            case 4:
+            case 3:
               response = _context18.sent;
+              commit("setTasksTemp", response.data.data);
               commit("setTasks", response.data.data);
 
             case 6:
@@ -78273,9 +78351,41 @@ var actions = {
       if (a.title < b.title) return 1;
     });
   },
+  // Fetch all contacts
+  fetchContacts: function () {
+    var _fetchContacts = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee23(_ref55) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee23$(_context23) {
+        while (1) {
+          switch (_context23.prev = _context23.next) {
+            case 0:
+              commit = _ref55.commit, state = _ref55.state;
+              _context23.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/contacts/" + state.user_id);
+
+            case 3:
+              response = _context23.sent;
+              commit("setContacts", response.data.data);
+
+            case 5:
+            case "end":
+              return _context23.stop();
+          }
+        }
+      }, _callee23);
+    }));
+
+    function fetchContacts(_x38) {
+      return _fetchContacts.apply(this, arguments);
+    }
+
+    return fetchContacts;
+  }(),
   // Refresh to ready state
-  readyState: function readyState(_ref55) {
-    var commit = _ref55.commit;
+  readyState: function readyState(_ref56) {
+    var commit = _ref56.commit;
     commit("setCurrentProjectId", 0);
     commit("setCurrentTaskId", 0);
     commit("setProject", []);
@@ -78284,8 +78394,8 @@ var actions = {
     commit("setDocuments", []);
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref56, progress) {
-    var commit = _ref56.commit;
+  changeProgress: function changeProgress(_ref57, progress) {
+    var commit = _ref57.commit;
     commit("setProgress", progress);
   }
 };
@@ -78373,6 +78483,12 @@ var mutations = {
   },
   setUsersProjects: function setUsersProjects(state, users_projects) {
     return state.users_projects = users_projects;
+  },
+  setContacts: function setContacts(state, contacts) {
+    return state.contacts = contacts;
+  },
+  setCurrentContactId: function setCurrentContactId(state, current_contact_id) {
+    return state.current_contact_id = current_contact_id;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
