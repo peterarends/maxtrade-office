@@ -73,11 +73,7 @@ Route::post('search', 'SearchController@index');
 
 /** List All Contacts */
 Route::get('contacts/{id}', 'ContactsController@index');
-/** List single Contact */
-Route::get('contact/{id}', 'ContactsController@show');
 /** Create new Contact */
-Route::post('contact', 'ContactsController@store');
-/** Update a Contact */
-Route::put('contact', 'ContactsController@store');
+Route::post('contacts', 'ContactsController@store');
 /** Delete a Contact */
 Route::delete('contact/{id}', 'ContactsController@destroy');

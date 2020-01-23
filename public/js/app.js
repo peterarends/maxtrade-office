@@ -2254,8 +2254,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Contacts",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getContacts", "getCurrentContactId"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "changeCurrentContactId"]))
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getContacts", "getCurrentContact"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "changeCurrentContact", "deleteContact"]), {
+    defelteContactLocal: function defelteContactLocal() {
+      if (this.getCurrentContact.id != null) {
+        this.deleteContact();
+      }
+    }
+  })
 });
 
 /***/ }),
@@ -59174,7 +59180,7 @@ var render = function() {
               key: contact.id,
               staticClass: "contactItem",
               class: [
-                contact.id == _vm.getCurrentContactId ? "active" : "",
+                contact.id == _vm.getCurrentContact.id ? "active" : "",
                 _vm.getTheme
               ]
             },
@@ -59193,7 +59199,7 @@ var render = function() {
                 domProps: { value: contact.name },
                 on: {
                   click: function($event) {
-                    return _vm.changeCurrentContactId(contact.id)
+                    return _vm.changeCurrentContact(contact)
                   },
                   input: function($event) {
                     if ($event.target.composing) {
@@ -59219,7 +59225,7 @@ var render = function() {
                   domProps: { value: contact.phone },
                   on: {
                     click: function($event) {
-                      return _vm.changeCurrentContactId(contact.id)
+                      return _vm.changeCurrentContact(contact)
                     },
                     input: function($event) {
                       if ($event.target.composing) {
@@ -59244,7 +59250,7 @@ var render = function() {
                   domProps: { value: contact.email },
                   on: {
                     click: function($event) {
-                      return _vm.changeCurrentContactId(contact.id)
+                      return _vm.changeCurrentContact(contact)
                     },
                     input: function($event) {
                       if ($event.target.composing) {
@@ -59270,7 +59276,7 @@ var render = function() {
                 domProps: { value: contact.description },
                 on: {
                   click: function($event) {
-                    return _vm.changeCurrentContactId(contact.id)
+                    return _vm.changeCurrentContact(contact)
                   },
                   input: function($event) {
                     if ($event.target.composing) {
@@ -59296,13 +59302,24 @@ var render = function() {
         _vm._v(" Save")
       ]),
       _vm._v(" "),
-      _c("a", [
-        _c("i", {
-          staticClass: "mdi mdi-delete-outline mdiProjectIcon",
-          class: _vm.getTheme
-        }),
-        _vm._v(" Delete")
-      ]),
+      _c(
+        "a",
+        {
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.defelteContactLocal($event)
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-delete-outline mdiProjectIcon",
+            class: _vm.getTheme
+          }),
+          _vm._v(" Delete")
+        ]
+      ),
       _vm._v(" "),
       _c(
         "a",
@@ -77045,7 +77062,7 @@ var state = {
   users: [],
   users_projects: [],
   contacts: [],
-  current_contact_id: 0
+  current_contact: []
 };
 var getters = {
   getTheme: function getTheme(state) {
@@ -77145,8 +77162,8 @@ var getters = {
   getContacts: function getContacts(state) {
     return state.contacts;
   },
-  getCurrentContactId: function getCurrentContactId(state) {
-    return state.current_contact_id;
+  getCurrentContact: function getCurrentContact(state) {
+    return state.current_contact;
   }
 };
 var actions = {
@@ -78498,13 +78515,21 @@ var actions = {
 
     return fetchContacts;
   }(),
-  changeCurrentContactId: function changeCurrentContactId(_ref56, current_contact_id) {
+  changeCurrentContact: function changeCurrentContact(_ref56, current_contact) {
     var commit = _ref56.commit;
-    commit("setCurrentContactId", current_contact_id);
+    commit("setCurrentContact", current_contact);
+  },
+  // Delete contact
+  deleteContact: function deleteContact(_ref57) {
+    var state = _ref57.state;
+    state.contacts = state.contacts.filter(function (c) {
+      return c.id != state.current_contact.id;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/contact/" + state.current_contact.id);
   },
   // Refresh to ready state
-  readyState: function readyState(_ref57) {
-    var commit = _ref57.commit;
+  readyState: function readyState(_ref58) {
+    var commit = _ref58.commit;
     commit("setCurrentProjectId", 0);
     commit("setCurrentTaskId", 0);
     commit("setProject", []);
@@ -78513,8 +78538,8 @@ var actions = {
     commit("setDocuments", []);
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref58, progress) {
-    var commit = _ref58.commit;
+  changeProgress: function changeProgress(_ref59, progress) {
+    var commit = _ref59.commit;
     commit("setProgress", progress);
   }
 };
@@ -78606,8 +78631,8 @@ var mutations = {
   setContacts: function setContacts(state, contacts) {
     return state.contacts = contacts;
   },
-  setCurrentContactId: function setCurrentContactId(state, current_contact_id) {
-    return state.current_contact_id = current_contact_id;
+  setCurrentContact: function setCurrentContact(state, current_contact) {
+    return state.current_contact = current_contact;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

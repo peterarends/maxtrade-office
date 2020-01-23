@@ -33,7 +33,7 @@
                     v-for="contact in getContacts"
                     :key="contact.id"
                     :class="[
-                        contact.id == getCurrentContactId ? 'active' : '',
+                        contact.id == getCurrentContact.id ? 'active' : '',
                         getTheme
                     ]"
                 >
@@ -41,28 +41,28 @@
                         type="text"
                         class="title"
                         v-model="contact.name"
-                        @click="changeCurrentContactId(contact.id)"
+                        @click="changeCurrentContact(contact)"
                     />
                     <div>
                         <input
                             type="text"
                             class="title_phone"
                             v-model="contact.phone"
-                            @click="changeCurrentContactId(contact.id)"
+                            @click="changeCurrentContact(contact)"
                         />
                         |
                         <input
                             type="text"
                             class="title_phone"
                             v-model="contact.email"
-                            @click="changeCurrentContactId(contact.id)"
+                            @click="changeCurrentContact(contact)"
                         />
                     </div>
                     <textarea
                         maxlength="100"
                         class="title_description"
                         v-model="contact.description"
-                        @click="changeCurrentContactId(contact.id)"
+                        @click="changeCurrentContact(contact)"
                     ></textarea>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 ></i
                 >&nbsp;Save</a
             >
-            <a
+            <a @click.prevent="defelteContactLocal"
                 ><i
                     class="mdi mdi-delete-outline mdiProjectIcon"
                     :class="getTheme"
@@ -100,10 +100,15 @@ import { mapGetters, mapActions } from "vuex";
 export default {
     name: "Contacts",
 
-    computed: mapGetters(["getTheme", "getContacts", "getCurrentContactId"]),
+    computed: mapGetters(["getTheme", "getContacts", "getCurrentContact"]),
 
     methods: {
-        ...mapActions(["closePanel", "changeCurrentContactId"])
+        ...mapActions(["closePanel", "changeCurrentContact", "deleteContact"]),
+        defelteContactLocal() {
+            if (this.getCurrentContact.id != null) {
+                this.deleteContact();
+            }
+        }
     }
 };
 </script>

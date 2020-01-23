@@ -37,7 +37,7 @@ const state = {
     users: [],
     users_projects: [],
     contacts: [],
-    current_contact_id: 0
+    current_contact: []
 };
 
 const getters = {
@@ -76,7 +76,7 @@ const getters = {
     getUsersProjects: state => state.users_projects,
     getCurrentUser: state => state.current_user,
     getContacts: state => state.contacts,
-    getCurrentContactId: state => state.current_contact_id
+    getCurrentContact: state => state.current_contact
 };
 
 const actions = {
@@ -767,8 +767,15 @@ const actions = {
         const response = await axios.get("api/contacts/" + state.user_id);
         commit("setContacts", response.data.data);
     },
-    changeCurrentContactId({ commit }, current_contact_id) {
-        commit("setCurrentContactId", current_contact_id);
+    changeCurrentContact({ commit }, current_contact) {
+        commit("setCurrentContact", current_contact);
+    },
+    // Delete contact
+    deleteContact({ state }) {
+        state.contacts = state.contacts.filter(
+            c => c.id != state.current_contact.id
+        );
+        axios.delete("api/contact/" + state.current_contact.id);
     },
     // Refresh to ready state
     readyState({ commit }) {
@@ -828,8 +835,8 @@ const mutations = {
     setUsersProjects: (state, users_projects) =>
         (state.users_projects = users_projects),
     setContacts: (state, contacts) => (state.contacts = contacts),
-    setCurrentContactId: (state, current_contact_id) =>
-        (state.current_contact_id = current_contact_id)
+    setCurrentContact: (state, current_contact) =>
+        (state.current_contact = current_contact)
 };
 
 export default {
