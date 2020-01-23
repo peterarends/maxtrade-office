@@ -161,7 +161,13 @@ export default {
             "Matches in Projects": "Съвпадения в Проекти",
             "#": "№",
             "Created at": "Създаден на",
-            "Matches in Tasks": "Съвпадения в Задачи"
+            "Matches in Tasks": "Съвпадения в Задачи",
+            "contact name ...": "име на контакта ...",
+            "phone ...": "телефон ...",
+            "email ...": "email ...",
+            "description ...": "описание ...",
+            "Do you want to delete the contact?":
+                "Желаете ли да изтриете контакта?"
         }
     },
 

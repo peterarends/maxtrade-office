@@ -73,7 +73,9 @@ Route::post('search', 'SearchController@index');
 
 /** List All Contacts */
 Route::get('contacts/{id}', 'ContactsController@index');
-/** Create new Contact */
+/** Save changed Contacts */
 Route::post('contacts', 'ContactsController@store');
+/** Create new Contact */
+Route::post('contact', 'ContactsController@storeContact');
 /** Delete a Contact */
 Route::delete('contact/{id}', 'ContactsController@destroy');

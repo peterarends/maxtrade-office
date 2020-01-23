@@ -27,7 +27,7 @@
                 />
             </div>
             <div class="vp20"></div>
-            <div class="resultpanel">
+            <div class="resultpanel" ref="top">
                 <div
                     class="contactItem"
                     v-for="contact in getContacts"
@@ -42,6 +42,7 @@
                         class="title"
                         v-model="contact.name"
                         @click="changeCurrentContact(contact)"
+                        :placeholder="t('contact name ...')"
                     />
                     <div>
                         <input
@@ -49,6 +50,7 @@
                             class="title_phone"
                             v-model="contact.phone"
                             @click="changeCurrentContact(contact)"
+                            :placeholder="t('phone ...')"
                         />
                         |
                         <input
@@ -56,6 +58,7 @@
                             class="title_phone"
                             v-model="contact.email"
                             @click="changeCurrentContact(contact)"
+                            :placeholder="t('email ...')"
                         />
                     </div>
                     <textarea
@@ -63,17 +66,25 @@
                         class="title_description"
                         v-model="contact.description"
                         @click="changeCurrentContact(contact)"
+                        :placeholder="t('description ...')"
                     ></textarea>
                 </div>
             </div>
         </div>
         <div class="bottom" :class="getTheme">
-            <a
+            <a @click.passive="saveContacts"
                 ><i
                     class="mdi mdi-content-save-outline mdiProjectIcon"
                     v-bind:class="getTheme"
                 ></i
                 >&nbsp;Save</a
+            >
+            <a @click.passive="addContactLocal"
+                ><i
+                    class="mdi mdi-plus-circle-outline mdiProjectIcon"
+                    v-bind:class="getTheme"
+                ></i
+                >&nbsp;Add</a
             >
             <a @click.prevent="defelteContactLocal"
                 ><i
@@ -103,11 +114,29 @@ export default {
     computed: mapGetters(["getTheme", "getContacts", "getCurrentContact"]),
 
     methods: {
-        ...mapActions(["closePanel", "changeCurrentContact", "deleteContact"]),
+        ...mapActions([
+            "closePanel",
+            "changeCurrentContact",
+            "deleteContact",
+            "saveContacts",
+            "addContact"
+        ]),
         defelteContactLocal() {
             if (this.getCurrentContact.id != null) {
-                this.deleteContact();
+                if (
+                    confirm(
+                        this.$translate.text(
+                            "Do you want to delete the contact?"
+                        )
+                    )
+                ) {
+                    this.deleteContact();
+                }
             }
+        },
+        addContactLocal() {
+            this.$refs.top.scrollTop = 0;
+            this.addContact();
         }
     }
 };

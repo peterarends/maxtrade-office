@@ -777,6 +777,45 @@ const actions = {
         );
         axios.delete("api/contact/" + state.current_contact.id);
     },
+    // Save changed contacts
+    async saveContacts() {
+        const response = await axios.post(
+            "api/contacts",
+            {
+                contacts: state.contacts
+            },
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
+        if (response.data.result == "success") {
+            alert("Success!");
+        }
+    },
+    // Save new contact
+    async addContact({ commit, state }) {
+        const response = await axios.post(
+            "api/contact",
+            {
+                name: "Name of new Contact",
+                phone: "",
+                email: "",
+                description: "",
+                user_id: state.user_id
+            },
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
+        const newContact = {
+            id: response.data.data.id,
+            name: response.data.data.name,
+            phone: response.data.data.phone,
+            email: response.data.data.email,
+            description: response.data.data.description,
+            user_id: response.data.data.user_id,
+            created_at: response.data.data.created_at,
+            updated_at: response.data.data.updated_at
+        };
+        state.contacts.unshift(newContact);
+        commit("setCurrentContact", newContact);
+    },
     // Refresh to ready state
     readyState({ commit }) {
         commit("setCurrentProjectId", 0);

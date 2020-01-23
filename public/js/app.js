@@ -2057,7 +2057,12 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_translate_plugin__WEBPACK_IMP
       "Matches in Projects": "Съвпадения в Проекти",
       "#": "№",
       "Created at": "Създаден на",
-      "Matches in Tasks": "Съвпадения в Задачи"
+      "Matches in Tasks": "Съвпадения в Задачи",
+      "contact name ...": "име на контакта ...",
+      "phone ...": "телефон ...",
+      "email ...": "email ...",
+      "description ...": "описание ...",
+      "Do you want to delete the contact?": "Желаете ли да изтриете контакта?"
     }
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_15__["mapGetters"])(["getTheme", "getPanel", "getProjectFilter", "getLanguage"]),
@@ -2251,15 +2256,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Contacts",
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getContacts", "getCurrentContact"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "changeCurrentContact", "deleteContact"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "changeCurrentContact", "deleteContact", "saveContacts", "addContact"]), {
     defelteContactLocal: function defelteContactLocal() {
       if (this.getCurrentContact.id != null) {
-        this.deleteContact();
+        if (confirm(this.$translate.text("Do you want to delete the contact?"))) {
+          this.deleteContact();
+        }
       }
+    },
+    addContactLocal: function addContactLocal() {
+      this.$refs.top.scrollTop = 0;
+      this.addContact();
     }
   })
 });
@@ -59172,7 +59194,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "resultpanel" },
+        { ref: "top", staticClass: "resultpanel" },
         _vm._l(_vm.getContacts, function(contact) {
           return _c(
             "div",
@@ -59195,7 +59217,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "title",
-                attrs: { type: "text" },
+                attrs: { type: "text", placeholder: _vm.t("contact name ...") },
                 domProps: { value: contact.name },
                 on: {
                   click: function($event) {
@@ -59221,7 +59243,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "title_phone",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: _vm.t("phone ...") },
                   domProps: { value: contact.phone },
                   on: {
                     click: function($event) {
@@ -59246,7 +59268,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "title_phone",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: _vm.t("email ...") },
                   domProps: { value: contact.email },
                   on: {
                     click: function($event) {
@@ -59272,7 +59294,10 @@ var render = function() {
                   }
                 ],
                 staticClass: "title_description",
-                attrs: { maxlength: "100" },
+                attrs: {
+                  maxlength: "100",
+                  placeholder: _vm.t("description ...")
+                },
                 domProps: { value: contact.description },
                 on: {
                   click: function($event) {
@@ -59294,13 +59319,41 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "bottom", class: _vm.getTheme }, [
-      _c("a", [
-        _c("i", {
-          staticClass: "mdi mdi-content-save-outline mdiProjectIcon",
-          class: _vm.getTheme
-        }),
-        _vm._v(" Save")
-      ]),
+      _c(
+        "a",
+        {
+          on: {
+            "&click": function($event) {
+              return _vm.saveContacts($event)
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-content-save-outline mdiProjectIcon",
+            class: _vm.getTheme
+          }),
+          _vm._v(" Save")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          on: {
+            "&click": function($event) {
+              return _vm.addContactLocal($event)
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-plus-circle-outline mdiProjectIcon",
+            class: _vm.getTheme
+          }),
+          _vm._v(" Add")
+        ]
+      ),
       _vm._v(" "),
       _c(
         "a",
@@ -78527,9 +78580,98 @@ var actions = {
     });
     axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/contact/" + state.current_contact.id);
   },
+  // Save changed contacts
+  saveContacts: function () {
+    var _saveContacts = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee24() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee24$(_context24) {
+        while (1) {
+          switch (_context24.prev = _context24.next) {
+            case 0:
+              _context24.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/contacts", {
+                contacts: state.contacts
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 2:
+              response = _context24.sent;
+
+              if (response.data.result == "success") {
+                alert("Success!");
+              }
+
+            case 4:
+            case "end":
+              return _context24.stop();
+          }
+        }
+      }, _callee24);
+    }));
+
+    function saveContacts() {
+      return _saveContacts.apply(this, arguments);
+    }
+
+    return saveContacts;
+  }(),
+  // Save new contact
+  addContact: function () {
+    var _addContact = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee25(_ref58) {
+      var commit, state, response, newContact;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee25$(_context25) {
+        while (1) {
+          switch (_context25.prev = _context25.next) {
+            case 0:
+              commit = _ref58.commit, state = _ref58.state;
+              _context25.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/contact", {
+                name: "Name of new Contact",
+                phone: "",
+                email: "",
+                description: "",
+                user_id: state.user_id
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 3:
+              response = _context25.sent;
+              newContact = {
+                id: response.data.data.id,
+                name: response.data.data.name,
+                phone: response.data.data.phone,
+                email: response.data.data.email,
+                description: response.data.data.description,
+                user_id: response.data.data.user_id,
+                created_at: response.data.data.created_at,
+                updated_at: response.data.data.updated_at
+              };
+              state.contacts.unshift(newContact);
+              commit("setCurrentContact", newContact);
+
+            case 7:
+            case "end":
+              return _context25.stop();
+          }
+        }
+      }, _callee25);
+    }));
+
+    function addContact(_x39) {
+      return _addContact.apply(this, arguments);
+    }
+
+    return addContact;
+  }(),
   // Refresh to ready state
-  readyState: function readyState(_ref58) {
-    var commit = _ref58.commit;
+  readyState: function readyState(_ref59) {
+    var commit = _ref59.commit;
     commit("setCurrentProjectId", 0);
     commit("setCurrentTaskId", 0);
     commit("setProject", []);
@@ -78538,8 +78680,8 @@ var actions = {
     commit("setDocuments", []);
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref59, progress) {
-    var commit = _ref59.commit;
+  changeProgress: function changeProgress(_ref60, progress) {
+    var commit = _ref60.commit;
     commit("setProgress", progress);
   }
 };

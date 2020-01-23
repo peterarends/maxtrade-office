@@ -22,18 +22,41 @@ class ContactsController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('post')) {
-            $contact = $request->isMethod('put') ? Contact::findOrFail($request->contact_id) : new Contact;
+            if (is_array($request->input('contacts'))) {
+                foreach ($request->input('contacts') as $contact) {
+                    $currentContact = Contact::findOrFail($contact["id"]);
+                    $currentContact->name = $contact["name"];
+                    $currentContact->phone = $contact["phone"];
+                    $currentContact->email = $contact["email"];
+                    $currentContact->description = $contact["description"];
+                    $currentContact->save();
+                }
+                return json_encode([
+                    "result" => "success"
+                ]);
+            } else {
+                return json_encode([
+                    "result" => "The parameter contacts not sendet!"
+                ]);
+            }
+        } else {
+            return json_encode([
+                "result" => "The request method must be POST!"
+            ]);
+        }
+    }
 
+    public function storeContact(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $contact = new Contact();
             $contact->name = $request->input('name');
             $contact->phone = $request->input('phone');
+            $contact->email = $request->input('email');
             $contact->description = $request->input('description');
-            if ($request->isMethod('post')) {
-                $contact->user_id = $request->input('user_id');
-            }
-
-            if ($contact->save()) {
-                return new ContactResource($contact);
-            }
+            $contact->user_id = $request->input('user_id');
+            $contact->save();
+            return new ContactResource($contact);
         }
     }
 
