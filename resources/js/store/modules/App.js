@@ -187,7 +187,7 @@ const actions = {
         commit("setPanel", "searchtasks");
     },
     // Close current panel
-    closePanel({ commit, dispatch }) {
+    closePanel({ dispatch }) {
         dispatch("readyState");
     },
     // Show About panel
@@ -786,9 +786,6 @@ const actions = {
             },
             { "Content-Type": "application/json; charset=utf-8" }
         );
-        if (response.data.result == "success") {
-            alert("Success!");
-        }
     },
     // Save new contact
     async addContact({ commit, state }) {

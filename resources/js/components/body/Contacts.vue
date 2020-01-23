@@ -68,7 +68,7 @@
       </div>
     </div>
     <div class="bottom" :class="getTheme">
-      <a @click.passive="saveContacts">
+      <a @click.passive="saveContactsLocal">
         <i class="mdi mdi-content-save-outline mdiProjectIcon" v-bind:class="getTheme"></i>&nbsp;Save
       </a>
       <a @click.passive="addContactLocal">
@@ -113,6 +113,10 @@ export default {
     addContactLocal() {
       this.$refs.top.scrollTop = 0;
       this.addContact();
+    },
+    saveContactsLocal() {
+      this.saveContacts();
+      alert(this.$translate.text("You have successfully saved the changes!"));
     }
   }
 };
