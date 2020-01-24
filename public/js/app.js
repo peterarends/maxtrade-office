@@ -2355,24 +2355,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Emails",
@@ -20547,7 +20529,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".emails-body[data-v-65cae289] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-65cae289] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-65cae289] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-65cae289] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-65cae289] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-65cae289] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-65cae289] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-65cae289] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-65cae289] {\n  background-color: #e53e3e;\n}\n.body[data-v-65cae289] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.bottom[data-v-65cae289] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-65cae289] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-65cae289] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-65cae289] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-65cae289] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-65cae289] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-65cae289]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-65cae289]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-65cae289] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-65cae289] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-65cae289] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-65cae289] {\n  color: #3182ce;\n}\r\n", ""]);
+exports.push([module.i, ".emails-body[data-v-65cae289] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-65cae289] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-65cae289] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-65cae289] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-65cae289] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-65cae289] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-65cae289] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-65cae289] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-65cae289] {\n  background-color: #e53e3e;\n}\n.body[data-v-65cae289] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.bottom[data-v-65cae289] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-65cae289] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-65cae289] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-65cae289] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-65cae289] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-65cae289] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-65cae289]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-65cae289]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-65cae289] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-65cae289] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-65cae289] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-65cae289] {\n  color: #3182ce;\n}\n", ""]);
 
 // exports
 
@@ -59479,11 +59461,7 @@ var render = function() {
           _vm._v(" "),
           _c("p", [_vm._v("to: " + _vm._s(imap.toString))]),
           _vm._v(" "),
-          _c("p", [_vm._v("subject: " + _vm._s(imap.subject))]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("div", { domProps: { innerHTML: _vm._s(imap.textHtml) } })
+          _c("p", [_vm._v("subject: " + _vm._s(imap.subject))])
         ])
       }),
       0
@@ -59495,7 +59473,7 @@ var render = function() {
           staticClass: "mdi mdi-content-save-outline mdiProjectIcon",
           class: _vm.getTheme
         }),
-        _vm._v(" Save")
+        _vm._v(" Save\n    ")
       ]),
       _vm._v(" "),
       _c("a", [
@@ -59503,7 +59481,7 @@ var render = function() {
           staticClass: "mdi mdi-delete-outline mdiProjectIcon",
           class: _vm.getTheme
         }),
-        _vm._v(" Delete")
+        _vm._v(" Delete\n    ")
       ]),
       _vm._v(" "),
       _c(
@@ -59521,7 +59499,7 @@ var render = function() {
             staticClass: "mdi mdi-close-outline mdiProjectIcon",
             class: _vm.getTheme
           }),
-          _vm._v(" Close")
+          _vm._v(" Close\n    ")
         ]
       ),
       _vm._v(" "),
@@ -78757,37 +78735,13 @@ var actions = {
     return allSearchContacts;
   }(),
   // Fetch all imaps
-  fetchImaps: function () {
-    var _fetchImaps = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee27(_ref60) {
-      var commit, state, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee27$(_context27) {
-        while (1) {
-          switch (_context27.prev = _context27.next) {
-            case 0:
-              commit = _ref60.commit, state = _ref60.state;
-              _context27.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/imaps/" + state.user_id);
-
-            case 3:
-              response = _context27.sent;
-              commit("setImaps", response.data);
-
-            case 5:
-            case "end":
-              return _context27.stop();
-          }
-        }
-      }, _callee27);
-    }));
-
-    function fetchImaps(_x42) {
-      return _fetchImaps.apply(this, arguments);
-    }
-
-    return fetchImaps;
-  }(),
+  fetchImaps: function fetchImaps(_ref60) {
+    var commit = _ref60.commit,
+        state = _ref60.state;
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/imaps/" + state.user_id).then(function (response) {
+      commit("setImaps", response.data);
+    });
+  },
   // Refresh to ready state
   readyState: function readyState(_ref61) {
     var commit = _ref61.commit;

@@ -32,27 +32,27 @@ class ImapController extends Controller
             die('Mailbox is empty');
         }
 
+        // Put the latest email on top of listing
+        rsort($mailsIds);
+
         // Get the first message
         // If '__DIR__' was defined in the first line, it will automatically
         // save all attachments to the specified directory
-        $email = $mailbox->getMail($mailsIds[0]);
-
-        /** Get Contacts */
-        if ($email->textHtml) {
-            $textHtml = $email->textHtml;
-        } else {
-            $textHtml = $email->textPlain;
-        }
-        $imaps = [
-            [
+        $imaps = [];
+        foreach ($mailsIds as $num) {
+            // Show header with subject and data on this email
+            $head = $mailbox->getMailHeader($num);
+            $markAsSeen = false;
+            $email = $mailbox->getMail($num, $markAsSeen);
+            $imap = [
                 "id" => $email->id,
                 "fromName" => isset($email->fromName) ? $email->fromName : $email->fromAddress,
                 "fromAddress" => $email->fromAddress,
                 "toString" => $email->toString,
-                "subject" => $email->subject,
-                "textHtml" => $textHtml
-            ]
-        ];
+                "subject" => $email->subject
+            ];
+            $imaps[] = $imap;
+        }
 
         $mailbox->disconnect();
 
