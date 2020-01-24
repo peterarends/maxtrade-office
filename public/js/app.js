@@ -2255,11 +2255,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Contacts",
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getContacts", "getCurrentContact"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "changeCurrentContact", "deleteContact", "saveContacts", "addContact"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "changeCurrentContact", "deleteContact", "saveContacts", "addContact", "allSearchContacts"]), {
     defelteContactLocal: function defelteContactLocal() {
       if (this.getCurrentContact.id != null) {
         if (confirm(this.$translate.text("Do you want to delete the contact?"))) {
@@ -20459,7 +20480,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n.vp20 {\n  padding: 20px 0px;\n}\n.button {\n  border: 1px solid #4a5568;\n  padding: 2px 8px;\n  border-radius: 5px;\n  background: #2a4365;\n}\n.button:hover {\n  background: #2b6cb0;\n}\ntable,\nth,\ntd {\n  border: 1px dotted #4a5568;\n  text-align: left;\n}\nth {\n  background: #4a5568;\n  font-size: 18px;\n  font-weight: normal;\n}\n", ""]);
+exports.push([module.i, ".mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n.vp20 {\n  padding: 20px 0px;\n}\n.button {\n  border: 1px solid #4a5568;\n  padding: 2px 8px;\n  border-radius: 5px;\n  background: #2a4365;\n}\n.button:hover {\n  background: #2b6cb0;\n}\ntable,\r\nth,\r\ntd {\n  border: 1px dotted #4a5568;\n  text-align: left;\n}\nth {\n  background: #4a5568;\n  font-size: 18px;\n  font-weight: normal;\n}\r\n", ""]);
 
 // exports
 
@@ -20497,7 +20518,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".address-body[data-v-9c7343f6] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-9c7343f6] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-9c7343f6] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-9c7343f6] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-9c7343f6] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-9c7343f6] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-9c7343f6] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-9c7343f6] {\n  background-color: #e53e3e;\n}\n.body[data-v-9c7343f6] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.searchpanel[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n}\n.searchInput[data-v-9c7343f6] {\n  border-radius: 0.25rem;\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-9c7343f6] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-9c7343f6]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]::placeholder {\n  color: #4a5568;\n}\n.resultpanel[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  flex-wrap: wrap;\n  max-height: calc(100vh - 250px);\n  overflow-y: auto;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.contactItem[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100px;\n  width: 32%;\n  padding: 2px;\n  margin: 2px;\n}\n.title[data-v-9c7343f6] {\n  background: transparent;\n  padding: 0px;\n  width: 100%;\n}\n.title_description[data-v-9c7343f6] {\n  background: transparent;\n  padding: 0px;\n  width: 100%;\n  height: 60px;\n}\n.title_phone[data-v-9c7343f6] {\n  background: transparent;\n  padding: 0px;\n}\n.contactItemTitle[data-v-9c7343f6] {\n  height: 100%;\n  width: 30px;\n  background: #2d3748;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.contactItem.light[data-v-9c7343f6] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.contactItem.dark[data-v-9c7343f6] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.contactItem:hover.light[data-v-9c7343f6] {\n  background: #edf2f7;\n  color: #718096;\n}\n.contactItem:hover.dark[data-v-9c7343f6] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.contactItem.light.active[data-v-9c7343f6] {\n  background: #edf2f7;\n  color: #718096;\n}\n.contactItem.dark.active[data-v-9c7343f6] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.bottom[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-9c7343f6] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-9c7343f6] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-9c7343f6] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-9c7343f6] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-9c7343f6]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-9c7343f6]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-9c7343f6] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-9c7343f6] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-9c7343f6] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-9c7343f6] {\n  color: #3182ce;\n}\n@media screen and (max-width: 1440px), screen and (max-height: 900px) {\n.contactItem[data-v-9c7343f6] {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n            flex-direction: column;\n    height: 100px;\n    width: 49%;\n    padding: 2px;\n    margin: 2px;\n}\n}\n", ""]);
+exports.push([module.i, ".address-body[data-v-9c7343f6] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-9c7343f6] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-9c7343f6] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-9c7343f6] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-9c7343f6] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-9c7343f6] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-9c7343f6] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-9c7343f6] {\n  background-color: #e53e3e;\n}\n.body[data-v-9c7343f6] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.searchpanel[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n}\n.searchInput[data-v-9c7343f6] {\n  border-radius: 0.25rem;\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding-left: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin-right: 0.25rem;\n}\n.searchInput.light[data-v-9c7343f6] {\n  background-color: #f7fafc;\n  border: 1px solid #edf2f7;\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6] {\n  background-color: #1a202c;\n  border: 1px solid #2d3748;\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::-webkit-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::-moz-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]:-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::-ms-input-placeholder {\n  color: #e2e8f0;\n}\n.searchInput.light[data-v-9c7343f6]::placeholder {\n  color: #e2e8f0;\n}\n.searchInput.dark[data-v-9c7343f6]::-webkit-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]::-moz-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]:-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]::-ms-input-placeholder {\n  color: #4a5568;\n}\n.searchInput.dark[data-v-9c7343f6]::placeholder {\n  color: #4a5568;\n}\n.resultpanel[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  flex-wrap: wrap;\n  max-height: calc(100vh - 250px);\n  overflow-y: auto;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.contactItem[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100px;\n  width: 32%;\n  padding: 2px;\n  margin: 2px;\n}\n.title[data-v-9c7343f6] {\n  background: transparent;\n  padding: 0px;\n  width: 100%;\n}\n.title_description[data-v-9c7343f6] {\n  background: transparent;\n  padding: 0px;\n  width: 100%;\n  height: 60px;\n}\n.title_phone[data-v-9c7343f6] {\n  background: transparent;\n  padding: 0px;\n}\n.contactItemTitle[data-v-9c7343f6] {\n  height: 100%;\n  width: 30px;\n  background: #2d3748;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.contactItem.light[data-v-9c7343f6] {\n  background: #e2e8f0;\n  color: #718096;\n}\n.contactItem.dark[data-v-9c7343f6] {\n  background: #4a5568;\n  color: #cbd5e0;\n}\n.contactItem:hover.light[data-v-9c7343f6] {\n  background: #edf2f7;\n  color: #718096;\n}\n.contactItem:hover.dark[data-v-9c7343f6] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.contactItem.light.active[data-v-9c7343f6] {\n  background: #edf2f7;\n  color: #718096;\n}\n.contactItem.dark.active[data-v-9c7343f6] {\n  background: #2d3748;\n  color: #cbd5e0;\n}\n.bottom[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-9c7343f6] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-9c7343f6] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-9c7343f6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-9c7343f6] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-9c7343f6] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-9c7343f6]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-9c7343f6]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-9c7343f6] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-9c7343f6] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-9c7343f6] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-9c7343f6] {\n  color: #3182ce;\n}\n@media screen and (max-width: 1440px), screen and (max-height: 900px) {\n.contactItem[data-v-9c7343f6] {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n            flex-direction: column;\n    height: 100px;\n    width: 49%;\n    padding: 2px;\n    margin: 2px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -59178,7 +59199,12 @@ var render = function() {
           ref: "search_contacts",
           staticClass: "searchInput",
           class: _vm.getTheme,
-          attrs: { type: "text", placeholder: _vm.t("search for a match ...") }
+          attrs: { type: "text", placeholder: _vm.t("search for a match ...") },
+          on: {
+            input: function($event) {
+              return _vm.allSearchContacts($event)
+            }
+          }
         })
       ]),
       _vm._v(" "),
@@ -59249,7 +59275,7 @@ var render = function() {
                     }
                   }
                 }),
-                _vm._v("\n          |\n          "),
+                _vm._v("\n                    |\n                    "),
                 _c("input", {
                   directives: [
                     {
@@ -59325,7 +59351,7 @@ var render = function() {
             staticClass: "mdi mdi-content-save-outline mdiProjectIcon",
             class: _vm.getTheme
           }),
-          _vm._v(" Save\n    ")
+          _vm._v(" Save\n        ")
         ]
       ),
       _vm._v(" "),
@@ -59343,7 +59369,7 @@ var render = function() {
             staticClass: "mdi mdi-plus-circle-outline mdiProjectIcon",
             class: _vm.getTheme
           }),
-          _vm._v(" Add\n    ")
+          _vm._v(" Add\n        ")
         ]
       ),
       _vm._v(" "),
@@ -59362,7 +59388,7 @@ var render = function() {
             staticClass: "mdi mdi-delete-outline mdiProjectIcon",
             class: _vm.getTheme
           }),
-          _vm._v(" Delete\n    ")
+          _vm._v(" Delete\n        ")
         ]
       ),
       _vm._v(" "),
@@ -59381,7 +59407,7 @@ var render = function() {
             staticClass: "mdi mdi-close-outline mdiProjectIcon",
             class: _vm.getTheme
           }),
-          _vm._v(" Close\n    ")
+          _vm._v(" Close\n        ")
         ]
       ),
       _vm._v(" "),
@@ -78656,9 +78682,46 @@ var actions = {
 
     return addContact;
   }(),
+  // Search in contacts
+  allSearchContacts: function () {
+    var _allSearchContacts = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee26(_ref59, event) {
+      var state, commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee26$(_context26) {
+        while (1) {
+          switch (_context26.prev = _context26.next) {
+            case 0:
+              state = _ref59.state, commit = _ref59.commit;
+              _context26.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/contacts/search", {
+                search: event.target.value,
+                user_id: state.user_id
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 3:
+              response = _context26.sent;
+              commit("setContacts", response.data.data);
+
+            case 5:
+            case "end":
+              return _context26.stop();
+          }
+        }
+      }, _callee26);
+    }));
+
+    function allSearchContacts(_x40, _x41) {
+      return _allSearchContacts.apply(this, arguments);
+    }
+
+    return allSearchContacts;
+  }(),
   // Refresh to ready state
-  readyState: function readyState(_ref59) {
-    var commit = _ref59.commit;
+  readyState: function readyState(_ref60) {
+    var commit = _ref60.commit;
     commit("setCurrentProjectId", 0);
     commit("setCurrentTaskId", 0);
     commit("setProject", []);
@@ -78667,8 +78730,8 @@ var actions = {
     commit("setDocuments", []);
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref60, progress) {
-    var commit = _ref60.commit;
+  changeProgress: function changeProgress(_ref61, progress) {
+    var commit = _ref61.commit;
     commit("setProgress", progress);
   }
 };

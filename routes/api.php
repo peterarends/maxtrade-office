@@ -79,3 +79,5 @@ Route::post('contacts', 'ContactsController@store');
 Route::post('contact', 'ContactsController@storeContact');
 /** Delete a Contact */
 Route::delete('contact/{id}', 'ContactsController@destroy');
+/** Search contacts */
+Route::post('contacts/search', 'ContactsController@search');

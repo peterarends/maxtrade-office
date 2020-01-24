@@ -12,7 +12,7 @@ class ContactsController extends Controller
     {
         /** Get Contacts */
         $contacts = Contact::where(['user_id' => $request->id])
-            ->orderBy('created_at', 'desc')
+            ->orderBy('name', 'desc')
             ->get();
 
         /** Return collection of Contacts as resource */
@@ -67,6 +67,24 @@ class ContactsController extends Controller
 
         if ($contact->delete()) {
             return new ContactResource($contact);
+        }
+    }
+
+    public function search(Request $request)
+    {
+        if (!empty($request->search)) {
+            $contacts = Contact::where([['user_id', '=',  $request->user_id], ['name', 'LIKE', '%' . $request->search . '%']])
+                ->orWhere([['user_id', '=', $request->user_id], ['phone', 'LIKE', '%' . $request->search . '%']])
+                ->orWhere([['user_id', '=', $request->user_id], ['email', 'LIKE', '%' . $request->search . '%']]);
+            $contacts = $contacts->orderBy('name', 'asc');
+            $contacts = $contacts->get();
+
+            return ContactResource::collection($contacts);
+        } else {
+            $contacts = Contact::where(['user_id' => $request->id])
+                ->orderBy('name', 'desc')
+                ->get();
+            return ContactResource::collection($contacts);
         }
     }
 }
