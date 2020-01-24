@@ -16,7 +16,17 @@
                 </div>
             </div>
         </div>
-        <div class="body">{{ t("E-Mails") }}</div>
+        <div class="body">
+            <div v-for="imap in getImaps" :key="imap.id">
+                <p>ID: {{ imap.id }}</p>
+                <p>from name: {{ imap.fromName }}</p>
+                <p>from address: {{ imap.fromAddress }}</p>
+                <p>to: {{ imap.toString }}</p>
+                <p>subject: {{ imap.subject }}</p>
+                <hr />
+                <div v-html="imap.textHtml"></div>
+            </div>
+        </div>
         <div class="bottom" :class="getTheme">
             <a
                 ><i
@@ -50,7 +60,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
     name: "Emails",
 
-    computed: mapGetters(["getTheme"]),
+    computed: mapGetters(["getTheme", "getImaps"]),
 
     methods: { ...mapActions(["closePanel"]) }
 };

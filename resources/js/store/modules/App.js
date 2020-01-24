@@ -37,7 +37,8 @@ const state = {
     users: [],
     users_projects: [],
     contacts: [],
-    current_contact: []
+    current_contact: [],
+    imaps: []
 };
 
 const getters = {
@@ -76,7 +77,8 @@ const getters = {
     getUsersProjects: state => state.users_projects,
     getCurrentUser: state => state.current_user,
     getContacts: state => state.contacts,
-    getCurrentContact: state => state.current_contact
+    getCurrentContact: state => state.current_contact,
+    getImaps: state => state.imaps
 };
 
 const actions = {
@@ -179,7 +181,8 @@ const actions = {
         commit("setPanel", "contacts");
     },
     // Show panel emails
-    showEmails({ commit }) {
+    showEmails({ commit, dispatch }) {
+        dispatch("fetchImaps");
         commit("setPanel", "emails");
     },
     // Show panel all tasks
@@ -825,6 +828,11 @@ const actions = {
         );
         commit("setContacts", response.data.data);
     },
+    // Fetch all imaps
+    async fetchImaps({ commit, state }) {
+        const response = await axios.get("api/imaps/" + state.user_id);
+        commit("setImaps", response.data);
+    },
     // Refresh to ready state
     readyState({ commit }) {
         commit("setCurrentProjectId", 0);
@@ -884,7 +892,8 @@ const mutations = {
         (state.users_projects = users_projects),
     setContacts: (state, contacts) => (state.contacts = contacts),
     setCurrentContact: (state, current_contact) =>
-        (state.current_contact = current_contact)
+        (state.current_contact = current_contact),
+    setImaps: (state, imaps) => (state.imaps = imaps)
 };
 
 export default {

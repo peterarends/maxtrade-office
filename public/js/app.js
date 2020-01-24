@@ -2363,10 +2363,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Emails",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getImaps"]),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel"]))
 });
 
@@ -59456,7 +59466,28 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "body" }, [_vm._v(_vm._s(_vm.t("E-Mails")))]),
+    _c(
+      "div",
+      { staticClass: "body" },
+      _vm._l(_vm.getImaps, function(imap) {
+        return _c("div", { key: imap.id }, [
+          _c("p", [_vm._v("ID: " + _vm._s(imap.id))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("from name: " + _vm._s(imap.fromName))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("from address: " + _vm._s(imap.fromAddress))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("to: " + _vm._s(imap.toString))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("subject: " + _vm._s(imap.subject))]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { domProps: { innerHTML: _vm._s(imap.textHtml) } })
+        ])
+      }),
+      0
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "bottom", class: _vm.getTheme }, [
       _c("a", [
@@ -77133,7 +77164,8 @@ var state = {
   users: [],
   users_projects: [],
   contacts: [],
-  current_contact: []
+  current_contact: [],
+  imaps: []
 };
 var getters = {
   getTheme: function getTheme(state) {
@@ -77235,6 +77267,9 @@ var getters = {
   },
   getCurrentContact: function getCurrentContact(state) {
     return state.current_contact;
+  },
+  getImaps: function getImaps(state) {
+    return state.imaps;
   }
 };
 var actions = {
@@ -77489,7 +77524,9 @@ var actions = {
   },
   // Show panel emails
   showEmails: function showEmails(_ref9) {
-    var commit = _ref9.commit;
+    var commit = _ref9.commit,
+        dispatch = _ref9.dispatch;
+    dispatch("fetchImaps");
     commit("setPanel", "emails");
   },
   // Show panel all tasks
@@ -78719,9 +78756,41 @@ var actions = {
 
     return allSearchContacts;
   }(),
+  // Fetch all imaps
+  fetchImaps: function () {
+    var _fetchImaps = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee27(_ref60) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee27$(_context27) {
+        while (1) {
+          switch (_context27.prev = _context27.next) {
+            case 0:
+              commit = _ref60.commit, state = _ref60.state;
+              _context27.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/imaps/" + state.user_id);
+
+            case 3:
+              response = _context27.sent;
+              commit("setImaps", response.data);
+
+            case 5:
+            case "end":
+              return _context27.stop();
+          }
+        }
+      }, _callee27);
+    }));
+
+    function fetchImaps(_x42) {
+      return _fetchImaps.apply(this, arguments);
+    }
+
+    return fetchImaps;
+  }(),
   // Refresh to ready state
-  readyState: function readyState(_ref60) {
-    var commit = _ref60.commit;
+  readyState: function readyState(_ref61) {
+    var commit = _ref61.commit;
     commit("setCurrentProjectId", 0);
     commit("setCurrentTaskId", 0);
     commit("setProject", []);
@@ -78730,8 +78799,8 @@ var actions = {
     commit("setDocuments", []);
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref61, progress) {
-    var commit = _ref61.commit;
+  changeProgress: function changeProgress(_ref62, progress) {
+    var commit = _ref62.commit;
     commit("setProgress", progress);
   }
 };
@@ -78825,6 +78894,9 @@ var mutations = {
   },
   setCurrentContact: function setCurrentContact(state, current_contact) {
     return state.current_contact = current_contact;
+  },
+  setImaps: function setImaps(state, imaps) {
+    return state.imaps = imaps;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
