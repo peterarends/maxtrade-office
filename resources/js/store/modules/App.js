@@ -268,6 +268,14 @@ const actions = {
     },
     // Show clcicked project and populate tasks panel
     async showProject({ state, commit, dispatch }, project) {
+        const counter = setInterval(() => {
+            const current_progress = state.progress;
+            if (current_progress == 100) {
+                commit("setProgress", 0);
+            } else {
+                commit("setProgress", current_progress + 1);
+            }
+        }, 50);
         commit("setProject", project);
         commit("setCurrentProjectId", project.id);
         commit("setNewProject", false);
@@ -279,6 +287,8 @@ const actions = {
         commit("setTasks", response.data.data);
         commit("setTasksTemp", response.data.data);
         dispatch("fetchUsersByProjects", project.id);
+        clearInterval(counter);
+        commit("setProgress", 0);
     },
     // Search in projects panel
     async projectSearch({ state, commit }, event) {
@@ -834,12 +844,12 @@ const actions = {
     fetchImaps({ commit, state, dispatch }) {
         const counter = setInterval(() => {
             const current_progress = state.progress;
-            if (current_progress == 10) {
+            if (current_progress == 100) {
                 commit("setProgress", 0);
             } else {
                 commit("setProgress", current_progress + 1);
             }
-        }, 500);
+        }, 50);
         axios.get("api/imaps/" + state.user_id)
             .then(response => {
                 commit("setImaps", response.data);

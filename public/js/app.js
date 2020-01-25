@@ -20575,7 +20575,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** Start Footer panel */\n.footerMainDiv[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark[data-v-42b57c94] {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light[data-v-42b57c94] {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon[data-v-42b57c94] {\n  font-size: 1.25rem;\n}\n.footer-icon[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-42b57c94]:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button[data-v-42b57c94] {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n.progressbar[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: 20px;\n  border: 1px solid #718096;\n}\n.progress[data-v-42b57c94] {\n  background: #4a5568;\n}\n.toprogress[data-v-42b57c94] {\n  background: #2d3748;\n}\n\n/* End Footer panel */\n", ""]);
+exports.push([module.i, "/** Start Footer panel */\n.footerMainDiv[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark[data-v-42b57c94] {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light[data-v-42b57c94] {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon[data-v-42b57c94] {\n  font-size: 1.25rem;\n}\n.footer-icon[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-42b57c94]:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button[data-v-42b57c94] {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n.progressbar[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: 20px;\n  border: 1px solid #718096;\n  -webkit-box-align: center;\n          align-items: center;\n  background: #1a202c;\n}\n.progress[data-v-42b57c94] {\n  background: #3182ce;\n  height: 16px;\n}\n.toprogress[data-v-42b57c94] {\n  background: #1a202c;\n}\n\n/* End Footer panel */\n", ""]);
 
 // exports
 
@@ -59615,7 +59615,7 @@ var render = function() {
       _c("div", { staticClass: "progressbar" }, [
         _c("div", {
           staticClass: "toprogress",
-          style: { flex: (_vm.getProgress - 1) * 30 }
+          style: { flex: (_vm.getProgress - 1) * 3 }
         }),
         _vm._v(" "),
         _c("div", {
@@ -59625,7 +59625,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", {
           staticClass: "toprogress",
-          style: { flex: 300 - _vm.getProgress * 30 }
+          style: { flex: 300 - _vm.getProgress * 3 }
         })
       ])
     ])
@@ -77749,27 +77749,38 @@ var actions = {
     var _showProject = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref19, project) {
-      var state, commit, dispatch, response;
+      var state, commit, dispatch, counter, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
         while (1) {
           switch (_context11.prev = _context11.next) {
             case 0:
               state = _ref19.state, commit = _ref19.commit, dispatch = _ref19.dispatch;
+              counter = setInterval(function () {
+                var current_progress = state.progress;
+
+                if (current_progress == 100) {
+                  commit("setProgress", 0);
+                } else {
+                  commit("setProgress", current_progress + 1);
+                }
+              }, 50);
               commit("setProject", project);
               commit("setCurrentProjectId", project.id);
               commit("setNewProject", false);
               commit("setPanel", "projects");
               commit("setCurrentTaskId", 0);
-              _context11.next = 8;
+              _context11.next = 9;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + state.task_filter.filterstatus + "/" + project.id);
 
-            case 8:
+            case 9:
               response = _context11.sent;
               commit("setTasks", response.data.data);
               commit("setTasksTemp", response.data.data);
               dispatch("fetchUsersByProjects", project.id);
+              clearInterval(counter);
+              commit("setProgress", 0);
 
-            case 12:
+            case 15:
             case "end":
               return _context11.stop();
           }
@@ -78795,12 +78806,12 @@ var actions = {
     var counter = setInterval(function () {
       var current_progress = state.progress;
 
-      if (current_progress == 10) {
+      if (current_progress == 100) {
         commit("setProgress", 0);
       } else {
         commit("setProgress", current_progress + 1);
       }
-    }, 500);
+    }, 50);
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/imaps/" + state.user_id).then(function (response) {
       commit("setImaps", response.data);
       clearInterval(counter);

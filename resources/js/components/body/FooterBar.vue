@@ -28,9 +28,9 @@
       </div>
       <div class="separator-vertical" :class="getTheme"></div>
       <div class="progressbar">
-        <div class="toprogress" :style="{ flex: (getProgress - 1) * 30 }"></div>
+        <div class="toprogress" :style="{ flex: (getProgress - 1) * 3 }"></div>
         <div class="progress" :style="{ flex: getProgress == 0 ? 0 : 60 }"></div>
-        <div class="toprogress" :style="{ flex: 300 - getProgress * 30 }"></div>
+        <div class="toprogress" :style="{ flex: 300 - getProgress * 3 }"></div>
       </div>
     </div>
   </div>
@@ -93,12 +93,15 @@ export default {
   width: 300px;
   height: 20px;
   border: 1px solid #718096;
+  align-items: center;
+  background: #1a202c;
 }
 .progress {
-  background: #4a5568;
+  background: #3182ce;
+  height: 16px;
 }
 .toprogress {
-  background: #2d3748;
+  background: #1a202c;
 }
 /* End Footer panel */
 </style>
