@@ -49,7 +49,8 @@ class ImapController extends Controller
                 "fromName" => isset($email->fromName) ? $email->fromName : $email->fromAddress,
                 "fromAddress" => $email->fromAddress,
                 "toString" => $email->toString,
-                "subject" => $email->subject
+                "subject" => $email->subject,
+                "date" => $email->date
             ];
             $imaps[] = $imap;
         }

@@ -13,13 +13,25 @@
       </div>
     </div>
     <div class="body">
-      <div v-for="imap in getImaps" :key="imap.id">
-        <p>ID: {{ imap.id }}</p>
-        <p>from name: {{ imap.fromName }}</p>
-        <p>from address: {{ imap.fromAddress }}</p>
-        <p>to: {{ imap.toString }}</p>
-        <p>subject: {{ imap.subject }}</p>
+      <div class="menu">
+        <div
+          class="mail_item"
+          v-for="imap in getImaps"
+          :key="imap.id"
+          :class="[
+                    imap.id == getCurrentImapId ? 'active' : '',
+                    getTheme
+                ]"
+        >
+          <div class="dateText">
+            {{ imap.date | formatDate }}&nbsp;|&nbsp;
+            {{ imap.id }}
+          </div>
+          <p>{{ imap.fromName }} &#60;{{ imap.fromAddress }}&#62;</p>
+          <p>{{ imap.subject }}</p>
+        </div>
       </div>
+      <div class="html"></div>
     </div>
     <div class="bottom" :class="getTheme">
       <a>
@@ -38,11 +50,20 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import moment from "moment";
 
 export default {
   name: "Emails",
 
-  computed: mapGetters(["getTheme", "getImaps"]),
+  computed: mapGetters(["getTheme", "getImaps", "getCurrentImapId"]),
+
+  filters: {
+    formatDate: function(value) {
+      if (value) {
+        return moment(String(value)).format("DD.MM.YYYY hh:mm");
+      }
+    }
+  },
 
   methods: { ...mapActions(["closePanel"]) }
 };
@@ -108,7 +129,62 @@ export default {
   flex: 1;
   padding: 10px;
   display: flex;
+}
+.menu {
+  display: flex;
   flex-direction: column;
+  flex: 1;
+  border-right: 1px solid #1a202c;
+  width: 100%;
+  box-sizing: border-box;
+  user-select: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.mail_item {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 20px 5px 5px;
+  margin: 5px 5px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.mail_item.light {
+  background: #e2e8f0;
+  color: #718096;
+}
+.mail_item.dark {
+  background: #4a5568;
+  color: #cbd5e0;
+}
+.mail_item:first-child {
+  padding: 5px 20px 5px 5px;
+  margin: 0px 5px 5px 5px;
+}
+.mail_item.light:hover {
+  background: #edf2f7;
+  color: #718096;
+}
+.mail_item.dark:hover {
+  background: #2d3748;
+  color: #cbd5e0;
+}
+.mail_item.light.active {
+  background: #edf2f7;
+  color: #718096;
+}
+.mail_item.dark.active {
+  background: #2d3748;
+  color: #cbd5e0;
+}
+.dateText {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.75rem;
+}
+.html {
+  flex: 3;
+  background: white;
 }
 .bottom {
   display: flex;

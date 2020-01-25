@@ -38,7 +38,8 @@ const state = {
     users_projects: [],
     contacts: [],
     current_contact: [],
-    imaps: []
+    imaps: [],
+    current_imap_id: 0
 };
 
 const getters = {
@@ -78,7 +79,8 @@ const getters = {
     getCurrentUser: state => state.current_user,
     getContacts: state => state.contacts,
     getCurrentContact: state => state.current_contact,
-    getImaps: state => state.imaps
+    getImaps: state => state.imaps,
+    getCurrentImapId: state => state.current_imap_id
 };
 
 const actions = {
@@ -905,7 +907,9 @@ const mutations = {
     setContacts: (state, contacts) => (state.contacts = contacts),
     setCurrentContact: (state, current_contact) =>
         (state.current_contact = current_contact),
-    setImaps: (state, imaps) => (state.imaps = imaps)
+    setImaps: (state, imaps) => (state.imaps = imaps),
+    setCurrentImapId: (state, current_imap_id) =>
+        (state.current_imap_id = current_imap_id)
 };
 
 export default {
