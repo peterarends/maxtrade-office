@@ -829,10 +829,20 @@ const actions = {
         commit("setContacts", response.data.data);
     },
     // Fetch all imaps
-    fetchImaps({ commit, state }) {
+    fetchImaps({ commit, state, dispatch }) {
+        const counter = setInterval(() => {
+            const current_progress = state.progress;
+            if (current_progress == 10) {
+                commit("setProgress", 0);
+            } else {
+                commit("setProgress", current_progress + 1);
+            }
+        }, 500);
         axios.get("api/imaps/" + state.user_id)
             .then(response => {
                 commit("setImaps", response.data);
+                clearInterval(counter);
+                commit("setProgress", 0);
             });
     },
     // Refresh to ready state

@@ -20548,7 +20548,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/** Start Footer panel */\n.footerMainDiv[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark[data-v-42b57c94] {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light[data-v-42b57c94] {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon[data-v-42b57c94] {\n  font-size: 1.25rem;\n}\n.footer-icon[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-42b57c94]:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button[data-v-42b57c94] {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n.progressbar[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: 20px;\n  border: 1px solid #718096;\n}\n.progress[data-v-42b57c94] {\n  background: #4a5568;\n}\n.toprogress[data-v-42b57c94] {\n  background: #2d3748;\n}\n\n/* End Footer panel */\r\n", ""]);
+exports.push([module.i, "/** Start Footer panel */\n.footerMainDiv[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 2rem;\n}\n.footerMainDiv.dark[data-v-42b57c94] {\n  color: #e2e8f0;\n  background-color: #2d3748;\n}\n.footerMainDiv.light[data-v-42b57c94] {\n  color: #4a5568;\n  background-color: #edf2f7;\n}\n.serverIcon[data-v-42b57c94] {\n  font-size: 1.25rem;\n}\n.footer-icon[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 10px;\n  padding-right: 2px;\n}\n.footer-icon div[data-v-42b57c94]:first-child {\n  width: 32px;\n  text-align: center;\n}\n.button[data-v-42b57c94] {\n  padding: 3px 8px;\n  background: #2d3748;\n  border: 1px solid #4a5568;\n  border-radius: 5px;\n}\n.progressbar[data-v-42b57c94] {\n  display: -webkit-box;\n  display: flex;\n  width: 300px;\n  height: 20px;\n  border: 1px solid #718096;\n}\n.progress[data-v-42b57c94] {\n  background: #4a5568;\n}\n.toprogress[data-v-42b57c94] {\n  background: #2d3748;\n}\n\n/* End Footer panel */\n", ""]);
 
 // exports
 
@@ -59536,7 +59536,7 @@ var render = function() {
       _c("div", { staticClass: "separator-vertical", class: _vm.getTheme }),
       _vm._v(" "),
       _c("div", [
-        _vm._v("\n            MaxtradeOffice ver:\n            "),
+        _vm._v("\n      MaxtradeOffice ver:\n      "),
         _c("span", [
           _vm._v(_vm._s(_vm.getVersion) + " [" + _vm._s(_vm.getUserName) + "]")
         ])
@@ -59547,7 +59547,7 @@ var render = function() {
       _vm._m(1),
       _vm._v(" "),
       _c("div", [
-        _vm._v("\n            " + _vm._s(_vm.t("Projects")) + ": "),
+        _vm._v("\n      " + _vm._s(_vm.t("Projects")) + ":\n      "),
         _c("span", [_vm._v(_vm._s(_vm.getProjects.length))])
       ]),
       _vm._v(" "),
@@ -59556,7 +59556,7 @@ var render = function() {
       _vm._m(2),
       _vm._v(" "),
       _c("div", [
-        _vm._v("\n            " + _vm._s(_vm.t("Tasks")) + ": "),
+        _vm._v("\n      " + _vm._s(_vm.t("Tasks")) + ":\n      "),
         _c("span", [_vm._v(_vm._s(_vm.getTasks.length))])
       ]),
       _vm._v(" "),
@@ -59564,18 +59564,19 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "progressbar" }, [
         _c("div", {
+          staticClass: "toprogress",
+          style: { flex: (_vm.getProgress - 1) * 30 }
+        }),
+        _vm._v(" "),
+        _c("div", {
           staticClass: "progress",
-          style: { flex: _vm.getProgress }
+          style: { flex: _vm.getProgress == 0 ? 0 : 60 }
         }),
         _vm._v(" "),
         _c("div", {
           staticClass: "toprogress",
-          style: { flex: 100 - _vm.getProgress }
+          style: { flex: 300 - _vm.getProgress * 30 }
         })
-      ]),
-      _vm._v("\n         \n        "),
-      _c("div", { staticClass: "progresstxt" }, [
-        _vm._v(_vm._s(_vm.getProgress) + "%")
       ])
     ])
   ])
@@ -78737,9 +78738,21 @@ var actions = {
   // Fetch all imaps
   fetchImaps: function fetchImaps(_ref60) {
     var commit = _ref60.commit,
-        state = _ref60.state;
+        state = _ref60.state,
+        dispatch = _ref60.dispatch;
+    var counter = setInterval(function () {
+      var current_progress = state.progress;
+
+      if (current_progress == 10) {
+        commit("setProgress", 0);
+      } else {
+        commit("setProgress", current_progress + 1);
+      }
+    }, 500);
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/imaps/" + state.user_id).then(function (response) {
       commit("setImaps", response.data);
+      clearInterval(counter);
+      commit("setProgress", 0);
     });
   },
   // Refresh to ready state
