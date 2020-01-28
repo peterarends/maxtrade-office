@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PhpImap\Mailbox;
 use PhpImap\Exceptions\ConnectionException;
+use \Html2Text\Html2Text;
 
 class ImapController extends Controller
 {
@@ -41,16 +42,23 @@ class ImapController extends Controller
         $imaps = [];
         foreach ($mailsIds as $num) {
             // Show header with subject and data on this email
-            $head = $mailbox->getMailHeader($num);
             $markAsSeen = false;
             $email = $mailbox->getMail($num, $markAsSeen);
+            if ($email->textHtml) {
+                $html2TextConverter = new Html2Text($email->textHtml);
+                $html = $html2TextConverter->getText();
+            } else {
+                $html = $email->textPlain;
+            }
+
             $imap = [
                 "id" => $email->id,
                 "fromName" => isset($email->fromName) ? $email->fromName : $email->fromAddress,
                 "fromAddress" => $email->fromAddress,
                 "toString" => $email->toString,
                 "subject" => $email->subject,
-                "date" => $email->date
+                "date" => $email->date,
+                "html" => $html
             ];
             $imaps[] = $imap;
         }
