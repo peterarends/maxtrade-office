@@ -68,4 +68,24 @@ class ImapController extends Controller
         /** Return collection of Imaps as resource */
         return json_encode($imaps);
     }
+
+    public function destroy($id)
+    {
+        $mailbox = new Mailbox(
+            '{imap.gmail.com:993/imap/ssl}INBOX', // IMAP server and mailbox folder
+            'ilko.iv@gmail.com', // Username for the before configured mailbox
+            '1Ivan@Ivanov9', // Password for the before configured username
+            __DIR__, // Directory, where attachments will be saved (optional)
+            'UTF-8' // Server encoding (optional)
+        );
+
+        try {
+            if (!empty($id)) {
+                $mailbox->deleteMail($id);
+            }
+        } catch (ConnectionException $ex) {
+            echo "IMAP connection failed: " . $ex;
+            die();
+        }
+    }
 }

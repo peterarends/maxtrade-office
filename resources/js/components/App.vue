@@ -169,7 +169,9 @@ export default {
             "Do you want to delete the contact?":
                 "Желаете ли да изтриете контакта?",
             "You have successfully saved the changes!":
-                "Успешно записахте промените!"
+                "Успешно записахте промените!",
+            "New Project": "Нов Проект",
+            "To Current Task": "Към Задачата"
         }
     },
 

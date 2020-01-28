@@ -41,7 +41,46 @@
             </div>
         </div>
         <div class="bottom" :class="getTheme">
-            <a>
+            <a @click.prevent="newProjectImap" v-if="getCurrentImapId != 0">
+                <i
+                    class="mdi mdi-chevron-double-left mdiProjectIcon"
+                    :class="getTheme"
+                ></i
+                ><i
+                    class="mdi mdi-alpha-p-box mdiProjectIcon"
+                    :class="getTheme"
+                ></i
+                >&nbsp;{{ t("New Project") }}
+            </a>
+            <a
+                @click.prevent="newTaskImap"
+                v-if="getCurrentImapId != 0 && getCurrentProjectId != 0"
+            >
+                <i
+                    class="mdi mdi-chevron-double-left mdiProjectIcon"
+                    :class="getTheme"
+                ></i
+                ><i
+                    class="mdi mdi-alpha-t-box mdiProjectIcon"
+                    :class="getTheme"
+                ></i
+                >&nbsp;{{ t("New Task") }}
+            </a>
+            <a
+                @click.prevent="currentTaskImap"
+                v-if="getCurrentImapId != 0 && getCurrentTaskId != 0"
+            >
+                <i
+                    class="mdi mdi-chevron-double-left mdiProjectIcon"
+                    :class="getTheme"
+                ></i
+                ><i
+                    class="mdi mdi-alpha-c-box mdiProjectIcon"
+                    :class="getTheme"
+                ></i
+                >&nbsp;{{ t("To Current Task") }}
+            </a>
+            <a @click.prevent="deleteImap">
                 <i
                     class="mdi mdi-delete-outline mdiProjectIcon"
                     :class="getTheme"
@@ -71,7 +110,9 @@ export default {
         "getTheme",
         "getImaps",
         "getCurrentImapId",
-        "getImap"
+        "getImap",
+        "getCurrentProjectId",
+        "getCurrentTaskId"
     ]),
 
     filters: {
@@ -82,7 +123,16 @@ export default {
         }
     },
 
-    methods: { ...mapActions(["closePanel", "showImap"]) }
+    methods: {
+        ...mapActions([
+            "closePanel",
+            "showImap",
+            "deleteImap",
+            "newProjectImap",
+            "newTaskImap",
+            "currentTaskImap"
+        ])
+    }
 };
 </script>
 

@@ -84,3 +84,5 @@ Route::post('contacts/search', 'ContactsController@search');
 
 /** Imap */
 Route::get('imaps/{id}', 'ImapController@index');
+/** Delete a Imap */
+Route::delete('imap/{id}', 'ImapController@destroy');

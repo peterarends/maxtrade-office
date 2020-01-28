@@ -860,7 +860,6 @@ const actions = {
     },
     // Show clcicked project and populate tasks panel
     async showImap({ state, commit }, imap) {
-        console.log(imap.html);
         const counter = setInterval(() => {
             const current_progress = state.progress;
             if (current_progress == 100) {
@@ -873,6 +872,88 @@ const actions = {
         commit("setCurrentImapId", imap.id);
         clearInterval(counter);
         commit("setProgress", 0);
+    },
+    async deleteImap({ commit, state }) {
+        if (state.current_imap_id != 0) {
+            if (confirm("Are You sure?")) {
+                await axios.delete("api/imap/" + state.current_imap_id, {
+                    "Content-Type": "application/json; charset=utf-8"
+                });
+                state.imaps = state.imaps.filter(
+                    i => i.id !== state.current_imap_id
+                );
+                commit("setCurrentImapId", 0);
+                commit("setImap", []);
+            }
+        }
+    },
+    // Add project from Imap
+    newProjectImap({ commit, state, dispatch }) {
+        const newProject = {
+            id:
+                Math.max.apply(
+                    Math,
+                    state.projects.map(function(o) {
+                        return o.id;
+                    })
+                ) + 1,
+            title: state.imap.subject,
+            body: state.imap.html,
+            created_at: moment().format(),
+            updated_at: "",
+            status: 1,
+            user_id: state.user_id,
+            last_name: state.user_name,
+            last_id: state.user_id
+        };
+        state.projects.unshift(newProject);
+        commit("setProject", newProject);
+        commit("setCurrentProjectId", newProject.id);
+        commit("setNewProject", true);
+        commit("setTasks", []);
+        commit("setTask", []);
+        commit("setCurrentTaskId", 0);
+        commit("setDocuments", []);
+        commit("setPanel", "projects");
+        dispatch("saveProject", false);
+    },
+    // Add new Task from Imap
+    newTaskImap({ state, commit, dispatch }) {
+        if (state.current_project_id != 0) {
+            commit("setDocuments", []);
+            const newTask = {
+                id:
+                    Math.max.apply(
+                        Math,
+                        state.tasks.map(function(o) {
+                            return o.id;
+                        })
+                    ) + 1,
+                project_id: state.current_project_id,
+                title: state.imap.subject,
+                body: state.imap.html,
+                created_at: moment().format(),
+                updated_at: "",
+                status: 1,
+                decision: "",
+                last_name: state.user_name,
+                last_id: state.user_id
+            };
+            state.tasks.unshift(newTask);
+            commit("setTask", newTask);
+            commit("setCurrentTaskId", newTask.id);
+            commit("setNewTask", true);
+            commit("setPanel", "tasks");
+            dispatch("saveTask", false);
+        }
+    },
+    // Add new Task from Imap
+    currentTaskImap({ state, commit, dispatch }) {
+        if (state.current_project_id != 0 && state.current_task_id != 0) {
+            state.task.body = state.task.body + "\n" + state.imap.html;
+            commit("setPanel", "tasks");
+            dispatch("saveTask", false);
+        }
     },
     // Refresh to ready state
     readyState({ commit }) {

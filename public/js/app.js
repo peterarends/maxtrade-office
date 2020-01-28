@@ -2063,7 +2063,9 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_translate_plugin__WEBPACK_IMP
       "email ...": "email ...",
       "description ...": "описание ...",
       "Do you want to delete the contact?": "Желаете ли да изтриете контакта?",
-      "You have successfully saved the changes!": "Успешно записахте промените!"
+      "You have successfully saved the changes!": "Успешно записахте промените!",
+      "New Project": "Нов Проект",
+      "To Current Task": "Към Задачата"
     }
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_15__["mapGetters"])(["getTheme", "getPanel", "getProjectFilter", "getLanguage"]),
@@ -2381,11 +2383,50 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Emails",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getImaps", "getCurrentImapId", "getImap"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getImaps", "getCurrentImapId", "getImap", "getCurrentProjectId", "getCurrentTaskId"]),
   filters: {
     formatDate: function formatDate(value) {
       if (value) {
@@ -2393,7 +2434,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "showImap"]))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "showImap", "deleteImap", "newProjectImap", "newTaskImap", "currentTaskImap"]))
 });
 
 /***/ }),
@@ -59537,13 +59578,99 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "bottom", class: _vm.getTheme }, [
-      _c("a", [
-        _c("i", {
-          staticClass: "mdi mdi-delete-outline mdiProjectIcon",
-          class: _vm.getTheme
-        }),
-        _vm._v(" Delete\n        ")
-      ]),
+      _vm.getCurrentImapId != 0
+        ? _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.newProjectImap($event)
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "mdi mdi-chevron-double-left mdiProjectIcon",
+                class: _vm.getTheme
+              }),
+              _c("i", {
+                staticClass: "mdi mdi-alpha-p-box mdiProjectIcon",
+                class: _vm.getTheme
+              }),
+              _vm._v(" " + _vm._s(_vm.t("New Project")) + "\n        ")
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.getCurrentImapId != 0 && _vm.getCurrentProjectId != 0
+        ? _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.newTaskImap($event)
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "mdi mdi-chevron-double-left mdiProjectIcon",
+                class: _vm.getTheme
+              }),
+              _c("i", {
+                staticClass: "mdi mdi-alpha-t-box mdiProjectIcon",
+                class: _vm.getTheme
+              }),
+              _vm._v(" " + _vm._s(_vm.t("New Task")) + "\n        ")
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.getCurrentImapId != 0 && _vm.getCurrentTaskId != 0
+        ? _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.currentTaskImap($event)
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "mdi mdi-chevron-double-left mdiProjectIcon",
+                class: _vm.getTheme
+              }),
+              _c("i", {
+                staticClass: "mdi mdi-alpha-c-box mdiProjectIcon",
+                class: _vm.getTheme
+              }),
+              _vm._v(" " + _vm._s(_vm.t("To Current Task")) + "\n        ")
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.deleteImap($event)
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-delete-outline mdiProjectIcon",
+            class: _vm.getTheme
+          }),
+          _vm._v(" Delete\n        ")
+        ]
+      ),
       _vm._v(" "),
       _c(
         "a",
@@ -78844,7 +78971,6 @@ var actions = {
           switch (_context27.prev = _context27.next) {
             case 0:
               state = _ref61.state, commit = _ref61.commit;
-              console.log(imap.html);
               counter = setInterval(function () {
                 var current_progress = state.progress;
 
@@ -78859,7 +78985,7 @@ var actions = {
               clearInterval(counter);
               commit("setProgress", 0);
 
-            case 7:
+            case 6:
             case "end":
               return _context27.stop();
           }
@@ -78873,9 +78999,127 @@ var actions = {
 
     return showImap;
   }(),
+  deleteImap: function () {
+    var _deleteImap = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee28(_ref62) {
+      var commit, state;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee28$(_context28) {
+        while (1) {
+          switch (_context28.prev = _context28.next) {
+            case 0:
+              commit = _ref62.commit, state = _ref62.state;
+
+              if (!(state.current_imap_id != 0)) {
+                _context28.next = 8;
+                break;
+              }
+
+              if (!confirm("Are You sure?")) {
+                _context28.next = 8;
+                break;
+              }
+
+              _context28.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/imap/" + state.current_imap_id, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 5:
+              state.imaps = state.imaps.filter(function (i) {
+                return i.id !== state.current_imap_id;
+              });
+              commit("setCurrentImapId", 0);
+              commit("setImap", []);
+
+            case 8:
+            case "end":
+              return _context28.stop();
+          }
+        }
+      }, _callee28);
+    }));
+
+    function deleteImap(_x44) {
+      return _deleteImap.apply(this, arguments);
+    }
+
+    return deleteImap;
+  }(),
+  // Add project from Imap
+  newProjectImap: function newProjectImap(_ref63) {
+    var commit = _ref63.commit,
+        state = _ref63.state,
+        dispatch = _ref63.dispatch;
+    var newProject = {
+      id: Math.max.apply(Math, state.projects.map(function (o) {
+        return o.id;
+      })) + 1,
+      title: state.imap.subject,
+      body: state.imap.html,
+      created_at: moment__WEBPACK_IMPORTED_MODULE_2___default()().format(),
+      updated_at: "",
+      status: 1,
+      user_id: state.user_id,
+      last_name: state.user_name,
+      last_id: state.user_id
+    };
+    state.projects.unshift(newProject);
+    commit("setProject", newProject);
+    commit("setCurrentProjectId", newProject.id);
+    commit("setNewProject", true);
+    commit("setTasks", []);
+    commit("setTask", []);
+    commit("setCurrentTaskId", 0);
+    commit("setDocuments", []);
+    commit("setPanel", "projects");
+    dispatch("saveProject", false);
+  },
+  // Add new Task from Imap
+  newTaskImap: function newTaskImap(_ref64) {
+    var state = _ref64.state,
+        commit = _ref64.commit,
+        dispatch = _ref64.dispatch;
+
+    if (state.current_project_id != 0) {
+      commit("setDocuments", []);
+      var newTask = {
+        id: Math.max.apply(Math, state.tasks.map(function (o) {
+          return o.id;
+        })) + 1,
+        project_id: state.current_project_id,
+        title: state.imap.subject,
+        body: state.imap.html,
+        created_at: moment__WEBPACK_IMPORTED_MODULE_2___default()().format(),
+        updated_at: "",
+        status: 1,
+        decision: "",
+        last_name: state.user_name,
+        last_id: state.user_id
+      };
+      state.tasks.unshift(newTask);
+      commit("setTask", newTask);
+      commit("setCurrentTaskId", newTask.id);
+      commit("setNewTask", true);
+      commit("setPanel", "tasks");
+      dispatch("saveTask", false);
+    }
+  },
+  // Add new Task from Imap
+  currentTaskImap: function currentTaskImap(_ref65) {
+    var state = _ref65.state,
+        commit = _ref65.commit,
+        dispatch = _ref65.dispatch;
+
+    if (state.current_project_id != 0 && state.current_task_id != 0) {
+      state.task.body = state.task.body + "\n" + state.imap.html;
+      commit("setPanel", "tasks");
+      dispatch("saveTask", false);
+    }
+  },
   // Refresh to ready state
-  readyState: function readyState(_ref62) {
-    var commit = _ref62.commit;
+  readyState: function readyState(_ref66) {
+    var commit = _ref66.commit;
     commit("setCurrentProjectId", 0);
     commit("setCurrentTaskId", 0);
     commit("setProject", []);
@@ -78884,8 +79128,8 @@ var actions = {
     commit("setDocuments", []);
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref63, progress) {
-    var commit = _ref63.commit;
+  changeProgress: function changeProgress(_ref67, progress) {
+    var commit = _ref67.commit;
     commit("setProgress", progress);
   }
 };
