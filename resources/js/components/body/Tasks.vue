@@ -527,13 +527,14 @@ input[type="checkbox"]:checked + label:hover span:before {
     border: 1px solid #4a5568;
     display: flex;
     padding: 10px;
-    overflow: auto;
+    width: 680px;
+    overflow-y: auto;
 }
 .document {
     display: flex;
     flex-direction: column;
     width: 140px;
-    padding: 2px;
+    padding: 2px 15px;
     align-items: center;
 }
 .documentsButtons {
