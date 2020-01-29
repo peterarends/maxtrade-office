@@ -11,9 +11,17 @@ class ImapController extends Controller
 {
     public function index(Request $request)
     {
+        // $mailbox = new Mailbox(
+        //     '{imap.gmail.com:993/imap/ssl}INBOX', // IMAP server and mailbox folder
+        //     'ilko.iv@gmail.com', // Username for the before configured mailbox
+        //     '1Ivan@Ivanov9', // Password for the before configured username
+        //     __DIR__, // Directory, where attachments will be saved (optional)
+        //     'UTF-8' // Server encoding (optional)
+        // );
+
         $mailbox = new Mailbox(
-            '{imap.gmail.com:993/imap/ssl}INBOX', // IMAP server and mailbox folder
-            'ilko.iv@gmail.com', // Username for the before configured mailbox
+            '{avalonbg.com:993/imap/ssl}INBOX', // IMAP server and mailbox folder
+            'home@avalonbg.com', // Username for the before configured mailbox
             '1Ivan@Ivanov9', // Password for the before configured username
             __DIR__, // Directory, where attachments will be saved (optional)
             'UTF-8' // Server encoding (optional)
@@ -71,9 +79,17 @@ class ImapController extends Controller
 
     public function destroy($id)
     {
+        // $mailbox = new Mailbox(
+        //     '{imap.gmail.com:993/imap/ssl}INBOX', // IMAP server and mailbox folder
+        //     'ilko.iv@gmail.com', // Username for the before configured mailbox
+        //     '1Ivan@Ivanov9', // Password for the before configured username
+        //     __DIR__, // Directory, where attachments will be saved (optional)
+        //     'UTF-8' // Server encoding (optional)
+        // );
+
         $mailbox = new Mailbox(
-            '{imap.gmail.com:993/imap/ssl}INBOX', // IMAP server and mailbox folder
-            'ilko.iv@gmail.com', // Username for the before configured mailbox
+            '{avalonbg.com:993/imap/ssl}INBOX', // IMAP server and mailbox folder
+            'home@avalonbg.com', // Username for the before configured mailbox
             '1Ivan@Ivanov9', // Password for the before configured username
             __DIR__, // Directory, where attachments will be saved (optional)
             'UTF-8' // Server encoding (optional)
