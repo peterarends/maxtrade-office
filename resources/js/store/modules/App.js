@@ -969,6 +969,12 @@ const actions = {
         commit("setCurrentImapId", 0);
         commit("setImaps", []);
         commit("setImap", []);
+        // get current projects filter
+        commit("setProjectFilterStatus", "act");
+        commit(
+            "setProjects",
+            state.projects_temp.filter(p => p.status == 1)
+        );
         // clear panel
         commit("setPanel", "");
     },

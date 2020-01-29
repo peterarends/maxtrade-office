@@ -4248,6 +4248,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TopBar",
@@ -62408,6 +62419,22 @@ var render = function() {
           class: _vm.getTheme
         }),
         _vm._v(" " + _vm._s(_vm.t("Search Panel")) + "\n        ")
+      ]),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.showEmails } }, [
+        _c("i", {
+          staticClass: "mdi mdi-email-check mdiOtherIcon",
+          class: _vm.getTheme
+        }),
+        _vm._v(" " + _vm._s(_vm.t("E-Mails")) + "\n        ")
+      ]),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.showContacts } }, [
+        _c("i", {
+          staticClass: "mdi mdi-contacts mdiOtherIcon",
+          class: _vm.getTheme
+        }),
+        _vm._v(" " + _vm._s(_vm.t("Contacts")) + "\n        ")
       ])
     ])
   ])
@@ -79260,7 +79287,12 @@ var actions = {
 
     commit("setCurrentImapId", 0);
     commit("setImaps", []);
-    commit("setImap", []); // clear panel
+    commit("setImap", []); // get current projects filter
+
+    commit("setProjectFilterStatus", "act");
+    commit("setProjects", state.projects_temp.filter(function (p) {
+      return p.status == 1;
+    })); // clear panel
 
     commit("setPanel", "");
   },

@@ -419,6 +419,17 @@
                 ></i
                 >&nbsp;{{ t("Search Panel") }}
             </button>
+            <button @click="showEmails">
+                <i
+                    class="mdi mdi-email-check mdiOtherIcon"
+                    :class="getTheme"
+                ></i
+                >&nbsp;{{ t("E-Mails") }}
+            </button>
+            <button @click="showContacts">
+                <i class="mdi mdi-contacts mdiOtherIcon" :class="getTheme"></i
+                >&nbsp;{{ t("Contacts") }}
+            </button>
         </div>
     </div>
 </template>
