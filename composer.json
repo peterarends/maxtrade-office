@@ -14,7 +14,7 @@
         "laravel/framework": "6.*",
         "laravel/passport": "v8.1",
         "laravel/tinker": "^1.0",
-        "php-imap/php-imap": "^3.0"
+        "webklex/laravel-imap": "^1.4"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

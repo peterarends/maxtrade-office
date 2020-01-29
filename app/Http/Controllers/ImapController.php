@@ -3,75 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PhpImap\Mailbox;
-use PhpImap\Exceptions\ConnectionException;
+use Webklex\IMAP\Client;
 use \Html2Text\Html2Text;
 
 class ImapController extends Controller
 {
     public function index(Request $request)
     {
-        // $mailbox = new Mailbox(
-        //     '{imap.gmail.com:993/imap/ssl}INBOX', // IMAP server and mailbox folder
-        //     'ilko.iv@gmail.com', // Username for the before configured mailbox
-        //     '1Ivan@Ivanov9', // Password for the before configured username
-        //     __DIR__, // Directory, where attachments will be saved (optional)
-        //     'UTF-8' // Server encoding (optional)
-        // );
+        $oClient = new Client([
+            'host'          => 'avalonbg.com',
+            'port'          => 993,
+            'encryption'    => 'ssl',
+            'validate_cert' => true,
+            'username'      => 'home@avalonbg.com',
+            'password'      => '1Ivan@Ivanov9',
+            'protocol'      => 'imap'
+        ]);
 
-        $mailbox = new Mailbox(
-            '{avalonbg.com:993/imap/ssl}INBOX', // IMAP server and mailbox folder
-            'home@avalonbg.com', // Username for the before configured mailbox
-            '1Ivan@Ivanov9', // Password for the before configured username
-            __DIR__, // Directory, where attachments will be saved (optional)
-            'UTF-8' // Server encoding (optional)
-        );
+        //Connect to the IMAP Server
+        $oClient->connect();
 
-        try {
-            // Get all emails (messages)
-            // PHP.net imap_search criteria: http://php.net/manual/en/function.imap-search.php
-            $mailsIds = $mailbox->searchMailbox('ALL');
-        } catch (ConnectionException $ex) {
-            echo "IMAP connection failed: " . $ex;
-            die();
-        }
+        //Get Inbox Mailboxes
+        $aFolder = $oClient->getFolders();
 
-        // If $mailsIds is empty, no emails could be found
-        if (!$mailsIds) {
-            die('Mailbox is empty');
-        }
-
-        // Put the latest email on top of listing
-        rsort($mailsIds);
-
-        // Get the first message
-        // If '__DIR__' was defined in the first line, it will automatically
-        // save all attachments to the specified directory
         $imaps = [];
-        foreach ($mailsIds as $num) {
-            // Show header with subject and data on this email
-            $markAsSeen = false;
-            $email = $mailbox->getMail($num, $markAsSeen);
-            if ($email->textHtml) {
-                $html2TextConverter = new Html2Text($email->textHtml);
-                $html = $html2TextConverter->getText();
-            } else {
-                $html = $email->textPlain;
+        foreach ($aFolder as $oFolder) {
+            //Get all messages
+            $aMessage = $oFolder->messages()->all()->get();
+            foreach ($aMessage as $oMessage) {
+                if ($oMessage->hasHTMLBody()) {
+                    $html2TextConverter = new Html2Text($oMessage->getHTMLBody());
+                    $html = $html2TextConverter->getText();
+                } else {
+                    $html = $oMessage->getTextBody();
+                }
+
+                $imap = [
+                    "id" => $oMessage->getUid(),
+                    "fromName" => $oMessage->getFrom()[0]->personal ? $oMessage->getFrom()[0]->personal : "",
+                    "fromAddress" => $oMessage->getFrom()[0]->mail ? $oMessage->getFrom()[0]->mail : "",
+                    "toString" => "",
+                    "subject" => $oMessage->getSubject(),
+                    "date" => $oMessage->getDate(),
+                    "html" => $html
+                ];
+                $imaps[] = $imap;
             }
-
-            $imap = [
-                "id" => $email->id,
-                "fromName" => isset($email->fromName) ? $email->fromName : $email->fromAddress,
-                "fromAddress" => $email->fromAddress,
-                "toString" => $email->toString,
-                "subject" => $email->subject,
-                "date" => $email->date,
-                "html" => $html
-            ];
-            $imaps[] = $imap;
         }
-
-        $mailbox->disconnect();
 
         /** Return collection of Imaps as resource */
         return json_encode($imaps);
@@ -79,29 +57,27 @@ class ImapController extends Controller
 
     public function destroy($id)
     {
-        // $mailbox = new Mailbox(
-        //     '{imap.gmail.com:993/imap/ssl}INBOX', // IMAP server and mailbox folder
-        //     'ilko.iv@gmail.com', // Username for the before configured mailbox
-        //     '1Ivan@Ivanov9', // Password for the before configured username
-        //     __DIR__, // Directory, where attachments will be saved (optional)
-        //     'UTF-8' // Server encoding (optional)
-        // );
+        $oClient = new Client([
+            'host'          => 'avalonbg.com',
+            'port'          => 993,
+            'encryption'    => 'ssl',
+            'validate_cert' => true,
+            'username'      => 'home@avalonbg.com',
+            'password'      => '1Ivan@Ivanov9',
+            'protocol'      => 'imap'
+        ]);
 
-        $mailbox = new Mailbox(
-            '{avalonbg.com:993/imap/ssl}INBOX', // IMAP server and mailbox folder
-            'home@avalonbg.com', // Username for the before configured mailbox
-            '1Ivan@Ivanov9', // Password for the before configured username
-            __DIR__, // Directory, where attachments will be saved (optional)
-            'UTF-8' // Server encoding (optional)
-        );
+        //Connect to the IMAP Server
+        $oClient->connect();
 
-        try {
-            if (!empty($id)) {
-                $mailbox->deleteMail($id);
+        //Get Inbox Mailboxes
+        $aFolder = $oClient->getFolders();
+
+        foreach ($aFolder as $oFolder) {
+            $oMessage = $oFolder->getMessage($id);
+            if (!empty($oMessage)) {
+                $oMessage->delete();
             }
-        } catch (ConnectionException $ex) {
-            echo "IMAP connection failed: " . $ex;
-            die();
         }
     }
 }
