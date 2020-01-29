@@ -14,7 +14,7 @@ class ImapController extends Controller
             'host'          => 'avalonbg.com',
             'port'          => 993,
             'encryption'    => 'ssl',
-            'validate_cert' => true,
+            'validate_cert' => false,
             'username'      => 'home@avalonbg.com',
             'password'      => '1Ivan@Ivanov9',
             'protocol'      => 'imap'
@@ -61,7 +61,7 @@ class ImapController extends Controller
             'host'          => 'avalonbg.com',
             'port'          => 993,
             'encryption'    => 'ssl',
-            'validate_cert' => true,
+            'validate_cert' => false,
             'username'      => 'home@avalonbg.com',
             'password'      => '1Ivan@Ivanov9',
             'protocol'      => 'imap'
