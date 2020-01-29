@@ -957,12 +957,19 @@ const actions = {
     },
     // Refresh to ready state
     readyState({ commit }) {
+        // clear projects
         commit("setCurrentProjectId", 0);
-        commit("setCurrentTaskId", 0);
         commit("setProject", []);
+        // clear tasks
+        commit("setCurrentTaskId", 0);
         commit("setTask", []);
         commit("setTasks", []);
         commit("setDocuments", []);
+        // clear imaps
+        commit("setCurrentImapId", 0);
+        commit("setImaps", []);
+        commit("setImap", []);
+        // clear panel
         commit("setPanel", "");
     },
     changeProgress({ commit }, progress) {

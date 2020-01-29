@@ -27,6 +27,7 @@
                         getTheme
                     ]"
                     @click="showImap(imap)"
+                    @contextmenu.prevent="$refs.menu.open($event, imap)"
                 >
                     <div class="dateText">
                         {{ imap.date | formatDate }}&nbsp;|&nbsp;
@@ -85,7 +86,7 @@
                     class="mdi mdi-delete-outline mdiProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Delete
+                >&nbsp;{{ t("Delete") }}
             </a>
             <a @click.prevent="closePanel">
                 <i
@@ -96,15 +97,42 @@
             </a>
             <div class="status_panel"></div>
         </div>
+        <vue-context ref="menu" @open="onOpenContextMenu">
+            <li v-if="getCurrentImapId != 0">
+                <a @click.prevent="onClickContextMenu('newproject')">{{
+                    t("New Project")
+                }}</a>
+            </li>
+            <li v-if="getCurrentImapId != 0 && getCurrentProjectId != 0">
+                <a @click.prevent="onClickContextMenu('newtask')">{{
+                    t("New Task")
+                }}</a>
+            </li>
+            <li v-if="getCurrentImapId != 0 && getCurrentTaskId != 0">
+                <a @click.prevent="onClickContextMenu('tocurrenttask')">{{
+                    t("To Current Task")
+                }}</a>
+            </li>
+            <li>
+                <a @click.prevent="onClickContextMenu('delete')">{{
+                    t("Delete")
+                }}</a>
+            </li>
+        </vue-context>
     </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 import moment from "moment";
+import { VueContext } from "vue-context";
 
 export default {
     name: "Emails",
+
+    components: {
+        VueContext
+    },
 
     computed: mapGetters([
         "getTheme",
@@ -131,12 +159,87 @@ export default {
             "newProjectImap",
             "newTaskImap",
             "currentTaskImap"
-        ])
+        ]),
+        onClickContextMenu(action) {
+            if (action == "newproject") {
+                this.newProjectImap();
+            }
+            if (action == "newtask") {
+                this.newTaskImap();
+            }
+            if (action == "tocurrenttask") {
+                this.currentTaskImap();
+            }
+            if (action == "delete") {
+                this.deleteImap();
+            }
+        },
+        onOpenContextMenu(event, data) {
+            this.showImap(data);
+        }
     }
 };
 </script>
 
 <style scoped>
+.v-context,
+.v-context ul {
+    background-color: #1a202c;
+    background-clip: padding-box;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    display: block;
+    margin: 0;
+    padding: 0px;
+    min-width: 10rem;
+    z-index: 1500;
+    position: fixed;
+    list-style: none;
+    box-sizing: border-box;
+    max-height: calc(100% - 50px);
+    overflow-y: auto;
+}
+.v-context > li,
+.v-context ul > li {
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+}
+.v-context > li > a,
+.v-context ul > li > a {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    font-weight: 400;
+    color: #cbd5e0;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+.v-context > li > a:focus,
+.v-context > li > a:hover,
+.v-context ul > li > a:focus,
+.v-context ul > li > a:hover {
+    text-decoration: none;
+    color: #212529;
+    background-color: #a0aec0;
+}
+.v-context:focus,
+.v-context > li > a:focus,
+.v-context ul:focus,
+.v-context ul > li > a:focus {
+    outline: 0;
+}
+.v-context__sub > a:after {
+    content: "\2BC8";
+    float: right;
+    padding-left: 1rem;
+}
+.v-context__sub > ul {
+    display: none;
+}
 .emails-body {
     width: 100%;
     display: flex;
