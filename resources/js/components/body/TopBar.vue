@@ -330,6 +330,22 @@
                                         </div>
                                     </a>
                                 </li>
+                                <li>
+                                    <a>
+                                        <div
+                                            class="mnu-flex"
+                                            @click="showProfile"
+                                        >
+                                            <i
+                                                class="mdi mdi-tools standardSizeIcon"
+                                                :class="getTheme"
+                                            ></i
+                                            >&nbsp;<span>{{
+                                                t("Profile")
+                                            }}</span>
+                                        </div>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="has-sub">
@@ -468,6 +484,7 @@ export default {
             "deleteTask",
             "showProperties",
             "showContacts",
+            "showProfile",
             "showEmails",
             "showAbout",
             "showSearchtasks"

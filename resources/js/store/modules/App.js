@@ -184,6 +184,10 @@ const actions = {
         dispatch("fetchContacts");
         commit("setPanel", "contacts");
     },
+    // Show panel profile
+    showProfile({ commit }) {
+        commit("setPanel", "profile");
+    },
     // Show panel emails
     showEmails({ commit, dispatch }) {
         dispatch("fetchImaps");

@@ -15,6 +15,7 @@
                 <emails v-show="getPanel == 'emails'"></emails>
                 <searchtasks v-show="getPanel == 'searchtasks'"></searchtasks>
                 <users v-show="getPanel == 'users'"></users>
+                <profile v-show="getPanel == 'profile'"></profile>
             </div>
         </div>
         <!-- End body panel -->
@@ -34,6 +35,7 @@ import Users from "./body/Users";
 import Tasks from "./body/Tasks";
 import About from "./body/About";
 import Contacts from "./body/Contacts";
+import Profile from "./body/Profile";
 import Emails from "./body/Emails";
 import Searchtasks from "./body/Searchtasks";
 import FooterBar from "./body/FooterBar";
@@ -56,6 +58,7 @@ export default {
         Tasks,
         About,
         Contacts,
+        Profile,
         Emails,
         Searchtasks,
         FooterBar
@@ -171,7 +174,8 @@ export default {
             "You have successfully saved the changes!":
                 "Успешно записахте промените!",
             "New Project": "Нов Проект",
-            "To Current Task": "Към Задачата"
+            "To Current Task": "Към Задачата",
+            Profile: "Потребителски профил"
         }
     },
 

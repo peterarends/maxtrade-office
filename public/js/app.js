@@ -1864,12 +1864,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _body_Tasks__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./body/Tasks */ "./resources/js/components/body/Tasks.vue");
 /* harmony import */ var _body_About__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./body/About */ "./resources/js/components/body/About.vue");
 /* harmony import */ var _body_Contacts__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./body/Contacts */ "./resources/js/components/body/Contacts.vue");
-/* harmony import */ var _body_Emails__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./body/Emails */ "./resources/js/components/body/Emails.vue");
-/* harmony import */ var _body_Searchtasks__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./body/Searchtasks */ "./resources/js/components/body/Searchtasks.vue");
-/* harmony import */ var _body_FooterBar__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./body/FooterBar */ "./resources/js/components/body/FooterBar.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vue_translate_plugin__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vue-translate-plugin */ "./node_modules/vue-translate-plugin/dist/vue-translate.common.js");
-/* harmony import */ var vue_translate_plugin__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(vue_translate_plugin__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _body_Profile__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./body/Profile */ "./resources/js/components/body/Profile.vue");
+/* harmony import */ var _body_Emails__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./body/Emails */ "./resources/js/components/body/Emails.vue");
+/* harmony import */ var _body_Searchtasks__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./body/Searchtasks */ "./resources/js/components/body/Searchtasks.vue");
+/* harmony import */ var _body_FooterBar__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./body/FooterBar */ "./resources/js/components/body/FooterBar.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_translate_plugin__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue-translate-plugin */ "./node_modules/vue-translate-plugin/dist/vue-translate.common.js");
+/* harmony import */ var vue_translate_plugin__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(vue_translate_plugin__WEBPACK_IMPORTED_MODULE_17__);
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -1906,6 +1907,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -1922,7 +1924,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_translate_plugin__WEBPACK_IMPORTED_MODULE_16___default.a);
+
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_translate_plugin__WEBPACK_IMPORTED_MODULE_17___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   components: {
@@ -1936,9 +1939,10 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_translate_plugin__WEBPACK_IMP
     Tasks: _body_Tasks__WEBPACK_IMPORTED_MODULE_9__["default"],
     About: _body_About__WEBPACK_IMPORTED_MODULE_10__["default"],
     Contacts: _body_Contacts__WEBPACK_IMPORTED_MODULE_11__["default"],
-    Emails: _body_Emails__WEBPACK_IMPORTED_MODULE_12__["default"],
-    Searchtasks: _body_Searchtasks__WEBPACK_IMPORTED_MODULE_13__["default"],
-    FooterBar: _body_FooterBar__WEBPACK_IMPORTED_MODULE_14__["default"]
+    Profile: _body_Profile__WEBPACK_IMPORTED_MODULE_12__["default"],
+    Emails: _body_Emails__WEBPACK_IMPORTED_MODULE_13__["default"],
+    Searchtasks: _body_Searchtasks__WEBPACK_IMPORTED_MODULE_14__["default"],
+    FooterBar: _body_FooterBar__WEBPACK_IMPORTED_MODULE_15__["default"]
   },
   created: function () {
     var _created = _asyncToGenerator(
@@ -2065,10 +2069,11 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_translate_plugin__WEBPACK_IMP
       "Do you want to delete the contact?": "Желаете ли да изтриете контакта?",
       "You have successfully saved the changes!": "Успешно записахте промените!",
       "New Project": "Нов Проект",
-      "To Current Task": "Към Задачата"
+      "To Current Task": "Към Задачата",
+      Profile: "Потребителски профил"
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_15__["mapGetters"])(["getTheme", "getPanel", "getProjectFilter", "getLanguage"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_16__["mapGetters"])(["getTheme", "getPanel", "getProjectFilter", "getLanguage"]),
   watch: {
     getPanel: function getPanel(newPanel, oldPanel) {
       if (oldPanel == "contacts") {
@@ -2076,7 +2081,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_translate_plugin__WEBPACK_IMP
       }
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_15__["mapActions"])(["fetchProperties", "fetchProjects", "saveContacts"]))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_16__["mapActions"])(["fetchProperties", "fetchProjects", "saveContacts"]))
 });
 
 /***/ }),
@@ -2654,6 +2659,72 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   })
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Profile.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/Profile.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Contacts",
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getUserName"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel"]))
 });
 
 /***/ }),
@@ -4259,11 +4330,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TopBar",
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getUserName"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["exitProgram", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "addProject", "getCurrentProjectId", "deleteProject", "addTask", "getCurrentTaskId", "deleteTask", "showProperties", "showContacts", "showEmails", "showAbout", "showSearchtasks"]))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["exitProgram", "completeProject", "showAllProjects", "showCompletedProjects", "showActivedProjects", "sortProjectsIdAcc", "sortProjectsIdDec", "sortProjectsNameAcc", "sortProjectsNameDec", "completeTask", "showAllTasks", "showCompletedTasks", "showActivedTasks", "sortTasksIdAcc", "sortTasksIdDec", "sortTasksNameAcc", "sortTasksNameDec", "addProject", "getCurrentProjectId", "deleteProject", "addTask", "getCurrentTaskId", "deleteTask", "showProperties", "showContacts", "showProfile", "showEmails", "showAbout", "showSearchtasks"]))
 });
 
 /***/ }),
@@ -20708,6 +20795,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, "/** General icon size */\n.mdiIcon[data-v-7bf753d0] {\n  font-size: 1.875rem;\n}\n\n/** Setting menu a */\n.settingsMenuLink[data-v-7bf753d0] {\n  padding-bottom: 1rem;\n}\n.body-left-menu[data-v-7bf753d0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  width: 48px;\n}\n.body-left-menu.light[data-v-7bf753d0] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n}\n.body-left-menu.dark[data-v-7bf753d0] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n}\n.body-left-menu a[data-v-7bf753d0] {\n  padding-top: 16px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  font-size: 26px;\n  cursor: pointer;\n}\n.body-left-menu.light a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.dark a[data-v-7bf753d0] {\n  color: #a0aec0;\n}\n.body-left-menu.light a[data-v-7bf753d0]:hover {\n  color: #1a202c;\n}\n.body-left-menu.dark a[data-v-7bf753d0]:hover {\n  color: #f7fafc;\n}\n.left-menu-title[data-v-7bf753d0] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  font-size: 32px;\n}\n.left-menu-title.light[data-v-7bf753d0] {\n  opacity: 0.5;\n  color: #4299e1;\n}\n.left-menu-title.dark[data-v-7bf753d0] {\n  opacity: 0.3;\n  color: #4299e1;\n}\n.body-left-menu #btnToolsMenu[data-v-7bf753d0] {\n  -webkit-box-flex: 0;\n          flex: 0;\n}\n.body-left-menu.light a.active[data-v-7bf753d0] {\n  color: #1a202c;\n}\n.body-left-menu.dark a.active[data-v-7bf753d0] {\n  color: #f7fafc;\n}\n.contextMenu[data-v-7bf753d0] {\n  width: 300px;\n  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);\n  background-color: #1a202c;\n  position: absolute;\n  bottom: 87px;\n  left: 25px;\n}\n.contextMenu-options[data-v-7bf753d0] {\n  list-style: none;\n  padding: 10px 0;\n}\n.contextMenu-option[data-v-7bf753d0] {\n  font-weight: 500;\n  font-size: 14px;\n  padding: 10px 40px 10px 20px;\n  cursor: pointer;\n  color: #a0aec0;\n}\n.contextMenu-option[data-v-7bf753d0]:hover {\n  background: rgba(0, 0, 0, 0.2);\n}\n.right-text[data-v-7bf753d0] {\n  float: right;\n}\n.v-context[data-v-7bf753d0],\r\n.v-context ul[data-v-7bf753d0] {\n  background-color: #1a202c;\n  background-clip: padding-box;\n  border-radius: 0.25rem;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\r\n        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  display: block;\n  margin: 0;\n  padding: 0px;\n  min-width: 10rem;\n  z-index: 1500;\n  position: fixed;\n  list-style: none;\n  box-sizing: border-box;\n  max-height: calc(100% - 50px);\n  overflow-y: auto;\n}\n.v-context > li[data-v-7bf753d0],\r\n.v-context ul > li[data-v-7bf753d0] {\n  margin: 0;\n  position: relative;\n  cursor: pointer;\n}\n.v-context > li > a[data-v-7bf753d0],\r\n.v-context ul > li > a[data-v-7bf753d0] {\n  display: block;\n  padding: 0.5rem 1.5rem;\n  font-weight: 400;\n  color: #cbd5e0;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n  font-size: 14px;\n}\n.v-context > li > a[data-v-7bf753d0]:focus,\r\n.v-context > li > a[data-v-7bf753d0]:hover,\r\n.v-context ul > li > a[data-v-7bf753d0]:focus,\r\n.v-context ul > li > a[data-v-7bf753d0]:hover {\n  text-decoration: none;\n  color: #212529;\n  background-color: #a0aec0;\n}\n.v-context[data-v-7bf753d0]:focus,\r\n.v-context > li > a[data-v-7bf753d0]:focus,\r\n.v-context ul[data-v-7bf753d0]:focus,\r\n.v-context ul > li > a[data-v-7bf753d0]:focus {\n  outline: 0;\n}\n.v-context__sub > a[data-v-7bf753d0]:after {\n  content: \"\\2BC8\";\n  float: right;\n  padding-left: 1rem;\n}\n.v-context__sub > ul[data-v-7bf753d0] {\n  display: none;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".profile-body[data-v-899ed032] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-899ed032] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-899ed032] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-899ed032] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-899ed032] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-899ed032] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-899ed032] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-899ed032] {\n  background-color: #e53e3e;\n}\n.body[data-v-899ed032] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.title[data-v-899ed032] {\n  background: transparent;\n  padding: 4px;\n  font-size: 32px;\n}\n.bottom[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-899ed032] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-899ed032] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-899ed032] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-899ed032] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-899ed032]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-899ed032]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-899ed032] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-899ed032] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-899ed032] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-899ed032] {\n  color: #3182ce;\n}\n@media screen and (max-width: 1440px), screen and (max-height: 900px) {\n.contactItem[data-v-899ed032] {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n            flex-direction: column;\n    height: 100px;\n    width: 49%;\n    padding: 2px;\n    margin: 2px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -57320,6 +57426,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Projects.vue?vue&type=style&index=0&id=c4c8aaa8&scoped=true&lang=css&":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/Projects.vue?vue&type=style&index=0&id=c4c8aaa8&scoped=true&lang=css& ***!
@@ -59195,6 +59331,17 @@ var render = function() {
                     expression: "getPanel == 'users'"
                   }
                 ]
+              }),
+              _vm._v(" "),
+              _c("profile", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.getPanel == "profile",
+                    expression: "getPanel == 'profile'"
+                  }
+                ]
               })
             ],
             1
@@ -60130,6 +60277,94 @@ var render = function() {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Profile.vue?vue&type=template&id=899ed032&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/body/Profile.vue?vue&type=template&id=899ed032&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "profile-body" }, [
+    _c("div", { staticClass: "button-bar", class: _vm.getTheme }, [
+      _c("div", { staticClass: "topTitleDiv" }, [
+        _c("span", [
+          _vm._v(
+            _vm._s(_vm.t("Profile")) + " [" + _vm._s(_vm.getUserName) + "]"
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "topRightIcons" }, [
+        _c(
+          "div",
+          {
+            staticClass: "rightExitIcon",
+            class: _vm.getTheme,
+            on: { click: _vm.closePanel }
+          },
+          [_c("img", { attrs: { src: "/images/close.png" } })]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "bottom", class: _vm.getTheme }, [
+      _c("a", [
+        _c("i", {
+          staticClass: "mdi mdi-content-save-outline mdiProjectIcon",
+          class: _vm.getTheme
+        }),
+        _vm._v(" Save\n        ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.closePanel($event)
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-close-outline mdiProjectIcon",
+            class: _vm.getTheme
+          }),
+          _vm._v(" Close\n        ")
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "status_panel" })
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "body" }, [
+      _c("input", { staticClass: "title", attrs: { type: "text" } })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -62278,6 +62513,26 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("span", [_vm._v(_vm._s(_vm.t("Options")))])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "mnu-flex",
+                        on: { click: _vm.showProfile }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "mdi mdi-tools standardSizeIcon",
+                          class: _vm.getTheme
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v(_vm._s(_vm.t("Profile")))])
                       ]
                     )
                   ])
@@ -76703,6 +76958,93 @@ var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactivePr
 
 /***/ }),
 
+/***/ "./resources/js/components/body/Profile.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/body/Profile.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Profile_vue_vue_type_template_id_899ed032_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Profile.vue?vue&type=template&id=899ed032&scoped=true& */ "./resources/js/components/body/Profile.vue?vue&type=template&id=899ed032&scoped=true&");
+/* harmony import */ var _Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Profile.vue?vue&type=script&lang=js& */ "./resources/js/components/body/Profile.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Profile_vue_vue_type_style_index_0_id_899ed032_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css& */ "./resources/js/components/body/Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Profile_vue_vue_type_template_id_899ed032_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Profile_vue_vue_type_template_id_899ed032_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "899ed032",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/body/Profile.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/body/Profile.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/body/Profile.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Profile.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Profile.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/body/Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/body/Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css& ***!
+  \***********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_style_index_0_id_899ed032_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Profile.vue?vue&type=style&index=0&id=899ed032&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_style_index_0_id_899ed032_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_style_index_0_id_899ed032_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_style_index_0_id_899ed032_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_style_index_0_id_899ed032_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_style_index_0_id_899ed032_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/body/Profile.vue?vue&type=template&id=899ed032&scoped=true&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/body/Profile.vue?vue&type=template&id=899ed032&scoped=true& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_899ed032_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Profile.vue?vue&type=template&id=899ed032&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/body/Profile.vue?vue&type=template&id=899ed032&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_899ed032_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_899ed032_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/body/Projects.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/body/Projects.vue ***!
@@ -77851,44 +78193,49 @@ var actions = {
     dispatch("fetchContacts");
     commit("setPanel", "contacts");
   },
+  // Show panel profile
+  showProfile: function showProfile(_ref9) {
+    var commit = _ref9.commit;
+    commit("setPanel", "profile");
+  },
   // Show panel emails
-  showEmails: function showEmails(_ref9) {
-    var commit = _ref9.commit,
-        dispatch = _ref9.dispatch;
+  showEmails: function showEmails(_ref10) {
+    var commit = _ref10.commit,
+        dispatch = _ref10.dispatch;
     dispatch("fetchImaps");
     commit("setPanel", "emails");
   },
   // Show panel all tasks
-  showSearchtasks: function showSearchtasks(_ref10) {
-    var commit = _ref10.commit;
+  showSearchtasks: function showSearchtasks(_ref11) {
+    var commit = _ref11.commit;
     commit("setPanel", "searchtasks");
   },
   // Close current panel
-  closePanel: function closePanel(_ref11) {
-    var dispatch = _ref11.dispatch;
+  closePanel: function closePanel(_ref12) {
+    var dispatch = _ref12.dispatch;
     dispatch("readyState");
   },
   // Show About panel
-  showAbout: function showAbout(_ref12) {
-    var commit = _ref12.commit;
+  showAbout: function showAbout(_ref13) {
+    var commit = _ref13.commit;
     commit("setPanel", "about");
   },
   // Show Users panel
-  showUsers: function showUsers(_ref13) {
-    var commit = _ref13.commit;
+  showUsers: function showUsers(_ref14) {
+    var commit = _ref14.commit;
     commit("setPanel", "users");
   },
   // Fetch all users
   fetchUsers: function () {
     var _fetchUsers = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref14) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(_ref15) {
       var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
         while (1) {
           switch (_context7.prev = _context7.next) {
             case 0:
-              commit = _ref14.commit;
+              commit = _ref15.commit;
               _context7.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/users");
 
@@ -77914,13 +78261,13 @@ var actions = {
   fetchUsersByProjects: function () {
     var _fetchUsersByProjects = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref15, id) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(_ref16, id) {
       var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
         while (1) {
           switch (_context8.prev = _context8.next) {
             case 0:
-              commit = _ref15.commit;
+              commit = _ref16.commit;
               _context8.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/users/project/" + id);
 
@@ -77946,13 +78293,13 @@ var actions = {
   addUsersProject: function () {
     var _addUsersProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref16, user_id) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(_ref17, user_id) {
       var state, response, newUsersProject;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
         while (1) {
           switch (_context9.prev = _context9.next) {
             case 0:
-              state = _ref16.state;
+              state = _ref17.state;
               _context9.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/add/user", {
                 userid: user_id,
@@ -77987,8 +78334,8 @@ var actions = {
     return addUsersProject;
   }(),
   // Delete user from project
-  deleteUsersProject: function deleteUsersProject(_ref17, user_id) {
-    var state = _ref17.state;
+  deleteUsersProject: function deleteUsersProject(_ref18, user_id) {
+    var state = _ref18.state;
     state.users_projects = state.users_projects.filter(function (u) {
       return u.id != user_id;
     });
@@ -77998,13 +78345,13 @@ var actions = {
   fetchProjects: function () {
     var _fetchProjects = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref18) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(_ref19) {
       var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
         while (1) {
           switch (_context10.prev = _context10.next) {
             case 0:
-              commit = _ref18.commit;
+              commit = _ref19.commit;
               _context10.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/projects/" + state.user_id);
 
@@ -78046,13 +78393,13 @@ var actions = {
   showProject: function () {
     var _showProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref19, project) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(_ref20, project) {
       var state, commit, dispatch, counter, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
         while (1) {
           switch (_context11.prev = _context11.next) {
             case 0:
-              state = _ref19.state, commit = _ref19.commit, dispatch = _ref19.dispatch;
+              state = _ref20.state, commit = _ref20.commit, dispatch = _ref20.dispatch;
               counter = setInterval(function () {
                 var current_progress = state.progress;
 
@@ -78096,13 +78443,13 @@ var actions = {
   projectSearch: function () {
     var _projectSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref20, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(_ref21, event) {
       var state, commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
         while (1) {
           switch (_context12.prev = _context12.next) {
             case 0:
-              state = _ref20.state, commit = _ref20.commit;
+              state = _ref21.state, commit = _ref21.commit;
               commit("setProjects", state.projects_temp.filter(function (p) {
                 return p.title.toUpperCase().includes(event.target.value.toUpperCase());
               }));
@@ -78125,13 +78472,13 @@ var actions = {
   allSearch: function () {
     var _allSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref21, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(_ref22, event) {
       var state, commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
         while (1) {
           switch (_context13.prev = _context13.next) {
             case 0:
-              state = _ref21.state, commit = _ref21.commit;
+              state = _ref22.state, commit = _ref22.commit;
               _context13.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/search", {
                 search: event.target.value,
@@ -78159,15 +78506,15 @@ var actions = {
 
     return allSearch;
   }(),
-  clearSearch: function clearSearch(_ref22) {
-    var commit = _ref22.commit;
+  clearSearch: function clearSearch(_ref23) {
+    var commit = _ref23.commit;
     commit("setProjectsSearch", []);
     commit("setTasksSearch", []);
   },
   // Toggle project status filter
-  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref23) {
-    var commit = _ref23.commit,
-        state = _ref23.state;
+  toggleProjectStatusFilter: function toggleProjectStatusFilter(_ref24) {
+    var commit = _ref24.commit,
+        state = _ref24.state;
 
     if (state.project_filter.filterstatus == "all") {
       commit("setProjectFilterStatus", "act");
@@ -78189,9 +78536,9 @@ var actions = {
     }
   },
   // Toggle project name filter
-  toggleProjectNameFilter: function toggleProjectNameFilter(_ref24) {
-    var commit = _ref24.commit,
-        state = _ref24.state;
+  toggleProjectNameFilter: function toggleProjectNameFilter(_ref25) {
+    var commit = _ref25.commit,
+        state = _ref25.state;
     commit("setProjectFilterName", !state.project_filter.filteraz);
 
     if (state.project_filter.filteraz) {
@@ -78207,9 +78554,9 @@ var actions = {
     }
   },
   // Toggle project ID filter
-  toggleProjectIdFilter: function toggleProjectIdFilter(_ref25) {
-    var commit = _ref25.commit,
-        state = _ref25.state;
+  toggleProjectIdFilter: function toggleProjectIdFilter(_ref26) {
+    var commit = _ref26.commit,
+        state = _ref26.state;
     commit("setProjectFilterId", !state.project_filter.filter09);
 
     if (state.project_filter.filter09) {
@@ -78225,10 +78572,10 @@ var actions = {
     }
   },
   // Add project
-  addProject: function addProject(_ref26) {
-    var commit = _ref26.commit,
-        state = _ref26.state,
-        dispatch = _ref26.dispatch;
+  addProject: function addProject(_ref27) {
+    var commit = _ref27.commit,
+        state = _ref27.state,
+        dispatch = _ref27.dispatch;
     var newProject = {
       id: Math.max.apply(Math, state.projects.map(function (o) {
         return o.id;
@@ -78257,13 +78604,13 @@ var actions = {
   deleteProject: function () {
     var _deleteProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref27) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(_ref28) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
         while (1) {
           switch (_context14.prev = _context14.next) {
             case 0:
-              commit = _ref27.commit, state = _ref27.state;
+              commit = _ref28.commit, state = _ref28.state;
 
               if (!(state.current_project_id != 0)) {
                 _context14.next = 11;
@@ -78307,10 +78654,10 @@ var actions = {
     return deleteProject;
   }(),
   // Complete a project and all tasks bind to this project
-  completeProject: function completeProject(_ref28) {
-    var commit = _ref28.commit,
-        state = _ref28.state,
-        dispatch = _ref28.dispatch;
+  completeProject: function completeProject(_ref29) {
+    var commit = _ref29.commit,
+        state = _ref29.state,
+        dispatch = _ref29.dispatch;
 
     if (state.current_project_id != 0) {
       commit("setProjectStatus", 0);
@@ -78321,13 +78668,13 @@ var actions = {
   saveProject: function () {
     var _saveProject = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref29, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15(_ref30, isMessage) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
         while (1) {
           switch (_context15.prev = _context15.next) {
             case 0:
-              commit = _ref29.commit, state = _ref29.state;
+              commit = _ref30.commit, state = _ref30.state;
               response = null;
 
               if (!state.new_project) {
@@ -78415,10 +78762,10 @@ var actions = {
     return saveProject;
   }(),
   // Add new Task
-  addTask: function addTask(_ref30) {
-    var state = _ref30.state,
-        commit = _ref30.commit,
-        dispatch = _ref30.dispatch;
+  addTask: function addTask(_ref31) {
+    var state = _ref31.state,
+        commit = _ref31.commit,
+        dispatch = _ref31.dispatch;
 
     if (state.current_project_id != 0) {
       commit("setDocuments", []);
@@ -78448,13 +78795,13 @@ var actions = {
   saveTask: function () {
     var _saveTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16(_ref31, isMessage) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16(_ref32, isMessage) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
         while (1) {
           switch (_context16.prev = _context16.next) {
             case 0:
-              commit = _ref31.commit, state = _ref31.state;
+              commit = _ref32.commit, state = _ref32.state;
               response = null;
 
               if (!state.new_task) {
@@ -78538,13 +78885,13 @@ var actions = {
   fetchTasksSearch: function () {
     var _fetchTasksSearch = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17(_ref32, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17(_ref33, event) {
       var commit, state;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
         while (1) {
           switch (_context17.prev = _context17.next) {
             case 0:
-              commit = _ref32.commit, state = _ref32.state;
+              commit = _ref33.commit, state = _ref33.state;
               commit("setTasks", state.tasks_temp.filter(function (p) {
                 return p.title.toUpperCase().includes(event.target.value.toUpperCase());
               }));
@@ -78567,13 +78914,13 @@ var actions = {
   fetchTasks: function () {
     var _fetchTasks = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee18(_ref33, status) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee18(_ref34, status) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee18$(_context18) {
         while (1) {
           switch (_context18.prev = _context18.next) {
             case 0:
-              commit = _ref33.commit, state = _ref33.state;
+              commit = _ref34.commit, state = _ref34.state;
               _context18.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/tasks/" + status + "/" + state.current_project_id);
 
@@ -78597,10 +78944,10 @@ var actions = {
     return fetchTasks;
   }(),
   // Toggle task status filter
-  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref34) {
-    var commit = _ref34.commit,
-        state = _ref34.state,
-        dispatch = _ref34.dispatch;
+  toggleTaskStatusFilter: function toggleTaskStatusFilter(_ref35) {
+    var commit = _ref35.commit,
+        state = _ref35.state,
+        dispatch = _ref35.dispatch;
 
     if (state.task_filter.filterstatus == "all") {
       commit("setTaskFilterStatus", "act");
@@ -78618,9 +78965,9 @@ var actions = {
     }
   },
   // Toggle task name filter
-  toggleTaskNameFilter: function toggleTaskNameFilter(_ref35) {
-    var commit = _ref35.commit,
-        state = _ref35.state;
+  toggleTaskNameFilter: function toggleTaskNameFilter(_ref36) {
+    var commit = _ref36.commit,
+        state = _ref36.state;
     commit("setTaskFilterName", !state.task_filter.filteraz);
 
     if (state.task_filter.filteraz) {
@@ -78636,9 +78983,9 @@ var actions = {
     }
   },
   // Toggle tasks ID filter
-  toggleTaskIdFilter: function toggleTaskIdFilter(_ref36) {
-    var commit = _ref36.commit,
-        state = _ref36.state;
+  toggleTaskIdFilter: function toggleTaskIdFilter(_ref37) {
+    var commit = _ref37.commit,
+        state = _ref37.state;
     commit("setTaskFilterId", !state.task_filter.filter09);
 
     if (state.task_filter.filter09) {
@@ -78656,13 +79003,13 @@ var actions = {
   showTask: function () {
     var _showTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee19(_ref37, task) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee19(_ref38, task) {
       var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee19$(_context19) {
         while (1) {
           switch (_context19.prev = _context19.next) {
             case 0:
-              commit = _ref37.commit;
+              commit = _ref38.commit;
               commit("setTask", task);
               commit("setCurrentTaskId", task.id);
               commit("setNewTask", false);
@@ -78691,13 +79038,13 @@ var actions = {
   deleteTask: function () {
     var _deleteTask = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee20(_ref38) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee20(_ref39) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee20$(_context20) {
         while (1) {
           switch (_context20.prev = _context20.next) {
             case 0:
-              commit = _ref38.commit, state = _ref38.state;
+              commit = _ref39.commit, state = _ref39.state;
 
               if (!(state.current_task_id != 0)) {
                 _context20.next = 9;
@@ -78739,9 +79086,9 @@ var actions = {
     return deleteTask;
   }(),
   // Change task status to complete
-  completeTask: function completeTask(_ref39) {
-    var state = _ref39.state,
-        dispatch = _ref39.dispatch;
+  completeTask: function completeTask(_ref40) {
+    var state = _ref40.state,
+        dispatch = _ref40.dispatch;
 
     if (state.current_task_id != 0) {
       state.task.status = 0;
@@ -78752,13 +79099,13 @@ var actions = {
   deleteDocument: function () {
     var _deleteDocument = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee21(_ref40, current_document) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee21(_ref41, current_document) {
       var state, dispatch, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee21$(_context21) {
         while (1) {
           switch (_context21.prev = _context21.next) {
             case 0:
-              state = _ref40.state, dispatch = _ref40.dispatch;
+              state = _ref41.state, dispatch = _ref41.dispatch;
               _context21.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/task/document/delete/" + state.task.id + "/" + current_document);
 
@@ -78789,13 +79136,13 @@ var actions = {
   changeDocuments: function () {
     var _changeDocuments = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee22(_ref41) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee22(_ref42) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee22$(_context22) {
         while (1) {
           switch (_context22.prev = _context22.next) {
             case 0:
-              commit = _ref41.commit, state = _ref41.state;
+              commit = _ref42.commit, state = _ref42.state;
               _context22.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/task/documents/" + state.task.id);
 
@@ -78818,29 +79165,29 @@ var actions = {
     return changeDocuments;
   }(),
   // Filter show all projects
-  showAllProjects: function showAllProjects(_ref42) {
-    var state = _ref42.state,
-        dispatch = _ref42.dispatch;
+  showAllProjects: function showAllProjects(_ref43) {
+    var state = _ref43.state,
+        dispatch = _ref43.dispatch;
     state.project_filter.filterstatus = "all";
     dispatch("fetchProjects", "all");
   },
   // Filter show completed projects
-  showCompletedProjects: function showCompletedProjects(_ref43) {
-    var state = _ref43.state,
-        dispatch = _ref43.dispatch;
+  showCompletedProjects: function showCompletedProjects(_ref44) {
+    var state = _ref44.state,
+        dispatch = _ref44.dispatch;
     state.project_filter.filterstatus = "end";
     dispatch("fetchProjects", "end");
   },
   // Filter show actived projects
-  showActivedProjects: function showActivedProjects(_ref44) {
-    var state = _ref44.state,
-        dispatch = _ref44.dispatch;
+  showActivedProjects: function showActivedProjects(_ref45) {
+    var state = _ref45.state,
+        dispatch = _ref45.dispatch;
     state.project_filter.filterstatus = "act";
     dispatch("fetchProjects", "act");
   },
   // Sort projects by ID ACC
-  sortProjectsIdAcc: function sortProjectsIdAcc(_ref45) {
-    var state = _ref45.state;
+  sortProjectsIdAcc: function sortProjectsIdAcc(_ref46) {
+    var state = _ref46.state;
     state.project_filter.filter09 = true;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -78848,8 +79195,8 @@ var actions = {
     });
   },
   // Sort projects by ID DEC
-  sortProjectsIdDec: function sortProjectsIdDec(_ref46) {
-    var state = _ref46.state;
+  sortProjectsIdDec: function sortProjectsIdDec(_ref47) {
+    var state = _ref47.state;
     state.project_filter.filter09 = false;
     state.projects.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -78857,8 +79204,8 @@ var actions = {
     });
   },
   // Sort projects by Name ACC
-  sortProjectsNameAcc: function sortProjectsNameAcc(_ref47) {
-    var state = _ref47.state;
+  sortProjectsNameAcc: function sortProjectsNameAcc(_ref48) {
+    var state = _ref48.state;
     state.project_filter.filteraz = true;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return 1;
@@ -78866,8 +79213,8 @@ var actions = {
     });
   },
   // Sort projects by Name DEC
-  sortProjectsNameDec: function sortProjectsNameDec(_ref48) {
-    var state = _ref48.state;
+  sortProjectsNameDec: function sortProjectsNameDec(_ref49) {
+    var state = _ref49.state;
     state.project_filter.filteraz = false;
     state.projects.sort(function (a, b) {
       if (a.title > b.title) return -1;
@@ -78875,29 +79222,29 @@ var actions = {
     });
   },
   // Filter show all tasks
-  showAllTasks: function showAllTasks(_ref49) {
-    var state = _ref49.state,
-        dispatch = _ref49.dispatch;
+  showAllTasks: function showAllTasks(_ref50) {
+    var state = _ref50.state,
+        dispatch = _ref50.dispatch;
     state.task_filter.filterstatus = "all";
     dispatch("fetchTasks", "all", state.current_project_id);
   },
   // Filter show completed tasks
-  showCompletedTasks: function showCompletedTasks(_ref50) {
-    var state = _ref50.state,
-        dispatch = _ref50.dispatch;
+  showCompletedTasks: function showCompletedTasks(_ref51) {
+    var state = _ref51.state,
+        dispatch = _ref51.dispatch;
     state.task_filter.filterstatus = "end";
     dispatch("fetchTasks", "end", state.current_project_id);
   },
   // Filter show actived tasks
-  showActivedTasks: function showActivedTasks(_ref51) {
-    var state = _ref51.state,
-        dispatch = _ref51.dispatch;
+  showActivedTasks: function showActivedTasks(_ref52) {
+    var state = _ref52.state,
+        dispatch = _ref52.dispatch;
     state.task_filter.filterstatus = "act";
     dispatch("fetchTasks", "act", state.current_project_id);
   },
   // Sort tasks by ID ACC
-  sortTasksIdAcc: function sortTasksIdAcc(_ref52) {
-    var state = _ref52.state;
+  sortTasksIdAcc: function sortTasksIdAcc(_ref53) {
+    var state = _ref53.state;
     state.task_filter.filter09 = true;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return 1;
@@ -78905,8 +79252,8 @@ var actions = {
     });
   },
   // Sort tasks by ID DEC
-  sortTasksIdDec: function sortTasksIdDec(_ref53) {
-    var state = _ref53.state;
+  sortTasksIdDec: function sortTasksIdDec(_ref54) {
+    var state = _ref54.state;
     state.task_filter.filter09 = false;
     state.tasks.sort(function (a, b) {
       if (a.id > b.id) return -1;
@@ -78914,8 +79261,8 @@ var actions = {
     });
   },
   // Sort tasks by Name ACC
-  sortTasksNameAcc: function sortTasksNameAcc(_ref54) {
-    var state = _ref54.state;
+  sortTasksNameAcc: function sortTasksNameAcc(_ref55) {
+    var state = _ref55.state;
     state.task_filter.filteraz = true;
     state.tasks.sort(function (a, b) {
       if (a.title > b.title) return 1;
@@ -78934,13 +79281,13 @@ var actions = {
   fetchContacts: function () {
     var _fetchContacts = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee23(_ref55) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee23(_ref56) {
       var commit, state, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee23$(_context23) {
         while (1) {
           switch (_context23.prev = _context23.next) {
             case 0:
-              commit = _ref55.commit, state = _ref55.state;
+              commit = _ref56.commit, state = _ref56.state;
               _context23.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/contacts/" + state.user_id);
 
@@ -78962,13 +79309,13 @@ var actions = {
 
     return fetchContacts;
   }(),
-  changeCurrentContact: function changeCurrentContact(_ref56, current_contact) {
-    var commit = _ref56.commit;
+  changeCurrentContact: function changeCurrentContact(_ref57, current_contact) {
+    var commit = _ref57.commit;
     commit("setCurrentContact", current_contact);
   },
   // Delete contact
-  deleteContact: function deleteContact(_ref57) {
-    var state = _ref57.state;
+  deleteContact: function deleteContact(_ref58) {
+    var state = _ref58.state;
     state.contacts = state.contacts.filter(function (c) {
       return c.id != state.current_contact.id;
     });
@@ -79012,13 +79359,13 @@ var actions = {
   addContact: function () {
     var _addContact = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee25(_ref58) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee25(_ref59) {
       var commit, state, response, newContact;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee25$(_context25) {
         while (1) {
           switch (_context25.prev = _context25.next) {
             case 0:
-              commit = _ref58.commit, state = _ref58.state;
+              commit = _ref59.commit, state = _ref59.state;
               _context25.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/contact", {
                 name: "Name of new Contact",
@@ -79063,13 +79410,13 @@ var actions = {
   allSearchContacts: function () {
     var _allSearchContacts = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee26(_ref59, event) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee26(_ref60, event) {
       var state, commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee26$(_context26) {
         while (1) {
           switch (_context26.prev = _context26.next) {
             case 0:
-              state = _ref59.state, commit = _ref59.commit;
+              state = _ref60.state, commit = _ref60.commit;
               _context26.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/contacts/search", {
                 search: event.target.value,
@@ -79097,10 +79444,10 @@ var actions = {
     return allSearchContacts;
   }(),
   // Fetch all imaps
-  fetchImaps: function fetchImaps(_ref60) {
-    var commit = _ref60.commit,
-        state = _ref60.state,
-        dispatch = _ref60.dispatch;
+  fetchImaps: function fetchImaps(_ref61) {
+    var commit = _ref61.commit,
+        state = _ref61.state,
+        dispatch = _ref61.dispatch;
     var counter = setInterval(function () {
       var current_progress = state.progress;
 
@@ -79120,13 +79467,13 @@ var actions = {
   showImap: function () {
     var _showImap = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee27(_ref61, imap) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee27(_ref62, imap) {
       var state, commit, counter;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee27$(_context27) {
         while (1) {
           switch (_context27.prev = _context27.next) {
             case 0:
-              state = _ref61.state, commit = _ref61.commit;
+              state = _ref62.state, commit = _ref62.commit;
               counter = setInterval(function () {
                 var current_progress = state.progress;
 
@@ -79158,13 +79505,13 @@ var actions = {
   deleteImap: function () {
     var _deleteImap = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee28(_ref62) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee28(_ref63) {
       var commit, state;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee28$(_context28) {
         while (1) {
           switch (_context28.prev = _context28.next) {
             case 0:
-              commit = _ref62.commit, state = _ref62.state;
+              commit = _ref63.commit, state = _ref63.state;
 
               if (!(state.current_imap_id != 0)) {
                 _context28.next = 8;
@@ -79203,10 +79550,10 @@ var actions = {
     return deleteImap;
   }(),
   // Add project from Imap
-  newProjectImap: function newProjectImap(_ref63) {
-    var commit = _ref63.commit,
-        state = _ref63.state,
-        dispatch = _ref63.dispatch;
+  newProjectImap: function newProjectImap(_ref64) {
+    var commit = _ref64.commit,
+        state = _ref64.state,
+        dispatch = _ref64.dispatch;
     var newProject = {
       id: Math.max.apply(Math, state.projects.map(function (o) {
         return o.id;
@@ -79232,10 +79579,10 @@ var actions = {
     dispatch("saveProject", false);
   },
   // Add new Task from Imap
-  newTaskImap: function newTaskImap(_ref64) {
-    var state = _ref64.state,
-        commit = _ref64.commit,
-        dispatch = _ref64.dispatch;
+  newTaskImap: function newTaskImap(_ref65) {
+    var state = _ref65.state,
+        commit = _ref65.commit,
+        dispatch = _ref65.dispatch;
 
     if (state.current_project_id != 0) {
       commit("setDocuments", []);
@@ -79262,10 +79609,10 @@ var actions = {
     }
   },
   // Add new Task from Imap
-  currentTaskImap: function currentTaskImap(_ref65) {
-    var state = _ref65.state,
-        commit = _ref65.commit,
-        dispatch = _ref65.dispatch;
+  currentTaskImap: function currentTaskImap(_ref66) {
+    var state = _ref66.state,
+        commit = _ref66.commit,
+        dispatch = _ref66.dispatch;
 
     if (state.current_project_id != 0 && state.current_task_id != 0) {
       state.task.body = state.task.body + "\n" + state.imap.html;
@@ -79274,8 +79621,8 @@ var actions = {
     }
   },
   // Refresh to ready state
-  readyState: function readyState(_ref66) {
-    var commit = _ref66.commit;
+  readyState: function readyState(_ref67) {
+    var commit = _ref67.commit;
     // clear projects
     commit("setCurrentProjectId", 0);
     commit("setProject", []); // clear tasks
@@ -79296,8 +79643,8 @@ var actions = {
 
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref67, progress) {
-    var commit = _ref67.commit;
+  changeProgress: function changeProgress(_ref68, progress) {
+    var commit = _ref68.commit;
     commit("setProgress", progress);
   }
 };
