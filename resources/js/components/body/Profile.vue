@@ -17,10 +17,11 @@
             </div>
         </div>
         <div class="body">
-            <input class="title" type="text" />
+            <input class="title" type="text" v-model="getUser.name" />
+            <input class="title" type="text" v-model="getUser.email" />
         </div>
         <div class="bottom" :class="getTheme">
-            <a>
+            <a @click.prevent="saveUser(true)">
                 <i
                     class="mdi mdi-content-save-outline mdiProjectIcon"
                     v-bind:class="getTheme"
@@ -45,10 +46,10 @@ import { mapGetters, mapActions } from "vuex";
 export default {
     name: "Contacts",
 
-    computed: mapGetters(["getTheme", "getUserName"]),
+    computed: mapGetters(["getTheme", "getUserName", "getUser"]),
 
     methods: {
-        ...mapActions(["closePanel"])
+        ...mapActions(["closePanel", "saveUser"])
     }
 };
 </script>

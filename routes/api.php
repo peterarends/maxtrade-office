@@ -63,6 +63,10 @@ Route::get('properties_categories', 'PropertiesController@categories');
 Route::get('users', 'UserController@getUsers');
 /** List all Users to this Project */
 Route::get('users/project/{id}', 'UserController@getUsersByProject');
+/** Get User */
+Route::get('user/{id}', 'UserController@getUserById');
+/** Update a User */
+Route::put('user', 'UserController@updateUser');
 /** Add User to this Project */
 Route::post('add/user', 'UserController@store');
 /** Delete User to this Project */

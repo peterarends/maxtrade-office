@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Users as UserResource;
+use App\ProjectsUser;
 use App\User;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\Users as UserResource;
-use App\ProjectsUser;
 
 class UserController extends Authenticatable implements MustVerifyEmail
 {
@@ -70,6 +70,16 @@ class UserController extends Authenticatable implements MustVerifyEmail
         }
     }
 
+    public function getUserById($id = null)
+    {
+        if (!empty($id)) {
+            /** Get User */
+            $user = User::findOrFail($id);
+
+            return new UserResource($user);
+        }
+    }
+
     public function store(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -101,6 +111,20 @@ class UserController extends Authenticatable implements MustVerifyEmail
             return json_encode(["result" => "success"]);
         } else {
             return json_encode(["result" => "unsuccess"]);
+        }
+    }
+
+    public function updateUser(Request $request)
+    {
+        $user = $request->isMethod('put') ? User::findOrFail($request->input('user_id')) : null;
+
+        if (!empty($user)) {
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+
+            if ($user->save()) {
+                return new UserResource($user);
+            }
         }
     }
 }

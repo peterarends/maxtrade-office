@@ -40,7 +40,8 @@ const state = {
     current_contact: [],
     imaps: [],
     imap: [],
-    current_imap_id: 0
+    current_imap_id: 0,
+    user: []
 };
 
 const getters = {
@@ -82,7 +83,8 @@ const getters = {
     getCurrentContact: state => state.current_contact,
     getImaps: state => state.imaps,
     getCurrentImapId: state => state.current_imap_id,
-    getImap: state => state.imap
+    getImap: state => state.imap,
+    getUser: state => state.user
 };
 
 const actions = {
@@ -185,7 +187,8 @@ const actions = {
         commit("setPanel", "contacts");
     },
     // Show panel profile
-    showProfile({ commit }) {
+    showProfile({ commit, dispatch }) {
+        dispatch("fetchUser");
         commit("setPanel", "profile");
     },
     // Show panel emails
@@ -959,6 +962,30 @@ const actions = {
             dispatch("saveTask", false);
         }
     },
+    // Fetch user
+    async fetchUser({ commit, state }) {
+        const response = await axios.get("api/user/" + state.user_id);
+        commit("setUser", response.data.data);
+    },
+    // Save current user
+    async saveUser({ state }, isMessage) {
+        const response = await axios.put(
+            "api/user",
+            {
+                user_id: state.user.id,
+                name: state.user.name,
+                email: state.user.email
+            },
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
+        state.user_name = response.data.data.name;
+        if (isMessage) {
+            alert(
+                "You have successfully saved the changes to the Profile: " +
+                    response.data.data.name
+            );
+        }
+    },
     // Refresh to ready state
     readyState({ commit }) {
         // clear projects
@@ -1035,7 +1062,8 @@ const mutations = {
     setImaps: (state, imaps) => (state.imaps = imaps),
     setCurrentImapId: (state, current_imap_id) =>
         (state.current_imap_id = current_imap_id),
-    setImap: (state, imap) => (state.imap = imap)
+    setImap: (state, imap) => (state.imap = imap),
+    setUser: (state, user) => (state.user = user)
 };
 
 export default {

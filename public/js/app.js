@@ -2720,11 +2720,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Contacts",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getUserName"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel"]))
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getUserName", "getUser"]),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "saveUser"]))
 });
 
 /***/ }),
@@ -60321,16 +60322,71 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "body" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.getUser.name,
+            expression: "getUser.name"
+          }
+        ],
+        staticClass: "title",
+        attrs: { type: "text" },
+        domProps: { value: _vm.getUser.name },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.getUser, "name", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.getUser.email,
+            expression: "getUser.email"
+          }
+        ],
+        staticClass: "title",
+        attrs: { type: "text" },
+        domProps: { value: _vm.getUser.email },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.getUser, "email", $event.target.value)
+          }
+        }
+      })
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "bottom", class: _vm.getTheme }, [
-      _c("a", [
-        _c("i", {
-          staticClass: "mdi mdi-content-save-outline mdiProjectIcon",
-          class: _vm.getTheme
-        }),
-        _vm._v(" Save\n        ")
-      ]),
+      _c(
+        "a",
+        {
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.saveUser(true)
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-content-save-outline mdiProjectIcon",
+            class: _vm.getTheme
+          }),
+          _vm._v(" Save\n        ")
+        ]
+      ),
       _vm._v(" "),
       _c(
         "a",
@@ -60355,16 +60411,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "body" }, [
-      _c("input", { staticClass: "title", attrs: { type: "text" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -77830,7 +77877,8 @@ var state = {
   current_contact: [],
   imaps: [],
   imap: [],
-  current_imap_id: 0
+  current_imap_id: 0,
+  user: []
 };
 var getters = {
   getTheme: function getTheme(state) {
@@ -77941,6 +77989,9 @@ var getters = {
   },
   getImap: function getImap(state) {
     return state.imap;
+  },
+  getUser: function getUser(state) {
+    return state.user;
   }
 };
 var actions = {
@@ -78195,7 +78246,9 @@ var actions = {
   },
   // Show panel profile
   showProfile: function showProfile(_ref9) {
-    var commit = _ref9.commit;
+    var commit = _ref9.commit,
+        dispatch = _ref9.dispatch;
+    dispatch("fetchUser");
     commit("setPanel", "profile");
   },
   // Show panel emails
@@ -79620,9 +79673,83 @@ var actions = {
       dispatch("saveTask", false);
     }
   },
+  // Fetch user
+  fetchUser: function () {
+    var _fetchUser = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee29(_ref67) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee29$(_context29) {
+        while (1) {
+          switch (_context29.prev = _context29.next) {
+            case 0:
+              commit = _ref67.commit, state = _ref67.state;
+              _context29.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/user/" + state.user_id);
+
+            case 3:
+              response = _context29.sent;
+              commit("setUser", response.data.data);
+
+            case 5:
+            case "end":
+              return _context29.stop();
+          }
+        }
+      }, _callee29);
+    }));
+
+    function fetchUser(_x45) {
+      return _fetchUser.apply(this, arguments);
+    }
+
+    return fetchUser;
+  }(),
+  // Save current user
+  saveUser: function () {
+    var _saveUser = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee30(_ref68, isMessage) {
+      var state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee30$(_context30) {
+        while (1) {
+          switch (_context30.prev = _context30.next) {
+            case 0:
+              state = _ref68.state;
+              _context30.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/user", {
+                user_id: state.user.id,
+                name: state.user.name,
+                email: state.user.email
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 3:
+              response = _context30.sent;
+              state.user_name = response.data.data.name;
+
+              if (isMessage) {
+                alert("You have successfully saved the changes to the Profile: " + response.data.data.name);
+              }
+
+            case 6:
+            case "end":
+              return _context30.stop();
+          }
+        }
+      }, _callee30);
+    }));
+
+    function saveUser(_x46, _x47) {
+      return _saveUser.apply(this, arguments);
+    }
+
+    return saveUser;
+  }(),
   // Refresh to ready state
-  readyState: function readyState(_ref67) {
-    var commit = _ref67.commit;
+  readyState: function readyState(_ref69) {
+    var commit = _ref69.commit;
     // clear projects
     commit("setCurrentProjectId", 0);
     commit("setProject", []); // clear tasks
@@ -79643,8 +79770,8 @@ var actions = {
 
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref68, progress) {
-    var commit = _ref68.commit;
+  changeProgress: function changeProgress(_ref70, progress) {
+    var commit = _ref70.commit;
     commit("setProgress", progress);
   }
 };
@@ -79747,6 +79874,9 @@ var mutations = {
   },
   setImap: function setImap(state, imap) {
     return state.imap = imap;
+  },
+  setUser: function setUser(state, user) {
+    return state.user = user;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
