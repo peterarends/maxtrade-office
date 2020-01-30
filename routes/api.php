@@ -93,3 +93,5 @@ Route::delete('imap/{id}', 'ImapController@destroy');
 
 /** List All mailacounts */
 Route::get('mailacounts/{id}', 'MailacountsController@index');
+/** Update Mailacounts */
+Route::put('mailacounts', 'MailacountsController@updateMailacounts');

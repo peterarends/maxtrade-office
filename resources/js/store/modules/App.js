@@ -982,6 +982,14 @@ const actions = {
             { "Content-Type": "application/json; charset=utf-8" }
         );
         state.user_name = response.data.data.name;
+        // save mail accounts
+        await axios.put(
+            "api/mailacounts",
+            {
+                mailacounts: state.mailacounts
+            },
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
         if (isMessage) {
             alert(
                 "You have successfully saved the changes to the Profile: " +

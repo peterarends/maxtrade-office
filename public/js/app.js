@@ -2070,7 +2070,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_translate_plugin__WEBPACK_IMP
       "You have successfully saved the changes!": "Успешно записахте промените!",
       "New Project": "Нов Проект",
       "To Current Task": "Към Задачата",
-      Profile: "Потребителски профил"
+      Profile: "Потребителски профил",
+      "Imap accounts": "Imap акаунти"
     }
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_16__["mapGetters"])(["getTheme", "getPanel", "getProjectFilter", "getLanguage"]),
@@ -2721,10 +2722,73 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Contacts",
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getUserName", "getUser"]),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getUserName", "getUser", "getMailacounts"]),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "saveUser"]))
 });
 
@@ -20814,7 +20878,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".profile-body[data-v-899ed032] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-899ed032] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-899ed032] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-899ed032] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-899ed032] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-899ed032] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-899ed032] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-899ed032] {\n  background-color: #e53e3e;\n}\n.body[data-v-899ed032] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.title[data-v-899ed032] {\n  background: transparent;\n  padding: 4px;\n  font-size: 32px;\n}\n.bottom[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-899ed032] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-899ed032] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-899ed032] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-899ed032] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-899ed032]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-899ed032]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-899ed032] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-899ed032] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-899ed032] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-899ed032] {\n  color: #3182ce;\n}\n@media screen and (max-width: 1440px), screen and (max-height: 900px) {\n.contactItem[data-v-899ed032] {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n            flex-direction: column;\n    height: 100px;\n    width: 49%;\n    padding: 2px;\n    margin: 2px;\n}\n}\r\n", ""]);
+exports.push([module.i, ".profile-body[data-v-899ed032] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-899ed032] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-899ed032] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-899ed032] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-899ed032] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-899ed032] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-899ed032] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-899ed032] {\n  background-color: #e53e3e;\n}\n.body[data-v-899ed032] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.title[data-v-899ed032] {\n  background: transparent;\n  padding: 4px;\n  font-size: 32px;\n}\n.resultpanel[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  max-height: calc(100vh - 250px);\n  overflow-y: auto;\n}\n.controll[data-v-899ed032] {\n  width: 100%;\n  background: #2d3748;\n  padding: 1px 3px;\n  border: 1px dotted #4a5568;\n}\n.bottom[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-899ed032] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-899ed032] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-899ed032] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-899ed032] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-899ed032]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-899ed032]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-899ed032] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-899ed032] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-899ed032] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-899ed032] {\n  color: #3182ce;\n}\n@media screen and (max-width: 1440px), screen and (max-height: 900px) {\n.contactItem[data-v-899ed032] {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n            flex-direction: column;\n    height: 100px;\n    width: 49%;\n    padding: 2px;\n    margin: 2px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -60365,7 +60429,212 @@ var render = function() {
             _vm.$set(_vm.getUser, "email", $event.target.value)
           }
         }
-      })
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "vp20" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "resultpanel" }, [
+        _c("h4", [_vm._v(_vm._s(_vm.t("Imap accounts")) + ":")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticStyle: { width: "100%" } },
+          [
+            _c("tr", [
+              _c("th", [_vm._v(_vm._s(_vm.t("host")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.t("port")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.t("encryption")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.t("username")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.t("password")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.t("protocol")))])
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.getMailacounts, function(mailacount) {
+              return _c("tr", { key: mailacount.id }, [
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: mailacount.host,
+                        expression: "mailacount.host"
+                      }
+                    ],
+                    staticClass: "controll",
+                    attrs: { type: "text" },
+                    domProps: { value: mailacount.host },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(mailacount, "host", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: mailacount.port,
+                        expression: "mailacount.port"
+                      }
+                    ],
+                    staticClass: "controll",
+                    attrs: { type: "text" },
+                    domProps: { value: mailacount.port },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(mailacount, "port", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: mailacount.encryption,
+                          expression: "mailacount.encryption"
+                        }
+                      ],
+                      staticClass: "controll",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            mailacount,
+                            "encryption",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [_c("option", { attrs: { value: "SSL" } }, [_vm._v("SSL")])]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: mailacount.username,
+                        expression: "mailacount.username"
+                      }
+                    ],
+                    staticClass: "controll",
+                    attrs: { type: "text" },
+                    domProps: { value: mailacount.username },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(mailacount, "username", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: mailacount.password,
+                        expression: "mailacount.password"
+                      }
+                    ],
+                    staticClass: "controll",
+                    attrs: { type: "text" },
+                    domProps: { value: mailacount.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(mailacount, "password", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: mailacount.protocol,
+                          expression: "mailacount.protocol"
+                        }
+                      ],
+                      staticClass: "controll",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            mailacount,
+                            "protocol",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "imap" } }, [
+                        _vm._v("imap")
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            })
+          ],
+          2
+        )
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "bottom", class: _vm.getTheme }, [
@@ -79732,13 +80001,21 @@ var actions = {
 
             case 3:
               response = _context30.sent;
-              state.user_name = response.data.data.name;
+              state.user_name = response.data.data.name; // save mail accounts
 
+              _context30.next = 7;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("api/mailacounts", {
+                mailacounts: state.mailacounts
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 7:
               if (isMessage) {
                 alert("You have successfully saved the changes to the Profile: " + response.data.data.name);
               }
 
-            case 6:
+            case 8:
             case "end":
               return _context30.stop();
           }

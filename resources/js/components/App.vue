@@ -175,7 +175,8 @@ export default {
                 "Успешно записахте промените!",
             "New Project": "Нов Проект",
             "To Current Task": "Към Задачата",
-            Profile: "Потребителски профил"
+            Profile: "Потребителски профил",
+            "Imap accounts": "Imap акаунти"
         }
     },
 

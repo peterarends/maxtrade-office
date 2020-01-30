@@ -19,6 +19,69 @@
         <div class="body">
             <input class="title" type="text" v-model="getUser.name" />
             <input class="title" type="text" v-model="getUser.email" />
+            <div class="vp20"></div>
+            <div class="resultpanel">
+                <h4>{{ t("Imap accounts") }}:</h4>
+                <table style="width:100%">
+                    <tr>
+                        <th>{{ t("host") }}</th>
+                        <th>{{ t("port") }}</th>
+                        <th>{{ t("encryption") }}</th>
+                        <th>{{ t("username") }}</th>
+                        <th>{{ t("password") }}</th>
+                        <th>{{ t("protocol") }}</th>
+                    </tr>
+                    <tr
+                        v-for="mailacount in getMailacounts"
+                        :key="mailacount.id"
+                    >
+                        <td>
+                            <input
+                                type="text"
+                                class="controll"
+                                v-model="mailacount.host"
+                            />
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                class="controll"
+                                v-model="mailacount.port"
+                            />
+                        </td>
+                        <td>
+                            <select
+                                class="controll"
+                                v-model="mailacount.encryption"
+                            >
+                                <option value="SSL">SSL</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input
+                                class="controll"
+                                type="text"
+                                v-model="mailacount.username"
+                            />
+                        </td>
+                        <td>
+                            <input
+                                class="controll"
+                                type="text"
+                                v-model="mailacount.password"
+                            />
+                        </td>
+                        <td>
+                            <select
+                                class="controll"
+                                v-model="mailacount.protocol"
+                            >
+                                <option value="imap">imap</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <div class="bottom" :class="getTheme">
             <a @click.prevent="saveUser(true)">
@@ -46,7 +109,12 @@ import { mapGetters, mapActions } from "vuex";
 export default {
     name: "Contacts",
 
-    computed: mapGetters(["getTheme", "getUserName", "getUser"]),
+    computed: mapGetters([
+        "getTheme",
+        "getUserName",
+        "getUser",
+        "getMailacounts"
+    ]),
 
     methods: {
         ...mapActions(["closePanel", "saveUser"])
@@ -120,6 +188,18 @@ export default {
     background: transparent;
     padding: 4px;
     font-size: 32px;
+}
+.resultpanel {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+.controll {
+    width: 100%;
+    background: #2d3748;
+    padding: 1px 3px;
+    border: 1px dotted #4a5568;
 }
 .bottom {
     display: flex;
