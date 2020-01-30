@@ -90,3 +90,6 @@ Route::post('contacts/search', 'ContactsController@search');
 Route::get('imaps/{id}', 'ImapController@index');
 /** Delete a Imap */
 Route::delete('imap/{id}', 'ImapController@destroy');
+
+/** List All mailacounts */
+Route::get('mailacounts/{id}', 'MailacountsController@index');

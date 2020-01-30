@@ -41,7 +41,8 @@ const state = {
     imaps: [],
     imap: [],
     current_imap_id: 0,
-    user: []
+    user: [],
+    mailacounts: []
 };
 
 const getters = {
@@ -84,7 +85,8 @@ const getters = {
     getImaps: state => state.imaps,
     getCurrentImapId: state => state.current_imap_id,
     getImap: state => state.imap,
-    getUser: state => state.user
+    getUser: state => state.user,
+    getMailacounts: state => state.mailacounts
 };
 
 const actions = {
@@ -189,6 +191,7 @@ const actions = {
     // Show panel profile
     showProfile({ commit, dispatch }) {
         dispatch("fetchUser");
+        dispatch("fetchMailacounts");
         commit("setPanel", "profile");
     },
     // Show panel emails
@@ -986,6 +989,11 @@ const actions = {
             );
         }
     },
+    // Fetch mailacounts
+    async fetchMailacounts({ commit, state }) {
+        const response = await axios.get("api/mailacounts/" + state.user_id);
+        commit("setMailacounts", response.data.data);
+    },
     // Refresh to ready state
     readyState({ commit }) {
         // clear projects
@@ -1063,7 +1071,8 @@ const mutations = {
     setCurrentImapId: (state, current_imap_id) =>
         (state.current_imap_id = current_imap_id),
     setImap: (state, imap) => (state.imap = imap),
-    setUser: (state, user) => (state.user = user)
+    setUser: (state, user) => (state.user = user),
+    setMailacounts: (state, mailacounts) => (state.mailacounts = mailacounts)
 };
 
 export default {

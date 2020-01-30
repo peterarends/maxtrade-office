@@ -77878,7 +77878,8 @@ var state = {
   imaps: [],
   imap: [],
   current_imap_id: 0,
-  user: []
+  user: [],
+  mailacounts: []
 };
 var getters = {
   getTheme: function getTheme(state) {
@@ -77992,6 +77993,9 @@ var getters = {
   },
   getUser: function getUser(state) {
     return state.user;
+  },
+  getMailacounts: function getMailacounts(state) {
+    return state.mailacounts;
   }
 };
 var actions = {
@@ -78249,6 +78253,7 @@ var actions = {
     var commit = _ref9.commit,
         dispatch = _ref9.dispatch;
     dispatch("fetchUser");
+    dispatch("fetchMailacounts");
     commit("setPanel", "profile");
   },
   // Show panel emails
@@ -79747,9 +79752,41 @@ var actions = {
 
     return saveUser;
   }(),
+  // Fetch mailacounts
+  fetchMailacounts: function () {
+    var _fetchMailacounts = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee31(_ref69) {
+      var commit, state, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee31$(_context31) {
+        while (1) {
+          switch (_context31.prev = _context31.next) {
+            case 0:
+              commit = _ref69.commit, state = _ref69.state;
+              _context31.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/mailacounts/" + state.user_id);
+
+            case 3:
+              response = _context31.sent;
+              commit("setMailacounts", response.data.data);
+
+            case 5:
+            case "end":
+              return _context31.stop();
+          }
+        }
+      }, _callee31);
+    }));
+
+    function fetchMailacounts(_x48) {
+      return _fetchMailacounts.apply(this, arguments);
+    }
+
+    return fetchMailacounts;
+  }(),
   // Refresh to ready state
-  readyState: function readyState(_ref69) {
-    var commit = _ref69.commit;
+  readyState: function readyState(_ref70) {
+    var commit = _ref70.commit;
     // clear projects
     commit("setCurrentProjectId", 0);
     commit("setProject", []); // clear tasks
@@ -79770,8 +79807,8 @@ var actions = {
 
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref70, progress) {
-    var commit = _ref70.commit;
+  changeProgress: function changeProgress(_ref71, progress) {
+    var commit = _ref71.commit;
     commit("setProgress", progress);
   }
 };
@@ -79877,6 +79914,9 @@ var mutations = {
   },
   setUser: function setUser(state, user) {
     return state.user = user;
+  },
+  setMailacounts: function setMailacounts(state, mailacounts) {
+    return state.mailacounts = mailacounts;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
