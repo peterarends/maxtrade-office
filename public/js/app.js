@@ -79899,7 +79899,7 @@ var actions = {
       commit("setProgress", 0);
     });
   },
-  // Show clcicked project and populate tasks panel
+  // Show clcicked imap and populate mail panel
   showImap: function () {
     var _showImap = _asyncToGenerator(
     /*#__PURE__*/
@@ -79960,7 +79960,7 @@ var actions = {
               }
 
               _context28.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/imap/" + state.current_imap_id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/imap/" + state.current_imap_id + "/user/" + state.user_id, {
                 "Content-Type": "application/json; charset=utf-8"
               });
 

@@ -91,7 +91,7 @@ Route::post('contacts/search', 'ContactsController@search');
 /** Imap */
 Route::get('imaps/{id}', 'ImapController@index');
 /** Delete a Imap */
-Route::delete('imap/{id}', 'ImapController@destroy');
+Route::delete('imap/{id}/user/{user_id}', 'ImapController@destroy');
 
 /** List All mailacounts */
 Route::get('mailacounts/{id}', 'MailacountsController@index');

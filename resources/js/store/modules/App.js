@@ -868,7 +868,7 @@ const actions = {
             commit("setProgress", 0);
         });
     },
-    // Show clcicked project and populate tasks panel
+    // Show clcicked imap and populate mail panel
     async showImap({ state, commit }, imap) {
         const counter = setInterval(() => {
             const current_progress = state.progress;
@@ -886,9 +886,15 @@ const actions = {
     async deleteImap({ commit, state }) {
         if (state.current_imap_id != 0) {
             if (confirm("Are You sure?")) {
-                await axios.delete("api/imap/" + state.current_imap_id, {
-                    "Content-Type": "application/json; charset=utf-8"
-                });
+                await axios.delete(
+                    "api/imap/" +
+                        state.current_imap_id +
+                        "/user/" +
+                        state.user_id,
+                    {
+                        "Content-Type": "application/json; charset=utf-8"
+                    }
+                );
                 state.imaps = state.imaps.filter(
                     i => i.id !== state.current_imap_id
                 );
