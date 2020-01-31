@@ -19,6 +19,11 @@
                         {{ __('Register') }}
                     </a>
                 </li>
+                <li class="px-4">
+                    <a href="/password/reset" class="text-gray-800 hover:text-gray-600">
+                        {{ __('Forgot password') }}
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
