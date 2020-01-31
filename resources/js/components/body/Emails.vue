@@ -45,11 +45,11 @@
                         {{ imap.id }}
                     </div>
                     <p>
-                        <span class="gray">{{ t("from:") }}</span
+                        <span class="white">{{ t("from:") }}</span
                         >&nbsp;{{ imap.fromAddress }}
                     </p>
                     <p>
-                        <span class="gray">{{ t("to:") }}</span
+                        <span class="white">{{ t("to:") }}</span
                         >&nbsp;{{ imap.toString }}
                     </p>
                     <p>{{ imap.subject }}</p>
@@ -376,6 +376,7 @@ export default {
     flex: 3;
     background: #2d3748;
     border: 1px solid #4a5568;
+    word-wrap: break-word;
 }
 .bottom {
     display: flex;
