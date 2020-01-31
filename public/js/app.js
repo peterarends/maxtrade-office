@@ -2468,6 +2468,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -20822,7 +20829,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n.vp20 {\n  padding: 20px 0px;\n}\n.button {\n  border: 1px solid #4a5568;\n  padding: 2px 8px;\n  border-radius: 5px;\n  background: #2a4365;\n}\n.button:hover {\n  background: #2b6cb0;\n}\n.button_red {\n  border: 1px solid #9b2c2c;\n  padding: 2px 8px;\n  border-radius: 5px;\n  background: #c53030;\n}\n.button_red:hover {\n  background: #e53e3e;\n}\n.link {\n  color: #3182ce;\n  cursor: pointer;\n  text-decoration: underline;\n}\ntable,\r\nth,\r\ntd {\n  border: 1px dotted #4a5568;\n  text-align: left;\n}\nth {\n  background: #4a5568;\n  font-size: 18px;\n  font-weight: normal;\n}\r\n", ""]);
+exports.push([module.i, ".mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n.vp20 {\n  padding: 20px 0px;\n}\n.button {\n  border: 1px solid #4a5568;\n  padding: 2px 8px;\n  border-radius: 5px;\n  background: #2a4365;\n}\n.button:hover {\n  background: #2b6cb0;\n}\n.button_red {\n  border: 1px solid #9b2c2c;\n  padding: 2px 8px;\n  border-radius: 5px;\n  background: #c53030;\n}\n.button_red:hover {\n  background: #e53e3e;\n}\n.link {\n  color: #3182ce;\n  cursor: pointer;\n  text-decoration: underline;\n}\n.gray {\n  color: #1a202c;\n}\ntable,\r\nth,\r\ntd {\n  border: 1px dotted #4a5568;\n  text-align: left;\n}\nth {\n  background: #4a5568;\n  font-size: 18px;\n  font-weight: normal;\n}\r\n", ""]);
 
 // exports
 
@@ -59927,12 +59934,17 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("p", [
-                  _vm._v(
-                    _vm._s(imap.fromName) +
-                      " <" +
-                      _vm._s(imap.fromAddress) +
-                      ">"
-                  )
+                  _c("span", { staticClass: "gray" }, [
+                    _vm._v(_vm._s(_vm.t("from:")))
+                  ]),
+                  _vm._v(" " + _vm._s(imap.fromAddress) + "\n                ")
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("span", { staticClass: "gray" }, [
+                    _vm._v(_vm._s(_vm.t("to:")))
+                  ]),
+                  _vm._v(" " + _vm._s(imap.toString) + "\n                ")
                 ]),
                 _vm._v(" "),
                 _c("p", [_vm._v(_vm._s(imap.subject))])

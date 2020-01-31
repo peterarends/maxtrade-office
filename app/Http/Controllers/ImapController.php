@@ -55,7 +55,7 @@ class ImapController extends Controller
                             "id" => $oMessage->getUid(),
                             "fromName" => $oMessage->getFrom()[0]->personal ? $oMessage->getFrom()[0]->personal : "",
                             "fromAddress" => $oMessage->getFrom()[0]->mail ? $oMessage->getFrom()[0]->mail : "",
-                            "toString" => "",
+                            "toString" => $oMessage->getTo()[0]->mail ? $oMessage->getTo()[0]->mail : "",
                             "subject" => $subject,
                             "date" => $oMessage->getDate(),
                             "html" => $html

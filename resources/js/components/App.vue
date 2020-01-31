@@ -366,6 +366,9 @@ h5 {
     cursor: pointer;
     text-decoration: underline;
 }
+.gray {
+    color: #1a202c;
+}
 table,
 th,
 td {

@@ -44,7 +44,14 @@
                         {{ imap.date | formatDate }}&nbsp;|&nbsp;
                         {{ imap.id }}
                     </div>
-                    <p>{{ imap.fromName }} &#60;{{ imap.fromAddress }}&#62;</p>
+                    <p>
+                        <span class="gray">{{ t("from:") }}</span
+                        >&nbsp;{{ imap.fromAddress }}
+                    </p>
+                    <p>
+                        <span class="gray">{{ t("to:") }}</span
+                        >&nbsp;{{ imap.toString }}
+                    </p>
                     <p>{{ imap.subject }}</p>
                 </div>
             </div>
