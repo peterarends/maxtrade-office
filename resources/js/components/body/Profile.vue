@@ -30,6 +30,7 @@
                         <th>{{ t("username") }}</th>
                         <th>{{ t("password") }}</th>
                         <th>{{ t("protocol") }}</th>
+                        <th>{{ t("action") }}</th>
                     </tr>
                     <tr
                         v-for="mailacount in getMailacounts"
@@ -79,8 +80,31 @@
                                 <option value="imap">imap</option>
                             </select>
                         </td>
+                        <td>
+                            <a
+                                class="delete"
+                                @click.prevent="
+                                    deleteAccountLocal(mailacount.id)
+                                "
+                                >{{ t("Delete") }}</a
+                            >
+                        </td>
                     </tr>
                 </table>
+            </div>
+            <div class="vp20"></div>
+            <div>
+                <button
+                    class="button_red"
+                    @click.prevent="deleteProfileLocal"
+                    :title="
+                        t(
+                            'Attention! Do you want to delete your account? Any documents and events associated with your account will also be deleted. The operation is irreversible!'
+                        )
+                    "
+                >
+                    <i class="mdi mdi-account"></i>{{ t("Delete profile!") }}
+                </button>
             </div>
         </div>
         <div class="bottom" :class="getTheme">
@@ -89,14 +113,21 @@
                     class="mdi mdi-content-save-outline mdiProjectIcon"
                     v-bind:class="getTheme"
                 ></i
-                >&nbsp;Save
+                >&nbsp;{{ t("Save") }}
+            </a>
+            <a @click.prevent="addAccount">
+                <i
+                    class="mdi mdi-email-plus-outline mdiProjectIcon"
+                    v-bind:class="getTheme"
+                ></i
+                >&nbsp;{{ t("Add mail account") }}
             </a>
             <a @click.prevent="closePanel">
                 <i
                     class="mdi mdi-close-outline mdiProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Close
+                >&nbsp;{{ t("Close") }}
             </a>
             <div class="status_panel"></div>
         </div>
@@ -117,7 +148,33 @@ export default {
     ]),
 
     methods: {
-        ...mapActions(["closePanel", "saveUser"])
+        ...mapActions([
+            "closePanel",
+            "saveUser",
+            "addAccount",
+            "deleteAccount",
+            "deleteProfile"
+        ]),
+        deleteAccountLocal(id) {
+            if (
+                confirm(
+                    this.$translate.text("Do you want to delete the account?")
+                )
+            ) {
+                this.deleteAccount(id);
+            }
+        },
+        deleteProfileLocal() {
+            if (
+                confirm(
+                    this.$translate.text(
+                        "Attention! Do you want to delete your account? Any documents and events associated with your account will also be deleted. The operation is irreversible!"
+                    )
+                )
+            ) {
+                this.deleteProfile();
+            }
+        }
     }
 };
 </script>
@@ -201,6 +258,10 @@ export default {
     padding: 1px 3px;
     border: 1px dotted #4a5568;
 }
+.delete {
+    color: #c53030;
+    cursor: pointer;
+}
 .bottom {
     display: flex;
     padding: 2px;
@@ -256,6 +317,15 @@ export default {
 }
 .mdiProjectIcon.dark {
     color: #3182ce;
+}
+.mdiExitIcon {
+    font-size: 1.3rem;
+}
+.mdiExitIcon.light {
+    color: #c53030;
+}
+.mdiExitIcon.dark {
+    color: #c53030;
 }
 @media screen and (max-width: 1440px), screen and (max-height: 900px) {
     .contactItem {

@@ -78,28 +78,28 @@
                     class="mdi mdi-content-save-outline mdiProjectIcon"
                     v-bind:class="getTheme"
                 ></i
-                >&nbsp;Save
+                >&nbsp;{{ t("Save") }}
             </a>
             <a @click.passive="addContactLocal">
                 <i
                     class="mdi mdi-plus-circle-outline mdiProjectIcon"
                     v-bind:class="getTheme"
                 ></i
-                >&nbsp;Add
+                >&nbsp;{{ t("Add") }}
             </a>
             <a @click.prevent="defelteContactLocal">
                 <i
                     class="mdi mdi-delete-outline mdiProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Delete
+                >&nbsp;{{ t("Delete") }}
             </a>
             <a @click.prevent="closePanel">
                 <i
                     class="mdi mdi-close-outline mdiProjectIcon"
                     :class="getTheme"
                 ></i
-                >&nbsp;Close
+                >&nbsp;{{ t("Close") }}
             </a>
             <div class="status_panel"></div>
         </div>

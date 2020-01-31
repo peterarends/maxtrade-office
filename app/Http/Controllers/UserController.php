@@ -127,4 +127,13 @@ class UserController extends Authenticatable implements MustVerifyEmail
             }
         }
     }
+
+    public function deleteUser($id = null)
+    {
+        if (!empty($id)) {
+            /** Get User */
+            $user = User::findOrFail($id);
+            $user->delete();
+        }
+    }
 }

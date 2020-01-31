@@ -1002,6 +1002,42 @@ const actions = {
         const response = await axios.get("api/mailacounts/" + state.user_id);
         commit("setMailacounts", response.data.data);
     },
+    // Add new mail account
+    async addAccount({ state }) {
+        const response = await axios.post(
+            "api/mailacount",
+            {
+                user_id: state.user_id,
+                host: "",
+                port: 993,
+                encryption: "SSL",
+                validate_cert: 0,
+                username: "",
+                password: "",
+                protocol: "imap"
+            },
+            { "Content-Type": "application/json; charset=utf-8" }
+        );
+        const newMailacount = {
+            id: response.data.data.id,
+            user_id: response.data.data.user_id,
+            created_at: response.data.data.created_at,
+            updated_at: response.data.data.updated_at,
+            host: response.data.data.host,
+            port: response.data.data.port,
+            encryption: response.data.data.encryption,
+            validate_cert: response.data.data.validate_cert,
+            username: response.data.data.username,
+            password: response.data.data.password,
+            protocol: response.data.data.protocol
+        };
+        state.mailacounts.unshift(newMailacount);
+    },
+    // Delete mail account
+    deleteAccount({ state }, id) {
+        state.mailacounts = state.mailacounts.filter(m => m.id != id);
+        axios.delete("api/mailacount/" + id);
+    },
     // Refresh to ready state
     readyState({ commit }) {
         // clear projects
@@ -1027,6 +1063,11 @@ const actions = {
     },
     changeProgress({ commit }, progress) {
         commit("setProgress", progress);
+    },
+    // Delete profile
+    deleteProfile({ state, dispatch }) {
+        axios.delete("api/delete/user/" + state.user_id);
+        dispatch("exitProgram");
     }
 };
 

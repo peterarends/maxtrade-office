@@ -38,4 +38,30 @@ class MailacountsController extends Controller
 
         return json_encode(["result" => "success"]);
     }
+
+    public function addMailacount(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $mailacount = new Mailacount();
+            $mailacount->user_id = $request->input('user_id');
+            $mailacount->host = $request->input('host');
+            $mailacount->port = $request->input('port');
+            $mailacount->encryption = $request->input('encryption');
+            $mailacount->validate_cert = $request->input('validate_cert');
+            $mailacount->username = $request->input('username');
+            $mailacount->password = $request->input('password');
+            $mailacount->protocol = $request->input('protocol');
+            $mailacount->save();
+            return new MailacountResource($mailacount);
+        }
+    }
+
+    public function deleteMailacount($id = null)
+    {
+        if ($id != null) {
+            $mailacount = Mailacount::findOrFail($id);
+            $mailacount->delete();
+            return new MailacountResource($mailacount);
+        }
+    }
 }

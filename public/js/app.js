@@ -2071,7 +2071,11 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_translate_plugin__WEBPACK_IMP
       "New Project": "Нов Проект",
       "To Current Task": "Към Задачата",
       Profile: "Потребителски профил",
-      "Imap accounts": "Imap акаунти"
+      "Imap accounts": "Imap акаунти",
+      "Add mail account": "Добави mail акаунт",
+      "Do you want to delete the account?": "Желаете ли да изтриете акаунта?",
+      "Delete profile!": "Изтрий профила!",
+      "Attention! Do you want to delete your account? Any documents and events associated with your account will also be deleted. The operation is irreversible!": "Внимание! Желаете ли да изтриете профила си? Всички свързани с профила Ви документи и събития също ще бъдат изтрити. Операцията е необратима!"
     }
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_16__["mapGetters"])(["getTheme", "getPanel", "getProjectFilter", "getLanguage"]),
@@ -2785,11 +2789,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Contacts",
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getTheme", "getUserName", "getUser", "getMailacounts"]),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "saveUser"]))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["closePanel", "saveUser", "addAccount", "deleteAccount", "deleteProfile"]), {
+    deleteAccountLocal: function deleteAccountLocal(id) {
+      if (confirm(this.$translate.text("Do you want to delete the account?"))) {
+        this.deleteAccount(id);
+      }
+    },
+    deleteProfileLocal: function deleteProfileLocal() {
+      if (confirm(this.$translate.text("Attention! Do you want to delete your account? Any documents and events associated with your account will also be deleted. The operation is irreversible!"))) {
+        this.deleteProfile();
+      }
+    }
+  })
 });
 
 /***/ }),
@@ -20764,7 +20810,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n.vp20 {\n  padding: 20px 0px;\n}\n.button {\n  border: 1px solid #4a5568;\n  padding: 2px 8px;\n  border-radius: 5px;\n  background: #2a4365;\n}\n.button:hover {\n  background: #2b6cb0;\n}\ntable,\r\nth,\r\ntd {\n  border: 1px dotted #4a5568;\n  text-align: left;\n}\nth {\n  background: #4a5568;\n  font-size: 18px;\n  font-weight: normal;\n}\r\n", ""]);
+exports.push([module.i, ".mainDiv {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  height: 100%;\n}\n.mainDiv.light {\n  background-color: #fff;\n}\n.mainDiv.dark {\n  background-color: #000;\n}\n\n/* Start Body panel */\n.body {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.body.light {\n  color: #718096;\n  border-top: 1px solid #f7fafc;\n}\n.body.dark {\n  color: #cbd5e0;\n  border-top: 1px solid #1a202c;\n}\n.mainDivBodypanel {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex: 1;\n}\n.mainDivBodypanel.light {\n  background-color: #f7fafc;\n}\n.mainDivBodypanel.dark {\n  background-color: #1a202c;\n}\n\n/* End Body panel */\n\n/* Projects and Tasks List View */\nh1 {\n  font-size: 28px;\n}\nh2 {\n  font-size: 24px;\n}\nh3 {\n  font-size: 20px;\n}\nh4 {\n  font-size: 18px;\n}\nh5 {\n  font-size: 16px;\n}\n.list-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.list-dot-task.ended {\n  color: #868686;\n}\n.list-name {\n  display: table-cell;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  height: 20px;\n  font-weight: 600;\n}\n.list-description {\n  display: block;\n  overflow: hidden;\n  height: 40px;\n  font-size: 12px;\n}\n.list-date {\n  font-size: 11px;\n}\n.list-project-name {\n  font-size: 11px;\n  padding-left: 5px;\n  font-weight: 600;\n  color: #4682b4;\n}\n.list-data {\n  font-size: 11px;\n  padding-left: 5px;\n}\n.list-paragraph {\n  padding: 3px 0px;\n}\n\n/* tools */\n.separator-vertical {\n  margin: 0px 5px 0px 5px;\n  height: 26px;\n}\n.separator-vertical.light {\n  border-left: 1px solid #e2e8f0;\n  border-right: 1px solid #f7fafc;\n}\n.separator-vertical.dark {\n  border-left: 1px solid #4a5568;\n  border-right: 1px solid #1a202c;\n}\n.projects-panel-title-dot {\n  color: #4682b4;\n  font-size: 12px;\n  padding-right: 5px;\n}\n.tasks-panel-title-dot {\n  color: #ff8c00;\n  font-size: 12px;\n  padding-right: 5px;\n}\n\n/* scroll bar */\n::-webkit-scrollbar {\n  width: 10px;\n}\n::-webkit-scrollbar-track {\n  background: #1a202c;\n}\n::-webkit-scrollbar-thumb {\n  background: #2d3748;\n}\n::-webkit-scrollbar-thumb:hover {\n  background: #4a5568;\n}\n.vp20 {\n  padding: 20px 0px;\n}\n.button {\n  border: 1px solid #4a5568;\n  padding: 2px 8px;\n  border-radius: 5px;\n  background: #2a4365;\n}\n.button:hover {\n  background: #2b6cb0;\n}\n.button_red {\n  border: 1px solid #9b2c2c;\n  padding: 2px 8px;\n  border-radius: 5px;\n  background: #c53030;\n}\n.button_red:hover {\n  background: #e53e3e;\n}\ntable,\r\nth,\r\ntd {\n  border: 1px dotted #4a5568;\n  text-align: left;\n}\nth {\n  background: #4a5568;\n  font-size: 18px;\n  font-weight: normal;\n}\r\n", ""]);
 
 // exports
 
@@ -20878,7 +20924,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".profile-body[data-v-899ed032] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-899ed032] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-899ed032] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-899ed032] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-899ed032] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-899ed032] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-899ed032] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-899ed032] {\n  background-color: #e53e3e;\n}\n.body[data-v-899ed032] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.title[data-v-899ed032] {\n  background: transparent;\n  padding: 4px;\n  font-size: 32px;\n}\n.resultpanel[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  max-height: calc(100vh - 250px);\n  overflow-y: auto;\n}\n.controll[data-v-899ed032] {\n  width: 100%;\n  background: #2d3748;\n  padding: 1px 3px;\n  border: 1px dotted #4a5568;\n}\n.bottom[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-899ed032] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-899ed032] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-899ed032] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-899ed032] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-899ed032]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-899ed032]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-899ed032] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-899ed032] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-899ed032] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-899ed032] {\n  color: #3182ce;\n}\n@media screen and (max-width: 1440px), screen and (max-height: 900px) {\n.contactItem[data-v-899ed032] {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n            flex-direction: column;\n    height: 100px;\n    width: 49%;\n    padding: 2px;\n    margin: 2px;\n}\n}\r\n", ""]);
+exports.push([module.i, ".profile-body[data-v-899ed032] {\n  width: 100%;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.button-bar[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 30px;\n}\n.button-bar.light[data-v-899ed032] {\n  background: #edf2f7;\n  border-top: 1px solid #f7fafc;\n  box-shadow: 0 2px 0 white;\n  border-bottom: 1px solid #e2e8f0;\n}\n.button-bar.dark[data-v-899ed032] {\n  background: #2d3748;\n  border-top: 1px solid #1a202c;\n  box-shadow: 0 2px 0 black;\n  border-bottom: 1px solid #4a5568;\n}\n.topTitleDiv[data-v-899ed032] {\n  /* text-center flex-grow text-xl pl-2 pr-2 text-gray-300 */\n  text-align: center;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  font-size: 1.25rem;\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n  color: #3182ce;\n}\n.topRightIcons[data-v-899ed032] {\n  /* flex items-center justify-content-center */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.rightExitIcon[data-v-899ed032] {\n  /* flex items-center justify-content-center w-7 h-7 px-1 py-1 hover:bg-red-600 */\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n  padding-right: 0.25rem;\n  padding-left: 0.25rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.rightExitIcon:hover.light[data-v-899ed032] {\n  background-color: #fc8181;\n}\n.rightExitIcon:hover.dark[data-v-899ed032] {\n  background-color: #e53e3e;\n}\n.body[data-v-899ed032] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  padding: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.title[data-v-899ed032] {\n  background: transparent;\n  padding: 4px;\n  font-size: 32px;\n}\n.resultpanel[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  max-height: calc(100vh - 250px);\n  overflow-y: auto;\n}\n.controll[data-v-899ed032] {\n  width: 100%;\n  background: #2d3748;\n  padding: 1px 3px;\n  border: 1px dotted #4a5568;\n}\n.delete[data-v-899ed032] {\n  color: #c53030;\n  cursor: pointer;\n}\n.bottom[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  padding: 2px;\n  height: 30px;\n}\n.bottom.light[data-v-899ed032] {\n  background: #edf2f7;\n  border-bottom: 1px solid #f7fafc;\n  border-top: 1px solid #e2e8f0;\n}\n.bottom.dark[data-v-899ed032] {\n  background: #2d3748;\n  border-bottom: 1px solid #1a202c;\n  border-top: 1px solid #4a5568;\n}\n.bottom a[data-v-899ed032] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  align-content: center;\n  padding-left: 12px;\n  padding-right: 12px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  height: 24px;\n  cursor: pointer;\n}\n.bottom.light a[data-v-899ed032] {\n  color: #2d3748;\n  border-right: 1px solid #f7fafc;\n  background: #edf2f7;\n}\n.bottom.dark a[data-v-899ed032] {\n  color: #edf2f7;\n  border-right: 1px solid #1a202c;\n  background: #2d3748;\n}\n.bottom.dark a[data-v-899ed032]:hover {\n  background-color: #2b6cb0;\n  color: #f7fafc;\n}\n.bottom.light a[data-v-899ed032]:hover {\n  background-color: #90cdf4;\n  color: #1a202c;\n}\n.status_panel[data-v-899ed032] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  text-align: right;\n}\n.mdiProjectIcon[data-v-899ed032] {\n  font-size: 1.3rem;\n}\n.mdiProjectIcon.light[data-v-899ed032] {\n  color: #63b3ed;\n}\n.mdiProjectIcon.dark[data-v-899ed032] {\n  color: #3182ce;\n}\n.mdiExitIcon[data-v-899ed032] {\n  font-size: 1.3rem;\n}\n.mdiExitIcon.light[data-v-899ed032] {\n  color: #c53030;\n}\n.mdiExitIcon.dark[data-v-899ed032] {\n  color: #c53030;\n}\n@media screen and (max-width: 1440px), screen and (max-height: 900px) {\n.contactItem[data-v-899ed032] {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n            flex-direction: column;\n    height: 100px;\n    width: 49%;\n    padding: 2px;\n    margin: 2px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -59695,7 +59741,7 @@ var render = function() {
             staticClass: "mdi mdi-content-save-outline mdiProjectIcon",
             class: _vm.getTheme
           }),
-          _vm._v(" Save\n        ")
+          _vm._v(" " + _vm._s(_vm.t("Save")) + "\n        ")
         ]
       ),
       _vm._v(" "),
@@ -59713,7 +59759,7 @@ var render = function() {
             staticClass: "mdi mdi-plus-circle-outline mdiProjectIcon",
             class: _vm.getTheme
           }),
-          _vm._v(" Add\n        ")
+          _vm._v(" " + _vm._s(_vm.t("Add")) + "\n        ")
         ]
       ),
       _vm._v(" "),
@@ -59732,7 +59778,7 @@ var render = function() {
             staticClass: "mdi mdi-delete-outline mdiProjectIcon",
             class: _vm.getTheme
           }),
-          _vm._v(" Delete\n        ")
+          _vm._v(" " + _vm._s(_vm.t("Delete")) + "\n        ")
         ]
       ),
       _vm._v(" "),
@@ -59751,7 +59797,7 @@ var render = function() {
             staticClass: "mdi mdi-close-outline mdiProjectIcon",
             class: _vm.getTheme
           }),
-          _vm._v(" Close\n        ")
+          _vm._v(" " + _vm._s(_vm.t("Close")) + "\n        ")
         ]
       ),
       _vm._v(" "),
@@ -60451,7 +60497,9 @@ var render = function() {
               _vm._v(" "),
               _c("th", [_vm._v(_vm._s(_vm.t("password")))]),
               _vm._v(" "),
-              _c("th", [_vm._v(_vm._s(_vm.t("protocol")))])
+              _c("th", [_vm._v(_vm._s(_vm.t("protocol")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.t("action")))])
             ]),
             _vm._v(" "),
             _vm._l(_vm.getMailacounts, function(mailacount) {
@@ -60628,11 +60676,53 @@ var render = function() {
                       ])
                     ]
                   )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "delete",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.deleteAccountLocal(mailacount.id)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(_vm.t("Delete")))]
+                  )
                 ])
               ])
             })
           ],
           2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "vp20" }),
+      _vm._v(" "),
+      _c("div", [
+        _c(
+          "button",
+          {
+            staticClass: "button_red",
+            attrs: {
+              title: _vm.t(
+                "Attention! Do you want to delete your account? Any documents and events associated with your account will also be deleted. The operation is irreversible!"
+              )
+            },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.deleteProfileLocal($event)
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "mdi mdi-account" }),
+            _vm._v(_vm._s(_vm.t("Delete profile!")) + "\n            ")
+          ]
         )
       ])
     ]),
@@ -60653,7 +60743,26 @@ var render = function() {
             staticClass: "mdi mdi-content-save-outline mdiProjectIcon",
             class: _vm.getTheme
           }),
-          _vm._v(" Save\n        ")
+          _vm._v(" " + _vm._s(_vm.t("Save")) + "\n        ")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.addAccount($event)
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "mdi mdi-email-plus-outline mdiProjectIcon",
+            class: _vm.getTheme
+          }),
+          _vm._v(" " + _vm._s(_vm.t("Add mail account")) + "\n        ")
         ]
       ),
       _vm._v(" "),
@@ -60672,7 +60781,7 @@ var render = function() {
             staticClass: "mdi mdi-close-outline mdiProjectIcon",
             class: _vm.getTheme
           }),
-          _vm._v(" Close\n        ")
+          _vm._v(" " + _vm._s(_vm.t("Close")) + "\n        ")
         ]
       ),
       _vm._v(" "),
@@ -62844,7 +62953,7 @@ var render = function() {
                       },
                       [
                         _c("i", {
-                          staticClass: "mdi mdi-tools standardSizeIcon",
+                          staticClass: "mdi mdi-account standardSizeIcon",
                           class: _vm.getTheme
                         }),
                         _vm._v(" "),
@@ -80061,9 +80170,73 @@ var actions = {
 
     return fetchMailacounts;
   }(),
+  // Add new mail account
+  addAccount: function () {
+    var _addAccount = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee32(_ref70) {
+      var state, response, newMailacount;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee32$(_context32) {
+        while (1) {
+          switch (_context32.prev = _context32.next) {
+            case 0:
+              state = _ref70.state;
+              _context32.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/mailacount", {
+                user_id: state.user_id,
+                host: "",
+                port: 993,
+                encryption: "SSL",
+                validate_cert: 0,
+                username: "",
+                password: "",
+                protocol: "imap"
+              }, {
+                "Content-Type": "application/json; charset=utf-8"
+              });
+
+            case 3:
+              response = _context32.sent;
+              newMailacount = {
+                id: response.data.data.id,
+                user_id: response.data.data.user_id,
+                created_at: response.data.data.created_at,
+                updated_at: response.data.data.updated_at,
+                host: response.data.data.host,
+                port: response.data.data.port,
+                encryption: response.data.data.encryption,
+                validate_cert: response.data.data.validate_cert,
+                username: response.data.data.username,
+                password: response.data.data.password,
+                protocol: response.data.data.protocol
+              };
+              state.mailacounts.unshift(newMailacount);
+
+            case 6:
+            case "end":
+              return _context32.stop();
+          }
+        }
+      }, _callee32);
+    }));
+
+    function addAccount(_x49) {
+      return _addAccount.apply(this, arguments);
+    }
+
+    return addAccount;
+  }(),
+  // Delete mail account
+  deleteAccount: function deleteAccount(_ref71, id) {
+    var state = _ref71.state;
+    state.mailacounts = state.mailacounts.filter(function (m) {
+      return m.id != id;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/mailacount/" + id);
+  },
   // Refresh to ready state
-  readyState: function readyState(_ref70) {
-    var commit = _ref70.commit;
+  readyState: function readyState(_ref72) {
+    var commit = _ref72.commit;
     // clear projects
     commit("setCurrentProjectId", 0);
     commit("setProject", []); // clear tasks
@@ -80084,9 +80257,16 @@ var actions = {
 
     commit("setPanel", "");
   },
-  changeProgress: function changeProgress(_ref71, progress) {
-    var commit = _ref71.commit;
+  changeProgress: function changeProgress(_ref73, progress) {
+    var commit = _ref73.commit;
     commit("setProgress", progress);
+  },
+  // Delete profile
+  deleteProfile: function deleteProfile(_ref74) {
+    var state = _ref74.state,
+        dispatch = _ref74.dispatch;
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/delete/user/" + state.user_id);
+    dispatch("exitProgram");
   }
 };
 var mutations = {

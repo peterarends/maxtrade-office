@@ -176,7 +176,13 @@ export default {
             "New Project": "Нов Проект",
             "To Current Task": "Към Задачата",
             Profile: "Потребителски профил",
-            "Imap accounts": "Imap акаунти"
+            "Imap accounts": "Imap акаунти",
+            "Add mail account": "Добави mail акаунт",
+            "Do you want to delete the account?":
+                "Желаете ли да изтриете акаунта?",
+            "Delete profile!": "Изтрий профила!",
+            "Attention! Do you want to delete your account? Any documents and events associated with your account will also be deleted. The operation is irreversible!":
+                "Внимание! Желаете ли да изтриете профила си? Всички свързани с профила Ви документи и събития също ще бъдат изтрити. Операцията е необратима!"
         }
     },
 
@@ -343,6 +349,15 @@ h5 {
 }
 .button:hover {
     background: #2b6cb0;
+}
+.button_red {
+    border: 1px solid #9b2c2c;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: #c53030;
+}
+.button_red:hover {
+    background: #e53e3e;
 }
 table,
 th,

@@ -337,7 +337,7 @@
                                             @click="showProfile"
                                         >
                                             <i
-                                                class="mdi mdi-tools standardSizeIcon"
+                                                class="mdi mdi-account standardSizeIcon"
                                                 :class="getTheme"
                                             ></i
                                             >&nbsp;<span>{{

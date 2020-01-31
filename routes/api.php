@@ -71,6 +71,8 @@ Route::put('user', 'UserController@updateUser');
 Route::post('add/user', 'UserController@store');
 /** Delete User to this Project */
 Route::delete('delete/user/{user_id}/project/{project_id}', 'UserController@deleteUserByProject');
+/** Delete User */
+Route::delete('delete/user/{id}', 'UserController@deleteUser');
 
 /** Search all projects and tasks */
 Route::post('search', 'SearchController@index');
@@ -95,3 +97,7 @@ Route::delete('imap/{id}', 'ImapController@destroy');
 Route::get('mailacounts/{id}', 'MailacountsController@index');
 /** Update Mailacounts */
 Route::put('mailacounts', 'MailacountsController@updateMailacounts');
+/** Add Mailacount */
+Route::post('mailacount', 'MailacountsController@addMailacount');
+/** Delete Mailacount */
+Route::delete('mailacount/{id}', 'MailacountsController@deleteMailacount');
