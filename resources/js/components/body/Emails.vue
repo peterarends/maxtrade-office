@@ -17,6 +17,17 @@
             </div>
         </div>
         <div class="body">
+            <h2 v-if="getMailacounts.length == 0">
+                {{
+                    t(
+                        "You don't have an email account yet. Please enter at least one update. You can do it from here:"
+                    )
+                }}
+                <br /><br />
+                <a class="link" @click.prevent="showProfile">{{
+                    t("Profile")
+                }}</a>
+            </h2>
             <div class="menu">
                 <div
                     class="mail_item"
@@ -140,7 +151,8 @@ export default {
         "getCurrentImapId",
         "getImap",
         "getCurrentProjectId",
-        "getCurrentTaskId"
+        "getCurrentTaskId",
+        "getMailacounts"
     ]),
 
     filters: {
@@ -158,7 +170,8 @@ export default {
             "deleteImap",
             "newProjectImap",
             "newTaskImap",
-            "currentTaskImap"
+            "currentTaskImap",
+            "showProfile"
         ]),
         onClickContextMenu(action) {
             if (action == "newproject") {

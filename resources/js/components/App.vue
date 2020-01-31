@@ -182,7 +182,9 @@ export default {
                 "Желаете ли да изтриете акаунта?",
             "Delete profile!": "Изтрий профила!",
             "Attention! Do you want to delete your account? Any documents and events associated with your account will also be deleted. The operation is irreversible!":
-                "Внимание! Желаете ли да изтриете профила си? Всички свързани с профила Ви документи и събития също ще бъдат изтрити. Операцията е необратима!"
+                "Внимание! Желаете ли да изтриете профила си? Всички свързани с профила Ви документи и събития също ще бъдат изтрити. Операцията е необратима!",
+            "You don't have an email account yet. Please enter at least one update. You can do it from here:":
+                "Все още нямате email акаунт. Моля, въведете поне един. Можете да го направите от тук:"
         }
     },
 
@@ -358,6 +360,11 @@ h5 {
 }
 .button_red:hover {
     background: #e53e3e;
+}
+.link {
+    color: #3182ce;
+    cursor: pointer;
+    text-decoration: underline;
 }
 table,
 th,

@@ -195,8 +195,9 @@ const actions = {
         commit("setPanel", "profile");
     },
     // Show panel emails
-    showEmails({ commit, dispatch }) {
-        dispatch("fetchImaps");
+    async showEmails({ commit, dispatch }) {
+        await dispatch("fetchImaps");
+        await dispatch("fetchMailacounts");
         commit("setPanel", "emails");
     },
     // Show panel all tasks
