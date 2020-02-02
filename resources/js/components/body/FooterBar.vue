@@ -27,10 +27,10 @@
         <span>{{ getTasks.length }}</span>
       </div>
       <div class="separator-vertical" :class="getTheme"></div>
-      <div class="progressbar">
-        <div class="toprogress" :style="{ flex: (getProgress - 1) * 3 }"></div>
+      <div class="progressbar" :class="getTheme">
+        <div class="toprogress" :class="getTheme" :style="{ flex: (getProgress - 1) * 3 }"></div>
         <div class="progress" :style="{ flex: getProgress == 0 ? 0 : 60 }"></div>
-        <div class="toprogress" :style="{ flex: 300 - getProgress * 3 }"></div>
+        <div class="toprogress" :class="getTheme" :style="{ flex: 300 - getProgress * 3 }"></div>
       </div>
     </div>
   </div>
@@ -92,16 +92,25 @@ export default {
   display: flex;
   width: 300px;
   height: 20px;
-  border: 1px solid #718096;
   align-items: center;
+}
+.progressbar.dark {
+  border: 1px solid #718096;
   background: #1a202c;
+}
+.progressbar.light {
+  border: 1px solid #a0aec0;
+  background: #cbd5e0;
 }
 .progress {
   background: #3182ce;
   height: 16px;
 }
-.toprogress {
+.toprogress.dark {
   background: #1a202c;
+}
+.toprogress.light {
+  background: #cbd5e0;
 }
 /* End Footer panel */
 </style>
