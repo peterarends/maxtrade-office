@@ -9,13 +9,15 @@ use App\Http\Resources\PropertyCategory;
 
 class PropertiesController extends Controller
 {
-    public function index()
+    public function index($id = null)
     {
         /** Get Properties */
-        $properties = Property::orderBy('category', 'asc')->get();
+        if ($id != null) {
+            $properties = Property::where(['user_id' => $id])->orderBy('category', 'asc')->get();
 
-        /** Return collection of Properties as resource */
-        return PropertyResource::collection($properties);
+            /** Return collection of Properties as resource */
+            return PropertyResource::collection($properties);
+        }
     }
 
     public function store(Request $request)

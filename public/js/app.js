@@ -78443,7 +78443,7 @@ var actions = {
             case 0:
               commit = _ref.commit, dispatch = _ref.dispatch;
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/properties");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/properties/" + state.user_id);
 
             case 3:
               response = _context.sent;

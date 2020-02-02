@@ -53,7 +53,7 @@ Route::get('task/documents/{id}', 'TasksController@getDocuments');
 Route::delete('task/document/delete/{id}/{document}', 'TasksController@deleteDocument');
 
 /** List Properties */
-Route::get('properties', 'PropertiesController@index');
+Route::get('properties/{id}', 'PropertiesController@index');
 /** Update a Property */
 Route::put('property', 'PropertiesController@store');
 /** List Categories */
