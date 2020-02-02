@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Property;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -63,10 +64,45 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        Property::create([
+            'name' => 'theme',
+            'value' => 'dark',
+            'description' => 'Choose theme',
+            'help' => 'Change program theme',
+            'category' => 'visual',
+            'user_id' => $user->id
+        ]);
+        Property::create([
+            'name' => 'projectfilter',
+            'value' => 'act',
+            'description' => 'Change project filter',
+            'help' => 'Select a default project filter between, Show All, Show Active, Show Ended',
+            'category' => 'other',
+            'user_id' => $user->id
+        ]);
+        Property::create([
+            'name' => 'taskfilter',
+            'value' => 'all',
+            'description' => 'Change task filter',
+            'help' => 'Select a default task filter between, Show All, Show Active, Show Ended',
+            'category' => 'other',
+            'user_id' => $user->id
+        ]);
+        Property::create([
+            'name' => 'language',
+            'value' => 'en_US',
+            'description' => 'Choose language',
+            'help' => 'Choose the language in which the program will work',
+            'category' => 'other',
+            'user_id' => $user->id
+        ]);
+
+        return $user;
     }
 }
