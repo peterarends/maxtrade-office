@@ -252,9 +252,9 @@ const actions = {
         );
         axios.delete(
             "api/delete/user/" +
-            user_id +
-            "/project/" +
-            state.current_project_id
+                user_id +
+                "/project/" +
+                state.current_project_id
         );
     },
     // Fetch all projects
@@ -356,12 +356,12 @@ const actions = {
     toggleProjectNameFilter({ commit, state }) {
         commit("setProjectFilterName", !state.project_filter.filteraz);
         if (state.project_filter.filteraz) {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.title > b.title) return 1;
                 if (a.title < b.title) return -1;
             });
         } else {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.title > b.title) return -1;
                 if (a.title < b.title) return 1;
             });
@@ -371,12 +371,12 @@ const actions = {
     toggleProjectIdFilter({ commit, state }) {
         commit("setProjectFilterId", !state.project_filter.filter09);
         if (state.project_filter.filter09) {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.id > b.id) return 1;
                 if (a.id < b.id) return -1;
             });
         } else {
-            state.projects.sort(function (a, b) {
+            state.projects.sort(function(a, b) {
                 if (a.id > b.id) return -1;
                 if (a.id < b.id) return 1;
             });
@@ -388,7 +388,7 @@ const actions = {
             id:
                 Math.max.apply(
                     Math,
-                    state.projects.map(function (o) {
+                    state.projects.map(function(o) {
                         return o.id;
                     })
                 ) + 1,
@@ -486,13 +486,13 @@ const actions = {
         if (isMessage) {
             alert(
                 "You have successfully saved the changes to the Project: " +
-                response.data.data.title
+                    response.data.data.title
             );
         }
         // change all task status by project
         if (state.project.status == 0) {
             await axios.get("api/task/complete/" + state.project.id);
-            state.tasks.forEach(function (part, index) {
+            state.tasks.forEach(function(part, index) {
                 part.status = 0;
             });
         }
@@ -505,7 +505,7 @@ const actions = {
                 id:
                     Math.max.apply(
                         Math,
-                        state.tasks.map(function (o) {
+                        state.tasks.map(function(o) {
                             return o.id;
                         })
                     ) + 1,
@@ -579,7 +579,7 @@ const actions = {
         if (isMessage) {
             alert(
                 "You have successfully saved the changes to the Task: " +
-                response.data.data.title
+                    response.data.data.title
             );
         }
     },
@@ -621,12 +621,12 @@ const actions = {
     toggleTaskNameFilter({ commit, state }) {
         commit("setTaskFilterName", !state.task_filter.filteraz);
         if (state.task_filter.filteraz) {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.title > b.title) return 1;
                 if (a.title < b.title) return -1;
             });
         } else {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.title > b.title) return -1;
                 if (a.title < b.title) return 1;
             });
@@ -636,12 +636,12 @@ const actions = {
     toggleTaskIdFilter({ commit, state }) {
         commit("setTaskFilterId", !state.task_filter.filter09);
         if (state.task_filter.filter09) {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.id > b.id) return 1;
                 if (a.id < b.id) return -1;
             });
         } else {
-            state.tasks.sort(function (a, b) {
+            state.tasks.sort(function(a, b) {
                 if (a.id > b.id) return -1;
                 if (a.id < b.id) return 1;
             });
@@ -714,7 +714,7 @@ const actions = {
     // Sort projects by ID ACC
     sortProjectsIdAcc({ state }) {
         state.project_filter.filter09 = true;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.id > b.id) return 1;
             if (a.id < b.id) return -1;
         });
@@ -722,7 +722,7 @@ const actions = {
     // Sort projects by ID DEC
     sortProjectsIdDec({ state }) {
         state.project_filter.filter09 = false;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.id > b.id) return -1;
             if (a.id < b.id) return 1;
         });
@@ -730,7 +730,7 @@ const actions = {
     // Sort projects by Name ACC
     sortProjectsNameAcc({ state }) {
         state.project_filter.filteraz = true;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.title > b.title) return 1;
             if (a.title < b.title) return -1;
         });
@@ -738,7 +738,7 @@ const actions = {
     // Sort projects by Name DEC
     sortProjectsNameDec({ state }) {
         state.project_filter.filteraz = false;
-        state.projects.sort(function (a, b) {
+        state.projects.sort(function(a, b) {
             if (a.title > b.title) return -1;
             if (a.title < b.title) return 1;
         });
@@ -761,7 +761,7 @@ const actions = {
     // Sort tasks by ID ACC
     sortTasksIdAcc({ state }) {
         state.task_filter.filter09 = true;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.id > b.id) return 1;
             if (a.id < b.id) return -1;
         });
@@ -769,7 +769,7 @@ const actions = {
     // Sort tasks by ID DEC
     sortTasksIdDec({ state }) {
         state.task_filter.filter09 = false;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.id > b.id) return -1;
             if (a.id < b.id) return 1;
         });
@@ -777,7 +777,7 @@ const actions = {
     // Sort tasks by Name ACC
     sortTasksNameAcc({ state }) {
         state.task_filter.filteraz = true;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.title > b.title) return 1;
             if (a.title < b.title) return -1;
         });
@@ -785,7 +785,7 @@ const actions = {
     // Sort tasks by Name DEC
     sortTasksNameDec() {
         state.task_filter.filteraz = false;
-        state.tasks.sort(function (a, b) {
+        state.tasks.sort(function(a, b) {
             if (a.title > b.title) return -1;
             if (a.title < b.title) return 1;
         });
@@ -889,9 +889,9 @@ const actions = {
             if (confirm("Are You sure?")) {
                 await axios.delete(
                     "api/imap/" +
-                    state.current_imap_id +
-                    "/user/" +
-                    state.user_id,
+                        state.current_imap_id +
+                        "/user/" +
+                        state.user_id,
                     {
                         "Content-Type": "application/json; charset=utf-8"
                     }
@@ -910,7 +910,7 @@ const actions = {
             id:
                 Math.max.apply(
                     Math,
-                    state.projects.map(function (o) {
+                    state.projects.map(function(o) {
                         return o.id;
                     })
                 ) + 1,
@@ -942,7 +942,7 @@ const actions = {
                 id:
                     Math.max.apply(
                         Math,
-                        state.tasks.map(function (o) {
+                        state.tasks.map(function(o) {
                             return o.id;
                         })
                     ) + 1,
@@ -1000,7 +1000,7 @@ const actions = {
         if (isMessage) {
             alert(
                 "You have successfully saved the changes to the Profile: " +
-                response.data.data.name
+                    response.data.data.name
             );
         }
     },
